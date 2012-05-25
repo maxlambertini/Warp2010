@@ -1,0 +1,86 @@
+#include "gfx_items/arcgraphicsitem.h"
+#include "helpers/preferences.h"
+
+ArcGraphicsItem::ArcGraphicsItem(double x1, double y1, double x2, double y2, QPen &pen, bool bDrawAsArc)
+{
+    _p1 = QPointF(x1,y1);
+    _p2 = QPointF(x2,y2);
+    _pen = pen;
+    _drawAsArc = Preferences::prefsPtr()->drawRoutesAsArcs();
+    this->customDrawArc(_p1,_p2,_pen);
+}
+
+
+ArcGraphicsItem::ArcGraphicsItem(const QPointF & p1, const QPointF &p2, QPen &pen, bool bDrawAsArc)
+{
+    _p1 = p1;
+    _p2 = p2;
+    _pen = pen;
+    _drawAsArc = Preferences::prefsPtr()->drawRoutesAsArcs();
+    this->customDrawArc(_p1,_p2,_pen);
+}
+
+QRectF ArcGraphicsItem::boundingRect() const
+{
+    return _boundingRect;
+}
+
+void ArcGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    painter->setPen(_pen);
+    if (_drawAsArc) {
+        QBrush brush;
+        QPainterPath path;
+        painter->setBrush(brush);
+        path.moveTo(_pCenter.x(),_pCenter.y());
+        path.arcMoveTo(_boundingRect,_angleStart);
+        path.arcTo(_boundingRect,_angleStart,_angleSweep);
+        painter->drawPath(path);
+    }
+    else {
+        painter->drawLine(_p1,_p2);
+    }
+}
+
+void ArcGraphicsItem::customDrawArc(QPointF p1, QPointF p2, QPen pOrange)
+{
+    if (_drawAsArc) {
+        double pi = NSArc::PI;
+        double dist = sqrt( (p2.x()-p1.x()) * (p2.x()-p1.x()) + (p2.y()-p1.y()) * (p2.y()-p1.y()));
+        double radius = dist;
+        QPointF pm( (p2.x()+p1.x()) /2, (p2.y()+p1.y())/2);
+        double dx = p2.x()-p1.x();
+        double dy = p2.y()-p1.y();
+        double phi = atan2(dy,dx);
+        phi -= NSArc::PI/2.0;
+        double TO_GRAD = NSArc::TO_GRAD;
+
+        double ellipseBaseAngle = (NSArc::PI + (2.0*NSArc::PI - phi)) ;
+        double ellipseStartAngle = ellipseBaseAngle - NSArc::ANGLE_DELTA;
+
+        _angleStart = ellipseStartAngle * NSArc::TO_GRAD;
+        _angleSweep = NSArc::ANGLE_SWEEP;
+        _pen = pOrange;
+
+        double cx = pm.x()+radius*cos(phi);
+        double cy = pm.y()+radius*sin(phi);
+
+        radius = sqrt( (p2.x()-cx)*(p2.x()-cx) + (p2.y()-cy) * (p2.y()-cy));
+
+        _halfway.setX(cx- radius * cos(phi));
+        _halfway.setY(cy- radius * sin(phi));
+
+
+        _pCenter = QPointF(cx,cy);
+        QRectF rect(cx-radius, cy-radius, radius*2, radius*2);
+        _boundingRect = rect;
+
+    }
+    else  {
+        QRectF rect(p1,p2);
+        _boundingRect = rect;
+        _pCenter = QPointF( (p2.x()+p1.x()) /2, (p2.y()+p1.y())/2);
+        _halfway = _pCenter;
+    }
+}
+
