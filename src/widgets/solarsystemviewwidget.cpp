@@ -158,59 +158,73 @@ void SolarSystemViewWidget::sliderValueChanged(int val)
 }
 
 void SolarSystemViewWidget::exportSolSysToHtml() {
-    QString fileName =
-            QFileDialog::getSaveFileName(
-                    this,
-                    tr("Export cluster as HTML"),
-                    AppPaths::appDir()+"/"+_star->starName+".html",
-                    tr("HTML Page (*.html)"));
-    if (!fileName.isEmpty() && !fileName.isNull()) {
-        QFile file(fileName);
-        if (file.open(QIODevice::WriteOnly | QIODevice::ReadWrite)) {
-            QTextStream stream(&file);
-            stream << _star->toHtml();
+    if (_star != NULL) {
+        QString fileName =
+                QFileDialog::getSaveFileName(
+                        this,
+                        tr("Export cluster as HTML"),
+                        AppPaths::appDir()+"/"+_star->starName+".html",
+                        tr("HTML Page (*.html)"));
+        if (!fileName.isEmpty() && !fileName.isNull()) {
+            QFile file(fileName);
+            if (file.open(QIODevice::WriteOnly | QIODevice::ReadWrite)) {
+                QTextStream stream(&file);
+                stream << _star->toHtml();
 
-            file.flush();
-            file.close();
+                file.flush();
+                file.close();
+            }
+
         }
-
+    }
+    else {
+        AppMessage::Error("Star not defined", "Please define a cluster and select a Star");
     }
 
 }
 
 void SolarSystemViewWidget::exportSolSysToPDF() {
-    QString fileName =
-            QFileDialog::getSaveFileName(
-                    this,
-                    tr("Export solar system as PDF"),
-                    AppPaths::appDir()+"/"+_star->starName +".pdf",
-                    tr("PDF Document (*.pdf)"));
-    if (!fileName.isEmpty() && !fileName.isNull()) {
-        qApp->processEvents();
-        SplashScreen::screenPtr()->setMessage("Exporting solar system of "+_star->starName + " to PDF");
-        SplashScreen::screenPtr()->show();
-        qApp->processEvents();
+    if (_star != NULL ) {
+        QString fileName =
+                QFileDialog::getSaveFileName(
+                        this,
+                        tr("Export solar system as PDF"),
+                        AppPaths::appDir()+"/"+_star->starName +".pdf",
+                        tr("PDF Document (*.pdf)"));
+        if (!fileName.isEmpty() && !fileName.isNull()) {
+            qApp->processEvents();
+            SplashScreen::screenPtr()->setMessage("Exporting solar system of "+_star->starName + " to PDF");
+            SplashScreen::screenPtr()->show();
+            qApp->processEvents();
 
-        QPrinter printer;
-        SceneImageExporter sci;
-        sci.GraphicsSceneToPrinter(
-                this->_solsysToScene->scenePtr(),
-                printer,fileName,_star->starName,true);
+            QPrinter printer;
+            SceneImageExporter sci;
+            sci.GraphicsSceneToPrinter(
+                    this->_solsysToScene->scenePtr(),
+                    printer,fileName,_star->starName,true);
 
-        SplashScreen::screenPtr()->hide();
+            SplashScreen::screenPtr()->hide();
+        }
     }
-
+    else {
+        AppMessage::Error("Star not defined", "Please define a cluster and select a Star");
+    }
 }
 
 void SolarSystemViewWidget::exportSolSysToSvg() {
-    QString fileName =
-            QFileDialog::getSaveFileName(
-                    this,
-                    tr("Export solar system as SVG"),
-                    AppPaths::appDir()+"/"+_star->starName+"_solsys.svg",
-                    tr("SVG Image (*.svg)"));
-    if (!fileName.isEmpty() && !fileName.isNull()) {
-        SceneImageExporter::ExportToSVG(this->_solsysToScene->scenePtr(),fileName);
+    if (_star != NULL ) {
+        QString fileName =
+                QFileDialog::getSaveFileName(
+                        this,
+                        tr("Export solar system as SVG"),
+                        AppPaths::appDir()+"/"+_star->starName+"_solsys.svg",
+                        tr("SVG Image (*.svg)"));
+        if (!fileName.isEmpty() && !fileName.isNull()) {
+            SceneImageExporter::ExportToSVG(this->_solsysToScene->scenePtr(),fileName);
+        }
+    }
+    else {
+        AppMessage::Error("Star not defined", "Please define a cluster and select a Star");
     }
 }
 

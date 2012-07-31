@@ -50,12 +50,34 @@ void Cluster::create( int nCluster) {
     int nCount = _clusterItems.count();
 
     bool bSlipstreamGuaranteed = false;
+    int nSlipstream = 0;
+    QVector<int> vector;
     for (int h = 0; h < nCount -1; h++)
     {
         ClusterItem& ci = _clusterItems[h];
         if (ci.technology() >= 2) {
-            bSlipstreamGuaranteed = true;
-            break;
+            nSlipstream++;
+            bSlipstreamGuaranteed = (nSlipstream >= 2);
+        } else {
+            vector.append(h);
+        }
+    }
+    int idMax = vector.count();
+    for (int w = idMax; w > 0 ; w--) {
+        int i2 = SSGX::dx(w);
+        int t1 = vector[i2];
+        vector[i2] = vector[w-1];
+        vector[w-1] = t1;
+    }
+
+
+    if (nSlipstream < 2) {
+        for (int xx = nSlipstream; xx <2; xx++)
+        {
+            int idx = vector.at(xx);
+            ClusterItem& ci = _clusterItems[idx];
+            ci.setTechnology(2);
+
         }
     }
 
@@ -67,8 +89,6 @@ void Cluster::create( int nCluster) {
         int n2 = h+2;
         int n3 = h+3;
         ClusterItem& ci = _clusterItems[h];
-        if (!bSlipstreamGuaranteed && nWarp == h )
-            ci.setTechnology(2);
         ci.addLink(n1);
         _clusterItems[n1].addLinkedBy(h);
         int res = SSGX::dF();
