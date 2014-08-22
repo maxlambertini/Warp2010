@@ -34,6 +34,7 @@ public:
     inline void removeLink(int nLink) {_links.removeAll(nLink);}
     inline void removeLinkedBy(int nLink) {_linkedBy.removeOne(nLink);}
 
+    inline int totalValue() { return _environment+ _technology+_resources; }
 
     inline void clearLinks() { _links.clear(); }
     inline const QList<int>& links() { return _links; }

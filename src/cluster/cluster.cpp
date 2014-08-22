@@ -71,14 +71,24 @@ void Cluster::create( int nCluster) {
         vector[w-1] = t1;
     }
 
+    qDebug() << "Vector is: " << vector;
+
 
     if (nSlipstream < 2) {
         for (int xx = nSlipstream; xx <2; xx++)
         {
-            int idx = vector.at(xx);
+            int minVal = 5;
+            int curItem = 999;
+            for (int w = 0; w < vector.count(); w++) {
+                ClusterItem& ci = _clusterItems[vector.at(w)];
+                if (ci.totalValue() < minVal) {
+                    curItem = w;
+                    minVal = ci.totalValue();
+                }
+            }
+            int idx = vector.at(curItem);
             ClusterItem& ci = _clusterItems[idx];
             ci.setTechnology(2);
-
         }
     }
 
