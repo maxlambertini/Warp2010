@@ -79,8 +79,8 @@ void MatrixBuilder::buildMatrix(int from) {
         for (int w = 0; w < _lStart->keys().count(); w++)
         {
             int k = _lStart->keys().at(w);
-            TWordColl* w = _lStart->value( k);
-            delete w;
+            TWordColl* z = _lStart->value( k);
+            delete z;
         }
         _lStart->clear();
         if (_lDest->count() > 0) {

@@ -2,6 +2,7 @@
 #include "onomastikon.h"
 #include "ssg_structures.h"
 #include "aspectlist.h"
+#include <QtDebug>
 
 QDataStream & operator >> (QDataStream &in, Cluster& frm) {
 
@@ -89,17 +90,22 @@ void Cluster::create( int nCluster) {
         int n2 = h+2;
         int n3 = h+3;
         ClusterItem& ci = _clusterItems[h];
+        int res = SSGX::dF();
         ci.addLink(n1);
         _clusterItems[n1].addLinkedBy(h);
-        int res = SSGX::dF();
-        if ( (res == 0 || res > 0) && h+2 < nCount) {
+        if ( (res == 0 || res > 0) && h+2 < nCount && _clusterItems[n2].linkedBy().count() == 0) {
             ci.addLink(n2);
             _clusterItems[n2].addLinkedBy(h);
+            qDebug() <<  "Added linked by " << h << " to " << n2;
         }
-        if (res > 0 && h+3 < nCount) {
+        qDebug() << "Draw is " << res << " for cluster item " << h;
+        if (res > 0 && h+3 < nCount && _clusterItems[n3].linkedBy().count()==0) {
             ci.addLink(n3);
             _clusterItems[n3].addLinkedBy(h);
+            qDebug() <<  "Added linked by " << h << " to " << n3;
         }
+        qDebug() <<  "Added linked by " << h << " to " << n1;
+
     }
 
     _aspects.clearAspectDraw();

@@ -750,9 +750,13 @@ void SceneMediator::drawHexMap()
     QRectF rect99;
     QRectF rectTotal;
     QRectF rectOuter;
+    QRectF rectOuter2;
 
     _travellerSectors.clear();
 
+    double l_rect,t_rect,r_rect,b_rect;
+
+    qDebug() << "outputting dx" << d_x << ", dy" << d_y << ", hexSize" << _hexSize;
     for (int dy =d_y-1; dy >=0;  dy-- ) {
         for (int dx = 0; dx < d_x; dx++) {
             for (int y = 0; y < hexPerSector; y++ ) {
@@ -773,7 +777,11 @@ void SceneMediator::drawHexMap()
                         rectOuter =  rectTotal.adjusted(-rect00.width()/2,-rect00.height()/2,
                                          rect99.width()/2, rect99.height()/2);
 
+                        rectOuter2 =  rectTotal.adjusted(0,0,
+                                         -rect99.width()/4, -rect99.height()/2);
                         _travellerSectors.append(SectorRectHolder(rectOuter, rectTotal,dx,dy,true));
+                        QGraphicsRectItem *item_rect = new QGraphicsRectItem(rectOuter2);
+                        _scene->addItem(item_rect);
                     }
 
                     if (_bDrawHexOnHexmap)
