@@ -11,16 +11,16 @@
 #define UI_FONTPREVIEWWIDGET_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QTextEdit>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QPushButton>
+#include <QTextEdit>
+#include <QVBoxLayout>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -71,9 +71,9 @@ public:
 
     void retranslateUi(QWidget *FontPreviewWidget)
     {
-        FontPreviewWidget->setWindowTitle(QApplication::translate("FontPreviewWidget", "Form", 0, QApplication::UnicodeUTF8));
-        lblFontSelected->setText(QApplication::translate("FontPreviewWidget", "TextLabel", 0, QApplication::UnicodeUTF8));
-        btnSelectFont->setText(QApplication::translate("FontPreviewWidget", "Select &Font", 0, QApplication::UnicodeUTF8));
+        FontPreviewWidget->setWindowTitle(QApplication::translate("FontPreviewWidget", "Form", 0));
+        lblFontSelected->setText(QApplication::translate("FontPreviewWidget", "TextLabel", 0));
+        btnSelectFont->setText(QApplication::translate("FontPreviewWidget", "Select &Font", 0));
     } // retranslateUi
 
 };

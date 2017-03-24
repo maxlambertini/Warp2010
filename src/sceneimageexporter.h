@@ -2,6 +2,8 @@
 #define SCENEIMAGEEXPORTER_H
 
 #include <QtGui>
+#include <QGraphicsScene>
+#include <QPrinter>
 #include "helpers/sectorrectholder.h"
 
 namespace SIEOptions {

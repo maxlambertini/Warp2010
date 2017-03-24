@@ -22,6 +22,8 @@
 
 #include <QtGui>
 #include <QtCore>
+#include <QGraphicsScene>
+#include <QPrinter>
 #include "star.h"
 #include "starlist.h"
 #include "traderoute.h"

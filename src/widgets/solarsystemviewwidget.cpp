@@ -21,6 +21,8 @@
 
 #include <QtCore>
 #include <QtGui>
+#include <QFileDialog>
+#include <QPrintDialog>
 #include "star.h"
 #include "planet.h"
 #include "helpers/solarsystemtoscene.h"

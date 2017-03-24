@@ -18,7 +18,7 @@
 #ifndef TRADEROUTEDIALOG_H
 #define TRADEROUTEDIALOG_H
 
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include "star.h"
 #include "starlist.h"
 #include "traderoutemediator.h"

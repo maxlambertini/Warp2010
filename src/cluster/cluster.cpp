@@ -23,8 +23,9 @@ Cluster::Cluster() : _onomastikon(Onomastikon::instancePtr())
     this->create();
 }
 
-void Cluster::create( int nCluster) {
+void Cluster::create( int nCluster, bool closeCluster) {
     _isDirty = false;
+    _closeCluster = closeCluster;
     _clusterItems.clear();
     _clusterMap.clear();
     int numCluster = nCluster != 0 ? nCluster : SSGX::dn(5)+5;
@@ -77,7 +78,7 @@ void Cluster::create( int nCluster) {
     if (nSlipstream < 2) {
         for (int xx = nSlipstream; xx <2; xx++)
         {
-            int minVal = 5;
+            int minVal = 13;
             int curItem = 999;
             for (int w = 0; w < vector.count(); w++) {
                 ClusterItem& ci = _clusterItems[vector.at(w)];
@@ -116,6 +117,12 @@ void Cluster::create( int nCluster) {
         }
         qDebug() <<  "Added linked by " << h << " to " << n1;
 
+    }
+    if (_closeCluster) {
+        int idxFirst = 0;
+        int idxLast = _clusterItems.count()-1;
+        _clusterItems.first().addLink(idxLast);
+        _clusterItems.last().addLinkedBy(idxFirst);
     }
 
     _aspects.clearAspectDraw();
@@ -212,22 +219,27 @@ void Cluster::exportClusterToGraphViz(QString defaultName)
     idx2 = 0;
     int tmpTech;
     if (file.open(QIODevice::WriteOnly | QIODevice::ReadWrite)) {
-        stream << "graph Cluster {\n";
-        stream << "\tdpi=200;\n\trankdir=LR;\n\tnode [shape=circle];\n";
+        stream << "graph Cluster {\n overlap=false;ranksep=2.5;splines=true;";
+        stream << "\tdpi=200;\n\tnode [shape=circle];\n";
         foreach (cli, _clusterItems) {
             tmpTech = cli.technology();
-            if (tmpTech < 2) {
-                stream << "\tcli_" << idx2 << " " << "[label=\""  << cli.name() << "\\n"
-                        << "Env: " << cli.environment() << "\\n"
-                        << "Tech: " << cli.technology() << "\\n"
-                        << "Res: " << cli.resources() << "\"];\n";
-            } else {
-                stream << "\tcli_" << idx2 << " " << "[shape=doublecircle,label=\""  << cli.name() << "\\n"
-                        << "Env: " << cli.environment() << "\\n"
-                        << "Tech: " << cli.technology() << "\\n"
-                        << "Res: " << cli.resources() << "\"];\n";
 
-            }
+            QString s_color= tmpTech >= 2 ? "yellow" : "white";
+
+            QString a1= cli.aspects()[0].name().replace("\"","'").replace("\n"," ");;
+            QString a2= cli.aspects()[1].name().replace("\"","'").replace("\n"," ");;
+            QString a3= cli.aspects()[2].name().replace("\"","'").replace("\n"," ");;
+            stream << "\tcli_" << idx2 << " " << "["
+                    << "shape=\"Mrecord\"\nlabel=<<table border=\"0\" cellpadding=\"3\" width=\"250\" bgcolor='" << s_color << "'><tr>"
+                    << "<td width='250' bgcolor='black'><b><font color='white'>" << cli.name() << "</font></b></td></tr>"
+                    << "<tr><td width='250' bgcolor='#DDDDDD'>Env: " << cli.environment() << ", "
+                    << "Tech: " << cli.technology() << ", "
+                    << "Res: " << cli.resources()  << "</td></tr>"
+                    << "<tr><td width='250' >" << a1 << "</td></tr>"
+                    << "<tr><td width='250' >" << a2 << "</td></tr>"
+                    << "<tr><td width='250' >" << a3 << "</td></tr>"
+                    << "</table>> "
+                    << "];\n";
             foreach (idx, cli.links())
             {
                 cli2 = _clusterItems[idx];
@@ -235,6 +247,18 @@ void Cluster::exportClusterToGraphViz(QString defaultName)
             }
             idx2++;
         }
+
+        int mod = _clusterItems.count() / 2;
+        stream << "{rank=same; ";
+        for (int idx = 1; idx < mod; idx++) {
+            stream << " cli_" << idx;
+        }
+        stream << "}\n";
+        stream << "{rank=same; ";
+        for (int idx = mod; idx < _clusterItems.count()-1;idx++) {
+            stream << " cli_" << idx;
+        }
+        stream << "}\n";
 
         stream << "}\n";
         file.close();

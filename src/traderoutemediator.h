@@ -19,7 +19,9 @@
 #define TRADEROUTEMEDIATOR_H
 
 #include <QtGui>
-
+#include <QProgressBar>
+#include <QListWidget>
+#include <QListWidgetItem>
 #include "star.h"
 #include "starlist.h"
 #include "traderoute.h"

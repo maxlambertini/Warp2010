@@ -2,6 +2,8 @@
 #define ASPECTGRAPHICSITEM_H
 
 #include <QtGui>
+#include <QGraphicsItem>
+#include <QStyleOptionGraphicsItem>
 #include "cluster/clusteritem.h"
 #include "cluster/aspect.h"
 

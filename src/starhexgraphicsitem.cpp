@@ -19,6 +19,7 @@
 #include "starhexgraphicsitem.h"
 #include "dialogs/preferencesdialog.h"
 #include "helpers/preferences.h"
+#include <QStyleOptionGraphicsItem>
 
 QPolygonF StarHexGraphicsItem::initializeHexPolygon()
 {

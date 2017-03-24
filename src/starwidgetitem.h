@@ -19,6 +19,8 @@
 #define STARWIDGETITEM_H
 
 #include <QtGui>
+#include <QListWidget>
+#include <QListWidgetItem>
 #include "star.h"
 
 class StarWidgetItem : public QListWidgetItem

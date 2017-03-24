@@ -21,6 +21,7 @@
 
 #include <QtCore>
 #include <QtGui>
+#include <QSplashScreen>
 #include "helpers/apppaths.h"
 
 class SplashScreen

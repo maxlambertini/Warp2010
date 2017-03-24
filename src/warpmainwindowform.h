@@ -28,7 +28,8 @@ const int TAB_CLUSTER_MAP = 2;
 #include <QtGui>
 #include <QtCore>
 #include <QListWidget>
-#include <QtGui/QMainWindow>
+#include <QProgressBar>
+#include <QMainWindow>
 #include "ui_warpmainwindow.h"
 #include "starlist.h"
 #include "dialogs/createtraderoutedialog.h"

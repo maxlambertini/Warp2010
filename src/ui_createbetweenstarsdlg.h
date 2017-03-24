@@ -11,18 +11,18 @@
 #define UI_CREATEBETWEENSTARSDLG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QListWidget>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSpinBox>
-#include <QtGui/QVBoxLayout>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QListWidget>
+#include <QSpacerItem>
+#include <QSpinBox>
+#include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
@@ -112,10 +112,10 @@ public:
 
     void retranslateUi(QDialog *CreateBetweenStarsDlg)
     {
-        CreateBetweenStarsDlg->setWindowTitle(QApplication::translate("CreateBetweenStarsDlg", "Dialog", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("CreateBetweenStarsDlg", "From", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("CreateBetweenStarsDlg", "To", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("CreateBetweenStarsDlg", "Stars to add:", 0, QApplication::UnicodeUTF8));
+        CreateBetweenStarsDlg->setWindowTitle(QApplication::translate("CreateBetweenStarsDlg", "Dialog", 0));
+        label->setText(QApplication::translate("CreateBetweenStarsDlg", "From", 0));
+        label_2->setText(QApplication::translate("CreateBetweenStarsDlg", "To", 0));
+        label_3->setText(QApplication::translate("CreateBetweenStarsDlg", "Stars to add:", 0));
     } // retranslateUi
 
 };

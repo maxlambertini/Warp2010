@@ -3,6 +3,7 @@
 
 #include <QtGui>
 #include <QtCore>
+#include <QGraphicsScene>
 #include "cluster/cluster.h"
 #include "clusteritem.h"
 

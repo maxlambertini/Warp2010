@@ -11,22 +11,22 @@
 #define UI_CLUSTERITEMEDITOR_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QFrame>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QListWidget>
-#include <QtGui/QPlainTextEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSpinBox>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QFrame>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListWidget>
+#include <QPlainTextEdit>
+#include <QPushButton>
+#include <QSpacerItem>
+#include <QSpinBox>
+#include <QVBoxLayout>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -249,17 +249,17 @@ public:
 
     void retranslateUi(QWidget *ClusterItemEditor)
     {
-        ClusterItemEditor->setWindowTitle(QApplication::translate("ClusterItemEditor", "Form", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("ClusterItemEditor", "System Name", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("ClusterItemEditor", "Aspect #1", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("ClusterItemEditor", "Aspect #2", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("ClusterItemEditor", "Aspect #3", 0, QApplication::UnicodeUTF8));
-        Technology->setText(QApplication::translate("ClusterItemEditor", "Technology", 0, QApplication::UnicodeUTF8));
-        label_7->setText(QApplication::translate("ClusterItemEditor", "Resources", 0, QApplication::UnicodeUTF8));
-        label_8->setText(QApplication::translate("ClusterItemEditor", "Environment", 0, QApplication::UnicodeUTF8));
-        label_5->setText(QApplication::translate("ClusterItemEditor", "System Description", 0, QApplication::UnicodeUTF8));
-        label_6->setText(QApplication::translate("ClusterItemEditor", "Linked to:", 0, QApplication::UnicodeUTF8));
-        btnConfirmEditing->setText(QApplication::translate("ClusterItemEditor", "&Confirm System Editing", 0, QApplication::UnicodeUTF8));
+        ClusterItemEditor->setWindowTitle(QApplication::translate("ClusterItemEditor", "Form", 0));
+        label->setText(QApplication::translate("ClusterItemEditor", "System Name", 0));
+        label_2->setText(QApplication::translate("ClusterItemEditor", "Aspect #1", 0));
+        label_3->setText(QApplication::translate("ClusterItemEditor", "Aspect #2", 0));
+        label_4->setText(QApplication::translate("ClusterItemEditor", "Aspect #3", 0));
+        Technology->setText(QApplication::translate("ClusterItemEditor", "Technology", 0));
+        label_7->setText(QApplication::translate("ClusterItemEditor", "Resources", 0));
+        label_8->setText(QApplication::translate("ClusterItemEditor", "Environment", 0));
+        label_5->setText(QApplication::translate("ClusterItemEditor", "System Description", 0));
+        label_6->setText(QApplication::translate("ClusterItemEditor", "Linked to:", 0));
+        btnConfirmEditing->setText(QApplication::translate("ClusterItemEditor", "&Confirm System Editing", 0));
     } // retranslateUi
 
 };

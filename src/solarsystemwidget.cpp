@@ -16,6 +16,7 @@
 */
 
 #include <QtGui>
+#include <QApplication>
 #include <math.h>
 #include "solarsystemwidget.h"
 

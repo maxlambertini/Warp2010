@@ -11,20 +11,20 @@
 #define UI_CREATENEWSTARDLG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QCheckBox>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QFrame>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSpinBox>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QFrame>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QSpacerItem>
+#include <QSpinBox>
+#include <QVBoxLayout>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -231,17 +231,17 @@ public:
 
     void retranslateUi(QWidget *CreateNewStarDlg)
     {
-        CreateNewStarDlg->setWindowTitle(QApplication::translate("CreateNewStarDlg", "Create New Star", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("CreateNewStarDlg", "Star Name", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("CreateNewStarDlg", "Star Type", 0, QApplication::UnicodeUTF8));
-        label_9->setText(QApplication::translate("CreateNewStarDlg", "Num. to create:", 0, QApplication::UnicodeUTF8));
-        label_10->setText(QApplication::translate("CreateNewStarDlg", "Randomize Star Types", 0, QApplication::UnicodeUTF8));
-        chkTypes->setText(QApplication::translate("CreateNewStarDlg", "Yes", 0, QApplication::UnicodeUTF8));
-        label_11->setText(QApplication::translate("CreateNewStarDlg", "Center X", 0, QApplication::UnicodeUTF8));
-        label_6->setText(QApplication::translate("CreateNewStarDlg", "Spread Radius", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("CreateNewStarDlg", "Y", 0, QApplication::UnicodeUTF8));
-        label_5->setText(QApplication::translate("CreateNewStarDlg", "Z", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("CreateNewStarDlg", "Distance from center", 0, QApplication::UnicodeUTF8));
+        CreateNewStarDlg->setWindowTitle(QApplication::translate("CreateNewStarDlg", "Create New Star", 0));
+        label->setText(QApplication::translate("CreateNewStarDlg", "Star Name", 0));
+        label_2->setText(QApplication::translate("CreateNewStarDlg", "Star Type", 0));
+        label_9->setText(QApplication::translate("CreateNewStarDlg", "Num. to create:", 0));
+        label_10->setText(QApplication::translate("CreateNewStarDlg", "Randomize Star Types", 0));
+        chkTypes->setText(QApplication::translate("CreateNewStarDlg", "Yes", 0));
+        label_11->setText(QApplication::translate("CreateNewStarDlg", "Center X", 0));
+        label_6->setText(QApplication::translate("CreateNewStarDlg", "Spread Radius", 0));
+        label_4->setText(QApplication::translate("CreateNewStarDlg", "Y", 0));
+        label_5->setText(QApplication::translate("CreateNewStarDlg", "Z", 0));
+        label_3->setText(QApplication::translate("CreateNewStarDlg", "Distance from center", 0));
     } // retranslateUi
 
 };

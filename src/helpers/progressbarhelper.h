@@ -20,6 +20,7 @@
 #define PROGRESSBARHELPER_H
 
 #include <QtGui>
+#include <QProgressBar>
 
 class ProgressBarHelper
 {

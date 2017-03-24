@@ -21,6 +21,10 @@
 
 #include <QWidget>
 #include <QtGui>
+#include <QLineEdit>
+#include <QFrame>
+#include <QDoubleSpinBox>
+#include <QLabel>
 #include "planet.h"
 #include "helpers/planetrenderer.h"
 

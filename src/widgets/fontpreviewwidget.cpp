@@ -15,9 +15,11 @@
 ############################################################################
 */
 
-
+#include <QtGui>
+#include <QFontDialog>
 #include "fontpreviewwidget.h"
 #include "ui_fontpreviewwidget.h"
+
 
 FontPreviewWidget::FontPreviewWidget(QWidget *parent) :
     QWidget(parent),

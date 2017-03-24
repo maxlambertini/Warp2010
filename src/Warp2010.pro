@@ -12,9 +12,10 @@
 # -------------------------------------------------
 # Project created by QtCreator 2009-03-31T07:42:33
 # -------------------------------------------------
-QT += svg
+QT += printsupport widgets svg
 TARGET = Warp2010
 TEMPLATE = app
+QMAKE_CXXFLAGS += -Wall -Wextra
 SOURCES += main.cpp \
     coordinates.cpp \
     star.cpp \
@@ -150,12 +151,12 @@ HEADERS += coordinates.h \
     helpers/parsecstarlisthelper.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
-    clusteritemeditor.ui \
     dialogs/printingsetup.ui \
+    clusteritemeditor.ui \
     dialogs/traderoutedialog.ui \
     dialogs/preferencesdialog.ui \
-    dialogs/newsectordialog.ui \
     dialogs/createtraderoutedialog.ui \
+    dialogs/newsectordialog.ui \
     widgets/fontpreviewwidget.ui \
     widgets/solsysinspector.ui \
     widgets/solarsystemviewwidget.ui \

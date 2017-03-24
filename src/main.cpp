@@ -15,7 +15,7 @@
 ############################################################################
 */
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QtCore>
 #include "mainscenehandler.h"
 #include "warpmainwindowform.h"
@@ -57,18 +57,20 @@ int main(int argc, char *argv[])
     window.show();
 
     QString themePath = QApplication::applicationDirPath()+"/themes/default/";
+    qDebug() << "checking in " << themePath;
     QDir dir(themePath);
     if (dir.exists("default.qss")) {
+        qDebug() << "CSS existing....";
         QString buffer;
         QFile data(themePath+"default.qss");
         if  (data.open(QFile::ReadOnly | QFile::ReadWrite)) {
+            qDebug() << "qss opened";
             QTextStream stream(&data);
             buffer = stream.readAll();
             a.setStyleSheet(buffer);
-            //qDebug() << "buffer: " << buffer;
+            qDebug() << "buffer: " << buffer;
          }
     }
-
     return a.exec();
 
 }

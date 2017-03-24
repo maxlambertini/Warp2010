@@ -18,8 +18,8 @@
 #ifndef STARGRAPHICSITEM_H
 #define STARGRAPHICSITEM_H
 
-#include <QtGui/QColor>
-#include <QtGui/QGraphicsItem>
+#include <QColor>
+#include <QGraphicsItem>
 #include <QtGui>
 #include "star.h"
 

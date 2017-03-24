@@ -117,7 +117,8 @@ void SceneImageExporter::printScene(QGraphicsScene *scene, QPrinter& printer,
 
     QBrush shadowBrush = QBrush(QColor(192,192,192,64));
     QBrush transparent = QBrush(QColor(192,192,192,16));
-    QPen pen = QPen(QColor (65,65,65,192));
+    //QPen pen = QPen(QColor (65,65,65,192));
+    QPen pen = QPen(QColor (255,0,0,192));
     QFont font = QFont("Droid Sans");
     font.setBold(true);
     font.setPointSizeF(16.0);

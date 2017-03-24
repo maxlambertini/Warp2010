@@ -19,7 +19,10 @@
 #define CLUSTERITEMEDITOR_H
 
 
+#include <QtGui>
 #include <QWidget>
+#include <QListWidgetItem>
+#include <QPrinter>
 #include "cluster/clusteritem.h"
 #include "cluster/cluster.h"
 #include "cluster/aspect.h"

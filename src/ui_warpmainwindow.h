@@ -11,33 +11,33 @@
 #define UI_WARPMAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QDoubleSpinBox>
-#include <QtGui/QGraphicsView>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QListWidget>
-#include <QtGui/QMainWindow>
-#include <QtGui/QMenu>
-#include <QtGui/QMenuBar>
-#include <QtGui/QPushButton>
-#include <QtGui/QSlider>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSplitter>
-#include <QtGui/QStackedWidget>
-#include <QtGui/QStatusBar>
-#include <QtGui/QTabWidget>
-#include <QtGui/QTableWidget>
-#include <QtGui/QTextEdit>
-#include <QtGui/QToolBar>
-#include <QtGui/QToolButton>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QDoubleSpinBox>
+#include <QGraphicsView>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListWidget>
+#include <QMainWindow>
+#include <QMenu>
+#include <QMenuBar>
+#include <QPushButton>
+#include <QSlider>
+#include <QSpacerItem>
+#include <QSplitter>
+#include <QStackedWidget>
+#include <QStatusBar>
+#include <QTabWidget>
+#include <QTableWidget>
+#include <QTextEdit>
+#include <QToolBar>
+#include <QToolButton>
+#include <QVBoxLayout>
+#include <QWidget>
 #include <diasporaclusterdialog.h>
 #include "qtcolorpicker.h"
 #include "widgets/solarsystemviewwidget.h"
@@ -1049,193 +1049,193 @@ public:
 
     void retranslateUi(QMainWindow *WarpMainWindow)
     {
-        WarpMainWindow->setWindowTitle(QApplication::translate("WarpMainWindow", "Warp 2010 -- Leonov Edition", 0, QApplication::UnicodeUTF8));
-        action_NewSector->setText(QApplication::translate("WarpMainWindow", "New Sector", 0, QApplication::UnicodeUTF8));
-        actionLoad_Sector->setText(QApplication::translate("WarpMainWindow", "Load Sector", 0, QApplication::UnicodeUTF8));
-        actionSave_Sector->setText(QApplication::translate("WarpMainWindow", "Save Sector", 0, QApplication::UnicodeUTF8));
-        actionPrint_Sector_Map->setText(QApplication::translate("WarpMainWindow", "Print Sector Map", 0, QApplication::UnicodeUTF8));
-        actionPrint_Trade_Route->setText(QApplication::translate("WarpMainWindow", "Print Trade Route", 0, QApplication::UnicodeUTF8));
-        actionPrint_Solar_System->setText(QApplication::translate("WarpMainWindow", "Print Solar System", 0, QApplication::UnicodeUTF8));
-        action_ExportMapToImage->setText(QApplication::translate("WarpMainWindow", "Export Map to image", 0, QApplication::UnicodeUTF8));
-        action_ExportSolarSystemToImage->setText(QApplication::translate("WarpMainWindow", "Export To Image", 0, QApplication::UnicodeUTF8));
-        actionExit->setText(QApplication::translate("WarpMainWindow", "E&xit", 0, QApplication::UnicodeUTF8));
-        actionZoomIn->setText(QApplication::translate("WarpMainWindow", "Zoom In", 0, QApplication::UnicodeUTF8));
+        WarpMainWindow->setWindowTitle(QApplication::translate("WarpMainWindow", "Warp 2010 -- Leonov Edition", 0));
+        action_NewSector->setText(QApplication::translate("WarpMainWindow", "New Sector", 0));
+        actionLoad_Sector->setText(QApplication::translate("WarpMainWindow", "Load Sector", 0));
+        actionSave_Sector->setText(QApplication::translate("WarpMainWindow", "Save Sector", 0));
+        actionPrint_Sector_Map->setText(QApplication::translate("WarpMainWindow", "Print Sector Map", 0));
+        actionPrint_Trade_Route->setText(QApplication::translate("WarpMainWindow", "Print Trade Route", 0));
+        actionPrint_Solar_System->setText(QApplication::translate("WarpMainWindow", "Print Solar System", 0));
+        action_ExportMapToImage->setText(QApplication::translate("WarpMainWindow", "Export Map to image", 0));
+        action_ExportSolarSystemToImage->setText(QApplication::translate("WarpMainWindow", "Export To Image", 0));
+        actionExit->setText(QApplication::translate("WarpMainWindow", "E&xit", 0));
+        actionZoomIn->setText(QApplication::translate("WarpMainWindow", "Zoom In", 0));
 #ifndef QT_NO_TOOLTIP
-        actionZoomIn->setToolTip(QApplication::translate("WarpMainWindow", "Zoom In", 0, QApplication::UnicodeUTF8));
+        actionZoomIn->setToolTip(QApplication::translate("WarpMainWindow", "Zoom In", 0));
 #endif // QT_NO_TOOLTIP
-        actionZoomOut->setText(QApplication::translate("WarpMainWindow", "Zoom Out", 0, QApplication::UnicodeUTF8));
-        actionRotateLeft->setText(QApplication::translate("WarpMainWindow", "Rotate Left", 0, QApplication::UnicodeUTF8));
-        actionRotateRight->setText(QApplication::translate("WarpMainWindow", "Rotate Right", 0, QApplication::UnicodeUTF8));
-        action_ViewStarList->setText(QApplication::translate("WarpMainWindow", "Star List", 0, QApplication::UnicodeUTF8));
-        action_ViewRouteTo->setText(QApplication::translate("WarpMainWindow", "Route to...", 0, QApplication::UnicodeUTF8));
-        action_ViewTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Trade Routes", 0, QApplication::UnicodeUTF8));
-        action_ViewSolarSystem->setText(QApplication::translate("WarpMainWindow", "Solar System", 0, QApplication::UnicodeUTF8));
-        action_CreateSolarSystem->setText(QApplication::translate("WarpMainWindow", "New Solar System", 0, QApplication::UnicodeUTF8));
-        action_CreateTradeRoute->setText(QApplication::translate("WarpMainWindow", "Trade Route", 0, QApplication::UnicodeUTF8));
-        actionCreate_a_Solar_System_for_all_stars->setText(QApplication::translate("WarpMainWindow", "Create a Solar System for all stars", 0, QApplication::UnicodeUTF8));
-        actionCreate_trade_routes_for_interesting_stars->setText(QApplication::translate("WarpMainWindow", "Create trade routes for interesting stars", 0, QApplication::UnicodeUTF8));
-        action_AboutWarp2010->setText(QApplication::translate("WarpMainWindow", "About Warp 2010", 0, QApplication::UnicodeUTF8));
-        action_ShowNeighbors_routes->setText(QApplication::translate("WarpMainWindow", "Neighbors' routes", 0, QApplication::UnicodeUTF8));
+        actionZoomOut->setText(QApplication::translate("WarpMainWindow", "Zoom Out", 0));
+        actionRotateLeft->setText(QApplication::translate("WarpMainWindow", "Rotate Left", 0));
+        actionRotateRight->setText(QApplication::translate("WarpMainWindow", "Rotate Right", 0));
+        action_ViewStarList->setText(QApplication::translate("WarpMainWindow", "Star List", 0));
+        action_ViewRouteTo->setText(QApplication::translate("WarpMainWindow", "Route to...", 0));
+        action_ViewTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Trade Routes", 0));
+        action_ViewSolarSystem->setText(QApplication::translate("WarpMainWindow", "Solar System", 0));
+        action_CreateSolarSystem->setText(QApplication::translate("WarpMainWindow", "New Solar System", 0));
+        action_CreateTradeRoute->setText(QApplication::translate("WarpMainWindow", "Trade Route", 0));
+        actionCreate_a_Solar_System_for_all_stars->setText(QApplication::translate("WarpMainWindow", "Create a Solar System for all stars", 0));
+        actionCreate_trade_routes_for_interesting_stars->setText(QApplication::translate("WarpMainWindow", "Create trade routes for interesting stars", 0));
+        action_AboutWarp2010->setText(QApplication::translate("WarpMainWindow", "About Warp 2010", 0));
+        action_ShowNeighbors_routes->setText(QApplication::translate("WarpMainWindow", "Neighbors' routes", 0));
 #ifndef QT_NO_TOOLTIP
-        action_ShowNeighbors_routes->setToolTip(QApplication::translate("WarpMainWindow", "Show Neighbors' routes", 0, QApplication::UnicodeUTF8));
+        action_ShowNeighbors_routes->setToolTip(QApplication::translate("WarpMainWindow", "Show Neighbors' routes", 0));
 #endif // QT_NO_TOOLTIP
-        action_ShowOptimalPath->setText(QApplication::translate("WarpMainWindow", "Optimal Path", 0, QApplication::UnicodeUTF8));
-        action_ShowTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Trade Routes", 0, QApplication::UnicodeUTF8));
-        action_SaveTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Save Trade Routes", 0, QApplication::UnicodeUTF8));
-        action_LoadTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Load Trade Routes", 0, QApplication::UnicodeUTF8));
-        action_ShowOnlyStarsInTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Stars In Trade", 0, QApplication::UnicodeUTF8));
-        action_TradeRoute_to_all_GardenPlanets->setText(QApplication::translate("WarpMainWindow", "Trade Route to all Garden Planets", 0, QApplication::UnicodeUTF8));
-        action_SolarSystemForAllStars->setText(QApplication::translate("WarpMainWindow", "Solar System For All Stars", 0, QApplication::UnicodeUTF8));
+        action_ShowOptimalPath->setText(QApplication::translate("WarpMainWindow", "Optimal Path", 0));
+        action_ShowTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Trade Routes", 0));
+        action_SaveTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Save Trade Routes", 0));
+        action_LoadTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Load Trade Routes", 0));
+        action_ShowOnlyStarsInTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Stars In Trade", 0));
+        action_TradeRoute_to_all_GardenPlanets->setText(QApplication::translate("WarpMainWindow", "Trade Route to all Garden Planets", 0));
+        action_SolarSystemForAllStars->setText(QApplication::translate("WarpMainWindow", "Solar System For All Stars", 0));
 #ifndef QT_NO_TOOLTIP
-        action_SolarSystemForAllStars->setToolTip(QApplication::translate("WarpMainWindow", "Create a Solar System For Everyl Star In List", 0, QApplication::UnicodeUTF8));
+        action_SolarSystemForAllStars->setToolTip(QApplication::translate("WarpMainWindow", "Create a Solar System For Everyl Star In List", 0));
 #endif // QT_NO_TOOLTIP
-        action_CopySolarSystem->setText(QApplication::translate("WarpMainWindow", "&Copy solar system", 0, QApplication::UnicodeUTF8));
+        action_CopySolarSystem->setText(QApplication::translate("WarpMainWindow", "&Copy solar system", 0));
 #ifndef QT_NO_TOOLTIP
-        action_CopySolarSystem->setToolTip(QApplication::translate("WarpMainWindow", "Copy solar system image to clipboard", 0, QApplication::UnicodeUTF8));
+        action_CopySolarSystem->setToolTip(QApplication::translate("WarpMainWindow", "Copy solar system image to clipboard", 0));
 #endif // QT_NO_TOOLTIP
-        action_Preferences->setText(QApplication::translate("WarpMainWindow", "&Preferences", 0, QApplication::UnicodeUTF8));
-        action_ShowAsHexMap->setText(QApplication::translate("WarpMainWindow", "Show as HexMap", 0, QApplication::UnicodeUTF8));
+        action_Preferences->setText(QApplication::translate("WarpMainWindow", "&Preferences", 0));
+        action_ShowAsHexMap->setText(QApplication::translate("WarpMainWindow", "Show as HexMap", 0));
 #ifndef QT_NO_TOOLTIP
-        action_ShowAsHexMap->setToolTip(QApplication::translate("WarpMainWindow", "Switch the map to hexmap mode (useful for Traveller)", 0, QApplication::UnicodeUTF8));
+        action_ShowAsHexMap->setToolTip(QApplication::translate("WarpMainWindow", "Switch the map to hexmap mode (useful for Traveller)", 0));
 #endif // QT_NO_TOOLTIP
-        action_ExportMapToGraphVizFile->setText(QApplication::translate("WarpMainWindow", "Export Map to Graphviz file", 0, QApplication::UnicodeUTF8));
-        action_ViewOnlyTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Only Trade Routes", 0, QApplication::UnicodeUTF8));
-        action_Diaspora_Creation_Form->setText(QApplication::translate("WarpMainWindow", "Diaspora Creation Form", 0, QApplication::UnicodeUTF8));
-        action_Export_Diaspora_Cluster_To_Graphviz->setText(QApplication::translate("WarpMainWindow", "Export Cluster To Graphviz", 0, QApplication::UnicodeUTF8));
-        action_Export_Diaspora_Cluster_To_HTML->setText(QApplication::translate("WarpMainWindow", "Export Cluster To HTML", 0, QApplication::UnicodeUTF8));
-        action_Export_Diaspora_Cluster_To_SVG->setText(QApplication::translate("WarpMainWindow", "Export Cluster To SVG", 0, QApplication::UnicodeUTF8));
-        action_Save_Diaspora_Cluster->setText(QApplication::translate("WarpMainWindow", "Save Cluster", 0, QApplication::UnicodeUTF8));
-        action_Load_Diaspora_Cluster->setText(QApplication::translate("WarpMainWindow", "Load Cluster", 0, QApplication::UnicodeUTF8));
-        action_Generate_New_Cluster->setText(QApplication::translate("WarpMainWindow", "New Cluster", 0, QApplication::UnicodeUTF8));
-        action_Print_Cluster->setText(QApplication::translate("WarpMainWindow", "Print Cluster", 0, QApplication::UnicodeUTF8));
-        actionExport_Solar_System_Data_to_HTML->setText(QApplication::translate("WarpMainWindow", "Export to HTML", 0, QApplication::UnicodeUTF8));
-        actionExport_to_Celestia->setText(QApplication::translate("WarpMainWindow", "Export to Celestia", 0, QApplication::UnicodeUTF8));
-        action_Save_Solar_System_to_HTML->setText(QApplication::translate("WarpMainWindow", "Save Solar System to HTML", 0, QApplication::UnicodeUTF8));
-        action_Save_Solar_System_to_Celestia_file->setText(QApplication::translate("WarpMainWindow", "Save Solar System to Celestia file", 0, QApplication::UnicodeUTF8));
-        actionGu->setText(QApplication::translate("WarpMainWindow", "Gu", 0, QApplication::UnicodeUTF8));
-        action_ShowOnlyReachableStars->setText(QApplication::translate("WarpMainWindow", "Reachable Stars", 0, QApplication::UnicodeUTF8));
+        action_ExportMapToGraphVizFile->setText(QApplication::translate("WarpMainWindow", "Export Map to Graphviz file", 0));
+        action_ViewOnlyTradeRoutes->setText(QApplication::translate("WarpMainWindow", "Only Trade Routes", 0));
+        action_Diaspora_Creation_Form->setText(QApplication::translate("WarpMainWindow", "Diaspora Creation Form", 0));
+        action_Export_Diaspora_Cluster_To_Graphviz->setText(QApplication::translate("WarpMainWindow", "Export Cluster To Graphviz", 0));
+        action_Export_Diaspora_Cluster_To_HTML->setText(QApplication::translate("WarpMainWindow", "Export Cluster To HTML", 0));
+        action_Export_Diaspora_Cluster_To_SVG->setText(QApplication::translate("WarpMainWindow", "Export Cluster To SVG", 0));
+        action_Save_Diaspora_Cluster->setText(QApplication::translate("WarpMainWindow", "Save Cluster", 0));
+        action_Load_Diaspora_Cluster->setText(QApplication::translate("WarpMainWindow", "Load Cluster", 0));
+        action_Generate_New_Cluster->setText(QApplication::translate("WarpMainWindow", "New Cluster", 0));
+        action_Print_Cluster->setText(QApplication::translate("WarpMainWindow", "Print Cluster", 0));
+        actionExport_Solar_System_Data_to_HTML->setText(QApplication::translate("WarpMainWindow", "Export to HTML", 0));
+        actionExport_to_Celestia->setText(QApplication::translate("WarpMainWindow", "Export to Celestia", 0));
+        action_Save_Solar_System_to_HTML->setText(QApplication::translate("WarpMainWindow", "Save Solar System to HTML", 0));
+        action_Save_Solar_System_to_Celestia_file->setText(QApplication::translate("WarpMainWindow", "Save Solar System to Celestia file", 0));
+        actionGu->setText(QApplication::translate("WarpMainWindow", "Gu", 0));
+        action_ShowOnlyReachableStars->setText(QApplication::translate("WarpMainWindow", "Reachable Stars", 0));
 #ifndef QT_NO_TOOLTIP
-        action_ShowOnlyReachableStars->setToolTip(QApplication::translate("WarpMainWindow", "Show Only Reachable Stars", 0, QApplication::UnicodeUTF8));
+        action_ShowOnlyReachableStars->setToolTip(QApplication::translate("WarpMainWindow", "Show Only Reachable Stars", 0));
 #endif // QT_NO_TOOLTIP
-        action_Export_Cluster_To_PDF->setText(QApplication::translate("WarpMainWindow", "Export Cluster To PDF", 0, QApplication::UnicodeUTF8));
-        action_Page_Setup->setText(QApplication::translate("WarpMainWindow", "Page Setup", 0, QApplication::UnicodeUTF8));
-        action_map_Show_Hexmap_With_Reachable_Stars->setText(QApplication::translate("WarpMainWindow", "Show Hexmap With Reachable Stars", 0, QApplication::UnicodeUTF8));
-        action_map_Show_Hexmap_with_Trade_Route_Only->setText(QApplication::translate("WarpMainWindow", "Show Hexmap with Trade Route Only", 0, QApplication::UnicodeUTF8));
-        action_map_Show_All_Stars->setText(QApplication::translate("WarpMainWindow", "Show All Stars", 0, QApplication::UnicodeUTF8));
-        action_map_Show_Reachable_Stars->setText(QApplication::translate("WarpMainWindow", "Show Reachable Stars", 0, QApplication::UnicodeUTF8));
-        action_map_Show_Stars_on_Trade_Routes_only->setText(QApplication::translate("WarpMainWindow", "Show Stars on Trade Routes only", 0, QApplication::UnicodeUTF8));
-        action_map_Sector_Map_Options->setText(QApplication::translate("WarpMainWindow", "Sector Map Options", 0, QApplication::UnicodeUTF8));
-        action_map_Show_Metro_Map_With_Reachable_Stars->setText(QApplication::translate("WarpMainWindow", "Show Metro Map With Reachable Stars", 0, QApplication::UnicodeUTF8));
-        action_map_Show_Metro_Map_With_Trade_Routes->setText(QApplication::translate("WarpMainWindow", "Show Metro Map With Trade Routes", 0, QApplication::UnicodeUTF8));
-        action_Star_Sector_View->setText(QApplication::translate("WarpMainWindow", "Star Sector View", 0, QApplication::UnicodeUTF8));
-        action_Solar_System_View->setText(QApplication::translate("WarpMainWindow", "Solar System View", 0, QApplication::UnicodeUTF8));
-        action_Diaspora_Cluster_View->setText(QApplication::translate("WarpMainWindow", "Diaspora Cluster View", 0, QApplication::UnicodeUTF8));
-        action_Export_Solar_System_To_PDF->setText(QApplication::translate("WarpMainWindow", "Export Solar System To PDF", 0, QApplication::UnicodeUTF8));
-        action_Export_Solar_System_To_SVG->setText(QApplication::translate("WarpMainWindow", "Export Solar System To SVG", 0, QApplication::UnicodeUTF8));
-        action_Print_Solar_System->setText(QApplication::translate("WarpMainWindow", "Print Solar System", 0, QApplication::UnicodeUTF8));
-        action_Add_New_Star->setText(QApplication::translate("WarpMainWindow", "Add New Star", 0, QApplication::UnicodeUTF8));
+        action_Export_Cluster_To_PDF->setText(QApplication::translate("WarpMainWindow", "Export Cluster To PDF", 0));
+        action_Page_Setup->setText(QApplication::translate("WarpMainWindow", "Page Setup", 0));
+        action_map_Show_Hexmap_With_Reachable_Stars->setText(QApplication::translate("WarpMainWindow", "Show Hexmap With Reachable Stars", 0));
+        action_map_Show_Hexmap_with_Trade_Route_Only->setText(QApplication::translate("WarpMainWindow", "Show Hexmap with Trade Route Only", 0));
+        action_map_Show_All_Stars->setText(QApplication::translate("WarpMainWindow", "Show All Stars", 0));
+        action_map_Show_Reachable_Stars->setText(QApplication::translate("WarpMainWindow", "Show Reachable Stars", 0));
+        action_map_Show_Stars_on_Trade_Routes_only->setText(QApplication::translate("WarpMainWindow", "Show Stars on Trade Routes only", 0));
+        action_map_Sector_Map_Options->setText(QApplication::translate("WarpMainWindow", "Sector Map Options", 0));
+        action_map_Show_Metro_Map_With_Reachable_Stars->setText(QApplication::translate("WarpMainWindow", "Show Metro Map With Reachable Stars", 0));
+        action_map_Show_Metro_Map_With_Trade_Routes->setText(QApplication::translate("WarpMainWindow", "Show Metro Map With Trade Routes", 0));
+        action_Star_Sector_View->setText(QApplication::translate("WarpMainWindow", "Star Sector View", 0));
+        action_Solar_System_View->setText(QApplication::translate("WarpMainWindow", "Solar System View", 0));
+        action_Diaspora_Cluster_View->setText(QApplication::translate("WarpMainWindow", "Diaspora Cluster View", 0));
+        action_Export_Solar_System_To_PDF->setText(QApplication::translate("WarpMainWindow", "Export Solar System To PDF", 0));
+        action_Export_Solar_System_To_SVG->setText(QApplication::translate("WarpMainWindow", "Export Solar System To SVG", 0));
+        action_Print_Solar_System->setText(QApplication::translate("WarpMainWindow", "Print Solar System", 0));
+        action_Add_New_Star->setText(QApplication::translate("WarpMainWindow", "Add New Star", 0));
 #ifndef QT_NO_TOOLTIP
-        action_Add_New_Star->setToolTip(QApplication::translate("WarpMainWindow", "Add a new star to current sector", 0, QApplication::UnicodeUTF8));
+        action_Add_New_Star->setToolTip(QApplication::translate("WarpMainWindow", "Add a new star to current sector", 0));
 #endif // QT_NO_TOOLTIP
-        actionAdd_Stars_Between_Two_Stars->setText(QApplication::translate("WarpMainWindow", "Add Stars Between Two Stars", 0, QApplication::UnicodeUTF8));
-        action_Clear_Star_Sector_Data->setText(QApplication::translate("WarpMainWindow", "Clear Star Sector Data", 0, QApplication::UnicodeUTF8));
-        action_Set_XY_Mode->setText(QApplication::translate("WarpMainWindow", "Set XY Mode", 0, QApplication::UnicodeUTF8));
+        actionAdd_Stars_Between_Two_Stars->setText(QApplication::translate("WarpMainWindow", "Add Stars Between Two Stars", 0));
+        action_Clear_Star_Sector_Data->setText(QApplication::translate("WarpMainWindow", "Clear Star Sector Data", 0));
+        action_Set_XY_Mode->setText(QApplication::translate("WarpMainWindow", "Set XY Mode", 0));
 #ifndef QT_NO_TOOLTIP
-        action_Set_XY_Mode->setToolTip(QApplication::translate("WarpMainWindow", "Set XY Mode projection", 0, QApplication::UnicodeUTF8));
+        action_Set_XY_Mode->setToolTip(QApplication::translate("WarpMainWindow", "Set XY Mode projection", 0));
 #endif // QT_NO_TOOLTIP
-        action_Set_XZ_Mode->setText(QApplication::translate("WarpMainWindow", "Set XZ Mode", 0, QApplication::UnicodeUTF8));
+        action_Set_XZ_Mode->setText(QApplication::translate("WarpMainWindow", "Set XZ Mode", 0));
 #ifndef QT_NO_TOOLTIP
-        action_Set_XZ_Mode->setToolTip(QApplication::translate("WarpMainWindow", "Set XZ Mode Projection", 0, QApplication::UnicodeUTF8));
+        action_Set_XZ_Mode->setToolTip(QApplication::translate("WarpMainWindow", "Set XZ Mode Projection", 0));
 #endif // QT_NO_TOOLTIP
-        action_Set_YZ_Mode->setText(QApplication::translate("WarpMainWindow", "Set YZ Mode", 0, QApplication::UnicodeUTF8));
+        action_Set_YZ_Mode->setText(QApplication::translate("WarpMainWindow", "Set YZ Mode", 0));
 #ifndef QT_NO_TOOLTIP
-        action_Set_YZ_Mode->setToolTip(QApplication::translate("WarpMainWindow", "Set YZ Mode Projection", 0, QApplication::UnicodeUTF8));
+        action_Set_YZ_Mode->setToolTip(QApplication::translate("WarpMainWindow", "Set YZ Mode Projection", 0));
 #endif // QT_NO_TOOLTIP
-        action_Planar_Projection_Modes->setText(QApplication::translate("WarpMainWindow", "Planar Projection Modes", 0, QApplication::UnicodeUTF8));
+        action_Planar_Projection_Modes->setText(QApplication::translate("WarpMainWindow", "Planar Projection Modes", 0));
 #ifndef QT_NO_TOOLTIP
-        action_Planar_Projection_Modes->setToolTip(QApplication::translate("WarpMainWindow", "Planar Projection Modes", 0, QApplication::UnicodeUTF8));
+        action_Planar_Projection_Modes->setToolTip(QApplication::translate("WarpMainWindow", "Planar Projection Modes", 0));
 #endif // QT_NO_TOOLTIP
-        label_7->setText(QApplication::translate("WarpMainWindow", "Sector Name", 0, QApplication::UnicodeUTF8));
+        label_7->setText(QApplication::translate("WarpMainWindow", "Sector Name", 0));
 #ifndef QT_NO_TOOLTIP
-        graphicsView->setToolTip(QApplication::translate("WarpMainWindow", "Star map", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_TOOLTIP
-        btnZoomUp->setToolTip(QApplication::translate("WarpMainWindow", "Zoom in", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-        btnZoomUp->setText(QApplication::translate("WarpMainWindow", "...", 0, QApplication::UnicodeUTF8));
-#ifndef QT_NO_TOOLTIP
-        sliderZoom->setToolTip(QApplication::translate("WarpMainWindow", "Zoom slider", 0, QApplication::UnicodeUTF8));
+        graphicsView->setToolTip(QApplication::translate("WarpMainWindow", "Star map", 0));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_TOOLTIP
-        btnZoomDown->setToolTip(QApplication::translate("WarpMainWindow", "Zoom out", 0, QApplication::UnicodeUTF8));
+        btnZoomUp->setToolTip(QApplication::translate("WarpMainWindow", "Zoom in", 0));
 #endif // QT_NO_TOOLTIP
-        btnZoomDown->setText(QApplication::translate("WarpMainWindow", "...", 0, QApplication::UnicodeUTF8));
+        btnZoomUp->setText(QApplication::translate("WarpMainWindow", "...", 0));
 #ifndef QT_NO_TOOLTIP
-        btnRotateLeft->setToolTip(QApplication::translate("WarpMainWindow", "Rotate left", 0, QApplication::UnicodeUTF8));
-#endif // QT_NO_TOOLTIP
-        btnRotateLeft->setText(QApplication::translate("WarpMainWindow", "...", 0, QApplication::UnicodeUTF8));
-#ifndef QT_NO_TOOLTIP
-        sliderRotate->setToolTip(QApplication::translate("WarpMainWindow", "Rotate map using this slider", 0, QApplication::UnicodeUTF8));
+        sliderZoom->setToolTip(QApplication::translate("WarpMainWindow", "Zoom slider", 0));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_TOOLTIP
-        btnRotateRight->setToolTip(QApplication::translate("WarpMainWindow", "Rotate right", 0, QApplication::UnicodeUTF8));
+        btnZoomDown->setToolTip(QApplication::translate("WarpMainWindow", "Zoom out", 0));
 #endif // QT_NO_TOOLTIP
-        btnRotateRight->setText(QApplication::translate("WarpMainWindow", "...", 0, QApplication::UnicodeUTF8));
-        label_8->setText(QApplication::translate("WarpMainWindow", "Solar System Layout", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("WarpMainWindow", "Distance in LY", 0, QApplication::UnicodeUTF8));
+        btnZoomDown->setText(QApplication::translate("WarpMainWindow", "...", 0));
+#ifndef QT_NO_TOOLTIP
+        btnRotateLeft->setToolTip(QApplication::translate("WarpMainWindow", "Rotate left", 0));
+#endif // QT_NO_TOOLTIP
+        btnRotateLeft->setText(QApplication::translate("WarpMainWindow", "...", 0));
+#ifndef QT_NO_TOOLTIP
+        sliderRotate->setToolTip(QApplication::translate("WarpMainWindow", "Rotate map using this slider", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_TOOLTIP
+        btnRotateRight->setToolTip(QApplication::translate("WarpMainWindow", "Rotate right", 0));
+#endif // QT_NO_TOOLTIP
+        btnRotateRight->setText(QApplication::translate("WarpMainWindow", "...", 0));
+        label_8->setText(QApplication::translate("WarpMainWindow", "Solar System Layout", 0));
+        label_2->setText(QApplication::translate("WarpMainWindow", "Distance in LY", 0));
 #ifndef QT_NO_TOOLTIP
         spinDistance->setToolTip(QApplication::translate("WarpMainWindow", "Set jump distance.\n"
-"Double click on a star below to recalculate a new jumpweb centered on the selected star using the distance as the maximum jump limit", 0, QApplication::UnicodeUTF8));
+"Double click on a star below to recalculate a new jumpweb centered on the selected star using the distance as the maximum jump limit", 0));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_TOOLTIP
-        listWidget->setToolTip(QApplication::translate("WarpMainWindow", "Stars of the current sector", 0, QApplication::UnicodeUTF8));
+        listWidget->setToolTip(QApplication::translate("WarpMainWindow", "Stars of the current sector", 0));
 #endif // QT_NO_TOOLTIP
-        lblRouteTo->setText(QApplication::translate("WarpMainWindow", "TextLabel", 0, QApplication::UnicodeUTF8));
+        lblRouteTo->setText(QApplication::translate("WarpMainWindow", "TextLabel", 0));
 #ifndef QT_NO_TOOLTIP
-        routeTable->setToolTip(QApplication::translate("WarpMainWindow", "Jumps to reach selected star", 0, QApplication::UnicodeUTF8));
+        routeTable->setToolTip(QApplication::translate("WarpMainWindow", "Jumps to reach selected star", 0));
 #endif // QT_NO_TOOLTIP
-        tabInspectorWidget->setTabText(tabInspectorWidget->indexOf(tabStarList), QApplication::translate("WarpMainWindow", "Reachability Details", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("WarpMainWindow", "Route Name", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("WarpMainWindow", "Route Color", 0, QApplication::UnicodeUTF8));
+        tabInspectorWidget->setTabText(tabInspectorWidget->indexOf(tabStarList), QApplication::translate("WarpMainWindow", "Reachability Details", 0));
+        label->setText(QApplication::translate("WarpMainWindow", "Route Name", 0));
+        label_3->setText(QApplication::translate("WarpMainWindow", "Route Color", 0));
 #ifndef QT_NO_TOOLTIP
-        colorPicker->setToolTip(QApplication::translate("WarpMainWindow", "Click here to choose the trade route color", 0, QApplication::UnicodeUTF8));
+        colorPicker->setToolTip(QApplication::translate("WarpMainWindow", "Click here to choose the trade route color", 0));
 #endif // QT_NO_TOOLTIP
-        colorPicker->setText(QApplication::translate("WarpMainWindow", "Color", 0, QApplication::UnicodeUTF8));
+        colorPicker->setText(QApplication::translate("WarpMainWindow", "Color", 0));
 #ifndef QT_NO_TOOLTIP
-        btnConfirmRoute->setToolTip(QApplication::translate("WarpMainWindow", "Confirm operation", 0, QApplication::UnicodeUTF8));
+        btnConfirmRoute->setToolTip(QApplication::translate("WarpMainWindow", "Confirm operation", 0));
 #endif // QT_NO_TOOLTIP
         btnConfirmRoute->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        btnDeleteRoute->setToolTip(QApplication::translate("WarpMainWindow", "Delete selected trade route", 0, QApplication::UnicodeUTF8));
+        btnDeleteRoute->setToolTip(QApplication::translate("WarpMainWindow", "Delete selected trade route", 0));
 #endif // QT_NO_TOOLTIP
         btnDeleteRoute->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        btnDeleteAllRoutes->setToolTip(QApplication::translate("WarpMainWindow", "Delete all Trade Routes", 0, QApplication::UnicodeUTF8));
+        btnDeleteAllRoutes->setToolTip(QApplication::translate("WarpMainWindow", "Delete all Trade Routes", 0));
 #endif // QT_NO_TOOLTIP
         btnDeleteAllRoutes->setText(QString());
-        label_4->setText(QApplication::translate("WarpMainWindow", "Route List", 0, QApplication::UnicodeUTF8));
+        label_4->setText(QApplication::translate("WarpMainWindow", "Route List", 0));
 #ifndef QT_NO_TOOLTIP
-        gridTradeRoutes->setToolTip(QApplication::translate("WarpMainWindow", "Trade route list", 0, QApplication::UnicodeUTF8));
+        gridTradeRoutes->setToolTip(QApplication::translate("WarpMainWindow", "Trade route list", 0));
 #endif // QT_NO_TOOLTIP
-        label_5->setText(QApplication::translate("WarpMainWindow", "Route Distance", 0, QApplication::UnicodeUTF8));
-        lblRouteDistance->setText(QApplication::translate("WarpMainWindow", "\"Distance\"", 0, QApplication::UnicodeUTF8));
-        label_6->setText(QApplication::translate("WarpMainWindow", "Route Info", 0, QApplication::UnicodeUTF8));
-        tabInspectorWidget->setTabText(tabInspectorWidget->indexOf(tab_3), QApplication::translate("WarpMainWindow", "Trade Routes", 0, QApplication::UnicodeUTF8));
-        menuFileSector->setTitle(QApplication::translate("WarpMainWindow", "&File", 0, QApplication::UnicodeUTF8));
-        menuStar_Sector_Operations->setTitle(QApplication::translate("WarpMainWindow", "Star Sector Operations", 0, QApplication::UnicodeUTF8));
-        menuSolar_System_Operations->setTitle(QApplication::translate("WarpMainWindow", "Solar System Operations", 0, QApplication::UnicodeUTF8));
-        menuCluster_Operations->setTitle(QApplication::translate("WarpMainWindow", "Cluster Operations", 0, QApplication::UnicodeUTF8));
-        menu_Edit->setTitle(QApplication::translate("WarpMainWindow", "&Edit", 0, QApplication::UnicodeUTF8));
-        menu_View->setTitle(QApplication::translate("WarpMainWindow", "&View", 0, QApplication::UnicodeUTF8));
-        menu->setTitle(QApplication::translate("WarpMainWindow", "?", 0, QApplication::UnicodeUTF8));
-        toolbarStarMap->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar", 0, QApplication::UnicodeUTF8));
+        label_5->setText(QApplication::translate("WarpMainWindow", "Route Distance", 0));
+        lblRouteDistance->setText(QApplication::translate("WarpMainWindow", "\"Distance\"", 0));
+        label_6->setText(QApplication::translate("WarpMainWindow", "Route Info", 0));
+        tabInspectorWidget->setTabText(tabInspectorWidget->indexOf(tab_3), QApplication::translate("WarpMainWindow", "Trade Routes", 0));
+        menuFileSector->setTitle(QApplication::translate("WarpMainWindow", "&File", 0));
+        menuStar_Sector_Operations->setTitle(QApplication::translate("WarpMainWindow", "Star Sector Operations", 0));
+        menuSolar_System_Operations->setTitle(QApplication::translate("WarpMainWindow", "Solar System Operations", 0));
+        menuCluster_Operations->setTitle(QApplication::translate("WarpMainWindow", "Cluster Operations", 0));
+        menu_Edit->setTitle(QApplication::translate("WarpMainWindow", "&Edit", 0));
+        menu_View->setTitle(QApplication::translate("WarpMainWindow", "&View", 0));
+        menu->setTitle(QApplication::translate("WarpMainWindow", "?", 0));
+        toolbarStarMap->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar", 0));
 #ifndef QT_NO_TOOLTIP
         toolbarStarMap->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
-        toolbarSolarSystem->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar_2", 0, QApplication::UnicodeUTF8));
-        toolbarCluster->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar", 0, QApplication::UnicodeUTF8));
-        toolbarSystem->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar", 0, QApplication::UnicodeUTF8));
-        toolBar->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar", 0, QApplication::UnicodeUTF8));
+        toolbarSolarSystem->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar_2", 0));
+        toolbarCluster->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar", 0));
+        toolbarSystem->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar", 0));
+        toolBar->setWindowTitle(QApplication::translate("WarpMainWindow", "toolBar", 0));
     } // retranslateUi
 
 };

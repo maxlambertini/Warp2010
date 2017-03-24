@@ -11,19 +11,19 @@
 #define UI_SOLARSYSTEMVIEWWIDGET_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QGraphicsView>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QSlider>
-#include <QtGui/QSplitter>
-#include <QtGui/QTabWidget>
-#include <QtGui/QTextEdit>
-#include <QtGui/QToolButton>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QGraphicsView>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QSlider>
+#include <QSplitter>
+#include <QTabWidget>
+#include <QTextEdit>
+#include <QToolButton>
+#include <QVBoxLayout>
+#include <QWidget>
 #include <solarsystemwidget.h>
 #include <widgets/starinspector.h>
 #include "widgets/planetaryinspector.h"
@@ -202,13 +202,13 @@ public:
 
     void retranslateUi(QWidget *SolarSystemViewWidget)
     {
-        SolarSystemViewWidget->setWindowTitle(QApplication::translate("SolarSystemViewWidget", "Form", 0, QApplication::UnicodeUTF8));
-        btnZoomUp->setText(QApplication::translate("SolarSystemViewWidget", "...", 0, QApplication::UnicodeUTF8));
-        btnZoomDown->setText(QApplication::translate("SolarSystemViewWidget", "...", 0, QApplication::UnicodeUTF8));
-        btnRotateLeft->setText(QApplication::translate("SolarSystemViewWidget", "...", 0, QApplication::UnicodeUTF8));
-        btnRotateRight->setText(QApplication::translate("SolarSystemViewWidget", "...", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("SolarSystemViewWidget", "Single Planet Data", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("SolarSystemViewWidget", "Solar System Data", 0, QApplication::UnicodeUTF8));
+        SolarSystemViewWidget->setWindowTitle(QApplication::translate("SolarSystemViewWidget", "Form", 0));
+        btnZoomUp->setText(QApplication::translate("SolarSystemViewWidget", "...", 0));
+        btnZoomDown->setText(QApplication::translate("SolarSystemViewWidget", "...", 0));
+        btnRotateLeft->setText(QApplication::translate("SolarSystemViewWidget", "...", 0));
+        btnRotateRight->setText(QApplication::translate("SolarSystemViewWidget", "...", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("SolarSystemViewWidget", "Single Planet Data", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("SolarSystemViewWidget", "Solar System Data", 0));
     } // retranslateUi
 
 };

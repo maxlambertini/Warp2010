@@ -2,7 +2,8 @@
 #define ARCGRAPHICSITEM_H
 
 #include <QtGui>
-
+#include <QStyleOptionGraphicsItem>
+#include <QGraphicsItem>
 
 
 namespace NSArc {

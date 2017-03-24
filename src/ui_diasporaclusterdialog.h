@@ -1,31 +1,27 @@
 /********************************************************************************
-** Form generated from reading UI file 'diasporaclusterdialog.ui'
+** Form generated from reading UI file ''
 **
-** Created: Tue 21. Feb 18:44:04 2012
-**      by: Qt User Interface Compiler version 4.6.2
+** Created by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_DIASPORACLUSTERDIALOG_H
-#define UI_DIASPORACLUSTERDIALOG_H
-
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QGraphicsView>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QSlider>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSpinBox>
-#include <QtGui/QSplitter>
-#include <QtGui/QToolButton>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QGraphicsView>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QSlider>
+#include <QSpinBox>
+#include <QSplitter>
+#include <QToolButton>
+#include <QVBoxLayout>
+#include <QWidget>
 #include <clusteritemeditor.h>
 
 QT_BEGIN_NAMESPACE
@@ -33,13 +29,16 @@ QT_BEGIN_NAMESPACE
 class Ui_DiasporaClusterDialog
 {
 public:
+    QVBoxLayout *verticalLayout_3;
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_3;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QSpinBox *spinNumSolSys;
+    QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QLineEdit *lblClusterName;
-    QSpacerItem *horizontalSpacer_2;
+    QCheckBox *chkCloseCluster;
     QSplitter *splitter_2;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
@@ -59,12 +58,15 @@ public:
     {
         if (DiasporaClusterDialog->objectName().isEmpty())
             DiasporaClusterDialog->setObjectName(QString::fromUtf8("DiasporaClusterDialog"));
-        DiasporaClusterDialog->resize(593, 475);
+        DiasporaClusterDialog->resize(670, 475);
         DiasporaClusterDialog->setStyleSheet(QString::fromUtf8(""));
-        verticalLayout = new QVBoxLayout(DiasporaClusterDialog);
-        verticalLayout->setSpacing(4);
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_3 = new QVBoxLayout(DiasporaClusterDialog);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setSizeConstraint(QLayout::SetDefaultConstraint);
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label = new QLabel(DiasporaClusterDialog);
@@ -85,10 +87,15 @@ public:
 
         horizontalLayout->addWidget(spinNumSolSys);
 
+
+        horizontalLayout_3->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         label_2 = new QLabel(DiasporaClusterDialog);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        horizontalLayout->addWidget(label_2);
+        horizontalLayout_2->addWidget(label_2);
 
         lblClusterName = new QLineEdit(DiasporaClusterDialog);
         lblClusterName->setObjectName(QString::fromUtf8("lblClusterName"));
@@ -96,17 +103,18 @@ public:
         lblClusterName->setFont(font);
         lblClusterName->setStyleSheet(QString::fromUtf8(""));
 
-        horizontalLayout->addWidget(lblClusterName);
+        horizontalLayout_2->addWidget(lblClusterName);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout->addItem(horizontalSpacer_2);
+        horizontalLayout_3->addLayout(horizontalLayout_2);
 
-        horizontalLayout->setStretch(0, 1);
-        horizontalLayout->setStretch(1, 1);
-        horizontalLayout->setStretch(4, 10);
+        chkCloseCluster = new QCheckBox(DiasporaClusterDialog);
+        chkCloseCluster->setObjectName(QString::fromUtf8("chkCloseCluster"));
 
-        verticalLayout->addLayout(horizontalLayout);
+        horizontalLayout_3->addWidget(chkCloseCluster);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
 
         splitter_2 = new QSplitter(DiasporaClusterDialog);
         splitter_2->setObjectName(QString::fromUtf8("splitter_2"));
@@ -214,6 +222,9 @@ public:
 
         verticalLayout->setStretch(1, 1);
 
+        verticalLayout_3->addLayout(verticalLayout);
+
+
         retranslateUi(DiasporaClusterDialog);
 
         QMetaObject::connectSlotsByName(DiasporaClusterDialog);
@@ -221,13 +232,14 @@ public:
 
     void retranslateUi(QWidget *DiasporaClusterDialog)
     {
-        DiasporaClusterDialog->setWindowTitle(QApplication::translate("DiasporaClusterDialog", "Dialog", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("DiasporaClusterDialog", "# of Solar Systems", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("DiasporaClusterDialog", "    Cluster name: ", 0, QApplication::UnicodeUTF8));
-        btnZoomIn->setText(QApplication::translate("DiasporaClusterDialog", "...", 0, QApplication::UnicodeUTF8));
-        btnZoomOut->setText(QApplication::translate("DiasporaClusterDialog", "...", 0, QApplication::UnicodeUTF8));
-        btnRotateLeft->setText(QApplication::translate("DiasporaClusterDialog", "...", 0, QApplication::UnicodeUTF8));
-        btnRotateRight->setText(QApplication::translate("DiasporaClusterDialog", "...", 0, QApplication::UnicodeUTF8));
+        DiasporaClusterDialog->setWindowTitle(QApplication::translate("DiasporaClusterDialog", "Dialog", 0));
+        label->setText(QApplication::translate("DiasporaClusterDialog", "# of Solar Systems", 0));
+        label_2->setText(QApplication::translate("DiasporaClusterDialog", "    Cluster name: ", 0));
+        chkCloseCluster->setText(QApplication::translate("DiasporaClusterDialog", "Close Cluster", 0));
+        btnZoomIn->setText(QApplication::translate("DiasporaClusterDialog", "...", 0));
+        btnZoomOut->setText(QApplication::translate("DiasporaClusterDialog", "...", 0));
+        btnRotateLeft->setText(QApplication::translate("DiasporaClusterDialog", "...", 0));
+        btnRotateRight->setText(QApplication::translate("DiasporaClusterDialog", "...", 0));
     } // retranslateUi
 
 };
@@ -238,4 +250,3 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_DIASPORACLUSTERDIALOG_H

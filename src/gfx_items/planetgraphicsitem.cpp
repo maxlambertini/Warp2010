@@ -68,7 +68,7 @@ PlanetGraphicsItem::PlanetGraphicsItem(double x, double y, Planet *planet, doubl
         _textRect.setWidth(tw);
         _textRect.setHeight(th);
 
-        _boundingRect = _planetRect.unite(_textRect);
+        _boundingRect = _planetRect.united(_textRect);
 
 
         if (_planetRect.width() < _textRect.width()) {

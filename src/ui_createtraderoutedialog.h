@@ -11,19 +11,19 @@
 #define UI_CREATETRADEROUTEDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QSpacerItem>
+#include <QVBoxLayout>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -117,14 +117,14 @@ public:
 
     void retranslateUi(QDialog *CreateTradeRouteDialog)
     {
-        CreateTradeRouteDialog->setWindowTitle(QApplication::translate("CreateTradeRouteDialog", "Create Trade Route", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("CreateTradeRouteDialog", "Trade Route Name", 0, QApplication::UnicodeUTF8));
+        CreateTradeRouteDialog->setWindowTitle(QApplication::translate("CreateTradeRouteDialog", "Create Trade Route", 0));
+        label->setText(QApplication::translate("CreateTradeRouteDialog", "Trade Route Name", 0));
         label_2->setText(QApplication::translate("CreateTradeRouteDialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">Trade route color</span></p></body></html>", 0, QApplication::UnicodeUTF8));
-        btnChangeColor->setText(QApplication::translate("CreateTradeRouteDialog", "Change Color", 0, QApplication::UnicodeUTF8));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">Trade route color</span></p></body></html>", 0));
+        btnChangeColor->setText(QApplication::translate("CreateTradeRouteDialog", "Change Color", 0));
     } // retranslateUi
 
 };

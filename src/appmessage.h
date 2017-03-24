@@ -19,6 +19,7 @@
 #define APPMESSAGE_H
 
 #include <QtGui>
+#include <QMessageBox>
 
 class AppMessage
 {

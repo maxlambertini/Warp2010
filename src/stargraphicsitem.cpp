@@ -18,6 +18,7 @@
 #include "stargraphicsitem.h"
 #include "star.h"
 #include <QtGui>
+#include <QStyleOptionGraphicsItem>
 #include <helpers/preferences.h>
 #include <dialogs/preferencesdialog.h>
 

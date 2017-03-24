@@ -18,7 +18,7 @@
 #ifndef NEWSECTORDIALOG_H
 #define NEWSECTORDIALOG_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
 
 namespace Ui {
     class NewSectorDialog;

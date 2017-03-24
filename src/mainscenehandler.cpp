@@ -228,7 +228,7 @@ void SceneMediator::drawToGraphViz(QString &fileName)
     if (file.open(QFile::WriteOnly | QFile::Truncate)) {
         QTextStream output(&file);
 
-        output << "digraph map { \n";
+        output << "graph map { \noverlap=false;\nsplines=true;\nranksep=1.5;\n";
 
         foreach (star, _starList->stars())
             star->setVisited(false);
@@ -245,7 +245,7 @@ void SceneMediator::drawToGraphViz(QString &fileName)
                     {
                         p1->visit();
                         p2->visit();
-                        output << "\"" << p1->starName << "\" -> \"" << p2->starName << "\";\n";
+                        output << "\"" << p1->starName << "\" -- \"" << p2->starName << "\";\n";
                     }
                 }
             }
@@ -781,7 +781,7 @@ void SceneMediator::drawHexMap()
                                          -rect99.width()/4, -rect99.height()/2);
                         _travellerSectors.append(SectorRectHolder(rectOuter, rectTotal,dx,dy,true));
                         QGraphicsRectItem *item_rect = new QGraphicsRectItem(rectOuter2);
-                        _scene->addItem(item_rect);
+                        //_scene->addItem(item_rect);
                     }
 
                     if (_bDrawHexOnHexmap)

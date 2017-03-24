@@ -21,6 +21,8 @@
 #include <math.h>
 #include <QPen>
 #include <QObject>
+#include <QDialog>
+#include <QPrintDialog>
 #include <stdlib.h>
 #include <time.h>
 #include "star.h"

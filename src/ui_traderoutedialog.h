@@ -11,23 +11,23 @@
 #define UI_TRADEROUTEDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QListWidget>
-#include <QtGui/QMainWindow>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSplitter>
-#include <QtGui/QStackedWidget>
-#include <QtGui/QTextEdit>
-#include <QtGui/QToolBar>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListWidget>
+#include <QMainWindow>
+#include <QPushButton>
+#include <QSpacerItem>
+#include <QSplitter>
+#include <QStackedWidget>
+#include <QTextEdit>
+#include <QToolBar>
+#include <QVBoxLayout>
+#include <QWidget>
 #include "qtcolorpicker.h"
 
 QT_BEGIN_NAMESPACE
@@ -247,27 +247,27 @@ public:
 
     void retranslateUi(QMainWindow *TradeRouteDialog)
     {
-        TradeRouteDialog->setWindowTitle(QApplication::translate("TradeRouteDialog", "Trade Route Editor", 0, QApplication::UnicodeUTF8));
-        action_NewTradeRoute->setText(QApplication::translate("TradeRouteDialog", "New Trade Route", 0, QApplication::UnicodeUTF8));
+        TradeRouteDialog->setWindowTitle(QApplication::translate("TradeRouteDialog", "Trade Route Editor", 0));
+        action_NewTradeRoute->setText(QApplication::translate("TradeRouteDialog", "New Trade Route", 0));
 #ifndef QT_NO_TOOLTIP
-        action_NewTradeRoute->setToolTip(QApplication::translate("TradeRouteDialog", "Creates a new Trade Route", 0, QApplication::UnicodeUTF8));
+        action_NewTradeRoute->setToolTip(QApplication::translate("TradeRouteDialog", "Creates a new Trade Route", 0));
 #endif // QT_NO_TOOLTIP
-        action_DeleteTradeRoute->setText(QApplication::translate("TradeRouteDialog", "Delete Trade Route", 0, QApplication::UnicodeUTF8));
+        action_DeleteTradeRoute->setText(QApplication::translate("TradeRouteDialog", "Delete Trade Route", 0));
 #ifndef QT_NO_TOOLTIP
-        action_DeleteTradeRoute->setToolTip(QApplication::translate("TradeRouteDialog", "Deletes a Trade Route", 0, QApplication::UnicodeUTF8));
+        action_DeleteTradeRoute->setToolTip(QApplication::translate("TradeRouteDialog", "Deletes a Trade Route", 0));
 #endif // QT_NO_TOOLTIP
-        action_EditTradeRoute->setText(QApplication::translate("TradeRouteDialog", "Edit Trade Route", 0, QApplication::UnicodeUTF8));
+        action_EditTradeRoute->setText(QApplication::translate("TradeRouteDialog", "Edit Trade Route", 0));
 #ifndef QT_NO_TOOLTIP
-        action_EditTradeRoute->setToolTip(QApplication::translate("TradeRouteDialog", "Modifies a Trade Route", 0, QApplication::UnicodeUTF8));
+        action_EditTradeRoute->setToolTip(QApplication::translate("TradeRouteDialog", "Modifies a Trade Route", 0));
 #endif // QT_NO_TOOLTIP
-        action_SaveTradeRoutes->setText(QApplication::translate("TradeRouteDialog", "Save Trade Routes", 0, QApplication::UnicodeUTF8));
-        action_LoadTradeRoutes->setText(QApplication::translate("TradeRouteDialog", "Load Trade Routes", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("TradeRouteDialog", "Route Name", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("TradeRouteDialog", "Route Color", 0, QApplication::UnicodeUTF8));
-        btnAddRoute->setText(QApplication::translate("TradeRouteDialog", "Add Route", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("TradeRouteDialog", "Route List", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("TradeRouteDialog", "Route Description", 0, QApplication::UnicodeUTF8));
-        toolBar->setWindowTitle(QApplication::translate("TradeRouteDialog", "toolBar", 0, QApplication::UnicodeUTF8));
+        action_SaveTradeRoutes->setText(QApplication::translate("TradeRouteDialog", "Save Trade Routes", 0));
+        action_LoadTradeRoutes->setText(QApplication::translate("TradeRouteDialog", "Load Trade Routes", 0));
+        label->setText(QApplication::translate("TradeRouteDialog", "Route Name", 0));
+        label_2->setText(QApplication::translate("TradeRouteDialog", "Route Color", 0));
+        btnAddRoute->setText(QApplication::translate("TradeRouteDialog", "Add Route", 0));
+        label_3->setText(QApplication::translate("TradeRouteDialog", "Route List", 0));
+        label_4->setText(QApplication::translate("TradeRouteDialog", "Route Description", 0));
+        toolBar->setWindowTitle(QApplication::translate("TradeRouteDialog", "toolBar", 0));
     } // retranslateUi
 
 };

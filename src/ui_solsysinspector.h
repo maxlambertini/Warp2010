@@ -11,11 +11,11 @@
 #define UI_SOLSYSINSPECTOR_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QHeaderView>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QHeaderView>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -39,7 +39,7 @@ public:
 
     void retranslateUi(QWidget *SolsysInspector)
     {
-        SolsysInspector->setWindowTitle(QApplication::translate("SolsysInspector", "Form", 0, QApplication::UnicodeUTF8));
+        SolsysInspector->setWindowTitle(QApplication::translate("SolsysInspector", "Form", 0));
     } // retranslateUi
 
 };

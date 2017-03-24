@@ -18,6 +18,9 @@
 
 #include "planetaryinspector.h"
 #include <QtGui>
+#include <QGridLayout>
+#include <QVBoxLayout>
+#include <QSpacerItem>
 #include "star.h"
 #include "planet.h"
 #include "orbit.h"

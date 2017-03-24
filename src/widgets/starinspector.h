@@ -19,8 +19,12 @@
 #ifndef STARINSPECTOR_H
 #define STARINSPECTOR_H
 
-#include <QWidget>
 #include <QtGui>
+#include <QWidget>
+#include <QGridLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListWidget>
 #include "star.h"
 #include "widgets/basicstarinfowidget.h"
 

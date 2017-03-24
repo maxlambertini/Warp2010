@@ -2,6 +2,7 @@
 #define DIASPORACLUSTERGRAPHICSITEM_H
 
 #include <QtGui>
+#include <QGraphicsItem>
 #include "cluster/cluster.h"
 #include "cluster/clusteritem.h"
 #include "cluster/diasporaclusterscene.h"

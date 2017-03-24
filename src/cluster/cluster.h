@@ -42,9 +42,11 @@ public:
             _clusterItems[h] = ci;
     }
 
+    bool _closeCluster ;
+
     void exportClusterToGraphViz(QString filename = "");
 
-    void create(int nCluster = 0);
+    void create(int nCluster = 0, bool closeCluster = false);
 
     friend QDataStream & operator << (QDataStream &in, const Cluster &model);
     friend QDataStream & operator >> (QDataStream &out, Cluster &model);

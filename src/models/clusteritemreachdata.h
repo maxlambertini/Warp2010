@@ -21,6 +21,7 @@
 
 #include "cluster/clusteritem.h"
 #include <QtGui>
+#include <QListWidgetItem>
 
 class ClusterItemReachData : public QListWidgetItem
 {

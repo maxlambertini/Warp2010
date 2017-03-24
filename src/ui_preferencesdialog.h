@@ -11,23 +11,23 @@
 #define UI_PREFERENCESDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QCheckBox>
-#include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QFrame>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QRadioButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QTabWidget>
-#include <QtGui/QToolButton>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QFrame>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QRadioButton>
+#include <QSpacerItem>
+#include <QTabWidget>
+#include <QToolButton>
+#include <QVBoxLayout>
+#include <QWidget>
 #include "qtcolorpicker.h"
 #include "widgets/fontpreviewwidget.h"
 
@@ -309,32 +309,32 @@ public:
 
     void retranslateUi(QDialog *PreferencesDialog)
     {
-        PreferencesDialog->setWindowTitle(QApplication::translate("PreferencesDialog", "Preferen ces", 0, QApplication::UnicodeUTF8));
-        action_Title_Font->setText(QApplication::translate("PreferencesDialog", "Title Font", 0, QApplication::UnicodeUTF8));
-        action_Aspect_Title_Font->setText(QApplication::translate("PreferencesDialog", "Aspect Title Font", 0, QApplication::UnicodeUTF8));
-        action_Body_Font->setText(QApplication::translate("PreferencesDialog", "Body Font", 0, QApplication::UnicodeUTF8));
-        action_Small_Font->setText(QApplication::translate("PreferencesDialog", "Small Font", 0, QApplication::UnicodeUTF8));
-        colorMainRoute->setText(QApplication::translate("PreferencesDialog", "color", 0, QApplication::UnicodeUTF8));
-        colorSecondary->setText(QApplication::translate("PreferencesDialog", "color", 0, QApplication::UnicodeUTF8));
-        colorDiasporaBox->setText(QApplication::translate("PreferencesDialog", "color", 0, QApplication::UnicodeUTF8));
-        colorDiasporaBoxBackground->setText(QApplication::translate("PreferencesDialog", "color", 0, QApplication::UnicodeUTF8));
-        colorDiasporaLinks->setText(QApplication::translate("PreferencesDialog", "color", 0, QApplication::UnicodeUTF8));
-        rdoStraightLines->setText(QApplication::translate("PreferencesDialog", "Straight Lines", 0, QApplication::UnicodeUTF8));
-        rdoArcs->setText(QApplication::translate("PreferencesDialog", "Arcs", 0, QApplication::UnicodeUTF8));
-        chkShowSecondaryRoutes->setText(QApplication::translate("PreferencesDialog", "Yes", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("PreferencesDialog", "Main Route Default Color", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("PreferencesDialog", "Secondary Route Default Color", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("PreferencesDialog", "Diaspora Box Color", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("PreferencesDialog", "Diaspora Box Background", 0, QApplication::UnicodeUTF8));
-        label_5->setText(QApplication::translate("PreferencesDialog", "Diaspora Links", 0, QApplication::UnicodeUTF8));
-        label_6->setText(QApplication::translate("PreferencesDialog", "On Star Map, draw routes as...", 0, QApplication::UnicodeUTF8));
-        label_7->setText(QApplication::translate("PreferencesDialog", "Show secondary, non direct routes", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("PreferencesDialog", "Colors and Map Options", 0, QApplication::UnicodeUTF8));
-        btnTitleFont->setText(QApplication::translate("PreferencesDialog", "Title Font", 0, QApplication::UnicodeUTF8));
-        btnAspectTitleFont->setText(QApplication::translate("PreferencesDialog", "Aspect Title Font", 0, QApplication::UnicodeUTF8));
-        btnBodyFont->setText(QApplication::translate("PreferencesDialog", "Body Font", 0, QApplication::UnicodeUTF8));
-        btnSmallFont->setText(QApplication::translate("PreferencesDialog", "Small Font", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("PreferencesDialog", "Fonts", 0, QApplication::UnicodeUTF8));
+        PreferencesDialog->setWindowTitle(QApplication::translate("PreferencesDialog", "Preferen ces", 0));
+        action_Title_Font->setText(QApplication::translate("PreferencesDialog", "Title Font", 0));
+        action_Aspect_Title_Font->setText(QApplication::translate("PreferencesDialog", "Aspect Title Font", 0));
+        action_Body_Font->setText(QApplication::translate("PreferencesDialog", "Body Font", 0));
+        action_Small_Font->setText(QApplication::translate("PreferencesDialog", "Small Font", 0));
+        colorMainRoute->setText(QApplication::translate("PreferencesDialog", "color", 0));
+        colorSecondary->setText(QApplication::translate("PreferencesDialog", "color", 0));
+        colorDiasporaBox->setText(QApplication::translate("PreferencesDialog", "color", 0));
+        colorDiasporaBoxBackground->setText(QApplication::translate("PreferencesDialog", "color", 0));
+        colorDiasporaLinks->setText(QApplication::translate("PreferencesDialog", "color", 0));
+        rdoStraightLines->setText(QApplication::translate("PreferencesDialog", "Straight Lines", 0));
+        rdoArcs->setText(QApplication::translate("PreferencesDialog", "Arcs", 0));
+        chkShowSecondaryRoutes->setText(QApplication::translate("PreferencesDialog", "Yes", 0));
+        label->setText(QApplication::translate("PreferencesDialog", "Main Route Default Color", 0));
+        label_2->setText(QApplication::translate("PreferencesDialog", "Secondary Route Default Color", 0));
+        label_3->setText(QApplication::translate("PreferencesDialog", "Diaspora Box Color", 0));
+        label_4->setText(QApplication::translate("PreferencesDialog", "Diaspora Box Background", 0));
+        label_5->setText(QApplication::translate("PreferencesDialog", "Diaspora Links", 0));
+        label_6->setText(QApplication::translate("PreferencesDialog", "On Star Map, draw routes as...", 0));
+        label_7->setText(QApplication::translate("PreferencesDialog", "Show secondary, non direct routes", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("PreferencesDialog", "Colors and Map Options", 0));
+        btnTitleFont->setText(QApplication::translate("PreferencesDialog", "Title Font", 0));
+        btnAspectTitleFont->setText(QApplication::translate("PreferencesDialog", "Aspect Title Font", 0));
+        btnBodyFont->setText(QApplication::translate("PreferencesDialog", "Body Font", 0));
+        btnSmallFont->setText(QApplication::translate("PreferencesDialog", "Small Font", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("PreferencesDialog", "Fonts", 0));
     } // retranslateUi
 
 };

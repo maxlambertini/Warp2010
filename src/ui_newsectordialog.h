@@ -11,19 +11,19 @@
 #define UI_NEWSECTORDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QCheckBox>
-#include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSpinBox>
-#include <QtGui/QVBoxLayout>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QSpacerItem>
+#include <QSpinBox>
+#include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
@@ -137,13 +137,13 @@ public:
 
     void retranslateUi(QDialog *NewSectorDialog)
     {
-        NewSectorDialog->setWindowTitle(QApplication::translate("NewSectorDialog", "New Sector", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("NewSectorDialog", "New Sector Name", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("NewSectorDialog", "Radius in LY", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("NewSectorDialog", "Star Density", 0, QApplication::UnicodeUTF8));
-        txtSectorName->setText(QApplication::translate("NewSectorDialog", "Solomani Rim Sector", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("NewSectorDialog", "Create Solar Systems", 0, QApplication::UnicodeUTF8));
-        chkCreateSolSys->setText(QApplication::translate("NewSectorDialog", "Yes", 0, QApplication::UnicodeUTF8));
+        NewSectorDialog->setWindowTitle(QApplication::translate("NewSectorDialog", "New Sector", 0));
+        label->setText(QApplication::translate("NewSectorDialog", "New Sector Name", 0));
+        label_2->setText(QApplication::translate("NewSectorDialog", "Radius in LY", 0));
+        label_3->setText(QApplication::translate("NewSectorDialog", "Star Density", 0));
+        txtSectorName->setText(QApplication::translate("NewSectorDialog", "Solomani Rim Sector", 0));
+        label_4->setText(QApplication::translate("NewSectorDialog", "Create Solar Systems", 0));
+        chkCreateSolSys->setText(QApplication::translate("NewSectorDialog", "Yes", 0));
     } // retranslateUi
 
 };

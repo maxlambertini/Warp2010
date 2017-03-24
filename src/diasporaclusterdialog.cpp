@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <QtGui>
+#include <QFileDialog>
+#include <QPrintDialog>
 #include "diasporaclusterdialog.h"
 #include "ui_diasporaclusterdialog.h"
 #include "sceneimageexporter.h"
@@ -55,9 +58,9 @@ void DiasporaClusterDialog::doGenerateCluster() {
             this->saveCluster();
         }
     }
-
+    bool closeCluster = ui->chkCloseCluster->isChecked();
     int nClusterItems = ui->spinNumSolSys->value();
-    _cluster.create(nClusterItems);
+    _cluster.create(nClusterItems,closeCluster);
     doFillClusterControls();
     //qDebug() << "did Cluster generated.";
 
@@ -145,8 +148,8 @@ void DiasporaClusterDialog::doDrawCluster()
                     dx = ( dx+size1.height());
                 QPointF ptStart(x1,y1);
                 QPointF ptEnd(x2,y2);
-                QPointF pt1(x1, (y2+dx)/2);
-                QPointF pt2(x2, (y2+dx)/2);
+                QPointF pt1(x1, (y2+dx)/2.5);
+                QPointF pt2(x2, (y2+dx)/2.5);
                 path.moveTo(x1,y1);
                 path.cubicTo(pt1.x(),pt1.y(),pt2.x(),pt2.y(),ptEnd.x(),ptEnd.y());
 

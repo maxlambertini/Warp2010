@@ -16,6 +16,7 @@
 */
 
 #include "starwidgetitem.h"
+#include <QListWidgetItem>
 
 StarWidgetItem::StarWidgetItem(Star* newStar, int idx, QListWidget *view):
         QListWidgetItem(newStar->starName, view)

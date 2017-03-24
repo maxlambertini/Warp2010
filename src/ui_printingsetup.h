@@ -11,21 +11,21 @@
 #define UI_PRINTINGSETUP_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QCheckBox>
-#include <QtGui/QComboBox>
-#include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QDoubleSpinBox>
-#include <QtGui/QFrame>
-#include <QtGui/QGridLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSpinBox>
-#include <QtGui/QVBoxLayout>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QComboBox>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QDoubleSpinBox>
+#include <QFrame>
+#include <QGridLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QSpacerItem>
+#include <QSpinBox>
+#include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
@@ -279,20 +279,20 @@ public:
 
     void retranslateUi(QDialog *PrintingSetup)
     {
-        PrintingSetup->setWindowTitle(QApplication::translate("PrintingSetup", "Printing Setup", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("PrintingSetup", "Paper Formats", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("PrintingSetup", "Paper Width", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("PrintingSetup", "Paper Height", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("PrintingSetup", "Left Margin", 0, QApplication::UnicodeUTF8));
-        label_5->setText(QApplication::translate("PrintingSetup", "Top Margin", 0, QApplication::UnicodeUTF8));
-        label_6->setText(QApplication::translate("PrintingSetup", "Right Margin", 0, QApplication::UnicodeUTF8));
-        label_8->setText(QApplication::translate("PrintingSetup", "Vertical Divisions", 0, QApplication::UnicodeUTF8));
-        label_9->setText(QApplication::translate("PrintingSetup", "Landscape?", 0, QApplication::UnicodeUTF8));
+        PrintingSetup->setWindowTitle(QApplication::translate("PrintingSetup", "Printing Setup", 0));
+        label->setText(QApplication::translate("PrintingSetup", "Paper Formats", 0));
+        label_2->setText(QApplication::translate("PrintingSetup", "Paper Width", 0));
+        label_3->setText(QApplication::translate("PrintingSetup", "Paper Height", 0));
+        label_4->setText(QApplication::translate("PrintingSetup", "Left Margin", 0));
+        label_5->setText(QApplication::translate("PrintingSetup", "Top Margin", 0));
+        label_6->setText(QApplication::translate("PrintingSetup", "Right Margin", 0));
+        label_8->setText(QApplication::translate("PrintingSetup", "Vertical Divisions", 0));
+        label_9->setText(QApplication::translate("PrintingSetup", "Landscape?", 0));
         chkLandscape->setText(QString());
         chkImperialSystem->setText(QString());
-        label_10->setText(QApplication::translate("PrintingSetup", "Use Imperial Units", 0, QApplication::UnicodeUTF8));
-        label_7->setText(QApplication::translate("PrintingSetup", "Bottom Margin", 0, QApplication::UnicodeUTF8));
-        label_11->setText(QApplication::translate("PrintingSetup", "Sector side in hex", 0, QApplication::UnicodeUTF8));
+        label_10->setText(QApplication::translate("PrintingSetup", "Use Imperial Units", 0));
+        label_7->setText(QApplication::translate("PrintingSetup", "Bottom Margin", 0));
+        label_11->setText(QApplication::translate("PrintingSetup", "Sector side in hex", 0));
     } // retranslateUi
 
 };

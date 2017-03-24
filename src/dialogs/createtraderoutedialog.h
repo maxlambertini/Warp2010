@@ -18,7 +18,7 @@
 #ifndef CREATETRADEROUTEDIALOG_H
 #define CREATETRADEROUTEDIALOG_H
 
-#include <QtGui/QDialog>
+#include <QDialog>
 #include <QtCore>
 
 namespace Ui {
