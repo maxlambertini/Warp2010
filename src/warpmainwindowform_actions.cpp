@@ -454,6 +454,8 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
                                          AppPaths::appDir()+ "/starmap.dot",
                            tr("DOT File (*.dot)"));
     if (!fileName.isEmpty() && !fileName.isNull())
+       //
+       //this->_starList->saveToJson(fileName);
        _sceneMediator->drawToGraphViz(fileName);
 
 }
@@ -735,5 +737,16 @@ void WarpMainWindowForm::on_action_map_set_xz_mode_triggered() {
 void WarpMainWindowForm::on_action_map_set_yz_mode_triggered() {
     _sceneMediator->setDrawMode(SceneMediatorDrawMode::YZ);
     _sceneMediator->redrawScene();
+
+}
+
+void WarpMainWindowForm::on_action_Export_Map_to_JSON_triggered()
+{
+    QString fileName =
+            QFileDialog::getSaveFileName(this, tr("Export file as Graphviz Graph"),
+                                         AppPaths::appDir()+ "/"+this->_starList->listName() +".json",
+                           tr("JSON File (*.json)"));
+    if (!fileName.isEmpty() && !fileName.isNull())
+       this->_starList->saveToJson(fileName);
 
 }

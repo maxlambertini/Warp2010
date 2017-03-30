@@ -262,6 +262,7 @@ public:
     void setStarFullType(const QString& type);
     QString starFullType() { return _starFullType; }
     QString toHtml();
+    void toJson(QJsonObject& json);
 
     void setStarData();
 

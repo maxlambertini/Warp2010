@@ -14,7 +14,7 @@
    <string>Warp 2010 -- Leonov Edition</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="Resources.qrc">
     <normaloff>:/new/Bitmaps/pics/shjp02_64.png</normaloff>:/new/Bitmaps/pics/shjp02_64.png</iconset>
   </property>
   <property name="styleSheet">
@@ -34,7 +34,16 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_10">
-    <property name="margin">
+    <property name="leftMargin">
+     <number>3</number>
+    </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
+    <property name="rightMargin">
+     <number>3</number>
+    </property>
+    <property name="bottomMargin">
      <number>3</number>
     </property>
     <item>
@@ -48,7 +57,16 @@
        </property>
        <widget class="QWidget" name="page">
         <layout class="QVBoxLayout" name="verticalLayout">
-         <property name="margin">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
           <number>0</number>
          </property>
          <item>
@@ -128,7 +146,7 @@
                   <string>...</string>
                  </property>
                  <property name="icon">
-                  <iconset>
+                  <iconset resource="Resources.qrc">
                    <normaloff>:/new/Bitmaps/pics/zoomin.png</normaloff>:/new/Bitmaps/pics/zoomin.png</iconset>
                  </property>
                  <property name="autoRaise">
@@ -164,7 +182,7 @@
                   <string>...</string>
                  </property>
                  <property name="icon">
-                  <iconset>
+                  <iconset resource="Resources.qrc">
                    <normaloff>:/new/Bitmaps/pics/zoomout.png</normaloff>:/new/Bitmaps/pics/zoomout.png</iconset>
                  </property>
                  <property name="autoRaise">
@@ -187,7 +205,7 @@
                 <string>...</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="Resources.qrc">
                  <normaloff>:/new/Bitmaps/pics/rotateleft.png</normaloff>:/new/Bitmaps/pics/rotateleft.png</iconset>
                </property>
                <property name="autoRaise">
@@ -220,7 +238,7 @@
                 <string>...</string>
                </property>
                <property name="icon">
-                <iconset>
+                <iconset resource="Resources.qrc">
                  <normaloff>:/new/Bitmaps/pics/rotateright.png</normaloff>:/new/Bitmaps/pics/rotateright.png</iconset>
                </property>
                <property name="autoRaise">
@@ -268,7 +286,16 @@
        </widget>
        <widget class="QWidget" name="page_3">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <property name="margin">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
           <number>0</number>
          </property>
          <item>
@@ -328,7 +355,7 @@
             <widget class="QDoubleSpinBox" name="spinDistance">
              <property name="minimumSize">
               <size>
-               <width>50</width>
+               <width>120</width>
                <height>0</height>
               </size>
              </property>
@@ -415,7 +442,16 @@ Double click on a star below to recalculate a new jumpweb centered on the select
           <string>Reachability Details</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_6">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
            <number>3</number>
           </property>
           <item>
@@ -449,7 +485,16 @@ Double click on a star below to recalculate a new jumpweb centered on the select
           <string>Trade Routes</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_19">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
            <number>3</number>
           </property>
           <item>
@@ -566,7 +611,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                <string/>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="Resources.qrc">
                 <normaloff>:/new/Bitmaps/pics/gtk-add.png</normaloff>:/new/Bitmaps/pics/gtk-add.png</iconset>
               </property>
              </widget>
@@ -589,7 +634,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                <string/>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="Resources.qrc">
                 <normaloff>:/new/Bitmaps/pics/list-remove.png</normaloff>:/new/Bitmaps/pics/list-remove.png</iconset>
               </property>
              </widget>
@@ -612,7 +657,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                <string/>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="Resources.qrc">
                 <normaloff>:/new/Bitmaps/pics/delete_all.png</normaloff>:/new/Bitmaps/pics/delete_all.png</iconset>
               </property>
              </widget>
@@ -713,7 +758,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
      <x>0</x>
      <y>0</y>
      <width>819</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFileSector">
@@ -722,7 +767,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     </property>
     <widget class="QMenu" name="menuStar_Sector_Operations">
      <property name="title">
-      <string>Star Sector Operations</string>
+      <string>&amp;Star Sector Operations</string>
      </property>
      <addaction name="action_NewSector"/>
      <addaction name="action_Add_New_Star"/>
@@ -736,6 +781,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
      <addaction name="separator"/>
      <addaction name="action_ExportMapToImage"/>
      <addaction name="action_ExportMapToGraphVizFile"/>
+     <addaction name="action_Export_Map_to_JSON"/>
      <addaction name="separator"/>
      <addaction name="actionPrint_Sector_Map"/>
      <addaction name="actionPrint_Trade_Route"/>
@@ -744,7 +790,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     </widget>
     <widget class="QMenu" name="menuSolar_System_Operations">
      <property name="title">
-      <string>Solar System Operations</string>
+      <string>Solar System &amp;Operations</string>
      </property>
      <addaction name="action_CreateSolarSystem"/>
      <addaction name="action_SolarSystemForAllStars"/>
@@ -756,7 +802,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     </widget>
     <widget class="QMenu" name="menuCluster_Operations">
      <property name="title">
-      <string>Cluster Operations</string>
+      <string>&amp;Cluster Operations</string>
      </property>
      <addaction name="action_Generate_New_Cluster"/>
      <addaction name="action_Load_Diaspora_Cluster"/>
@@ -962,11 +1008,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </widget>
   <action name="action_NewSector">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-new.png</normaloff>:/new/Bitmaps/pics/document-new.png</iconset>
    </property>
    <property name="text">
-    <string>New Sector</string>
+    <string>&amp;New Sector</string>
    </property>
    <property name="visible">
     <bool>true</bool>
@@ -974,56 +1020,56 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="actionLoad_Sector">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-open.png</normaloff>:/new/Bitmaps/pics/document-open.png</iconset>
    </property>
    <property name="text">
-    <string>Load Sector</string>
+    <string>&amp;Load Sector</string>
    </property>
   </action>
   <action name="actionSave_Sector">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-save.png</normaloff>:/new/Bitmaps/pics/document-save.png</iconset>
    </property>
    <property name="text">
-    <string>Save Sector</string>
+    <string>&amp;Save Sector</string>
    </property>
   </action>
   <action name="actionPrint_Sector_Map">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/printer.png</normaloff>:/new/Bitmaps/pics/printer.png</iconset>
    </property>
    <property name="text">
-    <string>Print Sector Map</string>
+    <string>&amp;Print Sector Map</string>
    </property>
   </action>
   <action name="actionPrint_Trade_Route">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-print.png</normaloff>:/new/Bitmaps/pics/document-print.png</iconset>
    </property>
    <property name="text">
-    <string>Print Trade Route</string>
+    <string>Pr&amp;int Trade Route</string>
    </property>
   </action>
   <action name="actionPrint_Solar_System">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-print.png</normaloff>:/new/Bitmaps/pics/document-print.png</iconset>
    </property>
    <property name="text">
-    <string>Print Solar System</string>
+    <string>&amp;Print Solar System</string>
    </property>
   </action>
   <action name="action_ExportMapToImage">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/mozilla_doc.png</normaloff>:/new/Bitmaps/pics/mozilla_doc.png</iconset>
    </property>
    <property name="text">
-    <string>Export Map to image</string>
+    <string>&amp;Export Map to image</string>
    </property>
   </action>
   <action name="action_ExportSolarSystemToImage">
@@ -1033,7 +1079,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/system-log-out.png</normaloff>:/new/Bitmaps/pics/system-log-out.png</iconset>
    </property>
    <property name="text">
@@ -1055,7 +1101,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="actionZoomOut">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/zoomout.png</normaloff>:/new/Bitmaps/pics/zoomout.png</iconset>
    </property>
    <property name="text">
@@ -1064,7 +1110,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="actionRotateLeft">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/rotateleft.png</normaloff>:/new/Bitmaps/pics/rotateleft.png</iconset>
    </property>
    <property name="text">
@@ -1073,7 +1119,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="actionRotateRight">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/rotateright.png</normaloff>:/new/Bitmaps/pics/rotateright.png</iconset>
    </property>
    <property name="text">
@@ -1123,16 +1169,16 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_CreateSolarSystem">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-new.png</normaloff>:/new/Bitmaps/pics/document-new.png</iconset>
    </property>
    <property name="text">
-    <string>New Solar System</string>
+    <string>&amp;New Solar System</string>
    </property>
   </action>
   <action name="action_CreateTradeRoute">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/shjp02_64.png</normaloff>:/new/Bitmaps/pics/shjp02_64.png</iconset>
    </property>
    <property name="text">
@@ -1141,7 +1187,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="actionCreate_a_Solar_System_for_all_stars">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/shjp02_64.png</normaloff>:/new/Bitmaps/pics/shjp02_64.png</iconset>
    </property>
    <property name="text">
@@ -1155,7 +1201,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_AboutWarp2010">
    <property name="text">
-    <string>About Warp 2010</string>
+    <string>&amp;About Warp 2010</string>
    </property>
   </action>
   <action name="action_ShowNeighbors_routes">
@@ -1163,7 +1209,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/AllTradeRoutes32.png</normaloff>:/new/Bitmaps/pics/AllTradeRoutes32.png</iconset>
    </property>
    <property name="text">
@@ -1181,7 +1227,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/optimalpath32.png</normaloff>:/new/Bitmaps/pics/optimalpath32.png</iconset>
    </property>
    <property name="text">
@@ -1196,7 +1242,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/traderoute32.png</normaloff>:/new/Bitmaps/pics/traderoute32.png</iconset>
    </property>
    <property name="text">
@@ -1205,12 +1251,12 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_SaveTradeRoutes">
    <property name="text">
-    <string>Save Trade Routes</string>
+    <string>Sa&amp;ve Trade Routes</string>
    </property>
   </action>
   <action name="action_LoadTradeRoutes">
    <property name="text">
-    <string>Load Trade Routes</string>
+    <string>Load Trade &amp;Routes</string>
    </property>
   </action>
   <action name="action_ShowOnlyStarsInTradeRoutes">
@@ -1218,7 +1264,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/nopath32.png</normaloff>:/new/Bitmaps/pics/nopath32.png</iconset>
    </property>
    <property name="text">
@@ -1227,20 +1273,20 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_TradeRoute_to_all_GardenPlanets">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/shjp02_64.png</normaloff>:/new/Bitmaps/pics/shjp02_64.png</iconset>
    </property>
    <property name="text">
-    <string>Trade Route to all Garden Planets</string>
+    <string>&amp;Trade Route to all Garden Planets</string>
    </property>
   </action>
   <action name="action_SolarSystemForAllStars">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/Solsys/pics/Planets/Marginal.png</normaloff>:/Solsys/pics/Planets/Marginal.png</iconset>
    </property>
    <property name="text">
-    <string>Solar System For All Stars</string>
+    <string>&amp;Solar System For All Stars</string>
    </property>
    <property name="toolTip">
     <string>Create a Solar System For Everyl Star In List</string>
@@ -1248,7 +1294,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_CopySolarSystem">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/gtk-copy.png</normaloff>:/new/Bitmaps/pics/gtk-copy.png</iconset>
    </property>
    <property name="text">
@@ -1268,7 +1314,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/hex_icon.png</normaloff>:/new/Bitmaps/pics/hex_icon.png</iconset>
    </property>
    <property name="text">
@@ -1280,11 +1326,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_ExportMapToGraphVizFile">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/optimalpath32.png</normaloff>:/new/Bitmaps/pics/optimalpath32.png</iconset>
    </property>
    <property name="text">
-    <string>Export Map to Graphviz file</string>
+    <string>Export &amp;Map to Graphviz file</string>
    </property>
   </action>
   <action name="action_ViewOnlyTradeRoutes">
@@ -1292,7 +1338,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/traderoute32.png</normaloff>:/new/Bitmaps/pics/traderoute32.png</iconset>
    </property>
    <property name="text">
@@ -1306,70 +1352,70 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Export_Diaspora_Cluster_To_Graphviz">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/optimalpath32.png</normaloff>:/new/Bitmaps/pics/optimalpath32.png</iconset>
    </property>
    <property name="text">
-    <string>Export Cluster To Graphviz</string>
+    <string>&amp;Export Cluster To Graphviz</string>
    </property>
   </action>
   <action name="action_Export_Diaspora_Cluster_To_HTML">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/html.png</normaloff>:/new/Bitmaps/pics/html.png</iconset>
    </property>
    <property name="text">
-    <string>Export Cluster To HTML</string>
+    <string>Export Cluster To &amp;HTML</string>
    </property>
   </action>
   <action name="action_Export_Diaspora_Cluster_To_SVG">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/inkscape.png</normaloff>:/new/Bitmaps/pics/inkscape.png</iconset>
    </property>
    <property name="text">
-    <string>Export Cluster To SVG</string>
+    <string>Export &amp;Cluster To SVG</string>
    </property>
   </action>
   <action name="action_Save_Diaspora_Cluster">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/filesave.png</normaloff>:/new/Bitmaps/pics/filesave.png</iconset>
    </property>
    <property name="text">
-    <string>Save Cluster</string>
+    <string>&amp;Save Cluster</string>
    </property>
   </action>
   <action name="action_Load_Diaspora_Cluster">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/fileopen.png</normaloff>:/new/Bitmaps/pics/fileopen.png</iconset>
    </property>
    <property name="text">
-    <string>Load Cluster</string>
+    <string>&amp;Load Cluster</string>
    </property>
   </action>
   <action name="action_Generate_New_Cluster">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-new.png</normaloff>:/new/Bitmaps/pics/document-new.png</iconset>
    </property>
    <property name="text">
-    <string>New Cluster</string>
+    <string>&amp;New Cluster</string>
    </property>
   </action>
   <action name="action_Print_Cluster">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-print.png</normaloff>:/new/Bitmaps/pics/document-print.png</iconset>
    </property>
    <property name="text">
-    <string>Print Cluster</string>
+    <string>&amp;Print Cluster</string>
    </property>
   </action>
   <action name="actionExport_Solar_System_Data_to_HTML">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/html.png</normaloff>:/new/Bitmaps/pics/html.png</iconset>
    </property>
    <property name="text">
@@ -1378,7 +1424,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="actionExport_to_Celestia">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/GasGiant.png</normaloff>:/new/Bitmaps/pics/GasGiant.png</iconset>
    </property>
    <property name="text">
@@ -1387,20 +1433,20 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Save_Solar_System_to_HTML">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/html.png</normaloff>:/new/Bitmaps/pics/html.png</iconset>
    </property>
    <property name="text">
-    <string>Save Solar System to HTML</string>
+    <string>Save Solar System to &amp;HTML</string>
    </property>
   </action>
   <action name="action_Save_Solar_System_to_Celestia_file">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-save.png</normaloff>:/new/Bitmaps/pics/document-save.png</iconset>
    </property>
    <property name="text">
-    <string>Save Solar System to Celestia file</string>
+    <string>Save Solar System to &amp;Celestia file</string>
    </property>
   </action>
   <action name="actionGu">
@@ -1413,7 +1459,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/nopath32.png</normaloff>:/new/Bitmaps/pics/nopath32.png</iconset>
    </property>
    <property name="text">
@@ -1425,21 +1471,21 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Export_Cluster_To_PDF">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/gnome-mime-application-pdf.png</normaloff>:/new/Bitmaps/pics/gnome-mime-application-pdf.png</iconset>
    </property>
    <property name="text">
-    <string>Export Cluster To PDF</string>
+    <string>E&amp;xport Cluster To PDF</string>
    </property>
   </action>
   <action name="action_Page_Setup">
    <property name="text">
-    <string>Page Setup</string>
+    <string>&amp;Page Setup</string>
    </property>
   </action>
   <action name="action_map_Show_Hexmap_With_Reachable_Stars">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/map_icons/hex_reachable_32.png</normaloff>:/new/Bitmaps/pics/map_icons/hex_reachable_32.png</iconset>
    </property>
    <property name="text">
@@ -1448,7 +1494,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_map_Show_Hexmap_with_Trade_Route_Only">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/map_icons/hex_traderoute_32.png</normaloff>:/new/Bitmaps/pics/map_icons/hex_traderoute_32.png</iconset>
    </property>
    <property name="text">
@@ -1457,7 +1503,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_map_Show_All_Stars">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/map_icons/normal_all_32.png</normaloff>:/new/Bitmaps/pics/map_icons/normal_all_32.png</iconset>
    </property>
    <property name="text">
@@ -1466,7 +1512,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_map_Show_Reachable_Stars">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/map_icons/normal_reachable_32.png</normaloff>:/new/Bitmaps/pics/map_icons/normal_reachable_32.png</iconset>
    </property>
    <property name="text">
@@ -1478,7 +1524,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/map_icons/normal_traderoute_32.png</normaloff>:/new/Bitmaps/pics/map_icons/normal_traderoute_32.png</iconset>
    </property>
    <property name="text">
@@ -1487,7 +1533,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_map_Sector_Map_Options">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/map_icons/hex_all_32.png</normaloff>:/new/Bitmaps/pics/map_icons/hex_all_32.png</iconset>
    </property>
    <property name="text">
@@ -1496,7 +1542,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_map_Show_Metro_Map_With_Reachable_Stars">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/map_icons/metro_reachable_32.png</normaloff>:/new/Bitmaps/pics/map_icons/metro_reachable_32.png</iconset>
    </property>
    <property name="text">
@@ -1505,7 +1551,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_map_Show_Metro_Map_With_Trade_Routes">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/map_icons/metro_traderoute_32.png</normaloff>:/new/Bitmaps/pics/map_icons/metro_traderoute_32.png</iconset>
    </property>
    <property name="text">
@@ -1520,11 +1566,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/Icons/pics/newicons/mappa_tot_64.png</normaloff>:/Icons/pics/newicons/mappa_tot_64.png</iconset>
    </property>
    <property name="text">
-    <string>Star Sector View</string>
+    <string>&amp;Star Sector View</string>
    </property>
   </action>
   <action name="action_Solar_System_View">
@@ -1532,11 +1578,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/Icons/pics/newicons/64.png</normaloff>:/Icons/pics/newicons/64.png</iconset>
    </property>
    <property name="text">
-    <string>Solar System View</string>
+    <string>Solar System &amp;View</string>
    </property>
   </action>
   <action name="action_Diaspora_Cluster_View">
@@ -1544,16 +1590,16 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/Icons/pics/newicons/diaspora64.png</normaloff>:/Icons/pics/newicons/diaspora64.png</iconset>
    </property>
    <property name="text">
-    <string>Diaspora Cluster View</string>
+    <string>&amp;Diaspora Cluster View</string>
    </property>
   </action>
   <action name="action_Export_Solar_System_To_PDF">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/gnome-mime-application-pdf.png</normaloff>:/new/Bitmaps/pics/gnome-mime-application-pdf.png</iconset>
    </property>
    <property name="text">
@@ -1562,7 +1608,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Export_Solar_System_To_SVG">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/inkscape.png</normaloff>:/new/Bitmaps/pics/inkscape.png</iconset>
    </property>
    <property name="text">
@@ -1571,7 +1617,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Print_Solar_System">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/document-print.png</normaloff>:/new/Bitmaps/pics/document-print.png</iconset>
    </property>
    <property name="text">
@@ -1580,11 +1626,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Add_New_Star">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/gtk-add.png</normaloff>:/new/Bitmaps/pics/gtk-add.png</iconset>
    </property>
    <property name="text">
-    <string>Add New Star</string>
+    <string>&amp;Add New Star</string>
    </property>
    <property name="toolTip">
     <string>Add a new star to current sector</string>
@@ -1592,25 +1638,25 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="actionAdd_Stars_Between_Two_Stars">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/gtk-add.png</normaloff>:/new/Bitmaps/pics/gtk-add.png</iconset>
    </property>
    <property name="text">
-    <string>Add Stars Between Two Stars</string>
+    <string>Add Stars &amp;Between Two Stars</string>
    </property>
   </action>
   <action name="action_Clear_Star_Sector_Data">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/edit-clear.png</normaloff>:/new/Bitmaps/pics/edit-clear.png</iconset>
    </property>
    <property name="text">
-    <string>Clear Star Sector Data</string>
+    <string>&amp;Clear Star Sector Data</string>
    </property>
   </action>
   <action name="action_Set_XY_Mode">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/xy.png</normaloff>:/new/Bitmaps/pics/xy.png</iconset>
    </property>
    <property name="text">
@@ -1622,7 +1668,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Set_XZ_Mode">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/xz.png</normaloff>:/new/Bitmaps/pics/xz.png</iconset>
    </property>
    <property name="text">
@@ -1634,7 +1680,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Set_YZ_Mode">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/yz.png</normaloff>:/new/Bitmaps/pics/yz.png</iconset>
    </property>
    <property name="text">
@@ -1646,7 +1692,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Planar_Projection_Modes">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resources.qrc">
      <normaloff>:/new/Bitmaps/pics/xy.png</normaloff>:/new/Bitmaps/pics/xy.png</iconset>
    </property>
    <property name="text">
@@ -1654,6 +1700,14 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="toolTip">
     <string>Planar Projection Modes</string>
+   </property>
+  </action>
+  <action name="action_Export_Map_to_JSON">
+   <property name="text">
+    <string>Export Map to JSON</string>
+   </property>
+   <property name="toolTip">
+    <string>Export Map to JSON File</string>
    </property>
   </action>
  </widget>
@@ -1676,7 +1730,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>sliderZoom</sender>

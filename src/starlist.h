@@ -185,6 +185,25 @@ public:
         }
     }
 
+    void saveToJson (QString filename) {
+        QJsonObject o;
+        QJsonArray a;
+        Star* p;
+        foreach (p, _stars) {
+            QJsonObject oStar;
+            p->toJson(oStar);
+            a.append(oStar);
+        }
+        o["sector_name"] = this->listName();
+        o["stars"] = a;
+        QJsonDocument doc(o);
+        QFile data (filename);
+         if (data.open(QFile::WriteOnly | QFile::Truncate)) {
+            data.write(doc.toJson());
+         }
+         data.close();
+    }
+
     void saveMatrix (QString filename)
     {
             QFile data(filename);

@@ -305,6 +305,59 @@ void Star::setStarFullType(const QString& type="G2V")
 
 }
 
+void Star::toJson(QJsonObject& json) {
+    json["starName"] = this->starName;
+    json["starSize"] = this->_starSize;
+    json["luminosity"] = this->_luminosity;
+    json["magnitude"] = this->_magnitude;
+    json["solarMass"] = this->_solarMass;
+    json["solarAge"] = this->_solarAge;
+    json["temperature"] = this->_temperature;
+    json["diameter"] = this->_diameter;
+    json["mass"] = this->_mass;
+    json["distance"] = this->_distance;
+    json["innerLifeZone"] = this->_innerLifeZone;
+    json["idealLifeZone"] = this->_idealLifeZone;
+    json["outerLifeZone"] = this->_outerLifeZone;
+    json["x"] = this->_x;
+    json["y"] = this->_y;
+    json["z"] = this->_z;
+    json["nx"] = (qint64)this->_nx;
+    json["ny"] = (qint64)this->_ny;
+    json["nz"] = (qint64)this->_nz;
+    json["sister"] = this->_sister;
+    json["starFullType"] = this->_starFullType;
+    json["starClass"]= this->_starClass;
+    json["starType"]= this->_starType;
+    if (this->_planets.count() > 0) {
+        QJsonArray jsonSats;
+        Planet sat;
+        foreach (sat, this->_planets) {
+            QJsonObject oSat;
+            sat.toJson(oSat);
+            jsonSats.append(oSat);
+        }
+        json["planets"] = jsonSats;
+
+    }
+    /*
+    out << p->_neighbors;
+    out << p->_path;
+    out << p->_planets;
+    out << p->_starValue.numChunk;
+    out << p->_starValue.numDesert;
+    out << p->_starValue.numFailedCore;
+    out << p->_starValue.numGarden;
+    out << p->_starValue.numGasGiant;
+    out << p->_starValue.numGlacier;
+    out << p->_starValue.numHotHouse;
+    out << p->_starValue.numIceball;
+    out << p->_starValue.numPostGarden;
+    out << p->_starValue.numPreGarden;
+    */
+}
+
+
 QString Star::toHtml()
 {
     QString sHtml;

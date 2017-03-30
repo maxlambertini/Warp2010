@@ -152,6 +152,54 @@ QString Planet::toHtml()  {
     return PlanetRenderer::current()->description();
 }
 
+void Planet::toJson(QJsonObject& json)  {
+    /*
+                     .arg(p->massEarth())
+                     .arg(p->gravEarth())
+                     .arg(p->temperature())
+                     .arg(p->mmwr())
+                     .arg(p->waterPercentage())
+                     .arg(p->orbit().distance())
+                     .arg(p->orbit().eccentricity())
+                     .arg(p->orbit().inclination())
+                     .arg(p->orbit().obliquity())
+                     .arg(p->orbit().year()*365.25)
+                     .arg(p->orbit().day())
+                     .arg(p->isSatellite() ? "Yes" : "No")
+                     .arg(p->getCoreTypeDesc())
+                     .arg(p->getPlanetTypeDesc())
+                     .arg(p->getHydrosphereDesc())
+                     .arg(p->getAtmosphereDesc())
+                     .arg(p->tidalForce() > 1.0 ? "Yes" : "No");
+    */
+    json["name"]           = this->name();
+    json["massEarth"]      = this->massEarth();
+    json["gravEarth"]      = this->gravEarth();
+    json["temperature"]    = this->temperature();
+    json["mmwr"]           = this->mmwr();
+    json["distance"]       = this->orbit().distance();
+    json["eccentricity"]   = this->orbit().eccentricity();
+    json["inclination"]    = this->orbit().inclination();
+    json["obliquity"]      = this->orbit().obliquity();
+    json["year"]           = this->orbit().year();
+    json["day"]            = this->orbit().day();
+    json["core"]           = this->getCoreTypeDesc();
+    json["hydrosphere"]    = this->getHydrosphereDesc();
+    json["atmosphere"]     = this->getAtmosphereDesc();
+    json["tidalforce"]     = this->tidalForce();
+    json["tidally_locked"] = this->tidalForce() > 1.0 ? "Yes": "No";
+    if (!this->isSatellite() && this->satellitesCount() > 0) {
+        QJsonArray jsonSats;
+        Planet sat;
+        foreach (sat, this->satellites()) {
+            QJsonObject oSat;
+            sat.toJson(oSat);
+            jsonSats.append(oSat);
+        }
+        json["satellites"] = jsonSats;
+    }
+}
+
 QString Planet::getPlanetTypeDesc()
 {
     int i = (int)this->planetType();

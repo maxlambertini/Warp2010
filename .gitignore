@@ -12,3 +12,5 @@
 *.a
 debug/*
 release/*
+build*/*
+Warp2010*/*

@@ -172,6 +172,7 @@ public:
     void appendSatellite(const Planet& sat) { _satellites.append(sat); }
 
     QString toHtml();
+    void toJson(QJsonObject& json) ;
     QString getPlanetTypeDesc();
     QString getHydrosphereDesc();
     QString getAtmosphereDesc();

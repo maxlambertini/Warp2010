@@ -223,6 +223,7 @@ private slots:
     void on_action_Save_Diaspora_Cluster_triggered();
 
     void on_action_Clear_Star_Sector_Data_triggered();
+    void on_action_Export_Map_to_JSON_triggered();
 };
 
 #endif // WARPMAINWINDOWFORM_H
