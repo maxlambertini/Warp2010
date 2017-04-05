@@ -304,11 +304,18 @@ void SceneMediator::drawToGML(QString &fileName)
 
         qDebug("Nodes");
         int nCount = 0;
+        int nFontSize = 15;
         foreach (star, _starList->stars()) {
             if (star->isReference() || star->path().count() > 1) {
                 QStringList nameList = star->starName.split(" ");
-                int nWidth = 13 * findMaxLen(nameList);
+                int nWidth = 16 * findMaxLen(nameList);
                 int nHeight = nameList.count()*25;
+                if (star->isReference()) {
+                    nFontSize = 45;
+                    nWidth = nWidth*3;
+                }
+                else
+                    nFontSize = 15;
                 QString nameComplete = nameList.join("\n");
                 output << "\tnode [\n" << "\t\t id " << nCount << "\n" << "\t\tlabel \"" << nameComplete << "\"\n";
                 QString sColor = "#EEEEEE";
@@ -351,6 +358,7 @@ void SceneMediator::drawToGML(QString &fileName)
                 output << "\t\t]\n";
                 output << "\t\tLabelGraphics\n\t\t[\n";
                 output << "\t\tcolor\t\"" << sFontColor << "\"\n";
+                output << "\t\t\tfontSize\t" << nFontSize << "\n";
                 output << "\n\t\t]\n";
 
                 output << "\t]\n";
@@ -360,47 +368,14 @@ void SceneMediator::drawToGML(QString &fileName)
         }
 
         nCount = 0;
-        foreach (star, _starList->stars()) {
-            int i1, i2;
-            int iNeighbor;
-            foreach (iNeighbor, star->neighbors()) {
-                if (iNeighbor > nCount) {
-                    i1 = nCount;
-                    i2 = iNeighbor;
-                } else {
-                    i1 = iNeighbor;
-                    i2 = nCount;
-                }
-                QString key = QString("%1_%2").arg(i1,i2);
-                if (!links.contains(key)) {
-                    links.append(key);
-                    p1 = _starList->stars().at(i1);
-                    p2 = _starList->stars().at(i2);
-                    output << "\tedge [\n\t\tsource " << i1 << "\n\t\ttarget "<< i2 ;
-                    output << "\n\t\tlabel \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
-                    output << "\t\tgraphics\n\t\t[\n";
-                    output << "\t\t\tfill\t\"#BBBBBB\"\n";
-                    output << "\n\t\t]\n";
-                    output << "\t\tlabelGraphics\n\t\t[\n";
-                    output << "\t\t\ttext\t\"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
-                    output << "\t\t\toutline\t\"#808080\"\n";
-                    output << "\t\t\tfill\t\"#FFFFFF\"\n";
-                    output << "\t\t\tfontSize\t8\n";
-                    output << "\t\t\tmodel\t\"centered\"\n";
-                    output << "\t\t\tposition\t\"center\"\n";
-                    output << "\n\t\t]\n";
-                    output << "\n\t]\n";
-                }
-            }
-
-            nCount++;
-        }
+        int i1,i2,iTmp;
 
         qDebug("Set visited");
         foreach (star, _starList->stars())
             star->setVisited(false);
 
         qDebug("Calc edges");
+        int myWidth = 0;
         foreach (star, _starList->stars())
         {
             int pathCount = star->path().count();
@@ -408,11 +383,23 @@ void SceneMediator::drawToGML(QString &fileName)
             if (pathCount > 1) {
                 for (int w = 1; w < pathCount; w++)
                 {
-                    int myPath = sPath - (w);
-                    QString fillColor = colors[sPath-myPath];
+                    int myPath = sPath + 1 - w;
                     if (myPath < 0) myPath = 0;
-                    p1 = _starList->stars().at(star->path().at(w-1));
-                    p2 = _starList->stars().at(star->path().at(w));
+                    myWidth = myPath * 2;
+                    if (myWidth < 3) myWidth = 3;
+                    QString fillColor = colors[sPath-myPath];
+                    i1 = star->path().at(w-1);
+                    i2 = star->path().at(w);
+                    if (i1 > i2) {
+                        iTmp = i1;
+                        i1 = i2;
+                        i2 = iTmp;
+                    }
+                    QString key = QString("%1_%2").arg(i1,i2);
+                    if (!links.contains(key))
+                        links.append(key);
+                    p1 = _starList->stars().at(i1);
+                    p2 = _starList->stars().at(i2);
                     if (!p1->visited() || !p2->visited())
                     {
                         p1->visit();
@@ -420,7 +407,7 @@ void SceneMediator::drawToGML(QString &fileName)
                         output << "\tedge [\n\t\tsource " << star->path().at(w-1) << "\n\t\ttarget "<< star->path().at(w);
                         output << "\n\t\tlabel \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
                         output << "\t\tgraphics\n\t\t[\n";
-                        output << "\t\t\twidth\t"  << myPath << "\n";
+                        output << "\t\t\twidth\t"  << QString::number(myWidth) << "\n";
                         output << "\t\t\tfill\t\""<< fillColor <<  "\"\n";
                         output << "\n\t\t]\n";
                         output << "\t\tlabelGraphics\n\t\t[\n";
@@ -438,6 +425,40 @@ void SceneMediator::drawToGML(QString &fileName)
             }
         }
 
+        foreach (star, _starList->stars()) {
+            int iNeighbor;
+            foreach (iNeighbor, star->neighbors()) {
+                if (iNeighbor > nCount) {
+                    i1 = nCount;
+                    i2 = iNeighbor;
+                } else {
+                    i1 = iNeighbor;
+                    i2 = nCount;
+                }
+                QString key = QString("%1_%2").arg(i1,i2);
+                if (!links.contains(key)) {
+                    links.append(key);
+                    p1 = _starList->stars().at(i1);
+                    p2 = _starList->stars().at(i2);
+                    output << "\tedge [\n\t\tsource " << i1 << "\n\t\ttarget "<< i2 ;
+                    output << "\n\t\tlabel \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                    output << "\t\tgraphics\n\t\t[\n";
+                    output << "\t\t\tfill\t\"#808080\"\n";
+                    output << "\n\t\t]\n";
+                    output << "\t\tlabelGraphics\n\t\t[\n";
+                    output << "\t\t\ttext\t\"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                    output << "\t\t\toutline\t\"#808080\"\n";
+                    output << "\t\t\tfill\t\"#808080\"\n";
+                    output << "\t\t\tfontSize\t8\n";
+                    output << "\t\t\tmodel\t\"centered\"\n";
+                    output << "\t\t\tposition\t\"center\"\n";
+                    output << "\n\t\t]\n";
+                    output << "\n\t]\n";
+                }
+            }
+
+            nCount++;
+        }
 
         output << "\n]\n";
     }
