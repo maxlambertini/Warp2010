@@ -340,10 +340,20 @@ void Star::toJson(QJsonObject& json) {
         json["planets"] = jsonSats;
 
     }
+    json["numChunk"] = _starValue.numChunk;
+    json["numDesert"] = _starValue.numDesert;
+    json["numFailedCore"] = _starValue.numFailedCore;
+    json["numGasGiant"] = _starValue.numGasGiant;
+    json["numGlacier"] = _starValue.numGlacier;
+    json["numHotHouse"] = _starValue.numHotHouse;
+    json["numIceball"] = _starValue.numIceball;
+    json["numPostGarden"] = _starValue.numPostGarden;
+    json["numPreGarden"] = _starValue.numPreGarden;
+    json["numGarden"] = _starValue.numGarden;
+
+    json["abitabilityIndex"] = 8 * _starValue.numGarden + 4 * _starValue.numGlacier + 2 * _starValue.numPostGarden + _starValue.numPreGarden;
+
     /*
-    out << p->_neighbors;
-    out << p->_path;
-    out << p->_planets;
     out << p->_starValue.numChunk;
     out << p->_starValue.numDesert;
     out << p->_starValue.numFailedCore;
@@ -354,6 +364,9 @@ void Star::toJson(QJsonObject& json) {
     out << p->_starValue.numIceball;
     out << p->_starValue.numPostGarden;
     out << p->_starValue.numPreGarden;
+            out << p->_neighbors;
+            out << p->_path;
+            out << p->_planets;
     */
 }
 

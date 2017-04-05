@@ -451,13 +451,17 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
 {
     QString fileName =
             QFileDialog::getSaveFileName(this, tr("Export file as Graphviz Graph"),
-                                         AppPaths::appDir()+ "/starmap.dot",
-                           tr("DOT File (*.dot)"));
-    if (!fileName.isEmpty() && !fileName.isNull())
-       //
-       //this->_starList->saveToJson(fileName);
-       _sceneMediator->drawToGraphViz(fileName);
+                                         AppPaths::appDir()+ "/" + _starList->listName() + ".gml",
+                           tr("GraphML File (*.gml);;Graphviz File (*.dot);;Json File (*.json)"));
 
+    if (!fileName.isEmpty() && !fileName.isNull()){
+        if (fileName.endsWith(".gml"))
+            _sceneMediator->drawToGML(fileName);
+        if (fileName.endsWith(".dot"))
+            _sceneMediator->drawToGraphViz(fileName);
+        if (fileName.endsWith(".json"))
+            this->_starList->saveToJson(fileName);
+    }
 }
 
 void WarpMainWindowForm::on_action_ViewOnlyTradeRoutes_triggered()

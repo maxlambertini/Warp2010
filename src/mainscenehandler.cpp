@@ -255,6 +255,196 @@ void SceneMediator::drawToGraphViz(QString &fileName)
     //file.close();
 }
 
+int findMaxLen (QStringList& l) {
+    int len = 0;
+    QString s;
+    foreach (s, l) {
+        if (s.length() > len)
+            len = s.length();
+    }
+    return len;
+}
+
+void SceneMediator::drawToGML(QString &fileName)
+{
+    Star *star;
+    Star *p1, *p2;
+
+
+    QFile file(fileName);
+    QStringList links;
+    if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+        QTextStream output(&file);
+
+        output << "Creator\t\"Warp2010\"\nVersion\t2.14\ngraph [\n\thierarchic\t1\n\tdirected\t0\n";
+
+        const char colors[][16] = {
+            "#FF0000",
+            "#FF6000",
+            "#FFB000",
+            "#FFFF00",
+            "#B0FF00",
+            "#6FFF00",
+            "#00FF00",
+            "#00BF40",
+            "#008F80",
+            "#004FB0",
+            "#0000FF",
+            "#0060FF",
+            "#00B0FF",
+            "#00FFFF",
+            "#00B0B0",
+            "#008080",
+        };
+
+        qDebug("QDebug");
+        foreach (star, _starList->stars())
+            star->setVisited(false);
+
+
+        qDebug("Nodes");
+        int nCount = 0;
+        foreach (star, _starList->stars()) {
+            if (star->isReference() || star->path().count() > 1) {
+                QStringList nameList = star->starName.split(" ");
+                int nWidth = 13 * findMaxLen(nameList);
+                int nHeight = nameList.count()*25;
+                QString nameComplete = nameList.join("\n");
+                output << "\tnode [\n" << "\t\t id " << nCount << "\n" << "\t\tlabel \"" << nameComplete << "\"\n";
+                QString sColor = "#EEEEEE";
+                QString sFontColor = "#000000";
+                switch (star->starType()) {
+                case NSStar::StarType::stO:
+                    sColor = "#CCCCCC";
+                    break;
+                case NSStar::StarType::stB:
+                    sColor = "#0000FF";
+                    sFontColor = "#FFFFFF";
+                    break;
+                case NSStar::StarType::stA:
+                    sColor = "#00FFFF";
+                    break;
+                case NSStar::StarType::stF:
+                    sColor = "#FFFFFF";
+                    break;
+                case NSStar::StarType::stG:
+                    sColor = "#FFFF00";
+                    break;
+                case NSStar::StarType::stK:
+                    sColor = "#FF8000";
+                    break;
+                case NSStar::StarType::stM:
+                    sColor = "#C00000";
+                    sFontColor = "#FFFFFF";
+                    break;
+                default:
+                    break;
+
+                }
+                output << "\t\tgraphics\n\t\t[\n";
+                output << "\t\t\tx\t" << star->x()*100.0 << " \n";
+                output << "\t\t\ty\t" << star->y()*100.0 << " \n";
+                output << "\t\t\tw\t" << nWidth << "\n";
+                output << "\t\t\th\t" << nWidth << "\n";
+                output << "\t\t\ttype\t\"ellipse\"\n";
+                output << "\t\t\tfill\t\"" << sColor << "\"\n";
+                output << "\t\t]\n";
+                output << "\t\tLabelGraphics\n\t\t[\n";
+                output << "\t\tcolor\t\"" << sFontColor << "\"\n";
+                output << "\n\t\t]\n";
+
+                output << "\t]\n";
+                star->setVisited(false);
+            }
+            nCount++;
+        }
+
+        nCount = 0;
+        foreach (star, _starList->stars()) {
+            int i1, i2;
+            int iNeighbor;
+            foreach (iNeighbor, star->neighbors()) {
+                if (iNeighbor > nCount) {
+                    i1 = nCount;
+                    i2 = iNeighbor;
+                } else {
+                    i1 = iNeighbor;
+                    i2 = nCount;
+                }
+                QString key = QString("%1_%2").arg(i1,i2);
+                if (!links.contains(key)) {
+                    links.append(key);
+                    p1 = _starList->stars().at(i1);
+                    p2 = _starList->stars().at(i2);
+                    output << "\tedge [\n\t\tsource " << i1 << "\n\t\ttarget "<< i2 ;
+                    output << "\n\t\tlabel \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                    output << "\t\tgraphics\n\t\t[\n";
+                    output << "\t\t\tfill\t\"#BBBBBB\"\n";
+                    output << "\n\t\t]\n";
+                    output << "\t\tlabelGraphics\n\t\t[\n";
+                    output << "\t\t\ttext\t\"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                    output << "\t\t\toutline\t\"#808080\"\n";
+                    output << "\t\t\tfill\t\"#FFFFFF\"\n";
+                    output << "\t\t\tfontSize\t8\n";
+                    output << "\t\t\tmodel\t\"centered\"\n";
+                    output << "\t\t\tposition\t\"center\"\n";
+                    output << "\n\t\t]\n";
+                    output << "\n\t]\n";
+                }
+            }
+
+            nCount++;
+        }
+
+        qDebug("Set visited");
+        foreach (star, _starList->stars())
+            star->setVisited(false);
+
+        qDebug("Calc edges");
+        foreach (star, _starList->stars())
+        {
+            int pathCount = star->path().count();
+            int sPath = 15;
+            if (pathCount > 1) {
+                for (int w = 1; w < pathCount; w++)
+                {
+                    int myPath = sPath - (w);
+                    QString fillColor = colors[sPath-myPath];
+                    if (myPath < 0) myPath = 0;
+                    p1 = _starList->stars().at(star->path().at(w-1));
+                    p2 = _starList->stars().at(star->path().at(w));
+                    if (!p1->visited() || !p2->visited())
+                    {
+                        p1->visit();
+                        p2->visit();
+                        output << "\tedge [\n\t\tsource " << star->path().at(w-1) << "\n\t\ttarget "<< star->path().at(w);
+                        output << "\n\t\tlabel \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                        output << "\t\tgraphics\n\t\t[\n";
+                        output << "\t\t\twidth\t"  << myPath << "\n";
+                        output << "\t\t\tfill\t\""<< fillColor <<  "\"\n";
+                        output << "\n\t\t]\n";
+                        output << "\t\tlabelGraphics\n\t\t[\n";
+                        output << "\t\t\ttext\t\"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                        output << "\t\t\toutline\t\"#000000\"\n";
+                        output << "\t\t\tfill\t\"#FFFFFF\"\n";
+                        output << "\t\t\tfontSize\t8\n";
+                        output << "\t\t\tmodel\t\"centered\"\n";
+                        output << "\t\t\tposition\t\"center\"\n";
+                        output << "\n\t\t]\n";
+                        output << "\n\t]\n";
+                        //output << "\"" << p1->starName << "\" -- \"" << p2->starName << "\";\n";
+                    }
+                }
+            }
+        }
+
+
+        output << "\n]\n";
+    }
+    //file.close();
+}
+
+
 void SceneMediator::drawOptimalPath()
 {
     Star *star;

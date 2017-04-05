@@ -173,6 +173,8 @@ void Planet::toJson(QJsonObject& json)  {
                      .arg(p->tidalForce() > 1.0 ? "Yes" : "No");
     */
     json["name"]           = this->name();
+    json["diameter"]       = this->diameter();
+    json["density"]        = this->density();
     json["massEarth"]      = this->massEarth();
     json["gravEarth"]      = this->gravEarth();
     json["temperature"]    = this->temperature();
@@ -186,6 +188,7 @@ void Planet::toJson(QJsonObject& json)  {
     json["core"]           = this->getCoreTypeDesc();
     json["hydrosphere"]    = this->getHydrosphereDesc();
     json["atmosphere"]     = this->getAtmosphereDesc();
+    json["planetType"]     = this->getPlanetTypeDesc();
     json["tidalforce"]     = this->tidalForce();
     json["tidally_locked"] = this->tidalForce() > 1.0 ? "Yes": "No";
     if (!this->isSatellite() && this->satellitesCount() > 0) {
@@ -198,6 +201,7 @@ void Planet::toJson(QJsonObject& json)  {
         }
         json["satellites"] = jsonSats;
     }
+    json["isSatellite"]    = this->isSatellite();
 }
 
 QString Planet::getPlanetTypeDesc()
