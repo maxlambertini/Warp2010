@@ -233,6 +233,8 @@ public:
 
     inline bool hasGarden() { return (_starValue.numPostGarden+_starValue.numPreGarden+
                                       _starValue.numGlacier+_starValue.numGarden) > 0; }
+    inline int habitabilityIndex() { return (_starValue.numPostGarden+_starValue.numPreGarden+
+                                      _starValue.numGlacier+_starValue.numGarden); }
     inline int numMarginals() { return (_starValue.numPostGarden+_starValue.numPreGarden); }
     inline int numGardens() { return _numGardens; }
     inline void numMarginals( int i ) { _numMarginals = i; }

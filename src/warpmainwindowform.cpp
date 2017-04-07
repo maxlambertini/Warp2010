@@ -63,6 +63,7 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
     ui->setupUi(this);
     scene = new QGraphicsScene;
     ui->graphicsView->setRenderHint(QPainter::Antialiasing,true);
+    ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
     _createTradeRouteDlg = new CreateTradeRouteDialog();
 
     _starList = StarList::StarListPtr();

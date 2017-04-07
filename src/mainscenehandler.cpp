@@ -278,6 +278,10 @@ void SceneMediator::drawToGML(QString &fileName)
 
         output << "Creator\t\"Warp2010\"\nVersion\t2.14\ngraph [\n\thierarchic\t1\n\tdirected\t0\n";
 
+        QString antani = R"(Le ore del mattino
+                           Hanno sempre
+                           L'oro in bocca)";
+
         const char colors[][16] = {
             "#FF0000",
             "#FF6000",
@@ -317,7 +321,7 @@ void SceneMediator::drawToGML(QString &fileName)
                 else
                     nFontSize = 15;
                 QString nameComplete = nameList.join("\n");
-                output << "\tnode [\n" << "\t\t id " << nCount << "\n" << "\t\tlabel \"" << nameComplete << "\"\n";
+                output << "    node [\n" << "         id " << nCount << "\n" << "        label \"" << nameComplete << "\"\n";
                 QString sColor = "#EEEEEE";
                 QString sFontColor = "#000000";
                 switch (star->starType()) {
@@ -348,20 +352,31 @@ void SceneMediator::drawToGML(QString &fileName)
                     break;
 
                 }
-                output << "\t\tgraphics\n\t\t[\n";
-                output << "\t\t\tx\t" << star->x()*100.0 << " \n";
-                output << "\t\t\ty\t" << star->y()*100.0 << " \n";
-                output << "\t\t\tw\t" << nWidth << "\n";
-                output << "\t\t\th\t" << nWidth << "\n";
-                output << "\t\t\ttype\t\"ellipse\"\n";
-                output << "\t\t\tfill\t\"" << sColor << "\"\n";
-                output << "\t\t]\n";
-                output << "\t\tLabelGraphics\n\t\t[\n";
-                output << "\t\tcolor\t\"" << sFontColor << "\"\n";
-                output << "\t\t\tfontSize\t" << nFontSize << "\n";
-                output << "\n\t\t]\n";
+                output << "        graphics\n        [\n";
+                output << "            x    " << star->x()*100.0 << " \n";
+                output << "            y    " << star->y()*100.0 << " \n";
+                output << "            w    " << nWidth << "\n";
+                output << "            h    " << nWidth << "\n";
+                output << "            type    \"ellipse\"\n";
+                output << "            fill    \"" << sColor << "\"\n";
 
-                output << "\t]\n";
+                int hab = star->habitabilityIndex();
+                if (hab >0) {
+                    output << "            outlineWidth    6\n";
+                    QString sColor = "#C07000"; // 1;
+                    if (star->hasGarden())
+                        QString sColor = "#0000FF"; // 1;
+                    output << "            outline    \"" << sColor  << "\"\n";
+
+                }
+
+                output << "        ]\n";
+                output << "        LabelGraphics\n        [\n";
+                output << "            color    \"" << sFontColor << "\"\n";
+                output << "            fontSize    " << nFontSize << "\n";
+                output << "\n        ]\n";
+
+                output << "    ]\n";
                 star->setVisited(false);
             }
             nCount++;
@@ -404,21 +419,21 @@ void SceneMediator::drawToGML(QString &fileName)
                     {
                         p1->visit();
                         p2->visit();
-                        output << "\tedge [\n\t\tsource " << star->path().at(w-1) << "\n\t\ttarget "<< star->path().at(w);
-                        output << "\n\t\tlabel \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
-                        output << "\t\tgraphics\n\t\t[\n";
-                        output << "\t\t\twidth\t"  << QString::number(myWidth) << "\n";
-                        output << "\t\t\tfill\t\""<< fillColor <<  "\"\n";
-                        output << "\n\t\t]\n";
-                        output << "\t\tlabelGraphics\n\t\t[\n";
-                        output << "\t\t\ttext\t\"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
-                        output << "\t\t\toutline\t\"#000000\"\n";
-                        output << "\t\t\tfill\t\"#FFFFFF\"\n";
-                        output << "\t\t\tfontSize\t8\n";
-                        output << "\t\t\tmodel\t\"centered\"\n";
-                        output << "\t\t\tposition\t\"center\"\n";
-                        output << "\n\t\t]\n";
-                        output << "\n\t]\n";
+                        output << "    edge [\n        source " << star->path().at(w-1) << "\n        target "<< star->path().at(w);
+                        output << "\n        label \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                        output << "        graphics\n        [\n";
+                        output << "            width    "  << QString::number(myWidth) << "\n";
+                        output << "            fill    \""<< fillColor <<  "\"\n";
+                        output << "\n        ]\n";
+                        output << "        labelGraphics\n        [\n";
+                        output << "            text    \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                        output << "            outline    \"#000000\"\n";
+                        output << "            fill    \"#FFFFFF\"\n";
+                        output << "            fontSize    8\n";
+                        output << "            model    \"centered\"\n";
+                        output << "            position    \"center\"\n";
+                        output << "\n        ]\n";
+                        output << "\n    ]\n";
                         //output << "\"" << p1->starName << "\" -- \"" << p2->starName << "\";\n";
                     }
                 }
@@ -440,20 +455,20 @@ void SceneMediator::drawToGML(QString &fileName)
                     links.append(key);
                     p1 = _starList->stars().at(i1);
                     p2 = _starList->stars().at(i2);
-                    output << "\tedge [\n\t\tsource " << i1 << "\n\t\ttarget "<< i2 ;
-                    output << "\n\t\tlabel \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
-                    output << "\t\tgraphics\n\t\t[\n";
-                    output << "\t\t\tfill\t\"#808080\"\n";
-                    output << "\n\t\t]\n";
-                    output << "\t\tlabelGraphics\n\t\t[\n";
-                    output << "\t\t\ttext\t\"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
-                    output << "\t\t\toutline\t\"#808080\"\n";
-                    output << "\t\t\tfill\t\"#808080\"\n";
-                    output << "\t\t\tfontSize\t8\n";
-                    output << "\t\t\tmodel\t\"centered\"\n";
-                    output << "\t\t\tposition\t\"center\"\n";
-                    output << "\n\t\t]\n";
-                    output << "\n\t]\n";
+                    output << "    edge [\n        source " << i1 << "\n        target "<< i2 ;
+                    output << "\n        label \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                    output << "        graphics\n        [\n";
+                    output << "            fill    \"#808080\"\n";
+                    output << "\n        ]\n";
+                    output << "        labelGraphics\n        [\n";
+                    output << "            text    \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                    output << "            outline    \"#808080\"\n";
+                    output << "            fill    \"#808080\"\n";
+                    output << "            fontSize    8\n";
+                    output << "            model    \"centered\"\n";
+                    output << "            position    \"center\"\n";
+                    output << "\n        ]\n";
+                    output << "\n    ]\n";
                 }
             }
 
