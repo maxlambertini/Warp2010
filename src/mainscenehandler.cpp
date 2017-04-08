@@ -311,15 +311,25 @@ void SceneMediator::drawToGML(QString &fileName)
         int nFontSize = 15;
         foreach (star, _starList->stars()) {
             if (star->isReference() || star->path().count() > 1) {
-                QStringList nameList = star->starName.split(" ");
-                int nWidth = 16 * findMaxLen(nameList);
+
+                QStringList nameList;
+                int l = star->starName.length();
+                int rw = l / 10;
+                int rm = l % 10;
+                for (int hx = 0; hx < rw; hx++) {
+                    nameList.append(star->starName.mid(hx*10,10));
+                }
+                nameList.append(star->starName.mid(rw*10,rm));
+
+                //QStringList nameList = star->starName.split(" ");
+                int nWidth = 16 * 10;  // * findMaxLen(nameList);
                 int nHeight = nameList.count()*25;
                 if (star->isReference()) {
-                    nFontSize = 45;
+                    nFontSize = 48;
                     nWidth = nWidth*3;
                 }
                 else
-                    nFontSize = 15;
+                    nFontSize = 18;
                 QString nameComplete = nameList.join("\n");
                 output << "    node [\n" << "         id " << nCount << "\n" << "        label \"" << nameComplete << "\"\n";
                 QString sColor = "#EEEEEE";
@@ -363,9 +373,16 @@ void SceneMediator::drawToGML(QString &fileName)
                 int hab = star->habitabilityIndex();
                 if (hab >0) {
                     output << "            outlineWidth    6\n";
+                    output << "            hab-index    " << star->habitabilityIndex() << "\n";
                     QString sColor = "#C07000"; // 1;
-                    if (star->hasGarden())
-                        QString sColor = "#0000FF"; // 1;
+                    if (star->habitabilityIndex()> 0)
+                        sColor = "#30FF30"; // 1;
+                    if (star->habitabilityIndex()> 1)
+                        sColor = "#00FF60"; // 1;
+                    if (star->habitabilityIndex()> 2)
+                        sColor = "#00FFFF"; // 1;
+                    if (star->habitabilityIndex()> 4)
+                        sColor = "#0000FF"; // 1;
                     output << "            outline    \"" << sColor  << "\"\n";
 
                 }
@@ -400,8 +417,8 @@ void SceneMediator::drawToGML(QString &fileName)
                 {
                     int myPath = sPath + 1 - w;
                     if (myPath < 0) myPath = 0;
-                    myWidth = myPath * 2;
-                    if (myWidth < 3) myWidth = 3;
+                        myWidth = myPath * 2;
+                    if (myWidth < 5) myWidth = 5;
                     QString fillColor = colors[sPath-myPath];
                     i1 = star->path().at(w-1);
                     i2 = star->path().at(w);
@@ -427,9 +444,9 @@ void SceneMediator::drawToGML(QString &fileName)
                         output << "\n        ]\n";
                         output << "        labelGraphics\n        [\n";
                         output << "            text    \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
-                        output << "            outline    \"#000000\"\n";
+                        output << "            outline    \"" << fillColor << "\"\n";
                         output << "            fill    \"#FFFFFF\"\n";
-                        output << "            fontSize    8\n";
+                        output << "            fontSize    15\n";
                         output << "            model    \"centered\"\n";
                         output << "            position    \"center\"\n";
                         output << "\n        ]\n";
@@ -459,12 +476,13 @@ void SceneMediator::drawToGML(QString &fileName)
                     output << "\n        label \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
                     output << "        graphics\n        [\n";
                     output << "            fill    \"#808080\"\n";
+                    output << "            width   2\n";
                     output << "\n        ]\n";
                     output << "        labelGraphics\n        [\n";
                     output << "            text    \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
                     output << "            outline    \"#808080\"\n";
                     output << "            fill    \"#808080\"\n";
-                    output << "            fontSize    8\n";
+                    output << "            fontSize    10\n";
                     output << "            model    \"centered\"\n";
                     output << "            position    \"center\"\n";
                     output << "\n        ]\n";

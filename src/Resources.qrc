@@ -77,6 +77,9 @@
         <file>2300AD.STR</file>
         <file>warp.preferences</file>
         <file>pics/Planets/Terrestrial.png</file>
+        <file>yed/document.tpl</file>
+        <file>yed/node.tpl</file>
+        <file>yed/edge.tpl</file>
     </qresource>
     <qresource prefix="/Solsys">
         <file>pics/Planets/Terrestrial.png</file>

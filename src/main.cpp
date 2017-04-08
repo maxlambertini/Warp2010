@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "helpers/splashscreen.h"
+#include "helpers/graphmlexporter.h"
 
 #ifdef WIN32
 //Q_IMPORT_PLUGIN(qjpeg)
@@ -51,6 +52,8 @@ int main(int argc, char *argv[])
     //initialize files
     AppPaths::checkForDirectoriesAndFiles();
 
+    GraphMLExporter exporter;
+    exporter.createGraphicsMLDocs();
 
     WarpMainWindowForm window;
     window.resize(800,600);
