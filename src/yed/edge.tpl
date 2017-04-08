@@ -1,11 +1,11 @@
-    <edge id="e0" source="[N1]" target="[N2]">
+    <edge id="[EID]" source="[N1]" target="[N2]">
       <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="[LINE_COLOR]" type="line" width="[LINE_WIDTH]"/>
           <y:Arrows source="none" target="none"/>
-          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" bottomInset="4" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="[FONT_SIZE]" fontStyle="plain"  horizontalTextPosition="center" iconTextGap="4" leftInset="4" lineColor="#[LINE_COLOR]" modelName="custom" preferredPlacement="anywhere" ratio="0.5" rightInset="4" textColor="#000000" topInset="4" verticalTextPosition="bottom" visible="true">[LABEL]<y:LabelModel>
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" bottomInset="4" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="[FONT_SIZE]" fontStyle="plain"  horizontalTextPosition="center" iconTextGap="4" leftInset="4" lineColor="[LINE_COLOR]" modelName="custom" preferredPlacement="anywhere" ratio="0.5" rightInset="4" textColor="#000000" topInset="4" verticalTextPosition="bottom" visible="true">[LABEL]<y:LabelModel>
               <y:RotatedDiscreteEdgeLabelModel angle="0.0" autoRotationEnabled="true" candidateMask="128" distance="2.0" positionRelativeToSegment="false"/>
             </y:LabelModel>
             <y:ModelParameter>

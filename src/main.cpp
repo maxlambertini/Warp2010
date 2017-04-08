@@ -52,9 +52,6 @@ int main(int argc, char *argv[])
     //initialize files
     AppPaths::checkForDirectoriesAndFiles();
 
-    GraphMLExporter exporter;
-    exporter.createGraphicsMLDocs();
-
     WarpMainWindowForm window;
     window.resize(800,600);
     window.show();

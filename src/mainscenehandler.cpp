@@ -24,6 +24,7 @@
 #include "helpers/printingpreferences.h"
 #include "helpers/preferences.h"
 #include "helpers/splashscreen.h"
+#include "helpers/graphmlexporter.h"
 #include "appmessage.h"
 #include "starlist.h"
 #include "gfx_items/arcgraphicsitem.h"
@@ -263,6 +264,14 @@ int findMaxLen (QStringList& l) {
             len = s.length();
     }
     return len;
+}
+
+
+void SceneMediator::drawToGraphML(QString &fileName)
+{
+    GraphMLExporter ex;
+    ex.setStarList(this->_starList);
+    ex.createGraphicsMLDocs(fileName);
 }
 
 void SceneMediator::drawToGML(QString &fileName)

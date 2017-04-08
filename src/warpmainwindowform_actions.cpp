@@ -451,12 +451,14 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
 {
     QString fileName =
             QFileDialog::getSaveFileName(this, tr("Export file as Graphviz Graph"),
-                                         AppPaths::appDir()+ "/" + _starList->listName() + ".gml",
-                           tr("GraphML File (*.gml);;Graphviz File (*.dot);;Json File (*.json)"));
+                                         AppPaths::appDir()+ "/" + _starList->listName() + ".graphml",
+                           tr("GraphML yED File (*.graphml);;GML File (*.gml);;Graphviz File (*.dot);;Json File (*.json)"));
 
     if (!fileName.isEmpty() && !fileName.isNull()){
         if (fileName.endsWith(".gml"))
             _sceneMediator->drawToGML(fileName);
+        if (fileName.endsWith(".graphml"))
+            _sceneMediator->drawToGraphML(fileName);
         if (fileName.endsWith(".dot"))
             _sceneMediator->drawToGraphViz(fileName);
         if (fileName.endsWith(".json"))
