@@ -15,6 +15,7 @@
   <graph edgedefault="directed" id="G">
     <data key="d0"/>
     [NODES]
+    [EDGES2]
     [EDGES]
   </graph>
   <data key="d7">

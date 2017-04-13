@@ -14,10 +14,12 @@ void GraphMLExporter::loadTemplates() {
     QResource yedDoc(":/yed/document.tpl");
     QResource yedNode(":/yed/node.tpl");
     QResource yedEdge(":/yed/edge.tpl");
+    QResource yedEdge2(":/yed/edge2.tpl");
 
     QFile docFile(yedDoc.absoluteFilePath());
     QFile nodeFile(yedNode.absoluteFilePath());
     QFile edgeFile(yedEdge.absoluteFilePath());
+    QFile edgeFile2(yedEdge2.absoluteFilePath());
 
     if (!docFile.open(QIODevice::ReadOnly | QIODevice::Text))
         qDebug() << "Unable to open file: " << docFile.fileName() << " besause of error " << docFile.errorString() << endl;
@@ -25,6 +27,8 @@ void GraphMLExporter::loadTemplates() {
         qDebug() << "Unable to open file: " << nodeFile.fileName() << " besause of error " << nodeFile.errorString() << endl;
     if (!edgeFile.open(QIODevice::ReadOnly | QIODevice::Text))
         qDebug() << "Unable to open file: " << edgeFile.fileName() << " besause of error " << edgeFile.errorString() << endl;
+    if (!edgeFile2.open(QIODevice::ReadOnly | QIODevice::Text))
+        qDebug() << "Unable to open file: " << edgeFile2.fileName() << " besause of error " << edgeFile2.errorString() << endl;
 
     QTextStream inDoc(&docFile);
     this->_docTemplate = inDoc.readAll();
@@ -32,6 +36,8 @@ void GraphMLExporter::loadTemplates() {
     this->_nodeTemplate = inNode.readAll();
     QTextStream inEdge(&edgeFile);
     this->_edgeTemplate = inEdge.readAll();
+    QTextStream inEdge2(&edgeFile2);
+    this->_edge2Template = inEdge2.readAll();
 }
 
 QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
@@ -126,7 +132,7 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
                     sBorderColor = "#0000FF"; // 1;
             }
             lstInMap.append(nCount);
-            this->fillNode(nCount,160,160,sBorderColor,4,18,"#000000",sColor);
+            this->fillNode(nCount,nWidth,nWidth,sBorderColor,4,18,"#000000",sColor);
             star->setVisited(false);
         }
         nCount++;
@@ -195,7 +201,7 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
                 p1 = _starList->stars().at(i1);
                 p2 = _starList->stars().at(i2);
                 if (lstInMap.contains(i1) && lstInMap.contains(i2))
-                    this->fillEdge(++nEdge, i1,i2,"#808080",4,12);
+                    this->fillEdge2(++nEdge, i1,i2,"#808080",4,12);
             }
         }
 
@@ -203,9 +209,11 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
     }
 
     QString allEdges = this->_edges.join("\n");
+    QString allEdges2 = this->_edges2.join("\n");
     QString allNodes = this->_nodes.join("\n");
     QString allDoc = this->_docTemplate
             .replace("[NODES]",allNodes)
+            .replace("[EDGES2]",allEdges2)
             .replace("[EDGES]",allEdges);
 
     QFile file(filename);
@@ -232,6 +240,22 @@ void GraphMLExporter::fillEdge(int eID, int i1, int i2, const QString& lineColor
             .replace("[LINE_WIDTH]", QString::number(nWidth))
             .replace("[LABEL]", QString::number(dist,'g',2));
     _edges.append(res);
+}
+
+void GraphMLExporter::fillEdge2(int eID, int i1, int i2, const QString& lineColor, int nWidth, int fontSize) {
+    Star *s1 = this->_starList->stars().at(i1);
+    Star *s2 = this->_starList->stars().at(i2);
+    double dist = s1->distance(s2);
+    QString res = QString(_edge2Template);
+    res
+            .replace("[EID]",QString::number(eID))
+            .replace("[N1]", QString::number(i1))
+            .replace("[N2]", QString::number(i2))
+            .replace("[LINE_COLOR]", lineColor)
+            .replace("[FONT_SIZE]", QString::number(fontSize))
+            .replace("[LINE_WIDTH]", QString::number(nWidth))
+            .replace("[LABEL]", QString::number(dist,'g',2));
+    _edges2.append(res);
 }
 
 void GraphMLExporter::fillNode(int i1,int width, int height, const QString& borderColor,
