@@ -409,8 +409,8 @@ void SceneMediator::drawToGML(QString &fileName)
                 for (int w = 1; w < pathCount; w++)
                 {
                     int myPath = sPath - (w);
-                    QString fillColor = colors[sPath-myPath];
                     if (myPath < 0) myPath = 0;
+                    QString fillColor = colors[sPath-myPath];
                     p1 = _starList->stars().at(star->path().at(w-1));
                     p2 = _starList->stars().at(star->path().at(w));
                     if (!p1->visited() || !p2->visited())

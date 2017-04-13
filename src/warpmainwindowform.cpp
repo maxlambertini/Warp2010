@@ -181,6 +181,7 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
 
      connect(ui->solsysView,SIGNAL(neighborSelected(int)),this,SLOT(on_neighbor_selected(int)));
 
+
      PixmapHelper::instancePtr()->initializeBitmaps();
  }
 

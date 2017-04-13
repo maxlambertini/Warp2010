@@ -55,6 +55,7 @@
 #include "helpers/pixmaphelper.h"
 #include "dialogs/createbetweenstarsdlg.h"
 #include "dialogs/createnewstardlg.h"
+#include <QEvent>
 
 void WarpMainWindowForm::on_actionLoad_Sector_triggered()
 {
@@ -754,3 +755,4 @@ void WarpMainWindowForm::on_action_Export_Map_to_JSON_triggered()
        this->_starList->saveToJson(fileName);
 
 }
+
