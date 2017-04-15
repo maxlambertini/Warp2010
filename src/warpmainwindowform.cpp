@@ -183,6 +183,15 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
      connect(ui->solsysView,SIGNAL(neighborSelected(int)),this,SLOT(on_neighbor_selected(int)));
 
      PixmapHelper::instancePtr()->initializeBitmaps();
+
+     this->ui->menuStar_Sector_Operations->setEnabled(true);
+     this->ui->menuCluster_Operations->setEnabled(false);
+     this->ui->menuSolar_System_Operations->setEnabled(false);
+
+     this->ui->btnRotateLeft->setVisible(false);
+     this->ui->btnRotateRight->setVisible(false);
+     this->ui->sliderRotate->setVisible(false);
+
  }
 
 WarpMainWindowForm::~WarpMainWindowForm()
@@ -514,76 +523,104 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
         ProgressBarHelper progHelp(this->progressBar);
         progHelp.reset(0,10);
         progHelp.show();
-		
-        SplashScreen::screenPtr()->setMessage("Clearing list...");
-        ui->listWidget->clear();
 
-        SplashScreen::screenPtr()->setMessage( "Clearing trade routes...");
-        ui->gridTradeRoutes->clear();
-		
-        progHelp.nextStep(1);		
-        _tradeRoutes.clear();
-        SplashScreen::screenPtr()->setMessage("Trade routes are clear");
+        try {
+            SplashScreen::screenPtr()->setMessage("Clearing list...");
+            ui->listWidget->clear();
+        } catch (WarpException exc) {
 
-        progHelp.nextStep(2);
-        _tradeRouteMediator->clearTradeRoutes();
-        SplashScreen::screenPtr()->setMessage("Trade routes are clearer");
+        }
 
-        progHelp.nextStep(3);
-        _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
-        SplashScreen::screenPtr()->setMessage("Universe emptied, recreating...");
+        try {
+            SplashScreen::screenPtr()->setMessage( "Clearing trade routes...");
+            ui->gridTradeRoutes->clear();
+        } catch (WarpException exc) {
 
+        }
 
-        progHelp.nextStep(4);
-        _sceneMediator->clearTradeRoute();
-		
-        progHelp.nextStep(5);
+        try {
+            progHelp.nextStep(1);
+            _tradeRoutes.clear();
+            SplashScreen::screenPtr()->setMessage("Trade routes are clear");
+        } catch (WarpException exc) {
 
-        this->_referenceIdx= 0;
-        SplashScreen::screenPtr()->setMessage("Loading Map");
+        }
 
-		
-        progHelp.nextStep(6);
-        bool mustRebuildMatrix = true;
-		
-		
-        if (!bCreateNewMap) {
-            if (!filename.endsWith(".starx")) {
-                this->_starList->loadMap(filename);
-                SplashScreen::screenPtr()->setMessage("Now building...");
+        try {
+            progHelp.nextStep(2);
+            _tradeRouteMediator->clearTradeRoutes();
+            SplashScreen::screenPtr()->setMessage("Trade routes are clearer");
+        } catch (WarpException exc) {
+
+        }
+
+        try {
+            progHelp.nextStep(3);
+            _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
+            SplashScreen::screenPtr()->setMessage("Universe emptied, recreating...");
+        } catch (WarpException exc) {
+
+        }
+
+        try {
+            progHelp.nextStep(4);
+            _sceneMediator->clearTradeRoute();
+        } catch (WarpException exc) {
+
+        }
+
+        try {
+            progHelp.nextStep(5);
+            this->_referenceIdx= 0;
+            SplashScreen::screenPtr()->setMessage("Loading Map");
+        } catch (WarpException exc) {
+
+        }
+
+        try {
+            progHelp.nextStep(6);
+            bool mustRebuildMatrix = true;
+            if (!bCreateNewMap) {
+                if (!filename.endsWith(".starx")) {
+                    this->_starList->loadMap(filename);
+                    SplashScreen::screenPtr()->setMessage("Now building...");
+                }
+                else {
+                    this->_starList->loadMatrix(filename);
+                    SplashScreen::screenPtr()->setMessage("Matrix loaded");
+                    mustRebuildMatrix = false;
+                }
+
+                SplashScreen::screenPtr()->setMessage( "Loaded map, rebuilding...");
             }
             else {
-                this->_starList->loadMatrix(filename);
-                SplashScreen::screenPtr()->setMessage("Matrix loaded");
-                mustRebuildMatrix = false;
+                int sectorRadius = _newSectorDialog->sectorRadius();
+                QString sectorName = _newSectorDialog->sectorName();
+                int sectorDensity = _newSectorDialog->sectorDensity();
+                this->_starList->createRandomMap((double)sectorRadius, (double)sectorDensity);
+                _starList->setListName(sectorName);
+                SplashScreen::screenPtr()->setMessage( "Created map, rebuilding...");
             }
-		
-            SplashScreen::screenPtr()->setMessage( "Loaded map, rebuilding...");
-        }
-        else {
-            int sectorRadius = _newSectorDialog->sectorRadius();
-            QString sectorName = _newSectorDialog->sectorName();
-            int sectorDensity = _newSectorDialog->sectorDensity();
-            this->_starList->createRandomMap((double)sectorRadius, (double)sectorDensity);
-            _starList->setListName(sectorName);
-            SplashScreen::screenPtr()->setMessage( "Created map, rebuilding...");
+
+            if (mustRebuildMatrix) {
+                progHelp.nextStep(7);
+                this->rebuildMatrix(0, this->distance());
+                SplashScreen::screenPtr()->setMessage( "Rebuilding paths...");
+                progHelp.nextStep(8);
+            }
+            fillListWithCalculatedData(0);
+            SplashScreen::screenPtr()->setMessage( "Paths ok!");
+            progHelp.nextStep(9);
+            ui->solsysView->setStar(0);
+            progHelp.nextStep(10);
+
+            this->setWindowTitle(_starList->listName());
+
+            progHelp.hide();
+        } catch (WarpException exc) {
+
         }
 
-        if (mustRebuildMatrix) {
-            progHelp.nextStep(7);
-            this->rebuildMatrix(0, this->distance());
-            SplashScreen::screenPtr()->setMessage( "Rebuilding paths...");
-            progHelp.nextStep(8);
-        }
-        fillListWithCalculatedData(0);
-        SplashScreen::screenPtr()->setMessage( "Paths ok!");
-        progHelp.nextStep(9);
-        ui->solsysView->setStar(0);
-        progHelp.nextStep(10);
-
-        this->setWindowTitle(_starList->listName());
-
-        progHelp.hide();
     }
     catch (WarpException exc) {
         SplashScreen::screenPtr()->hide();

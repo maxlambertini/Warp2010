@@ -53,6 +53,11 @@ SolarSystemViewWidget::SolarSystemViewWidget(QWidget *parent) :
     connect(ui->planetInspector,SIGNAL(planetDataChanged()),this, SLOT(onPlanetDataChanged()));
     connect(ui->starInspector,SIGNAL(neighborSelected(int)),this, SLOT(onNeighborSelected(int)));
 
+    ui->btnRotateLeft->setVisible(false);
+    ui->btnRotateRight->setVisible(false);
+    ui->rotateSlider->setVisible(false);
+
+
 }
 
 SolarSystemViewWidget::~SolarSystemViewWidget()

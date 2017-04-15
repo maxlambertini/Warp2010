@@ -31,6 +31,9 @@ DiasporaClusterDialog::DiasporaClusterDialog(QWidget *parent) :
     _selectedRow = -1;
 
     //qDebug() << "Cluster generated.";
+    ui->btnRotateLeft->setVisible(false);
+    ui->btnRotateRight->setVisible(false);
+    ui->sliderRotate->setVisible(false);
 }
 
 DiasporaClusterDialog::~DiasporaClusterDialog()

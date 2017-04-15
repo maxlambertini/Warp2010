@@ -340,31 +340,20 @@ void StarList::buildMatrix(int idx,bool isStartingMode)
             {
                 int nNeighbor = wn1->neighbors().at(i);
                 wn2 = _stars.at(nNeighbor);
-                    // qDebug() << "Looking on star " << wn2->starName << "whose path.length is " << wn2->path().count();
                 if (wn2->path().count() == 0)
                 {
-                        // qDebug() << "wn2 path count == 0";
                     for (int i2 = 0; i2 < wn1->path().count(); i2++) {
                         wn2->appendToPath(wn1->path().at(i2));
-                            // qDebug() << "appending wn1 " << wn1->starName;
                     }
                     wn2->appendToPath(nNeighbor);
                 }
                 else
                 {
-                    //qDebug() << "calc'ing dist, neighboring star " << wn1->starName;
                     dist = this->calculatePathDistance(nNeighbor);
                     dist2 = this->calculatePathDistance(idx)+wn1->distance(wn2);
-                    if (wn2->starName.startsWith("Kormoran")) {
-                        //qDebug() << wn2->starName << " dist is " << dist;
-                        //qDebug() << wn1->starName << " dist2 is " << dist2;
-                    }
-
-
 
                     if (dist2 < dist)
                     {
-                        //qDebug() << "distance is shorter!";
                         QVector<int> lst2;
                         wn3 = _starList.stars().at(idx);
                         for (int ix = 0; ix < wn1->path().count(); ix++)
@@ -379,7 +368,6 @@ void StarList::buildMatrix(int idx,bool isStartingMode)
                     }
                 }
             }
-
             for (int i = 0; i < wn1->neighbors().count(); i++)
             {
                 int nNeighbor = wn1->neighbors().at(i);
@@ -387,9 +375,7 @@ void StarList::buildMatrix(int idx,bool isStartingMode)
                 if (!wn2->visited()  )
                     if (!lDest.contains(nNeighbor))
                         lDest.append(nNeighbor);
-                    //this->buildMatrix(nNeighbor,false);
             }
-            //qDebug() << "neighbors to process: " << lDest.count();
         }
         lStart.clear();
         int iTmp;

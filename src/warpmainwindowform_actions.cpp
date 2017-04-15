@@ -327,31 +327,53 @@ void WarpMainWindowForm::on_action_TradeRoute_to_all_GardenPlanets_triggered()
 
 void WarpMainWindowForm::on_action_NewSector_triggered()
 {
-    _newSectorDialog = new NewSectorDialog(this);
-    int res = _newSectorDialog->exec();
-    //// qDebug() << res;
-    if (res == QDialog::Accepted)
-    {
-        //qApp->processEvents();
-        SplashScreen::screenPtr()->setMessage("Creating new sector: "+_newSectorDialog->sectorName());
-        SplashScreen::screenPtr()->show();
-        //qApp->processEvents();
-        this->performMapProcessing(true,"");
-        if (_newSectorDialog->createSolarSystems() ) {
-            //qApp->processEvents();
-            SplashScreen::screenPtr()->setMessage("Creating solar system for all stars");
-            //qApp->processEvents();
-            this->performCreateSolSysForAllStars();
-
-            //create trade routes, too
-            //qApp->processEvents();
-            SplashScreen::screenPtr()->setMessage("Creating trade routes...");
-            //qApp->processEvents();
-            this->on_action_TradeRoute_to_all_GardenPlanets_triggered();
+    bool bCanCreateSector = true;
+    if (StarList::StarListPtr()->stars().count() > 0) {
+        if (AppMessage::Question("Do you want to clear current sector and create a new one?","Create Sector")) {
+            this->clearSolarSystem();
+            bCanCreateSector = true;
         }
-        //qApp->processEvents();
-        SplashScreen::screenPtr()->hide();
+        else
+            bCanCreateSector = false;
     }
+
+    if (bCanCreateSector) {
+        _newSectorDialog = new NewSectorDialog(this);
+        int res = _newSectorDialog->exec();
+        //// qDebug() << res;
+        if (res == QDialog::Accepted)
+        {
+            try {
+                //qApp->processEvents();
+                SplashScreen::screenPtr()->setMessage("Creating new sector: "+_newSectorDialog->sectorName());
+                SplashScreen::screenPtr()->show();
+                //qApp->processEvents();
+                this->performMapProcessing(true,"");
+                if (_newSectorDialog->createSolarSystems() ) {
+                    //qApp->processEvents();
+                    SplashScreen::screenPtr()->setMessage("Creating solar system for all stars");
+                    //qApp->processEvents();
+                    this->performCreateSolSysForAllStars();
+
+                    //create trade routes, too
+                    //qApp->processEvents();
+                    SplashScreen::screenPtr()->setMessage("Creating trade routes...");
+                    //qApp->processEvents();
+                    this->on_action_TradeRoute_to_all_GardenPlanets_triggered();
+                }
+                //qApp->processEvents();
+                SplashScreen::screenPtr()->hide();
+            }
+            catch (WarpException exc) {
+                SplashScreen::screenPtr()->hide();
+                QString errorText = "Error loading sector";
+                QString errorInfo = QString(exc.what());
+                AppMessage::Error(errorText,errorInfo);
+                _sceneMediator->scene()->clear();
+            }
+
+        }
+   }
 }
 
 void WarpMainWindowForm::on_action_SolarSystemForAllStars_triggered()
@@ -633,17 +655,26 @@ void WarpMainWindowForm::on_action_map_Show_Metro_Map_With_Trade_Routes_triggere
 void WarpMainWindowForm::on_action_Star_Sector_View_triggered(bool checked)
 {
     this->on_tabSubprograms_currentChanged(TAB_STAR_SECTOR);
+    this->ui->menuStar_Sector_Operations->setEnabled(true);
+    this->ui->menuCluster_Operations->setEnabled(false);
+    this->ui->menuSolar_System_Operations->setEnabled(false);
 }
 
 void WarpMainWindowForm::on_action_Solar_System_View_triggered(bool checked)
 {
     this->on_tabSubprograms_currentChanged(TAB_SOLAR_SYSTEM);
+    this->ui->menuStar_Sector_Operations->setEnabled(false);
+    this->ui->menuCluster_Operations->setEnabled(false);
+    this->ui->menuSolar_System_Operations->setEnabled(true);
 
 }
 
 void WarpMainWindowForm::on_action_Diaspora_Cluster_View_triggered(bool checked)
 {
     this->on_tabSubprograms_currentChanged(TAB_CLUSTER_MAP);
+    this->ui->menuStar_Sector_Operations->setEnabled(false);
+    this->ui->menuCluster_Operations->setEnabled(true);
+    this->ui->menuSolar_System_Operations->setEnabled(false);
 
 }
 

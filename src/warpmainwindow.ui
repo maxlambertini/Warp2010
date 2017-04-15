@@ -71,8 +71,14 @@
          </property>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,0,0">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QLabel" name="label_7">
                <property name="text">
@@ -110,6 +116,9 @@
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QGraphicsView" name="graphicsView">
                <property name="minimumSize">
@@ -137,6 +146,9 @@
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_4">
+               <property name="spacing">
+                <number>0</number>
+               </property>
                <item>
                 <widget class="QToolButton" name="btnZoomUp">
                  <property name="toolTip">
@@ -196,6 +208,9 @@
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QToolButton" name="btnRotateLeft">
                <property name="toolTip">
@@ -309,13 +324,31 @@
        </widget>
       </widget>
       <widget class="QSplitter" name="splitterStarInfo">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>600</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
        <widget class="QWidget" name="layoutWidget">
         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <property name="leftMargin">
             <number>0</number>
            </property>
@@ -424,7 +457,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
         </property>
         <property name="maximumSize">
          <size>
-          <width>280</width>
+          <width>600</width>
           <height>16777215</height>
          </size>
         </property>
@@ -435,7 +468,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tabStarList">
          <attribute name="title">
@@ -456,6 +489,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
           </property>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QLabel" name="lblRouteTo">
               <property name="text">
@@ -485,6 +521,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
           <string>Trade Routes</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_19">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <property name="leftMargin">
            <number>3</number>
           </property>
@@ -506,7 +545,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
              <number>0</number>
             </property>
             <property name="spacing">
-             <number>6</number>
+             <number>0</number>
             </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label">
@@ -572,7 +611,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <property name="spacing">
-             <number>5</number>
+             <number>0</number>
             </property>
             <property name="topMargin">
              <number>0</number>
@@ -672,7 +711,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
             <widget class="QWidget" name="layoutWidget">
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <property name="spacing">
-               <number>6</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="label_4">
@@ -704,8 +743,14 @@ Double click on a star below to recalculate a new jumpweb centered on the select
             </widget>
             <widget class="QWidget" name="layoutWidget">
              <layout class="QVBoxLayout" name="verticalLayout_11">
+              <property name="spacing">
+               <number>0</number>
+              </property>
               <item>
                <layout class="QGridLayout" name="gridLayout_2">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
                 <item row="0" column="0">
                  <widget class="QLabel" name="label_5">
                   <property name="text">
@@ -724,6 +769,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
               </item>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_10">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
                 <item>
                  <widget class="QLabel" name="label_6">
                   <property name="text">
@@ -781,7 +829,6 @@ Double click on a star below to recalculate a new jumpweb centered on the select
      <addaction name="separator"/>
      <addaction name="action_ExportMapToImage"/>
      <addaction name="action_ExportMapToGraphVizFile"/>
-     <addaction name="action_Export_Map_to_JSON"/>
      <addaction name="separator"/>
      <addaction name="actionPrint_Sector_Map"/>
      <addaction name="actionPrint_Trade_Route"/>
@@ -835,6 +882,15 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <widget class="QMenu" name="menuSector_Viewing_Options">
+     <property name="title">
+      <string>Sector Viewing Options</string>
+     </property>
+     <addaction name="action_map_Sector_Map_Options"/>
+     <addaction name="action_Planar_Projection_Modes"/>
+    </widget>
+    <addaction name="menuSector_Viewing_Options"/>
+    <addaction name="separator"/>
     <addaction name="action_Star_Sector_View"/>
     <addaction name="action_Solar_System_View"/>
     <addaction name="action_Diaspora_Cluster_View"/>
@@ -863,8 +919,8 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="iconSize">
     <size>
-     <width>32</width>
-     <height>32</height>
+     <width>24</width>
+     <height>24</height>
     </size>
    </property>
    <property name="toolButtonStyle">
@@ -900,8 +956,8 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="iconSize">
     <size>
-     <width>32</width>
-     <height>32</height>
+     <width>24</width>
+     <height>24</height>
     </size>
    </property>
    <property name="toolButtonStyle">
@@ -935,8 +991,8 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="iconSize">
     <size>
-     <width>32</width>
-     <height>32</height>
+     <width>24</width>
+     <height>24</height>
     </size>
    </property>
    <attribute name="toolBarArea">
@@ -965,8 +1021,8 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="iconSize">
     <size>
-     <width>32</width>
-     <height>32</height>
+     <width>24</width>
+     <height>24</height>
     </size>
    </property>
    <property name="floatable">
@@ -989,8 +1045,8 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="iconSize">
     <size>
-     <width>32</width>
-     <height>32</height>
+     <width>24</width>
+     <height>24</height>
     </size>
    </property>
    <property name="floatable">
@@ -1330,7 +1386,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
      <normaloff>:/new/Bitmaps/pics/optimalpath32.png</normaloff>:/new/Bitmaps/pics/optimalpath32.png</iconset>
    </property>
    <property name="text">
-    <string>Export &amp;Map to Graphviz file</string>
+    <string>Export Sector</string>
    </property>
   </action>
   <action name="action_ViewOnlyTradeRoutes">
@@ -1704,7 +1760,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </action>
   <action name="action_Export_Map_to_JSON">
    <property name="text">
-    <string>Export Map to JSON</string>
+    <string>Export Map to &amp;JSON</string>
    </property>
    <property name="toolTip">
     <string>Export Map to JSON File</string>
