@@ -82,7 +82,8 @@ SOURCES += main.cpp \
     dialogs/createbetweenstarsdlg.cpp \
     helpers/planetrenderer.cpp \
     helpers/matrixbuilder.cpp \
-    helpers/parsecstarlisthelper.cpp
+    helpers/parsecstarlisthelper.cpp \
+    helpers/graphmlexporter.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -148,7 +149,8 @@ HEADERS += coordinates.h \
     dialogs/createbetweenstarsdlg.h \
     helpers/planetrenderer.h \
     helpers/matrixbuilder.h \
-    helpers/parsecstarlisthelper.h
+    helpers/parsecstarlisthelper.h \
+    helpers/graphmlexporter.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

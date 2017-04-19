@@ -231,10 +231,16 @@ public:
 
     inline int planetCount() {return _planets.count(); }
 
-    inline bool hasGarden() { return (_starValue.numPostGarden+_starValue.numPreGarden+
-                                      _starValue.numGlacier+_starValue.numGarden) > 0; }
+    inline bool hasGarden() { return (_starValue.numPostGarden
+                                      +_starValue.numPreGarden
+                                      +_starValue.numGlacier
+                                      +_starValue.numGarden) > 0; }
+    inline int habitabilityIndex() { return (_starValue.numPostGarden * 2
+                                             +_starValue.numPreGarden * 1
+                                             +_starValue.numGlacier * 4
+                                             +_starValue.numGarden * 8); }
     inline int numMarginals() { return (_starValue.numPostGarden+_starValue.numPreGarden); }
-    inline int numGardens() { return _numGardens; }
+    inline int numGardens() { return _starValue.numGarden; }
     inline void numMarginals( int i ) { _numMarginals = i; }
     inline void numGardens (int i ) { _numGardens = i; }
     inline int numDesert() { return _numDesert; }
@@ -242,12 +248,14 @@ public:
     inline void numGasGiant(int i) { _numGasGiant = i;}
     inline void numDesert(int i) { _numDesert = i; }
 
+    inline int numPreGarden() { return _starValue.numPreGarden; }
+    inline int numPostGarden() { return _starValue.numPostGarden; }
+
 
     void setNumGardens();
     void setNumMarginals();
     void setNumDesert();
     void setNumGasGiant();
-
     bool isSister() { return _sister; }
     void  setIsSister(bool b) { _sister = b; }
 

@@ -97,6 +97,7 @@ public:
 
     void drawToGraphViz(QString& fileName);
     void drawToGML(QString& fileName);
+    void drawToGraphML(QString& fileName);
     void setSizeFactor(int i) { _sizeFactor = i; }
     int sizeFactor() { return _sizeFactor; }
 
