@@ -38,8 +38,8 @@ void DiasporaItemToStar::createStarAndSolSys() {
     do {
         _star = Star(66.6);
         _star.starName = _item->name();
-        creator.setStar(&_star);
-        creator.createSolarSystem();
+        //creator.setStar(&_star);
+        //creator.createSolarSystem();
         //qDebug() << "Values for " << _star.starName << ": E=" <<  _star.diasporaEnvironment()
         //        << ", R:" << _star.diasporaResources();
 

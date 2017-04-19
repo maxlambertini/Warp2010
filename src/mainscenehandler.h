@@ -62,7 +62,7 @@ private:
 
     StarList* _starList;
 
-    QVector<QPointer<TradeRoute> > _tradeRoutes;
+    QVector<QSharedPointer<TradeRoute> > _tradeRoutes;
     QVector<ParsecStar> _parsecStarList;
     QList<int> _starsInTradeRoutes;
     QList<int> _starsWithinReach;
@@ -195,7 +195,7 @@ public:
     void setStarList (StarList * sl) {
         _starList = sl;        
     }
-    void setTradeRoute (QVector<QPointer<TradeRoute> >  tr) { _tradeRoutes = tr; }
+    void setTradeRoute (QVector<QSharedPointer<TradeRoute> >  tr) { _tradeRoutes = tr; }
     void clearTradeRoute() { _tradeRoutes.clear(); }
 
     SceneMediator(QGraphicsScene* newScene) :

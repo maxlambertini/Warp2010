@@ -18,7 +18,7 @@
 #include "starwidgetitem.h"
 #include <QListWidgetItem>
 
-StarWidgetItem::StarWidgetItem(Star* newStar, int idx, QListWidget *view):
+StarWidgetItem::StarWidgetItem(QSharedPointer<Star> newStar, int idx, QListWidget *view):
         QListWidgetItem(newStar->starName, view)
 {
     _star = newStar;

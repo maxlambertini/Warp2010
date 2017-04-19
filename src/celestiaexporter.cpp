@@ -18,9 +18,29 @@
 #include "celestiaexporter.h"
 #include <QtCore>
 #include "star.h"
+#include "starlist.h"
 #include "planet.h"
 #include "ssg_structures.h"
 
+void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
+    QString sOutput;
+    QTextStream stream(&sOutput);
+
+    QSharedPointer<Star> star;
+    int iHip = 700000;
+   foreach (star, _starList->stars()) {
+        stream << star.data()->getCelestiaStcEntry(iHip++);
+    }
+
+    QFile data (filename);
+     if (data.open(QFile::WriteOnly | QFile::Truncate)) {
+         QTextStream out(&data);
+         out << sOutput;
+         out.flush();
+     }
+     data.close();
+
+}
 
 QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QString planetFatherName = "")
 {

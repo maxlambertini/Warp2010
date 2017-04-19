@@ -33,7 +33,7 @@ class CreateBetweenStarsDlg : public QDialog
 {
     Q_OBJECT
 
-    QVector<Star *> _stars;
+    QVector<QSharedPointer<Star> > _stars;
 
 public:
     explicit CreateBetweenStarsDlg(QWidget *parent = 0);
@@ -44,7 +44,7 @@ public:
     void clearTo();
     void createStars();
 
-    QVector<Star *> starsToCreate() { return _stars; }
+    QVector<QSharedPointer<Star> > starsToCreate() { return _stars; }
 
 private:
     Ui::CreateBetweenStarsDlg *ui;

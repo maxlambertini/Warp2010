@@ -23,11 +23,11 @@
 #include "star.h"
 #include "helpers/parsecstarlisthelper.h"
 
-typedef QList<Star *> QStarList;
+typedef QVector <QSharedPointer<Star>> QStarList;
 typedef QList<int> QIdxStarList;
 
-bool starLessThan(Star *st1, Star *st2);
-bool starGreaterThan(Star *tr1, Star *tr2);
+bool starLessThan(QSharedPointer<Star> st1, QSharedPointer<Star> st2);
+bool starGreaterThan(QSharedPointer<Star> tr1, QSharedPointer<Star> tr2);
 
 
 class ParsecStar
@@ -36,12 +36,12 @@ private:
     int _x;
     int _y;
     int _z;
-    Star *_star;
+    QSharedPointer<Star> _star;
     bool _visited;
     SceneMediatorDrawMode::DrawMode _mode;
 public:
     ParsecStar () {}  //empty constructor;
-    ParsecStar (Star *star) {
+    ParsecStar (QSharedPointer<Star> star) {
         _star = star;
         this->_x = (int)(_star->x() / 1);
         this->_y = (int)(_star->y() / 1);
@@ -117,7 +117,7 @@ public:
     void setY(int i) { _y = i; }
     void setZ(int i) { _z = i; }
     void setVisited(bool b) { _visited = b; }
-    Star *star() { return _star; }
+    QSharedPointer<Star> star() { return _star; }
 
 };
 
@@ -135,7 +135,7 @@ private:
     StarList();
     virtual ~StarList();
     QVector<ParsecStar> _parsecStarList;
-    QVector<Star *> _stars;
+    QVector<QSharedPointer<Star>> _stars;
     QStarList _qStarList;
     QIdxStarList _reachableStars;
     QIdxStarList _inTradeRoute;
@@ -164,7 +164,7 @@ public:
 
     inline QString& listName() { return _listName; }
     inline void setListName(QString& name) { _listName = name; }
-    inline QVector<Star *>& stars() { return _stars;}
+    inline QVector<QSharedPointer<Star>>& stars() { return _stars;}
     inline int count() { return _stars.count();}
     QVector<ParsecStar>& prepareParsecStarList(SceneMediatorDrawMode::DrawMode mode = SceneMediatorDrawMode::XY);
     QStarList& qStarList() { return _qStarList; }
@@ -188,7 +188,7 @@ public:
     void saveToJson (QString filename) {
         QJsonObject o;
         QJsonArray a;
-        Star* p;
+        QSharedPointer<Star> p;
         foreach (p, _stars) {
             QJsonObject oStar;
             p->toJson(oStar);
@@ -223,8 +223,8 @@ public:
 
         for (int h = 0; h < _stars.count(); h++)
         {
-            Star *s = _stars.at(h);
-            Star::serializePtr(out, s);
+            QSharedPointer<Star> s = _stars.at(h);
+            Star::serializePtr(out, s.data());
         }
     }
 
@@ -234,9 +234,9 @@ public:
         qint32 count;
         in >> header >> count;
         if (header == "STARLIST!" && count > 0) {
-            Star* p;
-            foreach (p, _stars)
-                if(p != 0) delete p;
+            QSharedPointer<Star> p;
+            //foreach (p, _stars)
+            //    if(p != 0) delete p;
             _stars.clear();
 
             for (int h = 0; h < count; h++) {

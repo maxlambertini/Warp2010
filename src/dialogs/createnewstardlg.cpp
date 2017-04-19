@@ -53,7 +53,7 @@ CreateNewStarDlg::CreateNewStarDlg(QWidget *parent) :
 }
 
 void CreateNewStarDlg::createStars() {
-    qDeleteAll(_starsToCreate);
+    //qDeleteAll(_starsToCreate);
     _starsToCreate.clear();
     if (ui->txtStarType->validator()->Acceptable) {
         double dx = ui->txtX->text().toDouble() ;
@@ -66,6 +66,7 @@ void CreateNewStarDlg::createStars() {
         double x,y,z;
         float distance;
         int iStarsToCreate = ui->spinBox->value();
+        QStringList names;
         for (int h = 0; h < iStarsToCreate; h++)  {
             if (ui->spinBox->value() > 1)  {
                 do {
@@ -87,11 +88,23 @@ void CreateNewStarDlg::createStars() {
                 x = dx; y = dy; z = dz;
             }
 
-            Star* res =  new Star();
+            QSharedPointer<Star> res(new Star());
             if (h == 0)
                 res->starName = ui->txtStarName->text();
-            else
-                res->starName = Onomastikon::instancePtr()->nomen();
+            else {
+                do {
+                auto val = SSGX::d10();
+                if (val > 7)
+                    res->starName = Onomastikon::instancePtr()->nomen();
+                else if (val > 5)
+                    res->starName = Onomastikon::instancePtr()->sigla();
+                else if (val > 3)
+                    res->starName = Onomastikon::instancePtr()->greekName();
+                else
+                    res->starName = Onomastikon::instancePtr()->pseudoNomen();
+                } while (names.contains(res->starName) || res.data()->starName.trimmed() == "");
+                names.append(res.data()->starName);
+            }
             res->setX(x);
             res->setY(y);
             res->setZ(z);
@@ -107,15 +120,15 @@ void CreateNewStarDlg::createStars() {
 
 }
 
-Star* CreateNewStarDlg::createStar() {
-    Star *res = 0;
+QSharedPointer<Star>  CreateNewStarDlg::createStar() {
+    QSharedPointer<Star> res;
     if (ui->txtStarType->validator()->Acceptable &&
         ui->txtZ->validator()->Acceptable &&
         ui->txtY->validator()->Acceptable &&
         ui->txtX->validator()->Acceptable &&
         !ui->txtStarName->text().isEmpty())
     {
-        res =  new Star();
+        res = QSharedPointer<Star>( new Star());
         res->starName = ui->txtStarName->text();
         res->setX(ui->txtX->text().toDouble());
         res->setY(ui->txtY->text().toDouble());

@@ -33,7 +33,7 @@ void MatrixBuilder::buildMatrix(int from) {
         for (int h = 0; h < _lStart->keys().count(); h++) {
             int starKey = _lStart->keys().at(h);
             wc = _lStart->value(starKey);
-            Star* _star = _starList->stars().at(starKey);
+            QSharedPointer<Star>  _star = _starList->stars().at(starKey);
             if (_star->neighbors().count() > 0) {
                 for (int w = 0; w < _star->neighbors().count(); w++) {
                     int worldIdx = _star->neighbors().at(w);
@@ -103,7 +103,7 @@ void MatrixBuilder::buildMatrix(int from) {
     for (int w = 0; w < _distanceMatrix->keys().count(); w++) {
         int k = _distanceMatrix->keys().at(w);
         TWordColl *wc = _distanceMatrix->value(k);
-        Star *s = StarList::StarListPtr()->stars().at(w);
+        QSharedPointer<Star>  s = StarList::StarListPtr()->stars().at(w);
         s->clearPath();
         int iTmp;
         foreach (iTmp,*wc)

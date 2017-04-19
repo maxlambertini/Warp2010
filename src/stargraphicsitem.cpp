@@ -24,7 +24,7 @@
 #include "warpexception.h"
 
 
-StarGraphicsItem::StarGraphicsItem(Star *star, double x, double y, double width)
+StarGraphicsItem::StarGraphicsItem(QSharedPointer<Star> star, double x, double y, double width)
 {
     _star = star;
     _x = x;

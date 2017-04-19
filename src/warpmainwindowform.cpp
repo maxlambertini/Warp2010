@@ -59,7 +59,6 @@
 WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
         QMainWindow(parent),  ui(new Ui::WarpMainWindow)
 {
-    _currentStar = 0;
     ui->setupUi(this);
     scene = new QGraphicsScene;
     ui->graphicsView->setRenderHint(QPainter::Antialiasing,true);
@@ -202,9 +201,9 @@ WarpMainWindowForm::~WarpMainWindowForm()
     delete _sceneMediator;
     delete scene;
 
-    TradeRoute *tr;
+    QSharedPointer<TradeRoute> tr;
     foreach (tr, _tradeRoutes)
-        delete tr;
+        tr.clear();
 
     delete agMapActions;
     //// qDebug() << "Deleting window";
@@ -236,7 +235,7 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
     QTableWidgetItem *w;
     StarWidgetItem* swi = (StarWidgetItem *)item;
     QTableWidget *qwi = ui->routeTable;
-    Star *star = swi->star();
+    QSharedPointer<Star> star = swi->star();
     _currentStar = star;
 
     // qDebug() << "clicked item " << star->starName;
@@ -245,10 +244,6 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
         //QString sHtml = _currentStar->toHtml();
         ui->solsysView->setStar(_currentStar);
     }
-    else {
-        ui->solsysView->setStar(0);
-    }
-
     // qDebug() << "set solar system";
 
 
@@ -272,13 +267,13 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
 
 
     qwi->setHorizontalHeaderLabels(*headers);
-    Star *sRef = _starList->stars().at(0);
+    QSharedPointer<Star> sRef = _starList->stars().at(0);
 
     ParsecStarListHelper pslh;
     pslh.setDrawMode(_sceneMediator->drawMode());
 
 
-    QPointF ptFrom =  QPointF(pslh.starX(sRef), pslh.starY(sRef));
+    QPointF ptFrom =  QPointF(pslh.starX(sRef.data()), pslh.starY(sRef.data()));
 
     // qDebug() << "setting rows...";
 
@@ -316,11 +311,11 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
 
     if (!_sceneMediator->showHexMap())
     {
-        qDebug() << "centering on: " << pslh.starX( star)*_sceneMediator->sizeFactor() <<
-                pslh.starY( star)*_sceneMediator->sizeFactor() << star->starName;
+        qDebug() << "centering on: " << pslh.starX( star.data())*_sceneMediator->sizeFactor() <<
+                pslh.starY( star.data())*_sceneMediator->sizeFactor() << star->starName;
         ui->graphicsView->centerOn(
-                pslh.starX( star)*_sceneMediator->sizeFactor(),
-                pslh.starY( star)*_sceneMediator->sizeFactor());
+                pslh.starX( star.data())*_sceneMediator->sizeFactor(),
+                pslh.starY( star.data())*_sceneMediator->sizeFactor());
     }
     else {
         ParsecStar ps= ParsecStar(_currentStar);
@@ -359,7 +354,7 @@ void WarpMainWindowForm::fillListWithCalculatedData(int idx)
 {
     bReloading = true;
 
-    Star *star;
+    QSharedPointer<Star>  star;
 
     //qDebug() << "Calling splash ";
 
@@ -481,7 +476,7 @@ void WarpMainWindowForm::performCreateSolSysForAllStars()
         splash_showMessage( "Clearing list...");
         ui->listWidget->clear();
 
-        Star *s;
+        QSharedPointer<Star>  s;
         StarToDiasporaSummary::current()->clearSummaryMap();
         for (int nx = 0; nx < _starList->stars().count(); nx++)
         {
@@ -611,7 +606,8 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
             fillListWithCalculatedData(0);
             SplashScreen::screenPtr()->setMessage( "Paths ok!");
             progHelp.nextStep(9);
-            ui->solsysView->setStar(0);
+            QSharedPointer<Star> sNull;
+            ui->solsysView->setStar(sNull);
             progHelp.nextStep(10);
 
             this->setWindowTitle(_starList->listName());
@@ -693,12 +689,12 @@ void WarpMainWindowForm::AddToTradeRoute (QString & tradeRouteName, QColor & bgC
 {
     if (_starList->count() > 0) {
         _tradeRouteMediator->setTableWidget(ui->gridTradeRoutes);
-        TradeRoute *tr = _tradeRouteMediator->performAddToRouteList(
+        auto tr = _tradeRouteMediator->performAddToRouteList(
                 tradeRouteName,
                 bgColor,
                 path);
         //_tradeRouteMediator->addTradeRoute(tr);
-        _tradeRouteMediator->performAddToTradeRoute(tr,indexOnList);
+        _tradeRouteMediator->performAddToTradeRoute(tr.data(),indexOnList);
         _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
         _sceneMediator->redrawScene();
         return;
@@ -790,13 +786,13 @@ void WarpMainWindowForm::on_btnDeleteRoute_clicked()
                 {
                     twi = (TradeRouteWidgetItem *)ui->gridTradeRoutes->item(x);
                     TradeRoute *tpr = twi->tradeRoute();
-                    _tradeRouteMediator->tradeRoutes().append(tpr);
+                    _tradeRouteMediator->tradeRoutes().append(QSharedPointer<TradeRoute>(tpr));
                 }
                 delete twi2;
                 _tradeRoutes.clear();
-                QPointer<TradeRoute> ptr;
+                QSharedPointer<TradeRoute> ptr;
                 foreach (ptr, _tradeRouteMediator->tradeRoutes())
-                    _tradeRoutes.append(ptr);
+                    _tradeRoutes.append(QSharedPointer<TradeRoute>(ptr));
                 _sceneMediator->setTradeRoute(_tradeRoutes);
             }
             else {
@@ -855,7 +851,7 @@ void WarpMainWindowForm::on_btnSaveCelestia_clicked()
                                          defaultFilename,
                                          tr("Celestia star file (*.ssc)"));
     if (!filename.isEmpty()) {
-        CelestiaExporter celestia(_currentStar);
+        CelestiaExporter celestia(_currentStar.data());
         celestia.saveCelestiaDataToFile(filename);
     }
 
@@ -947,6 +943,11 @@ void WarpMainWindowForm::clearSolarSystem()
     _sceneMediator->clearTradeRoute();
     _sceneMediator->scene()->clear();
     _starList->stars().clear();
+    QSharedPointer<Star> s;
+    foreach (s, _starList->stars())
+        s.clear();
+    //qDeleteAll(_starList->stars());
+    _starList->stars().squeeze();
     this->ui->graphicsView->show();
 }
 

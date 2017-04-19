@@ -26,20 +26,20 @@
 
 TradeRouteMediator TradeRouteMediator::_mediator;
 
-bool tradeRouteLessThan(TradeRoute *tr1, TradeRoute *tr2)
+bool tradeRouteLessThan(QSharedPointer<TradeRoute> tr1, QSharedPointer<TradeRoute> tr2)
 {
-    if (tr1 == 0)
+    if (tr1.isNull())
         return true;
-    if (tr2 == 0)
+    if (tr2.isNull())
         return false;
     return tr1->path().count() < tr2->path().count();
 }
 
-bool tradeRouteGreaterThan(TradeRoute *tr1, TradeRoute *tr2)
+bool tradeRouteGreaterThan(QSharedPointer<TradeRoute> tr1, QSharedPointer<TradeRoute> tr2)
 {
-    if (tr1 == 0)
+    if (tr1.isNull())
         return false;
-    if (tr2 == 0)
+    if (tr2.isNull())
         return true;
     return tr1->path().count() > tr2->path().count();
 }
@@ -84,7 +84,7 @@ void TradeRouteMediator::searchTradeRouteToGardenPlanets()
 
 
 
-    Star *s;
+    QSharedPointer<Star> s;
     int n = 0;
     int idx;
     if (_progressBar != 0) {
@@ -98,13 +98,13 @@ void TradeRouteMediator::searchTradeRouteToGardenPlanets()
 
         s = _starList->stars().at(idx);
         if (s->path().count() > 1 && s->hasGarden()) {
-            Star *s1 =  _starList->stars().at( s->path().at(0));
-            Star *s2 =  _starList->stars().at( s->path().at( s->path().count()-1 ));
+            auto s1 =  _starList->stars().at( s->path().at(0));
+            auto s2 =  _starList->stars().at( s->path().at( s->path().count()-1 ));
 
             QVector<int> myPath = s->path();
             QString starName = QString("%1 to %2").arg(s1->starName,s2->starName);
 
-            TradeRoute *tr = this->performAddToRouteList(
+            auto tr = this->performAddToRouteList(
                     starName,
                     colors[n % 8],
                     myPath);
@@ -117,7 +117,7 @@ void TradeRouteMediator::searchTradeRouteToGardenPlanets()
     for (n = 0; n < _tradeRoutes.count(); n++) {
         if (_progressBar != 0) _progressBar->setValue(n);
 
-        this->performAddToTradeRoute(_tradeRoutes.at(n),n);
+        this->performAddToTradeRoute(_tradeRoutes.at(n).data(),n);
     }
 
     if (_progressBar != 0)
@@ -169,12 +169,12 @@ void TradeRouteMediator::performAddToTradeRoute (TradeRoute *tr, int indexOnList
 void TradeRouteMediator::loadTradeRouteFromFile(QString filename)
 {
     //// qDebug() << "Loading " << filename;
-    QVector<QPointer<TradeRoute> > tempPath;
+    QVector<QSharedPointer<TradeRoute> > tempPath;
     TradeRoute::ReadTradeRoutesFromFile(tempPath,filename);
 
     //// qDebug() << "Read trade routes from file.";
 
-    TradeRoute *tr;
+    QSharedPointer<TradeRoute> tr;
     //int indexOnList = -1;
     _grid->clear();
     foreach (tr, tempPath)
@@ -192,13 +192,13 @@ void TradeRouteMediator::loadTradeRouteFromFile(QString filename)
 
         // qDebug() << "created.";
 
-        delete tr;
+        tr.clear();
     }
     this->sortByRoute(false);
 
     int n = 0;
     for (n = 0; n < _tradeRoutes.count(); n++)
-        this->performAddToTradeRoute(_tradeRoutes.at(n),n);
+        this->performAddToTradeRoute(_tradeRoutes.at(n).data(),n);
 
 }
 
@@ -218,7 +218,7 @@ QString TradeRouteMediator::tradeRouteToHTML(TradeRoute *tr)
         "<table style='border: 1px solid red;' cellpadding='2' cellspacing='0' width='100%;'>\n";
 
     int starIdx;
-    Star *myStar;
+    QSharedPointer<Star> myStar;
     double distance;
     QVector<int> path = tr->path();
 

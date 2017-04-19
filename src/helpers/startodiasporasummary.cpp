@@ -86,14 +86,14 @@ int StarToDiasporaSummary::randomResourcesIdx(int diasporaVal) {
     }
 }
 
-Star* StarToDiasporaSummary::randomEnvironmentStar(int diasporaVal) {
+Star*  StarToDiasporaSummary::randomEnvironmentStar(int diasporaVal) {
     StarIDList * ptr = _environmentSummary[diasporaVal];
     if (ptr != 0 && ptr->count() > 0 ) {
         int dx = SSGX::dx(ptr->count());
-        return StarList::StarListPtr()->stars().at(dx);
+        return StarList::StarListPtr()->stars().at(dx).data();
     }
     else {
-        return 0;
+        0;
     }
 }
 
@@ -101,7 +101,7 @@ Star* StarToDiasporaSummary::randomResourcesStar(int diasporaVal) {
     StarIDList * ptr = _resourcesSummary[diasporaVal];
     if (ptr != 0 && ptr->count() > 0 ) {
         int dx = SSGX::dx(ptr->count());
-        return StarList::StarListPtr()->stars().at(dx);
+        return StarList::StarListPtr()->stars().at(dx).data();
     }
     else {
         return 0;

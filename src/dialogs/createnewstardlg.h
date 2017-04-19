@@ -37,14 +37,14 @@ public:
     explicit CreateNewStarDlg(QWidget *parent = 0);
     ~CreateNewStarDlg();
 
-    Star *createStar();
+    QSharedPointer<Star>  createStar();
     void createStars();
-    const QVector<Star *>& starsToCreate() { return _starsToCreate; }
+    const QVector<QSharedPointer<Star> >& starsToCreate() { return _starsToCreate; }
 
 private:
     QDoubleValidator *validator;
     QRegExpValidator *rv;
-    QVector<Star *> _starsToCreate;
+    QVector<QSharedPointer<Star> > _starsToCreate;
     Ui::CreateNewStarDlg *ui;
 
 signals:

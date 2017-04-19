@@ -28,8 +28,8 @@ void TradeRouteReportWriter::createDocument()
     _cursor.insertHtml("<h1>Trade Routes</h1>");
 
     //initialize trade routes;
-    TradeRoute *tr;
-    Star *star;
+    QSharedPointer<TradeRoute> tr;
+    QSharedPointer<Star> star;
     int i;
 
     //initialization
@@ -42,7 +42,7 @@ void TradeRouteReportWriter::createDocument()
     }
 
     //let's write!
-    Star *starFirst, *starCur;
+    QSharedPointer<Star> starFirst, starCur;
     foreach (tr, _mediator->tradeRoutes())
     {
         _cursor.insertBlock();
@@ -50,7 +50,7 @@ void TradeRouteReportWriter::createDocument()
         _cursor.insertBlock();
 
         starFirst = _starlist->stars().at(tr->path().first());
-        Star *starPrev = 0;
+        QSharedPointer<Star> starPrev;
         foreach (i, tr->path()) {
             starCur = _starlist->stars().at(i);
             if (!starCur->visited()) {
@@ -59,7 +59,7 @@ void TradeRouteReportWriter::createDocument()
                 _cursor.insertHtml("<h3>"+starCur->starName+"</h3>");
                 _cursor.insertBlock();
                 if (starPrev != 0) {
-                    double  dist = starCur->distance(starPrev);
+                    double  dist = starCur->distance(starPrev.data());
                     _cursor.insertText(QString("Cumulative Distance: %1 ly").arg(dist));
                 }
                 starPrev = starCur;

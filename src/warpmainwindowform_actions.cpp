@@ -67,7 +67,8 @@ void WarpMainWindowForm::on_actionLoad_Sector_triggered()
     if (!filename.isEmpty()) {
         SplashScreen::screenPtr()->show();
         SplashScreen::screenPtr()->setMessage("Acquired filename");
-        ui->solsysView->setStar(0);
+        QSharedPointer<Star> p;
+        ui->solsysView->setStar(p);
         performMapProcessing(false, filename);
         SplashScreen::screenPtr()->setMessage("Processed map");
         if (!filename.endsWith(".starx")) {
@@ -162,8 +163,8 @@ void WarpMainWindowForm::on_action_CreateTradeRoute_triggered()
             int nFrom = swi->star()->path().at(0);
             int nTo = swi->star()->path().at(nMax -1);
 
-            Star *stFrom = _starList->stars().at(nFrom);
-            Star *stTo = _starList->stars().at(nTo);
+            QSharedPointer<Star> stFrom = _starList->stars().at(nFrom);
+            QSharedPointer<Star> stTo = _starList->stars().at(nTo);
 
             QString routeName = QString("From %1 to %2").arg(stFrom->starName).arg(stTo->starName);
             dialog->setTradeRouteName(routeName);
@@ -276,7 +277,7 @@ void WarpMainWindowForm::on_action_CreateSolarSystem_triggered()
         AppMessage::Error("<b>No star selected</b>", "Create or load a star sector and select a star\nto create a solar system.");
     }
 
-    Star *star = _currentStar;
+    QSharedPointer<Star> star = _currentStar;
     StarWidgetItem *swi = (StarWidgetItem *)ui->listWidget->currentItem();
     if (swi != 0) {
         if (star->path().count() > 0) {
@@ -378,8 +379,8 @@ void WarpMainWindowForm::on_action_NewSector_triggered()
 
 void WarpMainWindowForm::on_action_SolarSystemForAllStars_triggered()
 {
-
-    ui->solsysView->setStar(0);
+    QSharedPointer<Star> pt;
+    ui->solsysView->setStar(pt);
     SplashScreen::screenPtr()->setMessage("Creating solar system for all stars");
     SplashScreen::screenPtr()->show();
     this->performCreateSolSysForAllStars();
@@ -474,7 +475,7 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
     QString fileName =
             QFileDialog::getSaveFileName(this, tr("Export file as Graphviz Graph"),
                                          AppPaths::appDir()+ "/" + _starList->listName() + ".graphml",
-                           tr("GraphML yED File (*.graphml);;GML File (*.gml);;Graphviz File (*.dot);;Json File (*.json)"));
+                           tr("GraphML yED File (*.graphml);;GML File (*.gml);;Graphviz File (*.dot);;Json File (*.json);;Celestia STC files (*.stc)"));
 
     if (!fileName.isEmpty() && !fileName.isNull()){
         if (fileName.endsWith(".gml"))
@@ -485,6 +486,11 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
             _sceneMediator->drawToGraphViz(fileName);
         if (fileName.endsWith(".json"))
             this->_starList->saveToJson(fileName);
+        if (fileName.endsWith(".stc")) {
+            CelestiaExporter cex(this->_currentStar.data());
+            cex.setStarList(this->_starList);
+            cex.saveStarListToCelestiaFile(fileName);
+        }
     }
 }
 
@@ -710,7 +716,7 @@ void WarpMainWindowForm::on_action_Add_New_Star_triggered()
     if (dlg.exec() == QDialog::Accepted) {
         widget->createStars();
         if (widget->starsToCreate().count()  > 0) {
-            Star *newStar;
+            QSharedPointer<Star>  newStar;
             foreach (newStar, widget->starsToCreate()) {
                 StarList::StarListPtr()->stars().append(newStar);
             }
@@ -735,7 +741,7 @@ void WarpMainWindowForm::on_actionAdd_Stars_Between_Two_Stars_triggered()
         if (dlg.exec() == QDialog::Accepted) {
             dlg.createStars();
             if (dlg.starsToCreate().count() > 0) {
-                Star *newStar;
+                QSharedPointer<Star>  newStar;
                 foreach (newStar, dlg.starsToCreate()) {
                     StarList::StarListPtr()->stars().append(newStar);
                 }

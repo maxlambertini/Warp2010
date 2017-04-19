@@ -89,12 +89,12 @@ void SolarSystemViewWidget::handlePlanetSelected(Planet *p) {
     ui->planetInspector->setPlanet(p);
 }
 
-void SolarSystemViewWidget::setStar(Star *s) {
+void SolarSystemViewWidget::setStar(QSharedPointer<Star> s) {
     if (s != 0) {
         _star = s;
-        _solsysToScene->setStar(s);
-        ui->starInspector->setStar(s);
-        ui->solSysWidget->setStar(s);
+        _solsysToScene->setStar(s.data());
+        ui->starInspector->setStar(s.data());
+        ui->solSysWidget->setStar(s.data());
         if (_solsysToScene->scenePtr() != 0) {
             QRectF r = _solsysToScene->scenePtr()->itemsBoundingRect();
             _solsysToScene->scenePtr()->invalidate(r);

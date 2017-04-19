@@ -138,7 +138,7 @@ void StarInspector::setStarData() {
     vectNeighbors.clear();
     foreach (iTmp, _star->neighbors()) {
         vectNeighbors.append(iTmp);
-        Star* s_tmp = StarList::StarListPtr()->stars().at(iTmp);
+        auto s_tmp = StarList::StarListPtr()->stars().at(iTmp);
         QListWidgetItem *qlw = new QListWidgetItem(s_tmp->starName,lstNeighbors);
     }
 }

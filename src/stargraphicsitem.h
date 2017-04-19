@@ -34,7 +34,7 @@ namespace NSStarGraphicsItem {
 class StarGraphicsItem : public QGraphicsItem
 {
 private:
-    Star * _star;
+    QSharedPointer<Star> _star;
     QColor  _starColor;
     QColor  _textColor;
     QString _fontName;
@@ -49,7 +49,7 @@ private:
 
 public:
     //getter
-    inline Star * star() { return _star;}
+    inline QSharedPointer<Star> star() { return _star;}
     inline double x() { return _x;}
     inline double y() { return _y;}
     inline double starWidth()  { return _starWidth; }
@@ -57,7 +57,7 @@ public:
     inline int position()  { return _position; }
 
     //setter
-    inline void setStar(Star *star) { _star = star; }
+    inline void setStar(QSharedPointer<Star> star) { _star = star; }
     inline void setX(double v) { _x = v;}
     inline void setY(double v) { _y = v;}
     inline void setStarWidth(double v) { _starWidth = v;}
@@ -67,7 +67,7 @@ public:
 
 
 
-    StarGraphicsItem(Star *star, double x, double y, double width);
+    StarGraphicsItem(QSharedPointer<Star> star, double x, double y, double width);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget);
 
