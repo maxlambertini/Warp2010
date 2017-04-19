@@ -134,9 +134,9 @@ public:
         double ay = _y+dy;
         double az = _z+dz;
         _dist = sqrt(ax*ax+ay*ay+az*az );   //Dist
-        _theta = acos(az/_dist);            //Dec
-        _phi = atan(ay/ax);                 //RA
-        _appMagnitude = _magnitude - 5 +5*log10(_dist/3.26);
+        _phi = acos(az/_dist);            //Dec
+        _theta = atan(ay/ax);                 //RA
+        _appMagnitude = (4.77 - 2.5*log10(this->_luminosity)) - 5 +5*log10(_dist/3.26);
     }
 
 
@@ -157,8 +157,10 @@ public:
             #######################
                       )";
         res = res.arg(QString::number(hipEntry), QString::number(hipEntry),
-                      QString::number(hipEntry), this->starName, QString::number(this->phi()),
-                      QString::number(this->theta()), QString::number(this->dist()),
+                      QString::number(hipEntry), this->starName,
+                      QString::number(this->phi()/(2*3.14159265) *360.0),
+                      QString::number(this->theta()/(2*3.14159265) *360.0),
+                      QString::number(this->dist()),
                       this->starFullType(), QString::number(this->appMagnitude()));
         return res;
     }
