@@ -39,7 +39,36 @@ void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
          out.flush();
      }
      data.close();
+     QString filenamessc = filename+".ssc";
+     this->saveSolarSystemsToCelestiaFile(filenamessc);
+}
 
+void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
+    QString sOutput;
+    QTextStream stream(&sOutput);
+
+    QSharedPointer<Star> star;
+    Planet planet, sat;
+    foreach (star, _starList->stars()) {
+        this->_star = star.data();
+        foreach (planet, _star->planets()) {
+            QString starName = _star->starName;
+            stream << this->planetToCelestia(planet,starName,"");
+            // qDebug() << "celestia exporting " << planet.name();
+            foreach (sat, planet.satellites()) {
+                stream << this->planetToCelestia(sat,_star->starName,planet.name());
+                // qDebug() << "celestia exporting sat " << sat.name();
+            }
+        }
+    }
+
+    QFile data (filename);
+     if (data.open(QFile::WriteOnly | QFile::Truncate)) {
+         QTextStream out(&data);
+         out << sOutput;
+         out.flush();
+     }
+     data.close();
 }
 
 QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QString planetFatherName = "")
