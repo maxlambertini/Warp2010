@@ -399,22 +399,22 @@ Planet SolarSystemCreator::createPlanet(
     Planet planet;
 
     Orbit orbit;
-    int d = SSGX::d6();
+    int d = SSGX::d10();
 
     if (d == 3)
         orbit.setEccentricity( (double)SSGX::dn(1000) / 10000.0);
     else
-        orbit.setEccentricity( (double)SSGX::dn(300) / 10000.0);
+        orbit.setEccentricity( (double)SSGX::dn(100) / 10000.0);
 
     if (d == 4)
-        orbit.setInclination( (double)(SSGX::d100() -50)/30);
-    else
         orbit.setInclination( (double)(SSGX::d100() -50)/5);
-
-    if (d == 4)
-        orbit.setObliquity( (double)(SSGX::d100() -50)/2);
     else
-        orbit.setInclination( (double)(SSGX::d100() -50));
+        orbit.setInclination( (double)(SSGX::d100() -50)/50);
+
+    if (d == 6)
+        orbit.setObliquity( (double)(SSGX::d100() -50)/5);
+    else
+        orbit.setObliquity( (double)(SSGX::d100() -50)/20);
 
     d = SSGX::d6();
 
