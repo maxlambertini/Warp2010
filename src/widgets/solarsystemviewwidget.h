@@ -34,7 +34,7 @@ namespace Ui {
 class SolarSystemViewWidget : public QWidget {
     Q_OBJECT
 
-    Star * _star;
+    QSharedPointer<Star>  _star;
     SolarSystemToScene *_solsysToScene;
 
 
@@ -43,8 +43,8 @@ public:
     ~SolarSystemViewWidget();
     void emitPlanetSelected(Planet *p);
 
-    void setStar(Star * s);
-    inline Star * star() { return _star; }
+    void setStar(QSharedPointer<Star> s);
+    inline QSharedPointer<Star>  star() { return _star; }
     inline SolarSystemToScene * solsysToScene() { return _solsysToScene; }
 
     void exportSolSysToSvg();

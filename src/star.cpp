@@ -131,13 +131,14 @@ Star::Star(double radius) : QObject()
 Star::~Star()
 {
     this->deleteSolarSystem();
+    qDebug() << "Deleting Star";
 }
 
 void Star::deleteSolarSystem()
 {
-    Star *s;
-    foreach (s, _sisters)
-        delete s;
+    //Star *s;
+    //foreach (s, _sisters)
+    //    delete s;
     _planets.clear();
     _sisters.clear();
 }
@@ -447,15 +448,15 @@ void Star::serializePtr(QDataStream &out, Star *p)
 //with the wrong foot (using Star pointers for my jumpweb since I still fail to wholly
 //grok reference tricks when it comes to containers) I have to make do with this named
 //constructor to perform serialization. Ah béin....
-Star * Star::deserializeToPtr(QDataStream &in)
+QSharedPointer<Star> Star::deserializeToPtr(QDataStream &in)
 {
     //let's check whether we have a star or not here.
     QString starH;
     in >> starH;
-    Star *p = 0;
+    QSharedPointer<Star> p;
     if (starH == "STAR!") {
         //got it!
-        p = new Star();
+        //p = new Star();
         // qDebug() << "starting star deserialization";
 
         //deserialize the rest

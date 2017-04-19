@@ -20,6 +20,7 @@
 #include <math.h>
 #include "solarsystemwidget.h"
 
+
 const char* planetPixmap[] = {
         "",
         ":/Solsys/pics/Planets/Chunk.png",

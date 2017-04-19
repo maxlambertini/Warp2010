@@ -73,7 +73,7 @@ void CreateBetweenStarsDlg::createStars() {
         double ny = (dy*h)+ (dy+ (SSGX::floatRand()*0.5*dy)-(0.25*dx));
         double nz = (dz*h)+ (dz+ (SSGX::floatRand()*0.5*dz)-(0.25*dz));
 
-        Star *s = new Star();
+        QSharedPointer<Star> s(new Star());
         s->setX(x1+nx); s->setY(y1+ny); s->setZ(z1+nz);
         s->starName =  Onomastikon::instancePtr()->nomen();
         s->setStarFullType(StarCodeHelper::createStarCode());

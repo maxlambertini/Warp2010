@@ -53,7 +53,7 @@ CreateNewStarDlg::CreateNewStarDlg(QWidget *parent) :
 }
 
 void CreateNewStarDlg::createStars() {
-    qDeleteAll(_starsToCreate);
+    //qDeleteAll(_starsToCreate);
     _starsToCreate.clear();
     if (ui->txtStarType->validator()->Acceptable) {
         double dx = ui->txtX->text().toDouble() ;
@@ -62,43 +62,49 @@ void CreateNewStarDlg::createStars() {
         double min_radius = ui->txtDistanceFromCenter->text().toDouble();
         double max_radius = ui->txtRadius->text().toDouble();
         qDebug() << min_radius << max_radius;
-        double theta = 0.0, phi = 0.0;
         double avg_dist = 0.0;
-        double max_radius_2;
-        for (int h = 0; h < ui->spinBox->value(); h++)  {
-            double x,y,z;
+        double x,y,z;
+        float distance;
+        int iStarsToCreate = ui->spinBox->value();
+        QStringList names;
+        for (int h = 0; h < iStarsToCreate; h++)  {
             if (ui->spinBox->value() > 1)  {
+                do {
+                    x = SSGX::floatRand()*max_radius*2-max_radius;
+                    y = SSGX::floatRand()*max_radius*2-max_radius;
+                    z = SSGX::floatRand()*max_radius*2-max_radius;
+                    distance =  pow (pow(x,2)+ pow(y,2)+pow(z,2),0.5);
+                } while (distance > max_radius || distance < min_radius);
 
-                theta = (SSGX::floatRand()*360.0) * 0.01745329251994329576923690768489;
-                phi = (SSGX::floatRand()*360.0) * 0.01745329251994329576923690768489;
-                max_radius_2 = SSGX::floatRand()*max_radius;
-                if (max_radius_2 < max_radius/1.5)
-                    max_radius_2 *= 1.45;
-                if (max_radius_2 < max_radius/2.0)
-                    max_radius_2 *= 1.99;
-                if (max_radius_2 < max_radius/3.0)
-                    max_radius_2 *= 2.99;
 
-                double radius = min_radius + max_radius_2;
+                x = dx+ x;
+                y = dy+ y;
+                z = dz + z;
 
-                x = dx+ radius *sin(phi)*cos(theta);
-                y = dy+ radius *sin(theta)*sin(phi);
-                z = dz + radius *cos(phi);
-
-                float distance =  pow (pow(x,2)+ pow(y,2)+pow(z,2),0.5);
-
-                //qDebug() << h << min_radius <<  max_radius << phi << theta << distance << x  << y << z;
+                qDebug() << h << min_radius <<  max_radius << x  << y << z;
                 avg_dist += distance;
             }
             else {
                 x = dx; y = dy; z = dz;
             }
 
-            Star* res =  new Star();
+            QSharedPointer<Star> res(new Star());
             if (h == 0)
                 res->starName = ui->txtStarName->text();
-            else
-                res->starName = Onomastikon::instancePtr()->nomen();
+            else {
+                do {
+                auto val = SSGX::d10();
+                if (val > 7)
+                    res->starName = Onomastikon::instancePtr()->nomen();
+                else if (val > 5)
+                    res->starName = Onomastikon::instancePtr()->sigla();
+                else if (val > 3)
+                    res->starName = Onomastikon::instancePtr()->greekName();
+                else
+                    res->starName = Onomastikon::instancePtr()->pseudoNomen();
+                } while (names.contains(res->starName) || res.data()->starName.trimmed() == "");
+                names.append(res.data()->starName);
+            }
             res->setX(x);
             res->setY(y);
             res->setZ(z);
@@ -114,15 +120,15 @@ void CreateNewStarDlg::createStars() {
 
 }
 
-Star* CreateNewStarDlg::createStar() {
-    Star *res = 0;
+QSharedPointer<Star>  CreateNewStarDlg::createStar() {
+    QSharedPointer<Star> res;
     if (ui->txtStarType->validator()->Acceptable &&
         ui->txtZ->validator()->Acceptable &&
         ui->txtY->validator()->Acceptable &&
         ui->txtX->validator()->Acceptable &&
         !ui->txtStarName->text().isEmpty())
     {
-        res =  new Star();
+        res = QSharedPointer<Star>( new Star());
         res->starName = ui->txtStarName->text();
         res->setX(ui->txtX->text().toDouble());
         res->setY(ui->txtY->text().toDouble());

@@ -106,13 +106,13 @@
         </size>
        </property>
        <property name="minimum">
-        <number>500</number>
+        <number>200</number>
        </property>
        <property name="maximum">
         <number>1400</number>
        </property>
        <property name="singleStep">
-        <number>50</number>
+        <number>25</number>
        </property>
        <property name="value">
         <number>750</number>
@@ -140,7 +140,7 @@
         </size>
        </property>
        <property name="minimum">
-        <number>20</number>
+        <number>10</number>
        </property>
        <property name="maximum">
         <number>120</number>

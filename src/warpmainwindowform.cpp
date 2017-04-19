@@ -59,7 +59,6 @@
 WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
         QMainWindow(parent),  ui(new Ui::WarpMainWindow)
 {
-    _currentStar = 0;
     ui->setupUi(this);
     scene = new QGraphicsScene;
     ui->graphicsView->setRenderHint(QPainter::Antialiasing,true);
@@ -184,6 +183,15 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
 
 
      PixmapHelper::instancePtr()->initializeBitmaps();
+
+     this->ui->menuStar_Sector_Operations->setEnabled(true);
+     this->ui->menuCluster_Operations->setEnabled(false);
+     this->ui->menuSolar_System_Operations->setEnabled(false);
+
+     this->ui->btnRotateLeft->setVisible(false);
+     this->ui->btnRotateRight->setVisible(false);
+     this->ui->sliderRotate->setVisible(false);
+
  }
 
 WarpMainWindowForm::~WarpMainWindowForm()
@@ -194,9 +202,9 @@ WarpMainWindowForm::~WarpMainWindowForm()
     delete _sceneMediator;
     delete scene;
 
-    TradeRoute *tr;
+    QSharedPointer<TradeRoute> tr;
     foreach (tr, _tradeRoutes)
-        delete tr;
+        tr.clear();
 
     delete agMapActions;
     //// qDebug() << "Deleting window";
@@ -228,7 +236,7 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
     QTableWidgetItem *w;
     StarWidgetItem* swi = (StarWidgetItem *)item;
     QTableWidget *qwi = ui->routeTable;
-    Star *star = swi->star();
+    QSharedPointer<Star> star = swi->star();
     _currentStar = star;
 
     // qDebug() << "clicked item " << star->starName;
@@ -237,10 +245,6 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
         //QString sHtml = _currentStar->toHtml();
         ui->solsysView->setStar(_currentStar);
     }
-    else {
-        ui->solsysView->setStar(0);
-    }
-
     // qDebug() << "set solar system";
 
 
@@ -264,13 +268,13 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
 
 
     qwi->setHorizontalHeaderLabels(*headers);
-    Star *sRef = _starList->stars().at(0);
+    QSharedPointer<Star> sRef = _starList->stars().at(0);
 
     ParsecStarListHelper pslh;
     pslh.setDrawMode(_sceneMediator->drawMode());
 
 
-    QPointF ptFrom =  QPointF(pslh.starX(sRef), pslh.starY(sRef));
+    QPointF ptFrom =  QPointF(pslh.starX(sRef.data()), pslh.starY(sRef.data()));
 
     // qDebug() << "setting rows...";
 
@@ -308,11 +312,11 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
 
     if (!_sceneMediator->showHexMap())
     {
-        qDebug() << "centering on: " << pslh.starX( star)*_sceneMediator->sizeFactor() <<
-                pslh.starY( star)*_sceneMediator->sizeFactor() << star->starName;
+        qDebug() << "centering on: " << pslh.starX( star.data())*_sceneMediator->sizeFactor() <<
+                pslh.starY( star.data())*_sceneMediator->sizeFactor() << star->starName;
         ui->graphicsView->centerOn(
-                pslh.starX( star)*_sceneMediator->sizeFactor(),
-                pslh.starY( star)*_sceneMediator->sizeFactor());
+                pslh.starX( star.data())*_sceneMediator->sizeFactor(),
+                pslh.starY( star.data())*_sceneMediator->sizeFactor());
     }
     else {
         ParsecStar ps= ParsecStar(_currentStar);
@@ -351,7 +355,7 @@ void WarpMainWindowForm::fillListWithCalculatedData(int idx)
 {
     bReloading = true;
 
-    Star *star;
+    QSharedPointer<Star>  star;
 
     //qDebug() << "Calling splash ";
 
@@ -473,7 +477,7 @@ void WarpMainWindowForm::performCreateSolSysForAllStars()
         splash_showMessage( "Clearing list...");
         ui->listWidget->clear();
 
-        Star *s;
+        QSharedPointer<Star>  s;
         StarToDiasporaSummary::current()->clearSummaryMap();
         for (int nx = 0; nx < _starList->stars().count(); nx++)
         {
@@ -515,76 +519,105 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
         ProgressBarHelper progHelp(this->progressBar);
         progHelp.reset(0,10);
         progHelp.show();
-		
-        SplashScreen::screenPtr()->setMessage("Clearing list...");
-        ui->listWidget->clear();
 
-        SplashScreen::screenPtr()->setMessage( "Clearing trade routes...");
-        ui->gridTradeRoutes->clear();
-		
-        progHelp.nextStep(1);		
-        _tradeRoutes.clear();
-        SplashScreen::screenPtr()->setMessage("Trade routes are clear");
+        try {
+            SplashScreen::screenPtr()->setMessage("Clearing list...");
+            ui->listWidget->clear();
+        } catch (WarpException exc) {
 
-        progHelp.nextStep(2);
-        _tradeRouteMediator->clearTradeRoutes();
-        SplashScreen::screenPtr()->setMessage("Trade routes are clearer");
+        }
 
-        progHelp.nextStep(3);
-        _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
-        SplashScreen::screenPtr()->setMessage("Universe emptied, recreating...");
+        try {
+            SplashScreen::screenPtr()->setMessage( "Clearing trade routes...");
+            ui->gridTradeRoutes->clear();
+        } catch (WarpException exc) {
 
+        }
 
-        progHelp.nextStep(4);
-        _sceneMediator->clearTradeRoute();
-		
-        progHelp.nextStep(5);
+        try {
+            progHelp.nextStep(1);
+            _tradeRoutes.clear();
+            SplashScreen::screenPtr()->setMessage("Trade routes are clear");
+        } catch (WarpException exc) {
 
-        this->_referenceIdx= 0;
-        SplashScreen::screenPtr()->setMessage("Loading Map");
+        }
 
-		
-        progHelp.nextStep(6);
-        bool mustRebuildMatrix = true;
-		
-		
-        if (!bCreateNewMap) {
-            if (!filename.endsWith(".starx")) {
-                this->_starList->loadMap(filename);
-                SplashScreen::screenPtr()->setMessage("Now building...");
+        try {
+            progHelp.nextStep(2);
+            _tradeRouteMediator->clearTradeRoutes();
+            SplashScreen::screenPtr()->setMessage("Trade routes are clearer");
+        } catch (WarpException exc) {
+
+        }
+
+        try {
+            progHelp.nextStep(3);
+            _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
+            SplashScreen::screenPtr()->setMessage("Universe emptied, recreating...");
+        } catch (WarpException exc) {
+
+        }
+
+        try {
+            progHelp.nextStep(4);
+            _sceneMediator->clearTradeRoute();
+        } catch (WarpException exc) {
+
+        }
+
+        try {
+            progHelp.nextStep(5);
+            this->_referenceIdx= 0;
+            SplashScreen::screenPtr()->setMessage("Loading Map");
+        } catch (WarpException exc) {
+
+        }
+
+        try {
+            progHelp.nextStep(6);
+            bool mustRebuildMatrix = true;
+            if (!bCreateNewMap) {
+                if (!filename.endsWith(".starx")) {
+                    this->_starList->loadMap(filename);
+                    SplashScreen::screenPtr()->setMessage("Now building...");
+                }
+                else {
+                    this->_starList->loadMatrix(filename);
+                    SplashScreen::screenPtr()->setMessage("Matrix loaded");
+                    mustRebuildMatrix = false;
+                }
+
+                SplashScreen::screenPtr()->setMessage( "Loaded map, rebuilding...");
             }
             else {
-                this->_starList->loadMatrix(filename);
-                SplashScreen::screenPtr()->setMessage("Matrix loaded");
-                mustRebuildMatrix = false;
+                int sectorRadius = _newSectorDialog->sectorRadius();
+                QString sectorName = _newSectorDialog->sectorName();
+                int sectorDensity = _newSectorDialog->sectorDensity();
+                this->_starList->createRandomMap((double)sectorRadius, (double)sectorDensity);
+                _starList->setListName(sectorName);
+                SplashScreen::screenPtr()->setMessage( "Created map, rebuilding...");
             }
-		
-            SplashScreen::screenPtr()->setMessage( "Loaded map, rebuilding...");
-        }
-        else {
-            int sectorRadius = _newSectorDialog->sectorRadius();
-            QString sectorName = _newSectorDialog->sectorName();
-            int sectorDensity = _newSectorDialog->sectorDensity();
-            this->_starList->createRandomMap((double)sectorRadius, (double)sectorDensity);
-            _starList->setListName(sectorName);
-            SplashScreen::screenPtr()->setMessage( "Created map, rebuilding...");
+
+            if (mustRebuildMatrix) {
+                progHelp.nextStep(7);
+                this->rebuildMatrix(0, this->distance());
+                SplashScreen::screenPtr()->setMessage( "Rebuilding paths...");
+                progHelp.nextStep(8);
+            }
+            fillListWithCalculatedData(0);
+            SplashScreen::screenPtr()->setMessage( "Paths ok!");
+            progHelp.nextStep(9);
+            QSharedPointer<Star> sNull;
+            ui->solsysView->setStar(sNull);
+            progHelp.nextStep(10);
+
+            this->setWindowTitle(_starList->listName());
+
+            progHelp.hide();
+        } catch (WarpException exc) {
+
         }
 
-        if (mustRebuildMatrix) {
-            progHelp.nextStep(7);
-            this->rebuildMatrix(0, this->distance());
-            SplashScreen::screenPtr()->setMessage( "Rebuilding paths...");
-            progHelp.nextStep(8);
-        }
-        fillListWithCalculatedData(0);
-        SplashScreen::screenPtr()->setMessage( "Paths ok!");
-        progHelp.nextStep(9);
-        ui->solsysView->setStar(0);
-        progHelp.nextStep(10);
-
-        this->setWindowTitle(_starList->listName());
-
-        progHelp.hide();
     }
     catch (WarpException exc) {
         SplashScreen::screenPtr()->hide();
@@ -657,12 +690,12 @@ void WarpMainWindowForm::AddToTradeRoute (QString & tradeRouteName, QColor & bgC
 {
     if (_starList->count() > 0) {
         _tradeRouteMediator->setTableWidget(ui->gridTradeRoutes);
-        TradeRoute *tr = _tradeRouteMediator->performAddToRouteList(
+        auto tr = _tradeRouteMediator->performAddToRouteList(
                 tradeRouteName,
                 bgColor,
                 path);
         //_tradeRouteMediator->addTradeRoute(tr);
-        _tradeRouteMediator->performAddToTradeRoute(tr,indexOnList);
+        _tradeRouteMediator->performAddToTradeRoute(tr.data(),indexOnList);
         _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
         _sceneMediator->redrawScene();
         return;
@@ -754,13 +787,13 @@ void WarpMainWindowForm::on_btnDeleteRoute_clicked()
                 {
                     twi = (TradeRouteWidgetItem *)ui->gridTradeRoutes->item(x);
                     TradeRoute *tpr = twi->tradeRoute();
-                    _tradeRouteMediator->tradeRoutes().append(tpr);
+                    _tradeRouteMediator->tradeRoutes().append(QSharedPointer<TradeRoute>(tpr));
                 }
                 delete twi2;
                 _tradeRoutes.clear();
-                QPointer<TradeRoute> ptr;
+                QSharedPointer<TradeRoute> ptr;
                 foreach (ptr, _tradeRouteMediator->tradeRoutes())
-                    _tradeRoutes.append(ptr);
+                    _tradeRoutes.append(QSharedPointer<TradeRoute>(ptr));
                 _sceneMediator->setTradeRoute(_tradeRoutes);
             }
             else {
@@ -819,7 +852,7 @@ void WarpMainWindowForm::on_btnSaveCelestia_clicked()
                                          defaultFilename,
                                          tr("Celestia star file (*.ssc)"));
     if (!filename.isEmpty()) {
-        CelestiaExporter celestia(_currentStar);
+        CelestiaExporter celestia(_currentStar.data());
         celestia.saveCelestiaDataToFile(filename);
     }
 
@@ -911,6 +944,11 @@ void WarpMainWindowForm::clearSolarSystem()
     _sceneMediator->clearTradeRoute();
     _sceneMediator->scene()->clear();
     _starList->stars().clear();
+    QSharedPointer<Star> s;
+    foreach (s, _starList->stars())
+        s.clear();
+    //qDeleteAll(_starList->stars());
+    _starList->stars().squeeze();
     this->ui->graphicsView->show();
 }
 

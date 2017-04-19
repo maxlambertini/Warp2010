@@ -65,7 +65,7 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
     int nCount = 0;
     int nFontSize = 15;
     QVector<int> lstInMap;
-    Star * star;
+    QSharedPointer<Star>  star;
     foreach (star, _starList->stars()) {
         if (star->isReference() || star->path().count() > 1) {
 
@@ -140,7 +140,7 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
 
     nCount = 0;
     int i1,i2,iTmp;
-    Star *p1,*p2;
+    QSharedPointer<Star>  p1,p2;
     QStringList links;
     int nEdge = 0;
 
@@ -227,8 +227,8 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
 }
 
 void GraphMLExporter::fillEdge(int eID, int i1, int i2, const QString& lineColor, int nWidth, int fontSize) {
-    Star *s1 = this->_starList->stars().at(i1);
-    Star *s2 = this->_starList->stars().at(i2);
+    Star *s1 = this->_starList->stars().at(i1).data();
+    Star *s2 = this->_starList->stars().at(i2).data();
     double dist = s1->distance(s2);
     QString res = QString(_edgeTemplate);
     res
@@ -243,8 +243,8 @@ void GraphMLExporter::fillEdge(int eID, int i1, int i2, const QString& lineColor
 }
 
 void GraphMLExporter::fillEdge2(int eID, int i1, int i2, const QString& lineColor, int nWidth, int fontSize) {
-    Star *s1 = this->_starList->stars().at(i1);
-    Star *s2 = this->_starList->stars().at(i2);
+    Star *s1 = this->_starList->stars().at(i1).data();
+    Star *s2 = this->_starList->stars().at(i2).data();
     double dist = s1->distance(s2);
     QString res = QString(_edge2Template);
     res
@@ -261,7 +261,7 @@ void GraphMLExporter::fillEdge2(int eID, int i1, int i2, const QString& lineColo
 void GraphMLExporter::fillNode(int i1,int width, int height, const QString& borderColor,
                                int borderWidth, int fontSize, const QString& textColor,
                                const QString& fillColor) {
-    Star *s1 = this->_starList->stars().at(i1);
+    Star *s1 = this->_starList->stars().at(i1).data();
     QString res = QString(_nodeTemplate);
     res
             .replace("[NODE_ID]", QString::number(i1))

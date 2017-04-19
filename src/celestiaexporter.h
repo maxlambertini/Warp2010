@@ -20,13 +20,15 @@
 #define CELESTIAEXPORTER_H
 
 #include <QtCore>
-#include "star.h"
+#include "star.h" _
+#include "starlist.h"
 #include "planet.h"
 
 class CelestiaExporter
 {
 private:
     Star *_star;
+    StarList * _starList;
 
     QString planetToCelestia(Planet& planet, QString starName, QString planetFatherName);
 
@@ -36,7 +38,10 @@ public:
     {
     }
 
+    inline void setStarList (StarList * sl) { _starList = sl; }
+
     void saveCelestiaDataToFile(QString &filename);
+    void saveStarListToCelestiaFile (QString &filename);
 
 };
 

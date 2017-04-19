@@ -27,15 +27,15 @@
 #include "traderoute.h"
 #include "dialogs/createtraderoutedialog.h"
 
-bool tradeRouteLessThan(TradeRoute *tr1, TradeRoute *tr2);
-bool tradeRouteGreaterThan(TradeRoute *tr1, TradeRoute *tr2);
+bool tradeRouteLessThan(QSharedPointer<TradeRoute> tr1, QSharedPointer<TradeRoute> tr2);
+bool tradeRouteGreaterThan(QSharedPointer<TradeRoute> tr1, QSharedPointer<TradeRoute> tr2);
 
 class TradeRouteMediator : public QObject
 {
     Q_OBJECT
 
     CreateTradeRouteDialog *_createTradeRouteDlg;
-    QVector <QPointer<TradeRoute> > _tradeRoutes;
+    QVector <QSharedPointer<TradeRoute> > _tradeRoutes;
     QMap<int,int>                   _starsInTradeRoutes;
     StarList *_starList;
     QListWidget* _grid;
@@ -64,10 +64,10 @@ public:
     inline void setProgressBar (QProgressBar* pb) { _progressBar = pb;}
     static TradeRouteMediator* mediator() { return &_mediator; }
 
-    inline QVector<QPointer<TradeRoute> > *tradeRoutePtr() { return &_tradeRoutes; }
-    inline QVector<QPointer<TradeRoute> >& tradeRoutes() { return _tradeRoutes; }
+    inline QVector<QSharedPointer<TradeRoute> > *tradeRoutePtr() { return &_tradeRoutes; }
+    inline QVector<QSharedPointer<TradeRoute> >& tradeRoutes() { return _tradeRoutes; }
 
-    inline void addTradeRoute(TradeRoute *route) {
+    inline void addTradeRoute(QSharedPointer<TradeRoute> route) {
         _tradeRoutes.append(route);
         int item;
         foreach (item,route->path())
@@ -80,7 +80,7 @@ public:
     }
 
     inline void removeRoute (int idxRoute) {
-        TradeRoute *route = _tradeRoutes.at(idxRoute);
+        TradeRoute *route = _tradeRoutes.at(idxRoute).data();
         int item, itemVal;
         foreach (item, route->path()) {
             itemVal = _starsInTradeRoutes[item];
@@ -99,21 +99,21 @@ public:
     void sortByRoute(bool bReverse);
 
     inline void clearTradeRoutes() {
-        QPointer<TradeRoute> ptr;
-        foreach (ptr, _tradeRoutes)
-            delete ptr;
+        QSharedPointer<TradeRoute> ptr;
+        //foreach (ptr, _tradeRoutes)
+        //    delete ptr;
         _tradeRoutes.clear();
         _starsInTradeRoutes.clear();
     }
     inline int tradeRoutesCount() { return _tradeRoutes.count(); }
     void tradeRouteToTableWidget(QListWidget *tw);
     void searchTradeRouteToGardenPlanets();
-    TradeRoute * performAddToRouteList(
+    QSharedPointer<TradeRoute> performAddToRouteList(
             QString & tradeRouteName,
             QColor & bgColor,
             QVector<int> &path)
     {
-        QPointer<TradeRoute> tr = new TradeRoute(path);
+        QSharedPointer<TradeRoute> tr(new TradeRoute(path));
         tr->setRouteName(tradeRouteName);
         tr->setRouteColor(bgColor);
         _tradeRoutes.append(tr);

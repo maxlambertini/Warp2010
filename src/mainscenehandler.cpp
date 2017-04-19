@@ -60,15 +60,15 @@ void SceneMediator::initializeRouteColors(int nStep) {
 
 void SceneMediator::drawTradeRoutes()
 {
-    Star *star;
-    Star *p1, *p2;
+    QSharedPointer<Star> star;
+    QSharedPointer<Star> p1, p2;
     ArcGraphicsItem *qgline;
 
     if (_bShowTradeRoute && _tradeRoutes.count() != 0) {
         foreach (star, _starList->stars())
             star->leave();
 
-        TradeRoute *tr;
+        QSharedPointer<TradeRoute> tr;
         int i = 0;
         int dx, dy;
         int nx, ny;
@@ -100,16 +100,16 @@ void SceneMediator::drawTradeRoutes()
                     p2 = _starList->stars().at(max (tr->path().at(idx-1),tr->path().at(idx)));
                     if (!p1->visited() || !p2->visited()) {
                         qgline = new ArcGraphicsItem(
-                                this->starX( p1)*_sizeFactor ,
-                                this->starY( p1)*_sizeFactor ,
-                                this->starX( p2)*_sizeFactor ,
-                                this->starY( p2)*_sizeFactor,penLine );
+                                this->starX( p1.data())*_sizeFactor ,
+                                this->starY( p1.data())*_sizeFactor ,
+                                this->starX( p2.data())*_sizeFactor ,
+                                this->starY( p2.data())*_sizeFactor,penLine );
 
                         _scene->addItem(qgline);
                         qgline->setZValue(700);
                         p1->visit(); p2->visit();
 
-                        float d = p1->distance(p2);
+                        float d = p1->distance(p2.data());
                         QString sDist = QString("%1").arg(d,0,'g',2);
 
                         QGraphicsTextItem *qgti = _scene->addText(sDist,fontDistance);
@@ -131,7 +131,7 @@ void SceneMediator::drawStarGraphicsItems()
     int h = 0;
     int iStar = 0;
     bool bCanDrawStar = false;
-    Star *star;
+    QSharedPointer<Star> star;
 
     for (iStar = 0; iStar < _starList->stars().count(); iStar++)
     {
@@ -157,8 +157,8 @@ void SceneMediator::drawStarGraphicsItems()
 
             StarGraphicsItem *sgi = new StarGraphicsItem(
                     star,
-                    this->starX( star)*_sizeFactor,
-                    this->starY( star)*_sizeFactor,25.0);
+                    this->starX( star.data())*_sizeFactor,
+                    this->starY( star.data())*_sizeFactor,25.0);
             sgi->setPosition(posBase % 4);
             sgi->setStarBrush(starBrushes[nIdx]);
             sgi->setZValue(1500);
@@ -171,8 +171,8 @@ void SceneMediator::drawStarGraphicsItems()
 
 void SceneMediator::drawNeighborsRoute()
 {
-    Star *star;
-    Star *p1, *p2;
+    QSharedPointer<Star> star;
+    QSharedPointer<Star> p1, p2;
     ArcGraphicsItem *qgline;
     QPen   penSilver(Preferences::prefsPtr()->colorStarOtherLink());
     penSilver.setWidthF(1);
@@ -194,10 +194,10 @@ void SceneMediator::drawNeighborsRoute()
 
                     if (!_bShowTradeRoute) {
                         qgline = new ArcGraphicsItem(
-                                this->starX(p1)*_sizeFactor,
-                                this->starY(p1)*_sizeFactor,
-                                this->starX(p2)*_sizeFactor,
-                                this->starY(p2)*_sizeFactor,penSilver);
+                                this->starX(p1.data())*_sizeFactor,
+                                this->starY(p1.data())*_sizeFactor,
+                                this->starX(p2.data())*_sizeFactor,
+                                this->starY(p2.data())*_sizeFactor,penSilver);
                         _scene->addItem(qgline);
                         qgline->setZValue(-20000);
                     }
@@ -205,10 +205,10 @@ void SceneMediator::drawNeighborsRoute()
                         if (_starsInTradeRoutes.contains(i1) && _starsInTradeRoutes.contains(i2))
                         {
                             qgline = new ArcGraphicsItem(
-                                    this->starX( p1)*_sizeFactor,
-                                    this->starY(p1)*_sizeFactor,
-                                    this->starX( p2)*_sizeFactor,
-                                    this->starY(p2)*_sizeFactor,penSilver);
+                                    this->starX( p1.data())*_sizeFactor,
+                                    this->starY(p1.data())*_sizeFactor,
+                                    this->starX( p2.data())*_sizeFactor,
+                                    this->starY(p2.data())*_sizeFactor,penSilver);
                             _scene->addItem(qgline);
                             qgline->setZValue(-20000);
 
@@ -222,8 +222,8 @@ void SceneMediator::drawNeighborsRoute()
 
 void SceneMediator::drawToGraphViz(QString &fileName)
 {
-    Star *star;
-    Star *p1, *p2;
+    QSharedPointer<Star> star;
+    QSharedPointer<Star> p1,p2;
 
     QFile file(fileName);
     if (file.open(QFile::WriteOnly | QFile::Truncate)) {
@@ -276,8 +276,8 @@ void SceneMediator::drawToGraphML(QString &fileName)
 
 void SceneMediator::drawToGML(QString &fileName)
 {
-    Star *star;
-    Star *p1, *p2;
+    QSharedPointer<Star>star;
+    QSharedPointer<Star> p1, p2;
 
 
     QFile file(fileName);
@@ -446,13 +446,13 @@ void SceneMediator::drawToGML(QString &fileName)
                         p1->visit();
                         p2->visit();
                         output << "    edge [\n        source " << star->path().at(w-1) << "\n        target "<< star->path().at(w);
-                        output << "\n        label \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                        output << "\n        label \"" << QString::number( p1->distance(p2.data()),'g',2) << "\"\n";
                         output << "        graphics\n        [\n";
                         output << "            width    "  << QString::number(myWidth) << "\n";
                         output << "            fill    \""<< fillColor <<  "\"\n";
                         output << "\n        ]\n";
                         output << "        labelGraphics\n        [\n";
-                        output << "            text    \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                        output << "            text    \"" << QString::number( p1->distance(p2.data()),'g',2) << "\"\n";
                         output << "            outline    \"" << fillColor << "\"\n";
                         output << "            fill    \"#FFFFFF\"\n";
                         output << "            fontSize    15\n";
@@ -482,13 +482,13 @@ void SceneMediator::drawToGML(QString &fileName)
                     p1 = _starList->stars().at(i1);
                     p2 = _starList->stars().at(i2);
                     output << "    edge [\n        source " << i1 << "\n        target "<< i2 ;
-                    output << "\n        label \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                    output << "\n        label \"" << QString::number( p1->distance(p2.data()),'g',2) << "\"\n";
                     output << "        graphics\n        [\n";
                     output << "            fill    \"#808080\"\n";
                     output << "            width   2\n";
                     output << "\n        ]\n";
                     output << "        labelGraphics\n        [\n";
-                    output << "            text    \"" << QString::number( p1->distance(p2),'g',2) << "\"\n";
+                    output << "            text    \"" << QString::number( p1->distance(p2.data()),'g',2) << "\"\n";
                     output << "            outline    \"#808080\"\n";
                     output << "            fill    \"#808080\"\n";
                     output << "            fontSize    10\n";
@@ -510,8 +510,8 @@ void SceneMediator::drawToGML(QString &fileName)
 
 void SceneMediator::drawOptimalPath()
 {
-    Star *star;
-    Star *p1, *p2;
+    QSharedPointer<Star> star;
+    QSharedPointer<Star> p1, p2;
     ArcGraphicsItem *qgline;
     QColor colorSilver = Preferences::prefsPtr()->colorStarShortestLink();
     QColor colorPen = Preferences::prefsPtr()->colorStarShortestLink();
@@ -548,14 +548,14 @@ void SceneMediator::drawOptimalPath()
                         routepen.setColor(_routeColors.at(nColor));
 
                         qgline = new ArcGraphicsItem(
-                                this->starX( p1)*_sizeFactor,
-                                this->starY( p1)*_sizeFactor,
-                                this->starX( p2)*_sizeFactor,
-                                this->starY( p2)*_sizeFactor,routepen);
+                                this->starX( p1.data())*_sizeFactor,
+                                this->starY( p1.data())*_sizeFactor,
+                                this->starX( p2.data())*_sizeFactor,
+                                this->starY( p2.data())*_sizeFactor,routepen);
                         _scene->addItem(qgline);
                         qgline->setZValue(1000);
 
-                        float d = p1->distance(p2);
+                        float d = p1->distance(p2.data());
                         QString sDist = QString("%1").arg(d,0,'g',2);
 
                         QGraphicsTextItem *qgti = _scene->addText(sDist,fontDistance);
@@ -601,7 +601,7 @@ void SceneMediator::populateScene()
     QFont  font("Arial");
     font.setPointSizeF(10);
 
-    TradeRoute *route;
+    QSharedPointer<TradeRoute> route;
     int iPath;
     _starsInTradeRoutes.clear();
     _starsWithinReach.clear();
@@ -610,7 +610,7 @@ void SceneMediator::populateScene()
             if (!_starsInTradeRoutes.contains(iPath))
                 _starsInTradeRoutes.append(iPath);
     }
-    Star* star;
+    QSharedPointer<Star> star;
     int iStar;
     foreach (star, _starList->stars()) {
         if (star->path().count() > 0) {
@@ -767,11 +767,11 @@ void SceneMediator::prepareParsecStarList()
 void SceneMediator::setParsecStarOnHexMap(int &maxX, int &maxY, int &minX, int &minY)
 {
     bool bCanDrawStar = false;
-    Star *myStar;
+    QSharedPointer<Star> myStar;
     ParsecStar ps;
     int h = 0;
 
-    TradeRoute * route;
+    QSharedPointer<TradeRoute> route;
 
 
     for (int idx = 0; idx < _parsecStarList.count(); idx++) {
@@ -835,7 +835,7 @@ void SceneMediator::drawReachableStarsOnHexMap() {
     if (_bShowOnlyReachableWorlds) {
         QFont fontDistance = Preferences::prefsPtr()->fontBody();
 
-        Star *star;
+        QSharedPointer<Star> star;
         for (int h = 0; h < _parsecStarList.count(); h++)
             _parsecStarList[h].leave();
 
@@ -872,7 +872,7 @@ void SceneMediator::drawReachableStarsOnHexMap() {
                         QBrush br = QBrush(QColor("white"));
 
 
-                        float d = p1.star()->distance(p2.star());
+                        float d = p1.star()->distance(p2.star().data());
                         QString sDist = QString("%1").arg(d,0,'g',2);
 
                         QGraphicsTextItem *qgti = _scene->addText(sDist,fontDistance);
@@ -897,7 +897,7 @@ void SceneMediator::drawTradeRoutesOnHexMap()
 
         for (int h = 0; h < _parsecStarList.count(); h++)
             _parsecStarList[h].leave();
-        TradeRoute *tr;
+        QSharedPointer<TradeRoute> tr;
         int i = 0;
         int dx, dy;
         int nx, ny;
@@ -951,7 +951,7 @@ void SceneMediator::drawTradeRoutesOnHexMap()
                             qg1->setZValue(400);
                         }
 
-                        float d = p1.star()->distance(p2.star());
+                        float d = p1.star()->distance(p2.star().data());
                         QString sDist = QString("%1").arg(d,0,'g',2);
 
                         QGraphicsTextItem *qgti = _scene->addText(sDist,fontDistance);

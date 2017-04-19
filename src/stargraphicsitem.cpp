@@ -21,9 +21,10 @@
 #include <QStyleOptionGraphicsItem>
 #include <helpers/preferences.h>
 #include <dialogs/preferencesdialog.h>
+#include "warpexception.h"
 
 
-StarGraphicsItem::StarGraphicsItem(Star *star, double x, double y, double width)
+StarGraphicsItem::StarGraphicsItem(QSharedPointer<Star> star, double x, double y, double width)
 {
     _star = star;
     _x = x;
@@ -41,58 +42,61 @@ QRectF StarGraphicsItem::boundingRect() const
     //QFont font ("Arial",11,100,false);
     //font.setFamily(_fontName);
     //font.setPointSizeF(_fontSize);
-    QFont font = Preferences::prefs().fontBody();
-
-    QFontMetricsF mf(font);
-    double mfHeight = mf.height();
-    double mfWidth = mf.width( _star->starName);
-
     QRectF rect(1,1,1,1);
-    QRectF rect1 = mf.boundingRect(rect,Qt::AlignLeft | Qt::AlignTop,_star->starName);
+    try {
+        QFont font = Preferences::prefs().fontBody();
+        QFontMetricsF mf(font);
+        double mfHeight = mf.height();
+        double mfWidth = mf.width( _star->starName);
 
-    double mfMiddleW = rect1.width() / 2;
-    double mfMiddleH = rect1.height() / 2;
-    if (mfMiddleW < _starWidth)
-        mfMiddleW = _starWidth+1;
-    if (mfMiddleH < _starWidth)
-        mfMiddleH = _starWidth+1;
+        QRectF rect1 = mf.boundingRect(rect,Qt::AlignLeft | Qt::AlignTop,_star->starName);
 
-    /*
-    switch (_position) {
-        case NSStarGraphicsItem::PositionTop:
-            rect.setLeft( _x - mfMiddleW);
-            rect.setRight(_x+ mfMiddleW);
-            rect.setTop(_y-_starWidth/2);
-            rect.setBottom(_y+_starWidth/2+2+mfHeight);
-            break;
-        case NSStarGraphicsItem::PositionBottom:
-            rect.setLeft( _x - mfMiddleW);
-            rect.setRight(_x+ mfMiddleW);
-            rect.setTop(_y-_starWidth/2 -2 -mfHeight);
-            rect.setBottom(_y+_starWidth/2+2);
-            break;
-        case NSStarGraphicsItem::PositionLeft:
-            rect.setLeft( _x - mfMiddleW -2 -mfWidth);
-            rect.setRight(_x+ mfMiddleW);
-            rect.setTop(_y-_starWidth/2);
-            rect.setBottom(_y+_starWidth/2);
-            break;
-        case NSStarGraphicsItem::PositionRight:
-            rect.setLeft( _x - mfMiddleW);
-            rect.setRight(_x+ mfMiddleW +2 + mfWidth);
-            rect.setTop(_y-_starWidth/2);
-            rect.setBottom(_y+_starWidth/2);
-            break;
-        default:
-            break;
-        }
-        */
-    rect.setLeft( _x - mfMiddleW);
-    rect.setRight(_x+ mfMiddleW +2 + mfWidth);
-    rect.setTop(_y-_starWidth/2);
-    rect.setBottom(_y+_starWidth/2);
+        double mfMiddleW = rect1.width() / 2;
+        double mfMiddleH = rect1.height() / 2;
+        if (mfMiddleW < _starWidth)
+            mfMiddleW = _starWidth+1;
+        if (mfMiddleH < _starWidth)
+            mfMiddleH = _starWidth+1;
 
-    return rect;
+        /*
+        switch (_position) {
+            case NSStarGraphicsItem::PositionTop:
+                rect.setLeft( _x - mfMiddleW);
+                rect.setRight(_x+ mfMiddleW);
+                rect.setTop(_y-_starWidth/2);
+                rect.setBottom(_y+_starWidth/2+2+mfHeight);
+                break;
+            case NSStarGraphicsItem::PositionBottom:
+                rect.setLeft( _x - mfMiddleW);
+                rect.setRight(_x+ mfMiddleW);
+                rect.setTop(_y-_starWidth/2 -2 -mfHeight);
+                rect.setBottom(_y+_starWidth/2+2);
+                break;
+            case NSStarGraphicsItem::PositionLeft:
+                rect.setLeft( _x - mfMiddleW -2 -mfWidth);
+                rect.setRight(_x+ mfMiddleW);
+                rect.setTop(_y-_starWidth/2);
+                rect.setBottom(_y+_starWidth/2);
+                break;
+            case NSStarGraphicsItem::PositionRight:
+                rect.setLeft( _x - mfMiddleW);
+                rect.setRight(_x+ mfMiddleW +2 + mfWidth);
+                rect.setTop(_y-_starWidth/2);
+                rect.setBottom(_y+_starWidth/2);
+                break;
+            default:
+                break;
+            }
+            */
+        rect.setLeft( _x - mfMiddleW);
+        rect.setRight(_x+ mfMiddleW +2 + mfWidth);
+        rect.setTop(_y-_starWidth/2);
+        rect.setBottom(_y+_starWidth/2);
+
+        return rect;
+    } catch (WarpException exc) {
+        return rect;
+    }
 }
 
 void StarGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget)

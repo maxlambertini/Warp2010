@@ -38,10 +38,11 @@ StarList::StarList(const StarList &that) //: QObject()
 
 StarList::~StarList()
 {
-    // qDebug() << "Deleting starlist";
-    Star *pstar;
-    foreach (pstar, _stars)
-        delete pstar;
+    qDebug() << "Deleting starlist";
+    //Star *pstar;
+    //foreach (pstar, _stars)
+    //    delete pstar;
+
 }
 
 /*
@@ -58,16 +59,16 @@ void StarList::createRandomMap(double radius = 50, double density = 750)
     int starCount = (int)(1000 * dFactor) + SSGX::d100()-SSGX::d100();
     Onomastikon*  names = Onomastikon::instancePtr();
 
-    Star *starToDelete;
-    foreach (starToDelete,_stars)
-        delete starToDelete;
+    //Star *starToDelete;
+    //foreach (starToDelete,_stars)
+    //    delete starToDelete;
+    qDebug() << "Creating random map....";
     _stars.clear();
+    _stars.squeeze();
 
-
-    Star *newStar = 0;
     for (int idx = 0; idx < starCount; idx++)
     {
-        newStar = new Star(radius);
+        QSharedPointer<Star> newStar = QSharedPointer<Star>(new Star(radius));
         int die = SSGX::d10();
         if (die < 3)
             newStar->starName = names->greekName();
@@ -96,7 +97,7 @@ void StarList::saveMap(const QString& filename)
 {
     QFile data(filename);
     if (data.open(QFile::WriteOnly | QFile::Truncate)) {
-        Star *star;
+        QSharedPointer<Star> star;
         QTextStream out(&data);
 
         double d = 1000.00;
@@ -127,6 +128,7 @@ void StarList::loadMap(const QString& filename) throw(std::exception)
     QString prevID = "xxxxxx";
     QString ID = "";
 
+    /*
     Star *starToDelete;
     foreach (starToDelete,_stars) {
         if (starToDelete != 0) {
@@ -134,6 +136,7 @@ void StarList::loadMap(const QString& filename) throw(std::exception)
             delete starToDelete;
         }
     }
+    */
     _stars.clear();
     //qDebug() << "Cleared star";
 
@@ -151,7 +154,7 @@ void StarList::loadMap(const QString& filename) throw(std::exception)
             if (this->_listName.isNull())
                 throw WarpException("Invalid star file format");
             QString line;
-            Star* newStar;
+            //Star* newStar;
             //qDebug() << "stream opened, reading.";
             do
             {
@@ -172,7 +175,7 @@ void StarList::loadMap(const QString& filename) throw(std::exception)
                     QString y = items.at(2);
                     QString z = items.at(3);
                     //qDebug() << x << "," << y << "," << z;
-                    newStar = new Star();
+                    QSharedPointer<Star> newStar = QSharedPointer<Star>(new Star());
 
                     Q_ASSERT (newStar != 0);
 
@@ -193,7 +196,7 @@ void StarList::loadMap(const QString& filename) throw(std::exception)
 
                         _stars.append(newStar);
                         newStar->setIsSister(false);
-                        currentStar = newStar;
+                        currentStar = newStar.data();
                         //qDebug() << "Appended star: " << ID;
                     }
                     else {
@@ -217,7 +220,7 @@ void StarList::loadMap(const QString& filename) throw(std::exception)
 void StarList::calculateNeighbors(double distance)
 {
     double fDist;
-    Star *stTo, *stFrom;
+    QSharedPointer<Star> stTo, stFrom;
     QVector<int> v;
     int starCount = _stars.count();
     // qDebug() << "Cleaning neighbors list";
@@ -233,7 +236,7 @@ void StarList::calculateNeighbors(double distance)
         for (int z = starCount-1; z > i; z--)
         {
             stTo = _stars.at(z);
-            fDist = stFrom->distance(stTo);
+            fDist = stFrom->distance(stTo.data());
             if (fDist  <= distance)
             {
                 stFrom->appendToNeighbors(z);
@@ -250,7 +253,7 @@ void StarList::calculateNeighbors(double distance)
         for (int z = 0; z < stFrom->neighbors().count(); z++) {
             int n = stFrom->neighbors().at(z);
             stTo = _stars.at(n);
-            double d = stFrom->distance(stTo);
+            double d = stFrom->distance(stTo.data());
             neighbors.insert(d,n);
         }
         stFrom->clearNeighbors();
@@ -268,14 +271,14 @@ void StarList::calculateNeighbors(double distance)
 double StarList::calculatePathDistance(int idx)
 {
     double dDist = 0.0;
-    Star *star = _stars.at(idx);
-    Star *s1,*s2;
+    QSharedPointer<Star> star = _stars.at(idx);
+    QSharedPointer<Star> s1,s2;
     if (star->path().count() > 1) {
         for (int i = 1; i < star->path().count(); i++)
         {
             s1 = _stars.at(star->path().at(i-1));
             s2 = _stars.at(star->path().at(i));
-            dDist += s1->distance(s2);
+            dDist += s1->distance(s2.data());
         }
     }
     return dDist;
@@ -284,13 +287,13 @@ double StarList::calculatePathDistance(int idx)
 double StarList::calculatePathDistance(QVector<int>& items)
 {
     double dDist = 0.0;
-    Star *s1,*s2;
+    QSharedPointer<Star> s1,s2;
     if (items.count() > 1) {
         for (int i = 1; i < items.count(); i++)
         {
             s1 = _stars.at(i-1);
             s2 = _stars.at(i);
-            dDist += s1->distance(s2);
+            dDist += s1->distance(s2.data());
         }
     }
     return dDist;
@@ -298,7 +301,7 @@ double StarList::calculatePathDistance(QVector<int>& items)
 
 void StarList::rebuildMatrix(int idx=0)
 {
-    Star *star;
+    QSharedPointer<Star> star;
         // qDebug() << "Clearing star paths";
     foreach (star, this->stars()) {
         star->clearPath();
@@ -317,7 +320,7 @@ void StarList::rebuildMatrix(int idx=0)
 // iterative is the way :-)
 void StarList::buildMatrix(int idx,bool isStartingMode)
 {
-    Star *wn1, *wn2, *wn3;
+    QSharedPointer<Star> wn1, wn2, wn3;
     double dist,dist2;
     QList<int> lStart, lDest;
 
@@ -340,31 +343,20 @@ void StarList::buildMatrix(int idx,bool isStartingMode)
             {
                 int nNeighbor = wn1->neighbors().at(i);
                 wn2 = _stars.at(nNeighbor);
-                    // qDebug() << "Looking on star " << wn2->starName << "whose path.length is " << wn2->path().count();
                 if (wn2->path().count() == 0)
                 {
-                        // qDebug() << "wn2 path count == 0";
                     for (int i2 = 0; i2 < wn1->path().count(); i2++) {
                         wn2->appendToPath(wn1->path().at(i2));
-                            // qDebug() << "appending wn1 " << wn1->starName;
                     }
                     wn2->appendToPath(nNeighbor);
                 }
                 else
                 {
-                    //qDebug() << "calc'ing dist, neighboring star " << wn1->starName;
                     dist = this->calculatePathDistance(nNeighbor);
-                    dist2 = this->calculatePathDistance(idx)+wn1->distance(wn2);
-                    if (wn2->starName.startsWith("Kormoran")) {
-                        //qDebug() << wn2->starName << " dist is " << dist;
-                        //qDebug() << wn1->starName << " dist2 is " << dist2;
-                    }
-
-
+                    dist2 = this->calculatePathDistance(idx)+wn1->distance(wn2.data());
 
                     if (dist2 < dist)
                     {
-                        //qDebug() << "distance is shorter!";
                         QVector<int> lst2;
                         wn3 = _starList.stars().at(idx);
                         for (int ix = 0; ix < wn1->path().count(); ix++)
@@ -373,13 +365,12 @@ void StarList::buildMatrix(int idx,bool isStartingMode)
                         for (int midx = 0; midx < _stars.count(); midx++)
                         {
                             //// qDebug() << "adding " << midx;
-                            Star* myStar = _stars.at(midx);
+                            QSharedPointer<Star> myStar = _stars.at(midx);
                             myStar->changeStartingPath(lst2);
                         }
                     }
                 }
             }
-
             for (int i = 0; i < wn1->neighbors().count(); i++)
             {
                 int nNeighbor = wn1->neighbors().at(i);
@@ -387,9 +378,7 @@ void StarList::buildMatrix(int idx,bool isStartingMode)
                 if (!wn2->visited()  )
                     if (!lDest.contains(nNeighbor))
                         lDest.append(nNeighbor);
-                    //this->buildMatrix(nNeighbor,false);
             }
-            //qDebug() << "neighbors to process: " << lDest.count();
         }
         lStart.clear();
         int iTmp;
@@ -401,7 +390,7 @@ void StarList::buildMatrix(int idx,bool isStartingMode)
 }
 
 void StarList::buildReachableStars() {
-    Star* star;
+    QSharedPointer<Star> star;
     _reachableStars.clear();
     for (int idx = 0; idx < this->stars().count(); idx++) {
         star = this->stars().at(idx);
@@ -415,7 +404,7 @@ void StarList::buildReachableStars() {
 QVector<ParsecStar>& StarList::prepareParsecStarList(SceneMediatorDrawMode::DrawMode mode)
 {
     _parsecStarList.clear();
-    Star * star;
+    QSharedPointer<Star> star;
     int cx, cy;
     QStringList psCoord;
     foreach (star, this->stars()) {
@@ -491,20 +480,20 @@ QStarList& StarList::getQStarList(bool bGreaterThan) {
     return _qStarList;
 }
 
-bool starLessThan(Star *st1, Star *st2)
+bool starLessThan(QSharedPointer<Star> st1, QSharedPointer<Star> st2)
 {
-    if (st2 == 0)
+    if (st2.isNull())
         return false;
-    if (st1 == 0)
+    if (st1.isNull())
         return true;
     return st2->path().count() > st1->path().count();
 
 }
 
-bool starGreaterThan(Star *st1, Star *st2) {
-    if (st1 == 0)
+bool starGreaterThan(QSharedPointer<Star> st1, QSharedPointer<Star> st2) {
+    if (st1.isNull())
         return false;
-    if (st2 == 0)
+    if (st2.isNull())
         return true;
     return st1->path().count() > st2->path().count();
 

@@ -37,12 +37,12 @@ void StarMapWidget::loadMap(const QString& filename)
     _starList->buildMatrix();
 
     QString data("On the road to Gamma Serpenti!\n");
-    Star *gs = _starList->stars().at(477);
+    QSharedPointer<Star> gs = _starList->stars().at(477);
 
     int iStar;
     foreach (iStar, gs->path())
     {
-        Star *step = _starList->stars().at(iStar);
+        QSharedPointer<Star> step = _starList->stars().at(iStar);
         data.append( step->starName + "\n");
     }
 
@@ -53,12 +53,12 @@ void StarMapWidget::setMapToStar()
 {
     _starList->rebuildMatrix(499);
     QString data("On the road to Gamma Serpenti from Kingsland!\n");
-    Star *gs = _starList->stars().at(477);
+    QSharedPointer<Star> gs = _starList->stars().at(477);
 
     int iStar;
     foreach (iStar, gs->path())
     {
-        Star *step = _starList->stars().at(iStar);
+        QSharedPointer<Star> step = _starList->stars().at(iStar);
         data.append( step->starName + "\n");
     }
 
@@ -85,12 +85,12 @@ void StarMapWidget::createSVG(const QString& filename = "c:/starmap.svg")
 
     QPointF ptPrev;
 
-    Star *theStar;
+    QSharedPointer<Star> theStar;
     foreach (theStar, _starList->stars()) {
         theStar->leave();
     }
 
-    Star *p1, *p2;
+    QSharedPointer<Star> p1, p2;
     painter.setPen(routepen);
     //int pathCount = 0;
     foreach (theStar, _starList->stars()) {

@@ -39,11 +39,11 @@ TradeRoute::TradeRoute(const TradeRoute & that) : QObject()
 }
 
 
-void TradeRoute::WriteTradeRoutesToFile (QVector<QPointer<TradeRoute> >& routes, QString file)
+void TradeRoute::WriteTradeRoutesToFile (QVector<QSharedPointer<TradeRoute> >& routes, QString file)
 {
     QFile fileOut(file);
     if (fileOut.open(QFile::ReadWrite | QFile::WriteOnly | QFile::Truncate)) {
-        TradeRoute *tr;
+        QSharedPointer<TradeRoute> tr;
         QTextStream out (&fileOut);
         out << "TRADEROUTES" << "\n";
         foreach (tr, routes) {
@@ -65,14 +65,14 @@ void TradeRoute::WriteTradeRoutesToFile (QVector<QPointer<TradeRoute> >& routes,
     }
 }
 
-void TradeRoute::ReadTradeRoutesFromFile(QVector<QPointer<TradeRoute> >& routes, QString file)
+void TradeRoute::ReadTradeRoutesFromFile(QVector<QSharedPointer<TradeRoute> >& routes, QString file)
 {
     QFile filein(file);
     if (filein.open(QFile::ReadWrite  | QFile::ReadOnly))
     {
         // qDebug() << "Opened file";
 
-        QPointer<TradeRoute> tr;
+        QSharedPointer<TradeRoute> tr;
         QTextStream in(&filein);
         QString line = in.readLine();
 
@@ -80,8 +80,8 @@ void TradeRoute::ReadTradeRoutesFromFile(QVector<QPointer<TradeRoute> >& routes,
 
         if (line == "TRADEROUTES") //OK
         {            
-            foreach (tr, routes)
-                delete tr;
+            //foreach (tr, routes)
+            //    delete tr;
             routes.clear();
 
             // qDebug() << "Former routes have been cleared. ";
@@ -101,7 +101,7 @@ void TradeRoute::ReadTradeRoutesFromFile(QVector<QPointer<TradeRoute> >& routes,
                 // qDebug() << "read items " << pathItems;
                 // qDebug() << "read line " << line;
 
-                tr = new TradeRoute();
+                QSharedPointer<TradeRoute> tr(new TradeRoute());
                 tr->setRouteName(routeName);
                 QStringList lsColor = routeColors.split("|", QString::SkipEmptyParts);
                 QStringList lsPath = pathItems.split("|",QString::SkipEmptyParts);

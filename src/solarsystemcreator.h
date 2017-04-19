@@ -27,7 +27,7 @@ class SolarSystemCreator
 {
 
 private:
-    Star*   _star;
+    QSharedPointer<Star>    _star;
     int    _orbits;
     int    _nMod;
     Onomastikon *_onomastikon;
@@ -43,10 +43,10 @@ private:
 
 public:
     SolarSystemCreator() : _onomastikon(Onomastikon::instancePtr()) {}
-    SolarSystemCreator(Star *star) : _onomastikon(Onomastikon::instancePtr()){ _star = star; }
+    SolarSystemCreator(QSharedPointer<Star> star) : _onomastikon(Onomastikon::instancePtr()){ _star = star; }
 
-    Star* star() { return _star; }
-    void setStar(Star *s) { _star = s; }
+    QSharedPointer<Star>  star() { return _star; }
+    void setStar(QSharedPointer<Star> s) { _star = s; }
 
     void createOrbits();
     void createWorlds();

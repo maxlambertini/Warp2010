@@ -55,6 +55,8 @@ namespace NSStar {
         QString starName;
     } STARCOORD;
 
+
+
     typedef struct _STARVALUE {
         qint32 numGarden;
         qint32 numGlacier;
@@ -89,9 +91,16 @@ private:
     double          _innerLifeZone;
     double          _idealLifeZone;
     double          _outerLifeZone;
+    double          _absMagnitude;
+    double          _appMagnitude;
     double _x;
     double _y;
     double _z;
+
+    double _dist;
+    double _phi;
+    double _theta;
+
     long _nx;
     long _ny;
     long _nz;
@@ -105,7 +114,7 @@ private:
     QVector<Planet> _planets;
     QVector<int>    _neighbors;
     QVector<int>    _path;
-    QVector<Star *> _sisters;
+    QVector<QSharedPointer<Star>> _sisters;
 
     int _numGardens;
     int _numMarginals;
@@ -114,10 +123,50 @@ private:
     int _numIce ;
     int _currentPlanet;
 
+
     NSStar::STARVALUE _starValue;
 
 public:
     QString         starName;
+
+    inline void toPolar(double dx = 0.0, double dy=0.0, double dz=0.0) {
+        double ax = _x+dx;
+        double ay = _y+dy;
+        double az = _z+dz;
+        _dist = sqrt(ax*ax+ay*ay+az*az );   //Dist
+        _theta = acos(az/_dist);            //Dec
+        _phi = atan(ay/ax);                 //RA
+        _appMagnitude = _magnitude - 5 +5*log10(_dist/3.26);
+    }
+
+
+    inline QString getCelestiaStcEntry (int hipEntry=600000,double dx = 0.0, double dy=0.0, double dz=0.0) {
+        this->toPolar(dx,dy,dz);
+        QString res = R"(
+            #######################
+            #hip%1.stc
+            #######################
+            # HIP %2
+            %3 "%4" {              # fake HIP id number & Star "name"
+              RA  %5            # J2000 Right Ascension in degrees
+              Dec  %6           # J2000 Declination in degrees
+              Distance  %7         # Distance from Sun in Light Years
+              SpectralType "%8"    # MK spectral and luminosity classification
+              AppMag %9         # Apparent visual brightness
+            }
+            #######################
+                      )";
+        res = res.arg(QString::number(hipEntry), QString::number(hipEntry),
+                      QString::number(hipEntry), this->starName, QString::number(this->phi()),
+                      QString::number(this->theta()), QString::number(this->dist()),
+                      this->starFullType(), QString::number(this->appMagnitude()));
+        return res;
+    }
+
+    inline double phi() { return _phi; }
+    inline double theta() { return _theta; }
+    inline double dist() { return _dist; }
+    inline double appMagnitude() { return _appMagnitude; }
 
     inline double x() { return _x;}
     inline double y() { return _y;}
@@ -226,7 +275,7 @@ public:
 
     inline void appendToNeighbors(int i) { _neighbors.append(i); }
     inline void appendToPath(int i) { _path.append(i); }
-    inline void appendToSisters(Star *s) { _sisters.append(s); }
+    inline void appendToSisters(QSharedPointer<Star> s) { _sisters.append(s); }
     inline void appendToPlanets(Planet& p) { _planets.append(p); }
 
     inline int planetCount() {return _planets.count(); }
@@ -275,7 +324,7 @@ public:
     void setStarData();
 
     static void serializePtr(QDataStream& out, Star* p);
-    static Star * deserializeToPtr(QDataStream& in);
+    static QSharedPointer<Star> deserializeToPtr(QDataStream& in);
 
     NSStar::STARVALUE calcStarValue();
     int diasporaEnvironment();

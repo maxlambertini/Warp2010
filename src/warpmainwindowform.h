@@ -58,7 +58,7 @@ private:
     QProgressBar *progressBar;
     bool bReloading;
     CreateTradeRouteDialog *_createTradeRouteDlg;
-    QVector<QPointer<TradeRoute> > _tradeRoutes;
+    QVector<QSharedPointer<TradeRoute> > _tradeRoutes;
     NewSectorDialog *_newSectorDialog;
 
     void populateScene();
@@ -67,7 +67,7 @@ private:
 
 
     SceneMediator *       _sceneMediator;
-    Star    *             _currentStar;
+    QSharedPointer<Star>  _currentStar;
     TradeRouteMediator *  _tradeRouteMediator;
     TradeRouteDialog *    _tradeRouteDialog;
     TradeRoute*           _currentTradeRoute;

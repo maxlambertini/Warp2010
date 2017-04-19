@@ -27,13 +27,13 @@ class StarWidgetItem : public QListWidgetItem
 {
 
 private:
-    Star *_star;
+    QSharedPointer<Star> _star;
     int  _indexOnList;
 
 public:
-    StarWidgetItem(Star *star, int idx, QListWidget *view) ;
+    StarWidgetItem(QSharedPointer<Star> newStar, int idx, QListWidget *view) ;
     virtual ~StarWidgetItem() {  }
-    Star* star() { return _star;}
+    QSharedPointer<Star> star() { return _star;}
     int indexOnList() { return _indexOnList;}
 
 };

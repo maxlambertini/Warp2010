@@ -49,8 +49,8 @@ public:
     inline void clearPath() { _path.clear();}
     inline void appendToPath(int i) { _path.append(i);}
 
-    static void WriteTradeRoutesToFile (QVector<QPointer<TradeRoute> > & routes, QString file);
-    static void ReadTradeRoutesFromFile(QVector<QPointer<TradeRoute> > & routes, QString file);
+    static void WriteTradeRoutesToFile (QVector<QSharedPointer<TradeRoute> > & routes, QString file);
+    static void ReadTradeRoutesFromFile(QVector<QSharedPointer<TradeRoute> > & routes, QString file);
 
 
 };

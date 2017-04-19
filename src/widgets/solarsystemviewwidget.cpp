@@ -53,6 +53,11 @@ SolarSystemViewWidget::SolarSystemViewWidget(QWidget *parent) :
     connect(ui->planetInspector,SIGNAL(planetDataChanged()),this, SLOT(onPlanetDataChanged()));
     connect(ui->starInspector,SIGNAL(neighborSelected(int)),this, SLOT(onNeighborSelected(int)));
 
+    ui->btnRotateLeft->setVisible(false);
+    ui->btnRotateRight->setVisible(false);
+    ui->rotateSlider->setVisible(false);
+
+
 }
 
 SolarSystemViewWidget::~SolarSystemViewWidget()
@@ -84,12 +89,12 @@ void SolarSystemViewWidget::handlePlanetSelected(Planet *p) {
     ui->planetInspector->setPlanet(p);
 }
 
-void SolarSystemViewWidget::setStar(Star *s) {
+void SolarSystemViewWidget::setStar(QSharedPointer<Star> s) {
     if (s != 0) {
         _star = s;
-        _solsysToScene->setStar(s);
-        ui->starInspector->setStar(s);
-        ui->solSysWidget->setStar(s);
+        _solsysToScene->setStar(s.data());
+        ui->starInspector->setStar(s.data());
+        ui->solSysWidget->setStar(s.data());
         if (_solsysToScene->scenePtr() != 0) {
             QRectF r = _solsysToScene->scenePtr()->itemsBoundingRect();
             _solsysToScene->scenePtr()->invalidate(r);
