@@ -227,6 +227,8 @@ private slots:
 
     //GRAPHICS SCENE MOUSE EVENT
 
+    void on_actionCreate_map_triggered();
+    void on_actionCreate_map_2_triggered();
 };
 
 #endif // WARPMAINWINDOWFORM_H

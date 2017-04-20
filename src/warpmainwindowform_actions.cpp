@@ -56,7 +56,8 @@
 #include "dialogs/createbetweenstarsdlg.h"
 #include "dialogs/createnewstardlg.h"
 #include <QEvent>
-#include "../libnoise/src/noise.h"
+#include <noise/noise.h>
+#include <noiseutils.h>
 
 void WarpMainWindowForm::on_actionLoad_Sector_triggered()
 {

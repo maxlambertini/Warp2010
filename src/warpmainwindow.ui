@@ -806,7 +806,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
      <x>0</x>
      <y>0</y>
      <width>819</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFileSector">
@@ -834,6 +834,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
      <addaction name="actionPrint_Trade_Route"/>
      <addaction name="separator"/>
      <addaction name="action_Clear_Star_Sector_Data"/>
+     <addaction name="actionCreate_map_2"/>
     </widget>
     <widget class="QMenu" name="menuSolar_System_Operations">
      <property name="title">
@@ -1764,6 +1765,16 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="toolTip">
     <string>Export Map to JSON File</string>
+   </property>
+  </action>
+  <action name="actionCreate_map">
+   <property name="text">
+    <string>Create map</string>
+   </property>
+  </action>
+  <action name="actionCreate_map_2">
+   <property name="text">
+    <string>Create map</string>
    </property>
   </action>
  </widget>
