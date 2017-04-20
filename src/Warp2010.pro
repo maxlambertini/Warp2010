@@ -83,7 +83,42 @@ SOURCES += main.cpp \
     helpers/planetrenderer.cpp \
     helpers/matrixbuilder.cpp \
     helpers/parsecstarlisthelper.cpp \
-    helpers/graphmlexporter.cpp
+    helpers/graphmlexporter.cpp \
+    ../libnoise/src/model/cylinder.cpp \
+    ../libnoise/src/model/line.cpp \
+    ../libnoise/src/model/plane.cpp \
+    ../libnoise/src/model/sphere.cpp \
+    ../libnoise/src/module/abs.cpp \
+    ../libnoise/src/module/add.cpp \
+    ../libnoise/src/module/billow.cpp \
+    ../libnoise/src/module/blend.cpp \
+    ../libnoise/src/module/cache.cpp \
+    ../libnoise/src/module/checkerboard.cpp \
+    ../libnoise/src/module/clamp.cpp \
+    ../libnoise/src/module/const.cpp \
+    ../libnoise/src/module/curve.cpp \
+    ../libnoise/src/module/cylinders.cpp \
+    ../libnoise/src/module/displace.cpp \
+    ../libnoise/src/module/exponent.cpp \
+    ../libnoise/src/module/invert.cpp \
+    ../libnoise/src/module/max.cpp \
+    ../libnoise/src/module/min.cpp \
+    ../libnoise/src/module/modulebase.cpp \
+    ../libnoise/src/module/multiply.cpp \
+    ../libnoise/src/module/perlin.cpp \
+    ../libnoise/src/module/power.cpp \
+    ../libnoise/src/module/ridgedmulti.cpp \
+    ../libnoise/src/module/rotatepoint.cpp \
+    ../libnoise/src/module/scalebias.cpp \
+    ../libnoise/src/module/scalepoint.cpp \
+    ../libnoise/src/module/select.cpp \
+    ../libnoise/src/module/spheres.cpp \
+    ../libnoise/src/module/terrace.cpp \
+    ../libnoise/src/module/translatepoint.cpp \
+    ../libnoise/src/module/turbulence.cpp \
+    ../libnoise/src/module/voronoi.cpp \
+    ../libnoise/src/latlon.cpp \
+    ../libnoise/src/noisegen.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -150,7 +185,51 @@ HEADERS += coordinates.h \
     helpers/planetrenderer.h \
     helpers/matrixbuilder.h \
     helpers/parsecstarlisthelper.h \
-    helpers/graphmlexporter.h
+    helpers/graphmlexporter.h \
+    ../libnoise/src/model/cylinder.h \
+    ../libnoise/src/model/line.h \
+    ../libnoise/src/model/model.h \
+    ../libnoise/src/model/plane.h \
+    ../libnoise/src/model/sphere.h \
+    ../libnoise/src/module/abs.h \
+    ../libnoise/src/module/add.h \
+    ../libnoise/src/module/billow.h \
+    ../libnoise/src/module/blend.h \
+    ../libnoise/src/module/cache.h \
+    ../libnoise/src/module/checkerboard.h \
+    ../libnoise/src/module/clamp.h \
+    ../libnoise/src/module/const.h \
+    ../libnoise/src/module/curve.h \
+    ../libnoise/src/module/cylinders.h \
+    ../libnoise/src/module/displace.h \
+    ../libnoise/src/module/exponent.h \
+    ../libnoise/src/module/invert.h \
+    ../libnoise/src/module/max.h \
+    ../libnoise/src/module/min.h \
+    ../libnoise/src/module/module.h \
+    ../libnoise/src/module/modulebase.h \
+    ../libnoise/src/module/multiply.h \
+    ../libnoise/src/module/perlin.h \
+    ../libnoise/src/module/power.h \
+    ../libnoise/src/module/ridgedmulti.h \
+    ../libnoise/src/module/rotatepoint.h \
+    ../libnoise/src/module/scalebias.h \
+    ../libnoise/src/module/scalepoint.h \
+    ../libnoise/src/module/select.h \
+    ../libnoise/src/module/spheres.h \
+    ../libnoise/src/module/terrace.h \
+    ../libnoise/src/module/translatepoint.h \
+    ../libnoise/src/module/turbulence.h \
+    ../libnoise/src/module/voronoi.h \
+    ../libnoise/src/basictypes.h \
+    ../libnoise/src/exception.h \
+    ../libnoise/src/interp.h \
+    ../libnoise/src/latlon.h \
+    ../libnoise/src/mathconsts.h \
+    ../libnoise/src/misc.h \
+    ../libnoise/src/noise.h \
+    ../libnoise/src/noisegen.h \
+    ../libnoise/src/vectortable.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
