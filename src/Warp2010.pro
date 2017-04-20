@@ -122,7 +122,8 @@ SOURCES += main.cpp \
     ../libnoise/src/noise/win32/dllmain.cpp \
     ../libnoise/src/noise/latlon.cpp \
     ../libnoise/src/noise/noisegen.cpp \
-    ../libnoise/src/noiseutils.cpp
+    ../libnoise/src/noiseutils.cpp \
+    dialogs/noisemapplaygrounddialog.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -189,7 +190,8 @@ HEADERS += coordinates.h \
     helpers/planetrenderer.h \
     helpers/matrixbuilder.h \
     helpers/parsecstarlisthelper.h \
-    helpers/graphmlexporter.h
+    helpers/graphmlexporter.h \
+    dialogs/noisemapplaygrounddialog.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
@@ -202,7 +204,8 @@ FORMS += warpmainwindow.ui \
     widgets/solsysinspector.ui \
     widgets/solarsystemviewwidget.ui \
     dialogs/createnewstardlg.ui \
-    dialogs/createbetweenstarsdlg.ui
+    dialogs/createbetweenstarsdlg.ui \
+    dialogs/noisemapplaygrounddialog.ui
 RESOURCES += Resources.qrc
 win32:RC_FILE = warp2010.rc
 win32:CONFIG += console
