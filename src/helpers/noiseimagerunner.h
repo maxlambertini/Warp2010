@@ -27,8 +27,25 @@ class NoiseImageRunner : public QRunnable
     double _lacunarity;
     double _frequency;
 public:
-    NoiseImageRunner();
+    //constructors
+    static NoiseImageRunner CreateEarthlike(
+            int    __seed = SSGX::dn(20000),
+            int    __octave = 6,
+            double __persistence = 0.29,
+            double __lacunarity  = 2.98,
+            double __frequency   = 3.31
+            ) {
+        NoiseImageRunner nir;
+        nir._seed = __seed;
+        nir._octave = __octave;
+        nir._frequency = __frequency;
+        nir._lacunarity = __lacunarity;
+        nir._persistence = __persistence;
+        return nir;
+    }
 
+protected:
+    NoiseImageRunner();
     //interface
     void run();
 
