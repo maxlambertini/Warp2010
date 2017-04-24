@@ -564,10 +564,11 @@ void Image::TakeOwnership (Image& source)
 
 int WriterBMP::CalcWidthByteCount (int width) const
 {
-  return ((width * 3) + 3) & ~0x03;
+  //return ((width * 3) + 3) & ~0x03;
+    return ((width * 4) + 4) & ~0x04;
 }
 
-void WriterBMP::WriteDestFile ()
+noise::uint8* WriterBMP::GetBRGABuffer ()
 {
   if (m_pSourceImage == NULL) {
     throw noise::ExceptionInvalidParam ();
@@ -586,7 +587,52 @@ void WriterBMP::WriteDestFile ()
   // File object used to write the file.
   std::ofstream os;
   os.clear ();
-  
+
+  // Allocate a buffer to hold one horizontal line in the bitmap.
+  try {
+    pLineBuffer = new noise::uint8[destSize];
+  }
+  catch (...) {
+    throw noise::ExceptionOutOfMemory ();
+  }
+
+  // Build and write each horizontal line to the file.
+  noise::uint8 x = 255;
+  memset (pLineBuffer, 0, destSize);
+  for (int y = 0; y < height; y++) {
+    Color* pSource = m_pSourceImage->GetSlabPtr (y);
+    noise::uint8* pDest   = pLineBuffer;
+    for (int x = 0; x < width; x++) {
+        pLineBuffer[y*width*4+x*4+3] = pSource->alpha; // pSource->alpha;
+        pLineBuffer[y*width*4+x*4+2] = pSource->red;
+        pLineBuffer[y*width*4+x*4+1] = pSource->green;
+        pLineBuffer[y*width*4+x*4+0] = pSource->blue;
+      ++pSource;
+    }
+  }
+  return pLineBuffer;
+}
+
+void  WriterBMP::WriteDestFile ()
+{
+  if (m_pSourceImage == NULL) {
+    throw noise::ExceptionInvalidParam ();
+  }
+
+  int width  = m_pSourceImage->GetWidth  ();
+  int height = m_pSourceImage->GetHeight ();
+
+  // The width of one line in the file must be aligned on a 4-byte boundary.
+  int bufferSize = CalcWidthByteCount (width);
+  int destSize   = bufferSize * height;
+
+  // This buffer holds one horizontal line in the destination file.
+  noise::uint8* pLineBuffer = NULL;
+
+  // File object used to write the file.
+  std::ofstream os;
+  os.clear ();
+
   // Allocate a buffer to hold one horizontal line in the bitmap.
   try {
     pLineBuffer = new noise::uint8[bufferSize];
@@ -612,7 +658,7 @@ void WriterBMP::WriteDestFile ()
   os.write ((char*)UnpackLittle32 (d, (noise::uint32)width ), 4);
   os.write ((char*)UnpackLittle32 (d, (noise::uint32)height), 4);
   os.write ((char*)UnpackLittle16 (d, 1 ), 2);   // Planes per pixel
-  os.write ((char*)UnpackLittle16 (d, 24), 2);   // Bits per plane
+  os.write ((char*)UnpackLittle16 (d, 32), 2);   // Bits per plane
   os.write ("\0\0\0\0", 4); // Compression (0 = none)
   os.write ((char*)UnpackLittle32 (d, (noise::uint32)destSize), 4);
   os.write ((char*)UnpackLittle32 (d, 2834), 4); // X pixels per meter
@@ -636,6 +682,7 @@ void WriterBMP::WriteDestFile ()
       *pDest++ = pSource->blue ;
       *pDest++ = pSource->green;
       *pDest++ = pSource->red  ;
+      *pDest++ = pSource->alpha;
       ++pSource;
     }
     os.write ((char*)pLineBuffer, (size_t)bufferSize);
@@ -652,6 +699,7 @@ void WriterBMP::WriteDestFile ()
   os.clear ();
   delete[] pLineBuffer;
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 // WriterTER class
@@ -955,7 +1003,8 @@ RendererImage::RendererImage ():
   m_pBackgroundImage  (NULL),
   m_pDestImage        (NULL),
   m_pSourceNoiseMap   (NULL),
-  m_recalcLightValues (true)
+  m_recalcLightValues (true),
+  m_backgroundColor   (255,255,255,255)
 {
   BuildGrayscaleGradient ();
 };
@@ -1031,7 +1080,8 @@ Color RendererImage::CalcDestColor (const Color& sourceColor,
     (noise::uint8)((noise::uint)(red   * 255.0) & 0xff),
     (noise::uint8)((noise::uint)(green * 255.0) & 0xff),
     (noise::uint8)((noise::uint)(blue  * 255.0) & 0xff),
-    GetMax (sourceColor.alpha, backgroundColor.alpha));
+    GetMax (sourceColor.alpha, backgroundColor.alpha)
+    );
   return newColor;
 }
 
@@ -1182,7 +1232,7 @@ void RendererImage::Render ()
       }
 
       // Get the current background color from the background image.
-      Color backgroundColor (255, 255, 255, 255);
+      Color backgroundColor = m_backgroundColor;
       if (m_pBackgroundImage != NULL) {
         backgroundColor = *pBackground;
       }

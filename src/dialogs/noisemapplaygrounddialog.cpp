@@ -4,6 +4,7 @@
 #include <noiseutils.h>
 #include "star.h"
 #include "ssg_structures.h"
+#include <helpers/noiseimageutils.h>
 
 NoisemapPlaygroundDialog::NoisemapPlaygroundDialog(QWidget *parent) :
     QDialog(parent),
@@ -19,54 +20,70 @@ NoisemapPlaygroundDialog::~NoisemapPlaygroundDialog()
 
 void NoisemapPlaygroundDialog::on_buttonBox_clicked(QAbstractButton *button)
 {
+}
 
+void NoisemapPlaygroundDialog::on_imageSaved(QString filename) {
+    qApp->processEvents();
+    this->setWindowTitle("Saved "+filename);
 }
 
 void NoisemapPlaygroundDialog::CreateBitmap() {
-    module::Perlin myModule;
-    myModule.SetSeed(SSGX::dx(99999));
-    myModule.SetOctaveCount(ui->spnOctave->value());
-    myModule.SetFrequency(ui->spnFrequency->value());
-    myModule.SetPersistence(ui->spnPersistence->value());
-    myModule.SetLacunarity(ui->spnLacunarity->value());
-
-
-    utils::NoiseMap heightMap;
-    utils::NoiseMapBuilderSphere heightMapBuilder;
-    heightMapBuilder.SetSourceModule (myModule);
-    heightMapBuilder.SetDestNoiseMap (heightMap);
-    heightMapBuilder.SetDestSize (1024, 512);
-    heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
-    heightMapBuilder.Build ();
-
-    utils::RendererImage renderer;
-    utils::Image image;
-    renderer.SetSourceNoiseMap (heightMap);
-    renderer.SetDestImage (image);
-    renderer.ClearGradient ();
-    renderer.AddGradientPoint (-1.0000, utils::Color (  0,   0, 255, 255)); // deeps
-    renderer.AddGradientPoint ( 0.2500, utils::Color (  0,   0, 255, 255)); // shallow
-    renderer.AddGradientPoint ( 0.3000, utils::Color (  0, 128, 255, 255)); // shore
-    renderer.AddGradientPoint ( 0.3625, utils::Color (240, 240,  64, 255)); // sand
-    renderer.AddGradientPoint ( 0.4250, utils::Color ( 32, 160,   0, 255)); // grass
-    renderer.AddGradientPoint ( 0.6750, utils::Color (224, 224,   0, 255)); // dirt
-    renderer.AddGradientPoint ( 0.9800, utils::Color (128, 128, 128, 255)); // rock
-    renderer.AddGradientPoint ( 1.0000, utils::Color (255, 255, 255, 255)); // snow
-    /*
-    renderer.EnableLight ();
-    renderer.SetLightContrast (1.0);
-    renderer.SetLightBrightness (2.0);
-    */
-    renderer.Render ();
-
-    utils::WriterBMP writer;
-    writer.SetSourceImage (image);
-    qDebug() << "Writing into tutorial";
-    writer.SetDestFilename ("tutorial.bmp");
-    writer.WriteDestFile ();
+    for (auto x = 0; x < 200; x++) {
+        NoiseImageUtils imgUtils;
+        connect(&imgUtils,SIGNAL(imageFileSaved(QString)),
+                this, SLOT(on_imageSaved(QString)));
+        imgUtils.CreateEarthlike(SSGX::dn(99999),
+                                 ui->spnOctave->value(),
+                                 ui->spnLacunarity->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnFrequency->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnPersistence->value()*(SSGX::floatRand()*0.6+0.7));
+        imgUtils.SaveImage(QString("test_earth__%1.png").arg(x));
+        imgUtils.CreateEarthlikeRMF(SSGX::dn(99999),
+                                 ui->spnOctave->value(),
+                                 ui->spnLacunarity->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnFrequency->value()*(SSGX::floatRand()*0.6+0.7)
+                                 );
+        imgUtils.SaveImage(QString("test_earth_rmf_%1.png").arg(x));
+        imgUtils.CreateEarthClouds(SSGX::d1000());
+        imgUtils.SaveImage(QString("test_clouds__%1.png").arg(x));
+        imgUtils.CreateDesert(666,
+                                 ui->spnOctave->value(),
+                                 ui->spnLacunarity->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnFrequency->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnPersistence->value()*(SSGX::floatRand()*0.6+0.7));
+        imgUtils.SaveImage(QString("test_desert__%1.png").arg(x));
+        imgUtils.CreateDesert(SSGX::dn(99999),
+                                 ui->spnOctave->value(),
+                                 ui->spnLacunarity->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnFrequency->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnPersistence->value()*(SSGX::floatRand()*0.6+0.7),
+                                 utils::Color(12,96,34,255),
+                                 utils::Color(255,255,192,255),
+                                 utils::Color(192,255,192,255));
+        imgUtils.SaveImage(QString("test_desert2__%1.png").arg(x));
+        imgUtils.CreateComplexDesert(SSGX::dn(99999),
+                                 ui->spnOctave->value(),
+                                 ui->spnLacunarity->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnFrequency->value()*(SSGX::floatRand()*0.6+0.7),
+                                 ui->spnPersistence->value()*(SSGX::floatRand()*0.6+0.7),
+                                 utils::Color(212,232,255,255),
+                                 utils::Color(223,255,255,255),
+                                 utils::Color(192,255,192,255));
+        imgUtils.SaveImage(QString("test_desert3__%1.png").arg(x));
+        imgUtils.CreateComplexDesert2(SSGX::dn(99999),
+                                 ui->spnOctave->value(),
+                                 ui->spnLacunarity->value()* (SSGX::floatRand()*0.6+0.7),
+                                 ui->spnFrequency->value()* (SSGX::floatRand()*0.6+0.7),
+                                 ui->spnPersistence->value()*(SSGX::floatRand()*0.6+0.7));
+        imgUtils.SaveImage(QString("test_desert4__%1.png").arg(x));
+        imgUtils.CreateJadePlanet(SSGX::dn(20000),
+                                  QColor(SSGX::dn(250),SSGX::dn(250),SSGX::dn(250)));
+        imgUtils.SaveImage(QString("test_jade__%1.png").arg(x));
+    }
 }
 
 void NoisemapPlaygroundDialog::on_pushButton_clicked()
 {
     CreateBitmap();
 }
+

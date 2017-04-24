@@ -15,7 +15,7 @@
 QT += printsupport widgets svg
 TARGET = Warp2010
 TEMPLATE = app
-QMAKE_CXXFLAGS += -Wall -Wextra
+QMAKE_CXXFLAGS += -Wall -Wextra -O3
 INCLUDEPATH += $$PWD/../libnoise/src
 DEPENDPATH += $$PWD/../libnoise/src
 SOURCES += main.cpp \
@@ -123,7 +123,9 @@ SOURCES += main.cpp \
     ../libnoise/src/noise/latlon.cpp \
     ../libnoise/src/noise/noisegen.cpp \
     ../libnoise/src/noiseutils.cpp \
-    dialogs/noisemapplaygrounddialog.cpp
+    dialogs/noisemapplaygrounddialog.cpp \
+    helpers/noiseimageutils.cpp \
+    helpers/noiseimagerunner.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -191,7 +193,9 @@ HEADERS += coordinates.h \
     helpers/matrixbuilder.h \
     helpers/parsecstarlisthelper.h \
     helpers/graphmlexporter.h \
-    dialogs/noisemapplaygrounddialog.h
+    dialogs/noisemapplaygrounddialog.h \
+    helpers/noiseimageutils.h \
+    helpers/noiseimagerunner.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

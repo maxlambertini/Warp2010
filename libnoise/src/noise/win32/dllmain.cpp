@@ -20,9 +20,11 @@
 // off every 'zig'.)
 //
 
+#ifdef WIN32
 #include <windows.h>
 
 BOOL WINAPI DllMain (HINSTANCE hInst, ULONG reason, LPVOID lpReserved)
 {
   return TRUE;
 }
+#endif

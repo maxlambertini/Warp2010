@@ -1149,6 +1149,11 @@ namespace noise
           m_pSourceImage = &sourceImage;
         }
 
+        Image* GetSourceImage ()
+        {
+          return m_pSourceImage ;
+        }
+
         /// Writes the contents of the image object to the file.
         ///
         /// @pre SetDestFilename() has been previously called.
@@ -1164,6 +1169,7 @@ namespace noise
         /// method to specify the image, then call the SetDestFilename()
         /// method to specify the name of the file to write.
         void WriteDestFile ();
+        noise::uint8* GetBRGABuffer();
 
       protected:
 
@@ -2266,6 +2272,9 @@ namespace noise
           m_pSourceNoiseMap = &sourceNoiseMap;
         }
 
+        Color GetBackgroundColor() { return m_backgroundColor; }
+        void SetBackgroundColor (Color c) { m_backgroundColor = c; }
+
       private:
 
         /// Calculates the destination color.
@@ -2350,6 +2359,8 @@ namespace noise
 
         /// The sine of the elevation of the light source.
         mutable double m_sinElev;
+
+        mutable Color m_backgroundColor;
 
     };
 

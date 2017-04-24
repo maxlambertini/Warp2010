@@ -22,6 +22,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_imageSaved(QString filename);
+
 private:
     Ui::NoisemapPlaygroundDialog *ui;
 };
