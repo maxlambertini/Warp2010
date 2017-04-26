@@ -229,6 +229,11 @@ private slots:
 
     void on_actionCreate_map_triggered();
     void on_actionCreate_map_2_triggered();
+
+    //CELESTIA EXPORTER
+    void on_celestia_export_started();
+    void on_celestia_export_done();
+    void on_celestia_system_exported(int exp);
 };
 
 #endif // WARPMAINWINDOWFORM_H

@@ -23,17 +23,16 @@
 #include "star.h" _
 #include "starlist.h"
 #include "planet.h"
+#include <helpers/noiseimageutils.h>
+#include <QObject>
 
-class CelestiaExporter
+class CelestiaExporter : public QObject
 {
-private:
-    Star *_star;
-    StarList * _starList;
-
-    QString planetToCelestia(Planet& planet, QString starName, QString planetFatherName);
-
+    Q_OBJECT
 
 public:
+    CelestiaExporter() {}
+
     CelestiaExporter(Star *star) : _star(star)
     {
     }
@@ -44,8 +43,64 @@ public:
     void saveStarListToCelestiaFile (QString &filename);
     void saveSolarSystemsToCelestiaFile (QString &filename);
 
-};
+    int zz = 1;
+    QString getPlanetTexture(Planet& p, int i) {
+        QString res = "";
+        switch (p.planetType()) {
+        case ptGarden:
+            if (p.waterPercentage() > 80)
+                niu.CreateEarthlike2(SSGX::dn(999999));
+            else if (p.waterPercentage() < 30)
+                niu.CreateEarthlike3(SSGX::dn(999999));
+            else
+                niu.CreateEarthlike(SSGX::dn(999999));
+            res = QString("earthlike_%1.png").arg(i);
+            niu.SaveImage(res);
+            return res;
+            break;
+        case ptDesert:
+            zz = SSGX::d10();
+            if (zz > 8)
+                niu.CreateDesertG(SSGX::dn(999999));
+            else if (zz  < 3)
+                niu.CreateDesert(SSGX::dn(999999));
+            else
+                niu.CreateComplexDesert(SSGX::dn(999999));
+            res = QString("desert_%1.png").arg(i);
+            niu.SaveImage(res);
+            return res;
+            break;
+        case ptFailedCore:
+            niu.CreateJadePlanet(SSGX::dn(999999));
+            res = QString("failedcore_%1.png").arg(i);
+            niu.SaveImage(res);
+            return res;
+            break;
+        case ptRockball:
+            niu.CreateGranitePlanet(SSGX::dn(999999));
+            res = QString("rockball_%1.png").arg(i);
+            niu.SaveImage(res);
+            return res;
+            break;
+        default:
+            return "";
+        }
+    }
 
+signals:
+    void exported(int idx);
+    void startExporting();
+    void doneExporting();
+
+private:
+    Star *_star;
+    StarList * _starList;
+    NoiseImageUtils niu;
+
+    QString planetToCelestia(Planet& planet, QString starName, QString planetFatherName, int i);
+
+
+};
 
 
 #endif // CELESTIAEXPORTER_H

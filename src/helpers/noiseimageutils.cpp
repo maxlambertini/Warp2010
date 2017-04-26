@@ -4,6 +4,12 @@
 #include "star.h"
 #include "ssg_structures.h"
 #include <memory>
+#include <helpers/qcolorops.h>
+#include <QGraphicsBlurEffect>
+#include <QImage>
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+#include <QPainter>
 
 /*
  *  cloudBase.SetSeed (2);
@@ -151,6 +157,96 @@ void NoiseImageUtils::CreateEarthlike(int seed, int octave, double lacunarity, d
 
 }
 
+void NoiseImageUtils::CreateEarthlike2(int seed, int octave, double lacunarity, double frequency, double persistence)
+{
+    module::Perlin myModule;
+    myModule.SetOctaveCount(octave);
+    myModule.SetFrequency(frequency);
+    myModule.SetLacunarity(lacunarity);
+    myModule.SetPersistence(persistence);
+    myModule.SetSeed(seed);
+
+    module::ScaleBias flatTerrain;
+    flatTerrain.SetSourceModule (0, myModule);
+    flatTerrain.SetBias(-0.55);
+
+
+    utils::NoiseMap heightMap;
+    utils::NoiseMapBuilderSphere heightMapBuilder;
+
+    heightMapBuilder.SetSourceModule (flatTerrain);
+    heightMapBuilder.SetDestNoiseMap (heightMap);
+    heightMapBuilder.SetDestSize (_sizeX, _sizeY);
+    heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+    heightMapBuilder.Build();
+
+    utils::RendererImage renderer;
+    renderer.SetSourceNoiseMap (heightMap);
+    renderer.SetDestImage (this->m_image);
+    renderer.ClearGradient ();
+    renderer.AddGradientPoint (-1.000, utils::Color (  0,   0, 128, 255)); // deeps
+    renderer.AddGradientPoint (-0.200, utils::Color (  0,   0, 255, 255)); // shallow
+    renderer.AddGradientPoint ( 0.000, utils::Color (  0, 128, 255, 255)); // shore
+    renderer.AddGradientPoint ( 0.050, utils::Color (240, 240,  64, 255)); // sand
+    renderer.AddGradientPoint ( 0.250, utils::Color ( 32, 160,   0, 255)); // grass
+    renderer.AddGradientPoint ( 0.370, utils::Color (224, 224,   0, 255)); // dirt
+    renderer.AddGradientPoint ( 0.990, utils::Color (128, 128,   0, 255)); // rock
+    renderer.AddGradientPoint ( 0.999, utils::Color (255, 255, 255, 255)); // rock
+    renderer.EnableLight ();
+    renderer.SetLightContrast (1.0/20560.0);
+    renderer.SetLightBrightness (2.0);
+    renderer.Render ();
+
+    emit imageCreated("Earthlike2");
+
+}
+
+void NoiseImageUtils::CreateEarthlike3(int seed, int octave, double lacunarity, double frequency, double persistence)
+{
+    module::Perlin myModule;
+    myModule.SetOctaveCount(octave);
+    myModule.SetFrequency(frequency);
+    myModule.SetLacunarity(lacunarity);
+    myModule.SetPersistence(persistence);
+    myModule.SetSeed(seed);
+
+    module::ScaleBias flatTerrain;
+    flatTerrain.SetSourceModule (0, myModule);
+    flatTerrain.SetBias(0.55);
+
+
+    utils::NoiseMap heightMap;
+    utils::NoiseMapBuilderSphere heightMapBuilder;
+
+    heightMapBuilder.SetSourceModule (flatTerrain);
+    heightMapBuilder.SetDestNoiseMap (heightMap);
+    heightMapBuilder.SetDestSize (_sizeX, _sizeY);
+    heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+    heightMapBuilder.Build();
+
+    utils::RendererImage renderer;
+    renderer.SetSourceNoiseMap (heightMap);
+    renderer.SetDestImage (this->m_image);
+    renderer.ClearGradient ();
+    renderer.AddGradientPoint (-1.000, utils::Color (  0,   0, 128, 255)); // deeps
+    renderer.AddGradientPoint (-0.200, utils::Color (  0,   0, 255, 255)); // shallow
+    renderer.AddGradientPoint ( 0.000, utils::Color (  0, 128, 255, 255)); // shore
+    renderer.AddGradientPoint ( 0.050, utils::Color (240, 240,  64, 255)); // sand
+    renderer.AddGradientPoint ( 0.250, utils::Color ( 32, 160,   0, 255)); // grass
+    renderer.AddGradientPoint ( 0.370, utils::Color (224, 224,   0, 255)); // dirt
+    renderer.AddGradientPoint ( 0.990, utils::Color (128, 128,   0, 255)); // rock
+    renderer.AddGradientPoint ( 0.999, utils::Color (255, 255, 255, 255)); // rock
+    renderer.EnableLight ();
+    renderer.SetLightContrast (1.0/20560.0);
+    renderer.SetLightBrightness (2.0);
+    renderer.Render ();
+
+    emit imageCreated("Earthlike2");
+
+}
+
+
+
 void NoiseImageUtils::CreateDesert(int seed, int octave, double lacunarity, double frequency, double persistence, utils::Color color1, utils::Color color2, utils::Color color3)
 {
     module::Perlin myModule;
@@ -192,6 +288,57 @@ void NoiseImageUtils::CreateDesert(int seed, int octave, double lacunarity, doub
     emit imageCreated("Desert");
 }
 
+
+void NoiseImageUtils::CreateDesertG(int seed, int octave, double lacunarity,
+                                    double frequency, double persistence,
+                                    const QColor &baseColor)
+{
+    module::Perlin myModule;
+    myModule.SetOctaveCount(octave);
+    myModule.SetFrequency(frequency);
+    myModule.SetLacunarity(lacunarity);
+    myModule.SetPersistence(persistence);
+    myModule.SetSeed(seed);
+
+    // Perturb the cloud texture for more realism.
+    module::Turbulence finalClouds;
+    finalClouds.SetSourceModule (0, myModule);
+    finalClouds.SetSeed (3);
+    finalClouds.SetFrequency (16.0);
+    finalClouds.SetPower (1.0 / 64.0);
+    finalClouds.SetRoughness (2);
+
+    utils::NoiseMap heightMap;
+    utils::NoiseMapBuilderSphere heightMapBuilder;
+
+    heightMapBuilder.SetSourceModule (finalClouds);
+    heightMapBuilder.SetDestNoiseMap (heightMap);
+    heightMapBuilder.SetDestSize (_sizeX, _sizeY);
+    heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+    heightMapBuilder.Build();
+
+    utils::RendererImage renderer;
+    renderer.SetSourceNoiseMap (heightMap);
+    renderer.SetDestImage (this->m_image);
+    renderer.ClearGradient ();
+
+    auto steps = 4 + SSGX::d6();
+    auto colorMap = ColorOps::randomGradient(steps,20,baseColor);
+
+    QMapIterator<double, QColor> i(colorMap);
+    while (i.hasNext()) {
+        i.next();
+        renderer.AddGradientPoint(i.key(), QColorToColor(i.value()));
+    }
+    renderer.EnableLight ();
+    renderer.SetLightContrast (1.0);
+    renderer.SetLightBrightness (2.0);
+    renderer.Render ();
+
+    emit imageCreated("Desert");
+}
+
+
 void NoiseImageUtils::CreateComplexDesert(int seed, int octave, double lacunarity, double frequency,
                                           double persistence, utils::Color color1, utils::Color color2,
                                           utils::Color color3) {
@@ -207,7 +354,7 @@ void NoiseImageUtils::CreateComplexDesert(int seed, int octave, double lacunarit
     base.SetFrequency(frequency);
     base.SetLacunarity(lacunarity);
     base.SetPersistence(persistence);
-    base.SetSeed(seed);
+    base.SetSeed(seed/2);
 
     module::ScaleBias flatTerrain;
     flatTerrain.SetSourceModule (0, base);
@@ -215,8 +362,8 @@ void NoiseImageUtils::CreateComplexDesert(int seed, int octave, double lacunarit
     flatTerrain.SetBias(-0.25);
 
     module::Perlin terrainType;
-    terrainType.SetFrequency (0.5);
-    terrainType.SetPersistence (0.25);
+    terrainType.SetFrequency (0.8 * (0.7 + SSGX::floatRand()*0.7));
+    terrainType.SetPersistence (0.25* (0.7 + SSGX::floatRand()*0.7));
 
     module::Select finalTerrain;
     finalTerrain.SetSourceModule (0, flatTerrain);
@@ -360,15 +507,15 @@ void NoiseImageUtils::CreateJadePlanet(int seed, const QColor &color1)
     // produces the veins.
     module::RidgedMulti primaryJade;
     primaryJade.SetSeed (seed);
-    primaryJade.SetFrequency (1.5+1.5*SSGX::floatRand());
-    primaryJade.SetLacunarity (1.5 + SSGX::floatRand()*1.0);
-    primaryJade.SetOctaveCount (6);
+    primaryJade.SetFrequency (0.5+1.5*SSGX::floatRand());
+    primaryJade.SetLacunarity (0.5 + SSGX::floatRand()*1.0);
+    primaryJade.SetOctaveCount (4);
     primaryJade.SetNoiseQuality (QUALITY_STD);
 
     // Base of the secondary jade texture.  The base texture uses concentric
     // cylinders aligned on the z axis, which will eventually be perturbed.
     module::Cylinders baseSecondaryJade;
-    baseSecondaryJade.SetFrequency (1.5+SSGX::floatRand());
+    baseSecondaryJade.SetFrequency (0.5+SSGX::floatRand());
 
     // Rotate the base secondary jade texture so that the cylinders are not
     // aligned with any axis.  This produces more variation in the secondary
@@ -381,7 +528,7 @@ void NoiseImageUtils::CreateJadePlanet(int seed, const QColor &color1)
     module::Turbulence perturbedBaseSecondaryJade;
     perturbedBaseSecondaryJade.SetSourceModule (0, rotatedBaseSecondaryJade);
     perturbedBaseSecondaryJade.SetSeed (seed*2);
-    perturbedBaseSecondaryJade.SetFrequency (3.22);
+    perturbedBaseSecondaryJade.SetFrequency (1.22);
     perturbedBaseSecondaryJade.SetPower (1.0 / 4.0);
     perturbedBaseSecondaryJade.SetRoughness (4);
 
@@ -439,13 +586,109 @@ void NoiseImageUtils::CreateJadePlanet(int seed, const QColor &color1)
     emit imageCreated("Jade");
 }
 
-void NoiseImageUtils::SaveImage(const QString &filename)
+void NoiseImageUtils::CreateGranitePlanet(int seed, const QColor &color1) {
+    utils::Color colorBlack = utils::Color(0,0,0,255);
+
+    module::Billow primaryGranite;
+    primaryGranite.SetSeed (seed);
+    primaryGranite.SetFrequency (7.0 * ( 0.8 + SSGX::floatRand()*0.4));
+    primaryGranite.SetPersistence (0.625 * ( 0.8 + SSGX::floatRand()*0.4));
+    primaryGranite.SetLacunarity (2.18359375 * ( 0.8 + SSGX::floatRand()*0.4));
+    primaryGranite.SetOctaveCount (6);
+    primaryGranite.SetNoiseQuality (QUALITY_STD);
+
+    // Use Voronoi polygons to produce the small grains for the granite texture.
+    module::Voronoi baseGrains;
+    baseGrains.SetSeed (1);
+    baseGrains.SetFrequency (16.0 * ( 0.8 + SSGX::floatRand()*0.4));
+    baseGrains.EnableDistance (true);
+
+    // Scale the small grain values so that they may be added to the base
+    // granite texture.  Voronoi polygons normally generate pits, so apply a
+    // negative scaling factor to produce bumps instead.
+    module::ScaleBias scaledGrains;
+    scaledGrains.SetSourceModule (0, baseGrains);
+    scaledGrains.SetScale (-0.5);
+    scaledGrains.SetBias (0.0);
+
+    // Combine the primary granite texture with the small grain texture.
+    module::Add combinedGranite;
+    combinedGranite.SetSourceModule (0, primaryGranite);
+    combinedGranite.SetSourceModule (1, scaledGrains);
+
+    // Finally, perturb the granite texture to add realism.
+    module::Turbulence finalGranite;
+    finalGranite.SetSourceModule (0, combinedGranite);
+    finalGranite.SetSeed (2);
+    finalGranite.SetFrequency (4.0 * ( 0.8 + SSGX::floatRand()*0.4));
+    finalGranite.SetPower (1.0 / 8.0);
+    finalGranite.SetRoughness (6);
+
+    utils::NoiseMapBuilderSphere sphere;
+    utils::NoiseMap noiseMap;
+    sphere.SetBounds (-90.0, 90.0, -180.0, 180.0); // degrees
+    sphere.SetDestSize (_sizeX, _sizeY);
+    sphere.SetSourceModule(finalGranite);
+    sphere.SetDestNoiseMap (noiseMap);
+    sphere.Build ();
+
+    utils::RendererImage textureRenderer;
+    textureRenderer.ClearGradient ();
+
+    auto steps = 2 + SSGX::d6();
+    auto black=  ColorOps::randomColor();
+    auto colorMap = ColorOps::randomGradient(steps,13,black);
+
+    QMapIterator<double, QColor> i(colorMap);
+    while (i.hasNext()) {
+        i.next();
+        textureRenderer.AddGradientPoint(i.key(), QColorToColor(i.value()));
+    }
+    textureRenderer.AddGradientPoint(1.00,QColorToColor(color1));
+
+    // Set up us the texture renderer and pass the noise map to it.
+    textureRenderer.SetSourceNoiseMap (noiseMap);
+    textureRenderer.SetDestImage (m_image);
+    textureRenderer.EnableLight (true);
+    textureRenderer.SetLightElev (45);
+    textureRenderer.SetLightContrast (0.15);
+    textureRenderer.SetLightBrightness (3.0);
+
+    // Render the texture.
+    textureRenderer.Render ();
+}
+
+void NoiseImageUtils::SaveImage(const QString &filename, int blurSize)
 {
     utils::WriterBMP writer;
     writer.SetSourceImage (m_image);
     std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
     QImage img((uchar *)buff.get() ,_sizeX, _sizeY,_sizeX*4,QImage::Format_ARGB32);
-    img.save(filename,"PNG");
+
+    if (blurSize > 0) {
+        QGraphicsBlurEffect *blur = new QGraphicsBlurEffect;
+        blur->setBlurRadius(blurSize);
+        QImage result = applyEffectToImage(img, blur);
+        result.save(filename,"PNG");
+    }
+    else
+        img.save(filename,"PNG");
 
     emit imageFileSaved(filename);
+}
+
+QImage applyEffectToImage(QImage src, QGraphicsEffect *effect, int extent)
+{
+    if(src.isNull()) return QImage();   //No need to do anything else!
+    if(!effect) return src;             //No need to do anything else!
+    QGraphicsScene scene;
+    QGraphicsPixmapItem item;
+    item.setPixmap(QPixmap::fromImage(src));
+    item.setGraphicsEffect(effect);
+    scene.addItem(&item);
+    QImage res(src.size()+QSize(extent*2, extent*2), QImage::Format_ARGB32);
+    res.fill(Qt::transparent);
+    QPainter ptr(&res);
+    scene.render(&ptr, QRectF(), QRectF( -extent, -extent, src.width()+extent*2, src.height()+extent*2 ) );
+    return res;
 }

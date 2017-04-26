@@ -195,7 +195,8 @@ HEADERS += coordinates.h \
     helpers/graphmlexporter.h \
     dialogs/noisemapplaygrounddialog.h \
     helpers/noiseimageutils.h \
-    helpers/noiseimagerunner.h
+    helpers/noiseimagerunner.h \
+    helpers/qcolorops.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

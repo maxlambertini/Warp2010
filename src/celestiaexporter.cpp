@@ -21,6 +21,7 @@
 #include "starlist.h"
 #include "planet.h"
 #include "ssg_structures.h"
+#include <QObject>
 
 void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
     QString sOutput;
@@ -44,22 +45,30 @@ void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
 }
 
 void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
+    emit this->startExporting();
     QString sOutput;
     QTextStream stream(&sOutput);
 
+
     QSharedPointer<Star> star;
     Planet planet, sat;
+    int i = 10000;
+    int nCount = 0;
     foreach (star, _starList->stars()) {
+        i += 10;
         this->_star = star.data();
         foreach (planet, _star->planets()) {
+            i += 10;
             QString starName = _star->starName;
-            stream << this->planetToCelestia(planet,starName,"");
+            stream << this->planetToCelestia(planet,starName,"",i);
             // qDebug() << "celestia exporting " << planet.name();
             foreach (sat, planet.satellites()) {
-                stream << this->planetToCelestia(sat,_star->starName,planet.name());
+                i += 10;
+                stream << this->planetToCelestia(sat,_star->starName,planet.name(),i);
                 // qDebug() << "celestia exporting sat " << sat.name();
             }
         }
+        emit this->exported(nCount++);
     }
 
     QFile data (filename);
@@ -69,9 +78,10 @@ void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
          out.flush();
      }
      data.close();
+     emit this->doneExporting();
 }
 
-QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QString planetFatherName = "")
+QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QString planetFatherName = "", int i = 1)
 {
     QString sOutput;
     QTextStream stream(&sOutput);
@@ -83,7 +93,7 @@ QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QSt
 
     // qDebug() << "step 1";
 
-    stream << "\tTexture \"" << planet.getPlanetTexture() << "\"\n";
+    stream << "\tTexture \"" << this->getPlanetTexture(planet,i) << "\"\n";
     stream << "\tMass " << planet.massEarth() << "\n";
     stream << "\tRadius " << planet.radius() << "\n";
     stream << "\tRotationPeriod " << planet.orbit().day() << "\n";
@@ -141,18 +151,25 @@ QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QSt
 
 void CelestiaExporter::saveCelestiaDataToFile(QString &filename)
 {
+    emit this->startExporting();
+
     // qDebug() << "starting celestia export ";
     QString sOutput;
     QTextStream stream(&sOutput);
 
     Planet planet, sat;
+    int i = 100000;
+    int nCount = 0;
     foreach (planet, _star->planets()) {
-        stream << this->planetToCelestia(planet,_star->starName);
+        i += 10;
+        stream << this->planetToCelestia(planet,_star->starName,"",i);
         // qDebug() << "celestia exporting " << planet.name();
         foreach (sat, planet.satellites()) {
-            stream << this->planetToCelestia(sat,_star->starName,planet.name());
+            i += 1;
+            stream << this->planetToCelestia(sat,_star->starName,planet.name(),i);
             // qDebug() << "celestia exporting sat " << sat.name();
         }
+        emit this->exported(nCount++);
     }
     // qDebug() << "flushing ";
     stream.flush();
@@ -167,6 +184,7 @@ void CelestiaExporter::saveCelestiaDataToFile(QString &filename)
          out.flush();
      }
      data.close();
+     emit this->doneExporting();
     // qDebug() << "ended celestia export ";
 }
 

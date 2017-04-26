@@ -491,10 +491,31 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
             this->_starList->saveToJson(fileName);
         if (fileName.endsWith(".stc")) {
             CelestiaExporter cex(this->_currentStar.data());
+
+            connect(&cex,SIGNAL(startExporting()),this,SLOT(on_celestia_export_started()) );
+            connect(&cex,SIGNAL(doneExporting()),this,SLOT(on_celestia_export_done()) );
+            connect(&cex,SIGNAL(exported(int)),this, SLOT(on_celestia_system_exported(int)) );
+
             cex.setStarList(this->_starList);
             cex.saveStarListToCelestiaFile(fileName);
         }
     }
+}
+
+void WarpMainWindowForm::on_celestia_export_started()
+{
+
+}
+
+void WarpMainWindowForm::on_celestia_export_done()
+{
+
+}
+
+void WarpMainWindowForm::on_celestia_system_exported(int exp)
+{
+    this->setWindowTitle(QString("System %1 of %2 exported").arg(exp).arg(this->_starList->count()));
+    qApp->processEvents();
 }
 
 void WarpMainWindowForm::on_action_ViewOnlyTradeRoutes_triggered()

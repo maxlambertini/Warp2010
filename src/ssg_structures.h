@@ -20,6 +20,7 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include <QColor>
 
 namespace SSGX {
 
@@ -72,8 +73,6 @@ namespace SSGX {
             res += ( 1- rand() % 3);
         return res;
     }
-
-
 
     inline double floatRand() {
         int d = rand() % 10000;

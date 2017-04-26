@@ -19,6 +19,7 @@ namespace noiserunner {
     };
 }
 
+
 class NoiseImageRunner : public QRunnable
 {
     int    _seed;
@@ -26,7 +27,10 @@ class NoiseImageRunner : public QRunnable
     double _persistence;
     double _lacunarity;
     double _frequency;
+
+
 public:
+    noiserunner::RunType _runType = noiserunner::RunType::EARTHLIKE;
     //constructors
     static NoiseImageRunner CreateEarthlike(
             int    __seed = SSGX::dn(20000),
@@ -43,6 +47,9 @@ public:
         nir._persistence = __persistence;
         return nir;
     }
+
+    void setSeed (int v) {_seed = v; }
+    int  seed() { return _seed; }
 
 protected:
     NoiseImageRunner();
