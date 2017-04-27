@@ -58,6 +58,29 @@ public:
             niu.SaveImage(res);
             return res;
             break;
+        case ptGlacier:
+            niu.CreateEarthlike3(SSGX::dn(999999));
+            res = QString("glacier_%1.png").arg(i);
+            niu.SaveImage(res);
+            return res;
+            break;
+        case ptPostGarden:
+            if (p.waterPercentage() > 80)
+                niu.CreateEarthlike2(SSGX::dn(999999));
+            else if (p.waterPercentage() < 30)
+                niu.CreateEarthlike3(SSGX::dn(999999));
+            else
+                niu.CreateEarthlike(SSGX::dn(999999));
+            res = QString("postgarden_%1.png").arg(i);
+            niu.SaveImage(res);
+            return res;
+            break;
+        case ptPreGarden:
+            niu.CreatePregarden(SSGX::dn(999999));
+            res = QString("pregarden_%1.png").arg(i);
+            niu.SaveImage(res);
+            return res;
+            break;
         case ptDesert:
             zz = SSGX::d10();
             if (zz > 8)

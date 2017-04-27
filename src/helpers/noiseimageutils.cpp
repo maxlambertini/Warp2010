@@ -157,6 +157,96 @@ void NoiseImageUtils::CreateEarthlike(int seed, int octave, double lacunarity, d
 
 }
 
+void NoiseImageUtils::CreatePregarden(int seed, int octave, double lacunarity, double frequency, double persistence)
+{
+    module::Perlin myModule;
+    myModule.SetOctaveCount(octave);
+    myModule.SetFrequency(frequency);
+    myModule.SetLacunarity(lacunarity);
+    myModule.SetPersistence(persistence);
+    myModule.SetSeed(seed);
+
+
+
+    utils::NoiseMap heightMap;
+    utils::NoiseMapBuilderSphere heightMapBuilder;
+
+    module::ScaleBias flatTerrain;
+    flatTerrain.SetSourceModule (0, myModule);
+    flatTerrain.SetBias(SSGX::floatRand()*1.20 - 0.6 );
+
+    heightMapBuilder.SetSourceModule (flatTerrain);
+    heightMapBuilder.SetDestNoiseMap (heightMap);
+    heightMapBuilder.SetDestSize (_sizeX, _sizeY);
+    heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+    heightMapBuilder.Build();
+
+
+    utils::RendererImage renderer;
+    renderer.SetSourceNoiseMap (heightMap);
+    renderer.SetDestImage (this->m_image);
+    renderer.ClearGradient ();
+    renderer.AddGradientPoint (-1.0000, utils::Color ( 29, 94,  128, 255)); // deeps
+    renderer.AddGradientPoint (-0.2500, utils::Color ( 35, 115, 141, 255)); // shallow
+    renderer.AddGradientPoint ( 0.0000, utils::Color (232, 164, 123, 255)); // shore
+    renderer.AddGradientPoint ( 0.0625, utils::Color (171, 193,  85, 255)); // sand
+    renderer.AddGradientPoint ( 0.1250, utils::Color (153, 160,   0, 255)); // grass
+    renderer.AddGradientPoint ( 0.3750, utils::Color ( 93, 122, 149, 255)); // dirt
+    renderer.AddGradientPoint ( 0.7500, utils::Color ( 69,  65,  26, 255)); // rock
+    renderer.EnableLight ();
+    renderer.SetLightContrast (1.0);
+    renderer.SetLightBrightness (2.0);
+    renderer.Render ();
+
+    emit imageCreated("Earthlike");
+
+}
+
+void NoiseImageUtils::CreatePostgarden(int seed, int octave, double lacunarity, double frequency, double persistence)
+{
+    module::Perlin myModule;
+    myModule.SetOctaveCount(octave);
+    myModule.SetFrequency(frequency);
+    myModule.SetLacunarity(lacunarity);
+    myModule.SetPersistence(persistence);
+    myModule.SetSeed(seed);
+
+
+
+    utils::NoiseMap heightMap;
+    utils::NoiseMapBuilderSphere heightMapBuilder;
+
+    module::ScaleBias flatTerrain;
+    flatTerrain.SetSourceModule (0, myModule);
+    flatTerrain.SetBias(SSGX::floatRand()*1.20 - 0.6 );
+
+
+    heightMapBuilder.SetSourceModule (flatTerrain);
+    heightMapBuilder.SetDestNoiseMap (heightMap);
+    heightMapBuilder.SetDestSize (_sizeX, _sizeY);
+    heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);
+    heightMapBuilder.Build();
+
+    utils::RendererImage renderer;
+    renderer.SetSourceNoiseMap (heightMap);
+    renderer.SetDestImage (this->m_image);
+    renderer.ClearGradient ();
+    renderer.AddGradientPoint (-1.0000, utils::Color ( 19,  74,  88, 255)); // deeps
+    renderer.AddGradientPoint (-0.2500, utils::Color ( 25,  85, 111, 255)); // shallow
+    renderer.AddGradientPoint ( 0.0000, utils::Color (182, 124,  83, 255)); // shore
+    renderer.AddGradientPoint ( 0.0625, utils::Color (141, 163,  65, 255)); // sand
+    renderer.AddGradientPoint ( 0.1250, utils::Color (113, 120,   0, 255)); // grass
+    renderer.AddGradientPoint ( 0.3750, utils::Color ( 63,  92, 119, 255)); // dirt
+    renderer.AddGradientPoint ( 0.7500, utils::Color ( 39,  55,  26, 255)); // rock
+    renderer.EnableLight ();
+    renderer.SetLightContrast (1.0);
+    renderer.SetLightBrightness (2.0);
+    renderer.Render ();
+
+    emit imageCreated("Earthlike");
+
+}
+
 void NoiseImageUtils::CreateEarthlike2(int seed, int octave, double lacunarity, double frequency, double persistence)
 {
     module::Perlin myModule;

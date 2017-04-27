@@ -45,6 +45,10 @@ public:
                           double frequency = 3.3, double persistence = 0.28);
     void CreateEarthlike3 (int seed = 1, int octave = 6, double lacunarity = 3.30,
                           double frequency = 3.3, double persistence = 0.28);
+    void CreatePregarden (int seed = 1, int octave = 6, double lacunarity = 3.30,
+                          double frequency = 3.3, double persistence = 0.28);
+    void CreatePostgarden (int seed = 1, int octave = 6, double lacunarity = 3.30,
+                          double frequency = 3.3, double persistence = 0.28);
     void CreateEarthClouds (int seed=1, int octave=4, double lacunarity=2.12,
                           double frequency=2.0, double persistence=0.375);
     void SaveImage (const QString& filename, int blurSize = 0);
