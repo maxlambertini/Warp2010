@@ -143,7 +143,7 @@ void Star::deleteSolarSystem()
     _sisters.clear();
 }
 
-Star::Star(const Star & that) : QObject()
+Star::Star(const Star& that) : QObject()
 {
 
     //this->_coordinates = that._coordinates;
@@ -176,11 +176,42 @@ Star::Star(const Star & that) : QObject()
     this->_numDesert= that._numGasGiant;
     this->_numGasGiant= that._numGasGiant;
     this->_starValue = that._starValue;
+    qDebug() << "Copying....\n";
 }
+
 
 Star& Star::operator =(const Star & that)
 {
-    return *this;
+    this->_diameter = that._diameter;
+    this->_luminosity = that._luminosity;
+    this->starName = that.starName;
+    this->_starType = that._starType;
+    this->_starClass = that._starClass;
+    this->_visited = that._visited;
+    this->_neighbors = that._neighbors;
+    this->_path = that._path;
+    this->_magnitude = that._magnitude;
+    this->_mass = that._mass;
+    this->_solarAge = that._solarAge;
+    this->_solarMass = that._solarMass;
+    this->_visited = that._visited;
+    this->_x = that._x;
+    this->_y = that._y;
+    this->_z = that._z;
+    this->_nx = that._nx;
+    this->_ny = that._ny;
+    this->_nz = that._nz;
+    this->_innerLifeZone = that._innerLifeZone;
+    this->_outerLifeZone = that._outerLifeZone;
+    this->_idealLifeZone = that._idealLifeZone;
+    this->_sister = that._sister;
+    this->setStarData();
+    this->_numGardens = that._numGardens;
+    this->_numMarginals = that._numMarginals;
+    this->_numDesert= that._numGasGiant;
+    this->_numGasGiant= that._numGasGiant;
+    this->_starValue = that._starValue;
+    qDebug() << "Assigning....\n";
 }
 
 void Star::changeStartingPath(QVector<int>& subPath)

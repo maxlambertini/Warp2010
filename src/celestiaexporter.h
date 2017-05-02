@@ -25,10 +25,14 @@
 #include "planet.h"
 #include <helpers/noiseimageutils.h>
 #include <QObject>
+#include <QDir>
 
 class CelestiaExporter : public QObject
 {
     Q_OBJECT
+
+    QString _filePath;
+    QString _texturePath;
 
 public:
     CelestiaExporter() {}
@@ -37,6 +41,15 @@ public:
     {
     }
 
+    void setFilePath(QString& filePath) {
+        _filePath = filePath;
+        _texturePath = _filePath+"/textures/medres";
+        QDir textureDir(_texturePath);
+        if (!textureDir.exists())
+            textureDir.mkpath(".");
+    }
+    QString& filePath() { return _filePath; }
+
     inline void setStarList (StarList * sl) { _starList = sl; }
 
     void saveCelestiaDataToFile(QString &filename);
@@ -44,6 +57,26 @@ public:
     void saveSolarSystemsToCelestiaFile (QString &filename);
 
     int zz = 1;
+
+    QString getCloudTexture(Planet& p, int i) {
+        QString res = "";
+        auto pt = p.planetType();
+        if (pt == ptGarden || pt == ptGlacier ) {
+            niu.CreateEarthClouds(SSGX::dn(999999));
+            res = QString("clouds_%1.png").arg(i);
+            niu.SaveImage(_texturePath+"/"+res);
+            return res;
+        }
+        else {
+            niu.CreateFunkyClouds(SSGX::dn(999999));
+            res = QString("f_clouds_%1.png").arg(i);
+            niu.SaveImage(_texturePath+"/"+res);
+            return res;
+
+        }
+
+    }
+
     QString getPlanetTexture(Planet& p, int i) {
         QString res = "";
         switch (p.planetType()) {
@@ -55,13 +88,13 @@ public:
             else
                 niu.CreateEarthlike(SSGX::dn(999999));
             res = QString("earthlike_%1.png").arg(i);
-            niu.SaveImage(res);
+            niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptGlacier:
             niu.CreateEarthlike3(SSGX::dn(999999));
             res = QString("glacier_%1.png").arg(i);
-            niu.SaveImage(res);
+            niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptPostGarden:
@@ -72,13 +105,25 @@ public:
             else
                 niu.CreateEarthlike(SSGX::dn(999999));
             res = QString("postgarden_%1.png").arg(i);
-            niu.SaveImage(res);
+            niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptPreGarden:
             niu.CreatePregarden(SSGX::dn(999999));
             res = QString("pregarden_%1.png").arg(i);
-            niu.SaveImage(res);
+            niu.SaveImage(_texturePath+"/"+res);
+            return res;
+            break;
+        case ptHotHouse:
+            niu.CreateJade2Planet(SSGX::dn(999999));
+            res = QString("hot_house_%1.png").arg(i);
+            niu.SaveImage(_texturePath+"/"+res);
+            return res;
+            break;
+        case ptGasGiant:
+            niu.CreateGGPlanet(SSGX::dn(999999));
+            res = QString("gasgiant_%1.png").arg(i);
+            niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptDesert:
@@ -90,19 +135,25 @@ public:
             else
                 niu.CreateComplexDesert(SSGX::dn(999999));
             res = QString("desert_%1.png").arg(i);
-            niu.SaveImage(res);
+            niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptFailedCore:
             niu.CreateJadePlanet(SSGX::dn(999999));
             res = QString("failedcore_%1.png").arg(i);
-            niu.SaveImage(res);
+            niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptRockball:
             niu.CreateGranitePlanet(SSGX::dn(999999));
             res = QString("rockball_%1.png").arg(i);
-            niu.SaveImage(res);
+            niu.SaveImage(_texturePath+"/"+res);
+            return res;
+            break;
+        case ptChunk:
+            niu.CreateGranitePlanet(SSGX::dn(999999));
+            res = QString("rockball_%1.png").arg(i);
+            niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         default:

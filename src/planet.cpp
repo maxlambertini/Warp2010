@@ -99,6 +99,7 @@ Planet::Planet( const Planet& other ) : QObject ()
     this->_numMarginals = other._numMarginals;
     this->_satellites = other._satellites;
     this->_tidalForce = other._tidalForce;
+    qDebug() << "Planet copied";
 }
 
 Planet& Planet::operator=( const Planet& other )
@@ -124,6 +125,7 @@ Planet& Planet::operator=( const Planet& other )
     }
 
     return *this;
+    qDebug() << "Planet assigned";
 }
 
 bool Planet::operator==( const Planet& other ) const

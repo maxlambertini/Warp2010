@@ -497,6 +497,11 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
             connect(&cex,SIGNAL(exported(int)),this, SLOT(on_celestia_system_exported(int)) );
 
             cex.setStarList(this->_starList);
+
+            QFileInfo fileInfo(fileName);
+            QString path = fileInfo.absolutePath();
+            cex.setFilePath(path);
+
             cex.saveStarListToCelestiaFile(fileName);
         }
     }

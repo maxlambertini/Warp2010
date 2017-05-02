@@ -41,6 +41,8 @@ void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
      }
      data.close();
      QString filenamessc = filename+".ssc";
+
+
      this->saveSolarSystemsToCelestiaFile(filenamessc);
 }
 
@@ -131,7 +133,7 @@ QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QSt
         stream << "\t\tSky [" << SSGX::floatRand() / 3 << " " << SSGX::floatRand() / 3 << " " << SSGX::floatRand() / 2 << "]\n ";
         stream << "\t\tCloudHeight " << (SSGX::d10()+ SSGX::d10()+30) / type << "\n";
         stream << "\t\tCloudSpeed " << (SSGX::d10()+ SSGX::d10()+30) / type << "\n";
-        stream << "\t\tCloudMap \"" << planet.getCloudTexture() << "\"\n";
+        stream << "\t\tCloudMap \"" << this->getCloudTexture(planet,i) << "\"\n";
         stream << "}\n";
         // qDebug() << "step 4.2";
 

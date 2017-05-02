@@ -858,6 +858,9 @@ void WarpMainWindowForm::on_btnSaveCelestia_clicked()
                                          tr("Celestia star file (*.ssc)"));
     if (!filename.isEmpty()) {
         CelestiaExporter celestia(_currentStar.data());
+        QFileInfo info(filename);
+        auto abs_path = info.absolutePath();
+        celestia.setFilePath(abs_path);
         celestia.saveCelestiaDataToFile(filename);
     }
 
