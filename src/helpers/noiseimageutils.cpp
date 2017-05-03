@@ -77,6 +77,118 @@ void NoiseImageUtils::CreateEarthClouds(int seed, int octave, double lacunarity,
     emit imageCreated("EarthClouds");
 }
 
+void NoiseImageUtils::CreateCloudyPlanet(int seed, int octave, double lacunarity, double frequency, double persistence)
+{
+    module::Voronoi baseWater;
+    baseWater.SetSeed (0);
+    baseWater.SetFrequency (8.0);
+    baseWater.EnableDistance (true);
+    baseWater.SetDisplacement (0.0);
+
+    // Stretch the waves along the z axis.
+    module::ScalePoint baseStretchedWater;
+    baseStretchedWater.SetSourceModule (0, baseWater);
+    baseStretchedWater.SetScale (1.0, 1.0, 3.0);
+
+    // Smoothly perturb the water texture for more realism.
+    module::Turbulence finalWater;
+    finalWater.SetSourceModule (0, baseStretchedWater);
+    finalWater.SetSeed (SSGX::dn(99999));
+    finalWater.SetFrequency (8.0);
+    finalWater.SetPower (1.0 / 32.0);
+    finalWater.SetRoughness (1);
+
+    // Upper layer: cloud texture
+    // --------------------------
+
+    // Base of the cloud texture.  The billowy noise produces the basic shape
+    // of soft, fluffy clouds.
+    module::Billow cloudBase;
+    cloudBase.SetSeed (seed);
+    cloudBase.SetFrequency (frequency);
+    cloudBase.SetPersistence (persistence);
+    cloudBase.SetLacunarity (lacunarity);
+    cloudBase.SetOctaveCount (4);
+    cloudBase.SetNoiseQuality (QUALITY_BEST);
+
+    // Perturb the cloud texture for more realism.
+    module::Turbulence finalClouds;
+    finalClouds.SetSourceModule (0, cloudBase);
+    finalClouds.SetSeed (SSGX::dn(99999));
+    finalClouds.SetFrequency (16.0);
+    finalClouds.SetPower (1.0 / 64.0);
+    finalClouds.SetRoughness (2);
+
+    utils::NoiseMapBuilderSphere sphere;
+    utils::NoiseMap lowerNoiseMap;
+    utils::NoiseMap upperNoiseMap;
+    sphere.SetBounds (-90.0, 90.0, -180.0, 180.0); // degrees
+    sphere.SetDestSize (_sizeX, _sizeY);
+
+    // Generate the lower noise map.
+    sphere.SetSourceModule (finalWater);
+    sphere.SetDestNoiseMap (lowerNoiseMap);
+    sphere.Build ();
+
+    // Generate the upper noise map.
+    sphere.SetSourceModule (finalClouds);
+    sphere.SetDestNoiseMap (upperNoiseMap);
+    sphere.Build ();
+
+    utils::RendererImage textureRenderer;
+    utils::Image destTexture;
+    textureRenderer.SetSourceNoiseMap (lowerNoiseMap);
+    textureRenderer.SetDestImage (destTexture);
+    textureRenderer.ClearGradient();
+
+    auto gradient = ColorOps::lightningGradient(4,12,ColorOps::randomColor());
+    QMapIterator<double, QColor> i(gradient);
+    while (i.hasNext()) {
+        i.next();
+        auto clr = QColorToColor((i.value()));
+        textureRenderer.AddGradientPoint(i.key(), clr);
+    }
+
+    // Set up us the texture renderer and pass the lower noise map to it.
+
+    textureRenderer.EnableLight (true);
+    textureRenderer.SetLightAzimuth (135.0);
+    textureRenderer.SetLightElev (60.0);
+    textureRenderer.SetLightContrast (2.0);
+    textureRenderer.SetLightColor (utils::Color (255, 255, 255, 0));
+
+    // Render the texture.
+    textureRenderer.Render ();
+
+    // Create the color gradients for the upper texture.
+    auto colorMap = ColorOps::randomGradient(5,30,ColorOps::randomColor());
+    QMapIterator<double, QColor> i2(colorMap);
+    while (i2.hasNext()) {
+        i2.next();
+        auto clr = QColorToColor((i2.value()));
+        auto w = SSGX::d10();
+        if ( w > 7)
+            clr.alpha =SSGX::dn(128);
+        else
+            clr.alpha = 0;
+        textureRenderer.AddGradientPoint(i2.key(), clr);
+    }
+
+    // Set up us the texture renderer and pass the upper noise map to it.  Also
+    // use the lower texture map as a background so that the upper texture map
+    // can be rendered on top of the lower texture map.
+    textureRenderer.SetSourceNoiseMap (upperNoiseMap);
+    textureRenderer.SetBackgroundImage (destTexture);
+    textureRenderer.SetDestImage (this->m_image);
+    textureRenderer.EnableLight (false);
+
+    // Render the texture.
+    textureRenderer.Render ();
+
+    emit imageCreated("CloudyPlanet");
+
+}
+
 void NoiseImageUtils::CreateFunkyClouds(int seed, int octave, double lacunarity, double frequency, double persistence)
 {
     utils::NoiseMap cloudMap;
@@ -122,7 +234,7 @@ void NoiseImageUtils::CreateFunkyClouds(int seed, int octave, double lacunarity,
             clr.alpha =SSGX::dn(128);
         else
             clr.alpha = 0;
-        cloudRend.AddGradientPoint(i.key(), QColorToColor(i.value()));
+        cloudRend.AddGradientPoint(i.key(), clr);
     }
     cloudRend.AddGradientPoint(1.00,clrEnd);
     cloudRend.EnableLight (false);
@@ -972,6 +1084,77 @@ void NoiseImageUtils::CreateGranitePlanet(int seed, const QColor &color1) {
     auto steps = 2 + SSGX::d6();
     auto black=  ColorOps::randomColor();
     auto colorMap = ColorOps::randomGradient(steps,13,black);
+    QMapIterator<double, QColor> i(colorMap);
+    while (i.hasNext()) {
+        i.next();
+        textureRenderer.AddGradientPoint(i.key(), QColorToColor(i.value()));
+    }
+    textureRenderer.AddGradientPoint(1.00,QColorToColor(color1));
+
+    // Set up us the texture renderer and pass the noise map to it.
+    textureRenderer.SetSourceNoiseMap (noiseMap);
+    textureRenderer.SetDestImage (m_image);
+    textureRenderer.EnableLight (true);
+    textureRenderer.SetLightElev (45);
+    textureRenderer.SetLightContrast (0.15);
+    textureRenderer.SetLightBrightness (3.0);
+
+    // Render the texture.
+    textureRenderer.Render ();
+}
+
+void NoiseImageUtils::CreateIcePlanet(int seed, const QColor &color1) {
+    utils::Color colorBlack = utils::Color(0,0,0,255);
+
+    module::Billow primaryGranite;
+    primaryGranite.SetSeed (seed);
+    primaryGranite.SetFrequency (7.0 * ( 0.8 + SSGX::floatRand()*0.4));
+    primaryGranite.SetPersistence (0.625 * ( 0.8 + SSGX::floatRand()*0.4));
+    primaryGranite.SetLacunarity (2.18359375 * ( 0.8 + SSGX::floatRand()*0.4));
+    primaryGranite.SetOctaveCount (6);
+    primaryGranite.SetNoiseQuality (QUALITY_STD);
+
+    // Use Voronoi polygons to produce the small grains for the granite texture.
+    module::Voronoi baseGrains;
+    baseGrains.SetSeed (1);
+    baseGrains.SetFrequency (16.0 * ( 0.8 + SSGX::floatRand()*0.4));
+    baseGrains.EnableDistance (true);
+
+    // Scale the small grain values so that they may be added to the base
+    // granite texture.  Voronoi polygons normally generate pits, so apply a
+    // negative scaling factor to produce bumps instead.
+    module::ScaleBias scaledGrains;
+    scaledGrains.SetSourceModule (0, baseGrains);
+    scaledGrains.SetScale (-0.5);
+    scaledGrains.SetBias (0.0);
+
+    // Combine the primary granite texture with the small grain texture.
+    module::Add combinedGranite;
+    combinedGranite.SetSourceModule (0, primaryGranite);
+    combinedGranite.SetSourceModule (1, scaledGrains);
+
+    // Finally, perturb the granite texture to add realism.
+    module::Turbulence finalGranite;
+    finalGranite.SetSourceModule (0, combinedGranite);
+    finalGranite.SetSeed (2);
+    finalGranite.SetFrequency (4.0 * ( 0.8 + SSGX::floatRand()*0.4));
+    finalGranite.SetPower (1.0 / 8.0);
+    finalGranite.SetRoughness (6);
+
+    utils::NoiseMapBuilderSphere sphere;
+    utils::NoiseMap noiseMap;
+    sphere.SetBounds (-90.0, 90.0, -180.0, 180.0); // degrees
+    sphere.SetDestSize (_sizeX, _sizeY);
+    sphere.SetSourceModule(finalGranite);
+    sphere.SetDestNoiseMap (noiseMap);
+    sphere.Build ();
+
+    utils::RendererImage textureRenderer;
+    textureRenderer.ClearGradient ();
+
+    auto steps = 2 + SSGX::d6();
+    auto black=  QColor(192,192,192);
+    auto colorMap = ColorOps::randomGradient(steps,4,black);
     QMapIterator<double, QColor> i(colorMap);
     while (i.hasNext()) {
         i.next();

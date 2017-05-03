@@ -53,6 +53,8 @@ public:
                           double frequency=2.0, double persistence=0.375);
     void CreateFunkyClouds (int seed=1, int octave=4, double lacunarity=2.12,
                           double frequency=2.0, double persistence=0.375);
+    void CreateCloudyPlanet (int seed=1, int octave=4, double lacunarity=2.12,
+                             double frequency=2.0, double persistence= 0.375);
     void SaveImage (const QString& filename, int blurSize = 0);
 
     void CreateDesert (int seed = 1, int octave = 6, double lacunarity = 1.30,
@@ -80,6 +82,7 @@ public:
     void CreateJade2Planet (int seed = 1, const QColor& color1 = QColor(255,255,193));
     void CreateGGPlanet (int seed = 1, const QColor& color1 = QColor(255,255,193));
     void CreateGranitePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
+    void CreateIcePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
 
 signals:
     void imageCreated(const QString& imgType);

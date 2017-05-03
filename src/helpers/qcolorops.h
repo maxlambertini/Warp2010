@@ -12,16 +12,22 @@ namespace ColorOps {
     inline QColor randomColor() { return QColor(SSGX::dn(255), SSGX::dn(255),SSGX::dn(255)); }
     inline QColor irregularLightenColor(const QColor &clr, int step=25) {
         int xStep = step % 128;
-        QColor res ( (clr.red()   + SSGX::dx(xStep)) % 255,
-                     (clr.blue()  + SSGX::dx(xStep)) % 255,
-                     (clr.green() + SSGX::dx(xStep)) % 255);
+        int dStep = step / 2;
+        int rSrep = 1+dStep / 4;
+        QColor res(clr);
+        res.setHsl ( (res.hslHue() + SSGX::dx(dStep) -rSrep) % 255,
+                     (res.hslSaturation() + SSGX::dx(dStep) -rSrep) % 255,
+                     (res.hslHue() + SSGX::dx(step)) % 255);
         return res;
     }
     inline QColor irregularDarkenColor(const QColor &clr, int step=25) {
         int xStep = step % 128;
-        QColor res ( (clr.red()   - SSGX::dx(xStep)) % 255,
-                     (clr.blue()  - SSGX::dx(xStep)) % 255,
-                     (clr.green() - SSGX::dx(xStep)) % 255);
+        int dStep = step / 2;
+        int rSrep = 1+dStep / 4;
+        QColor res(clr);
+        res.setHsl ( (res.hslHue() + SSGX::dx(dStep) -rSrep) % 255,
+                     (res.hslSaturation() + SSGX::dx(dStep) -rSrep) % 255,
+                     (res.hslHue() - SSGX::dx(step)) % 255);
         return res;
     }
 

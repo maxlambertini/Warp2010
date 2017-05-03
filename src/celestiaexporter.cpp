@@ -127,7 +127,7 @@ QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QSt
         int type = (int)planet.atmosphere();
         if (type < 1) type = 1;
         stream << "\tAtmosphere { \n";
-        stream << "\t\tHeight " << (SSGX::dn(40)+ SSGX::dn(40)+30)  << "\n";
+        stream << "\t\tHeight " << (SSGX::dn(40)+ SSGX::dn(40)+60)  << "\n";
         stream << "\t\tLower [" << SSGX::floatRand() / 6 << " " << SSGX::floatRand() / 6 << " " << SSGX::floatRand() << "]\n ";
         stream << "\t\tUpper [" << SSGX::floatRand() / 6 << " " << SSGX::floatRand() / 6 << " " << SSGX::floatRand() / 2 << "]\n ";
         stream << "\t\tSky [" << SSGX::floatRand() / 3 << " " << SSGX::floatRand() / 3 << " " << SSGX::floatRand() / 2 << "]\n ";

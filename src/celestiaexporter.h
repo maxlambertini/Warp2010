@@ -26,6 +26,7 @@
 #include <helpers/noiseimageutils.h>
 #include <QObject>
 #include <QDir>
+#include <QUuid>
 
 class CelestiaExporter : public QObject
 {
@@ -58,18 +59,23 @@ public:
 
     int zz = 1;
 
+    QString getUid() {
+        QString uid = QUuid::createUuid().toString().split('-')[1];
+        return uid;
+    }
+
     QString getCloudTexture(Planet& p, int i) {
         QString res = "";
         auto pt = p.planetType();
         if (pt == ptGarden || pt == ptGlacier ) {
             niu.CreateEarthClouds(SSGX::dn(999999));
-            res = QString("clouds_%1.png").arg(i);
+            res = QString("clouds_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
         }
         else {
             niu.CreateFunkyClouds(SSGX::dn(999999));
-            res = QString("f_clouds_%1.png").arg(i);
+            res = QString("f_clouds_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
 
@@ -87,13 +93,13 @@ public:
                 niu.CreateEarthlike3(SSGX::dn(999999));
             else
                 niu.CreateEarthlike(SSGX::dn(999999));
-            res = QString("earthlike_%1.png").arg(i);
+            res = QString("earthlike_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptGlacier:
             niu.CreateEarthlike3(SSGX::dn(999999));
-            res = QString("glacier_%1.png").arg(i);
+            res = QString("glacier_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
@@ -104,25 +110,25 @@ public:
                 niu.CreateEarthlike3(SSGX::dn(999999));
             else
                 niu.CreateEarthlike(SSGX::dn(999999));
-            res = QString("postgarden_%1.png").arg(i);
+            res = QString("postgarden_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptPreGarden:
             niu.CreatePregarden(SSGX::dn(999999));
-            res = QString("pregarden_%1.png").arg(i);
+            res = QString("pregarden_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptHotHouse:
             niu.CreateJade2Planet(SSGX::dn(999999));
-            res = QString("hot_house_%1.png").arg(i);
+            res = QString("hot_house_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptGasGiant:
             niu.CreateGGPlanet(SSGX::dn(999999));
-            res = QString("gasgiant_%1.png").arg(i);
+            res = QString("gasgiant_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
@@ -134,25 +140,31 @@ public:
                 niu.CreateDesert(SSGX::dn(999999));
             else
                 niu.CreateComplexDesert(SSGX::dn(999999));
-            res = QString("desert_%1.png").arg(i);
+            res = QString("desert_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptFailedCore:
             niu.CreateJadePlanet(SSGX::dn(999999));
-            res = QString("failedcore_%1.png").arg(i);
+            res = QString("failedcore_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptRockball:
             niu.CreateGranitePlanet(SSGX::dn(999999));
-            res = QString("rockball_%1.png").arg(i);
+            res = QString("rockball_%1.png").arg(getUid());
+            niu.SaveImage(_texturePath+"/"+res);
+            return res;
+            break;
+        case ptIceball:
+            niu.CreateIcePlanet(SSGX::dn(999999));
+            res = QString("rockball_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;
         case ptChunk:
             niu.CreateGranitePlanet(SSGX::dn(999999));
-            res = QString("rockball_%1.png").arg(i);
+            res = QString("rockball_%1.png").arg(getUid());
             niu.SaveImage(_texturePath+"/"+res);
             return res;
             break;

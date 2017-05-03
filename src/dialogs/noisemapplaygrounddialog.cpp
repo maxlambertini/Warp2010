@@ -89,6 +89,8 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         imgUtils.SaveImage(QString("test_jade__%1.png").arg(x));
         imgUtils.CreateGranitePlanet(SSGX::dn(20000), ColorOps::randomColor());
         imgUtils.SaveImage(QString("test_granite__%1.png").arg(x));
+        imgUtils.CreateCloudyPlanet(SSGX::dn(20000));
+        imgUtils.SaveImage(QString("test_cloudy__%1.png").arg(x));
     }
 }
 
