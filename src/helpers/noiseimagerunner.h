@@ -4,57 +4,162 @@
 #include <QRunnable>
 #include <helpers/noiseimageutils.h>
 #include <ssg_structures.h>
+#include <QString>
+#include <QThread>
 
-namespace noiserunner {
-    enum RunType {
-        CLOUD,
-        EARTHLIKE,
-        EARTHLIKE_RMF,
-        DESERT,
-        COMPLEX_DESERT,
-        COMPLEX_DESERT_2,
-        JADE_PLANET,
-        GAS_GIANT,
-        HOTHOUSE
-    };
+namespace RT {
+enum RType {
+    GG2,
+    GG ,
+    Cloudy,
+    Earthlike,
+    Earthlike2,
+    Earthlike3 ,
+    Clouds,
+    FunkyClouds,
+    Desert,
+    DesertG,
+    ComplexDesert,
+    ComplexDesert2,
+    Jade,
+    Granite,
+    Ice
+};
 }
 
+using namespace RT;
 
-class NoiseImageRunner : public QRunnable
+class NoiseImageRunner : public QThread
 {
     int    _seed;
     int    _octave;
     double _persistence;
     double _lacunarity;
     double _frequency;
-
-
-public:
-    noiserunner::RunType _runType = noiserunner::RunType::EARTHLIKE;
-    //constructors
-    static NoiseImageRunner CreateEarthlike(
-            int    __seed = SSGX::dn(20000),
-            int    __octave = 6,
-            double __persistence = 0.29,
-            double __lacunarity  = 2.98,
-            double __frequency   = 3.31
-            ) {
-        NoiseImageRunner nir;
-        nir._seed = __seed;
-        nir._octave = __octave;
-        nir._frequency = __frequency;
-        nir._lacunarity = __lacunarity;
-        nir._persistence = __persistence;
-        return nir;
-    }
-
+    RType _runType = Earthlike;
+    QString _filename = "";
+    NoiseImageUtils imgUtils;
+public:    
     void setSeed (int v) {_seed = v; }
     int  seed() { return _seed; }
-
-protected:
+    void setOctave (int v) {_octave = v; }
+    int  octave() { return _octave; }
+    void setPersistence(double v)  { _persistence = v; }
+    double persistence() { return _persistence; }
+    void setLacunarity(double v) { _lacunarity = v; }
+    double lacunarity() { return _lacunarity; }
+    void setFrequency(double v) {_frequency = v; }
+    double frequency() { return _frequency; }
+    void setFilename(const QString& str) { _filename = str; }
+    const QString& filename() { return _filename; }
+    void setRunType(RType str) { _runType = str; }
+    const RType runType() { return _runType; }
     NoiseImageRunner();
+
+    NoiseImageRunner(RType runType, const QString& filename, int seed) : _runType(runType), _filename(filename), _seed(seed) {}
+    NoiseImageRunner(RType runType, const QString& filename, int seed, int octave) : _runType(runType),_filename(filename),_seed(seed), _octave(octave) {}
+    NoiseImageRunner(RType runType, const QString& filename, int seed, int octave, double pers) :
+        _runType(runType),_filename(filename),
+        _seed(seed), _octave(octave),
+        _persistence(pers){}
+    NoiseImageRunner(RType runType, const QString& filename, int seed, int octave, double pers, double lac) :
+        _runType(runType),_filename(filename),
+        _seed(seed), _octave(octave),
+        _persistence(pers),_lacunarity(lac){}
+    NoiseImageRunner(RType runType, const QString& filename, int seed, int octave, double pers, double lac, double freq) :
+        _runType(runType),_filename(filename),
+        _seed(seed), _octave(octave),
+        _persistence(pers),_lacunarity(lac), _frequency(freq){}
+
+private:
     //interface
-    void run();
+    void run()  override {
+        switch (_runType) {
+            case GG2:
+                imgUtils.CreateGG2Planet(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Cloudy:
+                imgUtils.CreateCloudyPlanet(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Earthlike:
+                imgUtils.CreateEarthlike(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Earthlike2:
+                imgUtils.CreateEarthlike2(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Earthlike3:
+                imgUtils.CreateEarthlike3(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Clouds:
+                imgUtils.CreateEarthClouds(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case FunkyClouds:
+                imgUtils.CreateFunkyClouds(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Desert:
+                imgUtils.CreateDesert(_seed,
+                                         _octave,
+                                         _lacunarity,
+                                         _frequency,
+                                         _persistence,
+                                         imgUtils.QColorToColor(ColorOps::randomColor()),
+                                         imgUtils.QColorToColor(ColorOps::randomColor()),
+                                         imgUtils.QColorToColor(ColorOps::randomColor()));
+                imgUtils.SaveImage(_filename);
+            break;
+            case DesertG:
+                imgUtils.CreateDesertG(_seed,
+                                         _octave,
+                                         _lacunarity,
+                                         _frequency,
+                                         _persistence);
+                imgUtils.SaveImage(_filename);
+            break;
+            case ComplexDesert:
+                imgUtils.CreateComplexDesert(_seed,
+                                         _octave,
+                                         _lacunarity,
+                                         _frequency,
+                                         _persistence);
+                imgUtils.SaveImage(_filename);
+            break;
+            case ComplexDesert2:
+                imgUtils.CreateComplexDesert2(_seed,
+                                         _octave,
+                                         _lacunarity,
+                                         _frequency,
+                                         _persistence);
+                imgUtils.SaveImage(_filename);
+            break;
+            case GG:
+                imgUtils.CreateGGPlanet(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Jade:
+                imgUtils.CreateJadePlanet(_seed, ColorOps::randomColor());
+                imgUtils.SaveImage(_filename);
+            break;
+            case Granite:
+                imgUtils.CreateGranitePlanet(_seed, ColorOps::randomColor());
+                imgUtils.SaveImage(_filename);
+            break;
+            case Ice:
+                imgUtils.CreateIcePlanet(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            default:
+                imgUtils.CreateEarthlike(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+        }
+    }
 
 };
 

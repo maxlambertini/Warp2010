@@ -6,6 +6,7 @@
 #include "ssg_structures.h"
 #include <helpers/noiseimageutils.h>
 #include <helpers/qcolorops.h>
+#include <helpers/noiseimagerunner.h>
 
 NoisemapPlaygroundDialog::NoisemapPlaygroundDialog(QWidget *parent) :
     QDialog(parent),
@@ -30,13 +31,22 @@ void NoisemapPlaygroundDialog::on_imageSaved(QString filename) {
 
 void NoisemapPlaygroundDialog::CreateBitmap() {
     for (auto x = 0; x < 4; x++) {
-        NoiseImageUtils imgUtils;
-        connect(&imgUtils,SIGNAL(imageFileSaved(QString)),
-                this, SLOT(on_imageSaved(QString)));
-        imgUtils.CreateGG2Planet(SSGX::dn(20000));
-        imgUtils.SaveImage(QString("test_gg2__%1.png").arg(x));
-        imgUtils.CreateCloudyPlanet(SSGX::dn(20000));
-        imgUtils.SaveImage(QString("test_cloudy__%1.png").arg(x));
+        NoiseImageRunner gg2(RT::GG2,QString("test_gg2__%1.png").arg(x),SSGX::dn(99999));gg2.start();
+        NoiseImageRunner gg(RT::GG,QString("test_gg__%1.png").arg(x),SSGX::dn(99999));gg.start();
+        NoiseImageRunner cp(RT::Cloudy,QString("test_cloudy__%1.png").arg(x),SSGX::dn(99999));cp.start();
+        NoiseImageRunner cp2(RT::Cloudy,QString("test_cloudy__%1.png").arg(x),SSGX::dn(99999));cp2.start();
+        NoiseImageRunner e1(RT::Earthlike,QString("test_e1__%1.png").arg(x),SSGX::dn(99999));e1.start();
+        NoiseImageRunner e2(RT::Earthlike2,QString("test_e2__%1.png").arg(x),SSGX::dn(99999));e2.start();
+        NoiseImageRunner e3(RT::Earthlike2,QString("test_e3__%1.png").arg(x),SSGX::dn(99999));e3.start();
+
+        gg2.wait();
+        gg.wait();
+        cp.wait();
+        cp2.wait();
+        e1.wait();
+        e2.wait();
+        e3.wait();
+        /*
         imgUtils.CreateEarthlike(SSGX::dn(99999));
         imgUtils.SaveImage(QString("test_earth__%1.png").arg(x));
         imgUtils.CreateEarthlike2(SSGX::dn(99999));
@@ -97,6 +107,7 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         imgUtils.SaveImage(QString("test_ice__%1.png").arg(x));
         imgUtils.CreateGGPlanet(SSGX::dn(20000));
         imgUtils.SaveImage(QString("test_gg__%1.png").arg(x));
+        */
     }
 }
 
