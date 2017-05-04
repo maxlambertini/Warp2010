@@ -81,6 +81,7 @@ public:
     void CreateJadePlanet (int seed = 1, const QColor& color1 = QColor(255,255,193));
     void CreateJade2Planet (int seed = 1, const QColor& color1 = QColor(255,255,193));
     void CreateGGPlanet (int seed = 1, const QColor& color1 = QColor(255,255,193));
+    void CreateGG2Planet (int seed = 1, const QColor& color1 = QColor(255,255,193));
     void CreateGranitePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
     void CreateIcePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
 

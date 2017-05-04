@@ -17,7 +17,7 @@ namespace ColorOps {
         QColor res(clr);
         res.setHsl ( (res.hslHue() + SSGX::dx(dStep) -rSrep) % 255,
                      (res.hslSaturation() + SSGX::dx(dStep) -rSrep) % 255,
-                     (res.hslHue() + SSGX::dx(step)) % 255);
+                     (res.lightness() + SSGX::dx(step)) % 255);
         return res;
     }
     inline QColor irregularDarkenColor(const QColor &clr, int step=25) {
@@ -27,7 +27,7 @@ namespace ColorOps {
         QColor res(clr);
         res.setHsl ( (res.hslHue() + SSGX::dx(dStep) -rSrep) % 255,
                      (res.hslSaturation() + SSGX::dx(dStep) -rSrep) % 255,
-                     (res.hslHue() - SSGX::dx(step)) % 255);
+                     (res.lightness() - SSGX::dx(step)) % 255);
         return res;
     }
 
@@ -41,7 +41,7 @@ namespace ColorOps {
         for (auto h = 0; h < nSteps-1; h++) {
             colorMap.insert(dStart,theColor);
             theColor = irregularLightenColor(theColor, nColorStep);
-            dStart += dStep;;
+            dStart += dStep;
         }
         colorMap.insert(dStart,theColor);
         return colorMap;

@@ -33,6 +33,10 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         NoiseImageUtils imgUtils;
         connect(&imgUtils,SIGNAL(imageFileSaved(QString)),
                 this, SLOT(on_imageSaved(QString)));
+        imgUtils.CreateGG2Planet(SSGX::dn(20000));
+        imgUtils.SaveImage(QString("test_gg2__%1.png").arg(x));
+        imgUtils.CreateCloudyPlanet(SSGX::dn(20000));
+        imgUtils.SaveImage(QString("test_cloudy__%1.png").arg(x));
         imgUtils.CreateEarthlike(SSGX::dn(99999));
         imgUtils.SaveImage(QString("test_earth__%1.png").arg(x));
         imgUtils.CreateEarthlike2(SSGX::dn(99999));
@@ -89,8 +93,10 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         imgUtils.SaveImage(QString("test_jade__%1.png").arg(x));
         imgUtils.CreateGranitePlanet(SSGX::dn(20000), ColorOps::randomColor());
         imgUtils.SaveImage(QString("test_granite__%1.png").arg(x));
-        imgUtils.CreateCloudyPlanet(SSGX::dn(20000));
-        imgUtils.SaveImage(QString("test_cloudy__%1.png").arg(x));
+        imgUtils.CreateIcePlanet(SSGX::dn(20000));
+        imgUtils.SaveImage(QString("test_ice__%1.png").arg(x));
+        imgUtils.CreateGGPlanet(SSGX::dn(20000));
+        imgUtils.SaveImage(QString("test_gg__%1.png").arg(x));
     }
 }
 

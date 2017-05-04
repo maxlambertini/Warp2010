@@ -141,7 +141,7 @@ void NoiseImageUtils::CreateCloudyPlanet(int seed, int octave, double lacunarity
     textureRenderer.SetDestImage (destTexture);
     textureRenderer.ClearGradient();
 
-    auto gradient = ColorOps::lightningGradient(4,12,ColorOps::randomColor());
+    auto gradient = ColorOps::lightningGradient(8,25,ColorOps::randomColor());
     QMapIterator<double, QColor> i(gradient);
     while (i.hasNext()) {
         i.next();
@@ -161,14 +161,15 @@ void NoiseImageUtils::CreateCloudyPlanet(int seed, int octave, double lacunarity
     textureRenderer.Render ();
 
     // Create the color gradients for the upper texture.
-    auto colorMap = ColorOps::randomGradient(5,30,ColorOps::randomColor());
+    textureRenderer.ClearGradient();
+    auto colorMap = ColorOps::randomGradient(6,30,ColorOps::randomColor());
     QMapIterator<double, QColor> i2(colorMap);
     while (i2.hasNext()) {
         i2.next();
         auto clr = QColorToColor((i2.value()));
         auto w = SSGX::d10();
-        if ( w > 7)
-            clr.alpha =SSGX::dn(128);
+        if ( w > 4)
+            clr.alpha =128+SSGX::dn(128);
         else
             clr.alpha = 0;
         textureRenderer.AddGradientPoint(i2.key(), clr);
@@ -1010,7 +1011,13 @@ void NoiseImageUtils::CreateGGPlanet(int seed, const QColor &color1)
 
     utils::RendererImage textureRenderer;
     textureRenderer.ClearGradient ();
-    auto mapGr = ColorOps::randomGradient(6,12,ColorOps::randomColor());
+    //auto mapGr = ColorOps::randomGradient(6,12,ColorOps::randomColor());
+    QMap<double, QColor> mapGr;
+    double cnt = 0.0;
+    while (cnt < 1.9) {
+        mapGr.insert(cnt,ColorOps::randomColor());
+        cnt += 0.2+0.4*SSGX::floatRand();
+    }
     QMapIterator<double, QColor> i(mapGr);
     while (i.hasNext()) {
         i.next();
@@ -1020,7 +1027,7 @@ void NoiseImageUtils::CreateGGPlanet(int seed, const QColor &color1)
     // Set up us the texture renderer and pass the noise map to it.
     textureRenderer.SetSourceNoiseMap (noiseMap);
     textureRenderer.SetDestImage (m_image);
-    textureRenderer.EnableLight (true);
+    textureRenderer.EnableLight (false);
     textureRenderer.SetLightElev (60.0);
     textureRenderer.SetLightContrast (1.6);
     textureRenderer.SetLightBrightness (1.6);
@@ -1028,7 +1035,7 @@ void NoiseImageUtils::CreateGGPlanet(int seed, const QColor &color1)
     // Render the texture.
     textureRenderer.Render ();
 
-    emit imageCreated("Jade");
+    emit imageCreated("GG");
 }
 
 
@@ -1103,72 +1110,161 @@ void NoiseImageUtils::CreateGranitePlanet(int seed, const QColor &color1) {
     textureRenderer.Render ();
 }
 
-void NoiseImageUtils::CreateIcePlanet(int seed, const QColor &color1) {
-    utils::Color colorBlack = utils::Color(0,0,0,255);
+void NoiseImageUtils::CreateGG2Planet(int seed, const QColor &color1)
+{
+    module::Cylinders baseGG;
+    baseGG.SetFrequency (0.5+SSGX::floatRand());
 
-    module::Billow primaryGranite;
-    primaryGranite.SetSeed (seed);
-    primaryGranite.SetFrequency (7.0 * ( 0.8 + SSGX::floatRand()*0.4));
-    primaryGranite.SetPersistence (0.625 * ( 0.8 + SSGX::floatRand()*0.4));
-    primaryGranite.SetLacunarity (2.18359375 * ( 0.8 + SSGX::floatRand()*0.4));
-    primaryGranite.SetOctaveCount (6);
-    primaryGranite.SetNoiseQuality (QUALITY_STD);
+    // Slightly perturb the secondary jade texture for more realism.
+    module::Turbulence pert2;
+    pert2.SetSourceModule (0, baseGG);
+    pert2.SetSeed (seed*9);
+    pert2.SetFrequency (2.22);
+    pert2.SetPower (1.0 / 4.0);
+    pert2.SetRoughness (5);
 
-    // Use Voronoi polygons to produce the small grains for the granite texture.
-    module::Voronoi baseGrains;
-    baseGrains.SetSeed (1);
-    baseGrains.SetFrequency (16.0 * ( 0.8 + SSGX::floatRand()*0.4));
-    baseGrains.EnableDistance (true);
 
-    // Scale the small grain values so that they may be added to the base
-    // granite texture.  Voronoi polygons normally generate pits, so apply a
-    // negative scaling factor to produce bumps instead.
-    module::ScaleBias scaledGrains;
-    scaledGrains.SetSourceModule (0, baseGrains);
-    scaledGrains.SetScale (-0.5);
-    scaledGrains.SetBias (0.0);
+    // Rotate the base secondary jade texture so that the cylinders are not
+    // aligned with any axis.  This produces more variation in the secondary
+    // jade texture since the texture is parallel to the y-axis.
+    module::RotatePoint rot;
+    rot.SetSourceModule (0, pert2  );
+    rot.SetAngles (0.0, 0.0, 0.0);
 
-    // Combine the primary granite texture with the small grain texture.
-    module::Add combinedGranite;
-    combinedGranite.SetSourceModule (0, primaryGranite);
-    combinedGranite.SetSourceModule (1, scaledGrains);
+    // Slightly perturb the secondary jade texture for more realism.
+    module::Turbulence pert;
+    pert.SetSourceModule (0, rot);
+    pert.SetSeed (seed*2);
+    pert.SetFrequency (1.22);
+    pert.SetPower (1.0 / 4.0);
+    pert.SetRoughness (4);
 
-    // Finally, perturb the granite texture to add realism.
-    module::Turbulence finalGranite;
-    finalGranite.SetSourceModule (0, combinedGranite);
-    finalGranite.SetSeed (2);
-    finalGranite.SetFrequency (4.0 * ( 0.8 + SSGX::floatRand()*0.4));
-    finalGranite.SetPower (1.0 / 8.0);
-    finalGranite.SetRoughness (6);
 
     utils::NoiseMapBuilderSphere sphere;
     utils::NoiseMap noiseMap;
     sphere.SetBounds (-90.0, 90.0, -180.0, 180.0); // degrees
     sphere.SetDestSize (_sizeX, _sizeY);
-    sphere.SetSourceModule(finalGranite);
+    sphere.SetSourceModule(pert);
+    sphere.SetDestNoiseMap (noiseMap);
+    sphere.Build ();
+
+    //build texture
+
+    utils::RendererImage textureRenderer;
+    textureRenderer.ClearGradient ();
+    //auto mapGr = ColorOps::randomGradient(6,12,ColorOps::randomColor());
+    QMap<double, QColor> mapGr;
+    double cnt = -1.0;
+    while (cnt < 1.99) {
+        mapGr.insert(cnt,ColorOps::randomColor());
+        cnt += 0.2+0.25*SSGX::floatRand();
+    }
+    mapGr.insert(1.0, ColorOps::randomColor());
+    QMapIterator<double, QColor> i(mapGr);
+    while (i.hasNext()) {
+        i.next();
+        textureRenderer.AddGradientPoint(i.key(), QColorToColor(i.value()));
+    }
+
+    // Set up us the texture renderer and pass the noise map to it.
+    textureRenderer.SetSourceNoiseMap (noiseMap);
+    textureRenderer.SetDestImage (m_image);
+    textureRenderer.EnableLight (false);
+    textureRenderer.SetLightElev (60.0);
+    textureRenderer.SetLightContrast (1.6);
+    textureRenderer.SetLightBrightness (1.6);
+
+    // Render the texture.
+    textureRenderer.Render ();
+
+    emit imageCreated("GG2");
+
+}
+
+void NoiseImageUtils::CreateIcePlanet(int seed, const QColor &color1) {
+    utils::Color colorBlack = utils::Color(0,0,0,255);
+
+    QColor d2 = color1.darker().darker();
+    QColor d1 = color1.darker();
+    QColor l1 = color1.lighter();
+    QColor l2 = color1.lighter().lighter();
+
+    // produces the veins.
+    module::RidgedMulti primaryJade;
+    primaryJade.SetSeed (seed);
+    primaryJade.SetFrequency (0.5+1.5*SSGX::floatRand());
+    primaryJade.SetLacunarity (0.5 + SSGX::floatRand()*1.0);
+    primaryJade.SetOctaveCount (4);
+    primaryJade.SetNoiseQuality (QUALITY_STD);
+
+    // Base of the secondary jade texture.  The base texture uses concentric
+    // cylinders aligned on the z axis, which will eventually be perturbed.
+    module::Cylinders baseSecondaryJade;
+    baseSecondaryJade.SetFrequency (0.5+SSGX::floatRand());
+
+    // Rotate the base secondary jade texture so that the cylinders are not
+    // aligned with any axis.  This produces more variation in the secondary
+    // jade texture since the texture is parallel to the y-axis.
+    module::RotatePoint rotatedBaseSecondaryJade;
+    rotatedBaseSecondaryJade.SetSourceModule (0, baseSecondaryJade);
+    rotatedBaseSecondaryJade.SetAngles (90.0, 25.0, 5.0);
+
+    // Slightly perturb the secondary jade texture for more realism.
+    module::Turbulence perturbedBaseSecondaryJade;
+    perturbedBaseSecondaryJade.SetSourceModule (0, rotatedBaseSecondaryJade);
+    perturbedBaseSecondaryJade.SetSeed (seed*2);
+    perturbedBaseSecondaryJade.SetFrequency (1.22);
+    perturbedBaseSecondaryJade.SetPower (1.0 / 4.0);
+    perturbedBaseSecondaryJade.SetRoughness (4);
+
+    // Scale the secondary jade texture so it contributes a small part to the
+    // final jade texture.
+    module::ScaleBias secondaryJade;
+    secondaryJade.SetSourceModule (0, perturbedBaseSecondaryJade);
+    secondaryJade.SetScale (0.25);
+    secondaryJade.SetBias (0.0);
+
+    // Add the two jade textures together.  These two textures were produced
+    // using different combinations of coherent noise, so the final texture will
+    // have a lot of variation.
+    module::Add combinedJade;
+    combinedJade.SetSourceModule (0, primaryJade);
+    combinedJade.SetSourceModule (1, secondaryJade);
+
+    // Finally, perturb the combined jade textures to produce the final jade
+    // texture.  A low roughness produces nice veins.
+    module::Turbulence finalJade;
+    finalJade.SetSourceModule (0, combinedJade);
+    finalJade.SetSeed (seed/2);
+    finalJade.SetFrequency (4.0);
+    finalJade.SetPower (1.0 / 16.0);
+    finalJade.SetRoughness (2);
+
+    utils::NoiseMapBuilderSphere sphere;
+    utils::NoiseMap noiseMap;
+    sphere.SetBounds (-90.0, 90.0, -180.0, 180.0); // degrees
+    sphere.SetDestSize (_sizeX, _sizeY);
+    sphere.SetSourceModule(finalJade);
     sphere.SetDestNoiseMap (noiseMap);
     sphere.Build ();
 
     utils::RendererImage textureRenderer;
     textureRenderer.ClearGradient ();
-
-    auto steps = 2 + SSGX::d6();
-    auto black=  QColor(192,192,192);
-    auto colorMap = ColorOps::randomGradient(steps,4,black);
-    QMapIterator<double, QColor> i(colorMap);
+    auto mapGr = ColorOps::lightningGradient(6,12,ColorOps::randomColor().light(190));
+    QMapIterator<double, QColor> i(mapGr);
     while (i.hasNext()) {
         i.next();
         textureRenderer.AddGradientPoint(i.key(), QColorToColor(i.value()));
     }
-    textureRenderer.AddGradientPoint(1.00,QColorToColor(color1));
+    textureRenderer.AddGradientPoint(1.0, utils::Color(255,255,255,255));
 
     // Set up us the texture renderer and pass the noise map to it.
     textureRenderer.SetSourceNoiseMap (noiseMap);
     textureRenderer.SetDestImage (m_image);
     textureRenderer.EnableLight (true);
-    textureRenderer.SetLightElev (45);
-    textureRenderer.SetLightContrast (0.15);
-    textureRenderer.SetLightBrightness (3.0);
+    textureRenderer.SetLightElev (60.0);
+    textureRenderer.SetLightContrast (1.6);
+    textureRenderer.SetLightBrightness (1.6);
 
     // Render the texture.
     textureRenderer.Render ();

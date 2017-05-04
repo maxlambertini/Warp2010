@@ -136,8 +136,10 @@ public:
             zz = SSGX::d10();
             if (zz > 8)
                 niu.CreateDesertG(SSGX::dn(999999));
-            else if (zz  < 3)
+            else if (zz  > 6)
                 niu.CreateDesert(SSGX::dn(999999));
+            else if (zz  > 4)
+                niu.CreateComplexDesert2(SSGX::dn(999999));
             else
                 niu.CreateComplexDesert(SSGX::dn(999999));
             res = QString("desert_%1.png").arg(getUid());
