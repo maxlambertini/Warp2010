@@ -24,9 +24,12 @@
 #include "starlist.h"
 #include "planet.h"
 #include <helpers/noiseimageutils.h>
+#include <helpers/noiseimagerunner.h>
 #include <QObject>
 #include <QDir>
 #include <QUuid>
+#include <QThread>
+#include <QSharedPointer>
 
 class CelestiaExporter : public QObject
 {
@@ -34,6 +37,7 @@ class CelestiaExporter : public QObject
 
     QString _filePath;
     QString _texturePath;
+    QVector<QSharedPointer<NoiseImageRunner>> vTextures;
 
 public:
     CelestiaExporter() {}
@@ -68,17 +72,14 @@ public:
         QString res = "";
         auto pt = p.planetType();
         if (pt == ptGarden || pt == ptGlacier ) {
-            niu.CreateEarthClouds(SSGX::dn(999999));
             res = QString("clouds_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Clouds,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
         }
         else {
-            niu.CreateFunkyClouds(SSGX::dn(999999));
             res = QString("f_clouds_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::FunkyClouds,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
-
         }
 
     }
@@ -87,91 +88,85 @@ public:
         QString res = "";
         switch (p.planetType()) {
         case ptGarden:
-            if (p.waterPercentage() > 80)
-                niu.CreateEarthlike2(SSGX::dn(999999));
-            else if (p.waterPercentage() < 30)
-                niu.CreateEarthlike3(SSGX::dn(999999));
-            else
-                niu.CreateEarthlike(SSGX::dn(999999));
             res = QString("earthlike_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            if (p.waterPercentage() > 80)
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999))));
+            else if (p.waterPercentage() < 30)
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike2,_texturePath+"/"+res, SSGX::dn(999999))));
+            else
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike3,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptGlacier:
-            niu.CreateEarthlike3(SSGX::dn(999999));
             res = QString("glacier_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike3,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptPostGarden:
-            if (p.waterPercentage() > 80)
-                niu.CreateEarthlike2(SSGX::dn(999999));
-            else if (p.waterPercentage() < 30)
-                niu.CreateEarthlike3(SSGX::dn(999999));
-            else
-                niu.CreateEarthlike(SSGX::dn(999999));
             res = QString("postgarden_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            if (p.waterPercentage() > 80)
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike2,_texturePath+"/"+res, SSGX::dn(999999))));
+            else if (p.waterPercentage() < 30)
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike3,_texturePath+"/"+res, SSGX::dn(999999))));
+            else
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptPreGarden:
-            niu.CreatePregarden(SSGX::dn(999999));
             res = QString("pregarden_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Pregarden,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptHotHouse:
-            niu.CreateJade2Planet(SSGX::dn(999999));
             res = QString("hot_house_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptGasGiant:
-            niu.CreateGGPlanet(SSGX::dn(999999));
             res = QString("gasgiant_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::GG,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptDesert:
+            res = QString("desert_%1.png").arg(getUid());
             zz = SSGX::d10();
             if (zz > 8)
-                niu.CreateDesertG(SSGX::dn(999999));
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::DesertG,_texturePath+"/"+res,
+                                                                                       SSGX::dn(999999),
+                                                                                       6,2.5,0.2,1.5)));
             else if (zz  > 6)
-                niu.CreateDesert(SSGX::dn(999999));
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Desert,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
             else if (zz  > 4)
-                niu.CreateComplexDesert2(SSGX::dn(999999));
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::ComplexDesert2,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
             else
-                niu.CreateComplexDesert(SSGX::dn(999999));
-            res = QString("desert_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::ComplexDesert,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
             return res;
             break;
         case ptFailedCore:
-            niu.CreateJadePlanet(SSGX::dn(999999));
             res = QString("failedcore_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptRockball:
-            niu.CreateGranitePlanet(SSGX::dn(999999));
             res = QString("rockball_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptIceball:
-            niu.CreateIcePlanet(SSGX::dn(999999));
-            res = QString("rockball_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            res = QString("iceball_%1.png").arg(getUid());
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptChunk:
-            niu.CreateGranitePlanet(SSGX::dn(999999));
-            res = QString("rockball_%1.png").arg(getUid());
-            niu.SaveImage(_texturePath+"/"+res);
+            res = QString("chunk_%1.png").arg(getUid());
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         default:
-            return "";
+            res = QString("chunk_%1.png").arg(getUid());
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
+            return res;
+            break;
         }
     }
 
@@ -179,6 +174,9 @@ signals:
     void exported(int idx);
     void startExporting();
     void doneExporting();
+    void textureExportStarting(int nToExport);
+    void textureDoneExported();
+    void textureChunkExported(int nExported);
 
 private:
     Star *_star;

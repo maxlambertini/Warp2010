@@ -31,6 +31,7 @@ void NoisemapPlaygroundDialog::on_imageSaved(QString filename) {
 
 void NoisemapPlaygroundDialog::CreateBitmap() {
     for (auto x = 0; x < 4; x++) {
+        /*
         NoiseImageRunner gg2(RT::GG2,QString("test_gg2__%1.png").arg(x),SSGX::dn(99999));gg2.start();
         NoiseImageRunner gg(RT::GG,QString("test_gg__%1.png").arg(x),SSGX::dn(99999));gg.start();
         NoiseImageRunner cp(RT::Cloudy,QString("test_cloudy__%1.png").arg(x),SSGX::dn(99999));cp.start();
@@ -46,9 +47,11 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         e1.wait();
         e2.wait();
         e3.wait();
+        */
+        NoiseImageUtils imgUtils(1024,576);
+        imgUtils.CreateGGPlayground(SSGX::dn(99999));
+        imgUtils.SaveImage(QString("test_playground__%1.png").arg(x));
         /*
-        imgUtils.CreateEarthlike(SSGX::dn(99999));
-        imgUtils.SaveImage(QString("test_earth__%1.png").arg(x));
         imgUtils.CreateEarthlike2(SSGX::dn(99999));
         imgUtils.SaveImage(QString("test_earth_2_%1.png").arg(x));
         imgUtils.CreateEarthlike3(SSGX::dn(99999));

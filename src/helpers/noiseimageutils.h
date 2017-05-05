@@ -85,6 +85,8 @@ public:
     void CreateGranitePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
     void CreateIcePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
 
+    void CreateGGPlayground (int seed =1);
+
 signals:
     void imageCreated(const QString& imgType);
     void imageFileSaved(const QString& filename);

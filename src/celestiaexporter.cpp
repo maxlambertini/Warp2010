@@ -81,6 +81,31 @@ void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
      }
      data.close();
      emit this->doneExporting();
+
+    emit this->textureExportStarting(vTextures.count());
+
+    QSharedPointer<NoiseImageRunner> pt;
+    QVector<QSharedPointer<NoiseImageRunner>> tmpC;
+    QVectorIterator<QSharedPointer<NoiseImageRunner>>  vi(vTextures);
+    while (vi.hasNext()) {
+        auto thread = vi.next();
+        qDebug() << "Starting: " << thread.data()->filename();
+        thread.data()->start();
+        tmpC.append(thread);
+        if (tmpC.count()== 8) {
+            for (auto x = 0; x < 8; x++)
+                tmpC[x].data()->wait();
+            tmpC.clear();
+            emit this->textureChunkExported(8);
+        }
+    }
+    foreach (pt, tmpC) {
+        pt.data()->wait();
+    }
+    emit this->textureChunkExported(tmpC.count());
+    tmpC.clear();
+
+    emit this->textureDoneExported();
 }
 
 QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QString planetFatherName = "", int i = 1)

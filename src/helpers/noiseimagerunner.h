@@ -15,6 +15,8 @@ enum RType {
     Earthlike,
     Earthlike2,
     Earthlike3 ,
+    Pregarden,
+    Postgarden,
     Clouds,
     FunkyClouds,
     Desert,
@@ -22,6 +24,7 @@ enum RType {
     ComplexDesert,
     ComplexDesert2,
     Jade,
+    Jade2,
     Granite,
     Ice
 };
@@ -31,6 +34,8 @@ using namespace RT;
 
 class NoiseImageRunner : public QThread
 {
+    Q_OBJECT
+    using QThread::run;
     int    _seed;
     int    _octave;
     double _persistence;
@@ -76,7 +81,8 @@ private:
     void run()  override {
         switch (_runType) {
             case GG2:
-                imgUtils.CreateGG2Planet(_seed);
+                //imgUtils.CreateGG2Planet(_seed);
+                imgUtils.CreateGGPlayground(_seed);
                 imgUtils.SaveImage(_filename);
             break;
             case Cloudy:
@@ -93,6 +99,14 @@ private:
             break;
             case Earthlike3:
                 imgUtils.CreateEarthlike3(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Pregarden:
+                imgUtils.CreatePregarden(_seed);
+                imgUtils.SaveImage(_filename);
+            break;
+            case Postgarden:
+                imgUtils.CreatePostgarden(_seed);
                 imgUtils.SaveImage(_filename);
             break;
             case Clouds:
@@ -139,11 +153,16 @@ private:
                 imgUtils.SaveImage(_filename);
             break;
             case GG:
-                imgUtils.CreateGGPlanet(_seed);
+                //imgUtils.CreateGGPlanet(_seed);
+                imgUtils.CreateGGPlayground(_seed);
                 imgUtils.SaveImage(_filename);
             break;
             case Jade:
                 imgUtils.CreateJadePlanet(_seed, ColorOps::randomColor());
+                imgUtils.SaveImage(_filename);
+            break;
+            case Jade2:
+                imgUtils.CreateJade2Planet(_seed, ColorOps::randomColor());
                 imgUtils.SaveImage(_filename);
             break;
             case Granite:

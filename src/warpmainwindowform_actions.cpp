@@ -496,6 +496,10 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
             connect(&cex,SIGNAL(doneExporting()),this,SLOT(on_celestia_export_done()) );
             connect(&cex,SIGNAL(exported(int)),this, SLOT(on_celestia_system_exported(int)) );
 
+            connect(&cex,SIGNAL(textureExportStarting(int)),this, SLOT(on_celestia_texture_starting(int)));
+            connect(&cex,SIGNAL(textureChunkExported(int)), this, SLOT(on_celestia_texture_chunk(int)));
+            connect(&cex,SIGNAL(textureDoneExported()),this,SLOT(on_celestia_texture_done()));
+
             cex.setStarList(this->_starList);
 
             QFileInfo fileInfo(fileName);
@@ -506,6 +510,7 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
         }
     }
 }
+
 
 void WarpMainWindowForm::on_celestia_export_started()
 {
@@ -521,6 +526,25 @@ void WarpMainWindowForm::on_celestia_system_exported(int exp)
 {
     this->setWindowTitle(QString("System %1 of %2 exported").arg(exp).arg(this->_starList->count()));
     qApp->processEvents();
+}
+
+void WarpMainWindowForm::on_celestia_texture_chunk(int exp)
+{
+    progressBar->setValue(progressBar->value()+exp);
+    qApp->processEvents();
+}
+
+void WarpMainWindowForm::on_celestia_texture_starting(int exp) {
+
+    progressBar->setMinimum(0);
+    progressBar->setValue(0);
+    progressBar->setMaximum(exp);
+    progressBar->setVisible(true);
+    qApp->processEvents();
+}
+
+void WarpMainWindowForm::on_celestia_texture_done() {
+    progressBar->setVisible(false);
 }
 
 void WarpMainWindowForm::on_action_ViewOnlyTradeRoutes_triggered()

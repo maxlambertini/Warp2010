@@ -234,6 +234,9 @@ private slots:
     void on_celestia_export_started();
     void on_celestia_export_done();
     void on_celestia_system_exported(int exp);
+    void on_celestia_texture_starting(int exp);
+    void on_celestia_texture_done();
+    void on_celestia_texture_chunk(int exp);
 };
 
 #endif // WARPMAINWINDOWFORM_H
