@@ -39,16 +39,20 @@ public:
     void CreateEarthlikeRMF (int seed = 1, int octave = 6, double lacunarity = 2.30,
                           double frequency = 3.3);
 
-    void CreateEarthlike (int seed = 1, int octave = 6, double lacunarity = 3.30,
-                          double frequency = 3.3, double persistence = 0.28);
-    void CreateEarthlike2 (int seed = 1, int octave = 6, double lacunarity = 3.30,
-                          double frequency = 3.3, double persistence = 0.28);
-    void CreateEarthlike3 (int seed = 1, int octave = 6, double lacunarity = 3.30,
-                          double frequency = 3.3, double persistence = 0.28);
-    void CreatePregarden (int seed = 1, int octave = 6, double lacunarity = 3.30,
-                          double frequency = 3.3, double persistence = 0.28);
-    void CreatePostgarden (int seed = 1, int octave = 6, double lacunarity = 3.30,
-                          double frequency = 3.3, double persistence = 0.28);
+    void CreateAlienlikePeaks (int seed = 1, int octave = 5, double lacunarity = 2.50,
+                          double frequency = 2.0, double persistence = 0.43);
+    void CreateEarthlikePeaks (int seed = 1, int octave = 5, double lacunarity = 2.50,
+                          double frequency = 2.0, double persistence = 0.43);
+    void CreateEarthlike (int seed = 1, int octave = 5, double lacunarity = 2.50,
+                          double frequency = 2.0, double persistence = 0.43);
+    void CreateEarthlike2 (int seed = 1, int octave = 5, double lacunarity = 2.50,
+                           double frequency = 2.0, double persistence = 0.43);
+    void CreateEarthlike3 (int seed = 1, int octave = 5, double lacunarity = 2.50,
+                           double frequency = 2.0, double persistence = 0.43);
+    void CreatePregarden (int seed = 1, int octave = 5, double lacunarity = 2.50,
+                          double frequency = 2.0, double persistence = 0.43);
+    void CreatePostgarden (int seed = 1, int octave = 5, double lacunarity = 2.50,
+                           double frequency = 2.0, double persistence = 0.43);
     void CreateEarthClouds (int seed=1, int octave=4, double lacunarity=2.12,
                           double frequency=2.0, double persistence=0.375);
     void CreateFunkyClouds (int seed=1, int octave=4, double lacunarity=2.12,
@@ -57,8 +61,8 @@ public:
                              double frequency=2.0, double persistence= 0.375);
     void SaveImage (const QString& filename, int blurSize = 0);
 
-    void CreateDesert (int seed = 1, int octave = 6, double lacunarity = 1.30,
-                          double frequency = 3.3, double persistence = 0.32,
+    void CreateDesert (int seed = 1, int octave = 5, double lacunarity = 2.50,
+                          double frequency = 2.0, double persistence = 0.32,
                           utils::Color color1 = utils::Color(128,  0,  0,255),
                           utils::Color color2 = utils::Color(192,  0,  0,255),
                           utils::Color color3 = utils::Color(255,128, 64,255));

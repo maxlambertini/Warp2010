@@ -49,8 +49,20 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         e3.wait();
         */
         NoiseImageUtils imgUtils(1024,576);
-        imgUtils.CreateGGPlayground(SSGX::dn(99999));
-        imgUtils.SaveImage(QString("test_playground__%1.png").arg(x));
+        imgUtils.CreateEarthlikePeaks(SSGX::dn(99999),
+                                      ui->spnOctave->value(),
+                                      ui->spnLacunarity->value(),
+                                      ui->spnFrequency->value(),
+                                      ui->spnPersistence->value());
+
+        imgUtils.SaveImage(QString("test_peaks__%1.png").arg(x));
+        imgUtils.CreateAlienlikePeaks(SSGX::dn(99999),
+                                      ui->spnOctave->value(),
+                                      ui->spnLacunarity->value(),
+                                      ui->spnFrequency->value(),
+                                      ui->spnPersistence->value());
+
+        imgUtils.SaveImage(QString("test_alienpeaks__%1.png").arg(x));
         /*
         imgUtils.CreateEarthlike2(SSGX::dn(99999));
         imgUtils.SaveImage(QString("test_earth_2_%1.png").arg(x));

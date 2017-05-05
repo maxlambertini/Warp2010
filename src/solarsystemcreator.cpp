@@ -62,6 +62,7 @@ void SolarSystemCreator::createWorlds()
     double prevSatDistance = 0.0;
     double prevDistance = 0.0;
 
+    const double MIN_PLANET_DISTANCE_GG = 4000000.0;
 
     _star->calcStarValue();
     for (int h = 0; h < _orbits; h++) {
@@ -114,7 +115,7 @@ void SolarSystemCreator::createWorlds()
                             sat.setTidalForce(0.2);
                         planet.appendSatellite(sat);
                     }
-                    prevSatDistance = dSatDistance;
+                    prevSatDistance = dSatDistance > MIN_PLANET_DISTANCE_GG ? MIN_PLANET_DISTANCE_GG : dSatDistance;
                 }
                 double T = (_star->mass()*266400.0 / pow((planet.orbitPtr()->distance() *400),3));
                 double tf = (double)((0.83 + (double) SSGX::d10() *.03) *T * _star->solarAge() / 6.6);

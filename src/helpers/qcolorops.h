@@ -32,15 +32,26 @@ namespace ColorOps {
     }
 
     inline QMap<double, QColor> lightningGradient (int nSteps = 7,int nColorStep = 14,
-                                                   const QColor& startColor = randomColor())
+                                                   const QColor& startColor = randomColor(),
+                                                   int randomFactor = -1,
+                                                   bool randomAlpha = false)
     {
         QMap<double,QColor> colorMap;
         double dStart = -1.0;
         double dStep = (2.0 / (double)nSteps);
         QColor theColor = startColor;
+        if (randomAlpha)
+            theColor.setAlpha(32+SSGX::dn(192));
         for (auto h = 0; h < nSteps-1; h++) {
             colorMap.insert(dStart,theColor);
-            theColor = irregularLightenColor(theColor, nColorStep);
+            auto x = SSGX::d100();
+            if (x > randomFactor)
+                theColor = irregularLightenColor(theColor, nColorStep);
+            else
+                theColor.setHsl((theColor.hslHue() + SSGX::dn(50) -25 ) % 255
+                                , theColor.hslSaturation(), theColor.lightness());
+            if (randomAlpha)
+                theColor.setAlpha(32+SSGX::dn(192));
             dStart += dStep;
         }
         colorMap.insert(dStart,theColor);
@@ -48,15 +59,26 @@ namespace ColorOps {
     }
 
     inline QMap<double, QColor> darkeningGradient (int nSteps = 7,int nColorStep = 14,
-                                                   const QColor& startColor = randomColor())
+                                                   const QColor& startColor = randomColor(),
+                                                   int randomFactor = -1,
+                                                   bool randomAlpha = false)
     {
         QMap<double,QColor> colorMap;
         double dStart = -1.0;
         double dStep = (2.0 / (double)nSteps);
         QColor theColor = startColor;
+        if (randomAlpha)
+            theColor.setAlpha(32+SSGX::dn(192));
         for (auto h = 0; h < nSteps-1; h++) {
             colorMap.insert(dStart,theColor);
-            theColor = irregularLightenColor(theColor, nColorStep);
+            auto x = SSGX::d100();
+            if (x > randomFactor)
+                theColor = irregularLightenColor(theColor, nColorStep);
+            else
+                theColor.setHsl((theColor.hslHue() + SSGX::dn(50) -25 ) % 255
+                                , theColor.hslSaturation(), theColor.lightness());
+            if (randomAlpha)
+                theColor.setAlpha(32+SSGX::dn(192));
             dStart += dStep;;
         }
         colorMap.insert(dStart,theColor);
