@@ -41,6 +41,8 @@ const int TAB_CLUSTER_MAP = 2;
 #include "dialogs/newsectordialog.h"
 #include "appmessage.h"
 #include "helpers/solarsystemtoscene.h"
+#include <QSharedPointer>
+#include <celestiaexporter.h>
 
 namespace Ui
 {
@@ -86,6 +88,7 @@ private:
     QActionGroup *agDrawMode;
     SolarSystemToScene solsysScene;
 
+    QSharedPointer<CelestiaExporter> pCexp;
 
 public slots:
     void sliderValueChanged(int value);

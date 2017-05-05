@@ -22,6 +22,7 @@
 #include "planet.h"
 #include "ssg_structures.h"
 #include <QObject>
+#include <QtConcurrent/QtConcurrent>
 
 void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
     QString sOutput;
@@ -84,29 +85,46 @@ void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
 
     emit this->textureExportStarting(vTextures.count());
 
-    QSharedPointer<NoiseImageRunner> pt;
-    QVector<QSharedPointer<NoiseImageRunner>> tmpC;
-    QVectorIterator<QSharedPointer<NoiseImageRunner>>  vi(vTextures);
-    while (vi.hasNext()) {
-        auto thread = vi.next();
-        qDebug() << "Starting: " << thread.data()->filename();
-        thread.data()->start();
+    QFuture<void> pt;
+    _futures.clear();
 
-        tmpC.append(thread);
-        if (tmpC.count()== 8) {
-            for (auto x = 0; x < 8; x++)
-                tmpC[x].data()->wait();
-            tmpC.clear();
+    _numTextures = vTextures.count();
+    _curTexture = _numTextures;
+
+    QVectorIterator<QSharedPointer<NoiseImageRunner>>  vi(vTextures);
+    while(vi.hasNext()) {
+        NoiseImageRunner* nir = vi.next().data();
+        connect (nir,SIGNAL(imageSaved(QString)),this,SLOT(doneRendering(QString)));
+    }
+    vi.toFront();
+    while (vi.hasNext()) {
+        auto nir = vi.next();
+        auto res = QtConcurrent::run (nir.data(), &NoiseImageRunner::run);
+
+        _futures.append(res);
+        if (_futures.count()== 8) {
+            //for (auto x = 0; x < 8; x++)
+            //    _futures[x].waitForFinished();
+            //_futures.clear();
             emit this->textureChunkExported(8);
         }
     }
-    foreach (pt, tmpC) {
-        pt.data()->wait();
+    /*
+    foreach (pt, _futures) {
+        pt.waitForFinished();
     }
-    emit this->textureChunkExported(tmpC.count());
-    tmpC.clear();
+    emit this->textureChunkExported(_futures.count());
+    */
+    //_futures.clear();
 
-    emit this->textureDoneExported();
+}
+
+void CelestiaExporter::doneRendering(QString filename) {
+    emit this->textureChunkExported(1);
+    _curTexture--;
+    if (_curTexture == 0)
+        emit this->textureDoneExported();
+
 }
 
 QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QString planetFatherName = "", int i = 1)

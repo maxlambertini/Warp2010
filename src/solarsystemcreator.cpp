@@ -59,6 +59,9 @@ void SolarSystemCreator::createWorlds()
     _star->numDesert(0);
     _star->numGasGiant(0);
 
+    double prevSatDistance = 0.0;
+    double prevDistance = 0.0;
+
 
     _star->calcStarValue();
     for (int h = 0; h < _orbits; h++) {
@@ -75,8 +78,15 @@ void SolarSystemCreator::createWorlds()
                     dModifier *= 1.25;
                 currentDistance = dModifier + SSGX::floatRand() * dModifier;
             }
-            else
-                currentDistance *= (1.2+ (double)(rand() % 900)/1000.0);
+            else {
+                prevDistance = currentDistance;
+                auto minDistance = currentDistance + (prevSatDistance * 50.0 / 150000000.0);
+                auto newDistance = (currentDistance * (1.2+ (double)(rand() % 900)/1000.0)) - currentDistance;
+                if (minDistance > newDistance)
+                    currentDistance += minDistance;
+                else
+                    currentDistance += newDistance;
+            }
             int chance = SSGX::d10();
             if (chance < 8) {
 
@@ -89,8 +99,10 @@ void SolarSystemCreator::createWorlds()
                 else if (planet.planetType() != ptChunk)
                     numSat = SSGX::d6()-3;
 
+
                 if (numSat > 0)
                 {
+                    prevSatDistance = 0;
                     double dSatDistance = 0;
                     for (int idxSat = 0; idxSat < numSat; idxSat++)
                     {
@@ -101,8 +113,8 @@ void SolarSystemCreator::createWorlds()
                         else
                             sat.setTidalForce(0.2);
                         planet.appendSatellite(sat);
-
                     }
+                    prevSatDistance = dSatDistance;
                 }
                 double T = (_star->mass()*266400.0 / pow((planet.orbitPtr()->distance() *400),3));
                 double tf = (double)((0.83 + (double) SSGX::d10() *.03) *T * _star->solarAge() / 6.6);

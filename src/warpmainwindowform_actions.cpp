@@ -490,23 +490,25 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
         if (fileName.endsWith(".json"))
             this->_starList->saveToJson(fileName);
         if (fileName.endsWith(".stc")) {
-            CelestiaExporter cex(this->_currentStar.data());
+            if (this->pCexp.data() != nullptr)
+                this->pCexp.clear();
+            this->pCexp = QSharedPointer<CelestiaExporter>(new CelestiaExporter (this->_currentStar.data()));
 
-            connect(&cex,SIGNAL(startExporting()),this,SLOT(on_celestia_export_started()) );
-            connect(&cex,SIGNAL(doneExporting()),this,SLOT(on_celestia_export_done()) );
-            connect(&cex,SIGNAL(exported(int)),this, SLOT(on_celestia_system_exported(int)) );
+            connect(pCexp.data(),SIGNAL(startExporting()),this,SLOT(on_celestia_export_started()) );
+            connect(pCexp.data(),SIGNAL(doneExporting()),this,SLOT(on_celestia_export_done()) );
+            connect(pCexp.data(),SIGNAL(exported(int)),this, SLOT(on_celestia_system_exported(int)) );
 
-            connect(&cex,SIGNAL(textureExportStarting(int)),this, SLOT(on_celestia_texture_starting(int)));
-            connect(&cex,SIGNAL(textureChunkExported(int)), this, SLOT(on_celestia_texture_chunk(int)));
-            connect(&cex,SIGNAL(textureDoneExported()),this,SLOT(on_celestia_texture_done()));
+            connect(pCexp.data(),SIGNAL(textureExportStarting(int)),this, SLOT(on_celestia_texture_starting(int)));
+            connect(pCexp.data(),SIGNAL(textureChunkExported(int)), this, SLOT(on_celestia_texture_chunk(int)));
+            connect(pCexp.data(),SIGNAL(textureDoneExported()),this,SLOT(on_celestia_texture_done()));
 
-            cex.setStarList(this->_starList);
+            pCexp.data()->setStarList(this->_starList);
 
             QFileInfo fileInfo(fileName);
             QString path = fileInfo.absolutePath();
-            cex.setFilePath(path);
+            pCexp.data()->setFilePath(path);
 
-            cex.saveStarListToCelestiaFile(fileName);
+            pCexp.data()->saveStarListToCelestiaFile(fileName);
         }
     }
 }

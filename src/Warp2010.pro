@@ -12,7 +12,7 @@
 # -------------------------------------------------
 # Project created by QtCreator 2009-03-31T07:42:33
 # -------------------------------------------------
-QT += printsupport widgets svg
+QT += printsupport widgets svg concurrent
 TARGET = Warp2010
 TEMPLATE = app
 QMAKE_CXXFLAGS += -Wall -Wextra -O3

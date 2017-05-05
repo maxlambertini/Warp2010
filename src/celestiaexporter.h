@@ -38,9 +38,12 @@ class CelestiaExporter : public QObject
     QString _filePath;
     QString _texturePath;
     QVector<QSharedPointer<NoiseImageRunner>> vTextures;
+    QVector<QFuture<void>> _futures;
 
 public:
     CelestiaExporter() {}
+
+    QVector<QFuture<void>>& getFutures() { return _futures; }
 
     CelestiaExporter(Star *star) : _star(star)
     {
@@ -178,13 +181,17 @@ signals:
     void textureDoneExported();
     void textureChunkExported(int nExported);
 
+public slots:
+    void doneRendering(QString filename);
+
 private:
     Star *_star;
     StarList * _starList;
     NoiseImageUtils niu;
 
     QString planetToCelestia(Planet& planet, QString starName, QString planetFatherName, int i);
-
+    int _numTextures;
+    int _curTexture;
 
 };
 

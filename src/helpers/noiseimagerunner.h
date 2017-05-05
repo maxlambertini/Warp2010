@@ -32,10 +32,9 @@ enum RType {
 
 using namespace RT;
 
-class NoiseImageRunner : public QThread
+class NoiseImageRunner : public QObject
 {
     Q_OBJECT
-    using QThread::run;
     int    _seed;
     int    _octave;
     double _persistence;
@@ -76,9 +75,7 @@ public:
         _seed(seed), _octave(octave),
         _persistence(pers),_lacunarity(lac), _frequency(freq){}
 
-private:
-    //interface
-    void run()  override {
+    void run()   {
         switch (_runType) {
             case GG2:
                 //imgUtils.CreateGG2Planet(_seed);
@@ -178,7 +175,11 @@ private:
                 imgUtils.SaveImage(_filename);
             break;
         }
+        emit imageSaved(_filename);
     }
+
+signals:
+    void imageSaved(QString f);
 
 };
 
