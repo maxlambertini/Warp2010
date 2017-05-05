@@ -91,6 +91,7 @@ void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
         auto thread = vi.next();
         qDebug() << "Starting: " << thread.data()->filename();
         thread.data()->start();
+
         tmpC.append(thread);
         if (tmpC.count()== 8) {
             for (auto x = 0; x < 8; x++)
