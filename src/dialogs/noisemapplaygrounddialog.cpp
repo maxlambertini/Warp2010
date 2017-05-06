@@ -9,7 +9,7 @@
 #include <helpers/noiseimagerunner.h>
 #include <helpers/planetmaps/maps.h>
 
-NoisemapPlaygroundDialog::NoisemapPlaygroundDialog(QWidget *parent) :
+NoisemapPlaygroundDialog::  NoisemapPlaygroundDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NoisemapPlaygroundDialog)
 {
@@ -51,17 +51,12 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         */
         NoiseImageUtils imgUtils;
 
-        maps::EarthlikePeaks e2; e2.setSeaRatio(0.5); e2.setIceRatio(0.85); e2.setSeed(SSGX::dn(99999)); e2.generateAndSave(QString("test_e2_%1.png").arg(x));
-        maps::EarthlikePeaks e3; e3.setSeaRatio(0.0);  e3.setIceRatio(0.50); e3.setSeed(SSGX::dn(99999)); e3.generateAndSave(QString("test_e3_%1.png").arg(x));
-        maps::EarthlikePeaks e4; e4.setSeaRatio(-0.5);e4.setIceRatio(0.35);  e4.setSeed(SSGX::dn(99999)); e4.generateAndSave(QString("test_e4_%1.png").arg(x));
+        maps::EarthlikePeaks e1; e1.setSeaRatio(0.25); e1.setIceRatio(0.91); e1.setSeed(SSGX::dn(99999)); e1.generateAndSave(QString("test_e1_%1.png").arg(x));
+        maps::EarthlikePeaks e2; e2.setSeaRatio(-0.25); e2.setIceRatio(0.55); e2.setSeed(SSGX::dn(99999)); e2.generateAndSave(QString("test_e2_%1.png").arg(x));
+        maps::EarthlikePeaks e3; e3.setSeaRatio(-0.15);  e3.setIceRatio(0.30); e3.setSeed(SSGX::dn(99999)); e3.generateAndSave(QString("test_e3_%1.png").arg(x));
+        maps::GasGiant e4; e4.setSeed(SSGX::dn(99999)); e4.generateAndSave(QString("test_gg_%1.png").arg(x));
         // e4; e4.setSeaRatio(-0.5);e4.setIceRatio(0.25);  e4.setSeed(SSGX::dn(99999)); e4.generateAndSave(QString("test_e4_%1.png").arg(x));
 
-        imgUtils.SaveImage(QString("test_peaks__%1.png").arg(x));
-
-        imgUtils.SaveImage(QString("test_alienpeaks__%1.png").arg(x));
-        imgUtils.CreateIcePlanet(SSGX::dn(99999));
-
-        imgUtils.SaveImage(QString("test_iceballz__%1.png").arg(x));
 
 
         /*

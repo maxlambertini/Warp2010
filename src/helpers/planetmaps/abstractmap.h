@@ -13,6 +13,20 @@
 #include <QMapIterator>
 
 namespace maps {
+    struct GradientItem {
+        double position;
+        int red;
+        int green;
+        int blue;
+        int alpha;
+        utils::Color getColor() { return utils::Color(
+                        static_cast<noise::uint8>(this->red),
+                        static_cast<noise::uint8>(this->green),
+                        static_cast<noise::uint8>(this->blue),
+                        static_cast<noise::uint8>(this->alpha)); }
+        QColor getQColor() { return QColor(red, green, blue, alpha); }
+    };
+
     class AbstractMap : public NoiseImageUtils
     {
         Q_OBJECT

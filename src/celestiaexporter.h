@@ -91,35 +91,36 @@ public:
         QString res = "";
         switch (p.planetType()) {
         case ptGarden:
+        {
             res = QString("earthlike_%1.png").arg(getUid());
-            if (p.waterPercentage() > 80)
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999))));
-            else if (p.waterPercentage() < 30)
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike2,_texturePath+"/"+res, SSGX::dn(999999))));
-            else
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike3,_texturePath+"/"+res, SSGX::dn(999999))));
+            QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
+            ptr.data()->setSeaRatio(p.waterPercentage());
+            vTextures.append(ptr);
             return res;
-            break;
+        }
+        break;
         case ptGlacier:
             res = QString("glacier_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike3,_texturePath+"/"+res, SSGX::dn(999999))));
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Glacier,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptPostGarden:
-            res = QString("postgarden_%1.png").arg(getUid());
-            if (p.waterPercentage() > 80)
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike2,_texturePath+"/"+res, SSGX::dn(999999))));
-            else if (p.waterPercentage() < 30)
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike3,_texturePath+"/"+res, SSGX::dn(999999))));
-            else
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999))));
+        {
+            res = QString("earthlike_%1.png").arg(getUid());
+            QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Postgarden,_texturePath+"/"+res, SSGX::dn(999999)));
+            ptr.data()->setSeaRatio(p.waterPercentage());
+            vTextures.append(ptr);
             return res;
-            break;
+        }
+        break;
         case ptPreGarden:
-            res = QString("pregarden_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Pregarden,_texturePath+"/"+res, SSGX::dn(999999))));
+        {
+            res = QString("earthlike_%1.png").arg(getUid());
+            QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Pregarden,_texturePath+"/"+res, SSGX::dn(999999)));
+            ptr.data()->setSeaRatio(p.waterPercentage());
+            vTextures.append(ptr);
             return res;
-            break;
+        }
         case ptHotHouse:
             res = QString("hot_house_%1.png").arg(getUid());
             vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));

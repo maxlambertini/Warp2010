@@ -5,7 +5,7 @@ using namespace maps;
 
 EarthlikePeaks::EarthlikePeaks()
 {
-
+    this->_gardenType = GARDEN;
 }
 
 void EarthlikePeaks::generate() {
@@ -64,13 +64,28 @@ void EarthlikePeaks::generate() {
     renderer.ClearGradient ();
     renderer.SetSourceNoiseMap (heightMap);
     renderer.SetDestImage (this->m_image);
-    renderer.AddGradientPoint (-0.4500, utils::Color ( 41,  51,  87, 255)); // deeps
-    renderer.AddGradientPoint (-0.2500, utils::Color ( 81, 110, 153, 255)); // shallow
-    renderer.AddGradientPoint (-0.0500, utils::Color ( 81, 122, 176, 255)); // shallow
-    renderer.AddGradientPoint ( 0.0000, utils::Color ( 88, 115,  69, 255)); // shore
-    renderer.AddGradientPoint ( 0.2125, utils::Color ( 70,  75,  58, 255)); // sand
-    renderer.AddGradientPoint ( 0.4550, utils::Color ( 76, 100,  69, 255)); // grass
-    renderer.AddGradientPoint ( 0.4750, utils::Color ( 52,  68,  47, 255)); // grass
+    switch (_gardenType) {
+        case PREGARDEN:
+        for (auto h = 0; h < 7; h++) {
+            renderer.AddGradientPoint(preGardenSteps[h].position, preGardenSteps[h].getColor());
+        }
+        break;
+        case POSTGARDEN:
+        for (auto h = 0; h < 7; h++) {
+            renderer.AddGradientPoint(postGardenSteps[h].position, postGardenSteps[h].getColor());
+        }
+        break;
+    default:
+        renderer.AddGradientPoint (-0.4500, utils::Color ( 41,  51,  87, 255)); // deeps
+        renderer.AddGradientPoint (-0.2500, utils::Color ( 81, 110, 153, 255)); // shallow
+        renderer.AddGradientPoint (-0.0500, utils::Color ( 81, 122, 176, 255)); // shallow
+        renderer.AddGradientPoint ( 0.0000, utils::Color ( 88, 115,  69, 255)); // shore
+        renderer.AddGradientPoint ( 0.2125, utils::Color ( 70,  75,  58, 255)); // sand
+        renderer.AddGradientPoint ( 0.4550, utils::Color ( 76, 100,  69, 255)); // grass
+        renderer.AddGradientPoint ( 0.4750, utils::Color ( 52,  68,  47, 255)); // grass
+        break;
+    }
+
     renderer.EnableLight ();
     renderer.SetLightContrast (0.2);
     renderer.SetLightBrightness (2.0);

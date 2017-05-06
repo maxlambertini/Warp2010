@@ -138,7 +138,11 @@ SOURCES += main.cpp \
     helpers/planetmaps/cloudy.cpp \
     helpers/planetmaps/gasgiant.cpp \
     helpers/planetmaps/Clouds/earthclouds.cpp \
-    helpers/planetmaps/Clouds/funkyclouds.cpp
+    helpers/planetmaps/Clouds/funkyclouds.cpp \
+    helpers/planetmaps/jade.cpp \
+    helpers/planetmaps/jade2.cpp \
+    helpers/planetmaps/ice.cpp \
+    helpers/planetmaps/granite.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -223,7 +227,11 @@ HEADERS += coordinates.h \
     helpers/planetmaps/cloudy.h \
     helpers/planetmaps/gasgiant.h \
     helpers/planetmaps/Clouds/earthclouds.h \
-    helpers/planetmaps/Clouds/funkyclouds.h
+    helpers/planetmaps/Clouds/funkyclouds.h \
+    helpers/planetmaps/jade.h \
+    helpers/planetmaps/jade2.h \
+    helpers/planetmaps/ice.h \
+    helpers/planetmaps/granite.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

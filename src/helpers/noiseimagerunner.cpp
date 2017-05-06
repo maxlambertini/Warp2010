@@ -22,7 +22,7 @@ void NoiseImageRunner::run() {
            break;
            case Earthlike:
                {
-                   maps::EarthlikePeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setIceRatio(0.30);  ep.setSeed(_seed); ep.generateAndSave(_filename);
                }
            break;
            case Earthlike2:
@@ -36,12 +36,19 @@ void NoiseImageRunner::run() {
                }
            break;
            case Pregarden:
-               imgUtils.CreatePregarden(_seed);
-               imgUtils.SaveImage(_filename);
+               {
+                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setIceRatio(0.30); ep.setSeed(_seed); ep.setupPreGarden();  ep.generateAndSave(_filename);
+               }
+           break;
+           case Glacier:
+               {
+                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setSeed(_seed); ep.setupGlacier(); ep.setSeaRatio(_seaRatio); ep.generateAndSave(_filename);
+               }
            break;
            case Postgarden:
-               imgUtils.CreatePostgarden(_seed);
-               imgUtils.SaveImage(_filename);
+               {
+                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setSeed(_seed); ep.setIceRatio(0.30); ep.setupPostGarden(); ep.generateAndSave(_filename);
+               }
            break;
            case Clouds:
                {
@@ -64,20 +71,21 @@ void NoiseImageRunner::run() {
                }
            break;
            case ComplexDesert:
+                {
+                   maps::AlienPeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                }
+                /*
                imgUtils.CreateComplexDesert(_seed,
                                         _octave,
                                         _lacunarity,
                                         _frequency,
                                         _persistence);
-               imgUtils.SaveImage(_filename);
+                */
            break;
            case ComplexDesert2:
-               imgUtils.CreateComplexDesert2(_seed,
-                                        _octave,
-                                        _lacunarity,
-                                        _frequency,
-                                        _persistence);
-               imgUtils.SaveImage(_filename);
+            {
+               maps::AlienPeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+            }
            break;
            case GG:
                {
@@ -85,20 +93,24 @@ void NoiseImageRunner::run() {
                }
            break;
            case Jade:
-               imgUtils.CreateJadePlanet(_seed, ColorOps::randomColor());
-               imgUtils.SaveImage(_filename);
+               {
+                   maps::Jade ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+               }
            break;
            case Jade2:
-               imgUtils.CreateJade2Planet(_seed, ColorOps::randomColor());
-               imgUtils.SaveImage(_filename);
+               {
+                   maps::Jade2 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+               }
            break;
            case Granite:
-               imgUtils.CreateGranitePlanet(_seed, ColorOps::randomColor());
-               imgUtils.SaveImage(_filename);
+               {
+                   maps::Granite ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+               }
            break;
            case Ice:
-               imgUtils.CreateIcePlanet(_seed);
-               imgUtils.SaveImage(_filename);
+               {
+                   maps::Ice ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+               }
            break;
            default:
                {

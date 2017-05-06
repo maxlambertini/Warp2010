@@ -11,11 +11,16 @@ GasGiant::GasGiant()
 void GasGiant::generate() {
     // base GG modules
     module::Cylinders baseGG;
-    baseGG.SetFrequency (_seed);
+    baseGG.SetFrequency (2.5+SSGX::floatRand());
+
+    module::RotatePoint rot2;
+    rot2.SetSourceModule(0,baseGG);
+    rot2.SetAngles(-1.0,-1.0,-1.0);
+
 
     // Slightly perturb the secondary jade texture for more realism.
     module::Turbulence pert2;
-    pert2.SetSourceModule (0, baseGG);
+    pert2.SetSourceModule (0, rot2);
     pert2.SetSeed (_seed*9);
     pert2.SetFrequency (0.9);
     pert2.SetPower (1.0 / 8.0);
@@ -25,12 +30,16 @@ void GasGiant::generate() {
     module::Cylinders baseGG2;
     baseGG2.SetFrequency (1.5+SSGX::floatRand());
 
+    module::RotatePoint rot;
+    rot.SetSourceModule(0,baseGG2);
+    rot.SetAngles(1.1,1.0,1.0);
+
     // Slightly perturb the secondary jade texture for more realism.
     module::Turbulence pert3;
-    pert3.SetSourceModule (0, baseGG2);
+    pert3.SetSourceModule (0, rot);
     pert3.SetSeed (_seed*9);
     pert3.SetFrequency (0.82);
-    pert3.SetPower (1.0 / 3.0);
+    pert3.SetPower (1.0 / 32.0);
     pert3.SetRoughness (3);
 
     // let's compose everything together

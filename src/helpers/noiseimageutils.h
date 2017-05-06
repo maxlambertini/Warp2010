@@ -62,16 +62,6 @@ public:
     void setSizeX(int x) { _sizeX = x; }
     void setSizeY(int y) { _sizeY = y; }
 
-    void CreateEarthlikeRMF (int seed = 1, int octave = 6, double lacunarity = 2.30,
-                          double frequency = 3.3);
-
-    void CreatePregarden (int seed = 1, int octave = 5, double lacunarity = 2.50,
-                          double frequency = 2.0, double persistence = 0.43);
-    void CreatePostgarden (int seed = 1, int octave = 5, double lacunarity = 2.50,
-                           double frequency = 2.0, double persistence = 0.43);
-
-
-
     void CreateComplexDesert (int seed = 1, int octave = 6, double lacunarity = 1.30,
                           double frequency = 3.3, double persistence = 0.32,
                           utils::Color color1 = utils::Color(128,  0,  0,255),
@@ -82,11 +72,6 @@ public:
                           double frequency = 3.3, double persistence = 0.32,
                           const QColor& color1 = QColor(255,255,193),
                           const QColor& color2 = QColor(128,64,32));
-
-    void CreateJadePlanet (int seed = 1, const QColor& color1 = QColor(255,255,193));
-    void CreateJade2Planet (int seed = 1, const QColor& color1 = QColor(255,255,193));
-    void CreateGranitePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
-    void CreateIcePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
 
     void SaveImage (const QString& filename, int blurSize = 0);
 

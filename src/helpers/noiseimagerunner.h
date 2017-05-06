@@ -16,6 +16,7 @@ enum RType {
     Earthlike,
     Earthlike2,
     Earthlike3 ,
+    Glacier,
     Pregarden,
     Postgarden,
     Clouds,
@@ -41,6 +42,11 @@ class NoiseImageRunner : public QObject
     double _persistence;
     double _lacunarity;
     double _frequency;
+
+    double _seaRatio = 0.0;
+    double _iceRatio = 0.125;
+
+
     RType _runType = Earthlike;
     QString _filename = "";
     NoiseImageUtils imgUtils;
@@ -59,6 +65,12 @@ public:
     const QString& filename() { return _filename; }
     void setRunType(RType str) { _runType = str; }
     const RType runType() { return _runType; }
+    double iceRatio() { return _iceRatio; }
+    void setIceRatio (double v) { _iceRatio = v; }
+    double seaRatio() { return _seaRatio; }
+    void setSeaRatio (double v) { _seaRatio = v; }
+
+
     NoiseImageRunner();
 
     NoiseImageRunner(RType runType, const QString& filename, int seed) : _runType(runType), _filename(filename), _seed(seed) {}
