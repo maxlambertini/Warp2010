@@ -125,7 +125,12 @@ SOURCES += main.cpp \
     ../libnoise/src/noiseutils.cpp \
     dialogs/noisemapplaygrounddialog.cpp \
     helpers/noiseimageutils.cpp \
-    helpers/noiseimagerunner.cpp
+    helpers/noiseimagerunner.cpp \
+    helpers/planetmaps/earthlike.cpp \
+    helpers/planetmaps/abstractmap.cpp \
+    helpers/planetmaps/earthlike2.cpp \
+    helpers/planetmaps/earthlike3.cpp \
+    helpers/planetmaps/earthlikepeaks.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -196,7 +201,13 @@ HEADERS += coordinates.h \
     dialogs/noisemapplaygrounddialog.h \
     helpers/noiseimageutils.h \
     helpers/noiseimagerunner.h \
-    helpers/qcolorops.h
+    helpers/qcolorops.h \
+    helpers/planetmaps/earthlike.h \
+    helpers/planetmaps/abstractmap.h \
+    helpers/planetmaps/earthlike2.h \
+    helpers/planetmaps/earthlike3.h \
+    helpers/planetmaps/maps.h \
+    helpers/planetmaps/earthlikepeaks.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

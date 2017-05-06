@@ -7,6 +7,7 @@
 #include <helpers/noiseimageutils.h>
 #include <helpers/qcolorops.h>
 #include <helpers/noiseimagerunner.h>
+#include <helpers/planetmaps/maps.h>
 
 NoisemapPlaygroundDialog::NoisemapPlaygroundDialog(QWidget *parent) :
     QDialog(parent),
@@ -48,21 +49,22 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         e2.wait();
         e3.wait();
         */
-        NoiseImageUtils imgUtils(1024,576);
-        imgUtils.CreateEarthlikePeaks(SSGX::dn(99999),
-                                      ui->spnOctave->value(),
-                                      ui->spnLacunarity->value(),
-                                      ui->spnFrequency->value(),
-                                      ui->spnPersistence->value());
+        NoiseImageUtils imgUtils;
+
+        maps::Earthlike e; e.setSeed(SSGX::dn(99999)); e.generate(); e.SaveImage(QString("test_e1_%1.png").arg(x));
+        maps::Earthlike2 e2; e2.setSeed(SSGX::dn(99999)); e2.generate(); e2.SaveImage(QString("test_e2_%1.png").arg(x));
+        maps::Earthlike3 e3; e3.setSeed(SSGX::dn(99999)); e3.generate(); e3.SaveImage(QString("test_e3_%1.png").arg(x));
+        maps::EarthlikePeaks e4; e4.setSeed(SSGX::dn(99999)); e4.generate(); e4.SaveImage(QString("test_e4_%1.png").arg(x));
 
         imgUtils.SaveImage(QString("test_peaks__%1.png").arg(x));
-        imgUtils.CreateAlienlikePeaks(SSGX::dn(99999),
-                                      ui->spnOctave->value(),
-                                      ui->spnLacunarity->value(),
-                                      ui->spnFrequency->value(),
-                                      ui->spnPersistence->value());
+        imgUtils.CreateAlienlikePeaks(SSGX::dn(99999));
 
         imgUtils.SaveImage(QString("test_alienpeaks__%1.png").arg(x));
+        imgUtils.CreateIcePlanet(SSGX::dn(99999));
+
+        imgUtils.SaveImage(QString("test_iceballz__%1.png").arg(x));
+
+
         /*
         imgUtils.CreateEarthlike2(SSGX::dn(99999));
         imgUtils.SaveImage(QString("test_earth_2_%1.png").arg(x));

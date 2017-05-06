@@ -12,14 +12,42 @@ class NoiseImageUtils : public QObject
 {
     Q_OBJECT
 
+protected:
     QImage _qimage;
     utils::Image m_image;
     std::shared_ptr<noise::uint8> _bufferPtr;
     int _sizeX, _sizeY;
+    int _seed;
+    int _octave;
+    double _lacunarity;
+    double _frequency;
+    double _persistence;
 
-public:
+
+public:        
     NoiseImageUtils();
     NoiseImageUtils(int nX, int nY);
+
+    QImage& qimage() { return _qimage; }
+    void setQimage (const QImage& v) { _qimage = v; }
+    utils::Image& image() { return m_image; }
+    void setImage (const utils::Image&  v) { m_image = v; }
+    std::shared_ptr<noise::uint8>& bufferPtr() { return _bufferPtr; }
+    void setBufferptr (std::shared_ptr<noise::uint8>& v) { _bufferPtr = v; }
+    int sizeX() { return _sizeX; }
+    void setSizex (int v) { _sizeX = v; }
+    int sizeY() { return _sizeY; }
+    void setSizey (int v) { _sizeY = v; }
+    int seed() { return _seed; }
+    void setSeed (int v) { _seed = v; }
+    int octave() { return _octave; }
+    void setOctave (int v) { _octave = v; }
+    double lacunarity() { return _lacunarity; }
+    void setLacunarity (double v) { _lacunarity = v; }
+    double frequency() { return _frequency; }
+    void setFrequency (double v) { _frequency = v; }
+    double persistence() { return _persistence; }
+    void setPersistence (double v) { _persistence = v; }
 
     utils::Color QColorToColor (const QColor& color) {
         utils::Color _color(
@@ -31,8 +59,6 @@ public:
         return _color;
     }
 
-    int sizeX() { return _sizeX; }
-    int sizeY() { return _sizeY; }
     void setSizeX(int x) { _sizeX = x; }
     void setSizeY(int y) { _sizeY = y; }
 
