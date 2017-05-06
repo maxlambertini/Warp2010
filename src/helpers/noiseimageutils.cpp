@@ -1253,13 +1253,13 @@ void NoiseImageUtils::CreateGranitePlanet(int seed, const QColor &color1) {
 
     auto steps = 2 + SSGX::d6();
     auto black=  ColorOps::randomColor();
-    auto colorMap = ColorOps::randomGradient(steps,13,black);
+    auto colorMap = ColorOps::randomGradient(steps,13);
     QMapIterator<double, QColor> i(colorMap);
     while (i.hasNext()) {
         i.next();
         textureRenderer.AddGradientPoint(i.key(), QColorToColor(i.value()));
     }
-    textureRenderer.AddGradientPoint(1.00,QColorToColor(color1));
+    textureRenderer.AddGradientPoint(1.00,QColorToColor(ColorOps::randomColor()));
 
     // Set up us the texture renderer and pass the noise map to it.
     textureRenderer.SetSourceNoiseMap (noiseMap);
