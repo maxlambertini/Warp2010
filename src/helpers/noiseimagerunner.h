@@ -6,6 +6,7 @@
 #include <ssg_structures.h>
 #include <QString>
 #include <QThread>
+#include <helpers/planetmaps/maps.h>
 
 namespace RT {
 enum RType {
@@ -87,16 +88,19 @@ public:
                 imgUtils.SaveImage(_filename);
             break;
             case Earthlike:
-                imgUtils.CreateEarthlike(_seed);
-                imgUtils.SaveImage(_filename);
+                {
+                    maps::EarthlikePeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                }
             break;
             case Earthlike2:
-                imgUtils.CreateEarthlike2(_seed);
-                imgUtils.SaveImage(_filename);
+                {
+                    maps::Earthlike2 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                }
             break;
             case Earthlike3:
-                imgUtils.CreateEarthlike3(_seed);
-                imgUtils.SaveImage(_filename);
+                {
+                    maps::Earthlike3 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                }
             break;
             case Pregarden:
                 imgUtils.CreatePregarden(_seed);
@@ -171,8 +175,9 @@ public:
                 imgUtils.SaveImage(_filename);
             break;
             default:
-                imgUtils.CreateEarthlike(_seed);
-                imgUtils.SaveImage(_filename);
+                {
+                    maps::EarthlikePeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                }
             break;
         }
         emit imageSaved(_filename);

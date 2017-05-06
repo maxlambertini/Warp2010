@@ -67,14 +67,6 @@ public:
 
     void CreateAlienlikePeaks (int seed = 1, int octave = 5, double lacunarity = 2.50,
                           double frequency = 2.0, double persistence = 0.43);
-    void CreateEarthlikePeaks (int seed = 1, int octave = 5, double lacunarity = 2.50,
-                          double frequency = 2.0, double persistence = 0.43);
-    void CreateEarthlike (int seed = 1, int octave = 5, double lacunarity = 2.50,
-                          double frequency = 2.0, double persistence = 0.43);
-    void CreateEarthlike2 (int seed = 1, int octave = 5, double lacunarity = 2.50,
-                           double frequency = 2.0, double persistence = 0.43);
-    void CreateEarthlike3 (int seed = 1, int octave = 5, double lacunarity = 2.50,
-                           double frequency = 2.0, double persistence = 0.43);
     void CreatePregarden (int seed = 1, int octave = 5, double lacunarity = 2.50,
                           double frequency = 2.0, double persistence = 0.43);
     void CreatePostgarden (int seed = 1, int octave = 5, double lacunarity = 2.50,

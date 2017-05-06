@@ -51,10 +51,9 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         */
         NoiseImageUtils imgUtils;
 
-        maps::Earthlike e; e.setSeed(SSGX::dn(99999)); e.generate(); e.SaveImage(QString("test_e1_%1.png").arg(x));
-        maps::Earthlike2 e2; e2.setSeed(SSGX::dn(99999)); e2.generate(); e2.SaveImage(QString("test_e2_%1.png").arg(x));
-        maps::Earthlike3 e3; e3.setSeed(SSGX::dn(99999)); e3.generate(); e3.SaveImage(QString("test_e3_%1.png").arg(x));
-        maps::EarthlikePeaks e4; e4.setSeed(SSGX::dn(99999)); e4.generate(); e4.SaveImage(QString("test_e4_%1.png").arg(x));
+        maps::EarthlikePeaks e2; e2.setSeaRatio(0.5); e2.setIceRatio(0.85); e2.setSeed(SSGX::dn(99999)); e2.generateAndSave(QString("test_e2_%1.png").arg(x));
+        maps::EarthlikePeaks e3; e3.setSeaRatio(0.0);  e3.setIceRatio(0.50); e3.setSeed(SSGX::dn(99999)); e3.generateAndSave(QString("test_e3_%1.png").arg(x));
+        maps::EarthlikePeaks e4; e4.setSeaRatio(-0.5);e4.setIceRatio(0.25);  e4.setSeed(SSGX::dn(99999)); e4.generateAndSave(QString("test_e4_%1.png").arg(x));
 
         imgUtils.SaveImage(QString("test_peaks__%1.png").arg(x));
         imgUtils.CreateAlienlikePeaks(SSGX::dn(99999));

@@ -19,6 +19,7 @@ void EarthlikePeaks::generate() {
     module::ScaleBias scaleBase;
     scaleBase.SetSourceModule(0,myModule);
     scaleBase.SetScale(0.7);
+    scaleBase.SetBias(seaRatio());
 
     module::Exponent expBase;
     expBase.SetSourceModule(0,myModule);
@@ -28,7 +29,7 @@ void EarthlikePeaks::generate() {
     //poles
     // base GG modules
     module::Cylinders baseGG;
-    baseGG.SetFrequency (0.25);
+    baseGG.SetFrequency (1.0-_iceRatio);
 
     // Slightly perturb the secondary jade texture for more realism.
     module::Turbulence pert2;

@@ -130,7 +130,10 @@ SOURCES += main.cpp \
     helpers/planetmaps/abstractmap.cpp \
     helpers/planetmaps/earthlike2.cpp \
     helpers/planetmaps/earthlike3.cpp \
-    helpers/planetmaps/earthlikepeaks.cpp
+    helpers/planetmaps/earthlikepeaks.cpp \
+    helpers/planetmaps/alienpeaks.cpp \
+    helpers/planetmaps/desert.cpp \
+    helpers/planetmaps/desertg.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -207,7 +210,10 @@ HEADERS += coordinates.h \
     helpers/planetmaps/earthlike2.h \
     helpers/planetmaps/earthlike3.h \
     helpers/planetmaps/maps.h \
-    helpers/planetmaps/earthlikepeaks.h
+    helpers/planetmaps/earthlikepeaks.h \
+    helpers/planetmaps/alienpeaks.h \
+    helpers/planetmaps/desert.h \
+    helpers/planetmaps/desertg.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

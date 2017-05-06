@@ -6,6 +6,11 @@
 #include <helpers/noiseimageutils.h>
 #include <noiseutils.h>
 #include <helpers/planetmaps/abstractmap.h>
+#include <QColor>
+#include <QVector>
+#include <QVectorIterator>
+#include <QMap>
+#include <QMapIterator>
 
 namespace maps {
     class AbstractMap : public NoiseImageUtils
@@ -14,6 +19,7 @@ namespace maps {
     public:
         AbstractMap();
         virtual void generate() = 0;
+        void generateAndSave(const QString& filename) { this->generate(); this->SaveImage(filename); }
     };
 }
 
