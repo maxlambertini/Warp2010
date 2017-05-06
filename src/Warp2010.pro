@@ -15,7 +15,7 @@
 QT += printsupport widgets svg concurrent
 TARGET = Warp2010
 TEMPLATE = app
-QMAKE_CXXFLAGS += -Wall -Wextra -O3
+QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter
 INCLUDEPATH += $$PWD/../libnoise/src
 DEPENDPATH += $$PWD/../libnoise/src
 SOURCES += main.cpp \
@@ -133,7 +133,12 @@ SOURCES += main.cpp \
     helpers/planetmaps/earthlikepeaks.cpp \
     helpers/planetmaps/alienpeaks.cpp \
     helpers/planetmaps/desert.cpp \
-    helpers/planetmaps/desertg.cpp
+    helpers/planetmaps/desertg.cpp \
+    helpers/planetmaps/gg2.cpp \
+    helpers/planetmaps/cloudy.cpp \
+    helpers/planetmaps/gasgiant.cpp \
+    helpers/planetmaps/Clouds/earthclouds.cpp \
+    helpers/planetmaps/Clouds/funkyclouds.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -213,7 +218,12 @@ HEADERS += coordinates.h \
     helpers/planetmaps/earthlikepeaks.h \
     helpers/planetmaps/alienpeaks.h \
     helpers/planetmaps/desert.h \
-    helpers/planetmaps/desertg.h
+    helpers/planetmaps/desertg.h \
+    helpers/planetmaps/gg2.h \
+    helpers/planetmaps/cloudy.h \
+    helpers/planetmaps/gasgiant.h \
+    helpers/planetmaps/Clouds/earthclouds.h \
+    helpers/planetmaps/Clouds/funkyclouds.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

@@ -23,7 +23,7 @@ void EarthlikePeaks::generate() {
 
     module::Exponent expBase;
     expBase.SetSourceModule(0,myModule);
-    expBase.SetExponent(4.0);
+    expBase.SetExponent(8.0);
 
 
     //poles
@@ -62,14 +62,15 @@ void EarthlikePeaks::generate() {
 
     utils::RendererImage renderer;
     renderer.ClearGradient ();
-    renderer.AddGradientPoint (-0.4500, utils::Color (  0,   0,  64, 255)); // deeps
     renderer.SetSourceNoiseMap (heightMap);
     renderer.SetDestImage (this->m_image);
-    renderer.AddGradientPoint (-0.2500, utils::Color (  0,   0, 192, 255)); // shallow
-    renderer.AddGradientPoint ( 0.0000, utils::Color (  0, 128, 255, 255)); // shore
-    renderer.AddGradientPoint ( 0.0125, utils::Color (240, 240,  64, 255)); // sand
-    renderer.AddGradientPoint ( 0.2250, utils::Color (  0, 160,   0, 255)); // grass
-    renderer.AddGradientPoint ( 0.3750, utils::Color (  0, 224,   0, 255)); // grass
+    renderer.AddGradientPoint (-0.4500, utils::Color ( 41,  51,  87, 255)); // deeps
+    renderer.AddGradientPoint (-0.2500, utils::Color ( 81, 110, 153, 255)); // shallow
+    renderer.AddGradientPoint (-0.0500, utils::Color ( 81, 122, 176, 255)); // shallow
+    renderer.AddGradientPoint ( 0.0000, utils::Color ( 88, 115,  69, 255)); // shore
+    renderer.AddGradientPoint ( 0.2125, utils::Color ( 70,  75,  58, 255)); // sand
+    renderer.AddGradientPoint ( 0.4550, utils::Color ( 76, 100,  69, 255)); // grass
+    renderer.AddGradientPoint ( 0.4750, utils::Color ( 52,  68,  47, 255)); // grass
     renderer.EnableLight ();
     renderer.SetLightContrast (0.2);
     renderer.SetLightBrightness (2.0);
@@ -82,7 +83,7 @@ void EarthlikePeaks::generate() {
     renderer.SetBackgroundImage( this->m_image);
     renderer.SetSourceNoiseMap(heightPoles);
     renderer.AddGradientPoint ( 1.0000, utils::Color (255, 255, 255, 255)); // trans
-    renderer.AddGradientPoint ( 0.6860, utils::Color (255, 255, 255, 255)); // trans
+    renderer.AddGradientPoint ( 0.6850, utils::Color (255, 255, 255, 255)); // trans
     renderer.AddGradientPoint ( 0.6820, utils::Color (255, 255, 255, 0)); // trans
     renderer.AddGradientPoint ( 0.1000, utils::Color (255,   0,   0, 0));
     renderer.AddGradientPoint (-0.1000, utils::Color (255,   0,   0, 0));
@@ -104,11 +105,11 @@ void EarthlikePeaks::generate() {
     renderer.AddGradientPoint ( 0.0125, utils::Color (240, 240,  64,   0)); // trans
     renderer.AddGradientPoint ( 0.0250, utils::Color (  0, 160,   0,   0)); // trans
     renderer.AddGradientPoint ( 0.0750, utils::Color (  0, 224,   0,   0)); // trans
-    renderer.AddGradientPoint ( 0.3750, utils::Color (128, 128, 128,  64)); // rock
-    renderer.AddGradientPoint ( 0.8750, utils::Color (128, 128,   0, 128)); // rock
-    renderer.AddGradientPoint ( 0.9850, utils::Color (192, 255, 255, 192)); // snow
+    renderer.AddGradientPoint ( 0.3750, utils::Color (244, 112, 165,  64)); // rock
+    renderer.AddGradientPoint ( 0.7750, utils::Color (153, 133, 103, 128)); // rock
+    renderer.AddGradientPoint ( 0.9850, utils::Color (224, 255, 255, 192)); // snow
     renderer.EnableLight ();
-    renderer.SetLightContrast (1.3);
+    renderer.SetLightContrast (0.9);
     renderer.SetLightBrightness (2.0);
     renderer.Render ();
 

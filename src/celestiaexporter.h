@@ -20,7 +20,7 @@
 #define CELESTIAEXPORTER_H
 
 #include <QtCore>
-#include "star.h" _
+#include "star.h"
 #include "starlist.h"
 #include "planet.h"
 #include <helpers/noiseimageutils.h>

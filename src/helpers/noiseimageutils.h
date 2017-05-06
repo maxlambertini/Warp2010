@@ -65,29 +65,12 @@ public:
     void CreateEarthlikeRMF (int seed = 1, int octave = 6, double lacunarity = 2.30,
                           double frequency = 3.3);
 
-    void CreateAlienlikePeaks (int seed = 1, int octave = 5, double lacunarity = 2.50,
-                          double frequency = 2.0, double persistence = 0.43);
     void CreatePregarden (int seed = 1, int octave = 5, double lacunarity = 2.50,
                           double frequency = 2.0, double persistence = 0.43);
     void CreatePostgarden (int seed = 1, int octave = 5, double lacunarity = 2.50,
                            double frequency = 2.0, double persistence = 0.43);
-    void CreateEarthClouds (int seed=1, int octave=4, double lacunarity=2.12,
-                          double frequency=2.0, double persistence=0.375);
-    void CreateFunkyClouds (int seed=1, int octave=4, double lacunarity=2.12,
-                          double frequency=2.0, double persistence=0.375);
-    void CreateCloudyPlanet (int seed=1, int octave=4, double lacunarity=2.12,
-                             double frequency=2.0, double persistence= 0.375);
-    void SaveImage (const QString& filename, int blurSize = 0);
 
-    void CreateDesert (int seed = 1, int octave = 5, double lacunarity = 2.50,
-                          double frequency = 2.0, double persistence = 0.32,
-                          utils::Color color1 = utils::Color(128,  0,  0,255),
-                          utils::Color color2 = utils::Color(192,  0,  0,255),
-                          utils::Color color3 = utils::Color(255,128, 64,255));
 
-    void CreateDesertG (int seed = 1, int octave = 4, double lacunarity = 1.30,
-                        double frequency = 3.3, double persistence = 0.12,
-                        const QColor& baseColor = ColorOps::randomColor());
 
     void CreateComplexDesert (int seed = 1, int octave = 6, double lacunarity = 1.30,
                           double frequency = 3.3, double persistence = 0.32,
@@ -102,12 +85,10 @@ public:
 
     void CreateJadePlanet (int seed = 1, const QColor& color1 = QColor(255,255,193));
     void CreateJade2Planet (int seed = 1, const QColor& color1 = QColor(255,255,193));
-    void CreateGGPlanet (int seed = 1, const QColor& color1 = QColor(255,255,193));
-    void CreateGG2Planet (int seed = 1, const QColor& color1 = QColor(255,255,193));
     void CreateGranitePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
     void CreateIcePlanet (int seed = 1, const QColor& color1 = QColor (96,96,128));
 
-    void CreateGGPlayground (int seed =1);
+    void SaveImage (const QString& filename, int blurSize = 0);
 
 signals:
     void imageCreated(const QString& imgType);

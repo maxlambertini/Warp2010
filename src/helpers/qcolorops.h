@@ -11,7 +11,6 @@ namespace ColorOps {
 
     inline QColor randomColor() { return QColor(SSGX::dn(255), SSGX::dn(255),SSGX::dn(255)); }
     inline QColor irregularLightenColor(const QColor &clr, int step=25) {
-        int xStep = step % 128;
         int dStep = step / 2;
         int rSrep = 1+dStep / 4;
         QColor res(clr);
@@ -21,7 +20,6 @@ namespace ColorOps {
         return res;
     }
     inline QColor irregularDarkenColor(const QColor &clr, int step=25) {
-        int xStep = step % 128;
         int dStep = step / 2;
         int rSrep = 1+dStep / 4;
         QColor res(clr);

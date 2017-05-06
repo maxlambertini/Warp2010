@@ -6,6 +6,7 @@
 namespace maps {
     class AlienPeaks : public AbstractMap
     {
+        Q_OBJECT
     public:
         AlienPeaks();
         virtual void generate();

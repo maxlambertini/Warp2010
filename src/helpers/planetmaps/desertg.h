@@ -7,6 +7,7 @@ namespace maps {
 
 class DesertG : public AbstractMap
 {
+    Q_OBJECT
 public:
     DesertG();
     virtual void generate();
