@@ -5,9 +5,12 @@ A multiplatform program to create fictional solar systems, Diaspora Custers and 
 
 It's written in C++ using multiplatform QT Libraries ( http://qt.nokia.com ) 
 
-It has been developed on a windows machine using Mingw as compiler and QTCreator as ide. 
+First releases have been developed on a windows machine using Mingw as compiler and QTCreator as ide. Latest ones are developed on a Linux Fedora machine (however, from time to time I also test windows build. If a kind soul wants to test the whole stuff on MacOS, well... here's the code :-) 
 
-With the same setup (QT+QTCreator) I compiled this program under Ubuntu 10.x and OSX Leopard. 
-Binaries for OSX have also been tested on OSX Snow Leopard.
+Major feature of this release:
 
-This source is published under GPL 2.0
+* Full Celestia stellar system generation, down to the textures.
+* Moving from raw pointers to smart pointers (`QVector` and `QSharedPointer`)
+* Inclusion of Libnoise (http://libnoise.sourceforge.net) as a texture generation engine
+
+It's something I'm developing in my spare time, so don't hold your breath. 
