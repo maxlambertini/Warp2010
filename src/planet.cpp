@@ -174,36 +174,61 @@ void Planet::toJson(QJsonObject& json)  {
                      .arg(p->getAtmosphereDesc())
                      .arg(p->tidalForce() > 1.0 ? "Yes" : "No");
     */
-    json["name"]           = this->name();
-    json["diameter"]       = this->diameter();
-    json["density"]        = this->density();
-    json["massEarth"]      = this->massEarth();
-    json["gravEarth"]      = this->gravEarth();
-    json["temperature"]    = this->temperature();
-    json["mmwr"]           = this->mmwr();
-    json["distance"]       = this->orbit().distance();
-    json["eccentricity"]   = this->orbit().eccentricity();
-    json["inclination"]    = this->orbit().inclination();
-    json["obliquity"]      = this->orbit().obliquity();
-    json["year"]           = this->orbit().year();
-    json["day"]            = this->orbit().day();
-    json["core"]           = this->getCoreTypeDesc();
-    json["hydrosphere"]    = this->getHydrosphereDesc();
-    json["atmosphere"]     = this->getAtmosphereDesc();
-    json["planetType"]     = this->getPlanetTypeDesc();
-    json["tidalforce"]     = this->tidalForce();
-    json["tidally_locked"] = this->tidalForce() > 1.0 ? "Yes": "No";
+    json["name"] = _name;
+    json["diameter"] = _diameter;
+    json["density"] = _density;
+    json["temperature"] = _temperature;
+    json["mmwr"] = _mmwr;
+    json["waterPercentage"] = _waterPercentage;
+    json["tidalForce"] = _tidalForce;
+    json["satellite"] = _satellite;
+    json["texture"] = _texture;
+    json["coreType"] = (int)_coreType;
+    json["hydrosphereType"] = (int)_hydrosphereType;
+    json["planetType"] = (int)_planetType;
+    json["atmosphere"] = (int)_atmosphere;
+
+    QJsonObject jsonOrbit;
+    _orbit.toJson(jsonOrbit);
+    json["orbit"] = jsonOrbit;
+
+    QJsonArray jsonSats;
     if (!this->isSatellite() && this->satellitesCount() > 0) {
-        QJsonArray jsonSats;
         Planet sat;
         foreach (sat, this->satellites()) {
             QJsonObject oSat;
             sat.toJson(oSat);
             jsonSats.append(oSat);
         }
-        json["satellites"] = jsonSats;
     }
-    json["isSatellite"]    = this->isSatellite();
+    json["satellites"] = jsonSats;
+}
+
+void Planet::fromJson(const QJsonObject &json) {
+
+    _name = json["name"].toString();
+    _diameter = json["diameter"].toDouble();
+    _density = json["density"].toDouble();
+    _temperature = json["temperature"].toDouble();
+    _mmwr = json["mmwr"].toDouble();
+    _waterPercentage = json["waterPercentage"].toDouble();
+    _tidalForce = json["tidalForce"].toDouble();
+    _satellite = json["satellite"].toBool();
+    _texture = json["texture"].toString();
+    _coreType = (NSPlanet::CoreType)json["coreType"].toInt();
+    _hydrosphereType = (NSPlanet::HydrosphereType)json["hydrosphereType"].toInt();
+    _planetType = (NSPlanet::PlanetType)json["planetType"].toInt();
+    _atmosphere = (NSPlanet::Atmosphere)json["atmosphere"].toInt();
+
+    QJsonObject orbitObject = json["orbit"].toObject();
+    _orbit.fromJson(orbitObject);
+
+    QJsonArray satellitesObj = json["satellites"].toArray();
+    for (int ix = 0; ix < satellitesObj.size(); ++ix){
+        QJsonObject oSat = satellitesObj[ix].toObject();
+        Planet pSat; pSat.fromJson(oSat);
+        _satellites.append(pSat);
+    }
 }
 
 QString Planet::getPlanetTypeDesc()
@@ -267,12 +292,12 @@ void Planet::setPlanetType(PlanetType pl) {
 QString Planet::getPlanetTexture()
 {
     QString res = "";
-    dir.setPath(this->fullTexturePath());
+    _dir.setPath(this->fullTexturePath());
     QStringList filter;
     filter << "*.png" << "*.jpg";
-    dir.setFilter(QDir::Files);
-    dir.setNameFilters(filter);
-    QFileInfoList lst = dir.entryInfoList();
+    _dir.setFilter(QDir::Files);
+    _dir.setNameFilters(filter);
+    QFileInfoList lst = _dir.entryInfoList();
     if (lst.count() > 0) {
         int h = lst.count();
         QFileInfo fi = lst.at(rand() % h);

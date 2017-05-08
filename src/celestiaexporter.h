@@ -148,7 +148,7 @@ public:
             break;
         case ptFailedCore:
             res = QString("failedcore_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade,_texturePath+"/"+res, SSGX::dn(999999))));
+            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));
             return res;
             break;
         case ptRockball:

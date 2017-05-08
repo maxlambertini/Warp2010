@@ -104,6 +104,23 @@ void WarpMainWindowForm::on_actionLoad_Sector_triggered()
     }
 }
 
+void WarpMainWindowForm::on_action_Load_Whole_Sector_triggered()
+{
+    QString filename =
+            QFileDialog::getOpenFileName(this,
+                                         tr("Open Star Map"),
+                                         AppPaths::appDir(),
+                                         tr("Whole star sector files (*.json)"));
+    if (!filename.isEmpty()) {
+        this->clearSolarSystem();
+        this->_starList->loadFromJson(filename);
+        this->_currentStarListIndex = 0;
+        this->rebuildMatrix(0);
+        this->fillListWithCalculatedData(0);
+        ui->txtSectorName->setText(StarList::StarListPtr()->listName());
+    }
+}
+
 void WarpMainWindowForm::on_actionZoomIn_triggered()
 {
     ui->sliderZoom->setValue(

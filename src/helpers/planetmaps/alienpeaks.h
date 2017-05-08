@@ -11,6 +11,15 @@ namespace maps {
         AlienPeaks();
         virtual void generate();
     };
+
+    class AlienPeaksVoronoi : public AbstractMap
+    {
+        Q_OBJECT
+    public:
+        AlienPeaksVoronoi();
+        virtual void generate();
+    };
+
 }
 
 #endif // ALIENPEAKS_H

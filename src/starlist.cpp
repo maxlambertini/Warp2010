@@ -219,6 +219,7 @@ void StarList::loadMap(const QString& filename) throw(std::exception)
 
 void StarList::calculateNeighbors(double distance)
 {
+    _jumpDistance = distance;
     double fDist;
     QSharedPointer<Star> stTo, stFrom;
     QVector<int> v;

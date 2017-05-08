@@ -36,6 +36,26 @@ Orbit Orbit::NextOrbit()
     return orbit;
 }
 
+void Orbit::fromJson(const QJsonObject &json)
+{
+    _distance = json["distance"].toDouble();
+    _eccentricity = json["eccentricity"].toDouble();
+    _inclination = json["inclination"].toDouble();
+    _year = json["year"].toDouble();
+    _day = json["day"].toDouble();
+    _obliquity = json["obliquity"].toDouble();
+}
+
+void Orbit::toJson(QJsonObject &json) const
+{
+    json["distance"] = _distance;
+    json["eccentricity"] = _eccentricity;
+    json["inclination"] = _inclination;
+    json["year"] = _year;
+    json["day"] = _day;
+    json["obliquity"] = _obliquity;
+}
+
 QDataStream & operator >> (QDataStream &in,  Orbit &model) {
     in >> model._day >> model._distance  >> model._eccentricity
             >> model._inclination >> model._obliquity >> model._year;

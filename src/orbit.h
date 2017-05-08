@@ -21,7 +21,8 @@
 #include <QObject>
 #include <math.h>
 #include <stdlib.h>
-
+#include <QJsonDocument>
+#include <QJsonObject>
 
 namespace NSOrbit {
     enum OrbitType {
@@ -44,6 +45,9 @@ private:
     double _obliquity;
 
 public:
+    void fromJson(const QJsonObject &json);
+    void toJson (QJsonObject& json) const;
+
 
     inline double obliquity() { return _obliquity; }
     inline double distance() { return _distance;}
@@ -87,6 +91,8 @@ public:
     }
     Orbit(const Orbit& that);
     Orbit  NextOrbit();
+
+
 
     friend QDataStream & operator >> (QDataStream &in, Orbit &model);
     friend QDataStream & operator << (QDataStream &out, const Orbit &model);

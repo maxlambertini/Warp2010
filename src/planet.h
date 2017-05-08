@@ -26,8 +26,8 @@
 
 namespace NSPlanet {
     enum CoreType {
-        ctRocky,
-        ctIcy
+        ctRocky = 0,
+        ctIcy = 1
     };
 
     enum PlanetType {
@@ -78,6 +78,8 @@ class Planet : public QObject
 
 private:
 
+    // Serializable members
+    //
     QString _name;
     QString _texture;
     double _diameter;
@@ -91,13 +93,14 @@ private:
     PlanetType      _planetType;
     Atmosphere      _atmosphere;
     Orbit _orbit;
-    QVector<Planet> _satellites;
-    QDir dir;
-
     int _numGardens;
     int _numMarginals;
     int _currentSatellite;
     double _tidalForce;
+    QVector<Planet> _satellites;
+
+    QDir _dir;
+
 
 public:
 
@@ -172,7 +175,10 @@ public:
     void appendSatellite(const Planet& sat) { _satellites.append(sat); }
 
     QString toHtml();
+
     void toJson(QJsonObject& json) ;
+    void fromJson(const QJsonObject& json) ;
+
     QString getPlanetTypeDesc();
     QString getHydrosphereDesc();
     QString getAtmosphereDesc();

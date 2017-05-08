@@ -127,6 +127,7 @@ class StarList //: public QObject
 
 private:
     QString _listName;
+    double  _jumpDistance;
 
     static StarList _starList;
 
@@ -164,6 +165,9 @@ public:
 
     inline QString& listName() { return _listName; }
     inline void setListName(QString& name) { _listName = name; }
+    inline double jumpDistance() { return _jumpDistance; }
+    inline void setJumpDistance(double v) { _jumpDistance = v; }
+
     inline QVector<QSharedPointer<Star>>& stars() { return _stars;}
     inline int count() { return _stars.count();}
     QVector<ParsecStar>& prepareParsecStarList(SceneMediatorDrawMode::DrawMode mode = SceneMediatorDrawMode::XY);
@@ -185,8 +189,9 @@ public:
         }
     }
 
-    void saveToJson (QString filename) {
-        QJsonObject o;
+
+
+    void toJson (QJsonObject& o) {
         QJsonArray a;
         QSharedPointer<Star> p;
         foreach (p, _stars) {
@@ -194,12 +199,44 @@ public:
             p->toJson(oStar);
             a.append(oStar);
         }
+        o["jumpDistance"]    = this->_jumpDistance;
         o["sector_name"] = this->listName();
         o["stars"] = a;
+    }
+
+    void fromJson(const QJsonObject& o) {
+        _jumpDistance = o["jumpDistance"].toDouble();
+        _listName = o["sector_name"].toString();
+        this->setListName(_listName);
+        QJsonArray a = o["stars"].toArray();
+        for (int h = 0; h < a.size(); ++h) {
+            QJsonObject oStar = a[h].toObject();
+            Star* s = new Star();
+            s->fromJson(oStar);
+            QSharedPointer<Star> p;
+            p.reset(s);
+            _stars.append(p);
+        }
+    }
+
+    void saveToJson (QString filename) {
+        QJsonObject o;
+        this->toJson(o);
         QJsonDocument doc(o);
         QFile data (filename);
          if (data.open(QFile::WriteOnly | QFile::Truncate)) {
             data.write(doc.toJson());
+         }
+         data.close();
+    }
+
+    void loadFromJson (QString filename) {
+        QFile data (filename);
+         if (data.open(QFile::ReadOnly | QFile::Text)) {
+             QByteArray json = data.readAll();
+            QJsonDocument doc = QJsonDocument::fromJson(json);
+            auto oStuff = doc.object();
+            this->fromJson(oStuff);
          }
          data.close();
     }

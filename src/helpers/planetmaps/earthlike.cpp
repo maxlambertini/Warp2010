@@ -17,10 +17,16 @@ void Earthlike::generate() {
     myModule.SetPersistence(_persistence);
     myModule.SetSeed(_seed);
 
+    module::ScalePoint scalePoint;
+    scalePoint.SetSourceModule(0,myModule);
+    scalePoint.SetXScale(0.9);
+    scalePoint.SetZScale(1.1);
+    scalePoint.SetYScale(1.2);
+
     utils::NoiseMap heightMap;
     utils::NoiseMapBuilderSphere heightMapBuilder;
 
-    heightMapBuilder.SetSourceModule (myModule);
+    heightMapBuilder.SetSourceModule (scalePoint);
     heightMapBuilder.SetDestNoiseMap (heightMap);
     heightMapBuilder.SetDestSize (_sizeX, _sizeY);
     heightMapBuilder.SetBounds (-90.0, 90.0, -180.0, 180.0);

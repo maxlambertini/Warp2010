@@ -337,56 +337,129 @@ void Star::setStarFullType(const QString& type="G2V")
 
 }
 
+void Star::fromJson(const QJsonObject &json)
+{
+    starName = json["starName"].toString();
+    _starSize = json["starSize"].toDouble();
+    _luminosity = json["luminosity"].toDouble();
+    _magnitude = json["magnitude"].toDouble();
+    _solarMass = json["solarMass"].toDouble();
+    _solarAge = json["solarAge"].toDouble();
+    _temperature = json["temperature"].toDouble();
+    _diameter = json["diameter"].toDouble();
+    _mass = json["mass"].toDouble();
+    _distance = json["distance"].toDouble();
+    _innerLifeZone = json["innerLifeZone"].toDouble();
+    _idealLifeZone = json["idealLifeZone"].toDouble();
+    _outerLifeZone = json["outerLifeZone"].toDouble();
+    _absMagnitude = json["absMagnitude"].toDouble();
+    _appMagnitude = json["appMagnitude"].toDouble();
+    _x = json["x"].toDouble();
+    _y = json["y"].toDouble();
+    _z = json["z"].toDouble();
+    _dist = json["dist"].toDouble();
+    _phi = json["phi"].toDouble();
+    _theta = json["theta"].toDouble();
+    _nx = static_cast<long>(json["nx"].toInt());
+    _ny = static_cast<long>(json["ny"].toInt());
+    _nz = static_cast<long>(json["nz"].toInt());
+    _visited = json["visited"].toBool();
+    _sister = json["sister"].toBool();
+    _isReference = json["isReference"].toBool();
+    _starFullType = json["starFullType"].toString();
+    _starClass = (NSStar::StarClass)json["starClass"].toInt();
+    _starType = (NSStar::StarType)json["starType"].toInt();
+
+    QJsonArray oPlanets = json["planets"].toArray();
+    for (int h = 0; h < oPlanets.size(); ++h) {
+        QJsonObject oPlanet = oPlanets[h].toObject();
+        Planet p; p.fromJson(oPlanet);
+        _planets.append(p);
+    }
+
+    //_planets = json["planets"].toQVector<Planet>();
+
+    QJsonArray oNeigh = json["neighbors"].toArray();
+    for (int h=0; h < oNeigh.size(); ++h) {
+        _neighbors.append(oNeigh[h].toInt());
+    }
+    //_neighbors = json["neighbors"].toQVector<int>();
+
+    QJsonArray oPath = json["path"].toArray();
+    for (int h=0; h < oPath.size(); ++h) {
+        _path.append(oPath[h].toInt());
+    }
+    //_path = json["path"].toQVector<int>();
+
+    //to be implemented:
+    //
+    //_sisters = json["sisters"].toQVector<QSharedPointer<Star>>();
+}
+
 void Star::toJson(QJsonObject& json) {
-    json["starName"] = this->starName;
-    json["starSize"] = this->_starSize;
-    json["luminosity"] = this->_luminosity;
-    json["magnitude"] = this->_magnitude;
-    json["solarMass"] = this->_solarMass;
-    json["solarAge"] = this->_solarAge;
-    json["temperature"] = this->_temperature;
-    json["diameter"] = this->_diameter;
-    json["mass"] = this->_mass;
-    json["distance"] = this->_distance;
-    json["innerLifeZone"] = this->_innerLifeZone;
-    json["idealLifeZone"] = this->_idealLifeZone;
-    json["outerLifeZone"] = this->_outerLifeZone;
-    json["x"] = this->_x;
-    json["y"] = this->_y;
-    json["z"] = this->_z;
-    json["nx"] = (qint64)this->_nx;
-    json["ny"] = (qint64)this->_ny;
-    json["nz"] = (qint64)this->_nz;
-    json["sister"] = this->_sister;
-    json["starFullType"] = this->_starFullType;
-    json["starClass"]= this->_starClass;
-    json["starType"]= this->_starType;
+    json["starName"] = starName;
+    json["starSize"] = _starSize;
+    json["luminosity"] = _luminosity;
+    json["magnitude"] = _magnitude;
+    json["solarMass"] = _solarMass;
+    json["solarAge"] = _solarAge;
+    json["temperature"] = _temperature;
+    json["diameter"] = _diameter;
+    json["mass"] = _mass;
+    json["distance"] = _distance;
+    json["innerLifeZone"] = _innerLifeZone;
+    json["idealLifeZone"] = _idealLifeZone;
+    json["outerLifeZone"] = _outerLifeZone;
+    json["absMagnitude"] = _absMagnitude;
+    json["appMagnitude"] = _appMagnitude;
+    json["x"] = _x;
+    json["y"] = _y;
+    json["z"] = _z;
+    json["dist"] = _dist;
+    json["phi"] = _phi;
+    json["theta"] = _theta;
+    json["nx"] = static_cast<int>(_nx);
+    json["ny"] = static_cast<int>(_ny);
+    json["nz"] = static_cast<int>(_nz);
+    json["visited"] = _visited;
+    json["sister"] = _sister;
+    json["isReference"] = _isReference;
+    json["starFullType"] = _starFullType;
+    json["starClass"] = (int)_starClass;
+    json["starType"] = (int)_starType;
+
+    QJsonArray jsonNeigh;
+    int i;
+    foreach (i, _neighbors) {
+        QJsonValue v(i);
+        jsonNeigh.append(v);
+    }
+    json["neighbors"] = jsonNeigh;
+
+    QJsonArray jsonPath;
+    foreach (i, _path) {
+        QJsonValue v(i);
+        jsonPath.append(v);
+    }
+    json["path"] = jsonPath;
+
+    QJsonArray jsonSis;
+    json["sisters"] = jsonSis;
+
+    QJsonArray jsonSats;
     if (this->_planets.count() > 0) {
-        QJsonArray jsonSats;
         Planet sat;
         foreach (sat, this->_planets) {
             QJsonObject oSat;
             sat.toJson(oSat);
             jsonSats.append(oSat);
         }
-        json["planets"] = jsonSats;
 
     }
-    json["numChunk"] = _starValue.numChunk;
-    json["numDesert"] = _starValue.numDesert;
-    json["numFailedCore"] = _starValue.numFailedCore;
-    json["numGasGiant"] = _starValue.numGasGiant;
-    json["numGlacier"] = _starValue.numGlacier;
-    json["numHotHouse"] = _starValue.numHotHouse;
-    json["numIceball"] = _starValue.numIceball;
-    json["numPostGarden"] = _starValue.numPostGarden;
-    json["numPreGarden"] = _starValue.numPreGarden;
-    json["numGarden"] = _starValue.numGarden;
-
-    json["abitabilityIndex"] = 8 * _starValue.numGarden + 4 * _starValue.numGlacier + 2 * _starValue.numPostGarden + _starValue.numPreGarden;
+    json["planets"] = jsonSats;
 
     /*
-    out << p->_starValue.numChunk;
+    out << p->_starValue.numChunk;son
     out << p->_starValue.numDesert;
     out << p->_starValue.numFailedCore;
     out << p->_starValue.numGarden;

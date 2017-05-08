@@ -84,7 +84,7 @@ void NoiseImageRunner::run() {
            break;
            case ComplexDesert2:
             {
-               maps::AlienPeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+               maps::AlienPeaksVoronoi ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
             }
            break;
            case GG:

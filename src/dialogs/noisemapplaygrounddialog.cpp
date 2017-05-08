@@ -51,10 +51,9 @@ void NoisemapPlaygroundDialog::CreateBitmap() {
         */
         NoiseImageUtils imgUtils;
 
-        maps::EarthlikePeaks e1; e1.setSeaRatio(0.25); e1.setIceRatio(0.91); e1.setSeed(SSGX::dn(99999)); e1.generateAndSave(QString("test_e1_%1.png").arg(x));
-        maps::EarthlikePeaks e2; e2.setSeaRatio(-0.25); e2.setIceRatio(0.55); e2.setSeed(SSGX::dn(99999)); e2.generateAndSave(QString("test_e2_%1.png").arg(x));
-        maps::EarthlikePeaks e3; e3.setSeaRatio(-0.15);  e3.setIceRatio(0.30); e3.setSeed(SSGX::dn(99999)); e3.generateAndSave(QString("test_e3_%1.png").arg(x));
-        maps::GasGiant e4; e4.setSeed(SSGX::dn(99999)); e4.generateAndSave(QString("test_gg_%1.png").arg(x));
+        maps::Earthlike sex; sex.setSizeX(2048);sex.setSizeY(1024); sex.setSeed(SSGX::dn(999999)); sex.generateAndSave(QString("test_sp_%1.png").arg(x));
+        maps::AlienPeaksVoronoi ex; ex.setSizeX(2048);ex.setSizeY(1024); ex.setSeed(SSGX::dn(999999)); ex.generateAndSave(QString("test_apv_%1.png").arg(x));
+        maps::EarthlikePeaks e4; e4.setSizeX(2048);e4.setSizeY(1024);  e4.setSeed(SSGX::dn(99999)); e4.generateAndSave(QString("test_gg_%1.png").arg(x));
         // e4; e4.setSeaRatio(-0.5);e4.setIceRatio(0.25);  e4.setSeed(SSGX::dn(99999)); e4.generateAndSave(QString("test_e4_%1.png").arg(x));
 
 

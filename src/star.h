@@ -57,7 +57,7 @@ namespace NSStar {
 
 
 
-    typedef struct _STARVALUE {
+    struct STARVALUE {
         qint32 numGarden;
         qint32 numGlacier;
         qint32 numPostGarden;
@@ -69,7 +69,7 @@ namespace NSStar {
         qint32 numDesert;
         qint32 numHotHouse;
         qint32 numChunk;
-    } STARVALUE;
+    };
 
 }
 
@@ -79,7 +79,7 @@ class Star : public QObject
     Q_OBJECT
 
 private:
-    double              _starSize;
+    double          _starSize;
     double          _luminosity;
     double          _magnitude;
     double          _solarMass;
@@ -93,24 +93,22 @@ private:
     double          _outerLifeZone;
     double          _absMagnitude;
     double          _appMagnitude;
-    double _x;
-    double _y;
-    double _z;
-
-    double _dist;
-    double _phi;
-    double _theta;
-
-    long _nx;
-    long _ny;
-    long _nz;
-    bool _visited;
-    bool _sister;
-    bool _isReference;
-    QString _starFullType;
+    double          _x;
+    double          _y;
+    double          _z;
+    double          _dist;
+    double          _phi;
+    double          _theta;
+    long            _nx;
+    long            _ny;
+    long            _nz;
+    bool            _visited;
+    bool            _sister;
+    bool            _isReference;
+    QString         _starFullType;
     NSStar::StarClass   _starClass;
     NSStar::StarType    _starType;
-
+    NSStar::STARVALUE   _starValue;
     QVector<Planet> _planets;
     QVector<int>    _neighbors;
     QVector<int>    _path;
@@ -124,7 +122,6 @@ private:
     int _currentPlanet;
 
 
-    NSStar::STARVALUE _starValue;
 
 public:
     QString         starName;
@@ -322,6 +319,7 @@ public:
     QString starFullType() { return _starFullType; }
     QString toHtml();
     void toJson(QJsonObject& json);
+    void fromJson(const QJsonObject& json);
 
     void setStarData();
 

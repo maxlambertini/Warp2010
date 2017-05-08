@@ -595,18 +595,22 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
                 SplashScreen::screenPtr()->setMessage( "Loaded map, rebuilding...");
             }
             else {
-                int sectorRadius = _newSectorDialog->sectorRadius();
-                QString sectorName = _newSectorDialog->sectorName();
-                int sectorDensity = _newSectorDialog->sectorDensity();
-                this->_starList->createRandomMap((double)sectorRadius, (double)sectorDensity);
-                _starList->setListName(sectorName);
+                if (filename!="NONEWFILE") {
+                    int sectorRadius = _newSectorDialog->sectorRadius();
+                    QString sectorName = _newSectorDialog->sectorName();
+                    int sectorDensity = _newSectorDialog->sectorDensity();
+                    this->_starList->createRandomMap((double)sectorRadius, (double)sectorDensity);
+                    _starList->setListName(sectorName);
+                }
+                else
+                    this->setDistance(this->_starList->jumpDistance());
                 SplashScreen::screenPtr()->setMessage( "Created map, rebuilding...");
             }
 
             if (mustRebuildMatrix) {
-                progHelp.nextStep(7);
                 this->rebuildMatrix(0, this->distance());
                 SplashScreen::screenPtr()->setMessage( "Rebuilding paths...");
+                progHelp.nextStep(7);
                 progHelp.nextStep(8);
             }
             fillListWithCalculatedData(0);
@@ -1016,3 +1020,5 @@ void WarpMainWindowForm::on_actionCreate_map_2_triggered()
     NoisemapPlaygroundDialog dialog(this);
     dialog.exec();
 }
+
+

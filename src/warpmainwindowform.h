@@ -240,6 +240,7 @@ private slots:
     void on_celestia_texture_starting(int exp);
     void on_celestia_texture_done();
     void on_celestia_texture_chunk(int exp);
+    void on_action_Load_Whole_Sector_triggered();
 };
 
 #endif // WARPMAINWINDOWFORM_H
