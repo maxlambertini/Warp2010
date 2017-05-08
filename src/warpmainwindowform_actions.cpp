@@ -125,10 +125,12 @@ void WarpMainWindowForm::on_action_Load_Whole_Sector_triggered()
         this->_currentStarListIndex = 0;
         this->rebuildMatrix(0);
         this->fillListWithCalculatedData(0);
+        _tradeRouteMediator->setProgressBar(this->progressBar);
+        _tradeRouteMediator->setTableWidget(ui->gridTradeRoutes);
         _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
         _sceneMediator->redrawScene();
-
         ui->txtSectorName->setText(StarList::StarListPtr()->listName());
+        _tradeRouteMediator->updateTradeRouteList();
     }
 }
 

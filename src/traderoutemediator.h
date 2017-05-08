@@ -70,6 +70,8 @@ public:
     void toJson(QJsonObject& json);
     void fromJson(const QJsonObject& json);
 
+    void updateTradeRouteList();
+
     inline QVector<QSharedPointer<TradeRoute> > *tradeRoutePtr() { return &_tradeRoutes; }
     inline QVector<QSharedPointer<TradeRoute> >& tradeRoutes() { return _tradeRoutes; }
 

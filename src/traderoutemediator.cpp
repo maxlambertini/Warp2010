@@ -138,6 +138,23 @@ void TradeRouteMediator::searchTradeRouteToGardenPlanets()
     }
 }
 
+void TradeRouteMediator::updateTradeRouteList() {
+    if (_progressBar != 0) {
+        _progressBar->setVisible(true);
+        _progressBar->setMinimum(0);
+        _progressBar->setMaximum(_tradeRoutes.count());
+    }
+    for (auto n = 0; n < _tradeRoutes.count(); n++) {
+        if (_progressBar != 0) _progressBar->setValue(n);
+
+        this->performAddToTradeRoute(_tradeRoutes.at(n).data(),n);
+    }
+
+    if (_progressBar != 0)
+        _progressBar->setVisible(false);
+
+}
+
 void TradeRouteMediator::performAddToTradeRoute (TradeRoute *tr, int indexOnList)
 {
     //create the trade route object
