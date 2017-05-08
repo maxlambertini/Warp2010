@@ -63,6 +63,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QEvent>
 #include <noise/noise.h>
 #include <noiseutils.h>
+#include <exporters/starsectorjsonexporter.h>
 
 void WarpMainWindowForm::on_actionLoad_Sector_triggered()
 {
@@ -118,10 +119,15 @@ void WarpMainWindowForm::on_action_Load_Whole_Sector_triggered()
                                          tr("Whole star sector files (*.json)"));
     if (!filename.isEmpty()) {
         this->clearSolarSystem();
-        this->_starList->loadFromJson(filename);
+        StarSectorJsonExporter jsonExp(_starList, _tradeRouteMediator);
+        jsonExp.loadFromJson(filename);
+        //this->_starList->loadFromJson(filename);
         this->_currentStarListIndex = 0;
         this->rebuildMatrix(0);
         this->fillListWithCalculatedData(0);
+        _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
+        _sceneMediator->redrawScene();
+
         ui->txtSectorName->setText(StarList::StarListPtr()->listName());
     }
 }
@@ -509,8 +515,11 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
             _sceneMediator->drawToGraphML(fileName);
         if (fileName.endsWith(".dot"))
             _sceneMediator->drawToGraphViz(fileName);
-        if (fileName.endsWith(".json"))
-            this->_starList->saveToJson(fileName);
+        if (fileName.endsWith(".json")) {
+            StarSectorJsonExporter jsonExp(this->_starList, this->_tradeRouteMediator);
+            jsonExp.saveToJson(fileName);
+            //this->_starList->saveToJson(fileName);
+        }
         if (fileName.endsWith(".stc")) {
             if (this->pCexp.data() != nullptr)
                 this->pCexp.clear();

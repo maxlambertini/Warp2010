@@ -142,7 +142,8 @@ SOURCES += main.cpp \
     helpers/planetmaps/jade.cpp \
     helpers/planetmaps/jade2.cpp \
     helpers/planetmaps/ice.cpp \
-    helpers/planetmaps/granite.cpp
+    helpers/planetmaps/granite.cpp \
+    exporters/starsectorjsonexporter.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -231,7 +232,8 @@ HEADERS += coordinates.h \
     helpers/planetmaps/jade.h \
     helpers/planetmaps/jade2.h \
     helpers/planetmaps/ice.h \
-    helpers/planetmaps/granite.h
+    helpers/planetmaps/granite.h \
+    exporters/starsectorjsonexporter.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
@@ -251,4 +253,4 @@ win32:RC_FILE = warp2010.rc
 win32:CONFIG += console
 DISTFILES += test.tpl \
     aspects.aspect \
-    LICENSE.GPL
+    LICENSE.LGPL

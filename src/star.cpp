@@ -338,6 +338,7 @@ void Star::setStarFullType(const QString& type="G2V")
     this->_starFullType  = type;
     this->_solarAge = this->_solarAge * ( ((float)dSize+.1)/5.0);
     this->setStarData();
+    this->calcStarValue();
 
 }
 
@@ -398,6 +399,13 @@ void Star::fromJson(const QJsonObject &json)
     //to be implemented:
     //
     //_sisters = json["sisters"].toQVector<QSharedPointer<Star>>();
+    this->setStarFullType(_starFullType);
+    this->setStarData();
+    this->setNumGardens();
+    this->setNumDesert();
+    this->setNumGasGiant();
+    this->setNumMarginals();
+
 }
 
 void Star::toJson(QJsonObject& json) {

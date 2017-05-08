@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 TradeRouteMediator TradeRouteMediator::_mediator;
 
+
 bool tradeRouteLessThan(QSharedPointer<TradeRoute> tr1, QSharedPointer<TradeRoute> tr2)
 {
     if (tr1.isNull())
@@ -249,4 +250,27 @@ double TradeRouteMediator::tradeRouteDistance(TradeRoute *tr)
     int lastIdx = path.last();
 
     return _starList->calculatePathDistance(lastIdx);
+}
+
+void TradeRouteMediator::toJson(QJsonObject &json) {
+    QJsonArray aRoutes;
+    QSharedPointer<TradeRoute> tr;
+    foreach (tr, _tradeRoutes) {
+        QJsonObject oTr;
+        tr.data()->toJson(oTr);
+        aRoutes.append(oTr);
+    }
+    json["tradeRoutes"] = aRoutes;
+}
+
+void TradeRouteMediator::fromJson(const QJsonObject &json) {
+    QJsonArray aRoutes = json["tradeRoutes"].toArray();
+    _tradeRoutes.clear();
+    for (int i = 0; i < aRoutes.size(); ++i) {
+        QJsonObject oTr = aRoutes[i].toObject();
+        TradeRoute* tr = new TradeRoute();
+        tr->fromJson(oTr);
+        QSharedPointer<TradeRoute> trp; trp.reset(tr);
+        _tradeRoutes.append(trp);
+    }
 }

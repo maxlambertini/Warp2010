@@ -43,6 +43,34 @@ TradeRoute::TradeRoute(const TradeRoute & that) : QObject()
         this->_path.append(i);
 }
 
+void TradeRoute::toJson(QJsonObject &json) {
+    json["routeName"] = this->routeName();
+    QJsonObject color;
+    color["red"] = this->routeColor().red();
+    color["green"] = this->routeColor().green();
+    color["blue"] = this->routeColor().blue();
+    color["alpha"]= this->routeColor().alpha();
+    json["routeColor"] = color;
+    QJsonArray aPath;
+    int i;
+    foreach (i, _path) {
+        QJsonValue o(i);
+        aPath.append(o);
+    }
+    json["path"]=aPath;
+}
+
+void TradeRoute::fromJson(const QJsonObject &json) {
+    _routeName = json["routeName"].toString();
+    QJsonObject oColor = json["routeColor"].toObject();
+    _routeColor = QColor(oColor["red"].toInt(),oColor["green"].toInt(),
+            oColor["blue"].toInt(),oColor["alpha"].toInt());
+    _path.clear();
+    QJsonArray aPath = json["path"].toArray();
+    for(int i = 0; i < aPath.size(); ++i) {
+        _path.append(aPath[i].toInt());
+    }
+}
 
 void TradeRoute::WriteTradeRoutesToFile (QVector<QSharedPointer<TradeRoute> >& routes, QString file)
 {

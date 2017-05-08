@@ -53,7 +53,6 @@ class TradeRouteMediator : public QObject
     TradeRouteMediator& operator= (const TradeRouteMediator&);
     TradeRouteMediator();
     virtual ~TradeRouteMediator();
-
 signals:
     void tradeRouteCreated(QString& routeName);
 
@@ -68,6 +67,8 @@ public:
     inline void setTableWidget (QListWidget* grid) { _grid = grid; }
     inline void setProgressBar (QProgressBar* pb) { _progressBar = pb;}
     static TradeRouteMediator* mediator() { return &_mediator; }
+    void toJson(QJsonObject& json);
+    void fromJson(const QJsonObject& json);
 
     inline QVector<QSharedPointer<TradeRoute> > *tradeRoutePtr() { return &_tradeRoutes; }
     inline QVector<QSharedPointer<TradeRoute> >& tradeRoutes() { return _tradeRoutes; }
