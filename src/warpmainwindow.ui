@@ -811,66 +811,60 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <widget class="QMenu" name="menuFileSector">
     <property name="title">
-     <string>&amp;File</string>
+     <string>S&amp;ystem</string>
     </property>
-    <widget class="QMenu" name="menuStar_Sector_Operations">
-     <property name="title">
-      <string>&amp;Star Sector Operations</string>
-     </property>
-     <addaction name="action_NewSector"/>
-     <addaction name="action_Add_New_Star"/>
-     <addaction name="actionAdd_Stars_Between_Two_Stars"/>
-     <addaction name="actionLoad_Sector"/>
-     <addaction name="action_Load_Whole_Sector"/>
-     <addaction name="action_LoadTradeRoutes"/>
-     <addaction name="action_TradeRoute_to_all_GardenPlanets"/>
-     <addaction name="separator"/>
-     <addaction name="actionSave_Sector"/>
-     <addaction name="action_SaveTradeRoutes"/>
-     <addaction name="separator"/>
-     <addaction name="action_ExportMapToImage"/>
-     <addaction name="action_ExportMapToGraphVizFile"/>
-     <addaction name="separator"/>
-     <addaction name="actionPrint_Sector_Map"/>
-     <addaction name="actionPrint_Trade_Route"/>
-     <addaction name="separator"/>
-     <addaction name="action_Clear_Star_Sector_Data"/>
-     <addaction name="actionCreate_map_2"/>
-    </widget>
-    <widget class="QMenu" name="menuSolar_System_Operations">
-     <property name="title">
-      <string>Solar System &amp;Operations</string>
-     </property>
-     <addaction name="action_CreateSolarSystem"/>
-     <addaction name="action_SolarSystemForAllStars"/>
-     <addaction name="separator"/>
-     <addaction name="action_Save_Solar_System_to_HTML"/>
-     <addaction name="action_Save_Solar_System_to_Celestia_file"/>
-     <addaction name="separator"/>
-     <addaction name="actionPrint_Solar_System"/>
-    </widget>
-    <widget class="QMenu" name="menuCluster_Operations">
-     <property name="title">
-      <string>&amp;Cluster Operations</string>
-     </property>
-     <addaction name="action_Generate_New_Cluster"/>
-     <addaction name="action_Load_Diaspora_Cluster"/>
-     <addaction name="action_Save_Diaspora_Cluster"/>
-     <addaction name="separator"/>
-     <addaction name="action_Export_Diaspora_Cluster_To_Graphviz"/>
-     <addaction name="action_Export_Diaspora_Cluster_To_SVG"/>
-     <addaction name="action_Export_Diaspora_Cluster_To_HTML"/>
-     <addaction name="action_Export_Cluster_To_PDF"/>
-     <addaction name="separator"/>
-     <addaction name="action_Print_Cluster"/>
-    </widget>
-    <addaction name="menuStar_Sector_Operations"/>
-    <addaction name="menuSolar_System_Operations"/>
-    <addaction name="menuCluster_Operations"/>
     <addaction name="separator"/>
     <addaction name="action_Page_Setup"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuStar_Sector_Operations">
+    <property name="title">
+     <string>&amp;Star Sector</string>
+    </property>
+    <addaction name="action_NewSector"/>
+    <addaction name="actionLoad_Sector"/>
+    <addaction name="actionSave_Sector"/>
+    <addaction name="separator"/>
+    <addaction name="action_ExportMapToGraphVizFile"/>
+    <addaction name="action_ExportMapToImage"/>
+    <addaction name="separator"/>
+    <addaction name="actionPrint_Sector_Map"/>
+    <addaction name="actionPrint_Trade_Route"/>
+    <addaction name="separator"/>
+    <addaction name="action_Add_New_Star"/>
+    <addaction name="actionAdd_Stars_Between_Two_Stars"/>
+    <addaction name="separator"/>
+    <addaction name="action_Clear_Star_Sector_Data"/>
+    <addaction name="action_TradeRoute_to_all_GardenPlanets"/>
+    <addaction name="actionCreate_map_2"/>
+   </widget>
+   <widget class="QMenu" name="menuSolar_System_Operations">
+    <property name="title">
+     <string>S&amp;olar System</string>
+    </property>
+    <addaction name="action_CreateSolarSystem"/>
+    <addaction name="action_SolarSystemForAllStars"/>
+    <addaction name="separator"/>
+    <addaction name="action_Save_Solar_System_to_HTML"/>
+    <addaction name="action_Save_Solar_System_to_Celestia_file"/>
+    <addaction name="separator"/>
+    <addaction name="actionPrint_Solar_System"/>
+   </widget>
+   <widget class="QMenu" name="menuCluster_Operations">
+    <property name="title">
+     <string>&amp;Cluster</string>
+    </property>
+    <addaction name="action_Generate_New_Cluster"/>
+    <addaction name="action_Load_Diaspora_Cluster"/>
+    <addaction name="action_Save_Diaspora_Cluster"/>
+    <addaction name="separator"/>
+    <addaction name="action_Export_Diaspora_Cluster_To_Graphviz"/>
+    <addaction name="action_Export_Diaspora_Cluster_To_SVG"/>
+    <addaction name="action_Export_Diaspora_Cluster_To_HTML"/>
+    <addaction name="action_Export_Cluster_To_PDF"/>
+    <addaction name="separator"/>
+    <addaction name="action_Print_Cluster"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
     <property name="title">
@@ -904,6 +898,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="action_AboutWarp2010"/>
    </widget>
    <addaction name="menuFileSector"/>
+   <addaction name="menuStar_Sector_Operations"/>
+   <addaction name="menuSolar_System_Operations"/>
+   <addaction name="menuCluster_Operations"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
    <addaction name="menu"/>
@@ -1305,16 +1302,6 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>Trade Routes</string>
-   </property>
-  </action>
-  <action name="action_SaveTradeRoutes">
-   <property name="text">
-    <string>Sa&amp;ve Trade Routes</string>
-   </property>
-  </action>
-  <action name="action_LoadTradeRoutes">
-   <property name="text">
-    <string>Load Trade &amp;Routes</string>
    </property>
   </action>
   <action name="action_ShowOnlyStarsInTradeRoutes">
@@ -1776,17 +1763,6 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   <action name="actionCreate_map_2">
    <property name="text">
     <string>Create map</string>
-   </property>
-  </action>
-  <action name="action_Load_Whole_Sector">
-   <property name="text">
-    <string>Load Whole Sector</string>
-   </property>
-   <property name="toolTip">
-    <string>Loads a whole sector, with planets and jumpmap</string>
-   </property>
-   <property name="whatsThis">
-    <string/>
    </property>
   </action>
  </widget>

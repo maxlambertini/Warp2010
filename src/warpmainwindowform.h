@@ -193,10 +193,8 @@ private slots:
     void on_action_map_Show_All_Stars_triggered();
     void on_action_map_Show_Hexmap_with_Trade_Route_Only_triggered();
     void on_action_map_Show_Hexmap_With_Reachable_Stars_triggered();
-    void on_action_LoadTradeRoutes_triggered();
     void on_action_ExportMapToImage_triggered();
     void on_action_ExportMapToGraphVizFile_triggered();
-    void on_action_SaveTradeRoutes_triggered();
     void on_action_ShowTradeRoutes_triggered();
     void on_action_ShowOptimalPath_triggered();
     void on_action_ShowNeighbors_routes_triggered();
@@ -245,7 +243,6 @@ private slots:
     void on_celestia_texture_starting(int exp);
     void on_celestia_texture_done();
     void on_celestia_texture_chunk(int exp);
-    void on_action_Load_Whole_Sector_triggered();
 };
 
 #endif // WARPMAINWINDOWFORM_H

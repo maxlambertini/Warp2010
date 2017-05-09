@@ -126,29 +126,6 @@ void WarpMainWindowForm::on_actionLoad_Sector_triggered()
     }
 }
 
-void WarpMainWindowForm::on_action_Load_Whole_Sector_triggered()
-{
-    QString filename =
-            QFileDialog::getOpenFileName(this,
-                                         tr("Open Star Map"),
-                                         AppPaths::appDir(),
-                                         tr("Whole star sector files (*.json)"));
-    if (!filename.isEmpty()) {
-        this->clearSolarSystem();
-        StarSectorJsonExporter jsonExp(_starList, _tradeRouteMediator);
-        jsonExp.loadFromJson(filename);
-        //this->_starList->loadFromJson(filename);
-        this->_currentStarListIndex = 0;
-        this->rebuildMatrix(0);
-        this->fillListWithCalculatedData(0);
-        _tradeRouteMediator->setProgressBar(this->progressBar);
-        _tradeRouteMediator->setTableWidget(ui->gridTradeRoutes);
-        _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
-        _sceneMediator->redrawScene();
-        ui->txtSectorName->setText(StarList::StarListPtr()->listName());
-        _tradeRouteMediator->updateTradeRouteList();
-    }
-}
 
 void WarpMainWindowForm::on_actionZoomIn_triggered()
 {
@@ -275,36 +252,6 @@ void WarpMainWindowForm::on_action_ExportMapToImage_triggered()
                                           AppPaths::appDir()+"/"+ defaultFilename,
                             tr( "PDF Document (*.pdf);;SVG Drawing (*.svg)"));
     _sceneMediator->exportToImage(fileName);
-}
-
-void WarpMainWindowForm::on_action_SaveTradeRoutes_triggered()
-{
-    QString filename = QFileDialog::getSaveFileName(this,tr("Save trade route"),
-                                                    AppPaths::appDir()+ "/trade.route",tr("Trade Routes (*.route)"));
-    if (!filename.isNull()) {
-        TradeRoute::WriteTradeRoutesToFile(*_tradeRouteMediator->tradeRoutePtr(),filename);
-    }
-}
-
-
-
-void WarpMainWindowForm::on_action_LoadTradeRoutes_triggered()
-{
-    QString filename = QFileDialog::getOpenFileName(
-            this,
-            "Open trade route",
-            AppPaths::appDir(),
-            tr("Trade Routes (*.route)"));
-    if (!filename.isNull())
-    {
-        _tradeRouteMediator->setTableWidget(ui->gridTradeRoutes);
-        _tradeRouteMediator->loadTradeRouteFromFile(filename);
-        _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
-
-        _sceneMediator->redrawScene();
-
-    }
-
 }
 
 

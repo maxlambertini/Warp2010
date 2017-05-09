@@ -248,7 +248,7 @@ FORMS += warpmainwindow.ui \
     dialogs/noisemapplaygrounddialog.ui
 RESOURCES += Resources.qrc
 win32:RC_FILE = warp2010.rc
-win32:CONFIG += console
+#win32:CONFIG += console
 DISTFILES += test.tpl \
     aspects.aspect \
     LICENSE.LGPL
