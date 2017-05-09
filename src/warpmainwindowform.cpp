@@ -199,6 +199,16 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
      this->ui->btnRotateRight->setVisible(false);
      this->ui->sliderRotate->setVisible(false);
 
+     this->menuBar()->hide();
+
+     QButtonGroup *btnGrp = new QButtonGroup(this);
+     ui->btn_Star_Sector_View->setCheckable(true);
+     ui->btn_Solar_System_View->setCheckable(true);
+     ui->btn_Diaspora_Cluster_View->setCheckable(true);
+     ui->btn_Star_Sector_View->setChecked(true);
+     btnGrp->addButton(ui->btn_Star_Sector_View);
+     btnGrp->addButton(ui->btn_Solar_System_View);
+     btnGrp->addButton(ui->btn_Diaspora_Cluster_View);
  }
 
 WarpMainWindowForm::~WarpMainWindowForm()

@@ -38,6 +38,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <property name="spacing">
+         <number>0</number>
+        </property>
         <item>
          <widget class="QPushButton" name="btn_Star_Sector_View">
           <property name="text">
@@ -52,6 +55,9 @@
             <width>24</width>
             <height>24</height>
            </size>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -71,6 +77,9 @@
             <height>24</height>
            </size>
           </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
@@ -88,6 +97,9 @@
             <width>24</width>
             <height>24</height>
            </size>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -121,6 +133,9 @@
           <height>24</height>
          </size>
         </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -151,12 +166,12 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_5">
            <property name="spacing">
-            <number>0</number>
+            <number>6</number>
            </property>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,0,0">
              <property name="spacing">
-              <number>0</number>
+              <number>6</number>
              </property>
              <item>
               <widget class="QLabel" name="label_7">
@@ -170,6 +185,12 @@
              </item>
              <item>
               <widget class="QLineEdit" name="txtSectorName">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
                <property name="maximumSize">
                 <size>
                  <width>300</width>
@@ -421,12 +442,12 @@
        <widget class="QWidget" name="layoutWidget">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="spacing">
-          <number>0</number>
+          <number>6</number>
          </property>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <property name="spacing">
-            <number>0</number>
+            <number>6</number>
            </property>
            <property name="leftMargin">
             <number>0</number>
@@ -461,6 +482,12 @@
              <property name="text">
               <string>Distance in LY</string>
              </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+             <property name="indent">
+              <number>0</number>
+             </property>
             </widget>
            </item>
            <item>
@@ -468,7 +495,7 @@
              <property name="minimumSize">
               <size>
                <width>120</width>
-               <height>0</height>
+               <height>30</height>
               </size>
              </property>
              <property name="toolTip">
@@ -477,6 +504,12 @@ Double click on a star below to recalculate a new jumpweb centered on the select
              </property>
              <property name="styleSheet">
               <string notr="true"/>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
              <property name="decimals">
               <number>4</number>
@@ -913,12 +946,16 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="separator"/>
     <addaction name="action_Add_New_Star"/>
     <addaction name="actionAdd_Stars_Between_Two_Stars"/>
-    <addaction name="separator"/>
-    <addaction name="action_Clear_Star_Sector_Data"/>
     <addaction name="action_TradeRoute_to_all_GardenPlanets"/>
+    <addaction name="action_map_Sector_Map_Options"/>
+    <addaction name="action_Planar_Projection_Modes"/>
+    <addaction name="action_Clear_Star_Sector_Data"/>
+    <addaction name="separator"/>
     <addaction name="actionCreate_map_2"/>
     <addaction name="action_Preferences"/>
+    <addaction name="separator"/>
     <addaction name="action_AboutWarp2010"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuSolar_System_Operations">
@@ -930,10 +967,12 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="separator"/>
     <addaction name="action_Save_Solar_System_to_HTML"/>
     <addaction name="action_Save_Solar_System_to_Celestia_file"/>
-    <addaction name="separator"/>
     <addaction name="actionPrint_Solar_System"/>
+    <addaction name="separator"/>
     <addaction name="action_Preferences"/>
+    <addaction name="separator"/>
     <addaction name="action_AboutWarp2010"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuCluster_Operations">
@@ -948,50 +987,18 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="action_Export_Diaspora_Cluster_To_SVG"/>
     <addaction name="action_Export_Diaspora_Cluster_To_HTML"/>
     <addaction name="action_Export_Cluster_To_PDF"/>
-    <addaction name="separator"/>
     <addaction name="action_Print_Cluster"/>
+    <addaction name="separator"/>
     <addaction name="action_Preferences"/>
+    <addaction name="separator"/>
     <addaction name="action_AboutWarp2010"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menu_Edit">
-    <property name="title">
-     <string>&amp;Edit</string>
-    </property>
-    <addaction name="action_CopySolarSystem"/>
-    <addaction name="separator"/>
-    <addaction name="action_Preferences"/>
-   </widget>
-   <widget class="QMenu" name="menu_View">
-    <property name="title">
-     <string>&amp;View</string>
-    </property>
-    <widget class="QMenu" name="menuSector_Viewing_Options">
-     <property name="title">
-      <string>Sector Viewing Options</string>
-     </property>
-     <addaction name="action_map_Sector_Map_Options"/>
-     <addaction name="action_Planar_Projection_Modes"/>
-    </widget>
-    <addaction name="menuSector_Viewing_Options"/>
-    <addaction name="separator"/>
-    <addaction name="action_Star_Sector_View"/>
-    <addaction name="action_Solar_System_View"/>
-    <addaction name="action_Diaspora_Cluster_View"/>
-   </widget>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>?</string>
-    </property>
-    <addaction name="action_AboutWarp2010"/>
-   </widget>
-   <addaction name="menuFileSector"/>
    <addaction name="menuStar_Sector_Operations"/>
    <addaction name="menuSolar_System_Operations"/>
    <addaction name="menuCluster_Operations"/>
-   <addaction name="menu_Edit"/>
-   <addaction name="menu_View"/>
-   <addaction name="menu"/>
+   <addaction name="menuFileSector"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_NewSector">
