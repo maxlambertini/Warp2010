@@ -83,7 +83,6 @@ SOURCES += main.cpp \
     helpers/starcodehelper.cpp \
     dialogs/createbetweenstarsdlg.cpp \
     helpers/planetrenderer.cpp \
-    helpers/matrixbuilder.cpp \
     helpers/parsecstarlisthelper.cpp \
     helpers/graphmlexporter.cpp \
     ../libnoise/src/noise/model/cylinder.cpp \
@@ -208,7 +207,6 @@ HEADERS += coordinates.h \
     helpers/starcodehelper.h \
     dialogs/createbetweenstarsdlg.h \
     helpers/planetrenderer.h \
-    helpers/matrixbuilder.h \
     helpers/parsecstarlisthelper.h \
     helpers/graphmlexporter.h \
     dialogs/noisemapplaygrounddialog.h \

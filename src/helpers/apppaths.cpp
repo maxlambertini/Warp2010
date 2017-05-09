@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 
 #include "apppaths.h"
-
+#include <memory>
 
 AppPaths::AppPaths()
 {
@@ -48,7 +48,7 @@ QString dirToCheck[2] =
 
 void AppPaths::checkForDirectoriesAndFiles() {
 
-    char * buffer;
+    //char * buffer;
 
     //prima, creiamo le directory
     for (int h = 0; h < DIR_ITEMS; h++ ) {
@@ -67,16 +67,16 @@ void AppPaths::checkForDirectoriesAndFiles() {
             if (inFile.open(QIODevice::ReadOnly)) {
                 if (outFile.open(QIODevice::WriteOnly | QIODevice::ReadWrite))
                 {
-                    buffer = new char[8192];
+                    char _buffer[8192];
                     qint64 rb = 1;
                     while (rb > 0) {
-                        rb = inFile.read (buffer,8192);
+                        rb = inFile.read (_buffer,8192);
                         if (rb > 0)
-                            outFile.write(buffer,rb);
+                            outFile.write(_buffer,rb);
                     }
                     outFile.close();
                     inFile.close();
-                    delete buffer;
+                    //delete buffer;
                 }
             }
         }

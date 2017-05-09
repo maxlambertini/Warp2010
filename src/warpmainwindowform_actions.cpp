@@ -72,7 +72,7 @@ void WarpMainWindowForm::on_actionLoad_Sector_triggered()
             QFileDialog::getOpenFileName(this,
                                          tr("Open Star Map"),
                                          AppPaths::appDir(),
-                                         tr("Star sector files (*.star *.str *.STR, *.starx)"));
+                                         tr("Star sector files (*.str *.STR, *.starj)"));
     if (!filename.isEmpty()) {
         SplashScreen::screenPtr()->show();
         SplashScreen::screenPtr()->setMessage("Acquired filename");
@@ -80,7 +80,7 @@ void WarpMainWindowForm::on_actionLoad_Sector_triggered()
         ui->solsysView->setStar(p);
         performMapProcessing(false, filename);
         SplashScreen::screenPtr()->setMessage("Processed map");
-        if (!filename.endsWith(".starx")) {
+        if (!filename.endsWith(".starj")) {
             bool bCreateTradeRoutes = AppMessage::Question(
                     "Do you want me to create solar systems and trade routes?",
                     "You can always create them later. This will speed up star loading\n"
@@ -100,9 +100,25 @@ void WarpMainWindowForm::on_actionLoad_Sector_triggered()
             //qApp->processEvents();
         }
         else {
-            SplashScreen::screenPtr()->setMessage("Creating trade routes...");
+            if (!filename.isEmpty()) {
+                SplashScreen::screenPtr()->setMessage("Loading whole sector data...");
+                this->clearSolarSystem();
+                StarSectorJsonExporter jsonExp(_starList, _tradeRouteMediator);
+                jsonExp.loadFromJson(filename);
+                //this->_starList->loadFromJson(filename);
+                this->_currentStarListIndex = 0;
+                this->rebuildMatrix(0);
+                this->fillListWithCalculatedData(0);
+                _tradeRouteMediator->setProgressBar(this->progressBar);
+                _tradeRouteMediator->setTableWidget(ui->gridTradeRoutes);
+                _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
+                _sceneMediator->redrawScene();
+                ui->txtSectorName->setText(StarList::StarListPtr()->listName());
+                _tradeRouteMediator->updateTradeRouteList();
+            }
+            //SplashScreen::screenPtr()->setMessage("Creating trade routes...");
             //qApp->processEvents();
-            this->on_action_TradeRoute_to_all_GardenPlanets_triggered();
+            //this->on_action_TradeRoute_to_all_GardenPlanets_triggered();
             //qApp->processEvents();
         }
         SplashScreen::screenPtr()->hide();
@@ -457,10 +473,14 @@ void WarpMainWindowForm::on_actionSave_Sector_triggered()
             QFileDialog::getSaveFileName(this,
                                          tr("Save star Map"),
                                          AppPaths::appDir()+ "/"+defaultFilename,
-                                         tr("Star sector files (*.star *.str *.STR);;Star matrix file (*.starx)"));
+                                         tr("Star sector files (*.star *.str *.STR);;Star sector json file file (*.starj)"));
     if (!filename.isEmpty()) {
-        if (filename.endsWith(".starx"))
-            _starList->saveMatrix(filename);
+        if (filename.endsWith(".starj"))  {
+            StarSectorJsonExporter jsonExp(this->_starList, this->_tradeRouteMediator);
+            jsonExp.saveToJson(filename);
+            //this->_starList->saveToJson(fileName);
+            //_starList->saveMatrix(filename);
+        }
         else
             _starList->saveMap(filename);
     }
@@ -508,7 +528,7 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
     QString fileName =
             QFileDialog::getSaveFileName(this, tr("Export file as Graphviz Graph"),
                                          AppPaths::appDir()+ "/" + _starList->listName() + ".graphml",
-                           tr("GraphML yED File (*.graphml);;GML File (*.gml);;Graphviz File (*.dot);;Json File (*.json);;Celestia STC files (*.stc)"));
+                           tr("GraphML yED File (*.graphml);;GML File (*.gml);;Graphviz File (*.dot);;Celestia STC files (*.stc)"));
 
     if (!fileName.isEmpty() && !fileName.isNull()){
         if (fileName.endsWith(".gml"))
@@ -517,11 +537,6 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
             _sceneMediator->drawToGraphML(fileName);
         if (fileName.endsWith(".dot"))
             _sceneMediator->drawToGraphViz(fileName);
-        if (fileName.endsWith(".json")) {
-            StarSectorJsonExporter jsonExp(this->_starList, this->_tradeRouteMediator);
-            jsonExp.saveToJson(fileName);
-            //this->_starList->saveToJson(fileName);
-        }
         if (fileName.endsWith(".stc")) {
             if (this->pCexp.data() != nullptr)
                 this->pCexp.clear();
