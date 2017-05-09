@@ -906,6 +906,32 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_Star_Sector_View"/>
+   <addaction name="action_Solar_System_View"/>
+   <addaction name="action_Diaspora_Cluster_View"/>
+  </widget>
   <widget class="QToolBar" name="toolbarStarMap">
    <property name="windowTitle">
     <string>toolBar</string>
@@ -1034,32 +1060,6 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <bool>false</bool>
    </attribute>
    <addaction name="actionExit"/>
-  </widget>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="movable">
-    <bool>false</bool>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>24</width>
-     <height>24</height>
-    </size>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="action_Star_Sector_View"/>
-   <addaction name="action_Solar_System_View"/>
-   <addaction name="action_Diaspora_Cluster_View"/>
   </widget>
   <action name="action_NewSector">
    <property name="icon">

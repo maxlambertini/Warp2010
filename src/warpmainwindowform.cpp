@@ -1027,3 +1027,21 @@ void WarpMainWindowForm::on_actionCreate_map_2_triggered()
 }
 
 
+
+void WarpMainWindowForm::on_btn_Star_Sector_View_clicked()
+{
+    ui->btnContextualMenu->setMenu(ui->menuStar_Sector_Operations);
+    this->on_action_Star_Sector_View_triggered();
+}
+
+void WarpMainWindowForm::on_btn_Solar_System_View_clicked()
+{
+    ui->btnContextualMenu->setMenu(ui->menuSolar_System_Operations);
+    this->on_action_Solar_System_View_triggered();
+}
+
+void WarpMainWindowForm::on_btn_Diaspora_Cluster_View_clicked()
+{
+    ui->btnContextualMenu->setMenu(ui->menuCluster_Operations);
+    this->on_action_Diaspora_Cluster_View_triggered();
+}
