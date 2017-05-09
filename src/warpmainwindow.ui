@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>819</width>
-    <height>670</height>
+    <width>1022</width>
+    <height>733</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,19 +33,98 @@
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_10">
-    <property name="leftMargin">
-     <number>3</number>
-    </property>
-    <property name="topMargin">
-     <number>3</number>
-    </property>
-    <property name="rightMargin">
-     <number>3</number>
-    </property>
-    <property name="bottomMargin">
-     <number>3</number>
-    </property>
+   <layout class="QVBoxLayout" name="verticalLayout_8">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QPushButton" name="btn_Star_Sector_View">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="Resources.qrc">
+            <normaloff>:/Icons/pics/newicons/mappa_tot_64.png</normaloff>:/Icons/pics/newicons/mappa_tot_64.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_Solar_System_View">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normalon>:/Icons/pics/newicons/64.png</normalon>
+           </iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_Diaspora_Cluster_View">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normalon>:/Icons/pics/newicons/diaspora64.png</normalon>
+           </iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnContextualMenu">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resources.qrc">
+          <normaloff>:/new/Bitmaps/pics/window_background.png</normaloff>:/new/Bitmaps/pics/window_background.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item>
      <widget class="QSplitter" name="splitter_3">
       <property name="orientation">
@@ -805,7 +884,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>819</width>
+     <width>1022</width>
      <height>21</height>
     </rect>
    </property>
@@ -838,6 +917,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="action_Clear_Star_Sector_Data"/>
     <addaction name="action_TradeRoute_to_all_GardenPlanets"/>
     <addaction name="actionCreate_map_2"/>
+    <addaction name="action_Preferences"/>
+    <addaction name="action_AboutWarp2010"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuSolar_System_Operations">
     <property name="title">
@@ -850,6 +932,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="action_Save_Solar_System_to_Celestia_file"/>
     <addaction name="separator"/>
     <addaction name="actionPrint_Solar_System"/>
+    <addaction name="action_Preferences"/>
+    <addaction name="action_AboutWarp2010"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuCluster_Operations">
     <property name="title">
@@ -865,6 +950,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="action_Export_Cluster_To_PDF"/>
     <addaction name="separator"/>
     <addaction name="action_Print_Cluster"/>
+    <addaction name="action_Preferences"/>
+    <addaction name="action_AboutWarp2010"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
     <property name="title">
@@ -906,161 +994,6 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="movable">
-    <bool>false</bool>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>24</width>
-     <height>24</height>
-    </size>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="action_Star_Sector_View"/>
-   <addaction name="action_Solar_System_View"/>
-   <addaction name="action_Diaspora_Cluster_View"/>
-  </widget>
-  <widget class="QToolBar" name="toolbarStarMap">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="toolTip">
-    <string/>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>24</width>
-     <height>24</height>
-    </size>
-   </property>
-   <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonIconOnly</enum>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="action_NewSector"/>
-   <addaction name="action_Add_New_Star"/>
-   <addaction name="actionLoad_Sector"/>
-   <addaction name="actionSave_Sector"/>
-   <addaction name="action_Clear_Star_Sector_Data"/>
-   <addaction name="actionPrint_Sector_Map"/>
-   <addaction name="separator"/>
-   <addaction name="action_map_Sector_Map_Options"/>
-   <addaction name="action_Planar_Projection_Modes"/>
-   <addaction name="separator"/>
-   <addaction name="action_ExportMapToImage"/>
-   <addaction name="separator"/>
-   <addaction name="action_ExportMapToGraphVizFile"/>
-   <addaction name="separator"/>
-  </widget>
-  <widget class="QToolBar" name="toolbarSolarSystem">
-   <property name="windowTitle">
-    <string>toolBar_2</string>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>24</width>
-     <height>24</height>
-    </size>
-   </property>
-   <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonIconOnly</enum>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="action_CreateSolarSystem"/>
-   <addaction name="action_SolarSystemForAllStars"/>
-   <addaction name="action_TradeRoute_to_all_GardenPlanets"/>
-   <addaction name="separator"/>
-   <addaction name="action_Save_Solar_System_to_Celestia_file"/>
-   <addaction name="action_Print_Solar_System"/>
-   <addaction name="separator"/>
-   <addaction name="action_Save_Solar_System_to_HTML"/>
-   <addaction name="action_Export_Solar_System_To_PDF"/>
-   <addaction name="action_Export_Solar_System_To_SVG"/>
-   <addaction name="separator"/>
-   <addaction name="action_CopySolarSystem"/>
-  </widget>
-  <widget class="QToolBar" name="toolbarCluster">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>24</width>
-     <height>24</height>
-    </size>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="action_Generate_New_Cluster"/>
-   <addaction name="action_Load_Diaspora_Cluster"/>
-   <addaction name="action_Save_Diaspora_Cluster"/>
-   <addaction name="action_Export_Diaspora_Cluster_To_HTML"/>
-   <addaction name="action_Export_Diaspora_Cluster_To_SVG"/>
-   <addaction name="action_Export_Cluster_To_PDF"/>
-   <addaction name="action_Export_Diaspora_Cluster_To_Graphviz"/>
-  </widget>
-  <widget class="QToolBar" name="toolbarSystem">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="movable">
-    <bool>false</bool>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>24</width>
-     <height>24</height>
-    </size>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionExit"/>
-  </widget>
   <action name="action_NewSector">
    <property name="icon">
     <iconset resource="Resources.qrc">

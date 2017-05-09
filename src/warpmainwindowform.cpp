@@ -108,9 +108,6 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
 
      AspectList aspects = AspectList::fromAppDir();
      ui->clusterCreator->setAspectList(aspects);
-     ui->toolbarStarMap->setVisible(true);
-     ui->toolbarSolarSystem->setVisible(false);
-     ui->toolbarCluster->setVisible(false);
 
      progressBar = new QProgressBar(this);
      ui->statusbar->addPermanentWidget(progressBar,0);
@@ -897,23 +894,14 @@ void WarpMainWindowForm::on_tabSubprograms_currentChanged(int index)
     switch (index) {
     case TAB_STAR_SECTOR: //starmap tab
         ui->splitterStarInfo->setVisible(true);
-        ui->toolbarStarMap->setVisible(true);
-        ui->toolbarSolarSystem->setVisible(false);
-        ui->toolbarCluster->setVisible(false);
         break;
 
     case TAB_SOLAR_SYSTEM: //solsys tab
         ui->splitterStarInfo->setVisible(true);
-        ui->toolbarStarMap->setVisible(false);
-        ui->toolbarSolarSystem->setVisible(true);
-        ui->toolbarCluster->setVisible(false);
         break;
 
     case TAB_CLUSTER_MAP:
         ui->splitterStarInfo->setVisible(false);
-        ui->toolbarStarMap->setVisible(false);
-        ui->toolbarSolarSystem->setVisible(false);
-        ui->toolbarCluster->setVisible(true);
         break;
     }
 }
@@ -1030,18 +1018,48 @@ void WarpMainWindowForm::on_actionCreate_map_2_triggered()
 
 void WarpMainWindowForm::on_btn_Star_Sector_View_clicked()
 {
+    this->ui->menuStar_Sector_Operations->setEnabled(true);
+    this->ui->menuCluster_Operations->setEnabled(false);
+    this->ui->menuSolar_System_Operations->setEnabled(false);
     ui->btnContextualMenu->setMenu(ui->menuStar_Sector_Operations);
-    this->on_action_Star_Sector_View_triggered();
+    this->on_tabSubprograms_currentChanged(TAB_STAR_SECTOR);
 }
 
 void WarpMainWindowForm::on_btn_Solar_System_View_clicked()
 {
+    this->ui->menuStar_Sector_Operations->setEnabled(false);
+    this->ui->menuCluster_Operations->setEnabled(false);
+    this->ui->menuSolar_System_Operations->setEnabled(true);
     ui->btnContextualMenu->setMenu(ui->menuSolar_System_Operations);
-    this->on_action_Solar_System_View_triggered();
+    this->on_tabSubprograms_currentChanged(TAB_SOLAR_SYSTEM);
 }
 
 void WarpMainWindowForm::on_btn_Diaspora_Cluster_View_clicked()
 {
+    this->ui->menuStar_Sector_Operations->setEnabled(false);
+    this->ui->menuCluster_Operations->setEnabled(true);
+    this->ui->menuSolar_System_Operations->setEnabled(false);
     ui->btnContextualMenu->setMenu(ui->menuCluster_Operations);
-    this->on_action_Diaspora_Cluster_View_triggered();
+    this->on_tabSubprograms_currentChanged(TAB_CLUSTER_MAP);
+}
+
+/*
+ * void WarpMainWindowForm::on_action_Star_Sector_View_triggered(bool checked)
+{
+}
+
+void WarpMainWindowForm::on_action_Solar_System_View_triggered(bool checked)
+{
+
+}
+
+void WarpMainWindowForm::on_action_Diaspora_Cluster_View_triggered(bool checked)
+{
+
+}
+*/
+
+void WarpMainWindowForm::on_btn_Star_Sector_View_clicked(bool checked)
+{
+
 }

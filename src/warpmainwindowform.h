@@ -243,6 +243,10 @@ private slots:
     void on_celestia_texture_starting(int exp);
     void on_celestia_texture_done();
     void on_celestia_texture_chunk(int exp);
+    void on_btn_Star_Sector_View_clicked(bool checked);
+    void on_btn_Star_Sector_View_clicked();
+    void on_btn_Solar_System_View_clicked();
+    void on_btn_Diaspora_Cluster_View_clicked();
 };
 
 #endif // WARPMAINWINDOWFORM_H
