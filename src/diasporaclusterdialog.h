@@ -51,11 +51,12 @@ public:
     void generateNewCluster();
     void saveCluster();
     void loadCluster();
-    void exportClusterToSvg();
-    void exportClusterToGraphViz();
-    void exportClusterToPDF();
+    void exportCluster();
+    void exportClusterToHtml(QString expFilename = "");
+    void exportClusterToSvg(QString expFilename = "");
+    void exportClusterToGraphViz(QString expFilename = "");
+    void exportClusterToPDF(QString expFilename = "");
     void printCluster();
-    void exportClusterToHtml();
 
 protected:
     void changeEvent(QEvent *e);

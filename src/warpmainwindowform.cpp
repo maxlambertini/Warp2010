@@ -209,6 +209,7 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
      btnGrp->addButton(ui->btn_Star_Sector_View);
      btnGrp->addButton(ui->btn_Solar_System_View);
      btnGrp->addButton(ui->btn_Diaspora_Cluster_View);
+     this->on_btn_Star_Sector_View_clicked();
  }
 
 WarpMainWindowForm::~WarpMainWindowForm()
@@ -1073,3 +1074,4 @@ void WarpMainWindowForm::on_btn_Star_Sector_View_clicked(bool checked)
 {
 
 }
+

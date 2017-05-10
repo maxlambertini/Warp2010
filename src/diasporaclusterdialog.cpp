@@ -396,9 +396,28 @@ void DiasporaClusterDialog::loadCluster()
 
 }
 
-void DiasporaClusterDialog::exportClusterToSvg()
-{
+void DiasporaClusterDialog::exportCluster() {
     QString fileName =
+            QFileDialog::getSaveFileName(
+                this,
+                tr("Export file as Graphviz Graph"),
+                AppPaths::appDir()+ "/" + _cluster.name() + ".svg",
+                tr("SVG Image (*.svg);;PDF Doc  ument (*.pdf);;Graphviz File (*.dot);;HTML Page (*.html)"));
+    if (!fileName.isEmpty() && !fileName.isNull()){
+        if (fileName.endsWith(".svg"))
+            this->exportClusterToSvg(fileName);
+        if (fileName.endsWith(".pdf"))
+            this->exportClusterToPDF(fileName);
+        if (fileName.endsWith(".dot"))
+            this->exportClusterToGraphViz(fileName);
+        if (fileName.endsWith(".html"))
+            this->exportClusterToHtml(fileName);
+    }
+}
+
+void DiasporaClusterDialog::exportClusterToSvg(QString expFilename )
+{
+    QString fileName = expFilename != "" ? expFilename :
             QFileDialog::getSaveFileName(
                     this,
                     tr("Export cluster as SVG"),
@@ -410,9 +429,9 @@ void DiasporaClusterDialog::exportClusterToSvg()
 
 }
 
-void DiasporaClusterDialog::exportClusterToGraphViz()
+void DiasporaClusterDialog::exportClusterToGraphViz(QString expFilename )
 {
-    QString fileName =
+    QString fileName = expFilename != "" ? expFilename :
             QFileDialog::getSaveFileName(
                     this,
                     tr("Export cluster as Graphviz file"),
@@ -424,8 +443,8 @@ void DiasporaClusterDialog::exportClusterToGraphViz()
 
 }
 
-void DiasporaClusterDialog::exportClusterToPDF() {
-    QString fileName =
+void DiasporaClusterDialog::exportClusterToPDF(QString expFilename ) {
+    QString fileName = expFilename != "" ? expFilename :
             QFileDialog::getSaveFileName(
                     this,
                     tr("Export cluster as PDF"),
@@ -466,9 +485,9 @@ void DiasporaClusterDialog::printCluster() {
 
 }
 
-void DiasporaClusterDialog::exportClusterToHtml()
+void DiasporaClusterDialog::exportClusterToHtml(QString expFilename)
 {
-    QString fileName =
+    QString fileName = expFilename != "" ? expFilename :
             QFileDialog::getSaveFileName(
                     this,
                     tr("Export cluster as HTML"),

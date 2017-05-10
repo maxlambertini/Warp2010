@@ -567,6 +567,12 @@ void WarpMainWindowForm::on_action_Load_Diaspora_Cluster_triggered()
 
 }
 
+void WarpMainWindowForm::on_action_Export_Cluster_triggered()
+{
+    ui->clusterCreator->exportCluster();
+}
+
+
 void WarpMainWindowForm::on_action_Export_Diaspora_Cluster_To_SVG_triggered()
 {
     ui->clusterCreator->exportClusterToSvg();
@@ -576,6 +582,19 @@ void WarpMainWindowForm::on_action_Export_Diaspora_Cluster_To_HTML_triggered()
 {
     ui->clusterCreator->exportClusterToHtml();
 }
+
+void WarpMainWindowForm::on_action_Export_Cluster_To_PDF_triggered()
+{
+
+    ui->clusterCreator->exportClusterToPDF();
+
+}
+
+void WarpMainWindowForm::on_action_Export_Diaspora_Cluster_To_Graphviz_triggered()
+{
+    ui->clusterCreator->exportClusterToGraphViz();
+}
+
 
 void WarpMainWindowForm::on_action_Generate_New_Cluster_triggered()
 {
@@ -605,12 +624,7 @@ void WarpMainWindowForm::on_action_ShowOnlyReachableStars_triggered()
 
 }
 
-void WarpMainWindowForm::on_action_Export_Cluster_To_PDF_triggered()
-{
 
-    ui->clusterCreator->exportClusterToPDF();
-
-}
 
 void WarpMainWindowForm::on_action_Print_Cluster_triggered()
 {
@@ -734,10 +748,6 @@ void WarpMainWindowForm::on_action_Diaspora_Cluster_View_triggered(bool checked)
 
 }
 
-void WarpMainWindowForm::on_action_Export_Diaspora_Cluster_To_Graphviz_triggered()
-{
-    ui->clusterCreator->exportClusterToGraphViz();
-}
 
 void WarpMainWindowForm::on_action_solsys_export_to_pdf() {
     ui->solsysView->exportSolSysToPDF();

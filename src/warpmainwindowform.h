@@ -219,10 +219,10 @@ private slots:
 
     //DIASPORA CLUSTER ACTIONS
     void on_action_Generate_New_Cluster_triggered();
-    void on_action_Export_Diaspora_Cluster_To_HTML_triggered();
-    void on_action_Export_Diaspora_Cluster_To_Graphviz_triggered();
     void on_action_Diaspora_Cluster_View_triggered(bool checked);
     void on_action_Print_Cluster_triggered();
+    void on_action_Export_Diaspora_Cluster_To_HTML_triggered();
+    void on_action_Export_Diaspora_Cluster_To_Graphviz_triggered();
     void on_action_Export_Cluster_To_PDF_triggered();
     void on_action_Export_Diaspora_Cluster_To_SVG_triggered();
     void on_action_Load_Diaspora_Cluster_triggered();
@@ -247,6 +247,7 @@ private slots:
     void on_btn_Star_Sector_View_clicked();
     void on_btn_Solar_System_View_clicked();
     void on_btn_Diaspora_Cluster_View_clicked();
+    void on_action_Export_Cluster_triggered();
 };
 
 #endif // WARPMAINWINDOWFORM_H

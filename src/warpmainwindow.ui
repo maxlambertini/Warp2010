@@ -983,10 +983,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="action_Load_Diaspora_Cluster"/>
     <addaction name="action_Save_Diaspora_Cluster"/>
     <addaction name="separator"/>
-    <addaction name="action_Export_Diaspora_Cluster_To_Graphviz"/>
-    <addaction name="action_Export_Diaspora_Cluster_To_SVG"/>
-    <addaction name="action_Export_Diaspora_Cluster_To_HTML"/>
-    <addaction name="action_Export_Cluster_To_PDF"/>
+    <addaction name="action_Export_Cluster"/>
     <addaction name="action_Print_Cluster"/>
     <addaction name="separator"/>
     <addaction name="action_Preferences"/>
@@ -1703,6 +1700,15 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   <action name="actionCreate_map_2">
    <property name="text">
     <string>Create map</string>
+   </property>
+  </action>
+  <action name="action_Export_Cluster">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Icons/pics/newicons/diaspora64.png</normaloff>:/Icons/pics/newicons/diaspora64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export Cluster</string>
    </property>
   </action>
  </widget>
