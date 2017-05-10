@@ -1032,6 +1032,10 @@ void WarpMainWindowForm::on_btn_Star_Sector_View_clicked()
     this->ui->menuStar_Sector_Operations->setEnabled(true);
     this->ui->menuCluster_Operations->setEnabled(false);
     this->ui->menuSolar_System_Operations->setEnabled(false);
+    this->ui->lblSectorName->setVisible(true);
+    this->ui->lblSpinDistance->setVisible(true);
+    this->ui->txtSectorName->setVisible(true);
+    this->ui->spinDistance->setVisible(true);
     ui->btnContextualMenu->setMenu(ui->menuStar_Sector_Operations);
     this->on_tabSubprograms_currentChanged(TAB_STAR_SECTOR);
 }
@@ -1041,6 +1045,10 @@ void WarpMainWindowForm::on_btn_Solar_System_View_clicked()
     this->ui->menuStar_Sector_Operations->setEnabled(false);
     this->ui->menuCluster_Operations->setEnabled(false);
     this->ui->menuSolar_System_Operations->setEnabled(true);
+    this->ui->lblSectorName->setVisible(true);
+    this->ui->lblSpinDistance->setVisible(true);
+    this->ui->txtSectorName->setVisible(true);
+    this->ui->spinDistance->setVisible(true);
     ui->btnContextualMenu->setMenu(ui->menuSolar_System_Operations);
     this->on_tabSubprograms_currentChanged(TAB_SOLAR_SYSTEM);
 }
@@ -1050,6 +1058,10 @@ void WarpMainWindowForm::on_btn_Diaspora_Cluster_View_clicked()
     this->ui->menuStar_Sector_Operations->setEnabled(false);
     this->ui->menuCluster_Operations->setEnabled(true);
     this->ui->menuSolar_System_Operations->setEnabled(false);
+    this->ui->lblSectorName->setVisible(false);
+    this->ui->lblSpinDistance->setVisible(false);
+    this->ui->txtSectorName->setVisible(false);
+    this->ui->spinDistance->setVisible(false);
     ui->btnContextualMenu->setMenu(ui->menuCluster_Operations);
     this->on_tabSubprograms_currentChanged(TAB_CLUSTER_MAP);
 }

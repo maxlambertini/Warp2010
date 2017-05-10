@@ -104,4 +104,7 @@
         <file>pics/newicons/diaspora64.png</file>
         <file>pics/newicons/mappa_tot_64.png</file>
     </qresource>
+    <qresource prefix="/Elementary">
+        <file>pics/Elementary/document-properties.svg</file>
+    </qresource>
 </RCC>
