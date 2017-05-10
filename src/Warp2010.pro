@@ -142,7 +142,8 @@ SOURCES += main.cpp \
     helpers/planetmaps/jade2.cpp \
     helpers/planetmaps/ice.cpp \
     helpers/planetmaps/granite.cpp \
-    exporters/starsectorjsonexporter.cpp
+    exporters/starsectorjsonexporter.cpp \
+    helpers/texturebuilder/moduledescriptor.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -231,7 +232,8 @@ HEADERS += coordinates.h \
     helpers/planetmaps/jade2.h \
     helpers/planetmaps/ice.h \
     helpers/planetmaps/granite.h \
-    exporters/starsectorjsonexporter.h
+    exporters/starsectorjsonexporter.h \
+    helpers/texturebuilder/moduledescriptor.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
