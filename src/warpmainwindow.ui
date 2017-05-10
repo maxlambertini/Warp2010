@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1022</width>
+    <width>995</width>
     <height>733</height>
    </rect>
   </property>
@@ -34,12 +34,30 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_8">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>6</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>6</number>
+    </property>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <layout class="QHBoxLayout" name="horizontalLayout_9">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <property name="spacing">
          <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>12</number>
+        </property>
+        <property name="rightMargin">
+         <number>12</number>
         </property>
         <item>
          <widget class="QPushButton" name="btn_Star_Sector_View">
@@ -106,17 +124,107 @@
        </layout>
       </item>
       <item>
-       <spacer name="horizontalSpacer_5">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+       <layout class="QHBoxLayout" name="layoutInfoSector">
+        <property name="rightMargin">
+         <number>12</number>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
+        <item>
+         <widget class="QLabel" name="lblSectorName">
+          <property name="text">
+           <string>Sector Name</string>
+          </property>
+          <property name="margin">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="txtSectorName">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>38</width>
+            <height>27</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblSpinDistance">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: transparent;</string>
+          </property>
+          <property name="text">
+           <string>Distance in LY</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+          <property name="indent">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="spinDistance">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string>Set jump distance.
+Double click on a star below to recalculate a new jumpweb centered on the selected star using the distance as the maximum jump limit</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="decimals">
+           <number>4</number>
+          </property>
+          <property name="minimum">
+           <double>0.005000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>20.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.250000000000000</double>
+          </property>
+          <property name="value">
+           <double>7.700000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <widget class="QPushButton" name="btnContextualMenu">
@@ -145,6 +253,9 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
+      <property name="handleWidth">
+       <number>1</number>
+      </property>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
         <number>0</number>
@@ -169,49 +280,10 @@
             <number>6</number>
            </property>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,0,0">
+            <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="">
              <property name="spacing">
               <number>6</number>
              </property>
-             <item>
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>Sector Name</string>
-               </property>
-               <property name="margin">
-                <number>0</number>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="txtSectorName">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>300</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
             </layout>
            </item>
            <item>
@@ -368,7 +440,7 @@
         </layout>
        </widget>
        <widget class="QWidget" name="page_2">
-        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,1">
+        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1">
          <property name="leftMargin">
           <number>1</number>
          </property>
@@ -381,19 +453,6 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item>
-          <widget class="QLabel" name="label_8">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>14</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Solar System Layout</string>
-           </property>
-          </widget>
-         </item>
          <item>
           <widget class="SolarSystemViewWidget" name="solsysView" native="true"/>
          </item>
@@ -461,73 +520,6 @@
            <property name="bottomMargin">
             <number>0</number>
            </property>
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="styleSheet">
-              <string notr="true">background-color: transparent;</string>
-             </property>
-             <property name="text">
-              <string>Distance in LY</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-             </property>
-             <property name="indent">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="spinDistance">
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>Set jump distance.
-Double click on a star below to recalculate a new jumpweb centered on the selected star using the distance as the maximum jump limit</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <property name="frame">
-              <bool>true</bool>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-             <property name="decimals">
-              <number>4</number>
-             </property>
-             <property name="minimum">
-              <double>0.005000000000000</double>
-             </property>
-             <property name="maximum">
-              <double>20.000000000000000</double>
-             </property>
-             <property name="singleStep">
-              <double>0.250000000000000</double>
-             </property>
-             <property name="value">
-              <double>7.700000000000000</double>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
          <item>
@@ -580,7 +572,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
          <enum>QTabWidget::Rounded</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tabStarList">
          <attribute name="title">
@@ -588,13 +580,13 @@ Double click on a star below to recalculate a new jumpweb centered on the select
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <property name="leftMargin">
-           <number>3</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>3</number>
           </property>
           <property name="rightMargin">
-           <number>3</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
            <number>3</number>
@@ -637,19 +629,22 @@ Double click on a star below to recalculate a new jumpweb centered on the select
            <number>0</number>
           </property>
           <property name="leftMargin">
-           <number>3</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>3</number>
           </property>
           <property name="rightMargin">
-           <number>3</number>
+           <number>0</number>
           </property>
           <property name="bottomMargin">
            <number>3</number>
           </property>
           <item>
            <layout class="QGridLayout" name="gridLayout">
+            <property name="leftMargin">
+             <number>6</number>
+            </property>
             <property name="topMargin">
              <number>4</number>
             </property>
@@ -830,6 +825,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 <property name="text">
                  <string>Route List</string>
                 </property>
+                <property name="margin">
+                 <number>6</number>
+                </property>
                </widget>
               </item>
               <item>
@@ -917,7 +915,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1022</width>
+     <width>995</width>
      <height>21</height>
     </rect>
    </property>
