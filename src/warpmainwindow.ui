@@ -1810,3 +1810,4 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   <slot>on_btnRotateRight_clicked()</slot>
  </slots>
 </ui>
+
