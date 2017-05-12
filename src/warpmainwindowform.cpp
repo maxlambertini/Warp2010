@@ -1087,3 +1087,33 @@ void WarpMainWindowForm::on_btn_Star_Sector_View_clicked(bool checked)
 
 }
 
+
+void WarpMainWindowForm::on_btn_action_NewSector_clicked()
+{
+    on_action_NewSector_triggered();
+}
+
+void WarpMainWindowForm::on_btn_action_LoadSector_clicked()
+{
+    on_actionLoad_Sector_triggered();
+}
+
+void WarpMainWindowForm::on_btn_action_SaveSector_clicked()
+{
+    on_actionSave_Sector_triggered();
+}
+
+void WarpMainWindowForm::on_btn_action_Clear_Star_Sector_Data_clicked()
+{
+    on_action_Clear_Star_Sector_Data_triggered();
+}
+
+void WarpMainWindowForm::on_btn_actionCreate_a_Solar_System_for_all_stars_clicked()
+{
+    on_action_CreateSolarSystem_triggered();
+}
+
+void WarpMainWindowForm::on_actionCreate_a_Solar_System_for_all_stars_triggered()
+{
+    on_action_SolarSystemForAllStars_triggered();
+}

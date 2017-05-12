@@ -106,5 +106,10 @@
     </qresource>
     <qresource prefix="/Elementary">
         <file>pics/Elementary/document-properties.svg</file>
+        <file>pics/Elementary/text-x-install.svg</file>
+        <file>pics/Elementary/folder-drag-accept.svg</file>
+        <file>pics/Elementary/document-new.svg</file>
+        <file>pics/Elementary/internet-web-browser.svg</file>
+        <file>pics/Elementary/edit-clear.svg</file>
     </qresource>
 </RCC>

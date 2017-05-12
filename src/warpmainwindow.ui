@@ -37,19 +37,19 @@
     <property name="leftMargin">
      <number>0</number>
     </property>
-    <property name="topMargin">
-     <number>6</number>
-    </property>
     <property name="rightMargin">
      <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>6</number>
+     <number>0</number>
     </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
       <property name="rightMargin">
-       <number>12</number>
+       <number>9</number>
       </property>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -125,6 +125,140 @@
          </widget>
         </item>
        </layout>
+      </item>
+      <item>
+       <widget class="QFrame" name="frameSectorButtons">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>210</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <widget class="QWidget" name="">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>206</width>
+           <height>32</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QPushButton" name="btn_action_NewSector">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Resources.qrc">
+              <normaloff>:/Elementary/pics/Elementary/document-new.svg</normaloff>:/Elementary/pics/Elementary/document-new.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_action_LoadSector">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Resources.qrc">
+              <normaloff>:/Elementary/pics/Elementary/folder-drag-accept.svg</normaloff>:/Elementary/pics/Elementary/folder-drag-accept.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_action_SaveSector">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Resources.qrc">
+              <normaloff>:/Elementary/pics/Elementary/text-x-install.svg</normaloff>:/Elementary/pics/Elementary/text-x-install.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_action_Clear_Star_Sector_Data">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Resources.qrc">
+              <normaloff>:/Elementary/pics/Elementary/edit-clear.svg</normaloff>:/Elementary/pics/Elementary/edit-clear.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_actionCreate_a_Solar_System_for_all_stars">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="Resources.qrc">
+              <normaloff>:/Elementary/pics/Elementary/internet-web-browser.svg</normaloff>:/Elementary/pics/Elementary/internet-web-browser.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="layoutInfoSector">
@@ -283,7 +417,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
             <number>6</number>
            </property>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
              <property name="spacing">
               <number>6</number>
              </property>
@@ -307,6 +441,15 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                </property>
                <property name="styleSheet">
                 <string notr="true"/>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Plain</enum>
+               </property>
+               <property name="lineWidth">
+                <number>0</number>
                </property>
                <property name="backgroundBrush">
                 <brush brushstyle="SolidPattern">
@@ -1002,7 +1145,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   <action name="action_NewSector">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/new/Bitmaps/pics/document-new.png</normaloff>:/new/Bitmaps/pics/document-new.png</iconset>
+     <normaloff>:/Elementary/pics/Elementary/document-new.svg</normaloff>:/Elementary/pics/Elementary/document-new.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;New Sector</string>
@@ -1014,7 +1157,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   <action name="actionLoad_Sector">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/new/Bitmaps/pics/document-open.png</normaloff>:/new/Bitmaps/pics/document-open.png</iconset>
+     <normaloff>:/Elementary/pics/Elementary/folder-drag-accept.svg</normaloff>:/Elementary/pics/Elementary/folder-drag-accept.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Load Sector</string>
@@ -1023,7 +1166,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   <action name="actionSave_Sector">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/new/Bitmaps/pics/document-save.png</normaloff>:/new/Bitmaps/pics/document-save.png</iconset>
+     <normaloff>:/Elementary/pics/Elementary/text-x-install.svg</normaloff>:/Elementary/pics/Elementary/text-x-install.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Save Sector</string>
@@ -1810,4 +1953,3 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   <slot>on_btnRotateRight_clicked()</slot>
  </slots>
 </ui>
-

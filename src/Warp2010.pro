@@ -143,7 +143,8 @@ SOURCES += main.cpp \
     helpers/planetmaps/ice.cpp \
     helpers/planetmaps/granite.cpp \
     exporters/starsectorjsonexporter.cpp \
-    helpers/texturebuilder/moduledescriptor.cpp
+    helpers/texturebuilder/moduledescriptor.cpp \
+    helpers/texturebuilder/noisemapbuilderdescriptor.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -233,7 +234,8 @@ HEADERS += coordinates.h \
     helpers/planetmaps/ice.h \
     helpers/planetmaps/granite.h \
     exporters/starsectorjsonexporter.h \
-    helpers/texturebuilder/moduledescriptor.h
+    helpers/texturebuilder/moduledescriptor.h \
+    helpers/texturebuilder/noisemapbuilderdescriptor.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
