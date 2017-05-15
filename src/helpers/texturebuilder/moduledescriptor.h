@@ -285,6 +285,10 @@ public:
         if (_moduleType=="Abs") return makeAbs();
         if (_moduleType=="Clamp") return makeClamp();
         if (_moduleType=="Curve") return makeCurve();
+        if (_moduleType=="Exponent") return makeExponent();
+        if (_moduleType=="Invert") return makeInvert();
+        if (_moduleType=="ScaleBias") return makeScaleBias();
+        if (_moduleType=="Terrace") return makeTerrace();
         return makePerlin();
     }
 
@@ -393,10 +397,45 @@ public:
     }
 
 
-//{ "Module":"Exponent" , "Name": "mod_name" , "Src1": "mod_name" , "Exp": 0.0 },
-//{ "Module":"Invert" , "Name": "mod_name" , "Src1": "mod_name" },
-//{ "Module":"ScaleBias" , "Name": "mod_name" , "Src1": "mod_name" , "Bias": 0.0 , "Scale": 0.0 },
-//{ "Module":"Terrace" , "Name": "mod_name" , "Src1": "mod_name" , "Cpoints": [[0.0,1.0],[1.0,1.1]] , "Invert": true },
+    //{ "Module":"Exponent" , "Name": "mod_name" , "Src1": "mod_name" , "Exp": 0.0 },
+    QSharedPointer<Module> makeExponent() {
+        Exponent* m = new Exponent();
+        m->SetExponent(this->_exp);
+        QSharedPointer<Module> p; p.reset(m);
+        return p;
+    }
+
+    //{ "Module":"Invert" , "Name": "mod_name" , "Src1": "mod_name" },
+    QSharedPointer<Module> makeInvert() {
+        Invert* m = new Invert();
+        QSharedPointer<Module> p; p.reset(m);
+        return p;
+    }
+
+
+    //{ "Module":"ScaleBias" , "Name": "mod_name" , "Src1": "mod_name" , "Bias": 0.0 , "Scale": 0.0 },
+    QSharedPointer<Module> makeScaleBias() {
+        ScaleBias* m = new ScaleBias();
+        m->SetBias(_bias);
+        m->SetScale(_scale);
+        QSharedPointer<Module> p; p.reset(m);
+        return p;
+    }
+
+    //{ "Module":"Terrace" , "Name": "mod_name" , "Src1": "mod_name" , "Cpoints": [[0.0,1.0],[1.0,1.1]] , "Invert": true },
+    QSharedPointer<Module> makeTerrace() {
+        Terrace* m = new Terrace();
+        std::tuple<double,double> t;
+        foreach (t, _cPoints) {
+            m->AddControlPoint(std::get<0>(t));
+            //m->AddControlPoint<(std::get<0>(t),std::get<1>(t));
+
+        }
+        QSharedPointer<Module> p; p.reset(m);
+        return p;
+    }
+
+
 
 
 };
