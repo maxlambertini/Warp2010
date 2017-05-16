@@ -148,7 +148,8 @@ SOURCES += main.cpp \
     widgets/actionbutton.cpp \
     helpers/texturebuilder/imagedescriptor.cpp \
     helpers/texturebuilder/rendererdescriptor.cpp \
-    helpers/texturebuilder/heightmapdescriptor.cpp
+    helpers/texturebuilder/heightmapdescriptor.cpp \
+    helpers/texturebuilder/texturebuilder.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -243,7 +244,8 @@ HEADERS += coordinates.h \
     widgets/actionbutton.h \
     helpers/texturebuilder/imagedescriptor.h \
     helpers/texturebuilder/rendererdescriptor.h \
-    helpers/texturebuilder/heightmapdescriptor.h
+    helpers/texturebuilder/heightmapdescriptor.h \
+    helpers/texturebuilder/texturebuilder.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
