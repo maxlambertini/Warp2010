@@ -61,13 +61,13 @@ class ModuleDescriptor : QObject
 {
     Q_OBJECT
 
-    QString _moduleType;
-    QString _name;
-    int _seed;
-    double _freq;
-    double _lac;
-    double _pers;
-    double _oct;
+    QString _moduleType = "Perlin";
+    QString _name ="module1";
+    int _seed = SSGX::dn(999999);
+    double _freq = 2.50;
+    double _lac = 2.50;
+    double _pers = 0.25;
+    int _oct = 6;
     double _disp;
     bool _enableDist;
     QString _src1;
@@ -99,7 +99,7 @@ public:
     double freq() { return _freq; }
     double lac() { return _lac; }
     double pers() { return _pers; }
-    double oct() { return _oct; }
+    int oct() { return _oct; }
     double displ() { return _disp; }
     bool enableDist() { return _enableDist; }
     QString& src1() { return _src1; }
@@ -129,7 +129,7 @@ public:
     void setFreq(double v) { _freq = v ; }
     void setLac(double v) { _lac = v ; }
     void setPers(double v) { _pers = v ; }
-    void setOct(double v) { _oct = v ; }
+    void setOct(int v) { _oct = v ; }
     void setDispl(double v) { _disp = v ; }
     void setEnabledist(bool v) { _enableDist = v ; }
     void setSrc1(QString& v) { _src1 = v ; }
@@ -166,7 +166,7 @@ public:
         if (!json["pers"].isNull() && !json["pers"].isUndefined())
             _pers = json["pers"].toDouble();
         if (!json["oct"].isNull() && !json["oct"].isUndefined())
-            _oct = json["oct"].toDouble();
+            _oct = json["oct"].toInt();
         if (!json["displ"].isNull() && !json["displ"].isUndefined())
             _disp = json["disp"].toDouble();
         if (!json["enableDist"].isNull() && !json["enableDist"].isUndefined())
