@@ -26,7 +26,6 @@
     */
 
 
-//{ "type"="cylinder|plane|sphere","size:=[w,h], "bounds":[N,S,W,E], "src1":"source_mod","dest":"height_map", "seamless:"seamless":true}
 
 using namespace noise::module;
 
@@ -41,18 +40,26 @@ class NoiseMapBuilderDescriptor : public QObject
     Q_OBJECT
 
     QMap<QString,QSharedPointer<Module>> _modules;
+    QMap<QString,QSharedPointer<utils::NoiseMap>> _maps;
     std::tuple<int,int> _size;
     std::tuple<double,double,double,double> _bounds;
     QString _src1;
+    QString _name;
+    QString _dest;
     QSharedPointer<Module> _currentModule;
-    QSharedPointer<utils::NoiseMap> _map;
+    QSharedPointer<utils::NoiseMap> _currentMap;
     NoiseMapBuilderType _builderType;
+    bool _seamless;
+
+    QSharedPointer<utils::NoiseMapBuilder> makeCylinderBuilder();
+    QSharedPointer<utils::NoiseMapBuilder> makePlaneBuilder();
+    QSharedPointer<utils::NoiseMapBuilder> makeSphereBuilder();
 
 public:
     explicit NoiseMapBuilderDescriptor(QObject *parent = 0);
-    void g() {
-        utils::NoiseMapBuilderPlane p;
-    }
+
+    const QString& name() { return _name; }
+    void setName(const QString& n) {_name = n; }
 
     QMap<QString, QSharedPointer<Module>>& modules() { return _modules; }
     void setModules(const QMap<QString, QSharedPointer<Module>>& m) { _modules = m; }
@@ -74,14 +81,63 @@ public:
     QString& sourceModule() { return _src1; }
     void setSourceModule(const QString& src) { _src1 = src; }
 
+    bool seamless() { return _seamless; }
+    bool setSeamless(bool v) { _seamless = v; }
+
+    void fromJson(const QJsonObject& json) {
+        _dest = json["dest"].toString();
+        _name = json["name"].toString();
+        _src1 = json["src1"].toString();
+        _seamless = json["seamless"].toBool();
+        auto sType = json["type"].toString();
+        _builderType = NoiseMapBuilderType::SPHERE;
+        if (sType ==  "plane") _builderType = NoiseMapBuilderType::PLANE;
+        if (sType ==  "cylinder") _builderType = NoiseMapBuilderType::CYLINDER;
+        auto a = json["size"].toArray();
+        _size = std::tuple<int,int>(a[0].toInt(),a[1].toInt());
+        auto a1 = json["bounds"].toArray();
+        _bounds = std::tuple<double,double,double,double>(
+                a1[0].toDouble(),
+                a1[1].toDouble(),
+                a1[2].toDouble(),
+                a1[3].toDouble()
+                );
+    }
+
     void toJson(QJsonObject& json) {
-
+        //{ name="name", "type"="cylinder|plane|sphere","size:=[w,h], "bounds":[N,S,W,E], "src1":"source_mod","dest":"height_map",
+        //"seamless:"seamless":true}
+        switch (_builderType) {
+            case NoiseMapBuilderType::CYLINDER:
+                json["type"] = "cylinder";
+                break;
+            case NoiseMapBuilderType::PLANE:
+                json["type"] = "plane";
+                break;
+            case NoiseMapBuilderType::SPHERE:
+                json["type"] = "sphere";
+                break;
+            default:
+                json["type"] = "sphere";
+                break;
+        }
+        json["name"] = _name;
+        json["dest"] = _dest;
+        json["src1"] = _src1;
+        json["seamless"] = _seamless;
+        QJsonArray a;
+        a.append(std::get<0>(_size));
+        a.append(std::get<1>(_size));
+        json["size"] = a;
+        QJsonArray a1;
+        a1.append(std::get<0>(_bounds));
+        a1.append(std::get<1>(_bounds));
+        a1.append(std::get<2>(_bounds));
+        a1.append(std::get<3>(_bounds));
+        json["bounds"] = a1;
     }
 
-    void fromJson(QJsonObject& json) {
-
-    }
-
+    QSharedPointer<utils::NoiseMapBuilder> makeBuilder();
 
 signals:
 
