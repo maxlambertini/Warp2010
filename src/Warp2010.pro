@@ -145,7 +145,10 @@ SOURCES += main.cpp \
     exporters/starsectorjsonexporter.cpp \
     helpers/texturebuilder/moduledescriptor.cpp \
     helpers/texturebuilder/noisemapbuilderdescriptor.cpp \
-    widgets/actionbutton.cpp
+    widgets/actionbutton.cpp \
+    helpers/texturebuilder/imagedescriptor.cpp \
+    helpers/texturebuilder/rendererdescriptor.cpp \
+    helpers/texturebuilder/heightmapdescriptor.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -237,7 +240,10 @@ HEADERS += coordinates.h \
     exporters/starsectorjsonexporter.h \
     helpers/texturebuilder/moduledescriptor.h \
     helpers/texturebuilder/noisemapbuilderdescriptor.h \
-    widgets/actionbutton.h
+    widgets/actionbutton.h \
+    helpers/texturebuilder/imagedescriptor.h \
+    helpers/texturebuilder/rendererdescriptor.h \
+    helpers/texturebuilder/heightmapdescriptor.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
