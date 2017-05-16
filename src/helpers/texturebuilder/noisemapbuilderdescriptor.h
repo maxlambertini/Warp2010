@@ -41,11 +41,11 @@ class NoiseMapBuilderDescriptor : public QObject
 
     QMap<QString,QSharedPointer<Module>> _modules;
     QMap<QString,QSharedPointer<utils::NoiseMap>> _maps;
-    std::tuple<int,int> _size;
-    std::tuple<double,double,double,double> _bounds;
-    QString _src1;
-    QString _name;
-    QString _dest;
+    std::tuple<int,int> _size = std::tuple(1024,512);
+    std::tuple<double,double,double,double> _bounds = std::tuple(-90.0,90.0,-180.0,180.0);
+    QString _src1 = "perlin1";
+    QString _name = "builder1";
+    QString _dest = "heightmap1";
     QSharedPointer<Module> _currentModule;
     QSharedPointer<utils::NoiseMap> _currentMap;
     NoiseMapBuilderType _builderType;

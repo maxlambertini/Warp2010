@@ -11,7 +11,7 @@
 
 class ImageDescriptor
 {
-    QString _name;
+    QString _name = "image1";
 public:
     QString& name() { return _name; }
     void setName(const QString& v) { _name = v; }

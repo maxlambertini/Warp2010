@@ -16,8 +16,8 @@ typedef std::tuple<double,int,int,int,int> GradientInfo;
 
 class RendererDescriptor
 {
-    QString _name;
-    QString _noiseMap;
+    QString _name = "renderer1";
+    QString _noiseMap = "heightmap1";
     bool _enabledLight = false;
     bool _lightContrast = 1.0;
     bool _lightBrightness = 1.0;
