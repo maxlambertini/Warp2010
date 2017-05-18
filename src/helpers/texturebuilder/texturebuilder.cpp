@@ -1,5 +1,7 @@
 #include "texturebuilder.h"
-
+#include <QFile>
+#include <QImage>
+#include <memory>
 
 TextureBuilder::TextureBuilder()
 {
@@ -9,7 +11,7 @@ TextureBuilder::TextureBuilder()
 void TextureBuilder::fromJson(const QJsonObject &json) {
     QJsonArray aModules = json["modules"].toArray();
     QJsonArray aHeightMaps = json["heightMaps"].toArray();
-    QJsonArray aHMBuilders = json["heightMapsBuilders"].toArray();
+    QJsonArray aHMBuilders = json["heightMapBuilders"].toArray();
     QJsonArray aRenderers = json["renderers"].toArray();
     QJsonArray aImages = json["images"].toArray();
 
@@ -96,10 +98,13 @@ void TextureBuilder::createImages() {
 
 void TextureBuilder::createRenderers() {
     QSharedPointer<RendererDescriptor> hmd;
-    foreach (hmd,_rndDesc) {
+    QMapIterator<QString, QSharedPointer<RendererDescriptor>>  it(_rndDesc);
+    while (it.hasNext()) {
+        hmd = it.next().value();
         hmd.data()->setImages(_images);
         hmd.data()->setNoiseMaps(_heightMaps);
-        auto ptr = hmd.data()->makeRenderer();
+        QSharedPointer<utils::RendererImage> ptr
+                = hmd.data()->makeRenderer();
         _renderers.insert(hmd.data()->name(), ptr);
         _lstRenderers.append(ptr);
     }
@@ -139,6 +144,7 @@ void TextureBuilder::connectNoiseMapBuilders() {
     while (iter.hasNext())
     {
         auto m = iter.next();
+        m.value().data()->setModules(_modules);
         m.value().data()->connectSrcModule();
     }
 }
@@ -149,6 +155,7 @@ void TextureBuilder::connectRenderers() {
     {
         auto m = iter.next();
         auto ptr = m.value().data();
+        ptr->setRenderers(_renderers);
         ptr->connectImagesAndMap();
     }
 
@@ -171,4 +178,40 @@ void TextureBuilder::renderRenderers()
     foreach (r,_lstRenderers) {
         r.data()->Render();
     }
+}
+
+void TextureBuilder::buildTextureFromJson(const QString &filename) {
+    QFile data (filename);
+     if (data.open(QFile::ReadOnly | QFile::Text)) {
+         QByteArray json = data.readAll();
+        QJsonDocument doc = QJsonDocument::fromJson(json);
+        auto oStuff = doc.object();
+
+        qDebug() << "Loading raw json data";
+        //load raw data
+        this->fromJson(oStuff);
+
+        qDebug() << "Creating libnoise stuff";
+        this->createAll();
+
+        qDebug() << "Connecting modules and stuff";
+        this->connectAll();
+
+        qDebug() << "Building images...";
+        QSharedPointer<utils::Image> imgPtr = this->buildImages();
+
+        QString imgFile = filename+".png";
+        qDebug() << "Saving image...";
+        utils::WriterBMP writer;
+        writer.SetSourceImage (*imgPtr.data());
+        std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
+        auto sizeX = _nmbDesc.first().data()->getSizeX();
+        auto sizeY = _nmbDesc.first().data()->getSizeY();
+        QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
+        img.save(imgFile,"PNG");
+
+
+     }
+     data.close();
+
 }

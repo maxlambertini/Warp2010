@@ -52,11 +52,16 @@ public:
     void createImages();
 
     void createAll() {
+        qDebug() << "Creating modules";
         createModules();
+        qDebug() << "Creating height maps";
         createHeightMaps();
+        qDebug() << "Creating map builders";
         createNoiseMapBuilders();
-        createRenderers();
+        qDebug() << "Creating images";
         createImages();
+        qDebug() << "Creating renderers";
+        createRenderers();
     }
 
     void connectModules();
@@ -65,12 +70,21 @@ public:
 
     void connectAll() {
         connectModules();
-        connectRenderers();
         connectNoiseMapBuilders();
+        connectRenderers();
+        qDebug() << "Build noisemaps";
+        buildNoiseMaps();
     }
 
     void buildNoiseMaps();
     void renderRenderers();
+
+    QSharedPointer<utils::Image> buildImages() {
+        renderRenderers();
+        return _images.first();
+    }
+
+    void buildTextureFromJson(const QString& filename);
 };
 
 #endif // TEXTUREBUILDER_H

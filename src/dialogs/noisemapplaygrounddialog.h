@@ -46,6 +46,8 @@ private slots:
 
     void on_imageSaved(QString filename);
 
+    void on_btnJsonTextureDemo_clicked();
+
 private:
     Ui::NoisemapPlaygroundDialog *ui;
 };

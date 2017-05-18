@@ -63,8 +63,8 @@ public:
     {
         if (_src1 != "" && _modules.contains(_src1)) {
             auto mod = _modules[_src1];
-            _currentModule = mod;
-            _currentNoiseMapBuilder.data()->SetSourceModule(*mod);
+            //_currentModule = mod;
+            this->_noiseMapBuilders[this->name()].data()->SetSourceModule(*mod);
         }
         return *this;
     }

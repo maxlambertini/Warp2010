@@ -21,8 +21,8 @@ class RendererDescriptor
     QString _backgroundImage = "";
     QString _destImage = "";
     bool _enabledLight = false;
-    bool _lightContrast = 1.0;
-    bool _lightBrightness = 1.0;
+    double _lightContrast = 1.0;
+    double _lightBrightness = 1.0;
 
 
     QVector<GradientInfo> _gradientInfo;
@@ -38,8 +38,8 @@ public:
     QString& backgroundImage() { return _backgroundImage; }
     QString& noiseMap() { return _noiseMap; }
     bool enabledLight() { return _enabledLight; }
-    bool lightContrast() { return _lightContrast; }
-    bool lightBrightness() { return _lightBrightness; }
+    double lightContrast() { return _lightContrast; }
+    double lightBrightness() { return _lightBrightness; }
 
     const QMap<QString, QSharedPointer<utils::NoiseMap>>& noiseMaps() { return _noiseMaps; }
     const QMap<QString, QSharedPointer<utils::Image>>& images() { return _images; }
@@ -50,8 +50,8 @@ public:
     void setBackgroundImage(const QString& v) { _backgroundImage = v ; }
     void setNoisemap(const QString& v) { _noiseMap = v ; }
     void setEnabledlight(bool v) { _enabledLight = v ; }
-    void setLightcontrast(bool v) { _lightContrast = v ; }
-    void setLightbrightness(bool v) { _lightBrightness = v ; }
+    void setLightcontrast(double v) { _lightContrast = v ; }
+    void setLightbrightness(double v) { _lightBrightness = v ; }
 
     void setNoiseMaps(const QMap<QString, QSharedPointer<utils::NoiseMap>>& v) { _noiseMaps = v; }
     void setImages(const QMap<QString, QSharedPointer<utils::Image>>& v) { _images = v; }

@@ -24,7 +24,7 @@ QSharedPointer<utils::RendererImage> RendererDescriptor::makeRenderer() {
 }
 
 RendererDescriptor& RendererDescriptor::connectImagesAndMap() {
-    auto p = _renderers[this->name()].data();
+    utils::RendererImage* p = _renderers[this->name()].data();
     if (_backgroundImage != "") {
         auto pImg = _images[_backgroundImage].data(); //pointer to utils::Image
         p->SetBackgroundImage(*pImg);                 //reference to stored data
@@ -33,8 +33,9 @@ RendererDescriptor& RendererDescriptor::connectImagesAndMap() {
         auto pImg = _images[_destImage].data(); //pointer to utils::Image
         p->SetDestImage(*pImg);                 //reference to stored data
     }
-    auto theMap = _noiseMaps[this->_noiseMap];
-    p->SetSourceNoiseMap(*theMap.data());
+    auto theMap = _noiseMaps[this->_noiseMap].data();
+    qDebug() << "x: " << theMap->GetWidth() << ", y: " <<  theMap->GetHeight();
+    p->SetSourceNoiseMap(*theMap);
     return *this;
 }
 
@@ -68,9 +69,9 @@ void RendererDescriptor::fromJson(const QJsonObject& json) {
     if (!json["enabledLight"].isNull() && !json["enabledLight"].isUndefined())
         _enabledLight = json["enabledLight"].toBool();
     if (!json["lightContrast"].isNull() && !json["lightContrast"].isUndefined())
-        _lightContrast = json["lightContrast"].toBool();
+        _lightContrast = json["lightContrast"].toDouble();
     if (!json["lightBrightness"].isNull() && !json["lightBrightness"].isUndefined())
-        _lightBrightness = json["lightBrightness"].toBool();
+        _lightBrightness = json["lightBrightness"].toDouble();
     if (!json["gradientInfo"].isNull() && !json["gradientInfo"].isUndefined()) {
         QJsonArray gi = json["gradientInfo"].toArray();
         _gradientInfo.clear();
