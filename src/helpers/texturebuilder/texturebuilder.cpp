@@ -22,9 +22,18 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         _modDesc.insert(name,p);
     }
 
-    for (auto h = 0; h < aModules.size(); ++h) {
+    for (auto h = 0; h < aRenderers.size(); ++h) {
+        RendererDescriptor *m = new RendererDescriptor();
+        QJsonObject o = aRenderers[h].toObject();
+        m->fromJson(o);
+        QString name = m->name();
+        QSharedPointer<RendererDescriptor> p; p.reset(m);
+        _rndDesc.insert(name,p);
+    }
+
+    for (auto h = 0; h < aHMBuilders.size(); ++h) {
         NoiseMapBuilderDescriptor *m = new NoiseMapBuilderDescriptor();
-        QJsonObject o = aModules[h].toObject();
+        QJsonObject o = aHMBuilders[h].toObject();
         m->fromJson(o);
         QString name = m->name();
         QSharedPointer<NoiseMapBuilderDescriptor> p; p.reset(m);
