@@ -69,6 +69,8 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         __imDesc.insert(o,p);
     }
 
+    createAll();
+    connectAll();
 }
 
 void TextureBuilder::toJson(QJsonObject &json) {
@@ -99,6 +101,7 @@ void TextureBuilder::createRenderers() {
         hmd.data()->setNoiseMaps(_heightMaps);
         auto ptr = hmd.data()->makeRenderer();
         _renderers.insert(hmd.data()->name(), ptr);
+        _lstRenderers.append(ptr);
     }
 }
 
@@ -149,4 +152,23 @@ void TextureBuilder::connectRenderers() {
         ptr->connectImagesAndMap();
     }
 
+}
+
+
+void TextureBuilder::buildNoiseMaps()
+{
+    QMapIterator<QString,QSharedPointer<utils::NoiseMapBuilder>> iter(_noiseMapBuilders);
+    while(iter.hasNext()) {
+        auto ptr = iter.next().value().data();
+        ptr->Build();
+    }
+
+}
+
+void TextureBuilder::renderRenderers()
+{
+    QSharedPointer<utils::RendererImage> r;
+    foreach (r,_lstRenderers) {
+        r.data()->Render();
+    }
 }

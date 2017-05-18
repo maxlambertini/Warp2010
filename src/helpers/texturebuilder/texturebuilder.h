@@ -19,6 +19,7 @@ typedef QMap<QString, QSharedPointer<noise::module::Module>> MapModules;
 typedef QMap<QString, QSharedPointer<utils::NoiseMapBuilder>> MapNoiseMapBuilders;
 typedef QMap<QString, QSharedPointer<utils::RendererImage>> MapRenderers;
 
+typedef QVector<QSharedPointer<utils::RendererImage>> ListRenderers;
 
 class TextureBuilder
 {
@@ -33,6 +34,8 @@ class TextureBuilder
     MapModules _modules;
     MapNoiseMapBuilders _noiseMapBuilders;
     MapRenderers _renderers;
+
+    ListRenderers _lstRenderers;
 public:
     TextureBuilder();
 
@@ -59,6 +62,15 @@ public:
     void connectModules();
     void connectRenderers();
     void connectNoiseMapBuilders();
+
+    void connectAll() {
+        connectModules();
+        connectRenderers();
+        connectNoiseMapBuilders();
+    }
+
+    void buildNoiseMaps();
+    void renderRenderers();
 };
 
 #endif // TEXTUREBUILDER_H
