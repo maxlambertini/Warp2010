@@ -7,14 +7,7 @@ RendererDescriptor::RendererDescriptor()
 
 QSharedPointer<utils::RendererImage> RendererDescriptor::makeRenderer() {
     utils::RendererImage* p = new utils::RendererImage();
-    if (_backgroundImage != "") {
-        auto pImg = _images[_backgroundImage].data(); //pointer to utils::Image
-        p->SetBackgroundImage(*pImg);                 //reference to stored data
-    }
-    if (_destImage != "") {
-        auto pImg = _images[_destImage].data(); //pointer to utils::Image
-        p->SetDestImage(*pImg);                 //reference to stored data
-    }
+
     p->EnableLight(this->_enabledLight);
     p->SetLightBrightness(this->lightBrightness());
     p->SetLightContrast(this->lightContrast());
@@ -26,10 +19,23 @@ QSharedPointer<utils::RendererImage> RendererDescriptor::makeRenderer() {
         p->AddGradientPoint(std::get<0>(gi), utils::Color(std::get<1>(gi),std::get<2>(gi),std::get<3>(gi),std::get<4>(gi)));
     }
 
-    auto theMap = _noiseMaps[this->_noiseMap];
-    p->SetSourceNoiseMap(*theMap.data());
     QSharedPointer<utils::RendererImage> sp; sp.reset(p);
     return sp;
+}
+
+RendererDescriptor& RendererDescriptor::connectImagesAndMap() {
+    auto p = _renderers[this->name()].data();
+    if (_backgroundImage != "") {
+        auto pImg = _images[_backgroundImage].data(); //pointer to utils::Image
+        p->SetBackgroundImage(*pImg);                 //reference to stored data
+    }
+    if (_destImage != "") {
+        auto pImg = _images[_destImage].data(); //pointer to utils::Image
+        p->SetDestImage(*pImg);                 //reference to stored data
+    }
+    auto theMap = _noiseMaps[this->_noiseMap];
+    p->SetSourceNoiseMap(*theMap.data());
+    return *this;
 }
 
 void RendererDescriptor::toJson(QJsonObject& json) {

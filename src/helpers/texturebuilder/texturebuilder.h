@@ -41,12 +41,24 @@ public:
 
     // these routines create libnoise's objects and store them into
     // appropriate maps, to be referenced where needed.
+
     void createModules();
     void createHeightMaps();
-    void createHeightMapBuilders();
+    void createNoiseMapBuilders();
     void createRenderers();
     void createImages();
 
+    void createAll() {
+        createModules();
+        createHeightMaps();
+        createNoiseMapBuilders();
+        createRenderers();
+        createImages();
+    }
+
+    void connectModules();
+    void connectRenderers();
+    void connectNoiseMapBuilders();
 };
 
 #endif // TEXTUREBUILDER_H

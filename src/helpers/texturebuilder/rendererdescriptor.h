@@ -28,6 +28,7 @@ class RendererDescriptor
     QVector<GradientInfo> _gradientInfo;
     QMap<QString, QSharedPointer<utils::NoiseMap>> _noiseMaps;
     QMap<QString, QSharedPointer<utils::Image>> _images;
+    QMap<QString, QSharedPointer<utils::RendererImage>> _renderers;
 
 public:
     RendererDescriptor();
@@ -42,6 +43,7 @@ public:
 
     const QMap<QString, QSharedPointer<utils::NoiseMap>>& noiseMaps() { return _noiseMaps; }
     const QMap<QString, QSharedPointer<utils::Image>>& images() { return _images; }
+    const QMap<QString, QSharedPointer<utils::RendererImage>>& renderers() { return _renderers; }
 
     void setName(const QString& v) { _name = v ; }
     void setDestImage(const QString& v) { _destImage = v ; }
@@ -50,10 +52,14 @@ public:
     void setEnabledlight(bool v) { _enabledLight = v ; }
     void setLightcontrast(bool v) { _lightContrast = v ; }
     void setLightbrightness(bool v) { _lightBrightness = v ; }
-    void setNoisemap(const QMap<QString, QSharedPointer<utils::NoiseMap>>& v) { _noiseMaps = v; }
+
+    void setNoiseMaps(const QMap<QString, QSharedPointer<utils::NoiseMap>>& v) { _noiseMaps = v; }
     void setImages(const QMap<QString, QSharedPointer<utils::Image>>& v) { _images = v; }
+    void setRenderers(const QMap<QString, QSharedPointer<utils::RendererImage>>& v) { _renderers = v; }
 
     QSharedPointer<utils::RendererImage> makeRenderer();
+
+    RendererDescriptor& connectImagesAndMap();
 
     void toJson(QJsonObject& json);
     void fromJson(const QJsonObject& json);
