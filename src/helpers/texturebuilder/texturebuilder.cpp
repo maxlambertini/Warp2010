@@ -22,6 +22,15 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         _modDesc.insert(name,p);
     }
 
+    for (auto h = 0; h < aModules.size(); ++h) {
+        NoiseMapBuilderDescriptor *m = new NoiseMapBuilderDescriptor();
+        QJsonObject o = aModules[h].toObject();
+        m->fromJson(o);
+        QString name = m->name();
+        QSharedPointer<NoiseMapBuilderDescriptor> p; p.reset(m);
+        _nmbDesc.insert(name,p);
+    }
+
     for (auto h = 0; h < aHeightMaps.size(); ++h) {
         HeightMapDescriptor *m = new HeightMapDescriptor();
         QString o = aHeightMaps[h].toString();
@@ -37,6 +46,7 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         QSharedPointer<ImageDescriptor> p; p.reset(m);
         __imDesc.insert(o,p);
     }
+
 }
 
 void TextureBuilder::toJson(QJsonObject &json) {
