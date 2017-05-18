@@ -8,21 +8,25 @@ NoiseMapBuilderDescriptor::NoiseMapBuilderDescriptor(QObject *parent) : QObject(
 
 }
 
+//from descriptor to actual object
 QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makeBuilder() {
+    QSharedPointer<utils::NoiseMapBuilder> res;
     switch (_builderType) {
         case NoiseMapBuilderType::CYLINDER:
-            return makeCylinderBuilder();
+            res =  makeCylinderBuilder();
         break;
     case NoiseMapBuilderType::PLANE:
-        return makePlaneBuilder();
+        res = makePlaneBuilder();
     break;
     case NoiseMapBuilderType::SPHERE:
-        return makeSphereBuilder();
+        res = makeSphereBuilder();
     break;
     default:
-        return makeSphereBuilder();
+        res = makeSphereBuilder();
     break;
     }
+    _currentNoiseMapBuilder = res;
+    return res;
 }
 
 QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makeCylinderBuilder() {
@@ -33,7 +37,7 @@ QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makeCylinderBu
                  ,std::get<3>(_bounds));
     p->SetDestSize(std::get<0>(_size), std::get<1>(_size));
     p->SetSourceModule( *this->_modules[this->_src1].data());
-    p->SetDestNoiseMap( * this->_maps[this->_dest].data());
+    p->SetDestNoiseMap( * this->_noiseMaps[this->_dest].data());
     QSharedPointer<utils::NoiseMapBuilder> sp; sp.reset(p);
     return sp;
 }
@@ -46,7 +50,7 @@ QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makePlaneBuild
                  ,std::get<3>(_bounds));
     p->SetDestSize(std::get<0>(_size), std::get<1>(_size));
     p->SetSourceModule( *this->_modules[this->_src1].data());
-    p->SetDestNoiseMap( * this->_maps[this->_dest].data());
+    p->SetDestNoiseMap( * this->_noiseMaps[this->_dest].data());
 
     QSharedPointer<utils::NoiseMapBuilder> sp; sp.reset(p);
     return sp;
@@ -61,7 +65,7 @@ QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makeSphereBuil
                  ,std::get<3>(_bounds));
     p->SetDestSize(std::get<0>(_size), std::get<1>(_size));
     p->SetSourceModule( *this->_modules[this->_src1].data());
-    p->SetDestNoiseMap( * this->_maps[this->_dest].data());
+    p->SetDestNoiseMap( * this->_noiseMaps[this->_dest].data());
     QSharedPointer<utils::NoiseMapBuilder> sp; sp.reset(p);
     return sp;
 

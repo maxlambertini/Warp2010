@@ -16,6 +16,8 @@ public:
     QString& name() { return _name; }
     void setName(const QString& v) { _name = v; }
     ImageDescriptor();
+
+    //from descriptor to actual object
     QSharedPointer<utils::Image> makeImage() {
         auto p = new utils::Image();
         QSharedPointer<utils::Image> sp; sp.reset(p);

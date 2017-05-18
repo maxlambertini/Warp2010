@@ -40,14 +40,16 @@ class NoiseMapBuilderDescriptor : public QObject
     Q_OBJECT
 
     QMap<QString,QSharedPointer<Module>> _modules;
-    QMap<QString,QSharedPointer<utils::NoiseMap>> _maps;
-    std::tuple<int,int> _size = std::tuple(1024,512);
-    std::tuple<double,double,double,double> _bounds = std::tuple(-90.0,90.0,-180.0,180.0);
+    QMap<QString,QSharedPointer<utils::NoiseMap>> _noiseMaps;
+    QMap<QString,QSharedPointer<utils::NoiseMapBuilder>> _noiseMapBuilders;
+    std::tuple<int,int> _size = std::tuple<int,int>(1024,512);
+    std::tuple<double,double,double,double> _bounds = std::tuple<double,double,double,double>(-90.0,90.0,-180.0,180.0);
     QString _src1 = "perlin1";
     QString _name = "builder1";
     QString _dest = "heightmap1";
     QSharedPointer<Module> _currentModule;
-    QSharedPointer<utils::NoiseMap> _currentMap;
+    QSharedPointer<utils::NoiseMapBuilder> _currentNoiseMapBuilder;
+    QSharedPointer<utils::NoiseMap> _currentNoiseMap;
     NoiseMapBuilderType _builderType;
     bool _seamless;
 
@@ -56,6 +58,17 @@ class NoiseMapBuilderDescriptor : public QObject
     QSharedPointer<utils::NoiseMapBuilder> makeSphereBuilder();
 
 public:
+
+    NoiseMapBuilderDescriptor& connectSrcModule()
+    {
+        if (_src1 != "" && _modules.contains(_src1)) {
+            auto mod = _modules[_src1];
+            _currentModule = mod;
+            _currentNoiseMapBuilder.data()->SetSourceModule(*mod);
+        }
+        return *this;
+    }
+
     explicit NoiseMapBuilderDescriptor(QObject *parent = 0);
 
     const QString& name() { return _name; }

@@ -22,11 +22,11 @@ typedef QMap<QString, QSharedPointer<utils::RendererImage>> MapRenderers;
 
 class TextureBuilder
 {
-    MapHeightMapDescriptors _heightMapDescriptors;
-    MapImageDescriptors _imageDescriptors;
-    MapModuleDescriptors _moduleDescriptors;
-    MapNoiseMapBuilderDescriptors _noiseMapBuilderDescriptors;
-    MapRendererDescriptors _rendererDescriptors;
+    MapHeightMapDescriptors _hmDesc;
+    MapImageDescriptors __imDesc;
+    MapModuleDescriptors _modDesc;
+    MapNoiseMapBuilderDescriptors _nmbDesc;
+    MapRendererDescriptors _rndDesc;
 
     MapHeightMaps  _heightMaps;
     MapImages _images;
@@ -35,6 +35,18 @@ class TextureBuilder
     MapRenderers _renderers;
 public:
     TextureBuilder();
+
+    void fromJson(const QJsonObject& json);
+    void toJson(QJsonObject& json);
+
+    // these routines create libnoise's objects and store them into
+    // appropriate maps, to be referenced where needed.
+    void createModules();
+    void createHeightMaps();
+    void createHeightMapBuilders();
+    void createRenderers();
+    void createImages();
+
 };
 
 #endif // TEXTUREBUILDER_H
