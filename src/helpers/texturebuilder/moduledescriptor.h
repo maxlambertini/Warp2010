@@ -57,7 +57,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 using namespace noise;
 using namespace noise::module;
 
-class ModuleDescriptor : QObject
+class ModuleDescriptor : public QObject
 {
     Q_OBJECT
 

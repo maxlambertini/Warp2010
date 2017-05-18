@@ -9,8 +9,10 @@
 #include <noiseutils.h>
 #include <ssg_structures.h>
 
-class HeightMapDescriptor
+class HeightMapDescriptor : public QObject
 {
+    Q_OBJECT
+
     QString _name = "heightmap1";
 public:
     QString& name() { return _name; }

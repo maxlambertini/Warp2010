@@ -7,11 +7,11 @@
 #include <helpers/texturebuilder/noisemapbuilderdescriptor.h>
 #include <helpers/texturebuilder/rendererdescriptor.h>
 
-typedef QMap<QString, HeightMapDescriptor> MapHeightMapDescriptors;
-typedef QMap<QString, ImageDescriptor> MapImageDescriptors;
-typedef QMap<QString, ModuleDescriptor> MapModuleDescriptors;
-typedef QMap<QString, NoiseMapBuilderDescriptor> MapNoiseMapBuilderDescriptors;
-typedef QMap<QString, RendererDescriptor> MapRendererDescriptors;
+typedef QMap<QString, QSharedPointer<HeightMapDescriptor>> MapHeightMapDescriptors;
+typedef QMap<QString, QSharedPointer<ImageDescriptor>> MapImageDescriptors;
+typedef QMap<QString, QSharedPointer<ModuleDescriptor>> MapModuleDescriptors;
+typedef QMap<QString, QSharedPointer<NoiseMapBuilderDescriptor>> MapNoiseMapBuilderDescriptors;
+typedef QMap<QString, QSharedPointer<RendererDescriptor>> MapRendererDescriptors;
 
 typedef QMap<QString, QSharedPointer<utils::NoiseMap>> MapHeightMaps;
 typedef QMap<QString, QSharedPointer<utils::Image>> MapImages;

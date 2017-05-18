@@ -9,8 +9,10 @@
 #include <noiseutils.h>
 #include <ssg_structures.h>
 
-class ImageDescriptor
+class ImageDescriptor : public QObject
 {
+    Q_OBJECT
+
     QString _name = "image1";
 public:
     QString& name() { return _name; }
