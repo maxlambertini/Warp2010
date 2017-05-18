@@ -71,8 +71,10 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         __imDesc.insert(o,p);
     }
 
+    /*
     createAll();
     connectAll();
+    */
 }
 
 void TextureBuilder::toJson(QJsonObject &json) {
@@ -135,6 +137,7 @@ void TextureBuilder::connectModules()
     while (iter.hasNext())
     {
         auto m = iter.next();
+        m.value().data()->setModules(_modules);
         m.value().data()->connectModules();
     }
 }
@@ -145,7 +148,10 @@ void TextureBuilder::connectNoiseMapBuilders() {
     {
         auto m = iter.next();
         m.value().data()->setModules(_modules);
+        m.value().data()->setNoiseMapBuilders(_noiseMapBuilders);
+        m.value().data()->setNoiseMaps(_heightMaps);
         m.value().data()->connectSrcModule();
+
     }
 }
 
@@ -156,6 +162,7 @@ void TextureBuilder::connectRenderers() {
         auto m = iter.next();
         auto ptr = m.value().data();
         ptr->setRenderers(_renderers);
+        ptr->setNoiseMaps(_heightMaps);
         ptr->connectImagesAndMap();
     }
 
@@ -166,7 +173,8 @@ void TextureBuilder::buildNoiseMaps()
 {
     QMapIterator<QString,QSharedPointer<utils::NoiseMapBuilder>> iter(_noiseMapBuilders);
     while(iter.hasNext()) {
-        auto ptr = iter.next().value().data();
+        utils::NoiseMapBuilder* ptr = iter.next().value().data();
+        auto p1 = ptr;
         ptr->Build();
     }
 

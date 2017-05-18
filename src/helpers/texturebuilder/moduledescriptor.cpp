@@ -32,8 +32,8 @@ ModuleDescriptor::ModuleDescriptor()
 }
 
 void ModuleDescriptor::fromJson(const QJsonObject& json) {
-    if (!json["module"].isNull() && !json["module"].isUndefined())
-        _name = json["module"].toString();
+    if (!json["type"].isNull() && !json["type"].isUndefined())
+        _moduleType = json["type"].toString();
     if (!json["name"].isNull() && !json["name"].isUndefined())
         _name = json["name"].toString();
     if (!json["seed"].isNull() && !json["seed"].isUndefined())
@@ -46,7 +46,7 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
         _pers = json["pers"].toDouble();
     if (!json["oct"].isNull() && !json["oct"].isUndefined())
         _oct = json["oct"].toInt();
-    if (!json["displ"].isNull() && !json["displ"].isUndefined())
+    if (!json["disp"].isNull() && !json["disp"].isUndefined())
         _disp = json["disp"].toDouble();
     if (!json["enableDist"].isNull() && !json["enableDist"].isUndefined())
         _enableDist = json["enableDist"].toBool();
@@ -94,7 +94,7 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
 }
 
 void ModuleDescriptor::toJson(QJsonObject& json) {
-    json["module"] = _moduleType;
+    json["type"] = _moduleType;
     json["name"] = _name;
     json["seed"] = _seed;
     json["freq"] = _freq;

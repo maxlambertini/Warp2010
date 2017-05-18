@@ -46,6 +46,8 @@ void RendererDescriptor::toJson(QJsonObject& json) {
     json["enabledLight"] = _enabledLight;
     json["lightContrast"] = _lightContrast;
     json["lightBrightness"] = _lightBrightness;
+    json["backgroundImage"] = _backgroundImage;
+    json["destImage"] = _destImage;
 
     QJsonArray giItems;
     GradientInfo gi;
@@ -62,6 +64,10 @@ void RendererDescriptor::toJson(QJsonObject& json) {
 }
 
 void RendererDescriptor::fromJson(const QJsonObject& json) {
+    if (!json["destImage"].isNull() && !json["destImage"].isUndefined())
+        _destImage = json["destImage"].toString();
+    if (!json["backgroundImage"].isNull() && !json["backgroundImage"].isUndefined())
+        _backgroundImage = json["backgroundImage"].toString();
     if (!json["name"].isNull() && !json["name"].isUndefined())
         _name = json["name"].toString();
     if (!json["noiseMap"].isNull() && !json["noiseMap"].isUndefined())

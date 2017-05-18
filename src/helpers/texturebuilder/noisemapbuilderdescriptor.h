@@ -62,9 +62,20 @@ public:
     NoiseMapBuilderDescriptor& connectSrcModule()
     {
         if (_src1 != "" && _modules.contains(_src1)) {
-            auto mod = _modules[_src1];
+            noise::module::Module *mod = _modules[_src1].data();
+            utils::NoiseMapBuilder *nmb =
+                    this->_noiseMapBuilders[this->name()].data();
+            nmb->SetSourceModule(*mod);
             //_currentModule = mod;
-            this->_noiseMapBuilders[this->name()].data()->SetSourceModule(*mod);
+            //this->_noiseMapBuilders[this->name()].data()->SetSourceModule(*mod);
+        }
+        if (_dest != "" && _noiseMaps.contains(_dest)) {
+            utils::NoiseMap *mod = _noiseMaps[_dest].data();
+            utils::NoiseMapBuilder *nmb =
+                    this->_noiseMapBuilders[this->name()].data();
+            nmb->SetDestNoiseMap(*mod);
+            //_currentModule = mod;
+            //this->_noiseMapBuilders[this->name()].data()->SetSourceModule(*mod);
         }
         return *this;
     }
@@ -72,10 +83,13 @@ public:
     explicit NoiseMapBuilderDescriptor(QObject *parent = 0);
 
     const QString& name() { return _name; }
-    void setName(const QString& n) {_name = n; }
+    void  setName(const QString& n) {_name = n; }
 
     QMap<QString, QSharedPointer<Module>>& modules() { return _modules; }
     void setModules(const QMap<QString, QSharedPointer<Module>>& m) { _modules = m; }
+
+    QMap<QString,QSharedPointer<utils::NoiseMap>>& noiseMaps() { return _noiseMaps; }
+    void setNoiseMaps(const QMap<QString,QSharedPointer<utils::NoiseMap>>& v) { _noiseMaps = v; }
 
     int getSizeX() { return std::get<0>(_size); }
     int getSizeY() { return std::get<1>(_size); }
@@ -84,6 +98,9 @@ public:
     void setBounds (double south = -90.0, double north = 90.0, double west = -180.0, double east = 180.0) {
         _bounds = std::tuple<double,double,double,double>(south,north,west,east);
     }
+
+    void setNoiseMapBuilders(const QMap<QString, QSharedPointer<utils::NoiseMapBuilder>>& v ) { _noiseMapBuilders = v; }
+    QMap<QString, QSharedPointer<utils::NoiseMapBuilder>>& noiseMapBuilders() { return _noiseMapBuilders; }
 
     NoiseMapBuilderType builderType() {return  _builderType ; }
     void setBuilderType (NoiseMapBuilderType t) { _builderType = t; }
@@ -100,7 +117,7 @@ public:
     void fromJson(const QJsonObject& json) {
         _dest = json["dest"].toString();
         _name = json["name"].toString();
-        _src1 = json["src1"].toString();
+        _src1 = json["source"].toString();
         _seamless = json["seamless"].toBool();
         auto sType = json["type"].toString();
         _builderType = NoiseMapBuilderType::SPHERE;
@@ -136,7 +153,7 @@ public:
         }
         json["name"] = _name;
         json["dest"] = _dest;
-        json["src1"] = _src1;
+        json["source"] = _src1;
         json["seamless"] = _seamless;
         QJsonArray a;
         a.append(std::get<0>(_size));

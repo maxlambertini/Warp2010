@@ -70,8 +70,8 @@ public:
 
     void connectAll() {
         connectModules();
-        connectNoiseMapBuilders();
         connectRenderers();
+        connectNoiseMapBuilders();
         qDebug() << "Build noisemaps";
         buildNoiseMaps();
     }
