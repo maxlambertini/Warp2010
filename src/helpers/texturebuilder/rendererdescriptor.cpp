@@ -8,6 +8,7 @@ RendererDescriptor::RendererDescriptor()
 QSharedPointer<utils::RendererImage> RendererDescriptor::makeRenderer() {
     utils::RendererImage* p = new utils::RendererImage();
 
+    p->SetBackgroundColor(utils::Color(0,0,0,0)); //transparency, quoi
     p->EnableLight(this->_enabledLight);
     p->SetLightBrightness(this->lightBrightness());
     p->SetLightContrast(this->lightContrast());

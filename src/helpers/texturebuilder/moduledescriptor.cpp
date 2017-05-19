@@ -171,6 +171,10 @@ QSharedPointer<Module> ModuleDescriptor::makeModule() {
     if (_moduleType=="Invert") return makeInvert();
     if (_moduleType=="ScaleBias") return makeScaleBias();
     if (_moduleType=="Terrace") return makeTerrace();
+    if (_moduleType=="Turbulence") return makeTurbulence();
+    if (_moduleType=="Add") return makeAdd();
+    if (_moduleType=="Max") return makeMax();
+    if (_moduleType=="Min") return makeMin();
     return makePerlin();
 }
 
@@ -317,4 +321,31 @@ QSharedPointer<Module> ModuleDescriptor::makeTerrace() {
     return p;
 }
 
+//{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
+QSharedPointer<Module> ModuleDescriptor::makeTurbulence() {
+    Turbulence* m = new Turbulence();
+    m->SetSeed(_seed);
+    m->SetFrequency(_freq);
+    m->SetPower(_pow);
+    m->SetRoughness(_rough);
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
 
+QSharedPointer<Module> ModuleDescriptor::makeAdd() {
+    Add* m = new Add();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+QSharedPointer<Module> ModuleDescriptor::makeMax() {
+    Max* m = new Max();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+QSharedPointer<Module> ModuleDescriptor::makeMin() {
+    Min* m = new Min();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}

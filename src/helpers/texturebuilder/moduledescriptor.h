@@ -40,6 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 { "Module":"Invert" , "Name": "mod_name" , "Src1": "mod_name" },
 { "Module":"ScaleBias" , "Name": "mod_name" , "Src1": "mod_name" , "Bias": 0.0 , "Scale": 0.0 },
 { "Module":"Terrace" , "Name": "mod_name" , "Src1": "mod_name" , "Cpoints": [[0.0,1.0],[1.0,1.1]] , "Invert": true },
+{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
 { "Module":"Add" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
 { "Module":"Max" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
 { "Module":"Min" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
@@ -51,7 +52,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 { "Module":"Rotate" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
 { "Module":"ScalePoint" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
 { "Module":"TranslatePoint" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
-{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
 */
 
 using namespace noise;
@@ -195,7 +195,26 @@ public:
     //{ "Module":"Terrace" , "Name": "mod_name" , "Src1": "mod_name" , "Cpoints": [[0.0,1.0],[1.0,1.1]] , "Invert": true },
     QSharedPointer<Module> makeTerrace();
 
+    //{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
+    QSharedPointer<Module> makeTurbulence();
 
+    //{ "Module":"Add" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
+    QSharedPointer<Module> makeAdd ();
+
+    //{ "Module":"Max" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
+    QSharedPointer<Module> makeMax ();
+
+    //{ "Module":"Min" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
+    QSharedPointer<Module> makeMin ();
+
+    //{ "Module":"Multiply" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
+    //{ "Module":"Power" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
+    //{ "Module":"Blend" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" , "Src3": "mod_name" },
+    //{ "Module":"Select" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" , "Src3": "mod_name" , "Lbound": 0.0 , "Ubound": 0.0 },
+    //{ "Module":"Displace" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" , "Src3": "mod_name" , "Src4": "mod_name" },
+    //{ "Module":"Rotate" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
+    //{ "Module":"ScalePoint" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
+    //{ "Module":"TranslatePoint" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
 
 };
 
