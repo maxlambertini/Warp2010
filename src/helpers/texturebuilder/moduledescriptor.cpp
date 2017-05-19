@@ -58,6 +58,8 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
         _src3 = json["src3"].toString();
     if (!json["src4"].isNull() && !json["src4"].isUndefined())
         _src4 = json["src4"].toString();
+    if (!json["ctl"].isNull() && !json["ctl"].isUndefined())
+        _ctl = json["ctl"].toString();
     if (!json["lbound"].isNull() && !json["lbound"].isUndefined())
         _lBound = json["lbound"].toDouble();
     if (!json["ubound"].isNull() && !json["ubound"].isUndefined())
@@ -107,6 +109,7 @@ void ModuleDescriptor::toJson(QJsonObject& json) {
     json["src2"] = _src2;
     json["src3"] = _src3;
     json["src4"] = _src4;
+    json["ctl"] = _ctl;
     json["lbound"] = _lBound;
     json["ubound"] = _uBound;
 
@@ -139,8 +142,12 @@ void ModuleDescriptor::toJson(QJsonObject& json) {
 ModuleDescriptor& ModuleDescriptor::connectModules()
 {
     QSharedPointer<Module> currentMod;
-    if (_name != "" && _modules.contains(_name))
+    Module * pModule = nullptr;
+    if (_name != "" && _modules.contains(_name)) {
         currentMod =_modules[_name];
+        pModule = currentMod.data();
+    }
+    if (_moduleType != "Displace") {
     if (_src1 != "" && _modules.contains(_src1))
         currentMod.data()->SetSourceModule(0,*_modules[_src1].data());
     if (_src2 != "" && _modules.contains(_src2))
@@ -149,6 +156,26 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
         currentMod.data()->SetSourceModule(2,*_modules[_src3].data());
     if (_src4 != "" && _modules.contains(_src4))
         currentMod.data()->SetSourceModule(3,*_modules[_src4].data());
+    }
+    if (this->_moduleType == "Displace") {
+        auto mod = static_cast<Displace*>(pModule);
+        mod->SetSourceModule(0,*_modules[_src1].data());
+        mod->SetDisplaceModules(
+            *_modules[_src2].data(),
+            *_modules[_src3].data(),
+            *_modules[_src4].data()
+        );
+    }
+    if (_ctl != "" && _modules.contains(_ctl)) {
+        if (this->_moduleType == "Blend") {
+            auto mod = static_cast<Blend*>(pModule);
+            mod->SetControlModule(*_modules[_ctl].data());
+        }
+        if (this->_moduleType == "Select") {
+            auto mod = static_cast<Select*>(pModule);
+            mod->SetControlModule(*_modules[_ctl].data());
+        }
+    }
     //this->c_currentModule = currentMod.data();
     return *this;
 }
@@ -175,6 +202,14 @@ QSharedPointer<Module> ModuleDescriptor::makeModule() {
     if (_moduleType=="Add") return makeAdd();
     if (_moduleType=="Max") return makeMax();
     if (_moduleType=="Min") return makeMin();
+    if (_moduleType=="Multiply") return makeMultiply();
+    if (_moduleType=="Power") return makePower();
+    if (_moduleType=="Blend") return makeBlend();
+    if (_moduleType=="Select") return makeSelect();
+    if (_moduleType=="Displace") return makeDisplace();
+    if (_moduleType=="RotatePoint") return makeRotatePoint();
+    if (_moduleType=="ScalePoint") return makeScalePoint();
+    if (_moduleType=="TranslatePoint") return makeTranslatePoint();
     return makePerlin();
 }
 
@@ -349,3 +384,70 @@ QSharedPointer<Module> ModuleDescriptor::makeMin() {
     QSharedPointer<Module> p; p.reset(m);
     return p;
 }
+
+QSharedPointer<Module> ModuleDescriptor::makeMultiply (){
+    Multiply* m = new Multiply();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+
+QSharedPointer<Module> ModuleDescriptor::makePower (){
+    Power* m = new Power();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+
+QSharedPointer<Module> ModuleDescriptor::makeBlend (){
+    Blend* m = new Blend();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+
+QSharedPointer<Module> ModuleDescriptor::makeSelect (){
+    Select* m = new Select();
+    m->SetBounds(_lBound,_uBound);
+    m->SetEdgeFalloff(_value);
+    QSharedPointer<Module> p; p.reset(m);
+
+    return p;
+}
+
+QSharedPointer<Module> ModuleDescriptor::makeDisplace() {
+    Displace* m = new Displace();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+
+QSharedPointer<Module> ModuleDescriptor::makeRotatePoint() {
+    RotatePoint* m = new RotatePoint();
+    m->SetAngles(_x,_y,_z);
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+
+QSharedPointer<Module> ModuleDescriptor::makeScalePoint() {
+    ScalePoint* m = new ScalePoint();
+    m->SetXScale(_x);
+    m->SetYScale(_y);
+    m->SetZScale(_z);
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+
+QSharedPointer<Module> ModuleDescriptor::makeTranslatePoint() {
+    TranslatePoint* m = new TranslatePoint();
+    m->SetXTranslation(_x);
+    m->SetYTranslation(_y);
+    m->SetZTranslation(_z);
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+
+

@@ -74,6 +74,7 @@ class ModuleDescriptor : public QObject
     QString _src2;
     QString _src3;
     QString _src4;
+    QString _ctl;
     double _lBound;
     double _uBound;
     QVector<std::tuple<double,double>> _cPoints;
@@ -87,6 +88,7 @@ class ModuleDescriptor : public QObject
     double _pow;
     double _rough;
     double _value;
+
 
     //reference to a Map containing loaded modules
     QMap<QString, QSharedPointer<Module>> _modules;
@@ -106,6 +108,7 @@ public:
     QString& src2() { return _src2; }
     QString& src3() { return _src3; }
     QString& src4() { return _src4; }
+    QString& ctl() { return _src4; }
     double lBound() { return _lBound; }
     double uBound() { return _uBound; }
     QVector<std::tuple<double,double>>& cPoints() { return _cPoints; }
@@ -136,6 +139,7 @@ public:
     void setSrc2(QString& v) { _src2 = v ; }
     void setSrc3(QString& v) { _src3 = v ; }
     void setSrc4(QString& v) { _src4 = v ; }
+    void setCtl(QString& v) { _ctl = v ; }
     void setLbound(double v) { _lBound = v ; }
     void setUbound(double v) { _uBound = v ; }
     void setCpoints(const QVector<std::tuple<double,double>>& v) { _cPoints = v ; }
@@ -211,10 +215,21 @@ public:
     //{ "Module":"Power" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
     //{ "Module":"Blend" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" , "Src3": "mod_name" },
     //{ "Module":"Select" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" , "Src3": "mod_name" , "Lbound": 0.0 , "Ubound": 0.0 },
+    QSharedPointer<Module> makeMultiply ();
+    QSharedPointer<Module> makePower ();
+    QSharedPointer<Module> makeBlend ();
+    QSharedPointer<Module> makeSelect ();
+
+
     //{ "Module":"Displace" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" , "Src3": "mod_name" , "Src4": "mod_name" },
     //{ "Module":"Rotate" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
     //{ "Module":"ScalePoint" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
     //{ "Module":"TranslatePoint" , "Name": "mod_name" , "Src1": "mod_name" , "x": 0.0 , "y": 0.0 , "z": 0.0 },
+
+    QSharedPointer<Module> makeDisplace ();
+    QSharedPointer<Module> makeRotatePoint ();
+    QSharedPointer<Module> makeScalePoint ();
+    QSharedPointer<Module> makeTranslatePoint ();
 
 };
 
