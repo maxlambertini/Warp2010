@@ -30,6 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <helpers/qcolorops.h>
 #include <helpers/noiseimagerunner.h>
 #include <helpers/planetmaps/maps.h>
+#include <helpers/texturebuilder/texturebuilder.h>
+#include <QFileDialog>
 
 NoisemapPlaygroundDialog::  NoisemapPlaygroundDialog(QWidget *parent) :
     QDialog(parent),
@@ -148,3 +150,17 @@ void NoisemapPlaygroundDialog::on_pushButton_clicked()
     CreateBitmap();
 }
 
+
+void NoisemapPlaygroundDialog::on_btnJsonTextureDemo_clicked()
+{
+    QString fileName =
+            QFileDialog::getOpenFileName(this, tr("Open Texture Json File"),
+                                         "./",
+                           tr("JSON Texture File (*.texjson)"));
+    if (!fileName.isEmpty() && !fileName.isNull())
+    {
+        TextureBuilder tb;
+        tb.buildTextureFromJson(fileName);
+    }
+
+}
