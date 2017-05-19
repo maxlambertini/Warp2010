@@ -1,0 +1,60 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "mountainTerrain", "type" : "RidgedMulti",
+                "freq" : 3.5, "lac" : 2.5, "oct" : 6.0
+            },  
+            {
+                "name" : "baseFlatTerrain", "type" : "Billow", 
+                "freq" : 2.0
+            },  
+            {
+                "name" : "flatTerrain", "type" : "ScaleBias", "src1" : "baseFlatTerrain",
+                "scale" : 0.125, "bias" : -0.75
+            },
+            {
+                "name" : "terrainType", "type" : "Perlin", 
+                "freq" : 0.5, "pers" : 0.25 
+            },
+            {
+                "name" : "finalTerrain", "type" : "Select", 
+                "src1" : "flatTerrain", "src2" : "mountainTerrain",
+                "ctl"  : "terrainType", "lbound" : 0.0, "ubound" : 1000.0,
+                "value" : 0.2
+            }
+        ],
+    "heightMaps" : ["heightMap"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder1",
+                "source" : "finalTerrain",
+                "dest"   : "heightMap",
+                "size"   : [1280,640],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer9",
+                "noiseMap"        : "heightMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 3.0,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,  32,160,   0, 255  ],
+                        [ -0.250, 224,224,   0, 255  ],
+                        [  0.250, 192,193, 194, 255  ],
+                        [  1.000, 255,255, 255, 255  ]
+                    ]
+            }		
+        ],
+    "images" : ["image1"]
+} 

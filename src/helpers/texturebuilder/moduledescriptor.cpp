@@ -91,7 +91,7 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
     if (!json["rough"].isNull() && !json["rough"].isUndefined())
         _rough = json["rough"].toDouble();
     if (!json["value"].isNull() && !json["value"].isUndefined())
-        _rough = json["value"].toDouble();
+        _value = json["value"].toDouble();
 
 }
 
