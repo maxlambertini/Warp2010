@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 */
 
 #include "earthlike.h"
-#include <helpers/planetmaps/abstractmap.h>
+#include <planetmaps/abstractmap.h>
 #include <noise/noise.h>
 #include <noiseutils.h>
 

@@ -17,7 +17,7 @@ TARGET = Warp2010
 TEMPLATE = app
 QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter
 INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../libnoise-helpers
-LIBS += -L$$PWD/../build/Libnoise/Debug -L$$PWD/../build/Libnoise-Helpers/Debug -llibnoise-warp -llibnoise-helpers
+LIBS += -L$$PWD/../build/Libnoise/Release -L$$PWD/../build/Libnoise-Helpers/Release -llibnoise-warp -llibnoise-helpers
 SOURCES += main.cpp \
     coordinates.cpp \
     star.cpp \

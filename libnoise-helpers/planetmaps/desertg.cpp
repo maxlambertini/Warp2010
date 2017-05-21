@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 */
 
 #include "desertg.h"
-#include <helpers/planetmaps/abstractmap.h>
+#include <planetmaps/abstractmap.h>
 
 using namespace maps;
 
