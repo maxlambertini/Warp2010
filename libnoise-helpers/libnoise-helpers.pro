@@ -9,7 +9,7 @@ QT += core gui widgets
 TARGET = libnoise-helpers
 TEMPLATE = lib
 
-INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../src
+INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../warpmain
 
 LIBS += -L$$PWD/../build/Libnoise/Release -llibnoise-warp
 
@@ -42,8 +42,9 @@ HEADERS += libnoisehelpers.h\
         texturebuilder/heightmapdescriptor.h \
         texturebuilder/texturebuilder.h \
         libnoise-helpers_global.h \
+        qcolorops.h \
         noiseimageutils.h \
-        ../src/ssg_structures.h
+        ssg_structures.h
 
 
 
@@ -77,6 +78,5 @@ SOURCES += \
     texturebuilder/rendererdescriptor.cpp \
     texturebuilder/texturebuilder.cpp \
     libnoisehelpers.cpp \
-    noiseimageutils.cpp \
-    qcolorops.h
+    noiseimageutils.cpp
 

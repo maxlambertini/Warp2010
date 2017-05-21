@@ -59,4 +59,4 @@ FORMS += \
     clusteritemeditor.ui
 
 RESOURCES += \
-    ../src/Resources.qrc
+    ../warpmain/Resources.qrc
