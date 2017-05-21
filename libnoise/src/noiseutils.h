@@ -32,6 +32,7 @@
 
 #include <noise/noise.h>
 
+
 using namespace noise;
 
 namespace noise
@@ -107,7 +108,7 @@ namespace noise
     /// canuckleheads.
     const double DEFAULT_METRES_PER_POINT = DEFAULT_METERS_PER_POINT;
 
-    class Rand256
+    class NOISE_SHARED_EXPORT Rand256
     {
     public:
         static Rand256& instance() {
@@ -134,7 +135,7 @@ namespace noise
     /// The alpha channel defines the transparency of the color.  If the alpha
     /// channel has a value of 0, the color is completely transparent.  If the
     /// alpha channel has a value of 255, the color is completely opaque.
-    class Color
+    class NOISE_SHARED_EXPORT Color
     {
 
       public:
@@ -212,7 +213,7 @@ namespace noise
     ///
     /// The ColorGradient class defines a color gradient by a list of these
     /// objects.
-    struct GradientPoint
+    struct NOISE_SHARED_EXPORT GradientPoint
     {
 
       /// The position of this gradient point.
@@ -252,7 +253,7 @@ namespace noise
     /// If an application passes 0.25 to the GetColor() method, this method
     /// will return a very light pink color that is one quarter of the way
     /// between white and red.
-    class GradientColor
+    class NOISE_SHARED_EXPORT GradientColor
     {
 
       public:
@@ -407,7 +408,7 @@ namespace noise
     ///
     /// The GetSlabPtr() and GetConstSlabPtr() methods allow you to retrieve
     /// pointers to the slabs themselves.
-    class NoiseMap
+    class NOISE_SHARED_EXPORT NoiseMap
     {
 
       public:
@@ -804,7 +805,7 @@ namespace noise
     ///
     /// The GetSlabPtr() methods allow you to retrieve pointers to the slabs
     /// themselves.
-    class Image
+    class NOISE_SHARED_EXPORT Image
     {
 
       public:
@@ -1164,7 +1165,7 @@ namespace noise
     ///
     /// The SetDestFilename() and SetSourceImage() methods must be called
     /// before calling the WriteDestFile() method.
-    class WriterBMP
+    class NOISE_SHARED_EXPORT WriterBMP
     {
 
       public:
@@ -1266,7 +1267,7 @@ namespace noise
     ///
     /// The SetDestFilename() and SetSourceNoiseMap() methods must be called
     /// before calling the WriteDestFile() method.
-    class WriterTER
+    class NOISE_SHARED_EXPORT WriterTER
     {
 
       public:
@@ -1398,7 +1399,7 @@ namespace noise
     /// Note that SetBounds() is not defined in the abstract base class; it is
     /// only defined in the derived classes.  This is because each model uses
     /// a different coordinate system.
-    class NoiseMapBuilder
+    class NOISE_SHARED_EXPORT NoiseMapBuilder
     {
 
       public:
@@ -1549,12 +1550,12 @@ namespace noise
     /// The application must provide the lower and upper angle bounds of the
     /// noise map, in degrees, and the lower and upper height bounds of the
     /// noise map, in units.
-    class NoiseMapBuilderCylinder: public NoiseMapBuilder
+    class NOISE_SHARED_EXPORT NoiseMapBuilderCylinder: public NoiseMapBuilder
     {
 
       public:
 
-        /// Constructor.
+        ///  Constructor.
         NoiseMapBuilderCylinder ();
 
         virtual void Build ();
@@ -1658,7 +1659,7 @@ namespace noise
     ///
     /// To make a tileable noise map with no seams at the edges, call the
     /// EnableSeamless() method.
-    class NoiseMapBuilderPlane: public NoiseMapBuilder
+    class NOISE_SHARED_EXPORT NoiseMapBuilderPlane: public NoiseMapBuilder
     {
 
       public:
@@ -1791,7 +1792,7 @@ namespace noise
     ///
     /// The application must provide the southern, northern, western, and
     /// eastern bounds of the noise map, in degrees.
-    class NoiseMapBuilderSphere: public NoiseMapBuilder
+    class NOISE_SHARED_EXPORT NoiseMapBuilderSphere: public NoiseMapBuilder
     {
 
       public:
@@ -1973,7 +1974,7 @@ namespace noise
     /// - Pass an Image object to the SetDestImage() method.
     /// - Pass an Image object to the SetBackgroundImage() method (optional)
     /// - Call the Render() method.
-    class RendererImage
+    class NOISE_SHARED_EXPORT RendererImage
     {
 
       public:
@@ -2444,7 +2445,7 @@ namespace noise
     /// - Pass a NoiseMap object to the SetSourceNoiseMap() method.
     /// - Pass an Image object to the SetDestImage() method.
     /// - Call the Render() method.
-    class RendererNormalMap
+    class NOISE_SHARED_EXPORT RendererNormalMap
     {
 
       public:

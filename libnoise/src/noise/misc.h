@@ -23,6 +23,13 @@
 #ifndef NOISE_MISC_H
 #define NOISE_MISC_H
 
+#if defined(LIBNOISEWARP_LIBRARY)
+#  define NOISE_SHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define NOISE_SHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+
 namespace noise
 {
 

@@ -220,7 +220,7 @@ namespace noise
     /// It shouldn't be too difficult to create your own noise module.  If you
     /// still have some problems, take a look at the source code for
     /// noise::module::Add, which is a very simple noise module.
-    class Module
+    class NOISE_SHARED_EXPORT Module
     {
 
       public:

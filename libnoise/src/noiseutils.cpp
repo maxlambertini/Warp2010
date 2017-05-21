@@ -57,7 +57,7 @@ namespace noise
 
 
     // Performs linear interpolation between two 8-bit channel values.
-    inline noise::uint8 BlendChannel (const uint8 channel0,
+    inline noise::uint8 NOISE_SHARED_EXPORT BlendChannel (const uint8 channel0,
       const uint8 channel1, float alpha)
     {
       float c0 = (float)channel0 / 255.0;
@@ -67,7 +67,7 @@ namespace noise
 
     // Performs linear interpolation between two colors and stores the result
     // in out.
-    inline void LinearInterpColor (const Color& color0, const Color& color1,
+    inline void NOISE_SHARED_EXPORT LinearInterpColor (const Color& color0, const Color& color1,
       float alpha, Color& out)
     {
       out.alpha = BlendChannel (color0.alpha, color1.alpha, alpha);
@@ -79,7 +79,7 @@ namespace noise
     // Unpacks a floating-point value into four bytes.  This function is
     // specific to Intel machines.  A portable version will come soon (I
     // hope.)
-    inline noise::uint8* UnpackFloat (noise::uint8* bytes, float value)
+    inline noise::uint8* NOISE_SHARED_EXPORT UnpackFloat (noise::uint8* bytes, float value)
     {
       noise::uint8* pBytes = (noise::uint8*)(&value);
       bytes[0] = *pBytes++;
@@ -90,7 +90,7 @@ namespace noise
     }
 
     // Unpacks a 16-bit integer value into two bytes in little endian format.
-    inline noise::uint8* UnpackLittle16 (noise::uint8* bytes,
+    inline noise::uint8* NOISE_SHARED_EXPORT UnpackLittle16 (noise::uint8* bytes,
       noise::uint16 integer)
     {
       bytes[0] = (noise::uint8)((integer & 0x00ff)      );
@@ -99,7 +99,7 @@ namespace noise
     }
 
     // Unpacks a 32-bit integer value into four bytes in little endian format.
-    inline noise::uint8* UnpackLittle32 (noise::uint8* bytes,
+    inline noise::uint8* NOISE_SHARED_EXPORT UnpackLittle32 (noise::uint8* bytes,
       noise::uint32 integer)
     {
       bytes[0] = (noise::uint8)((integer & 0x000000ff)      );
