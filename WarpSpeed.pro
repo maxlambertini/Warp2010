@@ -4,7 +4,8 @@ SUBDIRS = \
            libnoise-warp \   # sub-project names
            libnoise-helpers  \
            warpmain \
-           diaspora-widgets
+           diaspora-widgets \
+    jstexture
 
 # where to find the sub projects - give the folders
 libnoise-warp.subdir    = libnoise-warp
