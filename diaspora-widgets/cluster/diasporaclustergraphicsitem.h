@@ -28,8 +28,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "cluster/cluster.h"
 #include "cluster/clusteritem.h"
 #include "cluster/diasporaclusterscene.h"
+#include <diaspora-widgets_global.h>
 
-class DiasporaClusterGraphicsItem : public QGraphicsItem
+
+class DIASPORAWIDGETSSHARED_EXPORT  DiasporaClusterGraphicsItem : public QGraphicsItem
 {
 private:
 

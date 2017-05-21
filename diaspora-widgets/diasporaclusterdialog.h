@@ -24,15 +24,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #define DIASPORACLUSTERDIALOG_H
 
 #include <QDialog>
-#include "cluster/cluster.h"
-#include "cluster/diasporaclusterscene.h"
-#include "cluster/aspectlist.h"
+#include <cluster/cluster.h>
+#include <cluster/diasporaclusterscene.h>
+#include <cluster/aspectlist.h>
+#include "diaspora-widgets_global.h"
 
 namespace Ui {
-    class DiasporaClusterDialog;
+    class  DiasporaClusterDialog;
 }
 
-class DiasporaClusterDialog : public QWidget {
+class DIASPORAWIDGETSSHARED_EXPORT DiasporaClusterDialog : public QWidget {
     Q_OBJECT
 public:
     DiasporaClusterDialog(QWidget *parent = 0);

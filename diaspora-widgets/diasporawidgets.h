@@ -3,7 +3,7 @@
 
 #include "diaspora-widgets_global.h"
 
-class DIASPORAWIDGETSSHARED_EXPORT Diasporawidgets
+class  DIASPORAWIDGETSSHARED_EXPORT  Diasporawidgets
 {
 
 public:

@@ -2,8 +2,9 @@
 #define DIASPORADEFAULTFONTS_H
 
 #include <QFont>
+#include "diaspora-widgets_global.h"
 
-class DiasporaDefaultFonts
+class  DIASPORAWIDGETSSHARED_EXPORT DiasporaDefaultFonts
 {
 public:
     DiasporaDefaultFonts();

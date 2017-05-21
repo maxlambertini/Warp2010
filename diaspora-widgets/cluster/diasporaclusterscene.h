@@ -26,10 +26,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QtGui>
 #include <QtCore>
 #include <QGraphicsScene>
-#include "cluster/cluster.h"
-#include "clusteritem.h"
+#include "diaspora-widgets_global.h"
+#include <cluster/cluster.h>
+#include <cluster/diasporaclusterscene.h>
+#include <cluster/clusteritem.h>
+#include <diaspora-widgets_global.h>
 
-class DiasporaClusterScene : public QObject
+
+class DIASPORAWIDGETSSHARED_EXPORT  DiasporaClusterScene : public QObject
 {
     Q_OBJECT
 

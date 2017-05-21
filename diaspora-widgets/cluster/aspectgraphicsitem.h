@@ -28,6 +28,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QStyleOptionGraphicsItem>
 #include "cluster/clusteritem.h"
 #include "cluster/aspect.h"
+#include <diaspora-widgets_global.h>
+
 
 namespace AGIAlign {
     enum Alignment {
@@ -44,7 +46,7 @@ namespace AGIAlign {
     };
 }
 
-class AspectGraphicsItem : public QGraphicsItem
+class  DIASPORAWIDGETSSHARED_EXPORT AspectGraphicsItem : public QGraphicsItem
 {
     ClusterItem _clusterItem;
     QRectF _boundingRect;

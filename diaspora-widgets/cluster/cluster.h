@@ -25,12 +25,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 #include <QtGui>
 #include <QObject>
-#include "clusteritem.h"
+#include <cluster/clusteritem.h>
 #include "ssg_structures.h"
 #include "onomastikon.h"
-#include "aspectlist.h"
+#include <cluster/aspectlist.h>
+#include <diaspora-widgets_global.h>
 
-class Cluster
+
+#pragma once
+
+class  DIASPORAWIDGETSSHARED_EXPORT Cluster
 {
     Onomastikon *_onomastikon;
     QVector<ClusterItem> _clusterItems;

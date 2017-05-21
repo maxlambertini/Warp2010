@@ -556,6 +556,7 @@ void WarpMainWindowForm::on_action_ViewOnlyTradeRoutes_triggered()
 }
 
 
+/*
 void WarpMainWindowForm::on_action_Save_Diaspora_Cluster_triggered()
 {
     ui->clusterCreator->saveCluster();
@@ -601,6 +602,7 @@ void WarpMainWindowForm::on_action_Generate_New_Cluster_triggered()
     ui->clusterCreator->generateNewCluster();
 
 }
+*/
 
 void WarpMainWindowForm::on_action_Save_Solar_System_to_HTML_triggered()
 {
@@ -625,13 +627,14 @@ void WarpMainWindowForm::on_action_ShowOnlyReachableStars_triggered()
 }
 
 
-
+/*
 void WarpMainWindowForm::on_action_Print_Cluster_triggered()
 {
 
     ui->clusterCreator->printCluster();
 
 }
+*/
 
 void WarpMainWindowForm::on_action_Page_Setup_triggered()
 {
@@ -726,7 +729,7 @@ void WarpMainWindowForm::on_action_Star_Sector_View_triggered(bool checked)
 {
     this->on_tabSubprograms_currentChanged(TAB_STAR_SECTOR);
     this->ui->menuStar_Sector_Operations->setEnabled(true);
-    this->ui->menuCluster_Operations->setEnabled(false);
+    //this->ui->menuCluster_Operations->setEnabled(false);
     this->ui->menuSolar_System_Operations->setEnabled(false);
 }
 
@@ -734,11 +737,12 @@ void WarpMainWindowForm::on_action_Solar_System_View_triggered(bool checked)
 {
     this->on_tabSubprograms_currentChanged(TAB_SOLAR_SYSTEM);
     this->ui->menuStar_Sector_Operations->setEnabled(false);
-    this->ui->menuCluster_Operations->setEnabled(false);
+    //this->ui->menuCluster_Operations->setEnabled(false);
     this->ui->menuSolar_System_Operations->setEnabled(true);
 
 }
 
+/*
 void WarpMainWindowForm::on_action_Diaspora_Cluster_View_triggered(bool checked)
 {
     this->on_tabSubprograms_currentChanged(TAB_CLUSTER_MAP);
@@ -747,6 +751,7 @@ void WarpMainWindowForm::on_action_Diaspora_Cluster_View_triggered(bool checked)
     this->ui->menuSolar_System_Operations->setEnabled(false);
 
 }
+*/
 
 
 void WarpMainWindowForm::on_action_solsys_export_to_pdf() {

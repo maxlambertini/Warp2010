@@ -26,9 +26,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 #include <QtCore>
 #include "clusteritem.h"
+#include <diaspora-widgets_global.h>
+
 
 class ClusterItem;
-class Aspect
+class DIASPORAWIDGETSSHARED_EXPORT  Aspect
 {
     QString _name;
     int _minEnv;

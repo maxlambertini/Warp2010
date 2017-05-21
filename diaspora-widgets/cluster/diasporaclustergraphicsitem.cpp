@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "cluster/diasporaclustergraphicsitem.h"
 //#include "dialogs/preferencesdialog.h"
 //#include "helpers/preferences.h"
+#include <cluster/clusteritem.h>
 #include <diasporadefaultfonts.h>
 
 //DiasporaClusterGraphicsItem::DiasporaClusterGraphicsItem()

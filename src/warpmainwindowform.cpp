@@ -106,8 +106,8 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
 
      pixmap.load(AppPaths::appDir()+"/pics/rex_orbiting_horza.jpg");
 
-     AspectList aspects = AspectList::fromAppDir();
-     ui->clusterCreator->setAspectList(aspects);
+     //AspectList aspects = AspectList::fromAppDir();
+     //ui->clusterCreator->setAspectList(aspects);
 
      progressBar = new QProgressBar(this);
      ui->statusbar->addPermanentWidget(progressBar,0);
@@ -115,7 +115,7 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
      progressBar->setVisible(false);
 
      QString styleSheet = qApp->styleSheet();
-     ui->clusterCreator->setStyleSheet(styleSheet);
+     //ui->clusterCreator->setStyleSheet(styleSheet);
 
      Preferences::loadPreferences();
 
@@ -192,7 +192,7 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
      PixmapHelper::instancePtr()->initializeBitmaps();
 
      this->ui->menuStar_Sector_Operations->setEnabled(true);
-     this->ui->menuCluster_Operations->setEnabled(false);
+     //this->ui->menuCluster_Operations->setEnabled(false);
      this->ui->menuSolar_System_Operations->setEnabled(false);
 
      this->ui->btnRotateLeft->setVisible(false);
@@ -204,11 +204,11 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
      QButtonGroup *btnGrp = new QButtonGroup(this);
      ui->btn_Star_Sector_View->setCheckable(true);
      ui->btn_Solar_System_View->setCheckable(true);
-     ui->btn_Diaspora_Cluster_View->setCheckable(true);
+     //ui->btn_Diaspora_Cluster_View->setCheckable(true);
      ui->btn_Star_Sector_View->setChecked(true);
      btnGrp->addButton(ui->btn_Star_Sector_View);
      btnGrp->addButton(ui->btn_Solar_System_View);
-     btnGrp->addButton(ui->btn_Diaspora_Cluster_View);
+     //btnGrp->addButton(ui->btn_Diaspora_Cluster_View);
      this->on_btn_Star_Sector_View_clicked();
  }
 
@@ -1030,7 +1030,7 @@ void WarpMainWindowForm::on_actionCreate_map_2_triggered()
 void WarpMainWindowForm::on_btn_Star_Sector_View_clicked()
 {
     this->ui->menuStar_Sector_Operations->setEnabled(true);
-    this->ui->menuCluster_Operations->setEnabled(false);
+    //this->ui->menuCluster_Operations->setEnabled(false);
     this->ui->menuSolar_System_Operations->setEnabled(false);
     this->ui->lblSectorName->setVisible(true);
     this->ui->lblSpinDistance->setVisible(true);
@@ -1043,7 +1043,7 @@ void WarpMainWindowForm::on_btn_Star_Sector_View_clicked()
 void WarpMainWindowForm::on_btn_Solar_System_View_clicked()
 {
     this->ui->menuStar_Sector_Operations->setEnabled(false);
-    this->ui->menuCluster_Operations->setEnabled(false);
+    //this->ui->menuCluster_Operations->setEnabled(false);
     this->ui->menuSolar_System_Operations->setEnabled(true);
     this->ui->lblSectorName->setVisible(true);
     this->ui->lblSpinDistance->setVisible(true);
@@ -1056,13 +1056,13 @@ void WarpMainWindowForm::on_btn_Solar_System_View_clicked()
 void WarpMainWindowForm::on_btn_Diaspora_Cluster_View_clicked()
 {
     this->ui->menuStar_Sector_Operations->setEnabled(false);
-    this->ui->menuCluster_Operations->setEnabled(true);
+    //this->ui->menuCluster_Operations->setEnabled(true);
     this->ui->menuSolar_System_Operations->setEnabled(false);
     this->ui->lblSectorName->setVisible(false);
     this->ui->lblSpinDistance->setVisible(false);
     this->ui->txtSectorName->setVisible(false);
     this->ui->spinDistance->setVisible(false);
-    ui->btnContextualMenu->setMenu(ui->menuCluster_Operations);
+    //ui->btnContextualMenu->setMenu(ui->menuCluster_Operations);
     this->on_tabSubprograms_currentChanged(TAB_CLUSTER_MAP);
 }
 

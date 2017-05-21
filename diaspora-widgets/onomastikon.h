@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #define ONOMASTIKON_H
 
 #include <QtCore>
+#include "diaspora-widgets_global.h"
 
 typedef struct lettFreqItem {
     QString letter;
@@ -33,7 +34,7 @@ typedef struct lettFreqItem {
 extern LETT_FREQ_ITEM consTable[];
 extern LETT_FREQ_ITEM vowTable[];
 
-class Onomastikon
+class  DIASPORAWIDGETSSHARED_EXPORT Onomastikon
 {
 private:
     QStringList _stringList;

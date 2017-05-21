@@ -25,8 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #define CLUSTERHTMLEXPORTER_H
 
 #include "cluster/cluster.h"
+#include "diaspora-widgets_global.h"
 
-class ClusterHTMLExporter
+class  DIASPORAWIDGETSSHARED_EXPORT ClusterHTMLExporter
 {
 public:
     ClusterHTMLExporter();

@@ -2,8 +2,9 @@
 #define DIASPORAPATHS_H
 
 #include <QString>
+#include "diaspora-widgets_global.h"
 
-class DiasporaPaths
+class  DIASPORAWIDGETSSHARED_EXPORT  DiasporaPaths
 {
 public:
     DiasporaPaths();

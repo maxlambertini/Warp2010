@@ -23,12 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #ifndef CLUSTERITEM_H
 #define CLUSTERITEM_H
 #include <QtCore>
-#include "ssg_structures.h"
-#include "cluster/aspect.h"
+#include <ssg_structures.h>
+#include <cluster/aspect.h>
+#include <diaspora-widgets_global.h>
+
+
+#pragma once
 
 class Aspect;
 
-class ClusterItem
+class  DIASPORAWIDGETSSHARED_EXPORT ClusterItem
 {
     int _environment;
     int _technology;

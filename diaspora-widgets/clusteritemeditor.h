@@ -31,12 +31,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "cluster/clusteritem.h"
 #include "cluster/cluster.h"
 #include "cluster/aspect.h"
+#include "diaspora-widgets_global.h"
 
 namespace Ui {
     class ClusterItemEditor;
 }
 
-class ClusterItemEditor : public QWidget {
+class  DIASPORAWIDGETSSHARED_EXPORT ClusterItemEditor : public QWidget {
     Q_OBJECT
 
     ClusterItem* _clusterItem;

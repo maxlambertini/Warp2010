@@ -26,8 +26,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QtCore>
 #include "cluster/aspect.h"
 #include "ssg_structures.h"
+#include <diaspora-widgets_global.h>
 
-class AspectList
+
+class DIASPORAWIDGETSSHARED_EXPORT  AspectList
 {
     QVector<Aspect> _aspects;
     QList<int> _drawnAspects;

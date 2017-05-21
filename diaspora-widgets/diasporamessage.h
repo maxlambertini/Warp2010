@@ -2,8 +2,9 @@
 #define DIASPORAMESSAGE_H
 
 #include <QMessageBox>
+#include "diaspora-widgets_global.h"
 
-class DiasporaMessage
+class  DIASPORAWIDGETSSHARED_EXPORT DiasporaMessage
 {
 public:
     DiasporaMessage();

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DIASPORAWIDGETS_GLOBAL_H
 #define DIASPORAWIDGETS_GLOBAL_H
 

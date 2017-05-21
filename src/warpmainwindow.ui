@@ -103,27 +103,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QPushButton" name="btn_Diaspora_Cluster_View">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normalon>:/Icons/pics/newicons/diaspora64.png</normalon>
-           </iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>24</width>
-            <height>24</height>
-           </size>
-          </property>
-          <property name="flat">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
       <item>
@@ -618,13 +597,6 @@ Double click on a star below to recalculate a new jumpweb centered on the select
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item>
-          <widget class="DiasporaClusterDialog" name="clusterCreator" native="true">
-           <property name="styleSheet">
-            <string notr="true">background-color: transparent;</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </widget>
@@ -1119,26 +1091,8 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menuCluster_Operations">
-    <property name="title">
-     <string>&amp;Cluster</string>
-    </property>
-    <addaction name="action_Generate_New_Cluster"/>
-    <addaction name="action_Load_Diaspora_Cluster"/>
-    <addaction name="action_Save_Diaspora_Cluster"/>
-    <addaction name="separator"/>
-    <addaction name="action_Export_Cluster"/>
-    <addaction name="action_Print_Cluster"/>
-    <addaction name="separator"/>
-    <addaction name="action_Preferences"/>
-    <addaction name="separator"/>
-    <addaction name="action_AboutWarp2010"/>
-    <addaction name="separator"/>
-    <addaction name="actionExit"/>
-   </widget>
    <addaction name="menuStar_Sector_Operations"/>
    <addaction name="menuSolar_System_Operations"/>
-   <addaction name="menuCluster_Operations"/>
    <addaction name="menuFileSector"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -1861,12 +1815,6 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <class>QtColorPicker</class>
    <extends>QPushButton</extends>
    <header>qtcolorpicker.h</header>
-  </customwidget>
-  <customwidget>
-   <class>DiasporaClusterDialog</class>
-   <extends>QWidget</extends>
-   <header location="global">diasporaclusterdialog.h</header>
-   <container>1</container>
   </customwidget>
   <customwidget>
    <class>SolarSystemViewWidget</class>
