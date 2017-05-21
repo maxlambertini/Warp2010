@@ -146,7 +146,7 @@
         <property name="frameShadow">
          <enum>QFrame::Plain</enum>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>0</x>

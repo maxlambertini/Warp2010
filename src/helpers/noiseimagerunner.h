@@ -24,11 +24,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #define NOISEIMAGERUNNER_H
 
 #include <QRunnable>
-#include <helpers/noiseimageutils.h>
+#include <noiseimageutils.h>
 #include <ssg_structures.h>
 #include <QString>
 #include <QThread>
-#include <helpers/planetmaps/maps.h>
+#include <planetmaps/maps.h>
 
 namespace RT {
 enum RType {

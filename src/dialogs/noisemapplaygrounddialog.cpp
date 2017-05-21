@@ -26,11 +26,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <noiseutils.h>
 #include "star.h"
 #include "ssg_structures.h"
-#include <helpers/noiseimageutils.h>
-#include <helpers/qcolorops.h>
+#include <noiseimageutils.h>
+#include <qcolorops.h>
 #include <helpers/noiseimagerunner.h>
-#include <helpers/planetmaps/maps.h>
-#include <helpers/texturebuilder/texturebuilder.h>
+#include <planetmaps/maps.h>
+#include <texturebuilder/texturebuilder.h>
 #include <QFileDialog>
 
 NoisemapPlaygroundDialog::  NoisemapPlaygroundDialog(QWidget *parent) :

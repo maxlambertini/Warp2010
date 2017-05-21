@@ -16,8 +16,8 @@ QT += printsupport widgets svg concurrent
 TARGET = Warp2010
 TEMPLATE = app
 QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter
-INCLUDEPATH += $$PWD/../libnoise/src
-LIBS += -L$$PWD/../build/Libnoise/Debug -llibnoise-warp
+INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../libnoise-helpers
+LIBS += -L$$PWD/../build/Libnoise/Debug -L$$PWD/../build/Libnoise-Helpers/Debug -llibnoise-warp -llibnoise-helpers
 SOURCES += main.cpp \
     coordinates.cpp \
     star.cpp \
@@ -86,33 +86,9 @@ SOURCES += main.cpp \
     helpers/parsecstarlisthelper.cpp \
     helpers/graphmlexporter.cpp \
     dialogs/noisemapplaygrounddialog.cpp \
-    helpers/noiseimageutils.cpp \
     helpers/noiseimagerunner.cpp \
-    helpers/planetmaps/earthlike.cpp \
-    helpers/planetmaps/abstractmap.cpp \
-    helpers/planetmaps/earthlike2.cpp \
-    helpers/planetmaps/earthlike3.cpp \
-    helpers/planetmaps/earthlikepeaks.cpp \
-    helpers/planetmaps/alienpeaks.cpp \
-    helpers/planetmaps/desert.cpp \
-    helpers/planetmaps/desertg.cpp \
-    helpers/planetmaps/gg2.cpp \
-    helpers/planetmaps/cloudy.cpp \
-    helpers/planetmaps/gasgiant.cpp \
-    helpers/planetmaps/Clouds/earthclouds.cpp \
-    helpers/planetmaps/Clouds/funkyclouds.cpp \
-    helpers/planetmaps/jade.cpp \
-    helpers/planetmaps/jade2.cpp \
-    helpers/planetmaps/ice.cpp \
-    helpers/planetmaps/granite.cpp \
     exporters/starsectorjsonexporter.cpp \
-    helpers/texturebuilder/moduledescriptor.cpp \
-    helpers/texturebuilder/noisemapbuilderdescriptor.cpp \
-    widgets/actionbutton.cpp \
-    helpers/texturebuilder/imagedescriptor.cpp \
-    helpers/texturebuilder/rendererdescriptor.cpp \
-    helpers/texturebuilder/heightmapdescriptor.cpp \
-    helpers/texturebuilder/texturebuilder.cpp
+    widgets/actionbutton.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -180,35 +156,9 @@ HEADERS += coordinates.h \
     helpers/parsecstarlisthelper.h \
     helpers/graphmlexporter.h \
     dialogs/noisemapplaygrounddialog.h \
-    helpers/noiseimageutils.h \
     helpers/noiseimagerunner.h \
-    helpers/qcolorops.h \
-    helpers/planetmaps/earthlike.h \
-    helpers/planetmaps/abstractmap.h \
-    helpers/planetmaps/earthlike2.h \
-    helpers/planetmaps/earthlike3.h \
-    helpers/planetmaps/maps.h \
-    helpers/planetmaps/earthlikepeaks.h \
-    helpers/planetmaps/alienpeaks.h \
-    helpers/planetmaps/desert.h \
-    helpers/planetmaps/desertg.h \
-    helpers/planetmaps/gg2.h \
-    helpers/planetmaps/cloudy.h \
-    helpers/planetmaps/gasgiant.h \
-    helpers/planetmaps/Clouds/earthclouds.h \
-    helpers/planetmaps/Clouds/funkyclouds.h \
-    helpers/planetmaps/jade.h \
-    helpers/planetmaps/jade2.h \
-    helpers/planetmaps/ice.h \
-    helpers/planetmaps/granite.h \
     exporters/starsectorjsonexporter.h \
-    helpers/texturebuilder/moduledescriptor.h \
-    helpers/texturebuilder/noisemapbuilderdescriptor.h \
-    widgets/actionbutton.h \
-    helpers/texturebuilder/imagedescriptor.h \
-    helpers/texturebuilder/rendererdescriptor.h \
-    helpers/texturebuilder/heightmapdescriptor.h \
-    helpers/texturebuilder/texturebuilder.h
+    widgets/actionbutton.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

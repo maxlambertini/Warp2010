@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "star.h"
 #include "starlist.h"
 #include "planet.h"
-#include <helpers/noiseimageutils.h>
+#include <noiseimageutils.h>
 #include <helpers/noiseimagerunner.h>
 #include <QObject>
 #include <QDir>
