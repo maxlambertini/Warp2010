@@ -26,6 +26,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <string>
+#include <sstream>
+#include <iomanip>
+#include <random>
 
 #include <noise/noise.h>
 
@@ -104,6 +107,25 @@ namespace noise
     /// canuckleheads.
     const double DEFAULT_METRES_PER_POINT = DEFAULT_METERS_PER_POINT;
 
+    class Rand256
+    {
+    public:
+        static Rand256& instance() {
+            static Rand256 inst;
+            return inst;
+        }
+    private:
+        std::default_random_engine _generator;
+        std::uniform_int_distribution<int> _distribution;
+        Rand256() {
+            _distribution = std::uniform_int_distribution<int>(0,256 *256 *256 -1);
+        }
+    public:
+        noise::uint8 value() { return static_cast<noise::uint8>(_distribution(_generator) % 256) ; }
+        int intValue (int n) { return _distribution(_generator) % n; }
+
+    };
+
     /// Defines a color.
     ///
     /// A color object contains four 8-bit channels: red, green, blue, and an
@@ -121,6 +143,39 @@ namespace noise
         Color ()
         {
         }
+
+        /// Constructor
+        ///
+        /// @param hexString representing RGBA value, for instance "7890ABCD"
+        Color (std::string hexString)
+        {
+            auto r = hexString.substr(0,2);
+            auto g = hexString.substr(2,2);
+            auto b = hexString.substr(4,2);
+            auto a = hexString.substr(6,2);
+
+            std::stringstream cr(r);
+            std::stringstream cg(g);
+            std::stringstream cb(b);
+            std::stringstream ca(a);
+
+            cr >> std::hex >> red;
+            cg >> std::hex >> green;
+            cb >> std::hex >> blue;
+            ca >> std::hex >> alpha;
+        }
+
+        /// Constructor
+        ///
+        /// @param randomizeAlpha uses a random alpha value when creating random color
+        static Color RandomColor(bool randomizeAlpha = false);
+
+        /// Method returning a randomized color from an existing color
+        ///
+        /// @param step range of random choice on a 0-255 scale, default 20
+        /// @param ascending bool
+        /// @param randomizes this way even alpha value.
+        Color randomizeColor (int step = 20, bool ascending = true, bool randomizeAlpha = false);
 
         /// Constructor.
         ///

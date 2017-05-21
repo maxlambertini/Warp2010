@@ -26,6 +26,7 @@
 #include <noise/mathconsts.h>
 
 #include "noiseutils.h"
+#include <random>
 
 using namespace noise;
 using namespace noise::model;
@@ -53,6 +54,7 @@ namespace noise
 
   namespace utils
   {
+
 
     // Performs linear interpolation between two 8-bit channel values.
     inline noise::uint8 BlendChannel (const uint8 channel0,
@@ -114,6 +116,52 @@ namespace noise
 using namespace noise;
 
 using namespace noise::utils;
+
+//////////////////////////////////////////////////////////////////////////////
+// Color class
+
+Color Color::RandomColor(bool randomizeAlpha) {
+   Color c;
+   c.red = Rand256::instance().value();
+   c.green = Rand256::instance().value();
+   c.blue = Rand256::instance().value();
+   if(randomizeAlpha) c.red = Rand256::instance().value();
+   return c;
+}
+
+Color Color::randomizeColor(int step, bool ascending, bool randomizeAlpha) {
+    auto dr = Rand256::instance().intValue(step);
+    auto dg = Rand256::instance().intValue(step);
+    auto db = Rand256::instance().intValue(step);
+    auto da = Rand256::instance().intValue(step);
+
+    noise::uint8 _r = red;
+    noise::uint8 _g = green;
+    noise::uint8 _b = blue;
+    noise::uint8 _a = alpha;
+
+    if (ascending) {
+        if (dr + _r < 255) _r += dr; else _r -= dr;
+        if (dg + _g < 255) _g += dg; else _g -= dg;
+        if (db + _b < 255) _b += dg; else _b -= dg;
+        if (randomizeAlpha) {
+            if (da + _a < 255) _a += da; else _a -= da;
+
+        }
+    } else {
+        if (_r - dr > 0 ) _r -= dr; else _r += dr;
+        if (_g -dg > 0) _g -= dg; else _g += dg;
+        if (_b - db > 0) _b -= db; else _b += db;
+        if (randomizeAlpha) {
+            if (_a -da > 0) _a -= da; else _a += da;
+        }
+    }
+
+    Color q(_r,_g,_b,_a);
+    return q;
+
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 // GradientColor class
