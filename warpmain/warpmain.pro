@@ -17,7 +17,7 @@ TARGET = WarpNow
 TEMPLATE = app
 QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter
 INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../libnoise-helpers
-LIBS += -L$$PWD/../build/Libnoise/Debug -L$$PWD/../build/Libnoise-Helpers/Debug -llibnoise-warp -llibnoise-helpers
+LIBS += -L$$PWD/../build/Release/libnoise-warp -L$$PWD/../build/Release/libnoise-helpers/libnoise-helpers/release -llibnoise-warp -llibnoise-helpers
 SOURCES += main.cpp \
     coordinates.cpp \
     star.cpp \
@@ -174,7 +174,7 @@ FORMS += warpmainwindow.ui \
     dialogs/createbetweenstarsdlg.ui \
     dialogs/noisemapplaygrounddialog.ui
 RESOURCES += Resources.qrc
-win32:RC_FILE = warp2010.rc
+#win32:RC_FILE = warpmain.rc
 #win32:CONFIG += console
 DISTFILES += test.tpl \
     aspects.aspect \

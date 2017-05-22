@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 namespace maps {
 
-class DesertG : public AbstractMap
+class  LIBNOISEHELPERSSHARED_EXPORT  DesertG : public AbstractMap
 {
     Q_OBJECT
 public:
