@@ -12,7 +12,8 @@ TARGET = jstexture
 TEMPLATE = app
 
 INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../libnoise-helpers
-LIBS += -L$$PWD/../build/Libnoise/Release -L$$PWD/../build/Libnoise-Helpers/Release -llibnoise-warp -llibnoise-helpers
+Release:LIBS += -L$$PWD/../builds/libnoise-warp/release -L$$PWD/../builds/libnoise-helpers/release -llibnoise-helpers -llibnoise-warp
+Debug:LIBS += -L$$PWD/../builds/libnoise-warp/debug -L$$PWD/../builds/libnoise-helpers/debug -llibnoise-helpers -llibnoise-warp
 
 
 SOURCES += main.cpp\

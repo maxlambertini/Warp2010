@@ -11,7 +11,8 @@ TEMPLATE = lib
 
 INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../warpmain
 
-LIBS += -L$$PWD/../build/Release/libnoise-warp -llibnoise-warp
+Release:LIBS += -L$$PWD/../builds/libnoise-warp/release -llibnoise-warp
+Debug:LIBS += -L$$PWD/../builds/libnoise-warp/debug -llibnoise-warp
 
 
 DEFINES += LIBNOISEHELPERS_LIBRARY

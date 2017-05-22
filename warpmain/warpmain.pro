@@ -17,7 +17,10 @@ TARGET = WarpNow
 TEMPLATE = app
 QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter
 INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../libnoise-helpers
-LIBS += -L$$PWD/../build/Release/libnoise-warp -L$$PWD/../build/Release/libnoise-helpers/libnoise-helpers/release -llibnoise-warp -llibnoise-helpers
+
+Release:LIBS += -L$$PWD/../builds/libnoise-warp/release -L$$PWD/../builds/libnoise-helpers/release -llibnoise-helpers -llibnoise-warp
+Debug:LIBS += -L$$PWD/../builds/libnoise-warp/debug -L$$PWD/../builds/libnoise-helpers/debug -llibnoise-helpers -llibnoise-warp
+
 SOURCES += main.cpp \
     coordinates.cpp \
     star.cpp \

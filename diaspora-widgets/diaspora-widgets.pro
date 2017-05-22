@@ -40,7 +40,7 @@ HEADERS += diasporawidgets.h\
     cluster/clusteritem.h \
     cluster/diasporaclustergraphicsitem.h \
     cluster/diasporaclusterscene.h \
-    ssg_structures.h \
+    ../warpmain/ssg_structures.h \
     clusteritemeditor.h \
     clusterhtmlexporter.h \
     diasporapaths.h \
