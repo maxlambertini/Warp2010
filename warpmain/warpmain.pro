@@ -184,8 +184,8 @@ win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/relea
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/debug/ -llibnoise-warp
 else:unix: LIBS += -L$$OUT_PWD/../libnoise-warp/ -llibnoise-warp
 
-INCLUDEPATH += $$PWD/../libnoise-warp
-DEPENDPATH += $$PWD/../libnoise-warp
+INCLUDEPATH += $$PWD/../libnoise/src
+DEPENDPATH += $$PWD/../libnoise/src
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/release/ -llibnoise-helpers

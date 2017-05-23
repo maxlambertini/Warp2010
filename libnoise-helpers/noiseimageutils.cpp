@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "noiseimageutils.h"
 #include <noise/noise.h>
 #include <noiseutils.h>
-#include  <star.h>
 #include "ssg_structures.h"
 #include <memory>
 #include <qcolorops.h>

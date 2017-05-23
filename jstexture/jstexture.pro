@@ -11,9 +11,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = jstexture
 TEMPLATE = app
 
-INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../libnoise-helpers
-Release:LIBS += -L$$PWD/../builds/release/libnoise-warp -L$$PWD/../builds/release/libnoise-helpers -llibnoise-warp -llibnoise-helpers
-Debug:LIBS += -L$$PWD/../builds/debug/libnoise-warp -L$$PWD/../builds/debug/libnoise-helpers -llibnoise-warp -llibnoise-helpers
+#INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../libnoise-helpers
+#Release:LIBS += -L$$PWD/../builds/release/libnoise-warp -L$$PWD/../builds/release/libnoise-helpers -llibnoise-warp -llibnoise-helpers
+#Debug:LIBS += -L$$PWD/../builds/debug/libnoise-warp -L$$PWD/../builds/debug/libnoise-helpers -llibnoise-warp -llibnoise-helpers
 
 
 SOURCES += main.cpp\
@@ -34,5 +34,5 @@ win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/relea
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/debug/ -llibnoise-warp
 else:unix: LIBS += -L$$OUT_PWD/../libnoise-warp/ -llibnoise-warp
 
-INCLUDEPATH += $$PWD/../libnoise-warp
-DEPENDPATH += $$PWD/../libnoise-warp
+INCLUDEPATH += $$PWD/../libnoise/src
+DEPENDPATH += $$PWD/../libnoise/src
