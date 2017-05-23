@@ -21,15 +21,22 @@ class MainWindow : public QMainWindow
     QFrame *frame;
     QLabel *imageLabel;
     QScrollArea *scrollArea;
-
+    QString _currentTextureFile ;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void setCurrentTextureFile(const QString& _file) { _currentTextureFile = _file; this->setWindowTitle(_file); }
 
 private slots:
     void on_action_Load_Texture_triggered();
 
     void on_action_Generate_Texture_triggered();
+
+    void on_action_Save_Texture_triggered();
+
+    void on_action_Exit_triggered();
+
+    void on_actionSave_As_triggered();
 
 private:
     Ui::MainWindow *ui;
