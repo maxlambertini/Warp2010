@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <planetmaps/abstractmap.h>
 
 namespace maps {
-    class Granite : public AbstractMap
+    class  LIBNOISEHELPERSSHARED_EXPORT  Granite : public AbstractMap
     {
         Q_OBJECT
     public:

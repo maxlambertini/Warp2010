@@ -1,0 +1,49 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "Module1", 
+                "type" : "perlin", 
+                "freq" : 2.5, 
+                "lac" : 1.5, 
+                "pers": 0.3, 
+                "oct" : 5 
+            }  
+        ],
+    "heightMaps" : ["destMap"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder1",
+                "source" : "Module1",
+                "dest"   : "destMap",
+                "size"   : [1024,576],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer1",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 2.0,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "destImage",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,   0,  0,  64, 255  ],
+                        [  0.500,   0, 64, 128, 255  ],
+                        [ -0.250,  64,128, 255, 255  ],
+                        [  0.000, 128,255,  64, 255  ],
+                        [  0.250, 255, 64, 128, 255  ],
+                        [  0.500, 255,128,  64, 255  ],
+                        [  1.000, 255,255, 128, 255  ]
+                    ]
+            }
+        ],
+    "images" : ["destImage"]
+} 

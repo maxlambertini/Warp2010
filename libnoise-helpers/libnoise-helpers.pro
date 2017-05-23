@@ -9,10 +9,6 @@ QT += core gui widgets
 TARGET = libnoise-helpers
 TEMPLATE = lib
 
-INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../warpmain
-
-LIBS += -L$$PWD/../build/Libnoise/Release -llibnoise-warp
-
 
 DEFINES += LIBNOISEHELPERS_LIBRARY
 
@@ -80,3 +76,10 @@ SOURCES += \
     libnoisehelpers.cpp \
     noiseimageutils.cpp
 
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/release/ -llibnoise-warp
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/debug/ -llibnoise-warp
+else:unix: LIBS += -L$$OUT_PWD/../libnoise-warp/ -llibnoise-warp
+
+INCLUDEPATH += $$PWD/../libnoise-warp
+DEPENDPATH += $$PWD/../libnoise-warp

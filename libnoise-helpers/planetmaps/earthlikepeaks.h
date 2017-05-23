@@ -54,7 +54,7 @@ enum GardenType {
     PREGARDEN
 };
 
-class EarthlikePeaks : public AbstractMap
+class  LIBNOISEHELPERSSHARED_EXPORT  EarthlikePeaks : public AbstractMap
 {
     Q_OBJECT
     double _seaRatio = 0.0;

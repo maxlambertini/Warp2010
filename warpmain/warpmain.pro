@@ -16,8 +16,8 @@ QT += printsupport widgets svg concurrent
 TARGET = WarpNow
 TEMPLATE = app
 QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter
-INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../libnoise-helpers
-LIBS += -L$$PWD/../build/Libnoise/Debug -L$$PWD/../build/Libnoise-Helpers/Debug -llibnoise-warp -llibnoise-helpers
+
+
 SOURCES += main.cpp \
     coordinates.cpp \
     star.cpp \
@@ -174,8 +174,23 @@ FORMS += warpmainwindow.ui \
     dialogs/createbetweenstarsdlg.ui \
     dialogs/noisemapplaygrounddialog.ui
 RESOURCES += Resources.qrc
-win32:RC_FILE = warp2010.rc
+#win32:RC_FILE = warpmain.rc
 #win32:CONFIG += console
 DISTFILES += test.tpl \
     aspects.aspect \
     LICENSE.LGPL
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/release/ -llibnoise-warp
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/debug/ -llibnoise-warp
+else:unix: LIBS += -L$$OUT_PWD/../libnoise-warp/ -llibnoise-warp
+
+INCLUDEPATH += $$PWD/../libnoise-warp
+DEPENDPATH += $$PWD/../libnoise-warp
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/release/ -llibnoise-helpers
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/debug/ -llibnoise-helpers
+else:unix: LIBS += -L$$OUT_PWD/../libnoise-helpers/ -llibnoise-helpers
+
+INCLUDEPATH += $$PWD/../libnoise-helpers
+DEPENDPATH += $$PWD/../libnoise-helpers
