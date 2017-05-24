@@ -68,7 +68,7 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
         QJsonArray ja = json["cpoints"].toArray();
         for (auto x = 0; x < ja.size(); ++x ) {
             QJsonArray ox = ja[x].toArray();
-            _cPoints.append(std::tuple<double,double>(ox[0].toInt(),ox[1].toInt())  );
+            _cPoints.append(std::tuple<double,double>(ox[0].toDouble(),ox[1].toDouble())  );
         }
     }
     //    _cPoints = json["cPoints"].toQVector<std::tuple<double,double>>();

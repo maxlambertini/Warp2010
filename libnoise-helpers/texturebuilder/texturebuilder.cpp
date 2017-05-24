@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QFile>
 #include <QImage>
 #include <memory>
+#include <QMessageBox>
+#include <QString>
 
 TextureBuilder::TextureBuilder()
 {
@@ -214,33 +216,44 @@ void TextureBuilder::buildTextureFromJson(const QString &filename) {
     QFile data (filename);
      if (data.open(QFile::ReadOnly | QFile::Text)) {
          QByteArray json = data.readAll();
-        QJsonDocument doc = QJsonDocument::fromJson(json);
-        auto oStuff = doc.object();
+         QJsonParseError parserError;
+        QJsonDocument doc = QJsonDocument::fromJson(json, &parserError);
+        if (!doc.isNull()) {
+            auto oStuff = doc.object();
 
-        qDebug() << "Loading raw json data";
-        //load raw data
-        this->fromJson(oStuff);
+            qDebug() << "Loading raw json data";
+            //load raw data
+            this->fromJson(oStuff);
 
-        qDebug() << "Creating libnoise stuff";
-        this->createAll();
+            qDebug() << "Creating libnoise stuff";
+            this->createAll();
 
-        qDebug() << "Connecting modules and stuff";
-        this->connectAll();
+            qDebug() << "Connecting modules and stuff";
+            this->connectAll();
 
-        qDebug() << "Building images...";
-        QSharedPointer<utils::Image> imgPtr = this->buildImages();
+            qDebug() << "Building images...";
+            QSharedPointer<utils::Image> imgPtr = this->buildImages();
 
-        QString imgFile = filename+".png";
-        qDebug() << "Saving image...";
-        utils::WriterBMP writer;
-        writer.SetSourceImage (*imgPtr.data());
-        std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
-        auto sizeX = _nmbDesc.first().data()->getSizeX();
-        auto sizeY = _nmbDesc.first().data()->getSizeY();
-        QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
-        img.save(imgFile,"PNG");
-
-
+            QString imgFile = filename+".png";
+            qDebug() << "Saving image...";
+            utils::WriterBMP writer;
+            writer.SetSourceImage (*imgPtr.data());
+            std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
+            auto sizeX = _nmbDesc.first().data()->getSizeX();
+            auto sizeY = _nmbDesc.first().data()->getSizeY();
+            QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
+            img.save(imgFile,"PNG");
+        }
+        else {
+            QString error = parserError.errorString();
+            QMessageBox msgBox;
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.setText("<big>"+error+"</big>");
+            msgBox.setInformativeText(error);
+            msgBox.setStandardButtons(QMessageBox::Ok );
+            msgBox.setDefaultButton(QMessageBox::Ok);
+            msgBox.exec();
+        }
      }
      data.close();
 

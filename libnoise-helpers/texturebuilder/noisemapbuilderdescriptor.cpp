@@ -60,6 +60,7 @@ QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makeCylinderBu
     p->SetDestSize(std::get<0>(_size), std::get<1>(_size));
     p->SetSourceModule( *this->_modules[this->_src1].data());
     p->SetDestNoiseMap( * this->_noiseMaps[this->_dest].data());
+    //p->EnableSeamless(_seamless);
     QSharedPointer<utils::NoiseMapBuilder> sp; sp.reset(p);
     return sp;
 }
@@ -73,6 +74,7 @@ QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makePlaneBuild
     p->SetDestSize(std::get<0>(_size), std::get<1>(_size));
     p->SetSourceModule( *this->_modules[this->_src1].data());
     p->SetDestNoiseMap( * this->_noiseMaps[this->_dest].data());
+    p->EnableSeamless(_seamless);
 
     QSharedPointer<utils::NoiseMapBuilder> sp; sp.reset(p);
     return sp;
@@ -88,6 +90,7 @@ QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makeSphereBuil
     p->SetDestSize(std::get<0>(_size), std::get<1>(_size));
     p->SetSourceModule( *this->_modules[this->_src1].data());
     p->SetDestNoiseMap( * this->_noiseMaps[this->_dest].data());
+    //p->EnableSeamless(_seamless);
     QSharedPointer<utils::NoiseMapBuilder> sp; sp.reset(p);
     return sp;
 
