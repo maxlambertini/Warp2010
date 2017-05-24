@@ -5,6 +5,7 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <QTextStream>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -66,13 +67,26 @@ void MainWindow::on_action_Load_Texture_triggered()
 
 void MainWindow::on_action_Generate_Texture_triggered()
 {
-    this->on_action_Save_Texture_triggered();
-    TextureBuilder tb;
-    tb.buildTextureFromJson(_currentTextureFile);
-    QString imgFile = _currentTextureFile+".png";
-    QPixmap pixmap(imgFile);
-    this->imageLabel->setPixmap(pixmap);
-    this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
+    try {
+        this->on_action_Save_Texture_triggered();
+        TextureBuilder tb;
+        tb.buildTextureFromJson(_currentTextureFile);
+        QString imgFile = _currentTextureFile+".png";
+        QPixmap pixmap(imgFile);
+        this->imageLabel->setPixmap(pixmap);
+        this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
+    }
+    catch (std::exception exc) {
+        QString error = exc.what();
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setText("<big>"+error+"</big>");
+        msgBox.setInformativeText(error);
+        msgBox.setStandardButtons(QMessageBox::Ok );
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.exec();
+
+    }
 }
 
 void MainWindow::on_action_Save_Texture_triggered()
@@ -80,6 +94,8 @@ void MainWindow::on_action_Save_Texture_triggered()
     QString fileName = _currentTextureFile;
     if (_currentTextureFile == "") {
         fileName = QFileDialog::getSaveFileName(this, tr("Save Texture Json File"),"./texture1.texjson",tr("JSON Texture File (*.texjson)"));
+        if (!fileName.endsWith(".texjson"))
+            fileName += ".texjson";
         setCurrentTextureFile( fileName);
     }
     if (!fileName.isEmpty() && ! fileName.isNull()) {
@@ -103,6 +119,8 @@ void MainWindow::on_actionSave_As_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Texture Json File"),"./texture1.texjson",tr("JSON Texture File (*.texjson)"));
     if (!fileName.isEmpty() && ! fileName.isNull()) {
+        if (!fileName.endsWith(".texjson"))
+            fileName += ".texjson";
         QFile f(fileName);
         f.open((QIODevice::ReadWrite | QIODevice::Truncate));
         QTextStream s1(&f);
