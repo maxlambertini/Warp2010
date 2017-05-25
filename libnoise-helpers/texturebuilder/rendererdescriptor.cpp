@@ -71,6 +71,7 @@ void RendererDescriptor::toJson(QJsonObject& json) {
     json["lightBrightness"] = _lightBrightness;
     json["backgroundImage"] = _backgroundImage;
     json["destImage"] = _destImage;
+    json["randomGradient"] = _randomGradient;
 
     QJsonArray giItems;
     GradientInfo gi;
@@ -87,6 +88,8 @@ void RendererDescriptor::toJson(QJsonObject& json) {
 }
 
 void RendererDescriptor::fromJson(const QJsonObject& json) {
+    if (!json["randomGradient"].isNull() && !json["randomGradient"].isUndefined())
+        _randomGradient = json["randomGradient"].toBool();
     if (!json["destImage"].isNull() && !json["destImage"].isUndefined())
         _destImage = json["destImage"].toString();
     if (!json["backgroundImage"].isNull() && !json["backgroundImage"].isUndefined())
@@ -101,7 +104,7 @@ void RendererDescriptor::fromJson(const QJsonObject& json) {
         _lightContrast = json["lightContrast"].toDouble();
     if (!json["lightBrightness"].isNull() && !json["lightBrightness"].isUndefined())
         _lightBrightness = json["lightBrightness"].toDouble();
-    if (!json["gradientInfo"].isNull() && !json["gradientInfo"].isUndefined()) {
+    if (!json["gradientInfo"].isNull() && !json["gradientInfo"].isUndefined() && !_randomGradient) {
         QJsonArray gi = json["gradientInfo"].toArray();
         _gradientInfo.clear();
         for (auto h = 0; h < gi.size(); h++) {
@@ -110,6 +113,33 @@ void RendererDescriptor::fromJson(const QJsonObject& json) {
                     i[1].toInt(),i[2].toInt(),i[3].toInt(),i[4].toInt());
             _gradientInfo.append(grad);
         }
+    }
+    else {
+        double dRes = -1.0;
+        auto startingColor = utils::Color::RandomColor();
+        startingColor.alpha = 255;
+        bool direction = SSGX::d10() % 2 == 0;
+        while (dRes < 1.0) {
+            auto grad = GradientInfo(dRes, static_cast<int>(startingColor.red),
+                                     static_cast<int>(startingColor.green),
+                                     static_cast<int>(startingColor.blue),
+                                     static_cast<int>(startingColor.alpha));
+            _gradientInfo.append(grad);
+            qDebug() << std::get<0>(grad) << "," << std::get<1>(grad) << "," << std::get<2>(grad) << "," << std::get<3>(grad);
+            dRes +=  0.1+SSGX::floatRand()*0.25;
+            if (direction)
+                startingColor = startingColor.darken(30);
+            else
+                startingColor = startingColor.lighten(30);
+            if (SSGX::d6() == 4)
+                direction = !direction;
+        }
+        auto grad = GradientInfo(1.0, static_cast<int>(startingColor.red),
+                                 static_cast<int>(startingColor.green),
+                                 static_cast<int>(startingColor.blue),
+                                 static_cast<int>(startingColor.alpha));
+        _gradientInfo.append(grad);
+
     }
 
 }

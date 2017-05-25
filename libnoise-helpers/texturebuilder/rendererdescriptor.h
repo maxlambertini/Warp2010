@@ -36,6 +36,7 @@ using namespace utils;
 
 //position, r, g, b, a
 typedef std::tuple<double,int,int,int,int> GradientInfo;
+typedef std::tuple<int, utils::Color> RandomGradientRow;
 
 
 class LIBNOISEHELPERSSHARED_EXPORT RendererDescriptor : public QObject
@@ -49,6 +50,7 @@ class LIBNOISEHELPERSSHARED_EXPORT RendererDescriptor : public QObject
     bool _enabledLight = false;
     double _lightContrast = 1.0;
     double _lightBrightness = 1.0;
+    bool _randomGradient = false;
 
 
     QVector<GradientInfo> _gradientInfo;
@@ -66,6 +68,7 @@ public:
     bool enabledLight() { return _enabledLight; }
     double lightContrast() { return _lightContrast; }
     double lightBrightness() { return _lightBrightness; }
+    bool randomGradient() { return _randomGradient; }
 
     const QMap<QString, QSharedPointer<utils::NoiseMap>>& noiseMaps() { return _noiseMaps; }
     const QMap<QString, QSharedPointer<utils::Image>>& images() { return _images; }
@@ -78,6 +81,7 @@ public:
     void setEnabledlight(bool v) { _enabledLight = v ; }
     void setLightcontrast(double v) { _lightContrast = v ; }
     void setLightbrightness(double v) { _lightBrightness = v ; }
+    void setRandomGradient (bool b ) { _randomGradient = b; }
 
     void setNoiseMaps(const QMap<QString, QSharedPointer<utils::NoiseMap>>& v) { _noiseMaps = v; }
     void setImages(const QMap<QString, QSharedPointer<utils::Image>>& v) { _images = v; }

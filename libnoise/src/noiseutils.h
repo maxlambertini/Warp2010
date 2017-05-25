@@ -33,6 +33,7 @@
 #include <noise/noise.h>
 
 
+
 using namespace noise;
 
 namespace noise
@@ -108,6 +109,20 @@ namespace noise
     /// canuckleheads.
     const double DEFAULT_METRES_PER_POINT = DEFAULT_METERS_PER_POINT;
 
+    typedef NOISE_SHARED_EXPORT  struct {
+        noise::uint8 r;       // a fraction between 0 and 1
+        noise::uint8 g;       // a fraction between 0 and 1
+        noise::uint8 b;       // a fraction between 0 and 1
+    } Rgb;
+
+    typedef NOISE_SHARED_EXPORT  struct {
+        noise::uint8 h;       // angle in degrees
+        noise::uint8 s;       // a fraction between 0 and 1
+        noise::uint8 v;       // a fraction between 0 and 1
+    } Hsv;
+
+
+
     class NOISE_SHARED_EXPORT Rand256
     {
     public:
@@ -178,6 +193,9 @@ namespace noise
         /// @param randomizes this way even alpha value.
         Color randomizeColor (int step = 20, bool ascending = true, bool randomizeAlpha = false);
 
+        Hsv hsv();
+        void setColorFromHsv(Hsv in);
+
         /// Constructor.
         ///
         /// @param r Value of the red channel.
@@ -201,6 +219,41 @@ namespace noise
 
         /// Value of the red channel.
         noise::uint8 red;
+
+        Color darken(int step = 15) {
+            Color c(red,green,blue,alpha);
+            auto hsv = c.hsv();
+            auto h = (Rand256::instance().intValue(step)) - step/2;
+            if (hsv.h + h < 0 || hsv.h + h > 255)
+                hsv.h = Rand256::instance().intValue(255);
+            auto w = Rand256::instance().intValue(step);
+            if (hsv.v -w  < 0)
+                hsv.v += w;
+            else
+                hsv.v -= w;
+            while (hsv.v < 80) {
+                c = Color::RandomColor();
+                hsv = c.hsv();
+            }
+            c.setColorFromHsv(hsv);
+            return c;
+        }
+
+        Color lighten(int step = 15) {
+            Color c(red,green,blue,alpha);
+            auto hsv = c.hsv();
+            auto h = (Rand256::instance().intValue(step)) -step/2;
+            if (hsv.h + h < 0 || hsv.h + h > 255)
+                hsv.h = Rand256::instance().intValue(255);
+
+            auto w = Rand256::instance().intValue(step);
+            if (hsv.v +w  > 255)
+                hsv.v -= w;
+            else
+                hsv.v += w;
+            c.setColorFromHsv(hsv);
+            return c;
+        }
 
     };
 

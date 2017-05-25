@@ -45,6 +45,8 @@ typedef QMap<QString, QSharedPointer<utils::RendererImage>> MapRenderers;
 
 typedef QVector<QSharedPointer<utils::RendererImage>> ListRenderers;
 
+
+
 class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
 {
     Q_OBJECT
