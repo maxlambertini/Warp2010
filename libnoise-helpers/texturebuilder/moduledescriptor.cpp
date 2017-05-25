@@ -182,35 +182,50 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
 
 //from descriptor to actual object
 QSharedPointer<Module> ModuleDescriptor::makeModule() {
-    //"Oct": 0.0 },
-    if (_moduleType=="Billow") return makeBillow();
-    if (_moduleType=="Checkerboard") return makeCheckerboard();
-    if (_moduleType=="Const") return makeConst();
-    if (_moduleType=="Cylinders") return makeCylinders();
-    if (_moduleType=="Perlin") return makePerlin();
-    if (_moduleType=="RidgedMulti") return makeRidgedMulti();
-    if (_moduleType=="Spheres") return makeSpheres();
-    if (_moduleType=="Voronoi") return makeVoronoi();
-    if (_moduleType=="Abs") return makeAbs();
-    if (_moduleType=="Clamp") return makeClamp();
-    if (_moduleType=="Curve") return makeCurve();
-    if (_moduleType=="Exponent") return makeExponent();
-    if (_moduleType=="Invert") return makeInvert();
-    if (_moduleType=="ScaleBias") return makeScaleBias();
-    if (_moduleType=="Terrace") return makeTerrace();
-    if (_moduleType=="Turbulence") return makeTurbulence();
-    if (_moduleType=="Add") return makeAdd();
-    if (_moduleType=="Max") return makeMax();
-    if (_moduleType=="Min") return makeMin();
-    if (_moduleType=="Multiply") return makeMultiply();
-    if (_moduleType=="Power") return makePower();
-    if (_moduleType=="Blend") return makeBlend();
-    if (_moduleType=="Select") return makeSelect();
-    if (_moduleType=="Displace") return makeDisplace();
-    if (_moduleType=="RotatePoint") return makeRotatePoint();
-    if (_moduleType=="ScalePoint") return makeScalePoint();
-    if (_moduleType=="TranslatePoint") return makeTranslatePoint();
-    return makePerlin();
+    try {
+        //"Oct": 0.0 },
+        if (_moduleType=="Billow") return makeBillow();
+        if (_moduleType=="Checkerboard") return makeCheckerboard();
+        if (_moduleType=="Const") return makeConst();
+        if (_moduleType=="Cylinders") return makeCylinders();
+        if (_moduleType=="Perlin") return makePerlin();
+        if (_moduleType=="RidgedMulti") return makeRidgedMulti();
+        if (_moduleType=="Spheres") return makeSpheres();
+        if (_moduleType=="Voronoi") return makeVoronoi();
+        if (_moduleType=="Abs") return makeAbs();
+        if (_moduleType=="Clamp") return makeClamp();
+        if (_moduleType=="Curve") return makeCurve();
+        if (_moduleType=="Exponent") return makeExponent();
+        if (_moduleType=="Invert") return makeInvert();
+        if (_moduleType=="ScaleBias") return makeScaleBias();
+        if (_moduleType=="Terrace") return makeTerrace();
+        if (_moduleType=="Turbulence") return makeTurbulence();
+        if (_moduleType=="Add") return makeAdd();
+        if (_moduleType=="Max") return makeMax();
+        if (_moduleType=="Min") return makeMin();
+        if (_moduleType=="Multiply") return makeMultiply();
+        if (_moduleType=="Power") return makePower();
+        if (_moduleType=="Blend") return makeBlend();
+        if (_moduleType=="Select") return makeSelect();
+        if (_moduleType=="Displace") return makeDisplace();
+        if (_moduleType=="RotatePoint") return makeRotatePoint();
+        if (_moduleType=="ScalePoint") return makeScalePoint();
+        if (_moduleType=="TranslatePoint") return makeTranslatePoint();
+        return makePerlin();
+    }
+    catch (noise::ExceptionInvalidParam &exc) {
+        throw exc;
+    }
+    catch (noise::ExceptionNoModule &exc) {
+        throw exc;
+    }
+    catch (noise::ExceptionUnknown &exc) {
+        throw exc;
+    }
+    catch (...) {
+        std::string err = "Undefined error";
+        throw err;
+    }
 }
 
 //{ "module":"Billow" , "mame": "mod_name" , "seed": 0.0 , "freq": 0.0 , "lac": 0.0 , "pers": 0.0 ,
@@ -220,6 +235,7 @@ QSharedPointer<Module> ModuleDescriptor::makeBillow() {
     m->SetFrequency(_freq);
     m->SetLacunarity(_lac);
     m->SetPersistence(_pers);
+
     m->SetOctaveCount(_oct);
     QSharedPointer<Module> p; p.reset(m);
     return p;
@@ -253,9 +269,9 @@ QSharedPointer<Module> ModuleDescriptor::makePerlin() {
     Perlin* m = new Perlin();
     m->SetLacunarity(_lac);
     m->SetFrequency(_freq);
-    m->SetOctaveCount(_oct);
     m->SetPersistence(_pers);
     m->SetSeed(_seed);
+    m->SetOctaveCount(_oct);
     QSharedPointer<Module> p; p.reset(m);
     return p;
 }

@@ -76,17 +76,34 @@ void MainWindow::on_action_Generate_Texture_triggered()
         this->imageLabel->setPixmap(pixmap);
         this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
     }
+    catch (noise::ExceptionInvalidParam &exc) {
+        errorBox("Invalid parameter somewhere. Check zeros and negatives ");
+    }
+    catch (noise::ExceptionNoModule &exc) {
+        errorBox("Unknown module referenced as source or control module ");
+    }
+    catch (noise::ExceptionUnknown &exc) {
+        errorBox("Libnoise unknown error ");
+    }
     catch (std::exception exc) {
         QString error = exc.what();
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText("<big>"+error+"</big>");
-        msgBox.setInformativeText(error);
-        msgBox.setStandardButtons(QMessageBox::Ok );
-        msgBox.setDefaultButton(QMessageBox::Ok);
-        msgBox.exec();
-
+        errorBox(error);
     }
+    catch (...) {
+        std::string err = "Undefined error";
+        throw err;
+    }
+}
+
+void MainWindow::errorBox(QString msg) {
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Critical);
+    msgBox.setText("<big>"+msg+"</big>");
+    msgBox.setInformativeText(msg);
+    msgBox.setStandardButtons(QMessageBox::Ok );
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.exec();
+
 }
 
 void MainWindow::on_action_Save_Texture_triggered()
