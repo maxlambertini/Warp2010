@@ -166,6 +166,67 @@ Hsv Color::hsv() {
     return hsv;
 }
 
+Color Color::darken(int step ) {
+    Color c(red,green,blue,alpha);
+    auto hsv = c.hsv();
+    auto h = (Rand256::instance().intValue(step)) - step/2;
+    if (hsv.h + h < 0 || hsv.h + h > 255)
+        hsv.h = Rand256::instance().intValue(255);
+    auto w = Rand256::instance().intValue(step);
+    if (hsv.v -w  < 60)
+        hsv.v += w;
+    else
+        hsv.v -= w;
+    while (hsv.v < 60) {
+        c = Color::RandomColor();
+        hsv = c.hsv();
+    }
+    c.setColorFromHsv(hsv);
+    return c;
+}
+
+Color Color::lighten(int step ) {
+    Color c(red,green,blue,alpha);
+    auto hsv = c.hsv();
+    auto h = (Rand256::instance().intValue(step)) -step/2;
+    if (hsv.h + h < 0 || hsv.h + h > 255)
+        hsv.h = Rand256::instance().intValue(255);
+
+    auto w = Rand256::instance().intValue(step);
+    if (hsv.v +w  > 240)
+        hsv.v -= w;
+    else
+        hsv.v += w;
+    c.setColorFromHsv(hsv);
+    return c;
+}
+
+Color Color::change(int hue, int saturation,int value) {
+    Color c(red,green,blue,alpha);
+    auto hsv = c.hsv();
+    auto h1  = Rand256::instance().intValue(hue*2+1) -hue;
+    auto s1  = Rand256::instance().intValue(saturation*2+1) -saturation;
+    auto v1  = Rand256::instance().intValue(value*2+1) -value;
+
+    if (hsv.h+h1 < 0 || hsv.h+h1 > 255)
+        hsv.h -= h1;
+    else
+        hsv.h += h1;
+    if (hsv.s+s1 < 0 || hsv.s+s1 > 255)
+        hsv.s -= s1;
+    else
+        hsv.s+= s1;
+    if (hsv.v+v1 < 60 || hsv.v+v1 > 240)
+        hsv.v -= v1;
+    else
+        hsv.v += v1;
+
+    c.setColorFromHsv(hsv);
+    return c;
+
+}
+
+
 void Color::setColorFromHsv(Hsv hsv) {
         Rgb         rgb;
 

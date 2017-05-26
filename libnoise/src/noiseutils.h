@@ -220,41 +220,10 @@ namespace noise
         /// Value of the red channel.
         noise::uint8 red;
 
-        Color darken(int step = 15) {
-            Color c(red,green,blue,alpha);
-            auto hsv = c.hsv();
-            auto h = (Rand256::instance().intValue(step)) - step/2;
-            if (hsv.h + h < 0 || hsv.h + h > 255)
-                hsv.h = Rand256::instance().intValue(255);
-            auto w = Rand256::instance().intValue(step);
-            if (hsv.v -w  < 0)
-                hsv.v += w;
-            else
-                hsv.v -= w;
-            while (hsv.v < 80) {
-                c = Color::RandomColor();
-                hsv = c.hsv();
-            }
-            c.setColorFromHsv(hsv);
-            return c;
-        }
-
-        Color lighten(int step = 15) {
-            Color c(red,green,blue,alpha);
-            auto hsv = c.hsv();
-            auto h = (Rand256::instance().intValue(step)) -step/2;
-            if (hsv.h + h < 0 || hsv.h + h > 255)
-                hsv.h = Rand256::instance().intValue(255);
-
-            auto w = Rand256::instance().intValue(step);
-            if (hsv.v +w  > 255)
-                hsv.v -= w;
-            else
-                hsv.v += w;
-            c.setColorFromHsv(hsv);
-            return c;
-        }
-
+        // Color manipulation methods
+        Color darken(int step = 15);
+        Color lighten(int step = 15);
+        Color change(int hue = 5, int saturation = 10, int value=15);
     };
 
     /// Defines a point used to build a color gradient.

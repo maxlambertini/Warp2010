@@ -52,6 +52,11 @@ class LIBNOISEHELPERSSHARED_EXPORT RendererDescriptor : public QObject
     double _lightBrightness = 1.0;
     bool _randomGradient = false;
 
+    int _rndHue        = 0;
+    int _rndSaturation = 0;
+    int _rndValue      = 0;
+    bool applyRandomFactor() { return _rndHue != 0 || _rndSaturation != 0 || _rndValue != 0; }
+
 
     QVector<GradientInfo> _gradientInfo;
     QMap<QString, QSharedPointer<utils::NoiseMap>> _noiseMaps;
