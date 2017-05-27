@@ -42,7 +42,7 @@ public:
         //qDebug() << appDirPath;
         return appDirPath;
     #else
-        QString warpPath =  QDir::homePath()+"/Warp2010_Data";
+        QString warpPath =  QDir::homePath()+"/.local/Warp2010_Data";
         QDir dir(warpPath);
         if (!dir.exists(warpPath)) {
             dir.mkpath(warpPath);

@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QTextStream>
 #include <QMessageBox>
+#include <apppaths.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -47,7 +48,7 @@ void MainWindow::on_action_Load_Texture_triggered()
 {
     QString fileName =
                 QFileDialog::getOpenFileName(this, tr("Open Texture Json File"),
-                                             "./",
+                                             AppPaths::appDir(),
                                tr("JSON Texture File (*.texjson)"));
         if (!fileName.isEmpty() && !fileName.isNull())
         {
@@ -71,7 +72,9 @@ void MainWindow::on_action_Generate_Texture_triggered()
         this->on_action_Save_Texture_triggered();
         TextureBuilder tb;
         tb.buildTextureFromJson(_currentTextureFile);
-        QString imgFile = _currentTextureFile+".png";
+        QString filetype = tb.images().keys().first();
+        QString imgFile = _currentTextureFile;
+        imgFile = imgFile.replace(".texjson", "."+ filetype+".png");
         QPixmap pixmap(imgFile);
         this->imageLabel->setPixmap(pixmap);
         this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
@@ -106,11 +109,21 @@ void MainWindow::errorBox(QString msg) {
 
 }
 
+int MainWindow::questionBox(QString msg) {
+    QMessageBox msgBox;
+    msgBox.setText(msg);
+    msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Save);
+    int ret = msgBox.exec();
+    return ret;
+}
+
 void MainWindow::on_action_Save_Texture_triggered()
 {
     QString fileName = _currentTextureFile;
     if (_currentTextureFile == "") {
-        fileName = QFileDialog::getSaveFileName(this, tr("Save Texture Json File"),"./texture1.texjson",tr("JSON Texture File (*.texjson)"));
+        fileName = QFileDialog::getSaveFileName(this, tr("Save Texture Json File"),
+                                                AppPaths::appDir() + "/texture1.texjson",tr("JSON Texture File (*.texjson)"));
         if (!fileName.endsWith(".texjson"))
             fileName += ".texjson";
         setCurrentTextureFile( fileName);
@@ -134,7 +147,8 @@ void MainWindow::on_action_Exit_triggered()
 
 void MainWindow::on_actionSave_As_triggered()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Texture Json File"),"./texture1.texjson",tr("JSON Texture File (*.texjson)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Texture Json File"),
+                                                    AppPaths::appDir()+ "/texture1.texjson",tr("JSON Texture File (*.texjson)"));
     if (!fileName.isEmpty() && ! fileName.isNull()) {
         if (!fileName.endsWith(".texjson"))
             fileName += ".texjson";

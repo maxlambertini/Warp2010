@@ -79,6 +79,12 @@ public:
     void createRenderers();
     void createImages();
 
+    const MapNoiseMapBuilders& noiseMapBuilders() { return _noiseMapBuilders; }
+    const MapHeightMaps& heightMaps() { return _heightMaps; }
+    const MapImages& images() { return _images; }
+    const MapRenderers& renderers() { return _renderers; }
+    const MapModules& modules() { return _modules; }
+
     void createAll() {
         qDebug() << "Creating modules";
         createModules();

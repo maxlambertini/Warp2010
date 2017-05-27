@@ -118,7 +118,7 @@ void TextureBuilder::createImages() {
     QSharedPointer<ImageDescriptor> img;
     foreach (img,__imDesc) {
         auto ptr = img.data()->makeImage();
-        _images.insert(img.data()->name(), ptr);
+        _images.insert(img.data()->name(),ptr);
     }
 }
 
@@ -213,6 +213,8 @@ void TextureBuilder::renderRenderers()
 }
 
 void TextureBuilder::buildTextureFromJson(const QString &filename) {
+    QString simpleFile = filename;
+    simpleFile = simpleFile.replace(".textjson","");
     QFile data (filename);
      if (data.open(QFile::ReadOnly | QFile::Text)) {
          QByteArray json = data.readAll();
@@ -232,17 +234,27 @@ void TextureBuilder::buildTextureFromJson(const QString &filename) {
             this->connectAll();
 
             qDebug() << "Building images...";
+            QString outFile = "";
             QSharedPointer<utils::Image> imgPtr = this->buildImages();
+            int h = 0;
+            QMapIterator<QString, QSharedPointer<ImageDescriptor>> iter(__imDesc);
+            while (iter.hasNext()) {
+                iter.next();
+                auto name = iter.key();
+                auto ImgPtr = _images[name].data();
+                QString filename = simpleFile+"."+name+".png";
+                if (h == 0)
+                    outFile = filename;
+                qDebug() << "Saving image...";
+                utils::WriterBMP writer;
+                writer.SetSourceImage (*ImgPtr);
+                std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
+                auto sizeX = _nmbDesc.first().data()->getSizeX();
+                auto sizeY = _nmbDesc.first().data()->getSizeY();
+                QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
+                img.save(filename,"PNG");
+            }
 
-            QString imgFile = filename+".png";
-            qDebug() << "Saving image...";
-            utils::WriterBMP writer;
-            writer.SetSourceImage (*imgPtr.data());
-            std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
-            auto sizeX = _nmbDesc.first().data()->getSizeX();
-            auto sizeY = _nmbDesc.first().data()->getSizeY();
-            QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
-            img.save(imgFile,"PNG");
         }
         else {
             QString error = parserError.errorString();

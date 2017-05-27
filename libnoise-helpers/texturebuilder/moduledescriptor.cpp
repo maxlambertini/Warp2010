@@ -181,7 +181,7 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
 }
 
 //from descriptor to actual object
-QSharedPointer<Module> ModuleDescriptor::makeModule() {
+QSharedPointer<Module> ModuleDescriptor::   makeModule() {
     try {
         //"Oct": 0.0 },
         if (_moduleType=="Billow") return makeBillow();
