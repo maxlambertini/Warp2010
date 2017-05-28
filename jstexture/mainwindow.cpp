@@ -72,12 +72,12 @@ void MainWindow::on_action_Generate_Texture_triggered()
         this->on_action_Save_Texture_triggered();
         TextureBuilder tb;
         tb.buildTextureFromJson(_currentTextureFile);
-        QString filetype = tb.images().keys().first();
-        QString imgFile = _currentTextureFile;
-        imgFile = imgFile.replace(".texjson", "."+ filetype+".png");
-        QPixmap pixmap(imgFile);
-        this->imageLabel->setPixmap(pixmap);
-        this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
+        if (tb.generatedMaps().count()> 0) {
+            QString imgFile = tb.generatedMaps().first();
+            QPixmap pixmap(imgFile);
+            this->imageLabel->setPixmap(pixmap);
+            this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
+        }
     }
     catch (noise::ExceptionInvalidParam &exc) {
         errorBox("Invalid parameter somewhere. Check zeros and negatives ");

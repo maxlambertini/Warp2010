@@ -64,6 +64,8 @@ class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
     MapRenderers _renderers;
 
     ListRenderers _lstRenderers;
+
+    QVector<QString> _generatedMaps;
 public:
     TextureBuilder();
 
@@ -119,6 +121,10 @@ public:
     }
 
     void buildTextureFromJson(const QString& filename);
+
+    const QVector<QString>& generatedMaps() {
+        return _generatedMaps;
+    }
 };
 
 #endif // TEXTUREBUILDER_H

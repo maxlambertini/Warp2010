@@ -238,6 +238,7 @@ void TextureBuilder::buildTextureFromJson(const QString &filename) {
             QSharedPointer<utils::Image> imgPtr = this->buildImages();
             int h = 0;
             QMapIterator<QString, QSharedPointer<ImageDescriptor>> iter(__imDesc);
+            _generatedMaps.clear();
             while (iter.hasNext()) {
                 iter.next();
                 auto name = iter.key();
@@ -253,10 +254,12 @@ void TextureBuilder::buildTextureFromJson(const QString &filename) {
                 auto sizeY = _nmbDesc.first().data()->getSizeY();
                 QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
                 img.save(filename,"PNG");
+                _generatedMaps.append(filename);
             }
 
         }
         else {
+            _generatedMaps.clear();
             QString error = parserError.errorString();
             QMessageBox msgBox;
             msgBox.setIcon(QMessageBox::Critical);
