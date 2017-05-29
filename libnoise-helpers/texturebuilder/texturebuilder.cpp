@@ -27,12 +27,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QMessageBox>
 #include <QString>
 
-TextureBuilder::TextureBuilder()
+TextureBuilder::TextureBuilder() :
+    _outputFolder("."),
+    _bumpMap(""),
+    _reflectionMap(""),
+    _cloudMap(""),
+    _colorMap("")
 {
-
 }
 
 void TextureBuilder::fromJson(const QJsonObject &json) {
+
+    if (!json["colorMap"].isNull() && !json["colorMap"].isUndefined())
+        _colorMap = json["colorMap"].toString();
+    if (!json["cloudMap"].isNull() && !json["cloudMap"].isUndefined())
+        _cloudMap = json["cloudMap"].toString();
+    if (!json["reflectionMap"].isNull() && !json["reflectionMap"].isUndefined())
+        _reflectionMap = json["reflectionMap"].toString();
+    if (!json["bumpMap"].isNull() && !json["bumpMap"].isUndefined())
+        _bumpMap = json["bumpMap"].toString();
+
+
     QJsonArray aModules = json["modules"].toArray();
     QJsonArray aHeightMaps = json["heightMaps"].toArray();
     QJsonArray aHMBuilders = json["heightMapBuilders"].toArray();
@@ -90,6 +105,10 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         QString o = aImages[h].toString();
 
         m->setName(o);
+        if (h == 0 && _colorMap == "") _colorMap = o;
+        if (h == 1 && _cloudMap == "") _cloudMap = o;
+        if (h == 2 && _bumpMap == "") _bumpMap =  o;
+        if (h == 3 && _reflectionMap == "") _reflectionMap = o;
 
         QSharedPointer<ImageDescriptor> p; p.reset(m);
         __imDesc.insert(o,p);
@@ -221,6 +240,7 @@ void TextureBuilder::buildTextureFromJson(const QString &filename) {
          QJsonParseError parserError;
         QJsonDocument doc = QJsonDocument::fromJson(json, &parserError);
         if (!doc.isNull()) {
+            emit this->textureGenerationStarting();
             auto oStuff = doc.object();
 
             qDebug() << "Loading raw json data";
@@ -255,8 +275,9 @@ void TextureBuilder::buildTextureFromJson(const QString &filename) {
                 QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
                 img.save(filename,"PNG");
                 _generatedMaps.append(filename);
+                emit this->textureGenerated(name);
             }
-
+            emit this->allTextureGenerated();
         }
         else {
             _generatedMaps.clear();
@@ -268,6 +289,7 @@ void TextureBuilder::buildTextureFromJson(const QString &filename) {
             msgBox.setStandardButtons(QMessageBox::Ok );
             msgBox.setDefaultButton(QMessageBox::Ok);
             msgBox.exec();
+            emit this->noTextureGenerated();
         }
      }
      data.close();

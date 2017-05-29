@@ -66,8 +66,24 @@ class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
     ListRenderers _lstRenderers;
 
     QVector<QString> _generatedMaps;
+
+    QString _cloudMap;
+    QString _colorMap;
+    QString _bumpMap;
+    QString _reflectionMap;
+
+    QString _outputFolder;
+
 public:
     TextureBuilder();
+
+    const QString& cloudMap() { return _cloudMap; }
+    const QString& colorMap() { return _colorMap; }
+    const QString& reflectionMap() { return _reflectionMap; }
+    const QString& bumpMap() { return _bumpMap; }
+
+    const QString& outputFolder() { return _outputFolder; }
+    void setOutputFolder(const QString& f) { _outputFolder = f; }
 
     void fromJson(const QJsonObject& json);
     void toJson(QJsonObject& json);
@@ -125,6 +141,12 @@ public:
     const QVector<QString>& generatedMaps() {
         return _generatedMaps;
     }
+
+signals:
+    void textureGenerationStarting();
+    void textureGenerated(QString texture);
+    void allTextureGenerated();
+    void noTextureGenerated();
 };
 
 #endif // TEXTUREBUILDER_H
