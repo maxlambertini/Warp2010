@@ -21,21 +21,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QSplitter *splitter = new QSplitter(this);
     this->plainTextEdit = new QPlainTextEdit;
 
-    imageLabel->setBackgroundRole(QPalette::Base);
-    imageLabel->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
-    imageLabel->setScaledContents(false);
-
-    scrollArea->setBackgroundRole(QPalette::Dark);
-    scrollArea->setWidget(imageLabel);
-
     const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
-    splitter->addWidget(this->plainTextEdit);
     this->plainTextEdit->setFont(fixedFont);
-    splitter->addWidget(this->scrollArea);
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(splitter,1);
+    layout->addWidget(plainTextEdit,1);
     ui->centralWidget->setLayout(layout);
     //this->setLayout(layout);
+
+    this->_viewer = new ViewingDialog(this);
 
 }
 
@@ -74,9 +67,15 @@ void MainWindow::on_action_Generate_Texture_triggered()
         tb.buildTextureFromJson(_currentTextureFile);
         if (tb.generatedMaps().count()> 0) {
             QString imgFile = tb.generatedMaps().first();
-            QPixmap pixmap(imgFile);
-            this->imageLabel->setPixmap(pixmap);
-            this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
+            if (_viewer->isHidden()) {
+                _viewer->show();
+                _viewer->raise();
+                _viewer->activateWindow();
+            }
+            _viewer->loadImage(imgFile);
+            //QPixmap pixmap(imgFile);
+            //this->imageLabel->setPixmap(pixmap);
+            //this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
         }
     }
     catch (noise::ExceptionInvalidParam &exc) {

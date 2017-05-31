@@ -18,12 +18,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    apppaths.cpp
+    apppaths.cpp \
+    viewingdialog.cpp
 
 HEADERS  += mainwindow.h \
-    apppaths.h
+    apppaths.h \
+    viewingdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    viewingdialog.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/release/ -llibnoise-helpers
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/debug/ -llibnoise-helpers

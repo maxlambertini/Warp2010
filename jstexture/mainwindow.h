@@ -7,6 +7,7 @@
 #include <QGraphicsScene>
 #include <QLabel>
 #include <QScrollArea>
+#include <viewingdialog.h>
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +23,7 @@ class MainWindow : public QMainWindow
     QLabel *imageLabel;
     QScrollArea *scrollArea;
     QString _currentTextureFile ;
+    ViewingDialog *_viewer;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
