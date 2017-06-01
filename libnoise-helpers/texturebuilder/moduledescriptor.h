@@ -90,6 +90,7 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     double _rough;
     double _value;
 
+    bool _enableRandom = false;
 
     //reference to a Map containing loaded modules
     QMap<QString, QSharedPointer<Module>> _modules;
@@ -123,6 +124,7 @@ public:
     double pow() { return _pow; }
     double rough() { return _rough; }
     double value() { return _value; }
+    bool enableRandom() { return _enableRandom; }
 
     const QMap<QString, QSharedPointer<Module>>& modules() { return _modules; }
 
@@ -156,6 +158,7 @@ public:
     void setValue(double v) { _value = v ; }
 
     void setModules(const QMap<QString, QSharedPointer<Module>>& m) {_modules = m; }
+    void setEnableRandom(bool b) { _enableRandom = b; }
 
     void fromJson(const QJsonObject& json);
     void toJson(QJsonObject& json);

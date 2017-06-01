@@ -8,14 +8,24 @@
 #include <QLabel>
 #include <QScrollArea>
 #include <viewingdialog.h>
+#include <QAction>
+#include <QWidget>
+#include <QToolBar>
+#include <QStatusBar>
 
-namespace Ui {
-class MainWindow;
-}
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+    QAction *action_Load_Texture;
+    QAction *action_Generate_Texture;
+    QAction *action_Save_Texture;
+    QAction *action_Exit;
+    QAction *actionSave_As;
+    QWidget *centralWidget;
+    QToolBar *mainToolBar;
+    QStatusBar *statusBar;
 
     QPlainTextEdit *plainTextEdit;
     QGraphicsScene *scene;
@@ -33,17 +43,16 @@ public:
 
 private slots:
     void on_action_Load_Texture_triggered();
-
     void on_action_Generate_Texture_triggered();
-
     void on_action_Save_Texture_triggered();
-
     void on_action_Exit_triggered();
-
     void on_actionSave_As_triggered();
 
 private:
-    Ui::MainWindow *ui;
+    void createActions();
+    void createMenus();
+    void createWidgets();
+    void layoutWidgets();
 };
 
 #endif // MAINWINDOW_H

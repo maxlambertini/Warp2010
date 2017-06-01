@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <texturebuilder/texturebuilder.h>
 #include <QFileDialog>
 #include <QSplitter>
@@ -12,29 +11,63 @@ MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
     scrollArea(new QScrollArea),
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
     _currentTextureFile("")
 {
-    ui->setupUi(this);
-
-    //custom setup;
-    QSplitter *splitter = new QSplitter(this);
-    this->plainTextEdit = new QPlainTextEdit;
-
-    const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
-    this->plainTextEdit->setFont(fixedFont);
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(plainTextEdit,1);
-    ui->centralWidget->setLayout(layout);
-    //this->setLayout(layout);
-
-    this->_viewer = new ViewingDialog(this);
-
+    this->createActions();
+    this->createMenus();
+    this->createWidgets();
+    this->layoutWidgets();
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+}
+
+void MainWindow::createActions() {
+    action_Load_Texture = new QAction("Load Texture",this);
+    connect(action_Load_Texture,SIGNAL(triggered(bool)),this, SLOT(on_action_Load_Texture_triggered()));
+    action_Generate_Texture = new QAction("Generate Texture",this);
+    connect(action_Generate_Texture,SIGNAL(triggered(bool)),this, SLOT(on_action_Generate_Texture_triggered()));
+    action_Save_Texture = new QAction("Save Texture", this);
+    connect(action_Save_Texture,SIGNAL(triggered(bool)),this, SLOT(on_action_Save_Texture_triggered()));
+    action_Exit = new QAction("Exit",this);
+    connect(action_Exit, SIGNAL(triggered(bool)),this, SLOT(on_action_Exit_triggered()));
+    actionSave_As = new QAction("Save as",this);
+    connect(actionSave_As,SIGNAL(triggered(bool)),this, SLOT(on_actionSave_As_triggered()));
+}
+
+void MainWindow::createMenus() {
+    mainToolBar = new QToolBar(this);
+    statusBar = new QStatusBar(this);
+    mainToolBar->addAction(action_Load_Texture);
+    mainToolBar->addAction(action_Save_Texture);
+    mainToolBar->addAction(actionSave_As);
+    mainToolBar->addAction(action_Generate_Texture);
+    mainToolBar->addAction(action_Exit);
+}
+
+void MainWindow::createWidgets() {
+
+    //custom setup;
+    centralWidget = new QWidget(this);
+    //QSplitter *splitter = new QSplitter(this);
+    this->plainTextEdit = new QPlainTextEdit(this);
+
+    const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+    this->plainTextEdit->setFont(fixedFont);
+
+}
+
+void MainWindow::layoutWidgets() {
+    this->setCentralWidget(centralWidget);
+    this->addToolBar(Qt::TopToolBarArea, mainToolBar);
+    this->setStatusBar(statusBar);
+
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget(plainTextEdit,1);
+    this->centralWidget->setLayout(layout);
+    //this->setLayout(layout);
+    this->_viewer = new ViewingDialog(this);
 }
 
 void MainWindow::on_action_Load_Texture_triggered()

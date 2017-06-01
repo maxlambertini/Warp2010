@@ -30,6 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <texturebuilder/moduledescriptor.h>
 #include <texturebuilder/noisemapbuilderdescriptor.h>
 #include <texturebuilder/rendererdescriptor.h>
+#include "ssg_structures.h"
 
 typedef QMap<QString, QSharedPointer<HeightMapDescriptor>> MapHeightMapDescriptors;
 typedef QMap<QString, QSharedPointer<ImageDescriptor>> MapImageDescriptors;
@@ -45,7 +46,7 @@ typedef QMap<QString, QSharedPointer<utils::RendererImage>> MapRenderers;
 
 typedef QVector<QSharedPointer<utils::RendererImage>> ListRenderers;
 
-
+typedef QVector<double> RandomFactors;
 
 class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
 {
@@ -71,19 +72,36 @@ class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
     QString _colorMap;
     QString _bumpMap;
     QString _reflectionMap;
+    RandomFactors _randomFactors;
 
     QString _outputFolder;
 
 public:
     TextureBuilder();
 
-    const QString& cloudMap() { return _cloudMap; }
-    const QString& colorMap() { return _colorMap; }
-    const QString& reflectionMap() { return _reflectionMap; }
-    const QString& bumpMap() { return _bumpMap; }
+    inline const QString& cloudMap() { return _cloudMap; }
+    inline const QString& colorMap() { return _colorMap; }
+    inline const QString& reflectionMap() { return _reflectionMap; }
+    inline const QString& bumpMap() { return _bumpMap; }
+    inline const RandomFactors& randomFactors() { return _randomFactors; }
+    inline bool useRandomFactors() {
+       return _randomFactors.count() > 0 && _randomFactors.first() > 0.0;
+    }
+    inline double pickRandomFactor() {
+        return useRandomFactors() ?
+                    _randomFactors[SSGX::dx(_randomFactors.count())] : 0.0;
+    }
 
-    const QString& outputFolder() { return _outputFolder; }
-    void setOutputFolder(const QString& f) { _outputFolder = f; }
+    double variateDouble(double origin, double rndFactor) {
+        double d1 = SSGX::floatRand() * (2*rndFactor) - rndFactor;
+        return origin + d1;
+    }
+
+
+    inline double applyRandomFactor (double v) { return useRandomFactors() ? variateDouble(v, pickRandomFactor()) : v; }
+
+    inline const QString& outputFolder() { return _outputFolder; }
+    inline void setOutputFolder(const QString& f) { _outputFolder = f; }
 
     void fromJson(const QJsonObject& json);
     void toJson(QJsonObject& json);

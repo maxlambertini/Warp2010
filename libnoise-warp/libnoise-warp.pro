@@ -14,7 +14,7 @@ DEFINES += LIBNOISEWARP_LIBRARY
 INCLUDEPATH += $$PWD/../libnoise/src
 DEPENDPATH += $$PWD/../libnoise/src
 
-QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter
+QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter  -Wno-reorder
 
 SOURCES += \
     ../libnoise/src/noise/model/cylinder.cpp \

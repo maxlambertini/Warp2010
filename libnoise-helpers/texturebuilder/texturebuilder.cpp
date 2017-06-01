@@ -34,6 +34,7 @@ TextureBuilder::TextureBuilder() :
     _cloudMap(""),
     _colorMap("")
 {
+    _randomFactors.append(0.0);
 }
 
 void TextureBuilder::fromJson(const QJsonObject &json) {
@@ -46,6 +47,21 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         _reflectionMap = json["reflectionMap"].toString();
     if (!json["bumpMap"].isNull() && !json["bumpMap"].isUndefined())
         _bumpMap = json["bumpMap"].toString();
+
+    if (!json["randomFactors"].isNull() && !json["randomFactors"].isUndefined()) {
+        auto jsRf = json["randomFactors"];
+        if (jsRf.isDouble()) {
+            _randomFactors.clear();
+            _randomFactors.append(jsRf.toDouble());
+        }
+        if (jsRf.isArray()) {
+            _randomFactors.clear();
+            QJsonArray arr = jsRf.toArray();
+            for (auto h = 0; h < arr.size(); ++h) {
+                _randomFactors.append(arr[h].toDouble());
+            }
+        }
+    }
 
 
     QJsonArray aModules = json["modules"].toArray();
@@ -127,6 +143,23 @@ void TextureBuilder::toJson(QJsonObject &json) {
 void TextureBuilder::createModules() {
     QSharedPointer<ModuleDescriptor> mod;
     foreach (mod,_modDesc) {
+        auto modPtr = mod.data();
+        if (this->useRandomFactors() &&  modPtr->enableRandom() ) {
+            modPtr->setBias(this->applyRandomFactor(modPtr->bias()) );
+            modPtr->setDispl(this->applyRandomFactor(modPtr->displ()) );
+            modPtr->setExp(this->applyRandomFactor(modPtr->exp()) );
+            modPtr->setFreq(this->applyRandomFactor(modPtr->freq()) );
+            modPtr->setLac(this->applyRandomFactor(modPtr->lac()) );
+            modPtr->setLbound(this->applyRandomFactor(modPtr->lBound()) );
+            modPtr->setPers(this->applyRandomFactor(modPtr->pers()) );
+            modPtr->setPow(this->applyRandomFactor(modPtr->pow()) );
+            modPtr->setRough(this->applyRandomFactor(modPtr->rough()) );
+            modPtr->setScale(this->applyRandomFactor(modPtr->scale()) );
+            modPtr->setValue(this->applyRandomFactor(modPtr->value()) );
+            modPtr->setX(this->applyRandomFactor(modPtr->x()) );
+            modPtr->setY(this->applyRandomFactor(modPtr->y()) );
+            modPtr->setZ(this->applyRandomFactor(modPtr->z()) );
+        }
         mod.data()->setModules(_modules);
         auto ptr = mod.data()->makeModule();
         _modules.insert(mod.data()->name(), ptr);

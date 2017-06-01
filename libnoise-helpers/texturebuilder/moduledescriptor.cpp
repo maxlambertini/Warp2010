@@ -92,6 +92,9 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
         _rough = json["rough"].toDouble();
     if (!json["value"].isNull() && !json["value"].isUndefined())
         _value = json["value"].toDouble();
+    if (!json["enableRandom"].isNull() && !json["enableRandom"].isUndefined())
+        _enableRandom = json["enableRandom"].toBool();
+
 
 }
 
@@ -112,6 +115,7 @@ void ModuleDescriptor::toJson(QJsonObject& json) {
     json["ctl"] = _ctl;
     json["lbound"] = _lBound;
     json["ubound"] = _uBound;
+    json["enableRandom"] = _enableRandom;
 
     QJsonArray a;
     std::tuple<double,double> tp;

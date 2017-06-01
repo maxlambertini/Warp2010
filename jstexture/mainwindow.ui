@@ -14,34 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget"/>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1051</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu_File">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <addaction name="action_Load_Texture"/>
-    <addaction name="action_Save_Texture"/>
-    <addaction name="actionSave_As"/>
-    <addaction name="separator"/>
-    <addaction name="action_Exit"/>
-   </widget>
-   <widget class="QMenu" name="menu_Generate">
-    <property name="title">
-     <string>&amp;Generate!</string>
-    </property>
-    <addaction name="action_Generate_Texture"/>
-   </widget>
-   <addaction name="menu_File"/>
-   <addaction name="menu_Generate"/>
-  </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -49,6 +21,11 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_Load_Texture"/>
+   <addaction name="action_Save_Texture"/>
+   <addaction name="actionSave_As"/>
+   <addaction name="action_Generate_Texture"/>
+   <addaction name="action_Exit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Load_Texture">
