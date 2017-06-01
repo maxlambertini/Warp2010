@@ -12,6 +12,9 @@
 #include <QWidget>
 #include <QToolBar>
 #include <QStatusBar>
+#include <QSplitter>
+#include <QListWidget>
+#include <QModelIndex>
 
 
 class MainWindow : public QMainWindow
@@ -34,6 +37,8 @@ class MainWindow : public QMainWindow
     QScrollArea *scrollArea;
     QString _currentTextureFile ;
     ViewingDialog *_viewer;
+    QSplitter *_splitter;
+    QListWidget *_listFiles;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -47,6 +52,7 @@ private slots:
     void on_action_Save_Texture_triggered();
     void on_action_Exit_triggered();
     void on_actionSave_As_triggered();
+    void on_listFiles_clicked(QListWidgetItem* idx);
 
 private:
     void createActions();

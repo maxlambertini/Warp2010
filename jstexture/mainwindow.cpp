@@ -6,6 +6,8 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <apppaths.h>
+#include <QStringList>
+#include <QStringListModel>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -50,12 +52,13 @@ void MainWindow::createWidgets() {
 
     //custom setup;
     centralWidget = new QWidget(this);
-    //QSplitter *splitter = new QSplitter(this);
+    _splitter = new QSplitter(this);
     this->plainTextEdit = new QPlainTextEdit(this);
 
     const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
     this->plainTextEdit->setFont(fixedFont);
-
+    this->_listFiles = new QListWidget(this);
+    connect(this->_listFiles,SIGNAL(itemClicked(QListWidgetItem*)) ,this, SLOT(on_listFiles_clicked(QListWidgetItem*)));
 }
 
 void MainWindow::layoutWidgets() {
@@ -63,8 +66,12 @@ void MainWindow::layoutWidgets() {
     this->addToolBar(Qt::TopToolBarArea, mainToolBar);
     this->setStatusBar(statusBar);
 
+    _splitter->addWidget(plainTextEdit);
+    _splitter->addWidget(_listFiles);
+    _splitter->setOrientation(Qt::Vertical);
+
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(plainTextEdit,1);
+    layout->addWidget(_splitter,1);
     this->centralWidget->setLayout(layout);
     //this->setLayout(layout);
     this->_viewer = new ViewingDialog(this);
@@ -106,6 +113,10 @@ void MainWindow::on_action_Generate_Texture_triggered()
                 _viewer->activateWindow();
             }
             _viewer->loadImage(imgFile);
+            _listFiles->clear();
+            for (auto h = 0; h < tb.generatedMaps().count(); ++h) {
+                _listFiles->addItem(tb.generatedMaps()[h]);
+            }
             //QPixmap pixmap(imgFile);
             //this->imageLabel->setPixmap(pixmap);
             //this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
@@ -195,4 +206,11 @@ void MainWindow::on_actionSave_As_triggered()
     }
 
 
+}
+
+void MainWindow::on_listFiles_clicked(QListWidgetItem *idx) {
+    //_viewer->loadImage(imgFile);
+    QString data = _listFiles->currentItem()->text();
+    this->setWindowTitle(data);
+    _viewer->loadImage(data);
 }
