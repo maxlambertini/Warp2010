@@ -1,0 +1,112 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "Module1", 
+                "type" : "Cylinders", 
+                "freq" : 0.40, 
+                "lac" : 2.50, 
+                "pers": 0.23, 
+                "oct" : 5 
+            },  
+            {
+                "name" : "Module2", 
+                "type" : "Perlin", 
+                "seed" : 666,
+                "freq" : 2.0, 
+                "lac"  : 3.0,
+                "pers" : 0.35,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "Turbo",
+                "src1" : "Module1",
+                "freq" : 1.25,
+                "pow"  : 0.325,
+                "rough" : 3.3,
+                "type" : "Turbulence"
+            } ,
+            {
+                "name" : "Turbo2",
+                "src1" : "Module2",
+                "freq" : 1.25,
+                "pow"  : 0.125,
+                "rough" : 1.3,
+                "type" : "Turbulence", "seed":666
+            } ,
+            {
+                "name" : "Inv1",
+                "src1" : "Turbo2",
+                "freq" : 1.25,
+                "pow"  : 0.125,
+                "rough" : 1.3,
+                "type" : "Invert"
+            }               
+        ],
+    "heightMaps" : ["destMap","destMap2"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder1",
+                "source" : "Turbo",
+                "dest"   : "destMap",
+                "size"   : [1280,640],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            },
+            {
+                "name"   : "builder2",
+                "source" : "Inv1",
+                "dest"   : "destMap2",
+                "size"   : [1280,640],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer1",
+                "noiseMap"        : "destMap2",
+                "enabledLight"    : true,
+                "lightContrast"   : 3.5,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,   0,  0,  96, 255  ],
+                        [ -0.600,   0, 64, 192, 255  ],
+                        [ -0.250,   0,128, 255, 255  ],
+                        [  0.070, 255,160,   0, 255  ],
+                        [  0.550,   0,128,   0, 255  ],
+                        [  0.950,  96, 46,   0, 255  ],
+                        [  1.000, 224,248, 255, 255  ]
+                    ]
+            },		  
+            {
+                "name"            : "renderer9",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : false,
+                "lightContrast"   : 1.0,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "image1",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,   0,  0,   0,   0  ],
+                        [ -0.500,  48,  0,   0,   0  ],
+                        [ -0.050,  96,  0,   0,   0  ],
+                        [  0.000, 255,255, 244, 255  ], 
+                        [  0.250, 192,204, 255, 255  ],
+                        [  0.500, 224,240, 255, 255  ],
+                        [  1.000, 255,252, 255, 255  ]
+                    ]
+            }		
+        ],
+    "images" : ["image1","image2"]
+} 

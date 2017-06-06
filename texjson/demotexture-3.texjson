@@ -1,0 +1,116 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "Module1", 
+                "type" : "Cylinders", 
+                "freq" : 2.50, 
+                "lac" : 2.50, 
+                "pers": 0.3, 
+                "oct" : 5 
+            },  
+            {
+                "name" : "Module2", 
+                "type" : "RidgedMulti", 
+                "seed" : 666,
+                "freq" : 6.5, 
+                "lac"  : 4.5,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "ModuleInv",
+                "src1" : "Module2",
+                "type" : "Abs", 
+                "freq" :6.5, 
+                "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "ModuleExp",
+                "src1" : "ModuleInv",
+                "type" : "Exponent", 
+                "exp"  : 3.5
+            },
+            {
+                "name" : "ModuleInv2",
+                "src1" : "ModuleExp",
+                "type" : "Clamp", 
+                "lbound"  : -1.0,
+                "ubound"  : 1.0
+            },
+            {
+                "name" : "Turbo",
+                "src1" : "Module1",
+                "freq" : 1.25,
+                "pow"  : 0.125,
+                "rough" : 3.3,
+                "type" : "Turbulence"
+            }            
+        ],
+    "heightMaps" : ["destMap","destMap2"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder1",
+                "source" : "Turbo",
+                "dest"   : "destMap",
+                "size"   : [1280,640],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            },
+            {
+                "name"   : "builder2",
+                "source" : "ModuleInv2",
+                "dest"   : "destMap2",
+                "size"   : [1280,640],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer1",
+                "noiseMap"        : "destMap2",
+                "enabledLight"    : true,
+                "lightContrast"   : 1.5,
+                "lightBrightness" : 3.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,  32, 48,  96, 255  ],
+                        [ -0.600,  48, 64, 128, 128  ],
+                        [ -0.250,  64,128, 255, 0  ],
+                        [  0.070,  80,160, 255, 0  ],
+                        [  0.550,  64,128, 224, 0  ],
+                        [  0.950,  48, 96, 192, 128  ],
+                        [  1.000,  32, 64,  96, 255  ]
+                    ]
+            },		
+            {
+                "name"            : "renderer9",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : false,
+                "lightContrast"   : 2.0,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "image1",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,   0,  0,   0,   0  ],
+                        [ -0.500,  48,  0,   0,   0  ],
+                        [ -0.250,  96,  0,   0,   0  ],
+                        [  0.000, 144,  0,   0, 255  ], 
+                        [  0.250, 192,  0,   0,  92  ],
+                        [  0.500, 224,  0,   0,  16  ],
+                        [  1.000, 255,  0,   0, 255  ]
+                    ]
+            }		
+        ],
+    "images" : ["image1","image2"]
+} 
