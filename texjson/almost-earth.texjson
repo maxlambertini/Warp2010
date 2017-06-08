@@ -1,0 +1,123 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "Module2", "type" : "Perlin", "freq" : 1.35, "lac"  : 2.7, 
+	     "pers" : 0.25, "oct"  : 5, "disp" : 0.1, "enableDist" : true,
+                "seed" : 1969
+            },
+            {
+                "name" : "ModuleScale", "type" : "ScalePoint", "src1" : "Module2",
+                "x"    : 0.9,"y" : 1.0, "z": 1.1, "enableDist" : true
+            },
+            {
+                "name" : "m1", "type" : "Billow", "freq" : 0.75, 
+                "lac"  : 3.7, "pers" : 0.35, "oct"  : 5,
+                "disp" : 0.1, "enableDist" : true
+            },
+            {
+                "name" : "m2", "type" : "RidgedMulti", "freq" : 1.35, 
+                "lac"  : 3.7, "pers" : 0.35, "oct"  : 5,
+                "disp" : 0.1, "enableDist" : true
+            },
+            {
+                "name" : "m3", "type" : "Voronoi", "freq" : 1.35, 
+                "lac"  : 3.7, "pers" : 0.35, "oct"  : 5, "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "c3", 
+                "type" : "Cylinder", 
+                "seed" : 1666,
+                "freq" : 0.35, 
+                "lac"  : 3.7,
+                "pers" : 0.35,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "displacer", 
+                "type" : "Displace", 
+                "src1" : "Module2",
+	        "src2" : "m1",
+	        "src3" : "c3",
+	        "src4" : "m2"
+            },
+            {
+                "name" : "ModuleSelect", "type" : "Select", 
+                "src1" : "ModuleScale", "src2" : "m2" ,
+                "ctl"  : "m1", "value" : 0.7,
+                "lbound" : -0.3, "ubound": 0.5
+            }
+        ],
+    "heightMaps" : ["destMap","destMap2"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder",
+                "source" : "ModuleSelect",
+                "dest"   : "destMap",
+                "size"   : [3200,1600],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            },
+            {
+                "name"   : "builder2",
+                "source" : "displacer",
+                "dest"   : "destMap2",
+                "size"   : [3200,1600],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer10",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 0.5,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,   0,  0,  96, 255  ],
+                        [ -0.600,   0, 64, 192, 255  ],
+                        [  0.040,   0,128, 255, 255  ],
+                        [  0.070, 255,192, 128, 255  ],
+                        [  0.100, 255,224, 192, 255  ],
+                        [  0.170,   0,192,  64, 255  ],
+                        [  0.280,   0,128,   0, 255  ],
+                        [  0.950,  96, 46,   0, 255  ],
+                        [  1.000, 224,248, 255, 255  ]
+                    ]
+            },
+            {
+                "name"            : "renderer11",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 3.5,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "image1",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,   0,  0,  96, 0  ],
+                        [ -0.600,   0, 64, 192, 0  ],
+                        [  0.040,   0,128, 255, 0  ],
+                        [  0.070, 255,192, 128, 0  ],
+                        [  0.100, 255,224, 192, 0  ],
+                        [  0.170,   0,192,  64, 64  ],
+                        [  0.280,   0,128,   0, 128  ],
+                        [  0.950,  96, 46,   0, 255  ],
+                        [  1.000, 224,248, 255, 255  ]
+                    ]
+            }
+
+        ],
+    "images" : ["image1"]
+} 

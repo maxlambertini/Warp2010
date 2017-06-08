@@ -1,0 +1,47 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "mountainTerrain", "type" : "Perlin", "freq" : 4.0,
+                "lac" : 2.0, "pers" : 0.35, "oct" : 6, "seed" : 100
+            },
+            {
+                "name" : "rot", "type" : "RotatePoint", "src1" : "mountainTerrain",
+                "x" : 10.0, "y" : -10.0, "z" : -10.0
+            }        
+        
+        ],
+    "heightMaps" : ["heightMap"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder1",
+                "source" : "rot",
+                "dest"   : "heightMap",
+                "size"   : [1024,512],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer9",
+                "noiseMap"        : "heightMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 0.1,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,  32,160,   0, 255  ],
+                        [ -0.250, 224,224,   0, 255  ],
+                        [  0.250, 192,193, 194, 255  ],
+                        [  1.000, 255,255, 255, 255  ]
+                    ]
+            }		
+        ],
+    "images" : ["image1"]
+} 

@@ -1,0 +1,94 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "mountainTerrain", "type" : "RidgedMulti","seed" : 44,
+                "freq" : 3.5, "lac" : 2.5, "oct" : 6.0
+            },  
+            {
+                "name" : "perlinTerrain", "type" : "Perlin", "seed" : 44,
+                "freq" : 2.25, "lac" : 2.4, "oct" : 8.0, "pers" : 0.34
+            },  
+            {
+                "name" : "baseFlatTerrain", "type" : "Billow", 
+                "freq" : 2.0
+            },  
+            {
+                "name" : "flatTerrain", "type" : "ScaleBias", "src1" : "baseFlatTerrain",
+                "scale" : 0.125, "bias" : -0.75
+            },
+            {
+                "name" : "terrainType", "type" : "Perlin", 
+                "freq" : 0.5, "pers" : 0.25 
+            },
+            {
+                "name" : "finalTerrain", "type" : "Select", 
+                "src1" : "flatTerrain", "src2" : "mountainTerrain",
+                "ctl"  : "terrainType", "lbound" : -0.250, "ubound" : 0.100,
+                "value" : 0.2
+            }
+        ],
+    "heightMaps" : ["heightMap", "heightMapPerlin"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder1",
+                "source" : "finalTerrain",
+                "dest"   : "heightMap",
+                "size"   : [640,320],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            },
+            {
+                "name"   : "builder2",
+                "source" : "perlinTerrain",
+                "dest"   : "heightMapPerlin",
+                "size"   : [640,320],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer100",
+                "noiseMap"        : "heightMapPerlin",
+                "enabledLight"    : true,
+                "lightContrast"   : 1.0,
+                "lightBrightness" : 3.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+		[-1.000,    0,    0,  64, 255],
+		[-0.400,    0,    0, 128, 255],
+		[-0.010,    0,    0, 255, 255],
+		[-0.000,  255,  224, 192, 255],
+		[ 0.100,    0,  128,   0, 255],
+		[ 0.900,  160,   80,   0, 255],
+		[ 0.999,  255,  255, 255, 255]
+                    ]
+            },		
+            {
+                "name"            : "renderer101",
+                "noiseMap"        : "heightMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 0.0,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "image1",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,  32,160,   0,   0  ],
+                        [ -0.001, 224,224,   0,   0  ],
+                        [  0.200, 224,224,   0, 255  ],
+                        [  0.450, 192,193, 194, 255  ],
+                        [  0.451, 255,255, 255,   0  ]
+                    ]
+            }		
+        ],
+    "images" : ["image1"]
+} 

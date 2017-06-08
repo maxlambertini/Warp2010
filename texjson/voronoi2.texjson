@@ -1,0 +1,49 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "m3", "type" : "Perlin", "freq" : 1.35, 
+                "lac"  : 3.7, "pers" : 0.35, "oct"  : 6, "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "c3", "type" : "Const" , "value" : 0.0
+            },
+            {
+                "name" : "d3", "type" : "Displace", 
+                "src1" : "m3", "src2" : "c3",
+                "src3" : "c3", "src4" : "m3"
+            }
+        ],
+    "heightMaps" : ["destMap"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder",
+                "source" : "m3",
+                "dest"   : "destMap",
+                "size"   : [800,400],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer10",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 0.1,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,   0,  0,   0, 255  ],
+                        [  1.000, 255,255, 255, 255  ]
+                    ]
+            }
+        ],
+    "images" : ["image1"]
+} 

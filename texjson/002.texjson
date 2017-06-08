@@ -1,0 +1,112 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "Module1", 
+                "type" : "Perlin", 
+                "freq" : 3.50, 
+                "lac"  : 2.50, 
+                "pers" : 0.3, 
+                "oct"  : 5 
+            },  
+            {
+                "name" : "rot",
+                "type" : "RotatePoint",
+                "src1" : "Module1",
+                "x"      : 45.0,
+                "y"      : 45.0,
+                "z"      : 45.0
+            },
+            {
+                "name" : "scaleBase",
+                "type" : "ScaleBias",
+                "src1" : "rot",
+                "scale": 0.7
+            },
+            {
+                "name" : "expBase",
+                "type" : "Exponent",
+                "src1" : "rot",
+                "scale": 4.0
+            }, 
+            {
+                "name" : "voronoi",
+                "type" : "Voronoi",
+                "freq" : 5.0,
+                "enableDist": true
+            },
+            {
+                "name" : "turbVoronoi",
+                "type" : "Turbulence",
+                "src1" : "voronoi",
+                "freq" : 2.5,
+                "pow"  : 0.125,
+                "rough": 5.0,
+                "enableDist": true
+            },
+            {
+                "name" : "addModule",
+                "type" : "Blend",
+                "src1" : "scaleBase",
+                "src2" : "turbVoronoi",
+                "ctl"  : "Module1"
+            }
+        ],
+    "heightMaps" : ["heightMap", "heightMapPeak"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder1",
+                "source" : "Module1",
+                "dest"   : "heightMap",
+                "size"   : [1280,640],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            },
+            {
+                "name"   : "builder2",
+                "source" : "turbVoronoi",
+                "dest"   : "heightMapPeak",
+                "size"   : [1280,640],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "r01",
+                "noiseMap"        : "heightMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 0.2,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000, 24, 48,  96, 255  ],
+                        [  0.070, 76,160, 255, 255  ],
+                        [  1.000, 24, 64,  96, 255  ]
+                    ]
+            },
+            {
+                "name"            : "r02",
+                "noiseMap"        : "heightMapPeak",
+                "enabledLight"    : true,
+                "lightContrast"   : 1.3,
+                "lightBrightness" : 3.0,
+                "backgroundImage" : "image1",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000, 24, 48,  96,   0  ],
+                        [  0.470, 76,160, 255,   0  ],
+                        [  1.000, 32, 244, 96, 255  ]
+                    ]
+            }	
+            
+        ],
+    "images" : ["image1"]
+} 

@@ -1,0 +1,60 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "m3", "type" : "Perlin", "freq" : 2.35, 
+                "lac"  : 3.7, "pers" : 0.25, "oct"  : 6, "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "c3", "type" : "Const" , "value" : 0.0
+            },
+            {
+                "name" : "t1", "type" : "Terrace" , "src1" : "m3",
+                "cpoints" : [
+		[-0.8,-0.3],
+		[-0.3,-0.3],
+		[ 0.2, 0.2],
+		[ 0.4,-0.3],
+		[ 0.7,-0.3],
+		[ 0.9,-0.3]
+                ]
+            },
+            {
+                "name" : "d3", "type" : "Displace", 
+                "src1" : "m3", "src2" : "c3",
+                "src3" : "c3", "src4" : "t1"
+            }
+        ],
+    "heightMaps" : ["destMap"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder",
+                "source" : "d3",
+                "dest"   : "destMap",
+                "size"   : [800,400],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer10",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 2.1,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,   0,  0,   0, 255  ],
+                        [  1.000, 255,255, 255, 255  ]
+                    ]
+            }
+        ],
+    "images" : ["image1"]
+} 

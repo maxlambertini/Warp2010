@@ -1,0 +1,92 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "Module2", 
+                "type" : "Perlin", 
+                "seed" : 1666,
+                "freq" : 1.35, 
+                "lac"  : 3.7,
+                "pers" : 0.35,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "m1", 
+                "type" : "Billow", 
+                "seed" : 1666,
+                "freq" : 1.35, 
+                "lac"  : 3.7,
+                "pers" : 0.35,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "m2", 
+                "type" : "RidgedMulti", 
+                "seed" : 1666,
+                "freq" : 1.35, 
+                "lac"  : 3.7,
+                "pers" : 0.35,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "m3", 
+                "type" : "Voronoi", 
+                "seed" : 1666,
+                "freq" : 1.35, 
+                "lac"  : 3.7,
+                "pers" : 0.35,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },
+            {
+                "name" : "displacer", 
+                "type" : "Displace", 
+                "src1" : "Module2",
+	        "src2" : "m3",
+	        "src3" : "m1",
+	        "src4" : "m2"
+            }
+        ],
+    "heightMaps" : ["destMap","destMap2"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder",
+                "source" : "Module2",
+                "dest"   : "destMap",
+                "size"   : [1600,800],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            },
+            {
+                "name"   : "builder2",
+                "source" : "displacer",
+                "dest"   : "destMap2",
+                "size"   : [1600,800],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer11",
+                "noiseMap"        : "destMap2",
+                "enabledLight"    : true,
+                "lightContrast"   : 0.1,
+                "lightBrightness" : 2.0,
+                "backgroundImage" : "",
+                "destImage"       : "image1"
+            }	
+        ],
+    "images" : ["image1"]
+} 
