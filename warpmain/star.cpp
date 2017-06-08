@@ -51,7 +51,7 @@ Star::Star() : QObject()
     this->setStarData();
 }
 
-Star::Star(double radius) : QObject()
+Star::Star(double radius, double p_dx, double p_dy, double p_dz) : QObject()
 {    
     _numGardens = 0;
     _numMarginals = 0;
@@ -67,6 +67,8 @@ Star::Star(double radius) : QObject()
         dz = SSGX::floatRand() *(2*radius) - radius;
         star_radius = sqrt( pow(dx,2)+pow(dy,2)+pow(dz,2));
     }
+
+    dx  += p_dx; dy += p_dy; dz += p_dz;
 
     _isReference = false;
 

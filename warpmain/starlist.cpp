@@ -57,7 +57,7 @@ StarList::StarList(const QString& filename)
 }
 */
 
-void StarList::createRandomMap(double radius = 50, double density = 750)
+void StarList::createRandomMap(double radius = 50, double density = 750, double dx, double dy, double dz)
 {
     double dFactor = radius/50;
     dFactor = pow(dFactor, 3);
@@ -73,7 +73,7 @@ void StarList::createRandomMap(double radius = 50, double density = 750)
 
     for (int idx = 0; idx < starCount; idx++)
     {
-        QSharedPointer<Star> newStar = QSharedPointer<Star>(new Star(radius));
+        QSharedPointer<Star> newStar = QSharedPointer<Star>(new Star(radius,dx,dy,dz));;
         int die = SSGX::d10();
         if (die < 3)
             newStar->starName = names->greekName();
@@ -89,9 +89,9 @@ void StarList::createRandomMap(double radius = 50, double density = 750)
         _stars.append(newStar);
         if (idx == 0) {
             newStar->starName = "(CORE) "+newStar->starName;
-            newStar->setX(0);
-            newStar->setY(0);
-            newStar->setZ(0);
+            newStar->setX(dx);
+            newStar->setY(dy);
+            newStar->setZ(dz);
             newStar->setStarFullType("G2V");
             newStar->setReference();
         }

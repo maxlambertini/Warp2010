@@ -345,7 +345,10 @@ void WarpMainWindowForm::on_action_NewSector_triggered()
                 SplashScreen::screenPtr()->setMessage("Creating new sector: "+_newSectorDialog->sectorName());
                 SplashScreen::screenPtr()->show();
                 //qApp->processEvents();
-                this->performMapProcessing(true,"");
+                this->performMapProcessing(true,"",
+                                           _newSectorDialog->getDx(),
+                                           _newSectorDialog->getDy(),
+                                           _newSectorDialog->getDz());
                 if (_newSectorDialog->createSolarSystems() ) {
                     //qApp->processEvents();
                     SplashScreen::screenPtr()->setMessage("Creating solar system for all stars");

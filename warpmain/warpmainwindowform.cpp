@@ -528,7 +528,7 @@ void WarpMainWindowForm::performCreateSolSysForAllStars()
     //qDebug() << "done with solsys";
 }
 
-void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filename)
+void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filename, double dx, double dy, double dz)
 {
     try {
 
@@ -612,7 +612,8 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
                     int sectorRadius = _newSectorDialog->sectorRadius();
                     QString sectorName = _newSectorDialog->sectorName();
                     int sectorDensity = _newSectorDialog->sectorDensity();
-                    this->_starList->createRandomMap((double)sectorRadius, (double)sectorDensity);
+                    this->_starList->createRandomMap((double)sectorRadius, (double)sectorDensity,
+                                                     dx,dy,dz);
                     _starList->setListName(sectorName);
                 }
                 else

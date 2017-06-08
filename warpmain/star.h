@@ -314,7 +314,7 @@ public:
 
     Star();
     ~Star();
-    Star(double radius);
+    Star(double radius, double p_dx = 0.0, double p_dy = 0.0, double p_dz= 0.0);
     Star(const Star & that);
     Star& operator=(const Star & that);
 

@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #define NEWSECTORDIALOG_H
 
 #include <QDialog>
+#include <QDoubleValidator>
 
 namespace Ui {
     class NewSectorDialog;
@@ -40,8 +41,13 @@ public:
     QString sectorName();
     int sectorDensity();
     int sectorRadius();
+    QDoubleValidator *_validator;
 
     bool createSolarSystems();
+
+    double getDx();
+    double getDy();
+    double getDz();
 
 protected:
     virtual void changeEvent(QEvent *e);

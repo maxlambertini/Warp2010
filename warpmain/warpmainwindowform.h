@@ -115,7 +115,7 @@ public:
     double distance() { return this->ui->spinDistance->value();}
     void setDistance(double val) { return this->ui->spinDistance->setValue(val);}
     void AddToTradeRoute (QString & tradeRouteName, QColor & bgColor, QVector<int> & path, int &indexOnList);
-    void performMapProcessing(bool bCreateNewMap, QString filename);
+    void performMapProcessing(bool bCreateNewMap, QString filename, double dx = 0.0, double dy = 0.0, double dz=0.0);
     void performCreateSolSysForAllStars();
 
     WarpMainWindowForm( QWidget *parent = 0);

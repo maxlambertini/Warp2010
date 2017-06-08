@@ -158,7 +158,7 @@ public:
     static StarList& StarListRef() { return StarList::_starList; }
     static StarList* StarListPtr() { return &StarList::_starList; }
 
-    void createRandomMap(double radius, double density);
+    void createRandomMap(double radius, double density, double dx = 0.0, double dy=0.0, double dz=0.0);
     void loadMap(const QString& filename) throw(std::exception);
     void saveMap(const QString& filename);
     void calculateNeighbors(double distance);

@@ -31,12 +31,32 @@ NewSectorDialog::NewSectorDialog(QWidget *parent) :
     m_ui->setupUi(this);
     Onomastikon *o = Onomastikon::instancePtr();
     m_ui->txtSectorName->setText(o->pseudoNomen() + " sector");
+    _validator = new QDoubleValidator(this);
+    m_ui->txtX->setValidator(_validator);
+    m_ui->txtY->setValidator(_validator);
+    m_ui->txtZ->setValidator(_validator);
+    m_ui->txtX->setText("0.0");
+    m_ui->txtY->setText("0.0");
+    m_ui->txtZ->setText("0.0");
 }
 
 NewSectorDialog::~NewSectorDialog()
 {
     delete m_ui;
 }
+
+double NewSectorDialog::getDx() {
+    return m_ui->txtX->text().toDouble();
+}
+
+double NewSectorDialog::getDy() {
+    return m_ui->txtY->text().toDouble();
+}
+
+double NewSectorDialog::getDz() {
+    return m_ui->txtZ->text().toDouble();
+}
+
 
 void NewSectorDialog::changeEvent(QEvent *e)
 {
