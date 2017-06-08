@@ -1110,7 +1110,7 @@ void WarpMainWindowForm::on_btn_action_Clear_Star_Sector_Data_clicked()
 
 void WarpMainWindowForm::on_btn_actionCreate_a_Solar_System_for_all_stars_clicked()
 {
-    on_action_CreateSolarSystem_triggered();
+    on_action_SolarSystemForAllStars_triggered();
 }
 
 void WarpMainWindowForm::on_actionCreate_a_Solar_System_for_all_stars_triggered()

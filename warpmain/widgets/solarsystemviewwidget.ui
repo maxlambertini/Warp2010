@@ -37,6 +37,11 @@
        <height>1677215</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -47,10 +52,20 @@
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <widget class="QSplitter" name="splitter_2">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
          <widget class="QWidget" name="layoutWidget">
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <property name="spacing">
             <number>0</number>
@@ -62,6 +77,11 @@
              </property>
              <item>
               <widget class="QGraphicsView" name="solsysView">
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
                <property name="dragMode">
                 <enum>QGraphicsView::ScrollHandDrag</enum>
                </property>
@@ -77,6 +97,11 @@
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
                 <widget class="QToolButton" name="btnZoomUp">
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>...</string>
                  </property>
@@ -88,6 +113,11 @@
                </item>
                <item>
                 <widget class="QSlider" name="zoomSlider">
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
                  <property name="minimum">
                   <number>1</number>
                  </property>
@@ -104,6 +134,11 @@
                </item>
                <item>
                 <widget class="QToolButton" name="btnZoomDown">
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>...</string>
                  </property>
@@ -124,6 +159,11 @@
              </property>
              <item>
               <widget class="QToolButton" name="btnRotateLeft">
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
@@ -135,6 +175,11 @@
              </item>
              <item>
               <widget class="QSlider" name="rotateSlider">
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
                <property name="minimum">
                 <number>-360</number>
                </property>
@@ -148,6 +193,11 @@
              </item>
              <item>
               <widget class="QToolButton" name="btnRotateRight">
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
@@ -161,7 +211,13 @@
            </item>
           </layout>
          </widget>
-         <widget class="PlanetaryInspector" name="planetInspector" native="true"/>
+         <widget class="PlanetaryInspector" name="planetInspector" native="true">
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -239,6 +295,7 @@
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="../Resources.qrc"/>
   <include location="../Resources.qrc"/>
  </resources>
  <connections/>

@@ -57,11 +57,9 @@ private:
     QFont _fontSmall;
 
 private slots:
-    void on_action_Aspect_Title_Font_triggered(bool checked);
     void on_action_Title_Font_triggered(bool checked);
     void on_action_Small_Font_triggered(bool checked);
     void on_action_Body_Font_triggered(bool checked);
-    void on_action_Aspect_Title_Font_toggled(bool );
     void on_action_Title_Font_toggled(bool );
     void on_btnSmallFont_clicked();
     void on_btnBodyFont_clicked();

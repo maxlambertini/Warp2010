@@ -42,7 +42,6 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     readPreferences();
     connect (m_ui->fontSelector,SIGNAL(currentFontChanged()),this,SLOT(on_fontSelector_fontChanged()));
 
-    m_ui->btnAspectTitleFont->setDefaultAction(m_ui->action_Aspect_Title_Font);
     m_ui->btnTitleFont->setDefaultAction(m_ui->action_Title_Font);
     m_ui->btnBodyFont->setDefaultAction(m_ui->action_Body_Font);
     m_ui->btnSmallFont->setDefaultAction(m_ui->action_Small_Font);
@@ -53,6 +52,12 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
     grp->addAction(m_ui->action_Small_Font);
     m_ui->action_Body_Font->setChecked(true);
     m_ui->fontSelector->setCurrentFont(_fontBody);
+    m_ui->label_3->setVisible(false);
+    m_ui->label_4->setVisible(false);
+    m_ui->label_5->setVisible(false);
+    m_ui->colorDiasporaBox->setVisible(false);
+    m_ui->colorDiasporaBoxBackground->setVisible(false);
+    m_ui->colorDiasporaLinks->setVisible(false);
 
 }
 
@@ -151,8 +156,6 @@ void PreferencesDialog::on_btnSmallFont_clicked()
 }
 
 void PreferencesDialog::on_fontSelector_fontChanged() {
-    if (m_ui->btnAspectTitleFont->isChecked())
-        _fontAspectTitle = m_ui->fontSelector->currentFont();
     if (m_ui->btnBodyFont->isChecked())
         _fontBody = m_ui->fontSelector->currentFont();
     if (m_ui->btnTitleFont->isChecked())
@@ -166,10 +169,7 @@ void PreferencesDialog::on_action_Title_Font_toggled(bool )
 
 }
 
-void PreferencesDialog::on_action_Aspect_Title_Font_toggled(bool )
-{
 
-}
 
 void PreferencesDialog::on_action_Body_Font_triggered(bool checked)
 {
@@ -189,8 +189,3 @@ void PreferencesDialog::on_action_Title_Font_triggered(bool checked)
 
 }
 
-void PreferencesDialog::on_action_Aspect_Title_Font_triggered(bool checked)
-{
-    if (checked) m_ui->fontSelector->setCurrentFont(_fontAspectTitle);
-
-}

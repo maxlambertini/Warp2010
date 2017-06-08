@@ -12,6 +12,7 @@
 # -------------------------------------------------
 # Project created by QtCreator 2009-03-31T07:42:33
 # -------------------------------------------------
+
 QT += printsupport widgets svg concurrent
 TARGET = WarpNow
 TEMPLATE = app

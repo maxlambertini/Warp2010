@@ -38,24 +38,24 @@ private:
     };
 
     //private members;
-    QFont _fontTitle;
-    QFont _fontAspectTitle;
-    QFont _fontBody;
-    QFont _fontSmall;
+    QFont _fontTitle = QFont("Sans Serif",16,1);
+    QFont _fontAspectTitle = QFont("Sans Serif",16,1);
+    QFont _fontBody = QFont("Sans Serif",11,1);
+    QFont _fontSmall = QFont("Sans Serif",9,1);
 
-    QColor _colorDiasporaLink;
-    QColor _colorDiasporaAspectBox;
-    QColor _colorDiasporaAspectBackground;
-    QColor _colorStarShortestLink;
-    QColor _colorStarOtherLink;
+    QColor _colorDiasporaLink = QColor(0,128,255);
+    QColor _colorDiasporaAspectBox =QColor(0,0,128);
+    QColor _colorDiasporaAspectBackground =QColor(240,240,240);
+    QColor _colorStarShortestLink =QColor(0,0,128);
+    QColor _colorStarOtherLink =QColor(192,192,192);
 
-    qreal  _sizeTitle;
-    qreal  _sizeAspectTitle;
-    qreal  _sizeBody;
-    qreal  _sizeSmall;
+    qreal  _sizeTitle=16.0;
+    qreal  _sizeAspectTitle =16.0;
+    qreal  _sizeBody = 11.0;
+    qreal  _sizeSmall = 9.0;
 
-    bool _drawRoutesAsArcs;
-    bool _drawSecondaryRoutes;
+    bool _drawRoutesAsArcs = true;
+    bool _drawSecondaryRoutes = true;
 
     static Preferences _prefs;
 

@@ -18,6 +18,11 @@
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="4,0">
      <item>
       <widget class="QLabel" name="lblFontSelected">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
@@ -25,6 +30,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="btnSelectFont">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Select &amp;Font</string>
        </property>
@@ -34,6 +44,11 @@
    </item>
    <item>
     <widget class="QTextEdit" name="txtPrevirew">
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
      <property name="readOnly">
       <bool>true</bool>
      </property>

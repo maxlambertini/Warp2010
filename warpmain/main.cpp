@@ -76,6 +76,9 @@ int main(int argc, char *argv[])
             qDebug() << "buffer: " << buffer;
          }
     }
+
+
+
     return a.exec();
 
 }
