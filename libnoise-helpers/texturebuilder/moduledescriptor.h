@@ -32,6 +32,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <ssg_structures.h>
 #include "libnoise-helpers_global.h"
 
+namespace NoiseModules {
+    static QVector<QString> moduleList = {
+        "Billow",
+        "Const",
+        "Cylinders",
+        "Perlin",
+        "RidgedMulti",
+        "Spheres",
+        "Voronoi",
+        "Clamp",
+        "Curve",
+        "Invert",
+        "Exponent",
+        "ScaleBias",
+        "Terrace",
+        "Turbulence",
+        "Add",
+        "Max",
+        "Min",
+        "Multiply",
+        "Power",
+        "Blend",
+        "Select",
+        "Displace",
+        "RotatePoint",
+        "ScalePoint",
+        "TranslatePoint",
+    };
+}
+
 /*
 [
 { "Module":"Abs" , "Name": "mod_name" , "Src1": "mod_name" },
@@ -63,37 +93,92 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     Q_OBJECT
 
     QString _moduleType = "Perlin";
+    Q_PROPERTY(QString moduleType READ moduleType WRITE setModuleType )
+
     QString _name = "perlin1";
+    Q_PROPERTY(QString name READ name WRITE setName )
+
     int _seed = SSGX::dn(999999);
+    Q_PROPERTY(int seed READ seed WRITE setSeed )
+
     double _freq = 2.50;
+    Q_PROPERTY(double freq READ freq WRITE setFreq )
+
     double _lac = 1.20;
+    Q_PROPERTY(double lac READ lac WRITE setLac )
+
     double _pers = 0.50 ;
+    Q_PROPERTY(double pers READ pers WRITE setPers )
+
     int _oct = 6;
+    Q_PROPERTY(int oct READ oct WRITE setOct )
+
     double _disp;
+    Q_PROPERTY(double displ READ displ WRITE setDispl )
+
     bool _enableDist;
+    Q_PROPERTY(int enableDist READ enableDist WRITE setEnabledist )
+
     QString _src1;
+    Q_PROPERTY(QString src1 READ src1 WRITE setSrc1 )
+
     QString _src2;
+    Q_PROPERTY(QString src2 READ src2 WRITE setSrc2 )
+
     QString _src3;
+    Q_PROPERTY(QString src3 READ src3 WRITE setSrc3 )
+
     QString _src4;
+    Q_PROPERTY(QString src4 READ src4 WRITE setSrc4 )
+
     QString _ctl;
+    Q_PROPERTY(QString ctl READ ctl WRITE setCtl )
+
     double _lBound;
+    Q_PROPERTY(double lBound READ lBound WRITE setLbound )
+
     double _uBound;
+    Q_PROPERTY(double uBound READ uBound WRITE setUbound )
+
     QVector<std::tuple<double,double>> _cPoints;
     double _exp;
+    Q_PROPERTY(double exp READ exp WRITE setExp )
+
     double _bias;
+    Q_PROPERTY(double bias READ bias WRITE setBias )
+
     double _scale;
+    Q_PROPERTY(double scale READ scale WRITE setScale )
+
     bool _invert;
+    Q_PROPERTY(bool invert READ invert WRITE setInvert )
+
     double _x;
+    Q_PROPERTY(double x READ x WRITE setX )
+
     double _y;
+    Q_PROPERTY(double y READ y WRITE setY )
+
     double _z;
+    Q_PROPERTY(double z READ z WRITE setZ )
+
     double _pow;
+    Q_PROPERTY(double pow READ pow WRITE setPow )
+
     double _rough;
+    Q_PROPERTY(double rough READ rough WRITE setRough )
+
     double _value;
+    Q_PROPERTY(double value READ value WRITE setValue )
 
     bool _enableRandom = false;
+    Q_PROPERTY(bool enableRandom READ enableRandom WRITE setEnableRandom )
 
     //reference to a Map containing loaded modules
     QMap<QString, QSharedPointer<Module>> _modules;
+
+    //properties to export to json
+    QVector<QString> _propertiesToExport;
 
 public:
     //getters
@@ -127,6 +212,7 @@ public:
     bool enableRandom() { return _enableRandom; }
 
     const QMap<QString, QSharedPointer<Module>>& modules() { return _modules; }
+    const QVector<QString>& propertiesToExport() { return _propertiesToExport; }
 
     //setters
     void setModuleType (QString v) { _moduleType = v; }
@@ -162,6 +248,8 @@ public:
 
     void fromJson(const QJsonObject& json);
     void toJson(QJsonObject& json);
+
+    void setupPropertiesToExport(QString& _m_moduleType);
 
     ModuleDescriptor();
 

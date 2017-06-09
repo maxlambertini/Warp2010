@@ -137,6 +137,55 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
 }
 
 void TextureBuilder::toJson(QJsonObject &json) {
+    json["colorMap"] = _colorMap;
+    json["cloudMap"] = _cloudMap;
+    json["reflectionMap"] = _reflectionMap;
+    json["bumpMap"] = _bumpMap;
+
+    if (_randomFactors.count() > 0) {
+        QJsonArray rf;
+        for (auto it = _randomFactors.begin(); it != _randomFactors.end(); ++it) {
+            auto w = (*it);
+            rf.append(w);
+        }
+        json["randomFactors"] = rf;
+    }
+    QJsonArray aModules;
+    for (auto it = _modDesc.begin(); it != _modDesc.end(); ++it) {
+        QJsonObject o;
+        it.value().data()->toJson(o);
+        aModules.append(o);
+    }
+    json["modules"] = aModules;
+
+    QJsonArray aHMBuilders;
+    for (auto it = _nmbDesc.begin(); it != _nmbDesc.end(); ++it) {
+        QJsonObject o;
+        it.value().data()->toJson(o);
+        aHMBuilders.append(o);
+    }
+    json["heightMapBuilders"] = aHMBuilders;
+
+    QJsonArray aRenderers;
+    for (auto it = _rndDesc.begin(); it != _rndDesc.end(); ++it) {
+        QJsonObject o;
+        it.value().data()->toJson(o);
+        aRenderers.append(o);
+    }
+
+    json["renderers"] = aRenderers;
+
+    QJsonArray aImages;
+    for (auto it = __imDesc.begin(); it != __imDesc.end(); ++it) {
+        aImages.append(it.value().data()->name());
+    }
+    json["images"] = aImages;
+
+    QJsonArray aHeightMaps;
+    for (auto it = _hmDesc.begin(); it != _hmDesc.end(); ++it) {
+        aHeightMaps.append(it.value().data()->name());
+    }
+    json["heightMaps"] = aHeightMaps;
 
 }
 

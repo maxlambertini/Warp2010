@@ -26,6 +26,7 @@ class MainWindow : public QMainWindow
     QAction *action_Save_Texture;
     QAction *action_Exit;
     QAction *actionSave_As;
+    QAction *action_CreateModuleDescJson;
     QWidget *centralWidget;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -52,6 +53,7 @@ private slots:
     void on_action_Save_Texture_triggered();
     void on_action_Exit_triggered();
     void on_actionSave_As_triggered();
+    void on_action_CreateModuleDescJson();
     void on_listFiles_clicked(QListWidgetItem* idx);
 
 private:

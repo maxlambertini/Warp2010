@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 #include "moduledescriptor.h"
 
+
+
 ModuleDescriptor::ModuleDescriptor()
 {
     this->_src1="";
@@ -143,6 +145,7 @@ void ModuleDescriptor::toJson(QJsonObject& json) {
 //static ModuleDescriptor createRandom();
 
 
+
 ModuleDescriptor& ModuleDescriptor::connectModules()
 {
     QSharedPointer<Module> currentMod;
@@ -184,8 +187,38 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
     return *this;
 }
 
+void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
+    _propertiesToExport.clear();
+    if (_m_moduleType=="Billow")  _propertiesToExport << "seed" << "freq" << "lac" << "pers" << "oct";
+    if (_m_moduleType=="Const") _propertiesToExport << "value";
+    if (_m_moduleType=="Cylinders")  _propertiesToExport << "freq";
+    if (_m_moduleType=="Perlin")  _propertiesToExport << "seed" << "freq" << "lac" << "pers" << "oct";
+    if (_m_moduleType=="RidgedMulti")  _propertiesToExport << "seed" << "freq" << "lac" << "oct";
+    if (_m_moduleType=="Spheres") _propertiesToExport << "freq";
+    if (_m_moduleType=="Voronoi") _propertiesToExport << "freq" << "disp" << "seed" << "enableDist";
+    if (_m_moduleType=="Clamp") _propertiesToExport << "lbound" << "ubound" << "src1";
+    if (_m_moduleType=="Curve") _propertiesToExport << "controlPoints" << "src1";
+    if (_m_moduleType=="Invert") _propertiesToExport <<  "src1";
+    if (_m_moduleType=="Exponent") _propertiesToExport << "exp" << "src1";
+    if (_m_moduleType=="ScaleBias") _propertiesToExport << "bias" << "scale" << "src1";
+    if (_m_moduleType=="Terrace") _propertiesToExport << "controlPoints" << "invert" << "src1";
+    if (_m_moduleType=="Turbulence")  _propertiesToExport << "seed" << "freq" << "pow" << "rough" << "src1";
+    if (_m_moduleType=="Add") _propertiesToExport <<  "src1" << "src2";
+    if (_m_moduleType=="Max") _propertiesToExport <<  "src1" << "src2";
+    if (_m_moduleType=="Min") _propertiesToExport <<  "src1" << "src2";
+    if (_m_moduleType=="Multiply") _propertiesToExport <<  "src1" << "src2";
+    if (_m_moduleType=="Power") _propertiesToExport <<  "src1" << "src2";
+    if (_m_moduleType=="Blend") _propertiesToExport <<  "src1" << "src2" << "ctl";
+    if (_m_moduleType=="Select") _propertiesToExport <<  "src1" << "src2" << "ctl" << "ubound" << "lbound" << "value";
+    if (_m_moduleType=="Displace") _propertiesToExport <<    "src1" << "src2" << "src3" << "src4" << "ctl";
+    if (_m_moduleType=="RotatePoint") _propertiesToExport << "src1" << "x" << "y" << "z";
+    if (_m_moduleType=="ScalePoint") _propertiesToExport << "src1" << "x" << "y" << "z";
+    if (_m_moduleType=="TranslatePoint") _propertiesToExport << "src1" << "x" << "y" << "z";
+
+}
+
 //from descriptor to actual object
-QSharedPointer<Module> ModuleDescriptor::   makeModule() {
+QSharedPointer<Module> ModuleDescriptor::makeModule() {
     try {
         //"Oct": 0.0 },
         if (_moduleType=="Billow") return makeBillow();
@@ -372,6 +405,7 @@ QSharedPointer<Module> ModuleDescriptor::makeTerrace() {
         //m->AddControlPoint<(std::get<0>(t),std::get<1>(t));
 
     }
+    m->InvertTerraces(this->_invert);
     QSharedPointer<Module> p; p.reset(m);
     return p;
 }

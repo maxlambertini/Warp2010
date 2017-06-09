@@ -19,14 +19,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     apppaths.cpp \
-    viewingdialog.cpp
+    viewingdialog.cpp \
+    createmoduledescriptorjson.cpp
 
 HEADERS  += mainwindow.h \
     apppaths.h \
-    viewingdialog.h
+    viewingdialog.h \
+    createmoduledescriptorjson.h
 
 FORMS    += mainwindow.ui \
-    viewingdialog.ui
+    viewingdialog.ui \
+    createmoduledescriptorjson.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/release/ -llibnoise-helpers
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/debug/ -llibnoise-helpers

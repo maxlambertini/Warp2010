@@ -8,6 +8,7 @@
 #include <apppaths.h>
 #include <QStringList>
 #include <QStringListModel>
+#include <createmoduledescriptorjson.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -36,6 +37,9 @@ void MainWindow::createActions() {
     connect(action_Exit, SIGNAL(triggered(bool)),this, SLOT(on_action_Exit_triggered()));
     actionSave_As = new QAction("Save as",this);
     connect(actionSave_As,SIGNAL(triggered(bool)),this, SLOT(on_actionSave_As_triggered()));
+    action_CreateModuleDescJson = new QAction("Create Mod. Desc",this);
+    connect(action_CreateModuleDescJson,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateModuleDescJson()));
+
 }
 
 void MainWindow::createMenus() {
@@ -45,6 +49,7 @@ void MainWindow::createMenus() {
     mainToolBar->addAction(action_Save_Texture);
     mainToolBar->addAction(actionSave_As);
     mainToolBar->addAction(action_Generate_Texture);
+    mainToolBar->addAction(action_CreateModuleDescJson);
     mainToolBar->addAction(action_Exit);
 }
 
@@ -213,4 +218,16 @@ void MainWindow::on_listFiles_clicked(QListWidgetItem *idx) {
     QString data = _listFiles->currentItem()->text();
     this->setWindowTitle(data);
     _viewer->loadImage(data);
+}
+
+void MainWindow::on_action_CreateModuleDescJson()
+{
+    CreateModuleDescriptorJson dlg(this);
+    if (dlg.exec() == QDialog::Accepted) {
+        QJsonObject o;
+        dlg.module().toJson(o);
+        QJsonDocument doc(o);
+        QString strJson(doc.toJson(QJsonDocument::Compact));
+        this->plainTextEdit->insertPlainText(strJson);
+    }
 }

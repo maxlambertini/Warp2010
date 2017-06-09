@@ -26,6 +26,7 @@
    <addaction name="actionSave_As"/>
    <addaction name="action_Generate_Texture"/>
    <addaction name="action_Exit"/>
+   <addaction name="actionInsert"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Load_Texture">
@@ -51,6 +52,11 @@
   <action name="actionSave_As">
    <property name="text">
     <string>Save &amp;As...</string>
+   </property>
+  </action>
+  <action name="actionInsert">
+   <property name="text">
+    <string>Insert</string>
    </property>
   </action>
  </widget>
