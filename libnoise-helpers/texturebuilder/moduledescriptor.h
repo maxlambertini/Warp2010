@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <ssg_structures.h>
 #include "libnoise-helpers_global.h"
 
+
 namespace NoiseModules {
     static QVector<QString> moduleList = {
         "Billow",
@@ -54,6 +55,7 @@ namespace NoiseModules {
         "Multiply",
         "Power",
         "Blend",
+        "Abs",
         "Select",
         "Displace",
         "RotatePoint",
@@ -93,31 +95,10 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     Q_OBJECT
 
     QString _moduleType = "Perlin";
-    Q_PROPERTY(QString moduleType READ moduleType WRITE setModuleType )
+    Q_PROPERTY(QString moduleType READ moduleType WRITE setModuleType)
 
     QString _name = "perlin1";
     Q_PROPERTY(QString name READ name WRITE setName )
-
-    int _seed = SSGX::dn(999999);
-    Q_PROPERTY(int seed READ seed WRITE setSeed )
-
-    double _freq = 2.50;
-    Q_PROPERTY(double freq READ freq WRITE setFreq )
-
-    double _lac = 1.20;
-    Q_PROPERTY(double lac READ lac WRITE setLac )
-
-    double _pers = 0.50 ;
-    Q_PROPERTY(double pers READ pers WRITE setPers )
-
-    int _oct = 6;
-    Q_PROPERTY(int oct READ oct WRITE setOct )
-
-    double _disp;
-    Q_PROPERTY(double displ READ displ WRITE setDispl )
-
-    bool _enableDist;
-    Q_PROPERTY(int enableDist READ enableDist WRITE setEnabledist )
 
     QString _src1;
     Q_PROPERTY(QString src1 READ src1 WRITE setSrc1 )
@@ -134,13 +115,31 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     QString _ctl;
     Q_PROPERTY(QString ctl READ ctl WRITE setCtl )
 
+
+    int _seed = SSGX::dn(999999);
+    Q_PROPERTY(int seed READ seed WRITE setSeed )
+
+    int _oct = 6;
+    Q_PROPERTY(int oct READ oct WRITE setOct )
+
+    double _freq = 2.50;
+    Q_PROPERTY(double freq READ freq WRITE setFreq )
+
+    double _lac = 1.20;
+    Q_PROPERTY(double lac READ lac WRITE setLac )
+
+    double _pers = 0.50 ;
+    Q_PROPERTY(double pers READ pers WRITE setPers )
+
+    double _disp;
+    Q_PROPERTY(double displ READ displ WRITE setDispl )
+
     double _lBound;
     Q_PROPERTY(double lBound READ lBound WRITE setLbound )
 
     double _uBound;
     Q_PROPERTY(double uBound READ uBound WRITE setUbound )
 
-    QVector<std::tuple<double,double>> _cPoints;
     double _exp;
     Q_PROPERTY(double exp READ exp WRITE setExp )
 
@@ -149,9 +148,6 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
 
     double _scale;
     Q_PROPERTY(double scale READ scale WRITE setScale )
-
-    bool _invert;
-    Q_PROPERTY(bool invert READ invert WRITE setInvert )
 
     double _x;
     Q_PROPERTY(double x READ x WRITE setX )
@@ -173,6 +169,14 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
 
     bool _enableRandom = false;
     Q_PROPERTY(bool enableRandom READ enableRandom WRITE setEnableRandom )
+
+    bool _invert;
+    Q_PROPERTY(bool invert READ invert WRITE setInvert )
+
+    bool _enableDist;
+    Q_PROPERTY(bool enableDist READ enableDist WRITE setEnabledist )
+
+    QVector<std::tuple<double,double>> _cPoints;
 
     //reference to a Map containing loaded modules
     QMap<QString, QSharedPointer<Module>> _modules;

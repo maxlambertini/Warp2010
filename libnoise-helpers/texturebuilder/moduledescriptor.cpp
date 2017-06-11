@@ -103,21 +103,21 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
 void ModuleDescriptor::toJson(QJsonObject& json) {
     json["type"] = _moduleType;
     json["name"] = _name;
-    json["seed"] = _seed;
-    json["freq"] = _freq;
-    json["lac"] = _lac;
-    json["pers"] = _pers;
-    json["oct"] = _oct;
-    json["disp"] = _disp;
-    json["enableDist"] = _enableDist;
-    json["src1"] = _src1;
-    json["src2"] = _src2;
-    json["src3"] = _src3;
-    json["src4"] = _src4;
-    json["ctl"] = _ctl;
-    json["lbound"] = _lBound;
-    json["ubound"] = _uBound;
-    json["enableRandom"] = _enableRandom;
+    if (_propertiesToExport.contains("seed")) json["seed"] = _seed;
+    if (_propertiesToExport.contains("freq")) json["freq"] = _freq;
+    if (_propertiesToExport.contains("lac")) json["lac"] = _lac;
+    if (_propertiesToExport.contains("pers")) json["pers"] = _pers;
+    if (_propertiesToExport.contains("oct")) json["oct"] = _oct;
+    if (_propertiesToExport.contains("displ")) json["disp"] = _disp;
+    if (_propertiesToExport.contains("enableDist")) json["enableDist"] = _enableDist;
+    if (_propertiesToExport.contains("src1")) json["src1"] = _src1;
+    if (_propertiesToExport.contains("src2")) json["src2"] = _src2;
+    if (_propertiesToExport.contains("src3")) json["src3"] = _src3;
+    if (_propertiesToExport.contains("src4")) json["src4"] = _src4;
+    if (_propertiesToExport.contains("ctl")) json["ctl"] = _ctl;
+    if (_propertiesToExport.contains("lBound")) json["lbound"] = _lBound;
+    if (_propertiesToExport.contains("uBound")) json["ubound"] = _uBound;
+    if (_propertiesToExport.contains("enableRandom")) json["enableRandom"] = _enableRandom;
 
     QJsonArray a;
     std::tuple<double,double> tp;
@@ -127,18 +127,18 @@ void ModuleDescriptor::toJson(QJsonObject& json) {
         o.append(std::get<1>(tp));
         a.append(o);
     }
-    json["cpoints"] = a;
+    if (_propertiesToExport.contains("controlPoints")) json["cpoints"] = a;
     //json["cPoints"] = _cPoints;
-    json["exp"] = _exp;
-    json["bias"] = _bias;
-    json["scale"] = _scale;
-    json["invert"] = _invert;
-    json["x"] = _x;
-    json["y"] = _y;
-    json["z"] = _z;
-    json["pow"] = _pow;
-    json["rough"] = _rough;
-    json["value"] = _value;
+    if (_propertiesToExport.contains("exp")) json["exp"] = _exp;
+    if (_propertiesToExport.contains("bias")) json["bias"] = _bias;
+    if (_propertiesToExport.contains("scale")) json["scale"] = _scale;
+    if (_propertiesToExport.contains("invert")) json["invert"] = _invert;
+    if (_propertiesToExport.contains("x")) json["x"] = _x;
+    if (_propertiesToExport.contains("y")) json["y"] = _y;
+    if (_propertiesToExport.contains("z")) json["z"] = _z;
+    if (_propertiesToExport.contains("pow")) json["pow"] = _pow;
+    if (_propertiesToExport.contains("rough")) json["rough"] = _rough;
+    if (_propertiesToExport.contains("value")) json["value"] = _value;
 }
 
 
@@ -189,31 +189,32 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
 
 void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     _propertiesToExport.clear();
-    if (_m_moduleType=="Billow")  _propertiesToExport << "seed" << "freq" << "lac" << "pers" << "oct";
-    if (_m_moduleType=="Const") _propertiesToExport << "value";
-    if (_m_moduleType=="Cylinders")  _propertiesToExport << "freq";
-    if (_m_moduleType=="Perlin")  _propertiesToExport << "seed" << "freq" << "lac" << "pers" << "oct";
-    if (_m_moduleType=="RidgedMulti")  _propertiesToExport << "seed" << "freq" << "lac" << "oct";
-    if (_m_moduleType=="Spheres") _propertiesToExport << "freq";
-    if (_m_moduleType=="Voronoi") _propertiesToExport << "freq" << "disp" << "seed" << "enableDist";
-    if (_m_moduleType=="Clamp") _propertiesToExport << "lbound" << "ubound" << "src1";
-    if (_m_moduleType=="Curve") _propertiesToExport << "controlPoints" << "src1";
-    if (_m_moduleType=="Invert") _propertiesToExport <<  "src1";
-    if (_m_moduleType=="Exponent") _propertiesToExport << "exp" << "src1";
-    if (_m_moduleType=="ScaleBias") _propertiesToExport << "bias" << "scale" << "src1";
-    if (_m_moduleType=="Terrace") _propertiesToExport << "controlPoints" << "invert" << "src1";
-    if (_m_moduleType=="Turbulence")  _propertiesToExport << "seed" << "freq" << "pow" << "rough" << "src1";
-    if (_m_moduleType=="Add") _propertiesToExport <<  "src1" << "src2";
-    if (_m_moduleType=="Max") _propertiesToExport <<  "src1" << "src2";
-    if (_m_moduleType=="Min") _propertiesToExport <<  "src1" << "src2";
-    if (_m_moduleType=="Multiply") _propertiesToExport <<  "src1" << "src2";
-    if (_m_moduleType=="Power") _propertiesToExport <<  "src1" << "src2";
-    if (_m_moduleType=="Blend") _propertiesToExport <<  "src1" << "src2" << "ctl";
-    if (_m_moduleType=="Select") _propertiesToExport <<  "src1" << "src2" << "ctl" << "ubound" << "lbound" << "value";
-    if (_m_moduleType=="Displace") _propertiesToExport <<    "src1" << "src2" << "src3" << "src4" << "ctl";
-    if (_m_moduleType=="RotatePoint") _propertiesToExport << "src1" << "x" << "y" << "z";
-    if (_m_moduleType=="ScalePoint") _propertiesToExport << "src1" << "x" << "y" << "z";
-    if (_m_moduleType=="TranslatePoint") _propertiesToExport << "src1" << "x" << "y" << "z";
+    if (_m_moduleType=="Billow")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "pers" << "oct";
+    if (_m_moduleType=="Const") _propertiesToExport <<"name" << "value";
+    if (_m_moduleType=="Cylinders")  _propertiesToExport <<"name" << "freq";
+    if (_m_moduleType=="Perlin")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "pers" << "oct";
+    if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "oct";
+    if (_m_moduleType=="Spheres") _propertiesToExport <<"name" << "freq";
+    if (_m_moduleType=="Voronoi") _propertiesToExport <<"name" << "freq" << "disp" << "seed" << "enableDist";
+    if (_m_moduleType=="Clamp") _propertiesToExport <<"name" << "lBound" << "uBound" << "src1";
+    if (_m_moduleType=="Curve") _propertiesToExport <<"name" << "controlPoints" << "src1";
+    if (_m_moduleType=="Invert") _propertiesToExport <<"name" <<  "src1";
+    if (_m_moduleType=="Abs") _propertiesToExport <<"name" <<  "src1";
+    if (_m_moduleType=="Exponent") _propertiesToExport <<"name" << "exp" << "src1";
+    if (_m_moduleType=="ScaleBias") _propertiesToExport <<"name" << "bias" << "scale" << "src1";
+    if (_m_moduleType=="Terrace") _propertiesToExport <<"name" << "controlPoints" << "invert" << "src1";
+    if (_m_moduleType=="Turbulence")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1";
+    if (_m_moduleType=="Add") _propertiesToExport <<"name" <<  "src1" << "src2";
+    if (_m_moduleType=="Max") _propertiesToExport <<"name" <<  "src1" << "src2";
+    if (_m_moduleType=="Min") _propertiesToExport <<"name" <<  "src1" << "src2";
+    if (_m_moduleType=="Multiply") _propertiesToExport <<"name" <<  "src1" << "src2";
+    if (_m_moduleType=="Power") _propertiesToExport <<"name" <<  "src1" << "src2";
+    if (_m_moduleType=="Blend") _propertiesToExport <<"name" <<  "src1" << "src2" << "ctl";
+    if (_m_moduleType=="Select") _propertiesToExport <<"name" <<  "src1" << "src2" << "ctl" << "uBound" << "lBound" << "value";
+    if (_m_moduleType=="Displace") _propertiesToExport <<"name" <<    "src1" << "src2" << "src3" << "src4" << "ctl";
+    if (_m_moduleType=="RotatePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z";
+    if (_m_moduleType=="ScalePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z";
+    if (_m_moduleType=="TranslatePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z";
 
 }
 

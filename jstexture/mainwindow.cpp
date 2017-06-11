@@ -9,6 +9,7 @@
 #include <QStringList>
 #include <QStringListModel>
 #include <createmoduledescriptorjson.h>
+#include <QtGradientEditor/qtgradientdialog.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -190,6 +191,25 @@ void MainWindow::on_action_Save_Texture_triggered()
 
 void MainWindow::on_action_Exit_triggered()
 {
+    QtGradientDialog dlg(this);
+    dlg.exec();
+    QGradient gradient = dlg.gradient();
+    QJsonArray a;
+    QVector<QGradientStop> stops = gradient.stops();
+    for (auto i = stops.begin(); i != stops.end(); ++i) {
+        QGradientStop s = (*i);
+        QJsonArray arr;
+        arr.append((s.first*2.0)-1.0);
+        arr.append(s.second.red());
+        arr.append(s.second.green());
+        arr.append(s.second.blue());
+        arr.append(s.second.alpha());
+        a.append(arr);
+    }
+    QJsonDocument doc(a);
+    QString strJson(doc.toJson(QJsonDocument::Compact));
+    this->plainTextEdit->insertPlainText(strJson);
+
 
 }
 

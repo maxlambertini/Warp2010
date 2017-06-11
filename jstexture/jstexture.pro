@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+CONFIG += cpp11
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,6 +17,8 @@ TEMPLATE = app
 #Release:LIBS += -L$$PWD/../builds/release/libnoise-warp -L$$PWD/../builds/release/libnoise-helpers -llibnoise-warp -llibnoise-helpers
 #Debug:LIBS += -L$$PWD/../builds/debug/libnoise-warp -L$$PWD/../builds/debug/libnoise-helpers -llibnoise-warp -llibnoise-helpers
 
+# include($$PWD/QtGradientEditor/qtcolorbutton.pri)
+include($$PWD/QtGradientEditor/qtgradienteditor.pri)
 
 SOURCES += main.cpp\
         mainwindow.cpp \
