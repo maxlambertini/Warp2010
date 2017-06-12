@@ -27,6 +27,7 @@ class MainWindow : public QMainWindow
     QAction *action_Exit;
     QAction *actionSave_As;
     QAction *action_CreateModuleDescJson;
+    QAction *action_CreateHeightmapBuilder;
     QWidget *centralWidget;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -54,6 +55,7 @@ private slots:
     void on_action_Exit_triggered();
     void on_actionSave_As_triggered();
     void on_action_CreateModuleDescJson();
+    void on_action_CreateHeightmapBuilder();
     void on_listFiles_clicked(QListWidgetItem* idx);
 
 private:

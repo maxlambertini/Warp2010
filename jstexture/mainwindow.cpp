@@ -10,6 +10,7 @@
 #include <QStringListModel>
 #include <createmoduledescriptorjson.h>
 #include <QtGradientEditor/qtgradientdialog.h>
+#include <heightmapbuilderdialog.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -40,6 +41,8 @@ void MainWindow::createActions() {
     connect(actionSave_As,SIGNAL(triggered(bool)),this, SLOT(on_actionSave_As_triggered()));
     action_CreateModuleDescJson = new QAction("Create Mod. Desc",this);
     connect(action_CreateModuleDescJson,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateModuleDescJson()));
+    action_CreateHeightmapBuilder = new QAction("Create HMB",this);
+    connect(action_CreateHeightmapBuilder,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateHeightmapBuilder()));
 
 }
 
@@ -51,6 +54,7 @@ void MainWindow::createMenus() {
     mainToolBar->addAction(actionSave_As);
     mainToolBar->addAction(action_Generate_Texture);
     mainToolBar->addAction(action_CreateModuleDescJson);
+    mainToolBar->addAction(action_CreateHeightmapBuilder);
     mainToolBar->addAction(action_Exit);
 }
 
@@ -246,6 +250,19 @@ void MainWindow::on_action_CreateModuleDescJson()
     if (dlg.exec() == QDialog::Accepted) {
         QJsonObject o;
         dlg.module().toJson(o);
+        QJsonDocument doc(o);
+        QString strJson(doc.toJson(QJsonDocument::Compact));
+        strJson.replace("],","],\n");
+        this->plainTextEdit->insertPlainText(strJson);
+    }
+}
+
+void MainWindow::on_action_CreateHeightmapBuilder() {
+    HeightMapBuilderDialog dlg(this);
+    if (dlg.exec() == QDialog::Accepted) {
+        auto builder = dlg.builderWidget()->builder();
+        QJsonObject o;
+        builder->toJson(o);
         QJsonDocument doc(o);
         QString strJson(doc.toJson(QJsonDocument::Compact));
         this->plainTextEdit->insertPlainText(strJson);

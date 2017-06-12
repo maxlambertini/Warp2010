@@ -24,16 +24,21 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     apppaths.cpp \
     viewingdialog.cpp \
-    createmoduledescriptorjson.cpp
+    createmoduledescriptorjson.cpp \
+    heightmapbuilderwidget.cpp \
+    heightmapbuilderdialog.cpp
 
 HEADERS  += mainwindow.h \
     apppaths.h \
     viewingdialog.h \
-    createmoduledescriptorjson.h
+    createmoduledescriptorjson.h \
+    heightmapbuilderwidget.h \
+    heightmapbuilderdialog.h
 
 FORMS    += mainwindow.ui \
     viewingdialog.ui \
-    createmoduledescriptorjson.ui
+    createmoduledescriptorjson.ui \
+    heightmapbuilderdialog.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/release/ -llibnoise-helpers
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/debug/ -llibnoise-helpers

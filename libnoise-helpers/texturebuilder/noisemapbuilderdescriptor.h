@@ -107,6 +107,9 @@ public:
     const QString& name() { return _name; }
     void  setName(const QString& n) {_name = n; }
 
+    const QString& dest() { return _dest; }
+    void setDest(const QString& n) {_dest = n; }
+
     QMap<QString, QSharedPointer<Module>>& modules() { return _modules; }
     void setModules(const QMap<QString, QSharedPointer<Module>>& m) { _modules = m; }
 
@@ -116,7 +119,10 @@ public:
     int getSizeX() { return std::get<0>(_size); }
     int getSizeY() { return std::get<1>(_size); }
 
+    std::tuple<int,int>& size() { return _size; }
     void setSize (int x, int y ) { _size = std::tuple<int,int>(x,y); }
+
+    std::tuple<double,double,double,double> bounds() { return _bounds; }
     void setBounds (double south = -90.0, double north = 90.0, double west = -180.0, double east = 180.0) {
         _bounds = std::tuple<double,double,double,double>(south,north,west,east);
     }
