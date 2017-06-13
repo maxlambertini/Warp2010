@@ -12,6 +12,7 @@ HeightMapBuilderDialog::HeightMapBuilderDialog(QWidget *parent) :
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(on_dialog_accept()));
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
     l->addWidget(buttonBox);
+    this->setLayout(l);
 }
 
 HeightMapBuilderDialog::~HeightMapBuilderDialog()

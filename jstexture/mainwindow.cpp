@@ -11,6 +11,7 @@
 #include <createmoduledescriptorjson.h>
 #include <QtGradientEditor/qtgradientdialog.h>
 #include <heightmapbuilderdialog.h>
+#include <rendererdescdialog.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -195,6 +196,9 @@ void MainWindow::on_action_Save_Texture_triggered()
 
 void MainWindow::on_action_Exit_triggered()
 {
+    RendererDescDialog dlg(this);
+    dlg.exec();
+    /*
     QtGradientDialog dlg(this);
     dlg.exec();
     QGradient gradient = dlg.gradient();
@@ -213,7 +217,7 @@ void MainWindow::on_action_Exit_triggered()
     QJsonDocument doc(a);
     QString strJson(doc.toJson(QJsonDocument::Compact));
     this->plainTextEdit->insertPlainText(strJson);
-
+    */
 
 }
 

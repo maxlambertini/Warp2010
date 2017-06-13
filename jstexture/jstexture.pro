@@ -26,14 +26,18 @@ SOURCES += main.cpp\
     viewingdialog.cpp \
     createmoduledescriptorjson.cpp \
     heightmapbuilderwidget.cpp \
-    heightmapbuilderdialog.cpp
+    heightmapbuilderdialog.cpp \
+    qrendererdescwidget.cpp \
+    rendererdescdialog.cpp
 
 HEADERS  += mainwindow.h \
     apppaths.h \
     viewingdialog.h \
     createmoduledescriptorjson.h \
     heightmapbuilderwidget.h \
-    heightmapbuilderdialog.h
+    heightmapbuilderdialog.h \
+    qrendererdescwidget.h \
+    rendererdescdialog.h
 
 FORMS    += mainwindow.ui \
     viewingdialog.ui \
