@@ -27,5 +27,16 @@ RendererDescDialog::RendererDescDialog(QWidget *parent) : QDialog(parent)
 }
 
 void RendererDescDialog::on_dialog_accept() {
+    this->renderer->fillRendererDescriptor();
+    auto grad = this->gradientEditor->gradient();
+    RendererDescriptor& d = this->renderer->rendererDescriptor();
+    d.gradientInfo().clear();
+    QVector<QGradientStop> stops = grad.stops();
+    for (auto i = stops.begin(); i != stops.end(); ++i) {
+        QGradientStop s = (*i);
+        auto tpl = std::tuple<double,int,int,int,int>(
+        (s.first*2.0)-1.0,s.second.red(),s.second.green(),s.second.blue(),s.second.alpha());
+        d.gradientInfo().append(tpl);
+    }
     QDialog::accept();
 }

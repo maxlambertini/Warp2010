@@ -40,6 +40,13 @@ void QRendererDescWidget::createWidgets() {
     gridLayout->addWidget(c_enabledLight,nRow,1);
 
     nRow += 1;
+    c_enableRandomGradient = new QCheckBox(this);
+    c_enableRandomGradient->setObjectName("c_enableRandomGradient");
+    gridLayout->addWidget(new QLabel("Random Gradient",this),nRow,0);
+    gridLayout->addWidget(c_enableRandomGradient,nRow,1);
+
+
+    nRow += 1;
     c_lightContrast = new QLineEdit(this);
     c_lightContrast->setObjectName("c_lightContrast");
     c_lightContrast->setText("0.0001");
@@ -82,12 +89,6 @@ void QRendererDescWidget::createWidgets() {
     c_randomFactorValue->setObjectName("c_randomFactorValue");
     gridLayout->addWidget(new QLabel("randomFactorValue",this),nRow,0);
     gridLayout->addWidget(c_randomFactorValue,nRow,1);
-
-    nRow += 1;
-    c_enableRandomGradient = new QCheckBox(this);
-    c_enableRandomGradient->setObjectName("c_enableRandomGradient");
-    gridLayout->addWidget(new QLabel("Random Gradient",this),nRow,0);
-    gridLayout->addWidget(c_enabledLight,nRow,1);
 
     this->setLayout(gridLayout);
 

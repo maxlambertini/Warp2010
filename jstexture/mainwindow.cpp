@@ -197,28 +197,13 @@ void MainWindow::on_action_Save_Texture_triggered()
 void MainWindow::on_action_Exit_triggered()
 {
     RendererDescDialog dlg(this);
-    dlg.exec();
-    /*
-    QtGradientDialog dlg(this);
-    dlg.exec();
-    QGradient gradient = dlg.gradient();
-    QJsonArray a;
-    QVector<QGradientStop> stops = gradient.stops();
-    for (auto i = stops.begin(); i != stops.end(); ++i) {
-        QGradientStop s = (*i);
-        QJsonArray arr;
-        arr.append((s.first*2.0)-1.0);
-        arr.append(s.second.red());
-        arr.append(s.second.green());
-        arr.append(s.second.blue());
-        arr.append(s.second.alpha());
-        a.append(arr);
+    if (dlg.exec() == QDialog::Accepted) {
+        QJsonObject oRenderer;
+        dlg.rendererDescriptor().toJson(oRenderer);
+        QJsonDocument doc(oRenderer);
+        QString strJson(doc.toJson());
+        this->plainTextEdit->insertPlainText(strJson);
     }
-    QJsonDocument doc(a);
-    QString strJson(doc.toJson(QJsonDocument::Compact));
-    this->plainTextEdit->insertPlainText(strJson);
-    */
-
 }
 
 void MainWindow::on_actionSave_As_triggered()
