@@ -74,6 +74,11 @@ public:
     double lightContrast() { return _lightContrast; }
     double lightBrightness() { return _lightBrightness; }
     bool randomGradient() { return _randomGradient; }
+    int rndHue() { return _rndHue; }
+    int rndSaturation() { return _rndSaturation; }
+    int rndValue() { return _rndValue; }
+    void setRandomFactor (int h, int s, int v )  { _rndHue = h; _rndSaturation = s; _rndValue = v; }
+
 
     const QMap<QString, QSharedPointer<utils::NoiseMap>>& noiseMaps() { return _noiseMaps; }
     const QMap<QString, QSharedPointer<utils::Image>>& images() { return _images; }

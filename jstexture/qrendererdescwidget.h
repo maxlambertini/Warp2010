@@ -26,11 +26,13 @@ class QRendererDescWidget : public QWidget
     QLineEdit *c_backgroundImage;
     QLineEdit *c_destImage;
     QCheckBox *c_enabledLight;
+    QCheckBox *c_enableRandomGradient;
     QLineEdit *c_lightContrast;
     QLineEdit *c_lightBrightess;
     QSpinBox *c_randomFactorHue;
     QSpinBox *c_randomFactorSaturation;
     QSpinBox *c_randomFactorValue;
+
 
 public:
     explicit QRendererDescWidget(QWidget *parent = 0);

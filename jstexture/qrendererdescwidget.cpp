@@ -42,7 +42,8 @@ void QRendererDescWidget::createWidgets() {
     nRow += 1;
     c_lightContrast = new QLineEdit(this);
     c_lightContrast->setObjectName("c_lightContrast");
-    auto v1 = new QDoubleValidator(this);
+    c_lightContrast->setText("0.0001");
+    auto v1 = new QDoubleValidator(0.0001, 9999.9,4,this);
     c_lightContrast->setValidator(v1);
     gridLayout->addWidget(new QLabel("lightContrast",this),nRow,0);
     gridLayout->addWidget(c_lightContrast,nRow,1);
@@ -51,6 +52,7 @@ void QRendererDescWidget::createWidgets() {
     c_lightBrightess = new QLineEdit(this);
     c_lightBrightess->setObjectName("c_lightBrightess");
     c_lightBrightess->setValidator(v1);
+    c_lightBrightess->setText("0.0001");
     gridLayout->addWidget(new QLabel("lightBrightess",this),nRow,0);
     gridLayout->addWidget(c_lightBrightess,nRow,1);
 
@@ -81,11 +83,30 @@ void QRendererDescWidget::createWidgets() {
     gridLayout->addWidget(new QLabel("randomFactorValue",this),nRow,0);
     gridLayout->addWidget(c_randomFactorValue,nRow,1);
 
+    nRow += 1;
+    c_enableRandomGradient = new QCheckBox(this);
+    c_enableRandomGradient->setObjectName("c_enableRandomGradient");
+    gridLayout->addWidget(new QLabel("Random Gradient",this),nRow,0);
+    gridLayout->addWidget(c_enabledLight,nRow,1);
+
     this->setLayout(gridLayout);
 
 }
 
 void QRendererDescWidget::fillRendererDescriptor() {
+    _rendererDescriptor.setBackgroundImage(this->c_backgroundImage->text());
+    _rendererDescriptor.setDestImage(this->c_destImage->text());
+    _rendererDescriptor.setEnabledlight(this->c_enabledLight->isChecked());
+    _rendererDescriptor.setLightbrightness(this->c_lightBrightess->text().toDouble());
+    _rendererDescriptor.setLightcontrast(this->c_lightContrast->text().toDouble());
+    _rendererDescriptor.setName(this->c_name->text());
+    _rendererDescriptor.setNoisemap(this->c_noiseMap->text());
+    _rendererDescriptor.setRandomFactor(
+                c_randomFactorHue->value(),
+                c_randomFactorSaturation->value(),
+                c_randomFactorSaturation->value());
+    _rendererDescriptor.setRandomGradient(c_enableRandomGradient->isChecked());
+
 
 }
 
