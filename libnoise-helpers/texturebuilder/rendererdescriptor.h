@@ -103,6 +103,8 @@ public:
 
     void toJson(QJsonObject& json);
     void fromJson(const QJsonObject& json);
+
+    QVector<GradientInfo>& gradientInfo() { return _gradientInfo; }
 };
 
 #endif // RENDERERDESCRIPTOR_H
