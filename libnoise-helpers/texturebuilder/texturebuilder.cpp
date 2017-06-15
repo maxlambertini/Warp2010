@@ -74,6 +74,7 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         ModuleDescriptor *m = new ModuleDescriptor();
         QJsonObject o = aModules[h].toObject();
         m->fromJson(o);
+
         QString name = m->name();
         m->setModules(_modules);
         QSharedPointer<ModuleDescriptor> p; p.reset(m);

@@ -96,7 +96,7 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
         _value = json["value"].toDouble();
     if (!json["enableRandom"].isNull() && !json["enableRandom"].isUndefined())
         _enableRandom = json["enableRandom"].toBool();
-
+    this->setupPropertiesToExport(this->_moduleType);
 
 }
 

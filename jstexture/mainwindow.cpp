@@ -116,6 +116,7 @@ void MainWindow::on_action_Generate_Texture_triggered()
         this->on_action_Save_Texture_triggered();
         TextureBuilder tb;
         tb.buildTextureFromJson(_currentTextureFile);
+
         if (tb.generatedMaps().count()> 0) {
             QString imgFile = tb.generatedMaps().first();
             if (_viewer->isHidden()) {
@@ -132,6 +133,11 @@ void MainWindow::on_action_Generate_Texture_triggered()
             //this->imageLabel->setPixmap(pixmap);
             //this->imageLabel->setGeometry(0,0,pixmap.width(),pixmap.height());
         }
+        QJsonObject o;
+        tb.toJson(o);
+        QJsonDocument doc(o);
+        QString json(doc.toJson());
+        this->plainTextEdit->setPlainText(json);
     }
     catch (noise::ExceptionInvalidParam &exc) {
         errorBox("Invalid parameter somewhere. Check zeros and negatives ");
