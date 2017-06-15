@@ -19,11 +19,16 @@ RendererDescDialog::RendererDescDialog(QWidget *parent) : QDialog(parent)
     vLayout->addWidget(this->renderer);
     vLayout->addSpacing(70);
 
+    auto vLayout2 = new QVBoxLayout(this);
+    vLayout2->addWidget(new QLabel("Gradient editor",this));
+    vLayout2->addWidget(this->gradientEditor);
+
     grid->addLayout(vLayout,0,0);
-    grid->addWidget(this->gradientEditor,0,1,1,1);
+    grid->addLayout(vLayout2,0,1);
     grid->addWidget(this->buttonBox,2,0,1,2);
-    this->setWindowTitle("Define Renderer");
+    this->setWindowTitle("Create Renderer");
     this->setLayout(grid);
+
 }
 
 void RendererDescDialog::on_dialog_accept() {

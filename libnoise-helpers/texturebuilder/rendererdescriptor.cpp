@@ -72,7 +72,13 @@ void RendererDescriptor::toJson(QJsonObject& json) {
     json["backgroundImage"] = _backgroundImage;
     json["destImage"] = _destImage;
     json["randomGradient"] = _randomGradient;
-
+    if (_rndHue != 0 && _rndSaturation != 0 && _rndValue != 0) {
+        QJsonArray a;
+        a.append(_rndHue);
+        a.append(_rndSaturation);
+        a.append(_rndValue);
+        json["randomFactor"] = a;
+    }
     QJsonArray giItems;
     GradientInfo gi;
     foreach (gi, _gradientInfo) {

@@ -11,44 +11,44 @@ void QRendererDescWidget::createWidgets() {
 
     int nRow = 0;
     c_name = new QLineEdit(this);
-    c_name->setObjectName("c_name");
+    c_name->setObjectName("Renderer Name");
     gridLayout->addWidget(new QLabel("name",this),nRow,0);
     gridLayout->addWidget(c_name,nRow,1);
 
     nRow += 1;
     c_noiseMap = new QLineEdit(this);
-    c_noiseMap->setObjectName("c_noiseMap");
+    c_noiseMap->setObjectName("Noise Map");
     gridLayout->addWidget(new QLabel("noiseMap",this),nRow,0);
     gridLayout->addWidget(c_noiseMap,nRow,1);
 
     nRow += 1;
     c_backgroundImage = new QLineEdit(this);
-    c_backgroundImage->setObjectName("c_backgroundImage");
+    c_backgroundImage->setObjectName("Background Image");
     gridLayout->addWidget(new QLabel("backgroundImage",this),nRow,0);
     gridLayout->addWidget(c_backgroundImage,nRow,1);
 
     nRow += 1;
     c_destImage = new QLineEdit(this);
-    c_destImage->setObjectName("c_destImage");
+    c_destImage->setObjectName("Dest Image");
     gridLayout->addWidget(new QLabel("destImage",this),nRow,0);
     gridLayout->addWidget(c_destImage,nRow,1);
 
     nRow += 1;
-    c_enabledLight = new QCheckBox(this);
-    c_enabledLight->setObjectName("c_enabledLight");
-    gridLayout->addWidget(new QLabel("enabledLight",this),nRow,0);
-    gridLayout->addWidget(c_enabledLight,nRow,1);
-
-    nRow += 1;
     c_enableRandomGradient = new QCheckBox(this);
-    c_enableRandomGradient->setObjectName("c_enableRandomGradient");
+    c_enableRandomGradient->setObjectName("Random Gradient?");
     gridLayout->addWidget(new QLabel("Random Gradient",this),nRow,0);
     gridLayout->addWidget(c_enableRandomGradient,nRow,1);
+
+    nRow += 1;
+    c_enabledLight = new QCheckBox(this);
+    c_enabledLight->setObjectName("Light enabled?");
+    gridLayout->addWidget(new QLabel("enabledLight",this),nRow,0);
+    gridLayout->addWidget(c_enabledLight,nRow,1);
 
 
     nRow += 1;
     c_lightContrast = new QLineEdit(this);
-    c_lightContrast->setObjectName("c_lightContrast");
+    c_lightContrast->setObjectName("Contrast Level");
     c_lightContrast->setText("0.0001");
     auto v1 = new QDoubleValidator(0.0001, 9999.9,4,this);
     c_lightContrast->setValidator(v1);
@@ -57,7 +57,7 @@ void QRendererDescWidget::createWidgets() {
 
     nRow += 1;
     c_lightBrightess = new QLineEdit(this);
-    c_lightBrightess->setObjectName("c_lightBrightess");
+    c_lightBrightess->setObjectName("Brightness Level");
     c_lightBrightess->setValidator(v1);
     c_lightBrightess->setText("0.0001");
     gridLayout->addWidget(new QLabel("lightBrightess",this),nRow,0);
@@ -68,7 +68,7 @@ void QRendererDescWidget::createWidgets() {
     c_randomFactorHue->setMaximum(250);
     c_randomFactorHue->setMinimum(1);
     c_randomFactorHue->setValue(1);
-    c_randomFactorHue->setObjectName("c_randomFactorHue");
+    c_randomFactorHue->setObjectName("Hue Random Factor");
     gridLayout->addWidget(new QLabel("randomFactorHue",this),nRow,0);
     gridLayout->addWidget(c_randomFactorHue,nRow,1);
 
@@ -77,7 +77,7 @@ void QRendererDescWidget::createWidgets() {
     c_randomFactorSaturation->setMaximum(250);
     c_randomFactorSaturation->setMinimum(1);
     c_randomFactorSaturation->setValue(1);
-    c_randomFactorSaturation->setObjectName("c_randomFactorSaturation");
+    c_randomFactorSaturation->setObjectName("Saturation Random Factor");
     gridLayout->addWidget(new QLabel("randomFactorSaturation",this),nRow,0);
     gridLayout->addWidget(c_randomFactorSaturation,nRow,1);
 
@@ -86,7 +86,7 @@ void QRendererDescWidget::createWidgets() {
     c_randomFactorValue->setMaximum(250);
     c_randomFactorValue->setMinimum(1);
     c_randomFactorValue->setValue(1);
-    c_randomFactorValue->setObjectName("c_randomFactorValue");
+    c_randomFactorValue->setObjectName("Value Random Factor");
     gridLayout->addWidget(new QLabel("randomFactorValue",this),nRow,0);
     gridLayout->addWidget(c_randomFactorValue,nRow,1);
 
