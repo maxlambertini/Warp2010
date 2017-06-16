@@ -32,9 +32,22 @@ TextureBuilder::TextureBuilder() :
     _bumpMap(""),
     _reflectionMap(""),
     _cloudMap(""),
-    _colorMap("")
+    _colorMap("image1")
 {
     _randomFactors.append(0.0);
+    QSharedPointer<ModuleDescriptor> p(new ModuleDescriptor());
+    p.data()->setName("Module1");
+    p.data()->setModuleType("Perlin");
+    _modDesc.insert("Module1",p);
+    QSharedPointer<HeightMapDescriptor> hmp(new HeightMapDescriptor());
+    hmp.data()->setName("heightMap");
+    _hmDesc.insert(hmp.data()->name(), hmp);
+    QSharedPointer<ImageDescriptor> imp(new ImageDescriptor());
+    imp.data()->setName("image1");
+    __imDesc.insert(imp.data()->name(),imp);
+    QSharedPointer<RendererDescriptor> rdp(new RendererDescriptor());
+    rdp.data()->setName("renderer1");
+    _rndDesc.insert(rdp.data()->name(),rdp);
 }
 
 void TextureBuilder::fromJson(const QJsonObject &json) {
