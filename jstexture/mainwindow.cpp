@@ -23,6 +23,13 @@ MainWindow::MainWindow(QWidget *parent) :
     this->createMenus();
     this->createWidgets();
     this->layoutWidgets();
+
+    TextureBuilder tb;
+    QJsonObject o;
+    tb.toJson(o);
+    QJsonDocument doc(o);
+    QString strJson(doc.toJson());
+    this->plainTextEdit->setPlainText(strJson);
 }
 
 MainWindow::~MainWindow()

@@ -38,16 +38,26 @@ TextureBuilder::TextureBuilder() :
     QSharedPointer<ModuleDescriptor> p(new ModuleDescriptor());
     p.data()->setName("Module1");
     p.data()->setModuleType("Perlin");
-    _modDesc.insert("Module1",p);
+    p.data()->setupPropertiesToExport(p.data()->moduleType());
+    _modDesc.insert(p.data()->name(),p);
     QSharedPointer<HeightMapDescriptor> hmp(new HeightMapDescriptor());
     hmp.data()->setName("heightMap");
     _hmDesc.insert(hmp.data()->name(), hmp);
     QSharedPointer<ImageDescriptor> imp(new ImageDescriptor());
     imp.data()->setName("image1");
     __imDesc.insert(imp.data()->name(),imp);
+    QSharedPointer<NoiseMapBuilderDescriptor> nmbd(new NoiseMapBuilderDescriptor());
+    nmbd.data()->setName("noiseMapBuilder1");
+    nmbd.data()->setSourceModule(p.data()->name());
+    nmbd.data()->setSize(1024,512);
+    nmbd.data()->setDest(hmp.data()->name());
+    _nmbDesc.insert(nmbd.data()->name(),nmbd);
     QSharedPointer<RendererDescriptor> rdp(new RendererDescriptor());
     rdp.data()->setName("renderer1");
+    rdp.data()->setDestImage(imp.data()->name());
+    rdp.data()->setNoisemap(hmp.data()->name());
     _rndDesc.insert(rdp.data()->name(),rdp);
+
 }
 
 void TextureBuilder::fromJson(const QJsonObject &json) {
