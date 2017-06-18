@@ -56,6 +56,10 @@ TextureBuilder::TextureBuilder() :
     rdp.data()->setName("renderer1");
     rdp.data()->setDestImage(imp.data()->name());
     rdp.data()->setNoisemap(hmp.data()->name());
+    rdp.data()->gradientInfo().clear();
+    rdp.data()->gradientInfo().append(GradientInfo(-1.0,255,255,0  ,255));
+    rdp.data()->gradientInfo().append(GradientInfo( 0.0,  0,255,255,255));
+    rdp.data()->gradientInfo().append(GradientInfo( 1.0,255,  0,255,255));
     _rndDesc.insert(rdp.data()->name(),rdp);
 
 }

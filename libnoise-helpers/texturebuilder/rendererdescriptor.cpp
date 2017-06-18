@@ -49,13 +49,21 @@ QSharedPointer<utils::RendererImage> RendererDescriptor::makeRenderer() {
 RendererDescriptor& RendererDescriptor::connectImagesAndMap() {
     utils::RendererImage* p = _renderers[this->name()].data();
     if (_backgroundImage != "") {
+        if (!_images.contains(_backgroundImage))
+            throw "Renderer " + _name + " is referencing background image " +
+                _backgroundImage + ", which is not defined in images sections";
         auto pImg = _images[_backgroundImage].data(); //pointer to utils::Image
         p->SetBackgroundImage(*pImg);                 //reference to stored data
     }
     if (_destImage != "") {
+        if (!_images.contains(_destImage))
+            throw "Renderer " + _name + " is referencing destination image " +
+                _backgroundImage + ", which is not defined in images sections";
         auto pImg = _images[_destImage].data(); //pointer to utils::Image
         p->SetDestImage(*pImg);                 //reference to stored data
     }
+    else
+        throw "Undefined destination image in " + _name;
     auto theMap = _noiseMaps[this->_noiseMap].data();
     qDebug() << "x: " << theMap->GetWidth() << ", y: " <<  theMap->GetHeight();
     p->SetSourceNoiseMap(*theMap);

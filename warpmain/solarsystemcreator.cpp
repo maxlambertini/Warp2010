@@ -506,7 +506,10 @@ Planet SolarSystemCreator::createPlanet(
     else {
         double sSatDist = *prevDistance;
         if (sSatDist <= 0)
-            sSatDist = 105000+(double)((SSGX::dn(40)+5) * planetTop.diameter());
+            if (planetTop.planetType() != ptGasGiant)
+                sSatDist = 105000+(double)((SSGX::dn(20)+10) * planetTop.diameter());
+            else
+                sSatDist = 105000+(double)((SSGX::floatRand()*1.8+2.0) * planetTop.diameter());
         else
             sSatDist += 80000.0+(double)((SSGX::dn(20)+15) * planet.diameter());
         *prevDistance = sSatDist;

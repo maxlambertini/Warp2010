@@ -83,6 +83,7 @@ public:
 
     NoiseMapBuilderDescriptor& connectSrcModule()
     {
+        if (_src1 == "") throw "Source module src1 unreferenced in NoiseMapBuilder " + _name;
         if (_src1 != "" && _modules.contains(_src1)) {
             noise::module::Module *mod = _modules[_src1].data();
             utils::NoiseMapBuilder *nmb =
@@ -91,6 +92,9 @@ public:
             //_currentModule = mod;
             //this->_noiseMapBuilders[this->name()].data()->SetSourceModule(*mod);
         }
+        else
+            throw "Source module "+_src1+" referenced but not actually defined. Please check names or define it";
+        if (_dest == "") throw "Destination noisemap dest unreferenced in NoiseMapBuilder " + _name;
         if (_dest != "" && _noiseMaps.contains(_dest)) {
             utils::NoiseMap *mod = _noiseMaps[_dest].data();
             utils::NoiseMapBuilder *nmb =
@@ -99,6 +103,8 @@ public:
             //_currentModule = mod;
             //this->_noiseMapBuilders[this->name()].data()->SetSourceModule(*mod);
         }
+        else
+            throw "Noisemap "+_dest+" referenced but not actually defined. Please check names or define it";
         return *this;
     }
 

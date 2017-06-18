@@ -44,6 +44,8 @@ FORMS    += mainwindow.ui \
     createmoduledescriptorjson.ui \
     heightmapbuilderdialog.ui
 
+RESOURCES += resources.qrc
+
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/release/ -llibnoise-helpers
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-helpers/debug/ -llibnoise-helpers
 else:unix: LIBS += -L$$OUT_PWD/../libnoise-helpers/ -llibnoise-helpers

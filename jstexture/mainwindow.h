@@ -15,22 +15,29 @@
 #include <QSplitter>
 #include <QListWidget>
 #include <QModelIndex>
+#include <QTabWidget>
 
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+    QAction *action_newTexture;
     QAction *action_Load_Texture;
-    QAction *action_Generate_Texture;
     QAction *action_Save_Texture;
-    QAction *action_Exit;
     QAction *actionSave_As;
+    QAction *action_Exit;
+
+    QAction *action_Generate_Texture;
     QAction *action_CreateModuleDescJson;
     QAction *action_CreateHeightmapBuilder;
+    QAction *action_CreateRendererDesc;
+
     QWidget *centralWidget;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
+
+    QTabWidget *tabWidget;
 
     QPlainTextEdit *plainTextEdit;
     QGraphicsScene *scene;
@@ -49,13 +56,16 @@ public:
     void setCurrentTextureFile(const QString& _file) { _currentTextureFile = _file; this->setWindowTitle(_file); }
 
 private slots:
+    void on_action_new_texture_triggered();
     void on_action_Load_Texture_triggered();
     void on_action_Generate_Texture_triggered();
     void on_action_Save_Texture_triggered();
     void on_action_Exit_triggered();
     void on_actionSave_As_triggered();
+    void on_action_create_rend_desc();
     void on_action_CreateModuleDescJson();
     void on_action_CreateHeightmapBuilder();
+
     void on_listFiles_clicked(QListWidgetItem* idx);
 
 private:

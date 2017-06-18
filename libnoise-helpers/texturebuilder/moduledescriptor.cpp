@@ -149,22 +149,62 @@ void ModuleDescriptor::toJson(QJsonObject& json) {
 ModuleDescriptor& ModuleDescriptor::connectModules()
 {
     QSharedPointer<Module> currentMod;
+
+    //referenced modules sanity check
+    if (_propertiesToExport.contains("src1") && _src1 == "") throw "You must define src1 in module "+_name;
+    if (_propertiesToExport.contains("src2") && _src2 == "") throw "You must define src2 in module "+_name;
+    if (_propertiesToExport.contains("src3") && _src3 == "") throw "You must define src3 in module "+_name;
+    if (_propertiesToExport.contains("src4") && _src4 == "") throw "You must define src4 in module "+_name;
+    if (_propertiesToExport.contains("ctl") && _ctl =="") throw "You must define ctl in module "+_name;
+    if (_propertiesToExport.contains("src1") && !_modules.contains(_src1)) throw _src1
+            + " is referenced as src1, but there is no module defined in  "+_name;
+    if (_propertiesToExport.contains("src2") && !_modules.contains(_src2)) throw _src2
+            + " is referenced as src1, but there is no module defined in  "+_name;
+    if (_propertiesToExport.contains("src3") && !_modules.contains(_src3)) throw _src3
+            + " is referenced as src1, but there is no module defined in  "+_name;
+    if (_propertiesToExport.contains("src4") && !_modules.contains(_src4)) throw _src4
+            + " is referenced as src1, but there is no module defined in  "+_name;
+    if (_propertiesToExport.contains("ctl") && !_modules.contains(_ctl)) throw _ctl
+            + " is referenced as src1, but there is no module defined in  "+_name;
+
     Module * pModule = nullptr;
     if (_name != "" && _modules.contains(_name)) {
         currentMod =_modules[_name];
         pModule = currentMod.data();
     }
+    else
+        throw "Module named " + _name + " not defined.";
     if (_moduleType != "Displace") {
-    if (_src1 != "" && _modules.contains(_src1))
-        currentMod.data()->SetSourceModule(0,*_modules[_src1].data());
-    if (_src2 != "" && _modules.contains(_src2))
-        currentMod.data()->SetSourceModule(1,*_modules[_src2].data());
-    if (_src3 != "" && _modules.contains(_src3))
-        currentMod.data()->SetSourceModule(2,*_modules[_src3].data());
-    if (_src4 != "" && _modules.contains(_src4))
-        currentMod.data()->SetSourceModule(3,*_modules[_src4].data());
+        if (_src1 != "") {
+            if (_modules.contains(_src1))
+                currentMod.data()->SetSourceModule(0,*_modules[_src1].data());
+            else
+                throw "Source Module src1 '" + _src1 + " referenced, but no module has been defined with this name";
+        }
+        if (_src2 != "" ) {
+            if (_modules.contains(_src2))
+                currentMod.data()->SetSourceModule(1,*_modules[_src2].data());
+            else
+                throw "Source Module src2 '" + _src2 + " referenced, but no module has been defined with this name";
+        }
+        if (_src3 != "") {
+            if (_modules.contains(_src3))
+                currentMod.data()->SetSourceModule(2,*_modules[_src3].data());
+            else
+                throw "Source Module src3 '" + _src3 + " referenced, but no module has been defined with this name";
+        }
+        if (_src4 != "") {
+            if (_modules.contains(_src4))
+                currentMod.data()->SetSourceModule(3,*_modules[_src4].data());
+            else
+                throw "Source Module src4 '" + _src4 + " referenced, but no module has been defined with this name";
+        }
     }
     if (this->_moduleType == "Displace") {
+        if (_src1 != "" || _src2 != ""  || _src3 != "" || _src4 != "")
+            throw "Displace modules require that all modules src1, src2, src3 and src4 be referenced";
+        if (!_modules.contains(_src1) || !_modules.contains(_src2)  || !_modules.contains(_src3) || !_modules.contains(_src4))
+            throw "Displace modules require that all modules src1, src2, src3 and src4 be defined in your Texture representation";
         auto mod = static_cast<Displace*>(pModule);
         mod->SetSourceModule(0,*_modules[_src1].data());
         mod->SetDisplaceModules(
@@ -173,15 +213,21 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
             *_modules[_src4].data()
         );
     }
-    if (_ctl != "" && _modules.contains(_ctl)) {
-        if (this->_moduleType == "Blend") {
-            auto mod = static_cast<Blend*>(pModule);
-            mod->SetControlModule(*_modules[_ctl].data());
+    if (_ctl != "" ) {
+        if (_modules.contains(_ctl)) {
+            if (this->_moduleType == "Blend") {
+                auto mod = static_cast<Blend*>(pModule);
+                mod->SetControlModule(*_modules[_ctl].data());
+            }
+            if (this->_moduleType == "Select") {
+                auto mod = static_cast<Select*>(pModule);
+                mod->SetControlModule(*_modules[_ctl].data());
+            }
+       }
+       else {
+            throw "Control module " + _ctl + " must be defined";
         }
-        if (this->_moduleType == "Select") {
-            auto mod = static_cast<Select*>(pModule);
-            mod->SetControlModule(*_modules[_ctl].data());
-        }
+
     }
     //this->c_currentModule = currentMod.data();
     return *this;
