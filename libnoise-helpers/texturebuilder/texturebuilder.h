@@ -121,6 +121,12 @@ public:
     const MapRenderers& renderers() { return _renderers; }
     const MapModules& modules() { return _modules; }
 
+    MapHeightMapDescriptors& hmDesc() { return _hmDesc; }
+    MapImageDescriptors& imDesc() { return __imDesc;}
+    MapModuleDescriptors& modDesc() { return _modDesc;  }
+    MapNoiseMapBuilderDescriptors& nmbDesc() { return _nmbDesc; }
+    MapRendererDescriptors& rndDesc() { return _rndDesc; }
+
     void createAll() {
         qDebug() << "Creating modules";
         createModules();
