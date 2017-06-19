@@ -13,7 +13,7 @@ class TextureBuilderExplorer : public QWidget
 {
     Q_OBJECT
 
-    TextureBuilder _builder;
+    TextureBuilder *_builder;
     QTreeWidget *_treeWidget;
     QLabel *_label;
 
@@ -22,8 +22,8 @@ public:
     explicit TextureBuilderExplorer(QWidget *parent = 0);
 
     //accessors
-    TextureBuilder& builder() { return _builder; }
-    void setTextureBuilder(TextureBuilder& b) { _builder = b; }
+    TextureBuilder* builder() { return _builder; }
+    void setTextureBuilder(TextureBuilder* b);
 
 signals:
 

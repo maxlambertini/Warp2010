@@ -326,7 +326,8 @@ public:
     QSharedPointer<Module> makeRotatePoint ();
     QSharedPointer<Module> makeScalePoint ();
     QSharedPointer<Module> makeTranslatePoint ();
-
+private:
+    Q_DISABLE_COPY(ModuleDescriptor)
 };
 
 #endif // MODULEDESCRIPTOR_H

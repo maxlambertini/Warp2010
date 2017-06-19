@@ -14,11 +14,13 @@ class CreateModuleDescriptorJson : public QDialog
 {
     Q_OBJECT
 
-    ModuleDescriptor modDesc;
+    ModuleDescriptor *modDesc;
     QDialogButtonBox *buttonBox;
 
 public:
-    ModuleDescriptor& module()  { return modDesc; }
+    ModuleDescriptor modStatic;
+    ModuleDescriptor* module()  { return modDesc; }
+    void setModule(ModuleDescriptor* m) { modDesc = m; }
     explicit CreateModuleDescriptorJson(QWidget *parent = 0);
     template<typename T> void enableControlsInGrid(const QString& prefix);
     ~CreateModuleDescriptorJson();

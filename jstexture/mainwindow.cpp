@@ -76,13 +76,15 @@ void MainWindow::createWidgets() {
     //custom setup;
     tabWidget = new QTabWidget (this);
     centralWidget = new QWidget(this);
-    _splitter = new QSplitter();
+    _splitter = new QSplitter(this);
+    _splitter1 = new QSplitter(this);
     this->plainTextEdit = new QPlainTextEdit();
 
     scrollArea = new QScrollArea(this);
     imageLabel = new QLabel(this);
     scrollArea->setBackgroundRole(QPalette::Dark);
     scrollArea->setWidget(imageLabel);
+    _tex = new TextureBuilderExplorer(this);
 
 
     const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
@@ -96,12 +98,15 @@ void MainWindow::layoutWidgets() {
     this->addToolBar(Qt::TopToolBarArea, mainToolBar);
     this->setStatusBar(statusBar);
 
-    tabWidget->addTab(plainTextEdit,"JSON Editor");
+    _splitter1->addWidget(_tex);
+    _splitter1->addWidget(this->plainTextEdit);
+    _splitter->setOrientation(Qt::Horizontal);
 
     _splitter->addWidget(_listFiles);
     _splitter->addWidget(scrollArea);
     _splitter->setOrientation(Qt::Vertical);
 
+    tabWidget->addTab(_splitter1,"JSON Editor");
     tabWidget->addTab(_splitter, "Generated images");
     this->setCentralWidget(tabWidget);
 }
@@ -122,8 +127,11 @@ void MainWindow::on_action_Load_Texture_triggered()
             s.append(s1.readAll());
 
             this->plainTextEdit->setPlainText(s);
-
-
+            QByteArray jsonData(s.toStdString().c_str());
+            QJsonParseError parserError;
+            QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parserError);
+            this->_tb.fromJson(doc.object());
+            this->_tex->setTextureBuilder(&_tb);
         }
 
 }
@@ -256,7 +264,7 @@ void MainWindow::on_action_CreateModuleDescJson()
     CreateModuleDescriptorJson dlg(this);
     if (dlg.exec() == QDialog::Accepted) {
         QJsonObject o;
-        dlg.module().toJson(o);
+        dlg.module()->toJson(o);
         QJsonDocument doc(o);
         QString strJson(doc.toJson(QJsonDocument::Compact));
         strJson.replace("],","],\n");

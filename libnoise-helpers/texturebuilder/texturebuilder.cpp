@@ -97,6 +97,8 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
     QJsonArray aRenderers = json["renderers"].toArray();
     QJsonArray aImages = json["images"].toArray();
 
+    _modDesc.clear();
+    _modules.clear();
     for (auto h = 0; h < aModules.size(); ++h) {
         ModuleDescriptor *m = new ModuleDescriptor();
         QJsonObject o = aModules[h].toObject();
@@ -107,6 +109,9 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         QSharedPointer<ModuleDescriptor> p; p.reset(m);
         _modDesc.insert(name,p);
     }
+
+    _rndDesc.clear();
+    _renderers.clear();
 
     for (auto h = 0; h < aRenderers.size(); ++h) {
         RendererDescriptor *m = new RendererDescriptor();
@@ -122,6 +127,8 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         _rndDesc.insert(name,p);
     }
 
+    _nmbDesc.clear();
+    _noiseMapBuilders.clear();
     for (auto h = 0; h < aHMBuilders.size(); ++h) {
         NoiseMapBuilderDescriptor *m = new NoiseMapBuilderDescriptor();
         QJsonObject o = aHMBuilders[h].toObject();
@@ -134,6 +141,8 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         _nmbDesc.insert(name,p);
     }
 
+    _hmDesc.clear();
+    _heightMaps.clear();
     for (auto h = 0; h < aHeightMaps.size(); ++h) {
         HeightMapDescriptor *m = new HeightMapDescriptor();
         QString o = aHeightMaps[h].toString();
@@ -144,6 +153,8 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         _hmDesc.insert(o,p);
     }
 
+    _images.clear();
+    __imDesc.clear();
     for (auto h = 0; h < aImages.size(); ++h) {
         ImageDescriptor *m = new ImageDescriptor();
         QString o = aImages[h].toString();

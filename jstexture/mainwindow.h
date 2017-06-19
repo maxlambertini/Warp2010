@@ -16,6 +16,8 @@
 #include <QListWidget>
 #include <QModelIndex>
 #include <QTabWidget>
+#include <texturebuilderexplorer.h>
+
 
 
 class MainWindow : public QMainWindow
@@ -47,7 +49,12 @@ class MainWindow : public QMainWindow
     QString _currentTextureFile ;
     ViewingDialog *_viewer;
     QSplitter *_splitter;
+    QSplitter *_splitter1;
     QListWidget *_listFiles;
+    TextureBuilderExplorer *_tex;
+
+    TextureBuilder _tb;
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
