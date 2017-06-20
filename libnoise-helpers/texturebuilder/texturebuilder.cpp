@@ -353,66 +353,76 @@ void TextureBuilder::renderRenderers()
 }
 
 void TextureBuilder::buildTextureFromJson(const QString &filename) {
-    QString simpleFile = filename;
-    simpleFile = simpleFile.replace(".textjson","");
-    QFile data (filename);
-     if (data.open(QFile::ReadOnly | QFile::Text)) {
-         QByteArray json = data.readAll();
-         QJsonParseError parserError;
-        QJsonDocument doc = QJsonDocument::fromJson(json, &parserError);
-        if (!doc.isNull()) {
-            emit this->textureGenerationStarting();
-            auto oStuff = doc.object();
+    try {
+        QString simpleFile = filename;
+        simpleFile = simpleFile.replace(".textjson","");
+        QFile data (filename);
+         if (data.open(QFile::ReadOnly | QFile::Text)) {
+            QByteArray json = data.readAll();
+            QJsonParseError parserError;
+            QJsonDocument doc = QJsonDocument::fromJson(json, &parserError);
+            if (!doc.isNull()) {
+                emit this->textureGenerationStarting();
+                auto oStuff = doc.object();
 
-            qDebug() << "Loading raw json data";
-            //load raw data
-            this->fromJson(oStuff);
+                qDebug() << "Loading raw json data";
+                //load raw data
+                this->fromJson(oStuff);
 
-            qDebug() << "Creating libnoise stuff";
-            this->createAll();
+                qDebug() << "Creating libnoise stuff";
+                this->createAll();
 
-            qDebug() << "Connecting modules and stuff";
-            this->connectAll();
+                qDebug() << "Connecting modules and stuff";
+                this->connectAll();
 
-            qDebug() << "Building images...";
-            QString outFile = "";
-            QSharedPointer<utils::Image> imgPtr = this->buildImages();
-            int h = 0;
-            QMapIterator<QString, QSharedPointer<ImageDescriptor>> iter(__imDesc);
-            _generatedMaps.clear();
-            while (iter.hasNext()) {
-                iter.next();
-                auto name = iter.key();
-                auto ImgPtr = _images[name].data();
-                QString filename = simpleFile+"."+name+".png";
-                if (h == 0)
-                    outFile = filename;
-                qDebug() << "Saving image...";
-                utils::WriterBMP writer;
-                writer.SetSourceImage (*ImgPtr);
-                std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
-                auto sizeX = _nmbDesc.first().data()->getSizeX();
-                auto sizeY = _nmbDesc.first().data()->getSizeY();
-                QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
-                img.save(filename,"PNG");
-                _generatedMaps.append(filename);
-                emit this->textureGenerated(name);
+                qDebug() << "Building images...";
+                QString outFile = "";
+                QSharedPointer<utils::Image> imgPtr = this->buildImages();
+                int h = 0;
+                QMapIterator<QString, QSharedPointer<ImageDescriptor>> iter(__imDesc);
+                _generatedMaps.clear();
+                while (iter.hasNext()) {
+                    iter.next();
+                    auto name = iter.key();
+                    auto ImgPtr = _images[name].data();
+                    QString filename = simpleFile+"."+name+".png";
+                    if (h == 0)
+                        outFile = filename;
+                    qDebug() << "Saving image...";
+                    utils::WriterBMP writer;
+                    writer.SetSourceImage (*ImgPtr);
+                    std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
+                    auto sizeX = _nmbDesc.first().data()->getSizeX();
+                    auto sizeY = _nmbDesc.first().data()->getSizeY();
+                    QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
+                    img.save(filename,"PNG");
+                    _generatedMaps.append(filename);
+                    emit this->textureGenerated(name);
+                }
+                emit this->allTextureGenerated();
             }
-            emit this->allTextureGenerated();
-        }
-        else {
-            _generatedMaps.clear();
-            QString error = parserError.errorString();
-            QMessageBox msgBox;
-            msgBox.setIcon(QMessageBox::Critical);
-            msgBox.setText("<big>"+error+"</big>");
-            msgBox.setInformativeText(error);
-            msgBox.setStandardButtons(QMessageBox::Ok );
-            msgBox.setDefaultButton(QMessageBox::Ok);
-            msgBox.exec();
-            emit this->noTextureGenerated();
-        }
-     }
-     data.close();
-
+            else {
+                _generatedMaps.clear();
+                QString error = parserError.errorString();
+                QMessageBox msgBox;
+                msgBox.setIcon(QMessageBox::Critical);
+                msgBox.setText("<big>"+error+"</big>");
+                msgBox.setInformativeText(error);
+                msgBox.setStandardButtons(QMessageBox::Ok );
+                msgBox.setDefaultButton(QMessageBox::Ok);
+                msgBox.exec();
+                emit this->noTextureGenerated();
+            }
+         }
+         data.close();
+    }
+    catch (QString err) {
+        throw err;
+    }
+    catch (std::string err) {
+        throw err;
+    }
+    catch (...) {
+        throw "Undefined error building texture " + filename;
+    }
 }

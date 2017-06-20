@@ -127,13 +127,44 @@ void MainWindow::on_action_Load_Texture_triggered()
             s.append(s1.readAll());
 
             this->plainTextEdit->setPlainText(s);
-            QByteArray jsonData(s.toStdString().c_str());
-            QJsonParseError parserError;
-            QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parserError);
-            this->_tb.fromJson(doc.object());
-            this->_tex->setTextureBuilder(&_tb);
+            updateTreeWithJsonFromEditor();
         }
+}
 
+void MainWindow::updateTreeWithJsonFromEditor() {
+    try {
+        QString s = this->plainTextEdit->toPlainText();
+        QByteArray jsonData(s.toStdString().c_str());
+        QJsonParseError parserError;
+        QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parserError);
+        this->_tb.fromJson(doc.object());
+        this->_tex->setTextureBuilder(&_tb);
+    }
+    catch (noise::ExceptionInvalidParam &exc) {
+        errorBox("Invalid parameter somewhere. Check zeros and negatives ");
+    }
+    catch (noise::ExceptionNoModule &exc) {
+        errorBox("Unknown module referenced as source or control module ");
+    }
+    catch (noise::ExceptionUnknown &exc) {
+        errorBox("Libnoise unknown error ");
+    }
+    catch (std::exception exc) {
+        QString error = exc.what();
+        errorBox(error);
+    }
+    catch (std::string exc) {
+        QString error(exc.c_str());
+        errorBox(error);
+    }
+    catch (QString exc) {
+        QString error(exc);
+        errorBox(error);
+    }
+    catch (...) {
+        std::string err = "Undefined error";
+        throw err;
+    }
 }
 
 void MainWindow::on_action_Generate_Texture_triggered()
@@ -222,6 +253,7 @@ void MainWindow::on_action_Save_Texture_triggered()
         s1 <<  data;
         f.flush();
         f.close();
+        this->updateTreeWithJsonFromEditor();
     }
 
 }
@@ -245,6 +277,7 @@ void MainWindow::on_actionSave_As_triggered()
         f.flush();
         f.close();
         setCurrentTextureFile( fileName);
+        this->updateTreeWithJsonFromEditor();
     }
 
 
@@ -269,6 +302,7 @@ void MainWindow::on_action_CreateModuleDescJson()
         QString strJson(doc.toJson(QJsonDocument::Compact));
         strJson.replace("],","],\n");
         this->plainTextEdit->insertPlainText(strJson);
+        this->updateTreeWithJsonFromEditor();
     }
 }
 
@@ -281,6 +315,7 @@ void MainWindow::on_action_CreateHeightmapBuilder() {
         QJsonDocument doc(o);
         QString strJson(doc.toJson(QJsonDocument::Compact));
         this->plainTextEdit->insertPlainText(strJson);
+        this->updateTreeWithJsonFromEditor();
     }
 }
 
@@ -292,6 +327,7 @@ void MainWindow::on_action_new_texture_triggered()
     QJsonDocument doc(o);
     QString strJson(doc.toJson());
     this->plainTextEdit->setPlainText(strJson);
+    this->updateTreeWithJsonFromEditor();
 
 }
 
@@ -303,5 +339,6 @@ void MainWindow::on_action_create_rend_desc() {
         QJsonDocument doc(oRenderer);
         QString strJson(doc.toJson());
         this->plainTextEdit->insertPlainText(strJson);
+        this->updateTreeWithJsonFromEditor();
     }
 }

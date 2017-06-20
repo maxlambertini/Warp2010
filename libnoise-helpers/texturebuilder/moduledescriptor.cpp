@@ -201,7 +201,7 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
         }
     }
     if (this->_moduleType == "Displace") {
-        if (_src1 != "" || _src2 != ""  || _src3 != "" || _src4 != "")
+        if (_src1 == "" || _src2 == ""  || _src3 == "" || _src4 == "")
             throw "Displace modules require that all modules src1, src2, src3 and src4 be referenced";
         if (!_modules.contains(_src1) || !_modules.contains(_src2)  || !_modules.contains(_src3) || !_modules.contains(_src4))
             throw "Displace modules require that all modules src1, src2, src3 and src4 be defined in your Texture representation";

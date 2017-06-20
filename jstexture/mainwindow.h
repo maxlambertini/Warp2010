@@ -80,6 +80,8 @@ private:
     void createMenus();
     void createWidgets();
     void layoutWidgets();
+
+    void updateTreeWithJsonFromEditor();
 };
 
 #endif // MAINWINDOW_H
