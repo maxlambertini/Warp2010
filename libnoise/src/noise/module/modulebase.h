@@ -251,8 +251,9 @@ namespace noise
         /// method.
         virtual const Module& GetSourceModule (int index) const
         {
+          if (m_pSourceModule == NULL)
+              throw "GetSourceModule: m_pSourceModule arratyt is null";
           assert (m_pSourceModule != NULL);
-
           // The following fix was provided by Will Hawkins:
           //
           //   m_pSourceModule[index] != NULL
@@ -327,6 +328,8 @@ namespace noise
         /// its output values.
         virtual void SetSourceModule (int index, const Module& sourceModule)
         {
+          if (m_pSourceModule == NULL)
+            throw "SetSourceModule: m_pSourceModule arratyt is null";
           assert (m_pSourceModule != NULL);
           if (index >= GetSourceModuleCount () || index < 0) {
             throw noise::ExceptionInvalidParam ();
