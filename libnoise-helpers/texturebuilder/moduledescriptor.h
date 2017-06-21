@@ -228,11 +228,11 @@ public:
     void setOct(int v) { _oct = v ; }
     void setDispl(double v) { _disp = v ; }
     void setEnabledist(bool v) { _enableDist = v ; }
-    void setSrc1(QString& v) { _src1 = v ; }
-    void setSrc2(QString& v) { _src2 = v ; }
-    void setSrc3(QString& v) { _src3 = v ; }
-    void setSrc4(QString& v) { _src4 = v ; }
-    void setCtl(QString& v) { _ctl = v ; }
+    void setSrc1(const QString& v) { _src1 = v ; }
+    void setSrc2(const QString& v) { _src2 = v ; }
+    void setSrc3(const QString& v) { _src3 = v ; }
+    void setSrc4(const QString& v) { _src4 = v ; }
+    void setCtl(const QString& v) { _ctl = v ; }
     void setLbound(double v) { _lBound = v ; }
     void setUbound(double v) { _uBound = v ; }
     void setCpoints(const QVector<std::tuple<double,double>>& v) { _cPoints = v ; }

@@ -21,6 +21,7 @@ class TextureBuilderExplorer : public QWidget
 public:
     explicit TextureBuilderExplorer(QWidget *parent = 0);
 
+    QTreeWidget* tree() { return _treeWidget; }
     //accessors
     TextureBuilder* builder() { return _builder; }
     void setTextureBuilder(TextureBuilder* b);

@@ -17,6 +17,7 @@
 #include <QModelIndex>
 #include <QTabWidget>
 #include <texturebuilderexplorer.h>
+#include <QTreeWidgetItem>
 
 
 
@@ -74,6 +75,9 @@ private slots:
     void on_action_CreateHeightmapBuilder();
 
     void on_listFiles_clicked(QListWidgetItem* idx);
+
+    void on_tree_item_double_clicked(QTreeWidgetItem *item, int column);
+
 
 private:
     void createActions();

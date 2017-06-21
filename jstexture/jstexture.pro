@@ -29,7 +29,9 @@ SOURCES += main.cpp\
     heightmapbuilderdialog.cpp \
     qrendererdescwidget.cpp \
     rendererdescdialog.cpp \
-    texturebuilderexplorer.cpp
+    texturebuilderexplorer.cpp \
+    qmoduledescwidget.cpp \
+    qmoduledescdialog.cpp
 
 HEADERS  += mainwindow.h \
     apppaths.h \
@@ -39,7 +41,9 @@ HEADERS  += mainwindow.h \
     heightmapbuilderdialog.h \
     qrendererdescwidget.h \
     rendererdescdialog.h \
-    texturebuilderexplorer.h
+    texturebuilderexplorer.h \
+    qmoduledescwidget.h \
+    qmoduledescdialog.h
 
 FORMS    += mainwindow.ui \
     viewingdialog.ui \

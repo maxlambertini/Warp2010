@@ -12,6 +12,7 @@
 #include <QtGradientEditor/qtgradientdialog.h>
 #include <heightmapbuilderdialog.h>
 #include <rendererdescdialog.h>
+#include <qmoduledescdialog.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -52,6 +53,7 @@ void MainWindow::createActions() {
     connect(action_CreateModuleDescJson,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateModuleDescJson()));
     connect(action_CreateHeightmapBuilder,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateHeightmapBuilder()));
     connect(action_CreateRendererDesc,SIGNAL(triggered(bool)),this,SLOT(on_action_create_rend_desc()));
+
 }
 
 void MainWindow::createMenus() {
@@ -91,6 +93,8 @@ void MainWindow::createWidgets() {
     this->plainTextEdit->setFont(fixedFont);
     this->_listFiles = new QListWidget(this);
     connect(this->_listFiles,SIGNAL(itemClicked(QListWidgetItem*)) ,this, SLOT(on_listFiles_clicked(QListWidgetItem*)));
+    connect(_tex->tree(),SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
+            this, SLOT(on_tree_item_double_clicked(QTreeWidgetItem*,int)));
 }
 
 void MainWindow::layoutWidgets() {
@@ -340,5 +344,23 @@ void MainWindow::on_action_create_rend_desc() {
         QString strJson(doc.toJson());
         this->plainTextEdit->insertPlainText(strJson);
         this->updateTreeWithJsonFromEditor();
+    }
+}
+
+void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) {
+    if (column ==0) {
+        auto txt = item->text(0);
+        if (_tb.modDesc().contains(txt)) {
+            QVector<QString> strng;
+            for (auto m : _tb.modDesc()) {
+                strng.append(m.data()->name());
+            }
+            auto modDescPtr = _tb.modDesc()[txt].data();
+            QModuleDescDialog dlg;
+            dlg.moduleDescWidget()->setModuleDesc(modDescPtr);
+            dlg.moduleDescWidget()->setModuleList(strng);
+            dlg.moduleDescWidget()->updateControlsFromDescriptor();
+            dlg.exec();
+        }
     }
 }
