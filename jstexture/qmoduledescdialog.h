@@ -10,6 +10,8 @@
 
 class QModuleDescDialog : public QDialog
 {
+    Q_OBJECT
+
     QModuleDescWidget *_moduleDescWidget;
     QDialogButtonBox  *_buttonBox;
 
@@ -17,10 +19,10 @@ public:
     explicit QModuleDescDialog(QWidget *parent = 0);
     QModuleDescWidget* moduleDescWidget() { return _moduleDescWidget; }
 
-private slots:
+public slots:
 
-    void on_dialog_accept();
-    void on_dialog_reject();
+    void on_module_dialog_accept();
+    void on_module_dialog_reject();
 };
 
 #endif // QMODULEDESCDIALOG_H

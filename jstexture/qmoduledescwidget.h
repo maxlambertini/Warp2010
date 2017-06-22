@@ -18,6 +18,8 @@
 #include <QDialogButtonBox>
 #include <QSpinBox>
 #include <QDoubleSpinBox>
+#include <QPushButton>
+#include <QGroupBox>
 
 class QModuleDescWidget : public QWidget
 {
@@ -81,6 +83,11 @@ class QModuleDescWidget : public QWidget
     QCheckBox *c_enableRandom;
     QCheckBox *c_enableDist;
     QTableWidget *c_cPoints;
+
+    QDoubleSpinBox *s_x;
+    QDoubleSpinBox *s_y;
+    QPushButton *btnAddControlPoint;
+    QWidget *w;
 
     //external data pointers
     ModuleDescriptor* _moduleDesc;
@@ -161,10 +168,11 @@ public:
     ModuleDescriptor* moduleDesc() { return _moduleDesc; }
     QVector<QString>&  moduleList() { return _moduleList; }
 
-
+    void updateGridWithControlPoints();
 signals:
 
 private slots:
+    void on_add_tuple_clicked();
 };
 
 #endif // QMODULEDESCWIDGET_H

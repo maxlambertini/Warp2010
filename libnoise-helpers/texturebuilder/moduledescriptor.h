@@ -100,16 +100,16 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     QString _name = "perlin1";
     Q_PROPERTY(QString name READ name WRITE setName )
 
-    QString _src1;
+    QString _src1 = "";
     Q_PROPERTY(QString src1 READ src1 WRITE setSrc1 )
 
-    QString _src2;
+    QString _src2 = "";
     Q_PROPERTY(QString src2 READ src2 WRITE setSrc2 )
 
-    QString _src3;
+    QString _src3 = "";
     Q_PROPERTY(QString src3 READ src3 WRITE setSrc3 )
 
-    QString _src4;
+    QString _src4 = "";
     Q_PROPERTY(QString src4 READ src4 WRITE setSrc4 )
 
     QString _ctl;
@@ -125,55 +125,55 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     double _freq = 2.50;
     Q_PROPERTY(double freq READ freq WRITE setFreq )
 
-    double _lac = 1.20;
+    double _lac = 3.20;
     Q_PROPERTY(double lac READ lac WRITE setLac )
 
-    double _pers = 0.50 ;
+    double _pers = 0.30 ;
     Q_PROPERTY(double pers READ pers WRITE setPers )
 
-    double _disp;
+    double _disp = 0.0;
     Q_PROPERTY(double displ READ displ WRITE setDispl )
 
-    double _lBound;
+    double _lBound = 0.0;
     Q_PROPERTY(double lBound READ lBound WRITE setLbound )
 
-    double _uBound;
+    double _uBound = 0.0;
     Q_PROPERTY(double uBound READ uBound WRITE setUbound )
 
-    double _exp;
+    double _exp = 1.0;
     Q_PROPERTY(double exp READ exp WRITE setExp )
 
-    double _bias;
+    double _bias = 1.0;
     Q_PROPERTY(double bias READ bias WRITE setBias )
 
-    double _scale;
+    double _scale = 1.0;
     Q_PROPERTY(double scale READ scale WRITE setScale )
 
-    double _x;
+    double _x = 1.0;
     Q_PROPERTY(double x READ x WRITE setX )
 
-    double _y;
+    double _y = 1.0;
     Q_PROPERTY(double y READ y WRITE setY )
 
-    double _z;
+    double _z = 1.0;
     Q_PROPERTY(double z READ z WRITE setZ )
 
-    double _pow;
+    double _pow = 1.0;
     Q_PROPERTY(double pow READ pow WRITE setPow )
 
-    double _rough;
+    double _rough = 1.0;
     Q_PROPERTY(double rough READ rough WRITE setRough )
 
-    double _value;
+    double _value = 1.0;
     Q_PROPERTY(double value READ value WRITE setValue )
 
     bool _enableRandom = false;
     Q_PROPERTY(bool enableRandom READ enableRandom WRITE setEnableRandom )
 
-    bool _invert;
+    bool _invert = false;
     Q_PROPERTY(bool invert READ invert WRITE setInvert )
 
-    bool _enableDist;
+    bool _enableDist = false;
     Q_PROPERTY(bool enableDist READ enableDist WRITE setEnabledist )
 
     QVector<std::tuple<double,double>> _cPoints;

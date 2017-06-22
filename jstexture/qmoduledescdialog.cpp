@@ -11,14 +11,14 @@ QModuleDescDialog::QModuleDescDialog(QWidget *parent) : QDialog(parent)
     _layout->addWidget(_buttonBox);
 
     this->setLayout(_layout);
-    connect (_buttonBox, SIGNAL(accepted()), this, SLOT(on_dialog_accept()));
-    connect (_buttonBox, SIGNAL(rejected()), this,SLOT(on_dialog_reject()));
+    connect (_buttonBox, SIGNAL(accepted()), this, SLOT(on_module_dialog_accept()));
+    connect (_buttonBox, SIGNAL(rejected()), this,SLOT(on_module_dialog_reject()));
 }
 
-void QModuleDescDialog::on_dialog_accept() {
+void QModuleDescDialog::on_module_dialog_accept() {
     QDialog::accept();
 }
 
-void QModuleDescDialog::on_dialog_reject() {
+void QModuleDescDialog::on_module_dialog_reject() {
     QDialog::reject();
 }
