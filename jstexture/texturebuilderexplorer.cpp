@@ -26,6 +26,10 @@ void TextureBuilderExplorer::setTextureBuilder(TextureBuilder* b)
     MapRendererDescriptors _rndDesc;
     */
 
+    updateTreeWithBuilderInfo();
+}
+
+void TextureBuilderExplorer::updateTreeWithBuilderInfo() {
     _treeWidget->clear();
     auto topLevelItem = new QTreeWidgetItem(  (QTreeWidget *)0);
     topLevelItem->setText(0,"Texture Builder");
@@ -37,6 +41,7 @@ void TextureBuilderExplorer::setTextureBuilder(TextureBuilder* b)
         auto mod = (*i);
         auto modItem = new QTreeWidgetItem((QTreeWidget *)0);
         modItem->setText(0,mod.data()->name());
+        modItem->setText(1,"Module");
         modItem->setExpanded(true);
         modTopItem->addChild(modItem);
     }
@@ -50,6 +55,7 @@ void TextureBuilderExplorer::setTextureBuilder(TextureBuilder* b)
         auto modItem = new QTreeWidgetItem((QTreeWidget *)0 );
         modItem->setText(0,mod.data()->name());
         modItem->setExpanded(true);
+        modItem->setText(1,"Heightmap");
         hmItem->addChild(modItem);
     }
     hmItem->setExpanded(true);
@@ -61,6 +67,7 @@ void TextureBuilderExplorer::setTextureBuilder(TextureBuilder* b)
         auto mod = (*i);
         auto modItem = new QTreeWidgetItem((QTreeWidget *)0);
         modItem->setText(0,mod.data()->name());
+        modItem->setText(1,"NoisemapBuilder");
         modItem->setExpanded(true);
         nmbItem->addChild(modItem);
     }
@@ -73,6 +80,7 @@ void TextureBuilderExplorer::setTextureBuilder(TextureBuilder* b)
         auto mod = (*i);
         auto modItem = new QTreeWidgetItem((QTreeWidget *)0);
         modItem->setText(0,mod.data()->name());
+        modItem->setText(1,"Renderer");
         modItem->setExpanded(true);
         rnItem->addChild(modItem);
     }
@@ -85,6 +93,7 @@ void TextureBuilderExplorer::setTextureBuilder(TextureBuilder* b)
         auto mod = (*i);
         auto modItem = new QTreeWidgetItem((QTreeWidget *)0);
         modItem->setText(0,mod.data()->name());
+        modItem->setText(1,"Image");
         modItem->setExpanded(true);
         imItem->addChild(modItem);
     }

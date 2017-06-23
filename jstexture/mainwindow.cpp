@@ -13,6 +13,7 @@
 #include <heightmapbuilderdialog.h>
 #include <rendererdescdialog.h>
 #include <qmoduledescdialog.h>
+#include <texturebuilder/noisemapbuilderdescriptor.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -330,13 +331,19 @@ void MainWindow::on_action_CreateModuleDescJson()
         //modDescSPtr.reset(newPtr);
         //_tb.modDesc()[txt] = modDescSPtr;
         updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
         infoBox("Module descriptor "+ mod->name() + "("+mod->moduleType()+") created!");
     }
 }
 
 void MainWindow::on_action_CreateHeightmapBuilder() {
-    HeightMapBuilderDialog dlg(this);
+    QSharedPointer<NoiseMapBuilderDescriptor> bDesc(new NoiseMapBuilderDescriptor());
+    HeightMapBuilderDialog dlg(bDesc.data(),true, this);
     if (dlg.exec() == QDialog::Accepted) {
+        _tb.nmbDesc().insert(bDesc.data()->name(),bDesc);
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+        /*
         auto builder = dlg.builderWidget()->builder();
         QJsonObject o;
         builder->toJson(o);
@@ -344,6 +351,7 @@ void MainWindow::on_action_CreateHeightmapBuilder() {
         QString strJson(doc.toJson(QJsonDocument::Compact));
         this->plainTextEdit->insertPlainText(strJson);
         this->updateTreeWithJsonFromEditor();
+        */
     }
 }
 
@@ -374,7 +382,17 @@ void MainWindow::on_action_create_rend_desc() {
 void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) {
     if (column ==0) {
         auto txt = item->text(0);
-        if (_tb.modDesc().contains(txt)) {
+        QString mode = item->columnCount() > 1 ? item->text(1) : "";
+        if (mode == "NoisemapBuilder" && _tb.nmbDesc().contains(txt) ) {
+            auto sptr = _tb.nmbDesc()[txt];
+            auto ptr = sptr.data();
+            HeightMapBuilderDialog dlg(ptr);
+            if (dlg.exec() == QDialog::Accepted) {
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+        }
+        if (mode == "Module" && _tb.modDesc().contains(txt)) {
             auto modDescSPtr = _tb.modDesc()[txt];
             auto modDescPtr = modDescSPtr.data();
             QModuleDescDialog dlg;
@@ -382,12 +400,13 @@ void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) 
             auto moduleList = buildModuleList();
             dlg.moduleDescWidget()->setModuleList(moduleList);
             dlg.moduleDescWidget()->updateControlsFromDescriptor();
+            dlg.moduleDescWidget()->enableForEditing();
             if (dlg.exec() == QDialog::Accepted) {
                 dlg.moduleDescWidget()->updateDescriptorFromControls();
                 //auto newPtr = dlg.moduleDescWidget()->moduleDesc();
                 //modDescSPtr.reset(newPtr);
                 //_tb.modDesc()[txt] = modDescSPtr;
-                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
                 infoBox("Module descriptor "+ modDescPtr->name() + "("+modDescPtr->moduleType()+") updated!");
 
             }

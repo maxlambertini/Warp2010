@@ -25,7 +25,7 @@ public:
     //accessors
     TextureBuilder* builder() { return _builder; }
     void setTextureBuilder(TextureBuilder* b);
-
+    void updateTreeWithBuilderInfo();
 signals:
 
 public slots:

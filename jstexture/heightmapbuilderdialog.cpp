@@ -1,10 +1,11 @@
 #include "heightmapbuilderdialog.h"
 
-HeightMapBuilderDialog::HeightMapBuilderDialog(QWidget *parent) :
+HeightMapBuilderDialog::HeightMapBuilderDialog(NoiseMapBuilderDescriptor* ptr,
+                                               bool initBuilder, QWidget *parent) :
     QDialog(parent)
 {
     QVBoxLayout *l = new QVBoxLayout(this);
-    _widget = new HeightMapBuilderWidget(this);
+    _widget = new HeightMapBuilderWidget(ptr,initBuilder, this);
     l->addWidget(_widget);
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     buttonBox->setCenterButtons(true);

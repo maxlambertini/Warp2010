@@ -18,7 +18,7 @@ void QModuleDescWidget::createWidgets() {
     QDoubleValidator* dVal = new QDoubleValidator(this);
     QDoubleValidator* dBounds = new QDoubleValidator(-1.0,1.0,6,this);
 
-    c_moduleType = new QComboBox(this); c_moduleType->setObjectName("c_moduleType");
+    c_moduleType = new QComboBox(this); c_moduleType->setObjectName("c_type");
     for (auto s : NoiseModules::moduleList) {
         c_moduleType->addItem(s);
     }
@@ -82,6 +82,7 @@ void QModuleDescWidget::createWidgets() {
     btnAddControlPoint = new QPushButton("Add",w);
 
     connect (btnAddControlPoint,SIGNAL(pressed()),this,SLOT(on_add_tuple_clicked()));
+    connect (c_moduleType,SIGNAL(currentIndexChanged(QString)), this,SLOT(on_module_type_changed(QString)));
 }
 
 void QModuleDescWidget::layoutWidgets() {
@@ -90,7 +91,7 @@ void QModuleDescWidget::layoutWidgets() {
     auto gb1 = new QGroupBox("Basic module info",this);
     auto gr1 = new QGridLayout(this);
 
-    QLabel *lbl = new QLabel("Module Type",this); lbl->setObjectName("l_moduleType");
+    QLabel *lbl = new QLabel("Module Type",this); lbl->setObjectName("l_type");
     lbl->setAlignment(Qt::AlignRight);
     QGridLayout *gridLayout = new QGridLayout();
     gr1->addWidget(lbl,nRow,0);
@@ -353,6 +354,7 @@ void QModuleDescWidget::updateControlsFromDescriptor()
             c_cPoints->setItem(nRow, 1, new QTableWidgetItem(QString("%1").arg(std::get<1>(pt))));
             ++nRow;
         }
+        on_module_type_changed(_moduleDesc->moduleType());
     }
 }
 
@@ -398,3 +400,38 @@ void QModuleDescWidget::on_add_tuple_clicked() {
     auto y = s_y->value();
 
 }
+
+template<typename T> void QModuleDescWidget::enableControlsInGrid(const QString &prefix) {
+    auto widgets = this->findChildren<T>();
+    for (auto i = widgets.begin(); i != widgets.end(); ++i) {
+        auto w = dynamic_cast<T>((*i)); //ottengo il widget
+        auto oName = w->objectName();
+        auto oProperty = oName.replace(prefix,"");
+        if (oProperty != "type" || oProperty != "name" || oProperty != "moduleType"  ) {
+            if (this->moduleDesc()->propertiesToExport().contains(oProperty)) {
+                w->setEnabled(true);
+                //w->setFocus();
+            }
+            else   {
+                QString oX = w->objectName();
+                if (oX.startsWith(prefix) && (oX != "c_type" || oX != "c_moduleType"))
+                    w->setEnabled(false);
+            }
+        }
+    }
+    this->c_moduleType->setEnabled(true);
+
+}
+
+void QModuleDescWidget::on_module_type_changed(QString type) {
+    //this->moduleDesc()->setupPropertiesToExport(type);
+    this->moduleDesc()->setModuleType(type);
+    this->enableControlsInGrid<QLabel*>("l_");
+    this->enableControlsInGrid<QLineEdit*>("c_");
+    this->enableControlsInGrid<QComboBox*>("c_");
+    //this->enableControlsInGrid<QDoubleSpinBox*>("c_");
+    this->enableControlsInGrid<QCheckBox*>("c_");
+
+}
+
+

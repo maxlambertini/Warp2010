@@ -15,7 +15,8 @@ class HeightMapBuilderWidget : public QWidget
 {
     Q_OBJECT
 
-    NoiseMapBuilderDescriptor _builder;
+    NoiseMapBuilderDescriptor* _builder;
+
 
     void initBuilder();
     void createWidgets();
@@ -36,8 +37,11 @@ class HeightMapBuilderWidget : public QWidget
     QCheckBox *_seamless;
 
 public:
-    NoiseMapBuilderDescriptor* builder() { return &_builder; }
-    explicit HeightMapBuilderWidget(QWidget *parent = 0);
+    NoiseMapBuilderDescriptor* builder() { return _builder; }
+    void setBuilder(NoiseMapBuilderDescriptor *p) { _builder = p; }
+    explicit HeightMapBuilderWidget(NoiseMapBuilderDescriptor *ptr,
+                                    bool initBld = false,
+                                    QWidget *parent = 0);
 
     void fillBuilder();
 signals:

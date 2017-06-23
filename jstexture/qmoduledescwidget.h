@@ -169,10 +169,19 @@ public:
     QVector<QString>&  moduleList() { return _moduleList; }
 
     void updateGridWithControlPoints();
+
+    void enableForEditing() { this->c_name->setReadOnly(false); }
+    void enableForAdding() { this->c_name->setReadOnly(true); }
+
+    template<typename T> void enableControlsInGrid(const QString& prefix);
+
+
 signals:
 
 private slots:
     void on_add_tuple_clicked();
+    void on_module_type_changed(QString type);
+
 };
 
 #endif // QMODULEDESCWIDGET_H

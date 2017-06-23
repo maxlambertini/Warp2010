@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QVBoxLayout>
+#include <texturebuilder/noisemapbuilderdescriptor.h>
 
 namespace Ui {
 class HeightMapBuilderDialog;
@@ -22,7 +23,7 @@ class HeightMapBuilderDialog : public QDialog
 
 public:
     HeightMapBuilderWidget *builderWidget() { return _widget; }
-    explicit HeightMapBuilderDialog(QWidget *parent = 0);
+    explicit HeightMapBuilderDialog(NoiseMapBuilderDescriptor* ptr, bool initBuilder=false, QWidget *parent = 0);
     ~HeightMapBuilderDialog();
 
 private:
