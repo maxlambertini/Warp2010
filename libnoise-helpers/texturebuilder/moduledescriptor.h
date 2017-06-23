@@ -216,10 +216,10 @@ public:
     bool enableRandom() { return _enableRandom; }
 
     const QMap<QString, QSharedPointer<Module>>& modules() { return _modules; }
-    const QVector<QString>& propertiesToExport() { return _propertiesToExport; }
+    QVector<QString>& propertiesToExport() { return _propertiesToExport; }
 
     //setters
-    void setModuleType (QString v) { _moduleType = v; }
+    void setModuleType (QString v) { _moduleType = v; this->setupPropertiesToExport(v); }
     void setName(QString v) { _name = v ; }
     void setSeed(int v) { _seed = v ; }
     void setFreq(double v) { _freq = v ; }

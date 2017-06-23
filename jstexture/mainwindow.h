@@ -18,7 +18,8 @@
 #include <QTabWidget>
 #include <texturebuilderexplorer.h>
 #include <QTreeWidgetItem>
-
+#include <QVector>
+#include <QString>
 
 
 class MainWindow : public QMainWindow
@@ -61,7 +62,10 @@ public:
     ~MainWindow();
     void errorBox(QString msg);
     int questionBox(QString msg);
+    void infoBox(QString msg);
     void setCurrentTextureFile(const QString& _file) { _currentTextureFile = _file; this->setWindowTitle(_file); }
+
+    QVector<QString> buildModuleList(QString curMod = "");
 
 private slots:
     void on_action_new_texture_triggered();
@@ -79,6 +83,7 @@ private slots:
     void on_tree_item_double_clicked(QTreeWidgetItem *item, int column);
 
 
+
 private:
     void createActions();
     void createMenus();
@@ -86,6 +91,7 @@ private:
     void layoutWidgets();
 
     void updateTreeWithJsonFromEditor();
+    void updateEditorsWithTBInfo();
 };
 
 #endif // MAINWINDOW_H

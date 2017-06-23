@@ -36,18 +36,24 @@ namespace ColorOps {
         int dStep = step / 2;
         int rSrep = 1+dStep / 4;
         QColor res(clr);
-        res.setHsl ( (res.hslHue() + SSGX::dx(dStep) -rSrep) % 255,
-                     (res.hslSaturation() + SSGX::dx(dStep) -rSrep) % 255,
-                     (res.lightness() + SSGX::dx(step)) % 255);
+        int newHue = (res.hslHue() + SSGX::dx(dStep) -rSrep) % 255;
+        int newSat = (res.hslSaturation() + SSGX::dx(dStep) -rSrep) % 255;
+        int newLt = (res.lightness() + SSGX::dx(step)) % 255;
+        if (newLt < 144)
+            newLt = 144 + SSGX::dx(110);
+        res.setHsl ( newHue,newSat, newLt);
         return res;
     }
     inline QColor irregularDarkenColor(const QColor &clr, int step=25) {
         int dStep = step / 2;
         int rSrep = 1+dStep / 4;
         QColor res(clr);
-        res.setHsl ( (res.hslHue() + SSGX::dx(dStep) -rSrep) % 255,
-                     (res.hslSaturation() + SSGX::dx(dStep) -rSrep) % 255,
-                     (res.lightness() - SSGX::dx(step)) % 255);
+        int newHue = (res.hslHue() + SSGX::dx(dStep) -rSrep) % 255;
+        int newSat = (res.hslSaturation() + SSGX::dx(dStep) -rSrep) % 255;
+        int newLt = (res.lightness() - SSGX::dx(step)) % 255;
+        if (newLt < 144)
+            newLt = 144 + SSGX::dx(110);
+        res.setHsl ( newHue,newSat, newLt);
         return res;
     }
 
@@ -67,9 +73,14 @@ namespace ColorOps {
             auto x = SSGX::d100();
             if (x > randomFactor)
                 theColor = irregularLightenColor(theColor, nColorStep);
-            else
+            else {
                 theColor.setHsl((theColor.hslHue() + SSGX::dn(50) -25 ) % 255
                                 , theColor.hslSaturation(), theColor.lightness());
+                int newLt = theColor.lightness();
+                if (newLt < 144)
+                    newLt = 144 + SSGX::dx(110);
+                theColor.setHsl(theColor.hslHue(),theColor.hslSaturation(), newLt);
+            }
             if (randomAlpha)
                 theColor.setAlpha(32+SSGX::dn(192));
             dStart += dStep;
@@ -94,9 +105,14 @@ namespace ColorOps {
             auto x = SSGX::d100();
             if (x > randomFactor)
                 theColor = irregularLightenColor(theColor, nColorStep);
-            else
+            else {
                 theColor.setHsl((theColor.hslHue() + SSGX::dn(50) -25 ) % 255
                                 , theColor.hslSaturation(), theColor.lightness());
+                int newLt = theColor.lightness();
+                if (newLt < 144)
+                    newLt = 144 + SSGX::dx(110);
+                theColor.setHsl(theColor.hslHue(),theColor.hslSaturation(), newLt);
+            }
             if (randomAlpha)
                 theColor.setAlpha(32+SSGX::dn(192));
             dStart += dStep;;

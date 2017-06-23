@@ -135,6 +135,15 @@ void MainWindow::on_action_Load_Texture_triggered()
         }
 }
 
+void MainWindow::updateEditorsWithTBInfo() {
+    QJsonObject o;
+    _tb.toJson(o);
+    QJsonDocument doc(o);
+    QString strJson(doc.toJson());
+    this->plainTextEdit->setPlainText(strJson);
+    //updateTreeWithJsonFromEditor();
+}
+
 void MainWindow::updateTreeWithJsonFromEditor() {
     try {
         QString s = this->plainTextEdit->toPlainText();
@@ -230,6 +239,17 @@ void MainWindow::errorBox(QString msg) {
 
 }
 
+void MainWindow::infoBox(QString msg) {
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Information);
+    msgBox.setText("<big>"+msg+"</big>");
+    msgBox.setInformativeText("");
+    msgBox.setStandardButtons(QMessageBox::Ok );
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.exec();
+
+}
+
 int MainWindow::questionBox(QString msg) {
     QMessageBox msgBox;
     msgBox.setText(msg);
@@ -298,15 +318,19 @@ void MainWindow::on_listFiles_clicked(QListWidgetItem *idx) {
 
 void MainWindow::on_action_CreateModuleDescJson()
 {
-    CreateModuleDescriptorJson dlg(this);
+    QModuleDescDialog dlg(this);
+    QSharedPointer<ModuleDescriptor> mod(new ModuleDescriptor());
+    dlg.moduleDescWidget()->setModuleDesc(mod.data());
+    auto moduleList = buildModuleList();
+    dlg.moduleDescWidget()->setModuleList(moduleList);
     if (dlg.exec() == QDialog::Accepted) {
-        QJsonObject o;
-        dlg.module()->toJson(o);
-        QJsonDocument doc(o);
-        QString strJson(doc.toJson(QJsonDocument::Compact));
-        strJson.replace("],","],\n");
-        this->plainTextEdit->insertPlainText(strJson);
-        this->updateTreeWithJsonFromEditor();
+        dlg.moduleDescWidget()->updateDescriptorFromControls();
+        _tb.modDesc().insert(mod->name(),mod);
+        //auto newPtr = dlg.moduleDescWidget()->moduleDesc();
+        //modDescSPtr.reset(newPtr);
+        //_tb.modDesc()[txt] = modDescSPtr;
+        updateEditorsWithTBInfo();
+        infoBox("Module descriptor "+ mod->name() + "("+mod->moduleType()+") created!");
     }
 }
 
@@ -351,16 +375,31 @@ void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) 
     if (column ==0) {
         auto txt = item->text(0);
         if (_tb.modDesc().contains(txt)) {
-            QVector<QString> strng;
-            for (auto m : _tb.modDesc()) {
-                strng.append(m.data()->name());
-            }
-            auto modDescPtr = _tb.modDesc()[txt].data();
+            auto modDescSPtr = _tb.modDesc()[txt];
+            auto modDescPtr = modDescSPtr.data();
             QModuleDescDialog dlg;
             dlg.moduleDescWidget()->setModuleDesc(modDescPtr);
-            dlg.moduleDescWidget()->setModuleList(strng);
+            auto moduleList = buildModuleList();
+            dlg.moduleDescWidget()->setModuleList(moduleList);
             dlg.moduleDescWidget()->updateControlsFromDescriptor();
-            dlg.exec();
+            if (dlg.exec() == QDialog::Accepted) {
+                dlg.moduleDescWidget()->updateDescriptorFromControls();
+                //auto newPtr = dlg.moduleDescWidget()->moduleDesc();
+                //modDescSPtr.reset(newPtr);
+                //_tb.modDesc()[txt] = modDescSPtr;
+                updateEditorsWithTBInfo();
+                infoBox("Module descriptor "+ modDescPtr->name() + "("+modDescPtr->moduleType()+") updated!");
+
+            }
         }
     }
+}
+
+QVector<QString> MainWindow::buildModuleList(QString curMod) {
+    QVector<QString> strng;
+    for (auto m : _tb.modDesc()) {
+        if (curMod != m.data()->name())
+            strng.append(m.data()->name());
+    }
+    return strng;
 }
