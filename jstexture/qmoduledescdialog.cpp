@@ -15,6 +15,8 @@ QModuleDescDialog::QModuleDescDialog(QWidget *parent) : QDialog(parent)
     connect (_buttonBox, SIGNAL(rejected()), this,SLOT(on_module_dialog_reject()));
 }
 
+
+
 void QModuleDescDialog::on_module_dialog_accept() {
     QDialog::accept();
 }

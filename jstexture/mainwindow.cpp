@@ -338,20 +338,22 @@ void MainWindow::on_action_CreateModuleDescJson()
 
 void MainWindow::on_action_CreateHeightmapBuilder() {
     QSharedPointer<NoiseMapBuilderDescriptor> bDesc(new NoiseMapBuilderDescriptor());
-    HeightMapBuilderDialog dlg(bDesc.data(),true, this);
+    auto ptr = bDesc.data();
+    HeightMapBuilderDialog dlg(ptr);
+    dlg.builderWidget()->setBuilder(ptr);
+    dlg.builderWidget()->fillBuilder();
+    auto ml = this->buildModuleList();
+    auto hl = this->buildNoiseMapList();
+    QStringList sl;
+    for (auto s: ml) sl.append(s);
+    dlg.builderWidget()->setModuleList(sl);
+    dlg.builderWidget()->setNoiseMapList(hl);
+    dlg.builderWidget()->fillWidgetWithBuilder();
     if (dlg.exec() == QDialog::Accepted) {
+        dlg.builderWidget()->fillBuilder();
         _tb.nmbDesc().insert(bDesc.data()->name(),bDesc);
         updateEditorsWithTBInfo();
         this->_tex->setTextureBuilder(&this->_tb);
-        /*
-        auto builder = dlg.builderWidget()->builder();
-        QJsonObject o;
-        builder->toJson(o);
-        QJsonDocument doc(o);
-        QString strJson(doc.toJson(QJsonDocument::Compact));
-        this->plainTextEdit->insertPlainText(strJson);
-        this->updateTreeWithJsonFromEditor();
-        */
     }
 }
 
@@ -368,14 +370,26 @@ void MainWindow::on_action_new_texture_triggered()
 }
 
 void MainWindow::on_action_create_rend_desc() {
+    QStringList images = this->buildImageList();
+    QStringList nmbs = this->buildNoiseMapList();
     RendererDescDialog dlg(this);
+    dlg.setImageList(images);
+    dlg.setNoiseMapList(nmbs);
+    QSharedPointer<RendererDescriptor> sptr(new RendererDescriptor());
+    dlg.setRendererDescriptor(sptr.data());
     if (dlg.exec() == QDialog::Accepted) {
+        _tb.rndDesc().insert(sptr.data()->name(),sptr);
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+        /*
         QJsonObject oRenderer;
-        dlg.rendererDescriptor().toJson(oRenderer);
+        auto rndDescPtr = dlg.rendererDescriptor();
+        rndDescPtr->toJson(oRenderer);
         QJsonDocument doc(oRenderer);
         QString strJson(doc.toJson());
         this->plainTextEdit->insertPlainText(strJson);
         this->updateTreeWithJsonFromEditor();
+        */
     }
 }
 
@@ -383,11 +397,36 @@ void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) 
     if (column ==0) {
         auto txt = item->text(0);
         QString mode = item->columnCount() > 1 ? item->text(1) : "";
-        if (mode == "NoisemapBuilder" && _tb.nmbDesc().contains(txt) ) {
+        if (mode == "Renderer" && _tb.rndDesc().contains(txt) ) {
+            auto sptr = _tb.rndDesc()[txt];
+            auto ptr = sptr.data();
+            QStringList images = this->buildImageList();
+            QStringList nmbs = this->buildNoiseMapList();
+            RendererDescDialog dlg(this);
+
+            dlg.setImageList(images);
+            dlg.setNoiseMapList(nmbs);
+            dlg.setRendererDescriptor(sptr.data());
+            if (dlg.exec() == QDialog::Accepted) {
+                //_tb.rndDesc().insert(sptr.data()->name(),sptr);
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+        }
+        if (mode == "HeightmapBuilder" && _tb.nmbDesc().contains(txt) ) {
             auto sptr = _tb.nmbDesc()[txt];
             auto ptr = sptr.data();
             HeightMapBuilderDialog dlg(ptr);
+            dlg.builderWidget()->setBuilder(ptr);
+            auto ml = this->buildModuleList();
+            auto hl = this->buildNoiseMapList();
+            QStringList sl;
+            for (auto s: ml) sl.append(s);
+            dlg.builderWidget()->setModuleList(sl);
+            dlg.builderWidget()->setNoiseMapList(hl);
+            dlg.builderWidget()->fillWidgetWithBuilder();
             if (dlg.exec() == QDialog::Accepted) {
+                dlg.builderWidget()->fillBuilder();
                 updateEditorsWithTBInfo();
                 this->_tex->setTextureBuilder(&this->_tb);
             }
@@ -406,6 +445,7 @@ void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) 
                 //auto newPtr = dlg.moduleDescWidget()->moduleDesc();
                 //modDescSPtr.reset(newPtr);
                 //_tb.modDesc()[txt] = modDescSPtr;
+                updateEditorsWithTBInfo();
                 this->_tex->setTextureBuilder(&this->_tb);
                 infoBox("Module descriptor "+ modDescPtr->name() + "("+modDescPtr->moduleType()+") updated!");
 
@@ -422,3 +462,19 @@ QVector<QString> MainWindow::buildModuleList(QString curMod) {
     }
     return strng;
 }
+
+QStringList MainWindow::buildImageList() {
+    QStringList lst;
+    for ( auto i : _tb.imDesc())
+        lst.append(i.data()->name());
+    return lst;
+}
+
+QStringList MainWindow::buildNoiseMapList() {
+    QStringList lst;
+    for ( auto i : _tb.hmDesc())
+        lst.append(i.data()->name());
+    return lst;
+}
+
+

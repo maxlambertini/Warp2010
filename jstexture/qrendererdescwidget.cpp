@@ -16,19 +16,19 @@ void QRendererDescWidget::createWidgets() {
     gridLayout->addWidget(c_name,nRow,1);
 
     nRow += 1;
-    c_noiseMap = new QLineEdit(this);
+    c_noiseMap = new QComboBox(this);
     c_noiseMap->setObjectName("Noise Map");
     gridLayout->addWidget(new QLabel("noiseMap",this),nRow,0);
     gridLayout->addWidget(c_noiseMap,nRow,1);
 
     nRow += 1;
-    c_backgroundImage = new QLineEdit(this);
+    c_backgroundImage = new QComboBox(this);
     c_backgroundImage->setObjectName("Background Image");
     gridLayout->addWidget(new QLabel("backgroundImage",this),nRow,0);
     gridLayout->addWidget(c_backgroundImage,nRow,1);
 
     nRow += 1;
-    c_destImage = new QLineEdit(this);
+    c_destImage = new QComboBox(this);
     c_destImage->setObjectName("Dest Image");
     gridLayout->addWidget(new QLabel("destImage",this),nRow,0);
     gridLayout->addWidget(c_destImage,nRow,1);
@@ -95,20 +95,50 @@ void QRendererDescWidget::createWidgets() {
 }
 
 void QRendererDescWidget::fillRendererDescriptor() {
-    _rendererDescriptor.setBackgroundImage(this->c_backgroundImage->text());
-    _rendererDescriptor.setDestImage(this->c_destImage->text());
-    _rendererDescriptor.setEnabledlight(this->c_enabledLight->isChecked());
-    _rendererDescriptor.setLightbrightness(this->c_lightBrightess->text().toDouble());
-    _rendererDescriptor.setLightcontrast(this->c_lightContrast->text().toDouble());
-    _rendererDescriptor.setName(this->c_name->text());
-    _rendererDescriptor.setNoisemap(this->c_noiseMap->text());
-    _rendererDescriptor.setRandomFactor(
+    _rendererDescriptor->setBackgroundImage(this->c_backgroundImage->currentText());
+    _rendererDescriptor->setDestImage(this->c_destImage->currentText());
+    _rendererDescriptor->setEnabledlight(this->c_enabledLight->isChecked());
+    _rendererDescriptor->setLightbrightness(this->c_lightBrightess->text().toDouble());
+    _rendererDescriptor->setLightcontrast(this->c_lightContrast->text().toDouble());
+    _rendererDescriptor->setName(this->c_name->text());
+    _rendererDescriptor->setNoisemap(this->c_noiseMap->currentText());
+    _rendererDescriptor->setRandomFactor(
                 c_randomFactorHue->value(),
                 c_randomFactorSaturation->value(),
                 c_randomFactorSaturation->value());
-    _rendererDescriptor.setRandomGradient(c_enableRandomGradient->isChecked());
+    _rendererDescriptor->setRandomGradient(c_enableRandomGradient->isChecked());
 
 
 }
 
+void QRendererDescWidget::readFromRendererDescriptor() {
+    this->c_backgroundImage->setCurrentText(_rendererDescriptor->backgroundImage());
+    this->c_destImage->setCurrentText(_rendererDescriptor->destImage());
+    this->c_enabledLight->setChecked(_rendererDescriptor->enabledLight());
+    this->c_enableRandomGradient->setChecked(_rendererDescriptor->randomGradient());
+    this->c_lightBrightess->setText(QString("%1").arg(_rendererDescriptor->lightBrightness()));
+    this->c_lightContrast->setText(QString("%1").arg(_rendererDescriptor->lightContrast()));
+    this->c_name->setText(_rendererDescriptor->name());
+    this->c_noiseMap->setCurrentText(_rendererDescriptor->noiseMap());
+    c_randomFactorHue->setValue(_rendererDescriptor->rndHue());
+    c_randomFactorSaturation->setValue(_rendererDescriptor->rndSaturation());
+    c_randomFactorValue->setValue(_rendererDescriptor->rndValue());
+}
 
+void QRendererDescWidget::setImageList(QStringList &i) {
+    _images = i;
+    this->c_backgroundImage->clear();
+    this->c_backgroundImage->addItem("");
+    this->c_backgroundImage->addItems(_images);
+    this->c_destImage->clear();
+    this->c_destImage->addItem("");
+    this->c_destImage->addItems(_images);
+}
+
+void QRendererDescWidget::setNoiseMapList(QStringList &i)
+{
+    _noiseMapBuilders = i;
+    this->c_noiseMap->clear();
+    this->c_noiseMap->addItem("");
+    this->c_noiseMap->addItems(_noiseMapBuilders);
+}

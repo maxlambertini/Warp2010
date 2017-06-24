@@ -19,6 +19,7 @@ public:
     explicit QModuleDescDialog(QWidget *parent = 0);
     QModuleDescWidget* moduleDescWidget() { return _moduleDescWidget; }
 
+
 public slots:
 
     void on_module_dialog_accept();

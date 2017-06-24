@@ -3,14 +3,10 @@
 
 
 HeightMapBuilderWidget::HeightMapBuilderWidget(NoiseMapBuilderDescriptor *ptr,
-                                               bool initBld,
                                                QWidget *parent ) :
-    QWidget(parent),
-    _builder(ptr)
+    QWidget(parent)
 {
-    if (initBld)
-        initBuilder();
-    createWidgets();
+    this->createWidgets();
 }
 
 void HeightMapBuilderWidget::initBuilder() {
@@ -51,31 +47,31 @@ void HeightMapBuilderWidget::createWidgets() {
     _grid->addWidget(_lbl,5,0);
     _grid->setMargin(6);
 
-    _name = new QLineEdit (_builder->name(),this);
+    _name = new QLineEdit (this);
     _grid->addWidget(_name,0,1,1,4);
 
-    _source = new QLineEdit (_builder->sourceModule(),this);
+    _source = new QComboBox (this);
     _grid->addWidget(_source,1,1,1,4);
 
-    _dest = new QLineEdit (_builder->dest(),this);
+    _dest = new QComboBox (this);
     _grid->addWidget(_dest,2,1,1,4);
 
-    _sizeX = new QLineEdit(QString("%1").arg(std::get<0>(_builder->size())));
+    _sizeX = new QLineEdit(this);
     auto val1 = new QIntValidator(this);
-    _sizeX->setValidator(val1);
-    _sizeY = new QLineEdit(QString("%1").arg(std::get<1>(_builder->size())));
+    _sizeY = new QLineEdit(this);
     auto val2 = new QIntValidator(this);
+    _sizeX->setValidator(val1);
     _sizeY->setValidator(val2);
     _grid->addWidget(_sizeX,3,1);
     _grid->addWidget(_sizeY,3,2);
 
-    _topAngle = new QLineEdit(QString("%1").arg(std::get<0>(_builder->bounds())));
+    _topAngle = new QLineEdit(this);
+    _bottomAngle = new QLineEdit(this);
+    _leftAngle = new QLineEdit(this);
+    _rightAngle = new QLineEdit(this);
     auto a1 = new QDoubleValidator(this); _topAngle->setValidator(a1);
-    _bottomAngle = new QLineEdit(QString("%1").arg(std::get<1>(_builder->bounds())));
     auto a2 = new QDoubleValidator(this); _bottomAngle->setValidator(a1);
-    _leftAngle = new QLineEdit(QString("%1").arg(std::get<2>(_builder->bounds())));
     auto a3 = new QDoubleValidator(this); _leftAngle->setValidator(a1);
-    _rightAngle = new QLineEdit(QString("%1").arg(std::get<3>(_builder->bounds())));
     auto a4 = new QDoubleValidator(this); _rightAngle->setValidator(a1);
     _grid->addWidget(_topAngle,4,1);
     _grid->addWidget(_bottomAngle,4,2);
@@ -83,10 +79,23 @@ void HeightMapBuilderWidget::createWidgets() {
     _grid->addWidget(_rightAngle,4,4);
 
     _seamless = new QCheckBox(this);
-    _seamless->setChecked(_builder->seamless());
     _grid->addWidget(_seamless,5,1);
 
     this->setLayout(_grid);
+}
+
+void HeightMapBuilderWidget::fillWidgetWithBuilder()
+{
+    _name->setText(_builder->name());
+    _source->setCurrentText(_builder->sourceModule());
+    _dest->setCurrentText(_builder->dest());
+    _topAngle->setText(QString("%1").arg(std::get<0>(_builder->bounds())));
+    _bottomAngle->setText(QString("%1").arg(std::get<1>(_builder->bounds())));
+    _leftAngle->setText(QString("%1").arg(std::get<2>(_builder->bounds())));
+    _rightAngle->setText(QString("%1").arg(std::get<3>(_builder->bounds())));
+    _sizeY->setText(QString("%1").arg(std::get<1>(_builder->size())));
+    _sizeX->setText(QString("%1").arg(std::get<0>(_builder->size())));
+    _seamless->setChecked(_builder->seamless());
 }
 
 void HeightMapBuilderWidget::fillBuilder() {
@@ -104,7 +113,21 @@ void HeightMapBuilderWidget::fillBuilder() {
     _builder->setSize(std::get<0>(iSize),std::get<1>(iSize));
     _builder->setSeamless(_seamless->isChecked());
     _builder->setName(_name->text());
-    _builder->setSourceModule(_source->text());
-    _builder->setDest(_dest->text());
+    _builder->setSourceModule(_source->currentText());
+    _builder->setDest(_dest->currentText());
 }
 
+void HeightMapBuilderWidget::setModuleList(QStringList &i) {
+    _moduleList = i;
+    _source->clear();
+    _source->addItem("");
+    _source->addItems(_moduleList);
+
+}
+
+void HeightMapBuilderWidget::setNoiseMapList(QStringList &i) {
+    _noiseMapList = i;
+    _dest->clear();
+    _dest->addItem("");
+    _dest->addItems(_noiseMapList);
+}

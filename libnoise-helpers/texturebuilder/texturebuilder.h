@@ -160,7 +160,7 @@ public:
         return _images.first();
     }
 
-    void buildTextureFromJson(const QString& filename);
+    void buildTextureFromJson(const QString& filename, QString path="");
 
     const QVector<QString>& generatedMaps() {
         return _generatedMaps;

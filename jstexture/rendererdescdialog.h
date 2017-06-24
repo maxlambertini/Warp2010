@@ -14,7 +14,7 @@ class RendererDescDialog : public QDialog
 {
     Q_OBJECT
 
-    QRendererDescWidget *renderer;
+    QRendererDescWidget *_renderer;
     QtGradientEditor *gradientEditor;
     QDialogButtonBox *buttonBox;
 
@@ -22,7 +22,12 @@ class RendererDescDialog : public QDialog
 
 public:
     explicit RendererDescDialog(QWidget *parent = 0);
-    RendererDescriptor& rendererDescriptor() { return renderer->rendererDescriptor(); }
+    RendererDescriptor* rendererDescriptor() { return _renderer->rendererDescriptor(); }
+    void setRendererDescriptor(RendererDescriptor* v);
+    void setImageList(QStringList& i) { _renderer->setImageList(i); }
+    void setNoiseMapList(QStringList& i) { _renderer->setNoiseMapList(i); }
+
+    QRendererDescWidget *renderer() { return this->_renderer; }
 
 private slots:
     void on_dialog_accept();

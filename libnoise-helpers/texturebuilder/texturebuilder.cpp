@@ -352,9 +352,11 @@ void TextureBuilder::renderRenderers()
     }
 }
 
-void TextureBuilder::buildTextureFromJson(const QString &filename) {
+void TextureBuilder::buildTextureFromJson(const QString &filename, QString path) {
     try {
-        QString simpleFile = filename;
+
+        QString simpleFile = path = "" ?
+                    filename : path.endsWith(QDir::separator()) ? path : path + QDir::separator()+  QFileInfo(filename).fileName();
         simpleFile = simpleFile.replace(".textjson","");
         QFile data (filename);
          if (data.open(QFile::ReadOnly | QFile::Text)) {
@@ -415,6 +417,18 @@ void TextureBuilder::buildTextureFromJson(const QString &filename) {
             }
          }
          data.close();
+    }
+    catch (noise::Exception err) {
+        throw "Generic noise::exception";
+    }
+    catch (noise::ExceptionInvalidParam err) {
+        throw "Invalid param error";
+    }
+    catch (noise::ExceptionNoModule err) {
+        throw "No module defined as source or control";
+    }
+    catch (noise::ExceptionOutOfMemory ) {
+        throw "Out of memory!";
     }
     catch (QString err) {
         throw err;

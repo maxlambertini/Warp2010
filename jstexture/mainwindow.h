@@ -66,6 +66,8 @@ public:
     void setCurrentTextureFile(const QString& _file) { _currentTextureFile = _file; this->setWindowTitle(_file); }
 
     QVector<QString> buildModuleList(QString curMod = "");
+    QStringList buildImageList();
+    QStringList buildNoiseMapList();
 
 private slots:
     void on_action_new_texture_triggered();

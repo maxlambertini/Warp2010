@@ -23,8 +23,11 @@ class HeightMapBuilderDialog : public QDialog
 
 public:
     HeightMapBuilderWidget *builderWidget() { return _widget; }
-    explicit HeightMapBuilderDialog(NoiseMapBuilderDescriptor* ptr, bool initBuilder=false, QWidget *parent = 0);
+    explicit HeightMapBuilderDialog(NoiseMapBuilderDescriptor* ptr, QWidget *parent = 0);
     ~HeightMapBuilderDialog();
+    void setModuleList (QStringList& i) { _widget->setModuleList(i);}
+    void setNoiseMapList (QStringList& i) { _widget->setNoiseMapList(i);
+}
 
 private:
     Ui::HeightMapBuilderDialog *ui;

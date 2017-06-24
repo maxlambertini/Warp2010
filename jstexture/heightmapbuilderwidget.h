@@ -18,15 +18,13 @@ class HeightMapBuilderWidget : public QWidget
     NoiseMapBuilderDescriptor* _builder;
 
 
-    void initBuilder();
-    void createWidgets();
 
     QGridLayout *_grid;
 
     QLabel    *_lbl;
     QLineEdit *_name;
-    QLineEdit *_source;
-    QLineEdit *_dest;
+    QComboBox *_source;
+    QComboBox *_dest;
     QLineEdit *_sizeX;
     QLineEdit *_sizeY;
     QLineEdit *_topAngle;
@@ -36,14 +34,20 @@ class HeightMapBuilderWidget : public QWidget
     QComboBox *_type;
     QCheckBox *_seamless;
 
+    QStringList _moduleList;
+    QStringList _noiseMapList;
+
 public:
     NoiseMapBuilderDescriptor* builder() { return _builder; }
     void setBuilder(NoiseMapBuilderDescriptor *p) { _builder = p; }
     explicit HeightMapBuilderWidget(NoiseMapBuilderDescriptor *ptr,
-                                    bool initBld = false,
                                     QWidget *parent = 0);
-
+    void initBuilder();
+    void createWidgets();
     void fillBuilder();
+    void fillWidgetWithBuilder();
+    void setModuleList (QStringList& i);
+    void setNoiseMapList (QStringList& i);
 signals:
 
 public slots:

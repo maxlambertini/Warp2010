@@ -14,17 +14,18 @@
 #include <QHBoxLayout>
 #include <QSpinBox>
 #include <QLabel>
+#include <QComboBox>
 
 class QRendererDescWidget : public QWidget
 {
     Q_OBJECT
 
-    RendererDescriptor _rendererDescriptor;
+    RendererDescriptor *_rendererDescriptor;
 
     QLineEdit *c_name;
-    QLineEdit *c_noiseMap;
-    QLineEdit *c_backgroundImage;
-    QLineEdit *c_destImage;
+    QComboBox *c_noiseMap;
+    QComboBox *c_backgroundImage;
+    QComboBox *c_destImage;
     QCheckBox *c_enabledLight;
     QCheckBox *c_enableRandomGradient;
     QLineEdit *c_lightContrast;
@@ -33,13 +34,19 @@ class QRendererDescWidget : public QWidget
     QSpinBox *c_randomFactorSaturation;
     QSpinBox *c_randomFactorValue;
 
+    QStringList _images;
+    QStringList _noiseMapBuilders;
 
 public:
     explicit QRendererDescWidget(QWidget *parent = 0);
 
-    RendererDescriptor& rendererDescriptor() { return _rendererDescriptor; }
+    RendererDescriptor* rendererDescriptor() { return _rendererDescriptor; }
+    void setRendererDescriptor (RendererDescriptor *v) { _rendererDescriptor = v; readFromRendererDescriptor();}
     void createWidgets();
     void fillRendererDescriptor();
+    void readFromRendererDescriptor();
+    void setImageList(QStringList& i);
+    void setNoiseMapList(QStringList& i);
 
 signals:
 

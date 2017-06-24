@@ -4,7 +4,7 @@
 RendererDescDialog::RendererDescDialog(QWidget *parent) : QDialog(parent)
 {
     auto grid = new QGridLayout(this);
-    this->renderer  = new QRendererDescWidget(this);
+    this->_renderer  = new QRendererDescWidget(this);
     this->gradientEditor = new QtGradientEditor(this);
     this->gradientEditor->setMinimumWidth(500);
 
@@ -16,7 +16,7 @@ RendererDescDialog::RendererDescDialog(QWidget *parent) : QDialog(parent)
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     auto vLayout = new QVBoxLayout(this);
-    vLayout->addWidget(this->renderer);
+    vLayout->addWidget(this->_renderer);
     vLayout->addSpacing(70);
 
     auto vLayout2 = new QVBoxLayout(this);
@@ -32,16 +32,35 @@ RendererDescDialog::RendererDescDialog(QWidget *parent) : QDialog(parent)
 }
 
 void RendererDescDialog::on_dialog_accept() {
-    this->renderer->fillRendererDescriptor();
+    this->_renderer->fillRendererDescriptor();
     auto grad = this->gradientEditor->gradient();
-    RendererDescriptor& d = this->renderer->rendererDescriptor();
-    d.gradientInfo().clear();
+    auto d = this->_renderer->rendererDescriptor();
+    d->gradientInfo().clear();
     QVector<QGradientStop> stops = grad.stops();
     for (auto i = stops.begin(); i != stops.end(); ++i) {
         QGradientStop s = (*i);
         auto tpl = std::tuple<double,int,int,int,int>(
         (s.first*2.0)-1.0,s.second.red(),s.second.green(),s.second.blue(),s.second.alpha());
-        d.gradientInfo().append(tpl);
+        d->gradientInfo().append(tpl);
     }
     QDialog::accept();
+}
+
+void RendererDescDialog::setRendererDescriptor(RendererDescriptor *v) {
+    this->_renderer->setRendererDescriptor(v);
+    this->_renderer->readFromRendererDescriptor();
+    if (v->gradientInfo().count() > 0) {
+       //auto grad = this->gradientEditor->gradient();
+       QLinearGradient grad;
+       //grad.stops().clear();
+       for (auto gradItem : v->gradientInfo() ) {
+           QColor colorStop( std::get<1>(gradItem),
+                             std::get<2>(gradItem),
+                             std::get<3>(gradItem),
+                             std::get<4>(gradItem));
+           auto pos = (std::get<0>(gradItem) + 1.0) /2.0;
+           grad.setColorAt(pos, colorStop);
+       }
+       this->gradientEditor->setGradient(grad);
+    }
 }
