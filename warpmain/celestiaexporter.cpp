@@ -34,7 +34,7 @@ void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
     QTextStream stream(&sOutput);
 
     QSharedPointer<Star> star;
-    int iHip = 590000;
+    int iHip = 500002 + SSGX::dx(699999);
    foreach (star, _starList->stars()) {
         stream << star.data()->getCelestiaStcEntry(iHip++);
     }

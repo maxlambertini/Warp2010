@@ -30,6 +30,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 namespace ColorOps {
 
+    inline QColor randomHSLColor() {
+        int l = 128 + SSGX::dx(127);
+        QColor c;
+        c.setHsl( SSGX::dn(255), SSGX::dn(255) ,l);
+        return c;
+    }
 
     inline QColor randomColor() { return QColor(SSGX::dn(255), SSGX::dn(255),SSGX::dn(255)); }
     inline QColor irregularLightenColor(const QColor &clr, int step=25) {

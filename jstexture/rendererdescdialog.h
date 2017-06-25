@@ -8,7 +8,7 @@
 #include <QtGradientEditor/qtgradienteditor.h>
 #include <QDialogButtonBox>
 #include <texturebuilder/rendererdescriptor.h>
-
+#include <ssg_structures.h>
 
 class RendererDescDialog : public QDialog
 {
@@ -31,6 +31,7 @@ public:
 
 private slots:
     void on_dialog_accept();
+    void on_create_random_gradient();
 };
 
 #endif // RENDERERDESCDIALOG_H
