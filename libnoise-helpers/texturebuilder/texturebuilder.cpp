@@ -161,8 +161,8 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
 
         m->setName(o);
         if (h == 0 && _colorMap == "") _colorMap = o;
-        if (h == 1 && _cloudMap == "") _cloudMap = o;
-        if (h == 2 && _bumpMap == "") _bumpMap =  o;
+        if (h == 1 && _bumpMap == "") _bumpMap =  o;
+        if (h == 2 && _cloudMap == "") _cloudMap = o;
         if (h == 3 && _reflectionMap == "") _reflectionMap = o;
 
         QSharedPointer<ImageDescriptor> p; p.reset(m);
@@ -352,9 +352,119 @@ void TextureBuilder::renderRenderers()
     }
 }
 
+
+void TextureBuilder::prepareObjectFromJsonFile(const QString &filename) {
+    try {
+        QFile data (filename);
+        if (data.open(QFile::ReadOnly | QFile::Text)) {
+            QByteArray json = data.readAll();
+            QJsonParseError parserError;
+            QJsonDocument doc = QJsonDocument::fromJson(json, &parserError);
+            if (!doc.isNull()) {
+                emit this->textureGenerationStarting();
+                auto oStuff = doc.object();
+
+                qDebug() << "Loading raw json data";
+                //load raw data
+                this->fromJson(oStuff);
+
+                qDebug() << "Creating libnoise stuff";
+                this->createAll();
+
+                qDebug() << "Connecting modules and stuff";
+                this->connectAll();
+                emit this->builderReady();
+            }
+        }
+        data.close();
+    }
+    catch (noise::Exception err) {
+        throw "Generic noise::exception";
+    }
+    catch (noise::ExceptionInvalidParam err) {
+        throw "Invalid param error";
+    }
+    catch (noise::ExceptionNoModule err) {
+        throw "No module defined as source or control";
+    }
+    catch (noise::ExceptionOutOfMemory ) {
+        throw "Out of memory!";
+    }
+    catch (QString err) {
+        throw err;
+    }
+    catch (std::string err) {
+        throw err;
+    }
+    catch (...) {
+        throw "Undefined error building texture " + filename;
+    }
+
+}
+
+void TextureBuilder::prepareObjectFromJsonString(const QString &jsonData) {
+    try {
+        auto json = jsonData.toUtf8();
+        QJsonParseError parserError;
+        QJsonDocument doc = QJsonDocument::fromJson(json, &parserError);
+        if (!doc.isNull()) {
+            emit this->textureGenerationStarting();
+            auto oStuff = doc.object();
+
+            qDebug() << "Loading raw json data";
+            //load raw data
+            this->fromJson(oStuff);
+
+            qDebug() << "Creating libnoise stuff";
+            this->createAll();
+
+            qDebug() << "Connecting modules and stuff";
+            this->connectAll();
+            emit this->builderReady();
+        }
+    }
+    catch (noise::Exception err) {
+        throw "Generic noise::exception";
+    }
+    catch (noise::ExceptionInvalidParam err) {
+        throw "Invalid param error";
+    }
+    catch (noise::ExceptionNoModule err) {
+        throw "No module defined as source or control";
+    }
+    catch (noise::ExceptionOutOfMemory ) {
+        throw "Out of memory!";
+    }
+    catch (QString err) {
+        throw err;
+    }
+    catch (std::string err) {
+        throw err;
+    }
+    catch (...) {
+        throw "Undefined error building texture from string data";
+    }
+}
+
+void TextureBuilder::saveRenderedImageToFile(const QString &imageName, const QString &destFileName) {
+    if (_images.count() > 0 && _images.contains(imageName)) {
+        auto ImgPtr = _images[imageName].data();
+        qDebug() << "Saving image..." + destFileName;
+        utils::WriterBMP writer;
+        writer.SetSourceImage (*ImgPtr);
+        std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
+        auto sizeX = _nmbDesc.first().data()->getSizeX();
+        auto sizeY = _nmbDesc.first().data()->getSizeY();
+        QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
+        img.save(destFileName,"PNG");
+        emit this->textureGenerated(imageName);
+    }
+    else
+        throw "image " + imageName + " undefined or not present, or no images have been defined";
+}
+
 void TextureBuilder::buildTextureFromJson(const QString &filename, QString path) {
     try {
-
         QString simpleFile = path = "" ?
                     filename : path.endsWith(QDir::separator()) ? path : path + QDir::separator()+  QFileInfo(filename).fileName();
         simpleFile = simpleFile.replace(".textjson","");

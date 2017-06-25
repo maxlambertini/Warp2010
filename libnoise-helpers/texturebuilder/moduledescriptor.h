@@ -116,7 +116,7 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     Q_PROPERTY(QString ctl READ ctl WRITE setCtl )
 
 
-    int _seed = SSGX::dn(999999);
+    int _seed = 0;
     Q_PROPERTY(int seed READ seed WRITE setSeed )
 
     int _oct = 6;

@@ -160,17 +160,28 @@ public:
         return _images.first();
     }
 
+
     void buildTextureFromJson(const QString& filename, QString path="");
 
     const QVector<QString>& generatedMaps() {
         return _generatedMaps;
     }
 
+    void prepareObjectFromJsonFile (const QString& filename);
+    void prepareObjectFromJsonString(const QString& jsonData);
+    void saveRenderedImageToFile (const QString& imageName, const QString& destFileName);
+
+    bool hasColorMap() { return _colorMap != ""; }
+    bool hasBumpMap() { return _bumpMap != ""; }
+    bool hasCloudMap() { return _cloudMap != ""; }
+    bool hasReflectionMap() { return _reflectionMap != ""; }
+
 signals:
     void textureGenerationStarting();
     void textureGenerated(QString texture);
     void allTextureGenerated();
     void noTextureGenerated();
+    void builderReady();
 };
 
 #endif // TEXTUREBUILDER_H

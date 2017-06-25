@@ -315,7 +315,7 @@ QSharedPointer<Module> ModuleDescriptor::makeModule() {
 //{ "module":"Billow" , "mame": "mod_name" , "seed": 0.0 , "freq": 0.0 , "lac": 0.0 , "pers": 0.0 ,
 QSharedPointer<Module> ModuleDescriptor::makeBillow() {
     Billow* m = new Billow();
-    m->SetSeed(_seed);
+    m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
     m->SetFrequency(_freq);
     m->SetLacunarity(_lac);
     m->SetPersistence(_pers);
@@ -354,7 +354,7 @@ QSharedPointer<Module> ModuleDescriptor::makePerlin() {
     m->SetLacunarity(_lac);
     m->SetFrequency(_freq);
     m->SetPersistence(_pers);
-    m->SetSeed(_seed);
+    m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
     m->SetOctaveCount(_oct);
     QSharedPointer<Module> p; p.reset(m);
     return p;
@@ -366,7 +366,7 @@ QSharedPointer<Module> ModuleDescriptor::makeRidgedMulti() {
     m->SetLacunarity(_lac);
     m->SetFrequency(_freq);
     m->SetOctaveCount(_oct);
-    m->SetSeed(_seed);
+    m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
     QSharedPointer<Module> p; p.reset(m);
     return p;
 }
@@ -384,7 +384,7 @@ QSharedPointer<Module> ModuleDescriptor::makeVoronoi() {
     Voronoi* m = new Voronoi();
     m->SetFrequency(_freq);
     m->SetDisplacement(_disp);
-    m->SetSeed(this->_seed);
+    m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
     m->EnableDistance(_enableDist);
     QSharedPointer<Module>p;
     p.reset(m);
@@ -460,7 +460,7 @@ QSharedPointer<Module> ModuleDescriptor::makeTerrace() {
 //{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
 QSharedPointer<Module> ModuleDescriptor::makeTurbulence() {
     Turbulence* m = new Turbulence();
-    m->SetSeed(_seed);
+    m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
     m->SetFrequency(_freq);
     m->SetPower(_pow);
     m->SetRoughness(_rough);
