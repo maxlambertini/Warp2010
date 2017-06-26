@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>381</width>
-    <height>280</height>
+    <height>286</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,6 +18,11 @@
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
       <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>From</string>
        </property>
@@ -31,6 +36,11 @@
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>To</string>
        </property>
@@ -44,6 +54,11 @@
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Stars to add:</string>
        </property>
@@ -63,6 +78,11 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="minimum">
         <number>1</number>
        </property>
@@ -72,15 +92,32 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QListWidget" name="lstFrom"/>
+      <widget class="QListWidget" name="lstFrom">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QListWidget" name="lstTo"/>
+      <widget class="QListWidget" name="lstTo">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
    <item>
     <spacer name="verticalSpacer">
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -94,6 +131,11 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>

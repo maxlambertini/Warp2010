@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>352</width>
-    <height>278</height>
+    <height>312</height>
    </rect>
   </property>
   <property name="font">
@@ -42,7 +42,9 @@
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="font">
        <font>
-        <pointsize>11</pointsize>
+        <pointsize>9</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="autoFillBackground">
@@ -172,34 +174,85 @@
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
          <widget class="QSplitter" name="splitter">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
           <widget class="QWidget" name="layoutWidget">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
              <widget class="QLabel" name="label_3">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
               <property name="text">
                <string>Route List</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QListWidget" name="listWidget"/>
+             <widget class="QListWidget" name="listWidget">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
           <widget class="QWidget" name="layoutWidget">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
              <widget class="QLabel" name="label_4">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
               <property name="text">
                <string>Route Description</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="webView"/>
+             <widget class="QTextEdit" name="webView">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>

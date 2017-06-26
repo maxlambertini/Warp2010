@@ -32,7 +32,8 @@
       <widget class="QLabel" name="label">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -50,7 +51,8 @@
       <widget class="QLabel" name="label_2">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -68,7 +70,8 @@
       <widget class="QLabel" name="label_9">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -98,7 +101,8 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="minimum">
@@ -113,7 +117,8 @@
       <widget class="QLabel" name="label_10">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -128,7 +133,8 @@
       <widget class="QCheckBox" name="chkTypes">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -149,7 +155,8 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="alignment">
@@ -161,7 +168,8 @@
       <widget class="QLabel" name="label_11">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -176,7 +184,8 @@
       <widget class="QLabel" name="label_6">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -200,7 +209,8 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
       </widget>
@@ -209,7 +219,8 @@
       <widget class="QLabel" name="label_4">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -233,7 +244,8 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="alignment">
@@ -251,7 +263,8 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="alignment">
@@ -263,7 +276,8 @@
       <widget class="QLabel" name="label_5">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -281,7 +295,8 @@
       <widget class="QLineEdit" name="txtStarName">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="alignment">
@@ -293,7 +308,8 @@
       <widget class="QLineEdit" name="txtStarType">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="alignment">
@@ -305,7 +321,8 @@
       <widget class="Line" name="line">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="orientation">
@@ -317,7 +334,8 @@
       <widget class="Line" name="line_2">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="orientation">
@@ -329,7 +347,8 @@
       <widget class="QLabel" name="label_3">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
        <property name="text">
@@ -353,7 +372,8 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
+         <kerning>true</kerning>
         </font>
        </property>
       </widget>
@@ -364,7 +384,8 @@
     <spacer name="verticalSpacer">
      <property name="font">
       <font>
-       <pointsize>11</pointsize>
+       <pointsize>9</pointsize>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="orientation">
@@ -382,7 +403,8 @@
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="font">
       <font>
-       <pointsize>11</pointsize>
+       <pointsize>9</pointsize>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="standardButtons">

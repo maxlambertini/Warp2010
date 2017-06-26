@@ -22,7 +22,7 @@
         <widget class="QSpinBox" name="spnOctave">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="minimum">
@@ -40,7 +40,7 @@
         <spacer name="verticalSpacer">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="orientation">
@@ -58,7 +58,7 @@
         <widget class="QLabel" name="label">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="text">
@@ -76,7 +76,7 @@
         <widget class="QLabel" name="label_3">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="text">
@@ -94,7 +94,7 @@
         <widget class="QLabel" name="label_2">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="text">
@@ -112,7 +112,7 @@
         <widget class="QDoubleSpinBox" name="spnPersistence">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="minimum">
@@ -133,7 +133,7 @@
         <widget class="QDoubleSpinBox" name="spnFrequency">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="minimum">
@@ -154,7 +154,7 @@
         <widget class="QLabel" name="label_4">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="text">
@@ -172,7 +172,7 @@
         <widget class="QDoubleSpinBox" name="spnLacunarity">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="minimum">
@@ -195,7 +195,7 @@
           <spacer name="verticalSpacer_2">
            <property name="font">
             <font>
-             <pointsize>11</pointsize>
+             <pointsize>9</pointsize>
             </font>
            </property>
            <property name="orientation">
@@ -213,7 +213,7 @@
           <widget class="QPushButton" name="btnJsonTextureDemo">
            <property name="font">
             <font>
-             <pointsize>11</pointsize>
+             <pointsize>9</pointsize>
             </font>
            </property>
            <property name="text">
@@ -225,7 +225,7 @@
           <widget class="QPushButton" name="pushButton">
            <property name="font">
             <font>
-             <pointsize>11</pointsize>
+             <pointsize>9</pointsize>
             </font>
            </property>
            <property name="text">
@@ -241,7 +241,7 @@
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="orientation">

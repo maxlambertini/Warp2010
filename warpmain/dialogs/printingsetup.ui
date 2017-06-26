@@ -43,7 +43,7 @@
       <widget class="QLabel" name="label">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -67,7 +67,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
       </widget>
@@ -76,7 +76,7 @@
       <widget class="QLabel" name="label_2">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -100,7 +100,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="maximum">
@@ -115,7 +115,7 @@
       <widget class="QLabel" name="label_3">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -133,7 +133,7 @@
       <widget class="Line" name="line">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="orientation">
@@ -145,7 +145,7 @@
       <widget class="QLabel" name="label_4">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -169,7 +169,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="maximum">
@@ -190,7 +190,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="maximum">
@@ -211,7 +211,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="maximum">
@@ -232,7 +232,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="maximum">
@@ -253,7 +253,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="maximum">
@@ -268,7 +268,7 @@
       <widget class="QLabel" name="label_5">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -286,7 +286,7 @@
       <widget class="QLabel" name="label_6">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -304,7 +304,7 @@
       <widget class="QLabel" name="label_8">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -322,7 +322,7 @@
       <widget class="QLabel" name="label_9">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -346,7 +346,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="minimum">
@@ -364,7 +364,7 @@
       <widget class="Line" name="line_2">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="orientation">
@@ -376,7 +376,7 @@
       <widget class="QCheckBox" name="chkLandscape">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -388,7 +388,7 @@
       <widget class="QCheckBox" name="chkImperialSystem">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -400,7 +400,7 @@
       <widget class="QLabel" name="label_10">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -418,7 +418,7 @@
       <widget class="QLabel" name="label_7">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -436,7 +436,7 @@
       <widget class="QLabel" name="label_11">
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -466,7 +466,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>11</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="minimum">
@@ -486,7 +486,7 @@
     <spacer name="verticalSpacer">
      <property name="font">
       <font>
-       <pointsize>11</pointsize>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="orientation">
@@ -504,7 +504,7 @@
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="font">
       <font>
-       <pointsize>11</pointsize>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="orientation">

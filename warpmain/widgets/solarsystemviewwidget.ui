@@ -39,7 +39,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>11</pointsize>
+       <pointsize>9</pointsize>
       </font>
      </property>
      <property name="currentIndex">
@@ -54,7 +54,7 @@
         <widget class="QSplitter" name="splitter_2">
          <property name="font">
           <font>
-           <pointsize>11</pointsize>
+           <pointsize>9</pointsize>
           </font>
          </property>
          <property name="orientation">
@@ -63,7 +63,7 @@
          <widget class="QWidget" name="layoutWidget">
           <property name="font">
            <font>
-            <pointsize>11</pointsize>
+            <pointsize>9</pointsize>
            </font>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -79,7 +79,7 @@
               <widget class="QGraphicsView" name="solsysView">
                <property name="font">
                 <font>
-                 <pointsize>11</pointsize>
+                 <pointsize>9</pointsize>
                 </font>
                </property>
                <property name="dragMode">
@@ -99,7 +99,7 @@
                 <widget class="QToolButton" name="btnZoomUp">
                  <property name="font">
                   <font>
-                   <pointsize>11</pointsize>
+                   <pointsize>9</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -115,7 +115,7 @@
                 <widget class="QSlider" name="zoomSlider">
                  <property name="font">
                   <font>
-                   <pointsize>11</pointsize>
+                   <pointsize>9</pointsize>
                   </font>
                  </property>
                  <property name="minimum">
@@ -136,7 +136,7 @@
                 <widget class="QToolButton" name="btnZoomDown">
                  <property name="font">
                   <font>
-                   <pointsize>11</pointsize>
+                   <pointsize>9</pointsize>
                   </font>
                  </property>
                  <property name="text">
@@ -161,7 +161,7 @@
               <widget class="QToolButton" name="btnRotateLeft">
                <property name="font">
                 <font>
-                 <pointsize>11</pointsize>
+                 <pointsize>9</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -177,7 +177,7 @@
               <widget class="QSlider" name="rotateSlider">
                <property name="font">
                 <font>
-                 <pointsize>11</pointsize>
+                 <pointsize>9</pointsize>
                 </font>
                </property>
                <property name="minimum">
@@ -195,7 +195,7 @@
               <widget class="QToolButton" name="btnRotateRight">
                <property name="font">
                 <font>
-                 <pointsize>11</pointsize>
+                 <pointsize>9</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -214,7 +214,7 @@
          <widget class="PlanetaryInspector" name="planetInspector" native="true">
           <property name="font">
            <font>
-            <pointsize>11</pointsize>
+            <pointsize>9</pointsize>
            </font>
           </property>
          </widget>

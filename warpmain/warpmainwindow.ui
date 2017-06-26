@@ -64,6 +64,11 @@
         </property>
         <item>
          <widget class="QPushButton" name="btn_Star_Sector_View">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -84,6 +89,11 @@
         </item>
         <item>
          <widget class="QPushButton" name="btn_Solar_System_View">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -119,6 +129,11 @@
           <height>32</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
         </property>
@@ -130,13 +145,23 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>206</width>
-           <height>32</height>
+           <width>215</width>
+           <height>35</height>
           </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
            <widget class="QPushButton" name="btn_action_NewSector">
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -157,6 +182,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="btn_action_LoadSector">
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -177,6 +207,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="btn_action_SaveSector">
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -197,6 +232,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="btn_action_Clear_Star_Sector_Data">
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -217,6 +257,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="btn_actionCreate_a_Solar_System_for_all_stars">
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -246,6 +291,11 @@
         </property>
         <item>
          <widget class="QLabel" name="lblSectorName">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Sector Name</string>
           </property>
@@ -268,10 +318,20 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
          </widget>
         </item>
         <item>
          <spacer name="horizontalSpacer">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -287,6 +347,11 @@
          <widget class="QLabel" name="lblSpinDistance">
           <property name="enabled">
            <bool>true</bool>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">background-color: transparent;</string>
@@ -309,6 +374,11 @@
             <width>120</width>
             <height>30</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+           </font>
           </property>
           <property name="toolTip">
            <string>Set jump distance.
@@ -344,6 +414,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
       </item>
       <item>
        <widget class="QPushButton" name="btnContextualMenu">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -366,6 +441,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     </item>
     <item>
      <widget class="QSplitter" name="splitter_3">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -373,6 +453,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
        <number>1</number>
       </property>
       <widget class="QStackedWidget" name="stackedWidget">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
@@ -415,6 +500,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                  <height>0</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
                <property name="toolTip">
                 <string>Star map</string>
                </property>
@@ -448,6 +538,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                </property>
                <item>
                 <widget class="QToolButton" name="btnZoomUp">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
                  <property name="toolTip">
                   <string>Zoom in</string>
                  </property>
@@ -465,6 +560,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                </item>
                <item>
                 <widget class="QSlider" name="sliderZoom">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
                  <property name="toolTip">
                   <string>Zoom slider</string>
                  </property>
@@ -484,6 +584,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                </item>
                <item>
                 <widget class="QToolButton" name="btnZoomDown">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
                  <property name="toolTip">
                   <string>Zoom out</string>
                  </property>
@@ -510,6 +615,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
              </property>
              <item>
               <widget class="QToolButton" name="btnRotateLeft">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
                <property name="toolTip">
                 <string>Rotate left</string>
                </property>
@@ -527,6 +637,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
              </item>
              <item>
               <widget class="QSlider" name="sliderRotate">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
                <property name="toolTip">
                 <string>Rotate map using this slider</string>
                </property>
@@ -543,6 +658,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
              </item>
              <item>
               <widget class="QToolButton" name="btnRotateRight">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
                <property name="toolTip">
                 <string>Rotate right</string>
                </property>
@@ -613,10 +733,20 @@ Double click on a star below to recalculate a new jumpweb centered on the select
          <height>16777215</height>
         </size>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
        <widget class="QWidget" name="layoutWidget">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="spacing">
           <number>6</number>
@@ -647,6 +777,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
              <width>200</width>
              <height>0</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
            </property>
            <property name="focusPolicy">
             <enum>Qt::WheelFocus</enum>
@@ -682,6 +817,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
           <width>600</width>
           <height>16777215</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
         </property>
         <property name="autoFillBackground">
          <bool>true</bool>
@@ -769,11 +909,19 @@ Double click on a star below to recalculate a new jumpweb centered on the select
             <property name="bottomMargin">
              <number>0</number>
             </property>
-            <property name="spacing">
-             <number>0</number>
+            <property name="horizontalSpacing">
+             <number>4</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>2</number>
             </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">background-color: transparent;</string>
               </property>
@@ -784,6 +932,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_3">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">background-color: transparent;</string>
               </property>
@@ -800,6 +953,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 <height>0</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="toolTip">
                <string>Click here to choose the trade route color</string>
               </property>
@@ -813,6 +971,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
             </item>
             <item row="1" column="1">
              <spacer name="horizontalSpacer_3">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -826,6 +989,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
             </item>
             <item row="0" column="1" colspan="2">
              <widget class="QLineEdit" name="txtRouteName">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">background-color: transparent;</string>
               </property>
@@ -846,6 +1014,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
             </property>
             <item>
              <spacer name="horizontalSpacer_2">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -864,6 +1037,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 <width>50</width>
                 <height>0</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
               </property>
               <property name="toolTip">
                <string>Confirm operation</string>
@@ -888,6 +1066,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 <height>0</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="toolTip">
                <string>Delete selected trade route</string>
               </property>
@@ -911,6 +1094,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 <height>0</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="toolTip">
                <string>Delete all Trade Routes</string>
               </property>
@@ -930,16 +1118,31 @@ Double click on a star below to recalculate a new jumpweb centered on the select
           </item>
           <item>
            <widget class="QSplitter" name="splitter_2">
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
             <widget class="QWidget" name="layoutWidget">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <property name="spacing">
                <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="label_4">
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Route List</string>
                 </property>
@@ -956,6 +1159,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                   <height>0</height>
                  </size>
                 </property>
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
                 <property name="toolTip">
                  <string>Trade route list</string>
                 </property>
@@ -970,6 +1178,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
              </layout>
             </widget>
             <widget class="QWidget" name="layoutWidget">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
              <layout class="QVBoxLayout" name="verticalLayout_11">
               <property name="spacing">
                <number>0</number>
@@ -981,6 +1194,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 </property>
                 <item row="0" column="0">
                  <widget class="QLabel" name="label_5">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Route Distance</string>
                   </property>
@@ -988,6 +1206,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 </item>
                 <item row="0" column="1">
                  <widget class="QLabel" name="lblRouteDistance">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>&quot;Distance&quot;</string>
                   </property>
@@ -1002,6 +1225,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 </property>
                 <item>
                  <widget class="QLabel" name="label_6">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Route Info</string>
                   </property>
@@ -1009,6 +1237,11 @@ Double click on a star below to recalculate a new jumpweb centered on the select
                 </item>
                 <item>
                  <widget class="QTextEdit" name="webTradeRouteView">
+                  <property name="font">
+                   <font>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true"/>
                   </property>
@@ -1034,7 +1267,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFileSector">
@@ -1824,6 +2057,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="Resources.qrc"/>
   <include location="Resources.qrc"/>
  </resources>
  <connections>
