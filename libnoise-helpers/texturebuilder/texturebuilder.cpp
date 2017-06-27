@@ -496,7 +496,6 @@ void TextureBuilder::buildTextureFromJson(const QString &filename, QString path)
                 while (iter.hasNext()) {
                     iter.next();
                     auto name = iter.key();
-                    auto ImgPtr = _images[name].data();
                     QString filename = simpleFile+"."+name+".png";
                     if (h == 0)
                         outFile = filename;
@@ -504,12 +503,15 @@ void TextureBuilder::buildTextureFromJson(const QString &filename, QString path)
                     utils::WriterBMP writer;
                     writer.SetSourceImage (*ImgPtr);
                     std::unique_ptr<noise::uint8[]> buff(writer.GetBRGABuffer());
+                    auto ImgPtr = _images[name].data();
+                        throw "Buffer associated to image " + name + " is empty.\nPlease remove the image from Images or setup a Module-Heightmap-Renderer chain to display it correctly.";
                     auto sizeX = _nmbDesc.first().data()->getSizeX();
                     auto sizeY = _nmbDesc.first().data()->getSizeY();
                     QImage img((uchar *)buff.get() ,sizeX, sizeY,sizeX*4,QImage::Format_ARGB32);
                     img.save(filename,"PNG");
                     _generatedMaps.append(filename);
                     emit this->textureGenerated(name);
+
                 }
                 emit this->allTextureGenerated();
             }
