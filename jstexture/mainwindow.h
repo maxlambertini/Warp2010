@@ -36,6 +36,8 @@ class MainWindow : public QMainWindow
     QAction *action_CreateModuleDescJson;
     QAction *action_CreateHeightmapBuilder;
     QAction *action_CreateRendererDesc;
+    QAction *action_CreateImageDesc;
+    QAction *action_CreateHeightMapDesc;
 
     QWidget *centralWidget;
     QToolBar *mainToolBar;
@@ -79,6 +81,8 @@ private slots:
     void on_action_create_rend_desc();
     void on_action_CreateModuleDescJson();
     void on_action_CreateHeightmapBuilder();
+    void on_action_CreateImageDesc();
+    void on_action_CreateHeightMapDesc();
 
     void on_listFiles_clicked(QListWidgetItem* idx);
 

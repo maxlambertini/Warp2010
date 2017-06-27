@@ -14,6 +14,7 @@
 #include <rendererdescdialog.h>
 #include <qmoduledescdialog.h>
 #include <texturebuilder/noisemapbuilderdescriptor.h>
+#include <QInputDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -48,13 +49,16 @@ void MainWindow::createActions() {
     action_Generate_Texture = new QAction(QIcon(":/icons/generate2.png"),"Generate Texture",this);
     action_CreateModuleDescJson = new QAction(QIcon(":/icons/module.png"),"Create Module descriptor",this);
     action_CreateHeightmapBuilder = new QAction(QIcon(":/icons/renderermap.png"),"Create Heightmap Builder",this);
+    action_CreateImageDesc = new QAction(QIcon(":/icons/renderermap.png"),"Create Image Descriptor",this);
+    action_CreateHeightMapDesc = new QAction(QIcon(":/icons/renderermap.png"),"Create Heightmap Descriptor",this);
     action_CreateRendererDesc = new QAction(QIcon(":/icons/renderer.png"),"Create renderer descriptor",this);
 
     connect(action_Generate_Texture,SIGNAL(triggered(bool)),this, SLOT(on_action_Generate_Texture_triggered()));
     connect(action_CreateModuleDescJson,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateModuleDescJson()));
     connect(action_CreateHeightmapBuilder,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateHeightmapBuilder()));
     connect(action_CreateRendererDesc,SIGNAL(triggered(bool)),this,SLOT(on_action_create_rend_desc()));
-
+    connect(action_CreateImageDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateImageDesc()));
+    connect(action_CreateHeightMapDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateHeightMapDesc()));
 }
 
 void MainWindow::createMenus() {
@@ -68,6 +72,8 @@ void MainWindow::createMenus() {
     mainToolBar->addSeparator();
     mainToolBar->addAction(action_Generate_Texture);
     mainToolBar->addAction(action_CreateModuleDescJson);
+    mainToolBar->addAction(action_CreateHeightMapDesc);
+    mainToolBar->addAction(action_CreateImageDesc);
     mainToolBar->addAction(action_CreateHeightmapBuilder);
     mainToolBar->addAction(action_CreateRendererDesc);
     mainToolBar->addSeparator();
@@ -477,4 +483,38 @@ QStringList MainWindow::buildNoiseMapList() {
     return lst;
 }
 
+void MainWindow::on_action_CreateHeightMapDesc() {
+    bool ok;
+    QString hmTitle = QInputDialog::getText(this, "New HeightMap", "Insert new HeightMap",
+                                            QLineEdit::Normal, QString("heightMap_%1").arg(_tb.hmDesc().count()*10),
+                                            &ok);
+    if (ok && !hmTitle.isEmpty() && !_tb.hmDesc().contains(hmTitle)) {
+        QSharedPointer<HeightMapDescriptor> sp(new HeightMapDescriptor());
+        sp.data()->setName(hmTitle);
+        _tb.hmDesc().insert(sp.data()->name(),sp);
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+    }
+    else {
+        this->errorBox("Problem acquiring heightMap name or heightMap name already present");
+    }
+}
+
+void MainWindow::on_action_CreateImageDesc() {
+    bool ok;
+    QString hmTitle = QInputDialog::getText(this, "New Image", "Insert new Image",
+                                            QLineEdit::Normal, QString("Image_%1").arg(_tb.imDesc().count()*10),
+                                            &ok);
+    if (ok && !hmTitle.isEmpty() && !_tb.imDesc().contains(hmTitle)) {
+        QSharedPointer<ImageDescriptor> sp(new ImageDescriptor());
+        sp.data()->setName(hmTitle);
+        _tb.imDesc().insert(sp.data()->name(),sp);
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+    }
+    else {
+        this->errorBox("Problem acquiring image name or image name already present");
+    }
+
+}
 
