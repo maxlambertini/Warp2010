@@ -47,11 +47,11 @@ void MainWindow::createActions() {
     connect(action_Exit, SIGNAL(triggered(bool)),this, SLOT(on_action_Exit_triggered()));
 
     action_Generate_Texture = new QAction(QIcon(":/icons/generate2.png"),"Generate Texture",this);
-    action_CreateModuleDescJson = new QAction(QIcon(":/icons/module.png"),"Create Module descriptor",this);
-    action_CreateHeightmapBuilder = new QAction(QIcon(":/icons/renderermap.png"),"Create Heightmap Builder",this);
-    action_CreateImageDesc = new QAction(QIcon(":/icons/renderermap.png"),"Create Image Descriptor",this);
-    action_CreateHeightMapDesc = new QAction(QIcon(":/icons/renderermap.png"),"Create Heightmap Descriptor",this);
-    action_CreateRendererDesc = new QAction(QIcon(":/icons/renderer.png"),"Create renderer descriptor",this);
+    action_CreateModuleDescJson = new QAction(QIcon(":/icons/new-module.svg"),"Create Module descriptor",this);
+    action_CreateHeightmapBuilder = new QAction(QIcon(":/icons/new-heightmap-builder.svg"),"Create Heightmap Builder",this);
+    action_CreateImageDesc = new QAction(QIcon(":/icons/new-image.svg"),"Create Image Descriptor",this);
+    action_CreateHeightMapDesc = new QAction(QIcon(":/icons/new-heightmap.svg"),"Create Heightmap Descriptor",this);
+    action_CreateRendererDesc = new QAction(QIcon(":/icons/new-renderer.svg"),"Create renderer descriptor",this);
 
     connect(action_Generate_Texture,SIGNAL(triggered(bool)),this, SLOT(on_action_Generate_Texture_triggered()));
     connect(action_CreateModuleDescJson,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateModuleDescJson()));

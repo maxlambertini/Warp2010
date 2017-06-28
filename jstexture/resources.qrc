@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/icons">
+    <file alias="new-renderer.svg">../warpmain/pics/Elementary/jstexture-new-renderer.svg</file>
+    <file alias="new-module.svg">../warpmain/pics/Elementary/jstexture-new-module.svg</file>
+    <file alias="new-image.svg">../warpmain/pics/Elementary/jstexture-new-image.svg</file>
+    <file alias="new-heightmap-builder.svg">../warpmain/pics/Elementary/jstexture-new-heightmap-builder.svg</file>
+        <file alias="new-heightmap.svg">../warpmain/pics/Elementary/jstexture-new-heightmap.svg</file>
         <file>../warpmain/pics/Elementary/web-browser.png</file>
         <file alias="generate.png">../warpmain/pics/Elementary/text-x-install.svg</file>
         <file>../warpmain/pics/Elementary/internet-web-browser.svg</file>
