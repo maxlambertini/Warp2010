@@ -345,6 +345,7 @@ void MainWindow::on_action_CreateModuleDescJson()
 void MainWindow::on_action_CreateHeightmapBuilder() {
     QSharedPointer<NoiseMapBuilderDescriptor> bDesc(new NoiseMapBuilderDescriptor());
     auto ptr = bDesc.data();
+    _tb.assignSizeInfoToNMBDesc(ptr);
     HeightMapBuilderDialog dlg(ptr);
     dlg.builderWidget()->setBuilder(ptr);
     dlg.builderWidget()->fillBuilder();
@@ -422,6 +423,7 @@ void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) 
         if (mode == "HeightmapBuilder" && _tb.nmbDesc().contains(txt) ) {
             auto sptr = _tb.nmbDesc()[txt];
             auto ptr = sptr.data();
+            _tb.assignSizeInfoToNMBDesc(ptr);
             HeightMapBuilderDialog dlg(ptr);
             dlg.builderWidget()->setBuilder(ptr);
             auto ml = this->buildModuleList();

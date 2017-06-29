@@ -74,6 +74,10 @@ class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
     QString _reflectionMap;
     RandomFactors _randomFactors;
 
+    std::tuple<int,int> _size = std::tuple<int,int>(1024,512);
+    std::tuple<double,double,double,double> _bounds = std::tuple<double,double,double,double>(-90.0,90.0,-180.0,180.0);
+    QString _builderType = "sphere";
+
     QString _outputFolder;
 
 public:
@@ -97,6 +101,17 @@ public:
         return origin + d1;
     }
 
+
+    std::tuple<int,int>& size() { return _size; }
+    void setSize (int x, int y ) { _size = std::tuple<int,int>(x,y); }
+
+    std::tuple<double,double,double,double> bounds() { return _bounds; }
+    void setBounds (double south = -90.0, double north = 90.0, double west = -180.0, double east = 180.0) {
+        _bounds = std::tuple<double,double,double,double>(south,north,west,east);
+    }
+
+    QString& builderType() { return _builderType; }
+    void setBuilderType(const QString& b) { _builderType = b; }
 
     inline double applyRandomFactor (double v) { return useRandomFactors() ? variateDouble(v, pickRandomFactor()) : v; }
 
@@ -175,6 +190,14 @@ public:
     bool hasBumpMap() { return _bumpMap != ""; }
     bool hasCloudMap() { return _cloudMap != ""; }
     bool hasReflectionMap() { return _reflectionMap != ""; }
+
+    void assignSizeInfoToNMBDesc(NoiseMapBuilderDescriptor *d) {
+        d->setBuilderType(NoiseMapBuilderType::SPHERE);
+        d->setSize(std::get<0>(_size), std::get<1>(_size));
+        d->setBounds(std::get<0>(_bounds),std::get<1>(_bounds),std::get<2>(_bounds),std::get<3>(_bounds));
+
+    }
+
 
 signals:
     void textureGenerationStarting();

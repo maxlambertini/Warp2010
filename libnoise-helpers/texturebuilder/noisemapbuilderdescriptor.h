@@ -64,8 +64,10 @@ class LIBNOISEHELPERSSHARED_EXPORT NoiseMapBuilderDescriptor : public QObject
     QMap<QString,QSharedPointer<Module>> _modules;
     QMap<QString,QSharedPointer<utils::NoiseMap>> _noiseMaps;
     QMap<QString,QSharedPointer<utils::NoiseMapBuilder>> _noiseMapBuilders;
+
     std::tuple<int,int> _size = std::tuple<int,int>(1024,512);
     std::tuple<double,double,double,double> _bounds = std::tuple<double,double,double,double>(-90.0,90.0,-180.0,180.0);
+
     QString _src1 = "perlin1";
     QString _name = "builder1";
     QString _dest = "heightmap1";
@@ -153,6 +155,7 @@ public:
         _name = json["name"].toString();
         _src1 = json["source"].toString();
         _seamless = json["seamless"].toBool();
+        /*
         auto sType = json["type"].toString();
         _builderType = NoiseMapBuilderType::SPHERE;
         if (sType ==  "plane") _builderType = NoiseMapBuilderType::PLANE;
@@ -166,11 +169,13 @@ public:
                 a1[2].toDouble(),
                 a1[3].toDouble()
                 );
+        */
     }
 
     void toJson(QJsonObject& json) {
         //{ name="name", "type"="cylinder|plane|sphere","size:=[w,h], "bounds":[N,S,W,E], "src1":"source_mod","dest":"height_map",
         //"seamless:"seamless":true}
+        /*
         switch (_builderType) {
             case NoiseMapBuilderType::CYLINDER:
                 json["type"] = "cylinder";
@@ -185,10 +190,12 @@ public:
                 json["type"] = "sphere";
                 break;
         }
+        */
         json["name"] = _name;
         json["dest"] = _dest;
         json["source"] = _src1;
         json["seamless"] = _seamless;
+        /*
         QJsonArray a;
         a.append(std::get<0>(_size));
         a.append(std::get<1>(_size));
@@ -199,6 +206,7 @@ public:
         a1.append(std::get<2>(_bounds));
         a1.append(std::get<3>(_bounds));
         json["bounds"] = a1;
+        */
     }
 
     QSharedPointer<utils::NoiseMapBuilder> makeBuilder();

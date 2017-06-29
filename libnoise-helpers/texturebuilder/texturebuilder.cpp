@@ -75,6 +75,29 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
     if (!json["bumpMap"].isNull() && !json["bumpMap"].isUndefined())
         _bumpMap = json["bumpMap"].toString();
 
+    if (!json["builderType"].isNull() && !json["builderType"].isUndefined()) {
+        auto sType = json["builderType"].toString();
+        if (sType.toLower() != "sphere" && sType.toLower() != "plane" && sType.toLower() != "cylinder")
+            _builderType = "sphere";
+        else
+            _builderType = sType;
+    }
+
+    if (!json["size"].isNull() && !json["size"].isUndefined()) {
+        auto a = json["size"].toArray();
+        _size = std::tuple<int,int>(a[0].toInt(),a[1].toInt());
+    }
+
+    if (!json["bounds"].isNull() && !json["bounds"].isUndefined()) {
+        auto a1 = json["bounds"].toArray();
+        _bounds = std::tuple<double,double,double,double>(
+            a1[0].toDouble(),
+            a1[1].toDouble(),
+            a1[2].toDouble(),
+            a1[3].toDouble()
+            );
+    }
+
     if (!json["randomFactors"].isNull() && !json["randomFactors"].isUndefined()) {
         auto jsRf = json["randomFactors"];
         if (jsRf.isDouble()) {
@@ -134,6 +157,13 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
         QJsonObject o = aHMBuilders[h].toObject();
 
         m->fromJson(o);
+
+        assignSizeInfoToNMBDesc(m);
+
+        //m->setBuilderType(NoiseMapBuilderType::SPHERE);
+        //m->setSize(std::get<0>(_size), std::get<1>(_size));
+        //m->setBounds(std::get<0>(_bounds),std::get<1>(_bounds),std::get<2>(_bounds),std::get<3>(_bounds));
+
         m->setModules(_modules);
 
         QString name = m->name();
@@ -180,6 +210,20 @@ void TextureBuilder::toJson(QJsonObject &json) {
     json["cloudMap"] = _cloudMap;
     json["reflectionMap"] = _reflectionMap;
     json["bumpMap"] = _bumpMap;
+
+    json["builderType"] = _builderType;
+
+    QJsonArray a;
+    a.append(std::get<0>(_size));
+    a.append(std::get<1>(_size));
+    json["size"] = a;
+    QJsonArray a1;
+    a1.append(std::get<0>(_bounds));
+    a1.append(std::get<1>(_bounds));
+    a1.append(std::get<2>(_bounds));
+    a1.append(std::get<3>(_bounds));
+    json["bounds"] = a1;
+
 
     if (_randomFactors.count() > 0) {
         QJsonArray rf;
