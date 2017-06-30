@@ -327,6 +327,7 @@ void MainWindow::on_action_CreateModuleDescJson()
 {
     QModuleDescDialog dlg(this);
     QSharedPointer<ModuleDescriptor> mod(new ModuleDescriptor());
+    mod.data()->setName(QString("Module_%1").arg(_tb.modDesc().count()*10));
     dlg.moduleDescWidget()->setModuleDesc(mod.data());
     auto moduleList = buildModuleList();
     dlg.moduleDescWidget()->setModuleList(moduleList);
@@ -381,8 +382,10 @@ void MainWindow::on_action_create_rend_desc() {
     QStringList nmbs = this->buildNoiseMapList();
     RendererDescDialog dlg(this);
     dlg.setImageList(images);
-    dlg.setNoiseMapList(nmbs);
+    dlg.setNoiseMapList(nmbs);    
     QSharedPointer<RendererDescriptor> sptr(new RendererDescriptor());
+    int i =  _tb.rndDesc().count()+1;
+    sptr.data()->setName(QString("renderer%1").arg(i,4,10,QLatin1Char('0')));
     dlg.setRendererDescriptor(sptr.data());
     if (dlg.exec() == QDialog::Accepted) {
         _tb.rndDesc().insert(sptr.data()->name(),sptr);

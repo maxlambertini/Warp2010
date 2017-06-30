@@ -43,7 +43,7 @@ class LIBNOISEHELPERSSHARED_EXPORT RendererDescriptor : public QObject
 {
     Q_OBJECT
 
-    QString _name = "renderer1";
+    QString _name = "renderer0001";
     QString _heightMap = "heightmap1";
     QString _backgroundImage = "";
     QString _destImage = "";

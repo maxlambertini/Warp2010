@@ -62,7 +62,7 @@ void TextureBuilderExplorer::updateTreeWithBuilderInfo() {
     topLevelItem->addChild(hmItem);
 
     auto nmbItem = new QTreeWidgetItem((QTreeWidget *)0);
-    nmbItem->setText(0,"Noise Map Builders");
+    nmbItem->setText(0,"Height Map Builders");
     for (auto i = _builder->nmbDesc().begin(); i != _builder->nmbDesc().end(); ++i) {
         auto mod = (*i);
         auto modItem = new QTreeWidgetItem((QTreeWidget *)0);

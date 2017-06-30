@@ -26,6 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <memory>
 #include <QMessageBox>
 #include <QString>
+#include <qcolorops.h>
+#include <QColor>
 
 TextureBuilder::TextureBuilder() :
     _outputFolder("."),
@@ -53,13 +55,22 @@ TextureBuilder::TextureBuilder() :
     nmbd.data()->setDest(hmp.data()->name());
     _nmbDesc.insert(nmbd.data()->name(),nmbd);
     QSharedPointer<RendererDescriptor> rdp(new RendererDescriptor());
-    rdp.data()->setName("renderer1");
+    rdp.data()->setName("renderer0001");
     rdp.data()->setDestImage(imp.data()->name());
     rdp.data()->setHeightmap(hmp.data()->name());
     rdp.data()->gradientInfo().clear();
-    rdp.data()->gradientInfo().append(GradientInfo(-1.0,255,255,0  ,255));
-    rdp.data()->gradientInfo().append(GradientInfo( 0.0,  0,255,255,255));
-    rdp.data()->gradientInfo().append(GradientInfo( 1.0,255,  0,255,255));
+    auto rndGradient = ColorOps::randomGradient(7,20, ColorOps::randomHSLColor());
+    for (auto i = rndGradient.begin(); i != rndGradient.end(); ++i) {
+        rdp.data()->gradientInfo().append(GradientInfo(
+                    i.key(),
+                    i.value().red(),
+                    i.value().green(),
+                    i.value().blue(),
+                    i.value().alpha())
+                    );
+    }
+    auto c = ColorOps::randomHSLColor();
+    rdp.data()->gradientInfo().append(GradientInfo(1.0,c.red(),c.green(),c.blue(),c.alpha()));
     _rndDesc.insert(rdp.data()->name(),rdp);
 
 }
