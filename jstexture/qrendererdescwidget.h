@@ -23,7 +23,7 @@ class QRendererDescWidget : public QWidget
     RendererDescriptor *_rendererDescriptor;
 
     QLineEdit *c_name;
-    QComboBox *c_noiseMap;
+    QComboBox *c_heightMap;
     QComboBox *c_backgroundImage;
     QComboBox *c_destImage;
     QCheckBox *c_enabledLight;

@@ -16,10 +16,10 @@ void QRendererDescWidget::createWidgets() {
     gridLayout->addWidget(c_name,nRow,1);
 
     nRow += 1;
-    c_noiseMap = new QComboBox(this);
-    c_noiseMap->setObjectName("Noise Map");
+    c_heightMap = new QComboBox(this);
+    c_heightMap->setObjectName("Noise Map");
     gridLayout->addWidget(new QLabel("noiseMap",this),nRow,0);
-    gridLayout->addWidget(c_noiseMap,nRow,1);
+    gridLayout->addWidget(c_heightMap,nRow,1);
 
     nRow += 1;
     c_backgroundImage = new QComboBox(this);
@@ -101,7 +101,7 @@ void QRendererDescWidget::fillRendererDescriptor() {
     _rendererDescriptor->setLightbrightness(this->c_lightBrightess->text().toDouble());
     _rendererDescriptor->setLightcontrast(this->c_lightContrast->text().toDouble());
     _rendererDescriptor->setName(this->c_name->text());
-    _rendererDescriptor->setNoisemap(this->c_noiseMap->currentText());
+    _rendererDescriptor->setHeightmap(this->c_heightMap->currentText());
     _rendererDescriptor->setRandomFactor(
                 c_randomFactorHue->value(),
                 c_randomFactorSaturation->value(),
@@ -119,7 +119,7 @@ void QRendererDescWidget::readFromRendererDescriptor() {
     this->c_lightBrightess->setText(QString("%1").arg(_rendererDescriptor->lightBrightness()));
     this->c_lightContrast->setText(QString("%1").arg(_rendererDescriptor->lightContrast()));
     this->c_name->setText(_rendererDescriptor->name());
-    this->c_noiseMap->setCurrentText(_rendererDescriptor->noiseMap());
+    this->c_heightMap->setCurrentText(_rendererDescriptor->heightMap());
     c_randomFactorHue->setValue(_rendererDescriptor->rndHue());
     c_randomFactorSaturation->setValue(_rendererDescriptor->rndSaturation());
     c_randomFactorValue->setValue(_rendererDescriptor->rndValue());
@@ -138,7 +138,7 @@ void QRendererDescWidget::setImageList(QStringList &i) {
 void QRendererDescWidget::setNoiseMapList(QStringList &i)
 {
     _noiseMapBuilders = i;
-    this->c_noiseMap->clear();
-    this->c_noiseMap->addItem("");
-    this->c_noiseMap->addItems(_noiseMapBuilders);
+    this->c_heightMap->clear();
+    this->c_heightMap->addItem("");
+    this->c_heightMap->addItems(_noiseMapBuilders);
 }

@@ -64,8 +64,8 @@ RendererDescriptor& RendererDescriptor::connectImagesAndMap() {
     }
     else
         throw "Undefined destination image in " + _name;
-    auto theMap = _noiseMaps[this->_noiseMap].data();
-    qDebug() << "x: " << theMap->GetWidth() << ", y: " <<  theMap->GetHeight();
+    auto theMap = _noiseMaps[this->_heightMap].data();
+    //qDebug() << "x: " << theMap->GetWidth() << ", y: " <<  theMap->GetHeight();
     p->SetSourceNoiseMap(*theMap);
     return *this;
 }
@@ -73,7 +73,7 @@ RendererDescriptor& RendererDescriptor::connectImagesAndMap() {
 void RendererDescriptor::toJson(QJsonObject& json) {
 
     json["name"] = _name;
-    json["noiseMap"] = _noiseMap;
+    json["heightMap"] = _heightMap;
     json["enabledLight"] = _enabledLight;
     json["lightContrast"] = _lightContrast;
     json["lightBrightness"] = _lightBrightness;
@@ -123,7 +123,9 @@ void RendererDescriptor::fromJson(const QJsonObject& json) {
     if (!json["name"].isNull() && !json["name"].isUndefined())
         _name = json["name"].toString();
     if (!json["noiseMap"].isNull() && !json["noiseMap"].isUndefined())
-        _noiseMap = json["noiseMap"].toString();
+        _heightMap= json["noiseMap"].toString();
+    if (!json["heightMap"].isNull() && !json["heightMap"].isUndefined())
+        _heightMap= json["heightMap"].toString();
     if (!json["enabledLight"].isNull() && !json["enabledLight"].isUndefined())
         _enabledLight = json["enabledLight"].toBool();
     if (!json["lightContrast"].isNull() && !json["lightContrast"].isUndefined())

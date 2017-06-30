@@ -185,6 +185,7 @@ public:
     void prepareObjectFromJsonFile (const QString& filename);
     void prepareObjectFromJsonString(const QString& jsonData);
     void saveRenderedImageToFile (const QString& imageName, const QString& destFileName);
+    void textureSanityCheck();
 
     bool hasColorMap() { return _colorMap != ""; }
     bool hasBumpMap() { return _bumpMap != ""; }

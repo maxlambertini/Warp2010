@@ -55,7 +55,7 @@ TextureBuilder::TextureBuilder() :
     QSharedPointer<RendererDescriptor> rdp(new RendererDescriptor());
     rdp.data()->setName("renderer1");
     rdp.data()->setDestImage(imp.data()->name());
-    rdp.data()->setNoisemap(hmp.data()->name());
+    rdp.data()->setHeightmap(hmp.data()->name());
     rdp.data()->gradientInfo().clear();
     rdp.data()->gradientInfo().append(GradientInfo(-1.0,255,255,0  ,255));
     rdp.data()->gradientInfo().append(GradientInfo( 0.0,  0,255,255,255));
@@ -417,6 +417,10 @@ void TextureBuilder::prepareObjectFromJsonFile(const QString &filename) {
 
                 qDebug() << "Connecting modules and stuff";
                 this->connectAll();
+
+                qDebug() << "All done, let's perform a sanity check";
+                this->textureSanityCheck();
+
                 emit this->builderReady();
             }
         }
@@ -446,6 +450,83 @@ void TextureBuilder::prepareObjectFromJsonFile(const QString &filename) {
 
 }
 
+/// To be called before building images.
+///
+/// This method checks if all images defined in json file are actually used
+/// and if renderers use them correctly (that is, when an Image is referenced
+/// first time by a Renderer is referenced as a destination image, not
+/// as a background image and the like...
+///
+/// textureSanityCheck() throws a QString containing the error messages if something's wrong.
+void TextureBuilder::textureSanityCheck() {
+
+    // Here, we store image usage matrix. Image name is the key,
+    // while the <bool,bool> tuple means that it's been used and first
+    // referenced correctly as a renderer (that is as Destination)
+
+    QMap<QString, std::tuple<bool,bool>> imageUsage;
+
+    // let's assume the worst
+    for (auto it = __imDesc.begin(); it != __imDesc.end(); ++it) {
+        imageUsage.insert(it.key(),std::tuple<bool,bool>(false,false));
+    }
+
+    // Now that we have initialized our matrix, let's work on Renderers
+    for (auto it = _rndDesc.begin(); it != _rndDesc.end(); ++it) {
+        auto renderer = it.value().data();
+
+        //first thing first: let's see if it's got an image map defined.
+        if (renderer->heightMap().isNull() || renderer->heightMap().isEmpty())
+            throw "Renderer " + renderer->name() + " has no heightMap defined";
+        //then if it's actually in list
+        if (!_hmDesc.keys().contains(renderer->heightMap()))
+            throw "Renderer " + renderer->name() + " references " + renderer->heightMap() + " as its heightMap but it's undefined";
+
+        //ok, now to image. First, background. Let's check it's been defined and already used.
+        //Then destination. Every renderer must define a
+        //destination image
+        auto back = renderer->backgroundImage();
+        auto dest = renderer->destImage();
+
+        //background can be null, let's check its existence if defined
+        if (!back.isNull() && !back.isEmpty() ) {
+
+            //if defined background must exist
+            if (!__imDesc.contains(back))
+                throw "Renderer " + renderer->name() + " references " + back + " as its background image but it's undefined";
+
+            //if it exists, it must have already been used as a dest image
+            auto t = imageUsage[back];
+            if ( !std::get<0>(t))
+                throw "Image " + back + " is used as background on Renderer " + renderer->name() + " but it's never been used before.";
+            if ( !std::get<1>(t))
+                throw "Image " + back + " is used as background on Renderer " + renderer->name() + " but it's never been used as a destination before.";
+        }
+
+
+        if (dest.isNull() || dest.isEmpty()) {
+            throw "Renderer " + renderer->name() + " has no destination image defined";
+        }
+        if (!__imDesc.contains(dest)) {
+            throw "Renderer " + renderer->name() + " references " + dest + " as its destination image but it's undefined";
+        }
+        std::tuple<bool,bool> tOk(true,true);
+        imageUsage[dest] = tOk;
+    }
+
+    //If we get here Renderers are OK, let's see if there are unused images;
+    for (auto it = imageUsage.begin(); it != imageUsage.end(); ++it) {
+        auto t = it.value();
+        if (!std::get<0>(t))
+            throw "Image " + it.key() + " is not referenced by any Renderer";
+        if (!std::get<1>(t))
+            throw "Image " + it.key() + " is first referenced as a Background image. Fix this. ";
+    }
+
+    //NOW we're done.
+    return;
+}
+
 void TextureBuilder::prepareObjectFromJsonString(const QString &jsonData) {
     try {
         auto json = jsonData.toUtf8();
@@ -464,6 +545,10 @@ void TextureBuilder::prepareObjectFromJsonString(const QString &jsonData) {
 
             qDebug() << "Connecting modules and stuff";
             this->connectAll();
+
+            qDebug() << "All done, let's perform a sanity check";
+            this->textureSanityCheck();
+
             emit this->builderReady();
         }
     }
@@ -530,6 +615,9 @@ void TextureBuilder::buildTextureFromJson(const QString &filename, QString path)
 
                 qDebug() << "Connecting modules and stuff";
                 this->connectAll();
+
+                qDebug() << "All done, let's perform a sanity check";
+                this->textureSanityCheck();
 
                 qDebug() << "Building images...";
                 QString outFile = "";

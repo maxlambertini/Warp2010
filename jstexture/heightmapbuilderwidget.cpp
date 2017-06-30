@@ -33,6 +33,7 @@ void HeightMapBuilderWidget::createWidgets() {
     _lbl->setMargin(3);
     _lbl->setAlignment(Qt::AlignRight);
     _grid->addWidget(_lbl,2,0);
+    /*
     _lbl = new QLabel("Size (x,y)",this);
     _lbl->setMargin(3);
     _lbl->setAlignment(Qt::AlignRight);
@@ -41,10 +42,11 @@ void HeightMapBuilderWidget::createWidgets() {
     _lbl->setMargin(3);
     _lbl->setAlignment(Qt::AlignRight);
     _grid->addWidget(_lbl,4,0);
+    */
     _lbl = new QLabel("Seamless?",this);
     _lbl->setMargin(3);
     _lbl->setAlignment(Qt::AlignRight);
-    _grid->addWidget(_lbl,5,0);
+    _grid->addWidget(_lbl,3,0);
     _grid->setMargin(6);
 
     _name = new QLineEdit (this);
