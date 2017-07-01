@@ -1,6 +1,8 @@
 #include "rendererdescdialog.h"
 #include <QPushButton>
 #include <qcolorops.h>
+#include <gradienthelper.h>
+#include <QHBoxLayout>
 
 RendererDescDialog::RendererDescDialog(QWidget *parent) : QDialog(parent)
 {
@@ -23,9 +25,28 @@ RendererDescDialog::RendererDescDialog(QWidget *parent) : QDialog(parent)
     auto vLayout2 = new QVBoxLayout(this);
     vLayout2->addWidget(new QLabel("Gradient editor",this));
     vLayout2->addWidget(this->gradientEditor);
-    QPushButton *btn = new QPushButton("Create random gradient",this);
-    vLayout2->addWidget(btn);
+
+    QPushButton *btn1 = new QPushButton("Earthlike Gradient",this);
+    QPushButton *btn2 = new QPushButton("Earthlike Desert",this);
+    QPushButton *btn3 = new QPushButton("Marslike",this);
+    QPushButton *btn4 = new QPushButton("Moonlike",this);
+    QPushButton *btn = new QPushButton("Random Gradient",this);
+
+    QHBoxLayout *hBox = new QHBoxLayout(this);
+
+    hBox->addWidget(btn1);
+    hBox->addWidget(btn2);
+    hBox->addWidget(btn3);
+    hBox->addWidget(btn4);
+    hBox->addWidget(btn);
+
+    vLayout2->addLayout(hBox);
+
     connect (btn, SIGNAL(clicked(bool)),SLOT(on_create_random_gradient()));
+    connect (btn1, SIGNAL(clicked(bool)),SLOT(on_create_earthlike_gradient()));
+    connect (btn2, SIGNAL(clicked(bool)),SLOT(on_create_desert_gradient()));
+    connect (btn3, SIGNAL(clicked(bool)),SLOT(on_create_mars_gradient()));
+    connect (btn4, SIGNAL(clicked(bool)),SLOT(on_create_moon_gradient()));
 
 
     grid->addLayout(vLayout,0,0);
@@ -86,3 +107,24 @@ void RendererDescDialog::on_create_random_gradient() {
     this->gradientEditor->setGradient(grad);
 
 }
+
+void RendererDescDialog::on_create_earthlike_gradient() {
+    CreateEarthlikeGradient (this->gradientEditor);
+}
+
+void RendererDescDialog::on_create_desert_gradient() {
+    CreateEarthlikeDesert (this->gradientEditor);
+
+}
+
+void RendererDescDialog::on_create_mars_gradient() {
+    CreateMarslikeGradient (this->gradientEditor);
+
+}
+
+void RendererDescDialog::on_create_moon_gradient() {
+    CreateMoonlikeGradient (this->gradientEditor);
+
+}
+
+

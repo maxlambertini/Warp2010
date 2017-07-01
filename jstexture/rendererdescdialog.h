@@ -32,6 +32,10 @@ public:
 private slots:
     void on_dialog_accept();
     void on_create_random_gradient();
+    void on_create_earthlike_gradient();
+    void on_create_desert_gradient();
+    void on_create_mars_gradient();
+    void on_create_moon_gradient();
 };
 
 #endif // RENDERERDESCDIALOG_H

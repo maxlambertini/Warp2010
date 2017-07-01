@@ -66,8 +66,8 @@ void QRendererDescWidget::createWidgets() {
     nRow += 1;
     c_randomFactorHue = new QSpinBox(this);
     c_randomFactorHue->setMaximum(250);
-    c_randomFactorHue->setMinimum(1);
-    c_randomFactorHue->setValue(1);
+    c_randomFactorHue->setMinimum(0);
+    c_randomFactorHue->setValue(0);
     c_randomFactorHue->setObjectName("Hue Random Factor");
     gridLayout->addWidget(new QLabel("randomFactorHue",this),nRow,0);
     gridLayout->addWidget(c_randomFactorHue,nRow,1);
@@ -75,8 +75,8 @@ void QRendererDescWidget::createWidgets() {
     nRow += 1;
     c_randomFactorSaturation = new QSpinBox(this);
     c_randomFactorSaturation->setMaximum(250);
-    c_randomFactorSaturation->setMinimum(1);
-    c_randomFactorSaturation->setValue(1);
+    c_randomFactorSaturation->setMinimum(0);
+    c_randomFactorSaturation->setValue(0);
     c_randomFactorSaturation->setObjectName("Saturation Random Factor");
     gridLayout->addWidget(new QLabel("randomFactorSaturation",this),nRow,0);
     gridLayout->addWidget(c_randomFactorSaturation,nRow,1);
@@ -84,8 +84,8 @@ void QRendererDescWidget::createWidgets() {
     nRow += 1;
     c_randomFactorValue = new QSpinBox(this);
     c_randomFactorValue->setMaximum(250);
-    c_randomFactorValue->setMinimum(1);
-    c_randomFactorValue->setValue(1);
+    c_randomFactorValue->setMinimum(0);
+    c_randomFactorValue->setValue(0);
     c_randomFactorValue->setObjectName("Value Random Factor");
     gridLayout->addWidget(new QLabel("randomFactorValue",this),nRow,0);
     gridLayout->addWidget(c_randomFactorValue,nRow,1);
