@@ -16,6 +16,6 @@ Major feature of this release:
 
 It's something I'm developing in my spare time, so don't hold your breath. 
 
-# 2017-07-01
+### 2017-07-01
 
-Feeling brave enough to move all of this to fore. 
+Feeling brave enough to move all of this to fore. Release 0.8.0.3
