@@ -10,7 +10,12 @@ First releases have been developed on a windows machine using Mingw as compiler 
 Major feature of this release:
 
 * Full Celestia stellar system generation, down to the textures.
-* Moving from raw pointers to smart pointers (`QVector` and `QSharedPointer`)
+* Moving from raw pointers to smart pointers (`std::unique_ptr` and `QSharedPointer`)
 * Inclusion of Libnoise (http://libnoise.sourceforge.net) as a texture generation engine
+* Creating a texture generation program
 
 It's something I'm developing in my spare time, so don't hold your breath. 
+
+# 2017-07-01
+
+Feeling brave enough to move all of this to fore. 
