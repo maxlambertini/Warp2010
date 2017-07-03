@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     texturebuilderexplorer.cpp \
     qmoduledescwidget.cpp \
     qmoduledescdialog.cpp \
-    gradienthelper.cpp
+    gradienthelper.cpp \
+    texturebuilderwidget.cpp
 
 HEADERS  += mainwindow.h \
     apppaths.h \
@@ -45,7 +46,8 @@ HEADERS  += mainwindow.h \
     texturebuilderexplorer.h \
     qmoduledescwidget.h \
     qmoduledescdialog.h \
-    gradienthelper.h
+    gradienthelper.h \
+    texturebuilderwidget.h
 
 FORMS    += mainwindow.ui \
     viewingdialog.ui \
