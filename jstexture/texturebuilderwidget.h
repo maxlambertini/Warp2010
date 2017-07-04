@@ -37,7 +37,7 @@ public:
     void createWidgets();
     void layoutWidgets();
 
-    TextureBuilder *tb() { return _tb; }
+    TextureBuilder *textureBuilder() { return _tb; }
     void setTextureBuilder(TextureBuilder *tb) { _tb = tb; }
 
     void readFromTextureBuilder();

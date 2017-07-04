@@ -252,8 +252,8 @@ void MainWindow::on_action_Generate_Texture_triggered()
         errorBox(error);
     }
     catch (...) {
-        std::string err = "Undefined error";
-        throw err;
+        QString err = "Undefined error";
+        errorBox(err);
     }
 }
 
@@ -429,6 +429,16 @@ void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) 
     if (column ==0) {
         auto txt = item->text(0);
         QString mode = item->columnCount() > 1 ? item->text(1) : "";
+        if (mode == "TextureBuilder"  ) {
+            TextureBuilderDialog dlg(this);
+            dlg.setTextureBuilder(&this->_tb);
+            if (dlg.exec() == QDialog::Accepted) {
+                //_tb.rndDesc().insert(sptr.data()->name(),sptr);
+                //dlg.textureBuilderWidget()->writeToTextureBuilder();
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+        }
         if (mode == "Renderer" && _tb.rndDesc().contains(txt) ) {
             auto sptr = _tb.rndDesc()[txt];
             auto ptr = sptr.data();

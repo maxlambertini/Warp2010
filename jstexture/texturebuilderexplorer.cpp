@@ -55,6 +55,7 @@ void TextureBuilderExplorer::updateTreeWithBuilderInfo() {
     _treeWidget->clear();
     auto topLevelItem = new QTreeWidgetItem(  (QTreeWidget *)0);
     topLevelItem->setText(0,"Texture Builder");
+    topLevelItem->setText(1,"TextureBuilder");
     this->_treeWidget->insertTopLevelItem(0,topLevelItem);
 
     auto modTopItem = new QTreeWidgetItem((QTreeWidget *)0 );

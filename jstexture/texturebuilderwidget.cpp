@@ -43,18 +43,23 @@ void TextureBuilderWidget::createWidgets() {
 void TextureBuilderWidget::layoutWidgets() {
 
     int nRow = 0;
+    QLabel *l;
+    l = new QLabel("Size",this);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
     QGridLayout* grid = new QGridLayout(this);
-    QVBoxLayout *l1 = new QVBoxLayout (this);
-    QVBoxLayout *l2 = new QVBoxLayout (this);
-    grid->addWidget(new QLabel("Size",this),nRow,0);
+    QHBoxLayout *l1 = new QHBoxLayout (this);
+    QHBoxLayout *l2 = new QHBoxLayout (this);
+    grid->addWidget(l,nRow,0);
     l2->addWidget(new QLabel("X"));
     l2->addWidget(c_sizeX);
     l2->addWidget(new QLabel("sizeY",this),nRow,0);
     l2->addWidget(c_sizeY);
-    grid->addLayout(l2,nRow, 1);
+    grid->addLayout(l2,nRow,1,1,2);
 
     ++nRow;
-    grid->addWidget(new QLabel("Sphere Range",this),nRow,0);
+    l = new QLabel("Sphere Range",this);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
+    grid->addWidget(l,nRow,0);
     l1->addWidget(new QLabel("S"));
     l1->addWidget(c_south);
     l1->addWidget(new QLabel("N"));
@@ -63,32 +68,51 @@ void TextureBuilderWidget::layoutWidgets() {
     l1->addWidget(c_west);
     l1->addWidget(new QLabel("E"));
     l1->addWidget(c_east);
-    grid->addLayout(l1,nRow,1);
+    grid->addLayout(l1,nRow,1,1,3);
 
     ++nRow;
-    grid->addWidget(new QLabel("builderType",this),nRow,0);
+    l  = new QLabel("Texture Type",this);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
+    grid->addWidget(l,nRow,0);
     grid->addWidget(c_builderType,nRow,1);
 
     ++nRow;
-    grid->addWidget(new QLabel("bumpMap",this),nRow,0);
+    l =new QLabel("Bump map",this);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
+    grid->addWidget(l,nRow,0);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
     grid->addWidget(c_bumpMap,nRow,1);
 
     ++nRow;
-    grid->addWidget(new QLabel("cloudMap",this),nRow,0);
+    l = new QLabel("Cloud map",this);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
+    grid->addWidget(l,nRow,0);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
     grid->addWidget(c_cloudMap,nRow,1);
 
     ++nRow;
-    grid->addWidget(new QLabel("colorMap",this),nRow,0);
+    l = new QLabel("Color map",this);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
+    grid->addWidget(l,nRow,0);
     grid->addWidget(c_colorMap,nRow,1);
+    grid->addItem(new QSpacerItem(100,1),nRow,2,1,2);
 
     ++nRow;
-    grid->addWidget(new QLabel("reflectionMap",this),nRow,0);
+    l = new QLabel("Reflection map",this);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
+    grid->addWidget(l,nRow,0);
     grid->addWidget(c_reflectionMap,nRow,1);
 
-    ++nRow;
-    grid->addWidget(new QLabel("randomFactors",this),nRow,0);
-    grid->addWidget(c_randomFactors,nRow,1);
 
+    ++nRow;
+    l = new QLabel("Random factors",this);
+    l->setAlignment(Qt::AlignRight | Qt::AlignHCenter);
+    grid->addWidget(l,nRow,0);
+    grid->addWidget(c_randomFactors,nRow,1,1,3);
+    grid->setColumnStretch(0,1);
+    grid->setColumnStretch(1,1);
+    grid->setColumnStretch(2,2);
+    grid->setColumnStretch(3,2);
 
 }
 
