@@ -55,10 +55,10 @@ void TextureBuilderWidget::layoutWidgets() {
 
     ++nRow;
     grid->addWidget(new QLabel("Sphere Range",this),nRow,0);
-    l1->addWidget(new QLabel("N"));
-    l1->addWidget(c_north);
     l1->addWidget(new QLabel("S"));
     l1->addWidget(c_south);
+    l1->addWidget(new QLabel("N"));
+    l1->addWidget(c_north);
     l1->addWidget(new QLabel("W"));
     l1->addWidget(c_west);
     l1->addWidget(new QLabel("E"));
@@ -120,5 +120,37 @@ void TextureBuilderWidget::readFromTextureBuilder() {
 }
 
 void TextureBuilderWidget::writeToTextureBuilder() {
+    _tb->setBounds(
+                c_south->text().toDouble(),
+                c_north->text().toDouble(),
+                c_west->text().toDouble(),
+                c_east->text().toDouble()
+                );
+    _tb->setSize(c_sizeX->text().toInt(),c_sizeY->text().toInt());
+    _tb->setBuilderType(c_builderType->currentText());
+    _tb->setBumpMap(c_bumpMap->text());
+    _tb->setColorMap(c_colorMap->text());
+    _tb->setCloudMap(c_cloudMap->text());
+    _tb->setReflectionMap(c_reflectionMap->text());
+    if (!c_randomFactors->text().isEmpty()) {
+        QStringList lst = c_randomFactors->text().split(QChar(','),QString::SkipEmptyParts);
+        bool b_validate;
+        bool b_first_val = true;
+        for (const QString& s : lst) {
+            auto d = s.toDouble(&b_validate);
+            if (b_validate) {
+                if (b_first_val) {
+                    _tb->randomFactors().clear();
+                    _tb->randomFactors().append(d);
+                    b_first_val = false;
+                }
+                else {
+                    _tb->randomFactors().append(d);
+                }
+            }
+
+        }
+    }
+
 
 }

@@ -87,7 +87,13 @@ public:
     inline const QString& colorMap() { return _colorMap; }
     inline const QString& reflectionMap() { return _reflectionMap; }
     inline const QString& bumpMap() { return _bumpMap; }
-    inline const RandomFactors& randomFactors() { return _randomFactors; }
+
+    inline void setBumpMap(const QString& m) { _bumpMap = m; }
+    inline void setColorMap(const QString& m) { _colorMap = m; }
+    inline void setReflectionMap(const QString& m) { _reflectionMap = m; }
+    inline void setCloudMap(const QString& m) { _cloudMap = m; }
+
+    inline RandomFactors& randomFactors() { return _randomFactors; }
     inline bool useRandomFactors() {
        return _randomFactors.count() > 0 && _randomFactors.first() > 0.0;
     }
