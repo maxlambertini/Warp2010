@@ -37,6 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <qmoduledescdialog.h>
 #include <texturebuilder/noisemapbuilderdescriptor.h>
 #include <QInputDialog>
+#include <typeinfo>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -204,9 +205,10 @@ void MainWindow::updateTreeWithJsonFromEditor() {
         errorBox(error);
     }
     catch (...) {
-        std::string err = "Undefined error";
-        throw err;
+        auto eptr = std::current_exception();
+        handle_eptr(eptr);
     }
+
 }
 
 void MainWindow::on_action_Generate_Texture_triggered()
@@ -252,8 +254,8 @@ void MainWindow::on_action_Generate_Texture_triggered()
         errorBox(error);
     }
     catch (...) {
-        QString err = "Undefined error";
-        errorBox(err);
+        auto eptr = std::current_exception();
+        handle_eptr(eptr);
     }
 }
 
@@ -553,5 +555,17 @@ void MainWindow::on_action_CreateImageDesc() {
         this->errorBox("Problem acquiring image name or image name already present");
     }
 
+
 }
 
+void MainWindow::handle_eptr(std::__exception_ptr::exception_ptr eptr) {
+    try {
+        if (eptr) {
+            QString error = "Unknown error trapped";
+            errorBox(error);
+        }
+    } catch(const std::exception& e) {
+        QString error  = "Caught exception \"" + QString(e.what()) + "\"\n";
+        errorBox(error);
+    }
+}

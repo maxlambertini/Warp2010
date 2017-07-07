@@ -44,6 +44,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QString>
 #include <texturebuilderdialog.h>
 #include <texturebuilderwidget.h>
+#include <exception>
+#include <stdexcept>
 
 
 class MainWindow : public QMainWindow
@@ -122,6 +124,8 @@ private:
 
     void updateTreeWithJsonFromEditor();
     void updateEditorsWithTBInfo();
+
+    void handle_eptr(std::exception_ptr eptr);
 };
 
 #endif // MAINWINDOW_H

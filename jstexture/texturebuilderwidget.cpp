@@ -118,8 +118,8 @@ void TextureBuilderWidget::layoutWidgets() {
 
 void TextureBuilderWidget::readFromTextureBuilder() {
     auto b = _tb->bounds();
-    c_north->setText(QString("%1").arg(std::get<0>(b)));
-    c_south->setText(QString("%1").arg(std::get<1>(b)));
+    c_north->setText(QString("%1").arg(std::get<1>(b)));
+    c_south->setText(QString("%1").arg(std::get<0>(b)));
     c_west->setText(QString("%1").arg(std::get<2>(b)));
     c_east->setText(QString("%1").arg(std::get<3>(b)));
     auto s = _tb->size();

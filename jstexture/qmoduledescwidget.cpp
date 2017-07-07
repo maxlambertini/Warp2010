@@ -98,12 +98,14 @@ void QModuleDescWidget::createWidgets() {
     c_cPoints->setHorizontalHeaderLabels(sl);
     //c_cPoints->verticalHeader()->setVisible(false);
 
+    /*
     w = new QWidget(this);
     s_x = new QDoubleSpinBox(w);
     s_y = new QDoubleSpinBox(w);
     btnAddControlPoint = new QPushButton("Add",w);
-
     connect (btnAddControlPoint,SIGNAL(pressed()),this,SLOT(on_add_tuple_clicked()));
+    */
+
     connect (c_moduleType,SIGNAL(currentIndexChanged(QString)), this,SLOT(on_module_type_changed(QString)));
 }
 
@@ -272,22 +274,31 @@ void QModuleDescWidget::layoutWidgets() {
     gr5->addWidget(lbl,nRow,2);
     gr5->addWidget(c_enableRandom,nRow,3);
 
-    lbl = new QLabel("Enable Distortion?",this); lbl->setObjectName("l_enableDist");
+    lbl = new QLabel("Enable Distance?",this); lbl->setObjectName("l_enableDist");
     lbl->setAlignment(Qt::AlignRight);
     gr5->addWidget(lbl,nRow,4);
     gr5->addWidget(c_enableDist,nRow,5);
 
     gb5->setLayout(gr5);
 
-    gridLayout->addWidget(gb1,0,0);
-    gridLayout->addWidget(gb2,1,0);
-    gridLayout->addWidget(gb3,2,0);
-    gridLayout->addWidget(gb4,3,0);
-    gridLayout->addWidget(gb5,4,0);
+    auto wLeft = new QWidget(this);
+    auto wLeftLayout = new QVBoxLayout(this);
+    wLeftLayout->addWidget(gb1);
+    wLeftLayout->addWidget(gb2);
+    wLeftLayout->addWidget(gb3);
+    wLeft->setLayout(wLeftLayout);
+
+    gridLayout->addWidget(wLeft,0,0,1,1,Qt::AlignTop);
+    //gridLayout->addWidget(gb1,0,0);
+    //gridLayout->addWidget(gb2,1,0);
+    //gridLayout->addWidget(gb3,2,0);
+    //gridLayout->addWidget(gb4,3,0);
+    //gridLayout->addWidget(gb5,4,0);
 
     auto gr6 = new QGroupBox("Control points");
     auto bl6 = new QVBoxLayout(this);
 
+    /*
     QGridLayout* l2 = new QGridLayout(this);
     lbl = new QLabel("X",this);
     l2->addWidget(lbl,0,0);
@@ -298,10 +309,19 @@ void QModuleDescWidget::layoutWidgets() {
     l2->addWidget(btnAddControlPoint,0,4);
     w->setLayout(l2);
     bl6->addWidget(w);
+    */
+    c_cPoints->setMinimumHeight(300);
     bl6->addWidget(c_cPoints);
     gr6->setLayout(bl6);
 
-    gridLayout->addWidget(gr6,0,1,5,1,Qt::AlignTop);
+    QVBoxLayout *lRight = new QVBoxLayout(this);
+    lRight->addWidget(gb4);
+    lRight->addWidget(gb5);
+    lRight->addWidget(gr6);
+
+    QWidget *wRight = new QWidget(this);
+    wRight->setLayout(lRight);
+    gridLayout->addWidget(wRight,0,1,Qt::AlignTop);
     this->setLayout(gridLayout);
 
 }
@@ -409,6 +429,27 @@ void QModuleDescWidget::updateDescriptorFromControls() {
         _moduleDesc->setX(c_x->text().toDouble());
         _moduleDesc->setY(c_y->text().toDouble());
         _moduleDesc->setZ(c_z->text().toDouble());
+
+        //control points
+        bool bNum;
+        _moduleDesc->cPoints().clear();
+        auto cnt = this->c_cPoints->rowCount();
+        for(auto h = 0; h < cnt; h++) {
+            auto item_x = c_cPoints->item(h,0);
+            auto item_y = c_cPoints->item(h,1);
+            if (item_x != nullptr && item_y != nullptr && !item_x->text().isNull() && !item_x->text().isEmpty() ) {
+                double d_x = item_x->text().toDouble(&bNum) ;
+                if (bNum) {
+                    double d_y = 0.0;
+                    if (!item_y->text().isNull() && !item_y->text().isEmpty()) {
+                        d_y = item_y->text().toDouble(&bNum);
+                        if (!bNum)
+                            d_y = 0.0;
+                    }
+                    _moduleDesc->cPoints().append(std::tuple<double,double>(d_x, d_y));
+                }
+            }
+        }
     }
 }
 
