@@ -93,18 +93,22 @@ void QModuleDescWidget::createWidgets() {
 
 
     c_cPoints->setColumnCount(2);
-    c_cPoints->setRowCount(10);
+    //c_cPoints->setRowCount(10);
     QStringList sl; sl << "x" << "y";
     c_cPoints->setHorizontalHeaderLabels(sl);
     //c_cPoints->verticalHeader()->setVisible(false);
 
-    /*
     w = new QWidget(this);
     s_x = new QDoubleSpinBox(w);
+    s_x->setMaximum(1.0);
+    s_x->setMinimum(-1.0);
+    s_x->setSingleStep(0.05);
     s_y = new QDoubleSpinBox(w);
+    s_y->setMaximum(1.0);
+    s_y->setMinimum(-1.0);
+    s_y->setSingleStep(0.05);
     btnAddControlPoint = new QPushButton("Add",w);
     connect (btnAddControlPoint,SIGNAL(pressed()),this,SLOT(on_add_tuple_clicked()));
-    */
 
     connect (c_moduleType,SIGNAL(currentIndexChanged(QString)), this,SLOT(on_module_type_changed(QString)));
 }
@@ -116,14 +120,14 @@ void QModuleDescWidget::layoutWidgets() {
     auto gr1 = new QGridLayout(this);
 
     QLabel *lbl = new QLabel("Module Type",this); lbl->setObjectName("l_type");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight| Qt::AlignVCenter);
     QGridLayout *gridLayout = new QGridLayout();
     gr1->addWidget(lbl,nRow,0);
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight| Qt::AlignVCenter);
     gr1->addWidget(c_moduleType,nRow,1);
 
     lbl = new QLabel("Name",this); lbl->setObjectName("l_name");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight| Qt::AlignVCenter);
     gr1->addWidget(lbl,nRow,2);
     gr1->addWidget(c_name,nRow,3);
     gb1->setLayout(gr1);
@@ -134,73 +138,73 @@ void QModuleDescWidget::layoutWidgets() {
     nRow = 0;
 
     lbl = new QLabel("Seed",this); lbl->setObjectName("l_seed");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,0);
     gr2->addWidget(c_seed,nRow,1);
 
     lbl = new QLabel("Octave",this); lbl->setObjectName("l_oct");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_oct,nRow,3);
 
     lbl = new QLabel("Frequency",this); lbl->setObjectName("l_freq");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,++nRow,0);
     gr2->addWidget(c_freq,nRow,1);
 
     lbl = new QLabel("Lacunarity",this); lbl->setObjectName("l_lac");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_lac,nRow,3);
 
     lbl = new QLabel("Persistence",this); lbl->setObjectName("l_pers");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,++nRow,0);
     gr2->addWidget(c_pers,nRow,1);
 
 
     lbl = new QLabel("Displace",this); lbl->setObjectName("l_displ");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_displ,nRow,3);
 
     lbl = new QLabel("Upper bound",this); lbl->setObjectName("l_lBound");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,++nRow,0);
     gr2->addWidget(c_lBound,nRow,1);
 
     lbl = new QLabel("Lower Bound",this); lbl->setObjectName("l_uBound");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_uBound,nRow,3);
 
     lbl = new QLabel("Exponent",this); lbl->setObjectName("l_exp");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,++nRow,0);
     gr2->addWidget(c_exp,nRow,1);
 
     lbl = new QLabel("Bias",this); lbl->setObjectName("l_bias");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_bias,nRow,3);
 
     lbl = new QLabel("Scale",this); lbl->setObjectName("l_scale");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,++nRow,0);
     gr2->addWidget(c_scale,nRow,1);
 
     lbl = new QLabel("Power",this); lbl->setObjectName("l_pow");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_pow,nRow,3);
 
     lbl = new QLabel("Roughness",this); lbl->setObjectName("l_rough");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,++nRow,0);
     gr2->addWidget(c_rough,nRow,1);
 
     lbl = new QLabel("Value/Falloff",this); lbl->setObjectName("l_value");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_value,nRow,3);
 
@@ -212,27 +216,27 @@ void QModuleDescWidget::layoutWidgets() {
 
 
     lbl = new QLabel("Control Module",this); lbl->setObjectName("l_ctl");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr3->addWidget(lbl,nRow,0);
     gr3->addWidget(c_ctl,nRow,1);
 
     lbl = new QLabel("Source Mod. 1",this); lbl->setObjectName("l_src1");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr3->addWidget(lbl,nRow,2);
     gr3->addWidget(c_src1,nRow,3);
 
     lbl = new QLabel("Source Mod. 2",this); lbl->setObjectName("l_src2");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr3->addWidget(lbl,++nRow,0);
     gr3->addWidget(c_src2,nRow,1);
 
     lbl = new QLabel("Source Mod. 3",this); lbl->setObjectName("l_src3");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr3->addWidget(lbl,nRow,2);
     gr3->addWidget(c_src3,nRow,3);
 
     lbl = new QLabel("Source Mod. 4",this); lbl->setObjectName("l_src4");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr3->addWidget(lbl,++nRow,0);
     gr3->addWidget(c_src4,nRow,1);
 
@@ -243,17 +247,17 @@ void QModuleDescWidget::layoutWidgets() {
     nRow = 0;
 
     lbl = new QLabel("X",this); lbl->setObjectName("l_x");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr4->addWidget(lbl,nRow,0);
     gr4->addWidget(c_x,nRow,1);
 
     lbl = new QLabel("Y",this); lbl->setObjectName("l_y");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr4->addWidget(lbl,nRow,2);
     gr4->addWidget(c_y,nRow,3);
 
     lbl = new QLabel("Z",this); lbl->setObjectName("l_z");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr4->addWidget(lbl,nRow,4);
     gr4->addWidget(c_z,nRow,5);
 
@@ -265,17 +269,17 @@ void QModuleDescWidget::layoutWidgets() {
     nRow = 0;
 
     lbl = new QLabel("Invert?",this); lbl->setObjectName("l_invert");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr5->addWidget(lbl,nRow,0);
     gr5->addWidget(c_invert,nRow,1);
 
     lbl = new QLabel("Enable Random?",this); lbl->setObjectName("l_enableRandom");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr5->addWidget(lbl,nRow,2);
     gr5->addWidget(c_enableRandom,nRow,3);
 
     lbl = new QLabel("Enable Distance?",this); lbl->setObjectName("l_enableDist");
-    lbl->setAlignment(Qt::AlignRight);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr5->addWidget(lbl,nRow,4);
     gr5->addWidget(c_enableDist,nRow,5);
 
@@ -298,18 +302,19 @@ void QModuleDescWidget::layoutWidgets() {
     auto gr6 = new QGroupBox("Control points");
     auto bl6 = new QVBoxLayout(this);
 
-    /*
     QGridLayout* l2 = new QGridLayout(this);
     lbl = new QLabel("X",this);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     l2->addWidget(lbl,0,0);
     l2->addWidget(s_x,0,1);
     lbl = new QLabel("Y",this);
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     l2->addWidget(lbl,0,2);
     l2->addWidget(s_y,0,3);
     l2->addWidget(btnAddControlPoint,0,4);
     w->setLayout(l2);
     bl6->addWidget(w);
-    */
+
     c_cPoints->setMinimumHeight(300);
     bl6->addWidget(c_cPoints);
     gr6->setLayout(bl6);
@@ -391,6 +396,8 @@ void QModuleDescWidget::updateControlsFromDescriptor()
         c_invert->setChecked(_moduleDesc->invert());
         int nRow = 0;
         c_cPoints->clear();
+        if (_moduleDesc->cPoints().count()> 0)
+            c_cPoints->setRowCount(_moduleDesc->cPoints().count());
         for (auto pt : _moduleDesc->cPoints()) {
             c_cPoints->setItem(nRow, 0, new QTableWidgetItem(QString("%1").arg(std::get<0>(pt))));
             c_cPoints->setItem(nRow, 1, new QTableWidgetItem(QString("%1").arg(std::get<1>(pt))));
@@ -461,6 +468,11 @@ void QModuleDescWidget::updateGridWithControlPoints() {
 void QModuleDescWidget::on_add_tuple_clicked() {
     auto x = s_x->value();
     auto y = s_y->value();
+    c_cPoints->setRowCount(c_cPoints->rowCount()+1);
+    auto nRow = c_cPoints->rowCount();
+    c_cPoints->setItem(nRow-1, 0, new QTableWidgetItem(QString("%1").arg(x)));
+    c_cPoints->setItem(nRow-1, 1, new QTableWidgetItem(QString("%1").arg(y)));
+
 
 }
 
