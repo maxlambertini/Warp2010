@@ -84,6 +84,7 @@ class MainWindow : public QMainWindow
     TextureBuilderExplorer *_tex;
 
     TextureBuilder _tb;
+    bool bShouldSaveDocument = false;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -96,6 +97,10 @@ public:
     QVector<QString> buildModuleList(QString curMod = "");
     QStringList buildImageList();
     QStringList buildNoiseMapList();
+
+    bool shouldSaveDocument() {
+        return bShouldSaveDocument && !this->plainTextEdit->toPlainText().isEmpty();
+    }
 
 private slots:
     void on_action_new_texture_triggered();
@@ -114,7 +119,7 @@ private slots:
 
     void on_tree_item_double_clicked(QTreeWidgetItem *item, int column);
 
-
+    void on_plaintext_changed();
 
 private:
     void createActions();
@@ -124,6 +129,8 @@ private:
 
     void updateTreeWithJsonFromEditor();
     void updateEditorsWithTBInfo();
+
+    void askToSaveTexture() ;
 
     void handle_eptr(std::exception_ptr eptr);
 };
