@@ -117,9 +117,10 @@ private slots:
 
     void on_listFiles_clicked(QListWidgetItem* idx);
 
-    void on_tree_item_double_clicked(QTreeWidgetItem *item, int column);
 
     void on_plaintext_changed();
+
+    void on_tree_item_double_clicked(QTreeWidgetItem *item, int column);
 
 private:
     void createActions();

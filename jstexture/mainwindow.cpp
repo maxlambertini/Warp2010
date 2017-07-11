@@ -82,6 +82,7 @@ void MainWindow::createActions() {
     connect(action_CreateRendererDesc,SIGNAL(triggered(bool)),this,SLOT(on_action_create_rend_desc()));
     connect(action_CreateImageDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateImageDesc()));
     connect(action_CreateHeightMapDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateHeightMapDesc()));
+
 }
 
 void MainWindow::createMenus() {
@@ -125,6 +126,9 @@ void MainWindow::createWidgets() {
     connect(this->_listFiles,SIGNAL(itemClicked(QListWidgetItem*)) ,this, SLOT(on_listFiles_clicked(QListWidgetItem*)));
     connect(_tex->tree(),SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
             this, SLOT(on_tree_item_double_clicked(QTreeWidgetItem*,int)));
+
+    connect(this->plainTextEdit,SIGNAL(textChanged()),SLOT(on_plaintext_changed()));
+
 }
 
 void MainWindow::layoutWidgets() {
@@ -147,6 +151,7 @@ void MainWindow::layoutWidgets() {
 
 void MainWindow::on_action_Load_Texture_triggered()
 {
+    askToSaveTexture();
     QString fileName =
                 QFileDialog::getOpenFileName(this, tr("Open Texture Json File"),
                                              AppPaths::appDir(),
@@ -162,7 +167,9 @@ void MainWindow::on_action_Load_Texture_triggered()
 
             this->plainTextEdit->setPlainText(s);
             updateTreeWithJsonFromEditor();
+            bShouldSaveDocument = false;
         }
+
 }
 
 void MainWindow::updateEditorsWithTBInfo() {
@@ -214,7 +221,7 @@ void MainWindow::updateTreeWithJsonFromEditor() {
 void MainWindow::on_action_Generate_Texture_triggered()
 {
     try {
-        this->on_action_Save_Texture_triggered();
+        askToSaveTexture();
         TextureBuilder tb;
         tb.buildTextureFromJson(_currentTextureFile);
 
@@ -391,6 +398,7 @@ void MainWindow::on_action_CreateHeightmapBuilder() {
 
 void MainWindow::on_action_new_texture_triggered()
 {
+    askToSaveTexture();
     TextureBuilder tb;
     QJsonObject o;
     tb.toJson(o);
@@ -398,7 +406,7 @@ void MainWindow::on_action_new_texture_triggered()
     QString strJson(doc.toJson());
     this->plainTextEdit->setPlainText(strJson);
     this->updateTreeWithJsonFromEditor();
-
+    bShouldSaveDocument = false;
 }
 
 void MainWindow::on_action_create_rend_desc() {
@@ -567,5 +575,18 @@ void MainWindow::handle_eptr(std::__exception_ptr::exception_ptr eptr) {
     } catch(const std::exception& e) {
         QString error  = "Caught exception \"" + QString(e.what()) + "\"\n";
         errorBox(error);
+    }
+}
+
+void MainWindow::on_plaintext_changed() {
+    bShouldSaveDocument = true;
+}
+
+void MainWindow::askToSaveTexture() {
+    if (bShouldSaveDocument) {
+        if (questionBox("Texture " + this->_currentTextureFile + " unsaved. Save now?") == QMessageBox::Save) {
+            this->on_action_Save_Texture_triggered();
+            bShouldSaveDocument = false;
+        }
     }
 }
