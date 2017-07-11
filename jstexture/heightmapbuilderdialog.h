@@ -42,6 +42,7 @@ class HeightMapBuilderDialog : public QDialog
     QWidget *centralWidget;
     QDialogButtonBox *buttonBox;
     HeightMapBuilderWidget *_widget;
+    bool _editMode = false;
 
 public:
     HeightMapBuilderWidget *builderWidget() { return _widget; }

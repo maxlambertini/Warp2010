@@ -14,6 +14,7 @@ class TextureBuilderDialog : public QDialog
 
     QDialogButtonBox *btn;
     TextureBuilderWidget *_tbw = nullptr;
+    bool _editMode = false;
 
 public:
     explicit TextureBuilderDialog(QWidget* parent = 0);

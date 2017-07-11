@@ -39,7 +39,7 @@ class RendererDescDialog : public QDialog
     QRendererDescWidget *_renderer;
     QtGradientEditor *gradientEditor;
     QDialogButtonBox *buttonBox;
-
+    bool _editMode = false;
 
 
 public:

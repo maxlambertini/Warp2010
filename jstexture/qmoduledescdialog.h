@@ -36,6 +36,7 @@ class QModuleDescDialog : public QDialog
 
     QModuleDescWidget *_moduleDescWidget;
     QDialogButtonBox  *_buttonBox;
+    bool _editMode = false;
 
 public:
     explicit QModuleDescDialog(QWidget *parent = 0);
