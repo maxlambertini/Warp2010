@@ -449,6 +449,42 @@ void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) 
                 this->_tex->setTextureBuilder(&this->_tb);
             }
         }
+        if (mode == "Image" && _tb.imDesc().contains(txt) ) {
+            bool ok;
+            QString hmTitle = QInputDialog::getText(this, "Edit Image", "Change Image Name",
+                                                    QLineEdit::Normal,txt,
+                                                    &ok);
+            if (ok && !hmTitle.isEmpty() && !_tb.imDesc().contains(hmTitle) && hmTitle != txt) {
+                QSharedPointer<ImageDescriptor> sp(new ImageDescriptor());
+                sp.data()->setName(hmTitle);
+                _tb.imDesc().insert(sp.data()->name(),sp);
+                _tb.imDesc().remove(txt);
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+            else {
+                this->errorBox("Problem acquiring heightmap name or heightmap name already present");
+            }
+
+        }
+        if (mode == "Heightmap" && _tb.hmDesc().contains(txt) ) {
+            bool ok;
+            QString hmTitle = QInputDialog::getText(this, "Edit Heightmap", "Change Heightmap Name",
+                                                    QLineEdit::Normal,txt,
+                                                    &ok);
+            if (ok && !hmTitle.isEmpty() && !_tb.hmDesc().contains(hmTitle) && hmTitle != txt) {
+                QSharedPointer<HeightMapDescriptor> sp(new HeightMapDescriptor());
+                sp.data()->setName(hmTitle);
+                _tb.hmDesc().insert(sp.data()->name(),sp);
+                _tb.hmDesc().remove(txt);
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+            else {
+                this->errorBox("Problem acquiring heightmap name or heightmap name already present");
+            }
+
+        }
         if (mode == "Renderer" && _tb.rndDesc().contains(txt) ) {
             auto sptr = _tb.rndDesc()[txt];
             auto ptr = sptr.data();
