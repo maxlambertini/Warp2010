@@ -435,110 +435,140 @@ void MainWindow::on_action_create_rend_desc() {
     }
 }
 
+void MainWindow::EditTextureBuilderDescriptor()
+{
+    TextureBuilderDialog dlg(this);
+    dlg.setTextureBuilder(&this->_tb);
+    if (dlg.exec() == QDialog::Accepted) {
+        //_tb.rndDesc().insert(sptr.data()->name(),sptr);
+        //dlg.textureBuilderWidget()->writeToTextureBuilder();
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+    }
+}
+
+void MainWindow::EditImageDescriptor(QString txt)
+{
+    bool ok;
+    QString hmTitle = QInputDialog::getText(this, "Edit Image", "Change Image Name",
+                                            QLineEdit::Normal,txt,
+                                            &ok);
+    if (ok && !hmTitle.isEmpty() && !_tb.imDesc().contains(hmTitle) && hmTitle != txt) {
+        QSharedPointer<ImageDescriptor> sp(new ImageDescriptor());
+        sp.data()->setName(hmTitle);
+        _tb.imDesc().insert(sp.data()->name(),sp);
+        _tb.imDesc().remove(txt);
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+    }
+    else {
+        this->errorBox("Problem acquiring heightmap name or heightmap name already present");
+    }
+}
+
+void MainWindow::EditHeightmapDescriptor(QString txt)
+{
+    bool ok;
+    QString hmTitle = QInputDialog::getText(this, "Edit Heightmap", "Change Heightmap Name",
+                                            QLineEdit::Normal,txt,
+                                            &ok);
+    if (ok && !hmTitle.isEmpty() && !_tb.hmDesc().contains(hmTitle) && hmTitle != txt) {
+        QSharedPointer<HeightMapDescriptor> sp(new HeightMapDescriptor());
+        sp.data()->setName(hmTitle);
+        _tb.hmDesc().insert(sp.data()->name(),sp);
+        _tb.hmDesc().remove(txt);
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+    }
+    else {
+        this->errorBox("Problem acquiring heightmap name or heightmap name already present");
+    }
+}
+
+void MainWindow::EditRendererDescriptor(QString txt)
+{
+    auto sptr = _tb.rndDesc()[txt];
+    auto ptr = sptr.data();
+    QStringList images = this->buildImageList();
+    QStringList nmbs = this->buildNoiseMapList();
+    RendererDescDialog dlg(this);
+
+    dlg.setImageList(images);
+    dlg.setNoiseMapList(nmbs);
+    dlg.setRendererDescriptor(sptr.data());
+    if (dlg.exec() == QDialog::Accepted) {
+        //_tb.rndDesc().insert(sptr.data()->name(),sptr);
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+    }
+}
+
+void MainWindow::EditHeightmapBuilderDescriptor(QString txt)
+{
+    auto sptr = _tb.nmbDesc()[txt];
+    auto ptr = sptr.data();
+    _tb.assignSizeInfoToNMBDesc(ptr);
+    HeightMapBuilderDialog dlg(ptr);
+    dlg.builderWidget()->setBuilder(ptr);
+    auto ml = this->buildModuleList();
+    auto hl = this->buildNoiseMapList();
+    QStringList sl;
+    for (auto s: ml) sl.append(s);
+    dlg.builderWidget()->setModuleList(sl);
+    dlg.builderWidget()->setNoiseMapList(hl);
+    dlg.builderWidget()->fillWidgetWithBuilder();
+    if (dlg.exec() == QDialog::Accepted) {
+        dlg.builderWidget()->fillBuilder();
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+    }
+}
+
+void MainWindow::EditModuleDescriptor(QString txt)
+{
+    auto modDescSPtr = _tb.modDesc()[txt];
+    auto modDescPtr = modDescSPtr.data();
+    QModuleDescDialog dlg;
+    dlg.moduleDescWidget()->setModuleDesc(modDescPtr);
+    auto moduleList = buildModuleList();
+    dlg.moduleDescWidget()->setModuleList(moduleList);
+    dlg.moduleDescWidget()->updateControlsFromDescriptor();
+    dlg.moduleDescWidget()->enableForEditing();
+    if (dlg.exec() == QDialog::Accepted) {
+        dlg.moduleDescWidget()->updateDescriptorFromControls();
+        //auto newPtr = dlg.moduleDescWidget()->moduleDesc();
+        //modDescSPtr.reset(newPtr);
+        //_tb.modDesc()[txt] = modDescSPtr;
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+        infoBox("Module descriptor "+ modDescPtr->name() + "("+modDescPtr->moduleType()+") updated!");
+
+    }
+}
+
 void MainWindow::on_tree_item_double_clicked(QTreeWidgetItem *item, int column) {
     if (column ==0) {
-        auto txt = item->text(0);
+        QString txt = item->text(0);
         QString mode = item->columnCount() > 1 ? item->text(1) : "";
         if (mode == "TextureBuilder"  ) {
-            TextureBuilderDialog dlg(this);
-            dlg.setTextureBuilder(&this->_tb);
-            if (dlg.exec() == QDialog::Accepted) {
-                //_tb.rndDesc().insert(sptr.data()->name(),sptr);
-                //dlg.textureBuilderWidget()->writeToTextureBuilder();
-                updateEditorsWithTBInfo();
-                this->_tex->setTextureBuilder(&this->_tb);
-            }
+            EditTextureBuilderDescriptor();
         }
         if (mode == "Image" && _tb.imDesc().contains(txt) ) {
-            bool ok;
-            QString hmTitle = QInputDialog::getText(this, "Edit Image", "Change Image Name",
-                                                    QLineEdit::Normal,txt,
-                                                    &ok);
-            if (ok && !hmTitle.isEmpty() && !_tb.imDesc().contains(hmTitle) && hmTitle != txt) {
-                QSharedPointer<ImageDescriptor> sp(new ImageDescriptor());
-                sp.data()->setName(hmTitle);
-                _tb.imDesc().insert(sp.data()->name(),sp);
-                _tb.imDesc().remove(txt);
-                updateEditorsWithTBInfo();
-                this->_tex->setTextureBuilder(&this->_tb);
-            }
-            else {
-                this->errorBox("Problem acquiring heightmap name or heightmap name already present");
-            }
+            EditImageDescriptor(txt);
 
         }
         if (mode == "Heightmap" && _tb.hmDesc().contains(txt) ) {
-            bool ok;
-            QString hmTitle = QInputDialog::getText(this, "Edit Heightmap", "Change Heightmap Name",
-                                                    QLineEdit::Normal,txt,
-                                                    &ok);
-            if (ok && !hmTitle.isEmpty() && !_tb.hmDesc().contains(hmTitle) && hmTitle != txt) {
-                QSharedPointer<HeightMapDescriptor> sp(new HeightMapDescriptor());
-                sp.data()->setName(hmTitle);
-                _tb.hmDesc().insert(sp.data()->name(),sp);
-                _tb.hmDesc().remove(txt);
-                updateEditorsWithTBInfo();
-                this->_tex->setTextureBuilder(&this->_tb);
-            }
-            else {
-                this->errorBox("Problem acquiring heightmap name or heightmap name already present");
-            }
+            EditHeightmapDescriptor(txt);
 
         }
         if (mode == "Renderer" && _tb.rndDesc().contains(txt) ) {
-            auto sptr = _tb.rndDesc()[txt];
-            auto ptr = sptr.data();
-            QStringList images = this->buildImageList();
-            QStringList nmbs = this->buildNoiseMapList();
-            RendererDescDialog dlg(this);
-
-            dlg.setImageList(images);
-            dlg.setNoiseMapList(nmbs);
-            dlg.setRendererDescriptor(sptr.data());
-            if (dlg.exec() == QDialog::Accepted) {
-                //_tb.rndDesc().insert(sptr.data()->name(),sptr);
-                updateEditorsWithTBInfo();
-                this->_tex->setTextureBuilder(&this->_tb);
-            }
+            EditRendererDescriptor(txt);
         }
         if (mode == "HeightmapBuilder" && _tb.nmbDesc().contains(txt) ) {
-            auto sptr = _tb.nmbDesc()[txt];
-            auto ptr = sptr.data();
-            _tb.assignSizeInfoToNMBDesc(ptr);
-            HeightMapBuilderDialog dlg(ptr);
-            dlg.builderWidget()->setBuilder(ptr);
-            auto ml = this->buildModuleList();
-            auto hl = this->buildNoiseMapList();
-            QStringList sl;
-            for (auto s: ml) sl.append(s);
-            dlg.builderWidget()->setModuleList(sl);
-            dlg.builderWidget()->setNoiseMapList(hl);
-            dlg.builderWidget()->fillWidgetWithBuilder();
-            if (dlg.exec() == QDialog::Accepted) {
-                dlg.builderWidget()->fillBuilder();
-                updateEditorsWithTBInfo();
-                this->_tex->setTextureBuilder(&this->_tb);
-            }
+            EditHeightmapBuilderDescriptor(txt);
         }
         if (mode == "Module" && _tb.modDesc().contains(txt)) {
-            auto modDescSPtr = _tb.modDesc()[txt];
-            auto modDescPtr = modDescSPtr.data();
-            QModuleDescDialog dlg;
-            dlg.moduleDescWidget()->setModuleDesc(modDescPtr);
-            auto moduleList = buildModuleList();
-            dlg.moduleDescWidget()->setModuleList(moduleList);
-            dlg.moduleDescWidget()->updateControlsFromDescriptor();
-            dlg.moduleDescWidget()->enableForEditing();
-            if (dlg.exec() == QDialog::Accepted) {
-                dlg.moduleDescWidget()->updateDescriptorFromControls();
-                //auto newPtr = dlg.moduleDescWidget()->moduleDesc();
-                //modDescSPtr.reset(newPtr);
-                //_tb.modDesc()[txt] = modDescSPtr;
-                updateEditorsWithTBInfo();
-                this->_tex->setTextureBuilder(&this->_tb);
-                infoBox("Module descriptor "+ modDescPtr->name() + "("+modDescPtr->moduleType()+") updated!");
-
-            }
+            EditModuleDescriptor(txt);
         }
     }
 }

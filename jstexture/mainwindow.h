@@ -102,6 +102,16 @@ public:
         return bShouldSaveDocument && !this->plainTextEdit->toPlainText().isEmpty();
     }
 
+    void EditTextureBuilderDescriptor();    
+    void EditImageDescriptor(QString txt);    
+    void EditHeightmapDescriptor(QString txt);
+    
+    void EditRendererDescriptor(QString txt);
+    
+    void EditHeightmapBuilderDescriptor(QString txt);
+    
+    void EditModuleDescriptor(QString txt);
+    
 private slots:
     void on_action_new_texture_triggered();
     void on_action_Load_Texture_triggered();
