@@ -46,7 +46,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <texturebuilderwidget.h>
 #include <exception>
 #include <stdexcept>
-
+#include <QMenu>
+#include <QPoint>
 
 class MainWindow : public QMainWindow
 {
@@ -64,6 +65,10 @@ class MainWindow : public QMainWindow
     QAction *action_CreateRendererDesc;
     QAction *action_CreateImageDesc;
     QAction *action_CreateHeightMapDesc;
+
+    QMenu *treeMenu;
+    QAction *action_edit_texture_item;
+    QAction *action_delete_texture_item;
 
     QWidget *centralWidget;
     QToolBar *mainToolBar;
@@ -125,12 +130,16 @@ private slots:
     void on_action_CreateImageDesc();
     void on_action_CreateHeightMapDesc();
 
+    void on_action_edit_texture_item();
+    void on_action_delete_texture_item();
+
     void on_listFiles_clicked(QListWidgetItem* idx);
 
 
     void on_plaintext_changed();
 
     void on_tree_item_double_clicked(QTreeWidgetItem *item, int column);
+    void on_prepare_menu(const QPoint& pos);
 
 private:
     void createActions();

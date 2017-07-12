@@ -83,6 +83,11 @@ void MainWindow::createActions() {
     connect(action_CreateImageDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateImageDesc()));
     connect(action_CreateHeightMapDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateHeightMapDesc()));
 
+    action_edit_texture_item = new QAction(QIcon(":/icons/edit.png"),"Edit texture", this);
+    action_delete_texture_item = new QAction(QIcon(":/icons/delete.png"),"Delete texture", this);
+
+    connect(action_edit_texture_item,SIGNAL(triggered(bool)),SLOT(on_action_edit_texture_item()));
+    connect(action_delete_texture_item,SIGNAL(triggered(bool)),SLOT(on_action_delete_texture_item()));
 }
 
 void MainWindow::createMenus() {
@@ -102,6 +107,12 @@ void MainWindow::createMenus() {
     mainToolBar->addAction(action_CreateRendererDesc);
     mainToolBar->addSeparator();
     mainToolBar->addAction(action_Exit);
+
+    this->treeMenu = new QMenu(this);
+    QList<QAction *> actions;
+    actions.append(action_edit_texture_item);
+    actions.append(action_delete_texture_item);
+    treeMenu->addActions(actions);
 }
 
 void MainWindow::createWidgets() {
@@ -127,8 +138,9 @@ void MainWindow::createWidgets() {
     connect(_tex->tree(),SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
             this, SLOT(on_tree_item_double_clicked(QTreeWidgetItem*,int)));
 
+    this->_tex->tree()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this->plainTextEdit,SIGNAL(textChanged()),SLOT(on_plaintext_changed()));
-
+    connect(_tex->tree(),SIGNAL(customContextMenuRequested(QPoint)),SLOT(on_prepare_menu(QPoint)));
 }
 
 void MainWindow::layoutWidgets() {
@@ -655,4 +667,16 @@ void MainWindow::askToSaveTexture() {
             bShouldSaveDocument = false;
         }
     }
+}
+
+void MainWindow::on_action_edit_texture_item() {
+
+}
+
+void MainWindow::on_action_delete_texture_item() {
+
+}
+
+void MainWindow::on_prepare_menu(const QPoint &pos) {
+    treeMenu->exec( _tex->tree()->mapToGlobal(pos) );
 }
