@@ -102,6 +102,7 @@ void RendererDescDialog::setRendererDescriptor(RendererDescriptor *v) {
        QLinearGradient grad;
        //grad.stops().clear();
        for (auto gradItem : v->gradientInfo() ) {
+           qDebug() << std::get<0>(gradItem) << "," << std::get<1>(gradItem) << "," << std::get<2>(gradItem) << "," << std::get<3>(gradItem) << "," << std::get<4>(gradItem) << ",";
            QColor colorStop( std::get<1>(gradItem),
                              std::get<2>(gradItem),
                              std::get<3>(gradItem),

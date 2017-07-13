@@ -136,6 +136,7 @@ void RendererDescriptor::fromJson(const QJsonObject& json) {
         QJsonArray gi = json["gradientInfo"].toArray();
         _gradientInfo.clear();
         bool mustApplyRandomFactor = this->applyRandomFactor();
+        qDebug() << "Color array: " << gi.size();
         for (auto h = 0; h < gi.size(); h++) {
             QJsonArray i = gi[h].toArray();
             if (mustApplyRandomFactor) {
