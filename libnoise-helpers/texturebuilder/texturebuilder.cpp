@@ -146,6 +146,7 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
 
     _rndDesc.clear();
     _renderers.clear();
+    _rndNames.clear();
 
     for (auto h = 0; h < aRenderers.size(); ++h) {
         RendererDescriptor *m = new RendererDescriptor();
@@ -488,8 +489,9 @@ void TextureBuilder::textureSanityCheck() {
     }
 
     // Now that we have initialized our matrix, let's work on Renderers
-    for (auto it = _rndDesc.begin(); it != _rndDesc.end(); ++it) {
-        auto renderer = it.value().data();
+    for (auto it = _rndNames.begin(); it != _rndNames.end(); ++it) {
+        //for (auto it = _rndDesc.begin(); it != _rndDesc.end(); ++it) {
+        auto renderer = _rndDesc[*it].data();
 
         //first thing first: let's see if it's got an image map defined.
         if (renderer->heightMap().isNull() || renderer->heightMap().isEmpty())
