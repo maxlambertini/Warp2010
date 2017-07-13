@@ -96,6 +96,7 @@ public:
     ~MainWindow();
     void errorBox(QString msg);
     int questionBox(QString msg);
+    int questionBoxYN(QString msg);
     void infoBox(QString msg);
     void setCurrentTextureFile(const QString& _file) { _currentTextureFile = _file; this->setWindowTitle(_file); }
 

@@ -83,8 +83,8 @@ void MainWindow::createActions() {
     connect(action_CreateImageDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateImageDesc()));
     connect(action_CreateHeightMapDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateHeightMapDesc()));
 
-    action_edit_texture_item = new QAction(QIcon(":/icons/edit.png"),"Edit texture", this);
-    action_delete_texture_item = new QAction(QIcon(":/icons/delete.png"),"Delete texture", this);
+    action_edit_texture_item = new QAction(QIcon(":/icons/edit.png"),"Edit texture item", this);
+    action_delete_texture_item = new QAction(QIcon(":/icons/delete.png"),"Delete texture item", this);
 
     connect(action_edit_texture_item,SIGNAL(triggered(bool)),SLOT(on_action_edit_texture_item()));
     connect(action_delete_texture_item,SIGNAL(triggered(bool)),SLOT(on_action_delete_texture_item()));
@@ -109,10 +109,19 @@ void MainWindow::createMenus() {
     mainToolBar->addAction(action_Exit);
 
     this->treeMenu = new QMenu(this);
+    QList<QAction *> actionsCreate;
+    actionsCreate << action_CreateModuleDescJson
+                  << action_CreateHeightMapDesc
+                  << action_CreateHeightmapBuilder
+                  << action_CreateImageDesc
+                  << action_CreateRendererDesc;
+    treeMenu->addActions(actionsCreate);
+    treeMenu->addSeparator();
     QList<QAction *> actions;
     actions.append(action_edit_texture_item);
     actions.append(action_delete_texture_item);
     treeMenu->addActions(actions);
+
 }
 
 void MainWindow::createWidgets() {
@@ -308,6 +317,16 @@ int MainWindow::questionBox(QString msg) {
     int ret = msgBox.exec();
     return ret;
 }
+
+int MainWindow::questionBoxYN(QString msg) {
+    QMessageBox msgBox;
+    msgBox.setText(msg);
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    int ret = msgBox.exec();
+    return ret;
+}
+
 
 void MainWindow::on_action_Save_Texture_triggered()
 {
@@ -670,10 +689,74 @@ void MainWindow::askToSaveTexture() {
 }
 
 void MainWindow::on_action_edit_texture_item() {
+    QTreeWidgetItem *item = _tex->tree()->currentItem();
+    if (item != nullptr && item->columnCount() > 1) {
+        QString txt = item->text(0);
+        QString mode = item->columnCount() > 1 ? item->text(1) : "";
+        if (mode == "TextureBuilder"  ) {
+            EditTextureBuilderDescriptor();
+        }
+        if (mode == "Image" && _tb.imDesc().contains(txt) ) {
+            EditImageDescriptor(txt);
 
+        }
+        if (mode == "Heightmap" && _tb.hmDesc().contains(txt) ) {
+            EditHeightmapDescriptor(txt);
+
+        }
+        if (mode == "Renderer" && _tb.rndDesc().contains(txt) ) {
+            EditRendererDescriptor(txt);
+        }
+        if (mode == "HeightmapBuilder" && _tb.nmbDesc().contains(txt) ) {
+            EditHeightmapBuilderDescriptor(txt);
+        }
+        if (mode == "Module" && _tb.modDesc().contains(txt)) {
+            EditModuleDescriptor(txt);
+        }
+    }
 }
 
 void MainWindow::on_action_delete_texture_item() {
+    QTreeWidgetItem *item = _tex->tree()->currentItem();
+    if (item != nullptr && item->columnCount() > 1) {
+        QString txt = item->text(0);
+        QString mode = item->columnCount() > 1 ? item->text(1) : "";
+        if (mode == "Image" && _tb.imDesc().contains(txt) ) {
+            if (questionBoxYN("Do you want to remove the " + mode + " "+txt+"?")){
+                _tb.imDesc().remove(txt);
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+        }
+        if (mode == "Heightmap" && _tb.hmDesc().contains(txt) ) {
+            if (questionBoxYN("Do you want to remove the " + mode + " "+txt+"?")){
+                _tb.hmDesc().remove(txt);
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+        }
+        if (mode == "Renderer" && _tb.rndDesc().contains(txt) ) {
+            if (questionBoxYN("Do you want to remove the " + mode + " "+txt+"?")){
+                _tb.rndDesc().remove(txt);
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+        }
+        if (mode == "HeightmapBuilder" && _tb.nmbDesc().contains(txt) ) {
+            if (questionBoxYN("Do you want to remove the " + mode + " "+txt+"?")){
+                _tb.nmbDesc().remove(txt);
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+        }
+        if (mode == "Module" && _tb.modDesc().contains(txt)) {
+            if (questionBoxYN("Do you want to remove the " + mode + " "+txt+"?")){
+                _tb.modDesc().remove(txt);
+                updateEditorsWithTBInfo();
+                this->_tex->setTextureBuilder(&this->_tb);
+            }
+        }
+    }
 
 }
 
