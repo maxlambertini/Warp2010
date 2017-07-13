@@ -159,6 +159,7 @@ void TextureBuilder::fromJson(const QJsonObject &json) {
 
         QSharedPointer<RendererDescriptor> p; p.reset(m);
         _rndDesc.insert(name,p);
+        _rndNames.append(name);
     }
 
     _nmbDesc.clear();
@@ -261,9 +262,11 @@ void TextureBuilder::toJson(QJsonObject &json) {
     json["heightMapBuilders"] = aHMBuilders;
 
     QJsonArray aRenderers;
-    for (auto it = _rndDesc.begin(); it != _rndDesc.end(); ++it) {
+    //
+    for (auto key = _rndNames.begin(); key != _rndNames.end(); ++key) {
+        //for (auto it = _rndDesc.begin(); it != _rndDesc.end(); ++it) {
         QJsonObject o;
-        it.value().data()->toJson(o);
+        _rndDesc[*key].data()->toJson(o);
         aRenderers.append(o);
     }
 
@@ -319,9 +322,11 @@ void TextureBuilder::createImages() {
 
 void TextureBuilder::createRenderers() {
     QSharedPointer<RendererDescriptor> hmd;
-    QMapIterator<QString, QSharedPointer<RendererDescriptor>>  it(_rndDesc);
-    while (it.hasNext()) {
-        hmd = it.next().value();
+    //QMapIterator<QString, QSharedPointer<RendererDescriptor>>  it(_rndDesc);
+    for (auto i = _rndNames.begin(); i != _rndNames.end(); ++i) {
+        //while (it.hasNext()) {
+        QString name = (*i);
+        hmd =  _rndDesc[name]; //it.next().value();
         hmd.data()->setImages(_images);
         hmd.data()->setNoiseMaps(_heightMaps);
         QSharedPointer<utils::RendererImage> ptr

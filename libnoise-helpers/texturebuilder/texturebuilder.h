@@ -30,6 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <texturebuilder/moduledescriptor.h>
 #include <texturebuilder/noisemapbuilderdescriptor.h>
 #include <texturebuilder/rendererdescriptor.h>
+#include <QVector>
+#include <QStringList>
 #include "ssg_structures.h"
 
 typedef QMap<QString, QSharedPointer<HeightMapDescriptor>> MapHeightMapDescriptors;
@@ -57,6 +59,7 @@ class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
     MapModuleDescriptors _modDesc;
     MapNoiseMapBuilderDescriptors _nmbDesc;
     MapRendererDescriptors _rndDesc;
+    QStringList _rndNames;
 
     MapHeightMaps  _heightMaps;
     MapImages _images;
@@ -147,6 +150,7 @@ public:
     MapModuleDescriptors& modDesc() { return _modDesc;  }
     MapNoiseMapBuilderDescriptors& nmbDesc() { return _nmbDesc; }
     MapRendererDescriptors& rndDesc() { return _rndDesc; }
+    QStringList& rndNames() { return _rndNames; }
 
     void createAll() {
         qDebug() << "Creating modules";
@@ -205,6 +209,27 @@ public:
 
     }
 
+    void addRendererDescriptor(const QString& key, QSharedPointer<RendererDescriptor> rnd) {
+        if (!_rndDesc.contains(key)) {
+            _rndDesc.insert(key, rnd);
+            _rndNames.append(key);
+        }
+        else {
+            QString err = "Renderer " + key + " already present, cannot add renderer";
+            throw err;
+        }
+    }
+
+    void deleteRendererDescriptor(const QString& key) {
+        if (_rndDesc.contains(key)) {
+            _rndDesc.remove(key);
+            _rndNames.removeOne(key);
+        }
+        else {
+            QString err = "Renderer " + key + " not present, cannot remove item";
+            throw err;
+        }
+    }
 
 signals:
     void textureGenerationStarting();

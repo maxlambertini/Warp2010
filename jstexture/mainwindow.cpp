@@ -451,7 +451,8 @@ void MainWindow::on_action_create_rend_desc() {
     sptr.data()->setName(QString("renderer%1").arg(i,4,10,QLatin1Char('0')));
     dlg.setRendererDescriptor(sptr.data());
     if (dlg.exec() == QDialog::Accepted) {
-        _tb.rndDesc().insert(sptr.data()->name(),sptr);
+        //_tb.rndDesc().insert(sptr.data()->name(),sptr);
+        _tb.addRendererDescriptor(sptr.data()->name(),sptr);
         updateEditorsWithTBInfo();
         this->_tex->setTextureBuilder(&this->_tb);
         /*
@@ -737,7 +738,8 @@ void MainWindow::on_action_delete_texture_item() {
         }
         if (mode == "Renderer" && _tb.rndDesc().contains(txt) ) {
             if (questionBoxYN("Do you want to remove the " + mode + " "+txt+"?")){
-                _tb.rndDesc().remove(txt);
+                //_tb.rndDesc().remove(txt);
+                _tb.deleteRendererDescriptor(txt);
                 updateEditorsWithTBInfo();
                 this->_tex->setTextureBuilder(&this->_tb);
             }

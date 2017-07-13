@@ -99,8 +99,10 @@ void TextureBuilderExplorer::updateTreeWithBuilderInfo() {
 
     auto rnItem = new QTreeWidgetItem((QTreeWidget *)0);
     rnItem->setText(0,"Renderers");
-    for (auto i = _builder->rndDesc().begin(); i != _builder->rndDesc().end(); ++i) {
-        auto mod = (*i);
+    //for (auto i = _builder->rndDesc().begin(); i != _builder->rndDesc().end(); ++i) {
+    for (auto i = _builder->rndNames().begin(); i != _builder->rndNames().end(); ++i) {
+        QString k = (*i);
+        auto mod = _builder->rndDesc()[k];
         auto modItem = new QTreeWidgetItem((QTreeWidget *)0);
         modItem->setText(0,mod.data()->name());
         modItem->setText(1,"Renderer");
