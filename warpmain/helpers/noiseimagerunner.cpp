@@ -25,14 +25,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QThread>
 #include <QDebug>
 #include <qcolorops.h>
+#include <utility>
+#include "helpers/apppaths.h"
 
 NoiseImageRunner::NoiseImageRunner()
 {
 }
 
+QSharedPointer<NoiseImageRunner> NoiseImageRunner::UseTextureBuilder(const QString &textureFile, const QString &imageFile) {
+    QSharedPointer<NoiseImageRunner> sp(new NoiseImageRunner());
+    sp.data()->setFilename(imageFile);
+    sp.data()->setTextureFile(textureFile);
+    sp.data()->setRunType(UseBuilder);
+    return sp;
+}
+
 void NoiseImageRunner::run() {
     {
        switch (_runType) {
+           case UseBuilder:
+               {
+                    using std::unique_ptr;
+                    unique_ptr<TextureBuilder> tb(new TextureBuilder());
+                    TextureBuilder *p = tb.get();
+                    p->prepareObjectFromJsonFile( AppPaths::appDir()+"/jstexture/"+ _textureFile);
+                    p->buildImages();
+                    p->saveRenderedImageToFile(p->colorMap(),_filename);
+               }
+           break;
            case GG2:
                {
                    maps::GasGiant ep; ep.setSeed(_seed); ep.generateAndSave(_filename);

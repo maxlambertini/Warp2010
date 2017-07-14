@@ -29,6 +29,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QString>
 #include <QThread>
 #include <planetmaps/maps.h>
+#include <QSharedPointer>
+#include <memory>
+#include <texturebuilder/texturebuilder.h>
 
 namespace RT {
 enum RType {
@@ -50,7 +53,8 @@ enum RType {
     Jade,
     Jade2,
     Granite,
-    Ice
+    Ice,
+    UseBuilder
 };
 }
 
@@ -71,6 +75,7 @@ class NoiseImageRunner : public QObject
 
     RType _runType = Earthlike;
     QString _filename = "";
+    QString _textureFile = "";
     NoiseImageUtils imgUtils;
 public:    
     void setSeed (int v) {_seed = v; }
@@ -85,6 +90,9 @@ public:
     double frequency() { return _frequency; }
     void setFilename(const QString& str) { _filename = str; }
     const QString& filename() { return _filename; }
+    void setTextureFile(const QString& str) { _textureFile = str; }
+    const QString& textureFile() { return _textureFile; }
+
     void setRunType(RType str) { _runType = str; }
     const RType runType() { return _runType; }
     double iceRatio() { return _iceRatio; }
@@ -109,6 +117,8 @@ public:
         _runType(runType),_filename(filename),
         _seed(seed), _octave(octave),
         _persistence(pers),_lacunarity(lac), _frequency(freq){}
+
+    static QSharedPointer<NoiseImageRunner> UseTextureBuilder(const QString& textureFile, const QString& imageFile);
 
     void run()  ;
 

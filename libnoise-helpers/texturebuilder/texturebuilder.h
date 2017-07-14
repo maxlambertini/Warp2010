@@ -82,6 +82,7 @@ class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
     QString _builderType = "sphere";
 
     QString _outputFolder;
+    QString _destinationImagePath = "";
 
 public:
     TextureBuilder();
@@ -186,7 +187,8 @@ public:
     }
 
 
-    void buildTextureFromJson(const QString& filename, QString path="");
+    void buildTextureFromJson(const QString& filename,
+                              QString path="");
 
     const QVector<QString>& generatedMaps() {
         return _generatedMaps;
@@ -230,6 +232,10 @@ public:
             throw err;
         }
     }
+
+    const QString& destinationImagePath() { return _destinationImagePath; }
+    void setDestinationImagePath(const QString& img) { _destinationImagePath = img; }
+
 
 signals:
     void textureGenerationStarting();

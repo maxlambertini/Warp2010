@@ -75,108 +75,22 @@ public:
         return uid;
     }
 
-    QString getCloudTexture(Planet& p, int i) {
-        QString res = "";
-        auto pt = p.planetType();
-        if (pt == ptGarden || pt == ptGlacier ) {
-            res = QString("clouds_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Clouds,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-        }
-        else {
-            res = QString("f_clouds_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::FunkyClouds,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-        }
+    QString getCloudTexture(Planet& p, int i);
+    QString getPlanetTexture(Planet& p, int i);
 
-    }
 
-    QString getPlanetTexture(Planet& p, int i) {
-        QString res = "";
-        switch (p.planetType()) {
-        case ptGarden:
-        {
-            res = QString("earthlike_%1.png").arg(getUid());
-            QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
-            ptr.data()->setSeaRatio(p.waterPercentage());
-            vTextures.append(ptr);
-            return res;
-        }
-        break;
-        case ptGlacier:
-            res = QString("glacier_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Glacier,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-            break;
-        case ptPostGarden:
-        {
-            res = QString("earthlike_%1.png").arg(getUid());
-            QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Postgarden,_texturePath+"/"+res, SSGX::dn(999999)));
-            ptr.data()->setSeaRatio(p.waterPercentage());
-            vTextures.append(ptr);
-            return res;
-        }
-        break;
-        case ptPreGarden:
-        {
-            res = QString("earthlike_%1.png").arg(getUid());
-            QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Pregarden,_texturePath+"/"+res, SSGX::dn(999999)));
-            ptr.data()->setSeaRatio(p.waterPercentage());
-            vTextures.append(ptr);
-            return res;
-        }
-        case ptHotHouse:
-            res = QString("hot_house_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-            break;
-        case ptGasGiant:
-            res = QString("gasgiant_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::GG,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-            break;
-        case ptDesert:
-            res = QString("desert_%1.png").arg(getUid());
-            zz = SSGX::d10();
-            if (zz > 8)
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::DesertG,_texturePath+"/"+res,
-                                                                                       SSGX::dn(999999),
-                                                                                       6,2.5,0.2,1.5)));
-            else if (zz  > 6)
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Desert,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
-            else if (zz  > 4)
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::ComplexDesert2,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
-            else
-                vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::ComplexDesert,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
-            return res;
-            break;
-        case ptFailedCore:
-            res = QString("failedcore_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-            break;
-        case ptRockball:
-            res = QString("rockball_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-            break;
-        case ptIceball:
-            res = QString("iceball_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-            break;
-        case ptChunk:
-            res = QString("chunk_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-            break;
-        default:
-            res = QString("chunk_%1.png").arg(getUid());
-            vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
-            return res;
-            break;
-        }
-    }
+    QString runGardenEarthlike(Planet& p, QString res);
+    QString runGarden(Planet& p, QString res);
+    QString runGlacier(QString res);
+    QString runPostGarden(Planet& p, QString res);
+    QString runPreGarden(QString res, Planet& p);
+    QString runHotHouse(QString res);
+    QString runGasGiant(QString res);
+    QString runDesert(QString res);
+    QString runFailedCore(QString res);
+    QString runRockball(QString res);
+    QString runIceball(QString res);
+    QString runChunk(QString res);
 
 signals:
     void exported(int idx);
