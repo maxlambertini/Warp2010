@@ -244,12 +244,14 @@ QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
     auto pt = p.planetType();
     if (pt == ptGarden || pt == ptGlacier ) {
         res = QString("clouds_%1.png").arg(getUid());
-        vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Clouds,_texturePath+"/"+res, SSGX::dn(999999))));
+        auto ptr = NoiseImageRunner::UseTextureBuilder("Cloud.OK.texjson", _texturePath+"/"+res);
+        vTextures.append(ptr);
         return res;
     }
     else {
         res = QString("f_clouds_%1.png").arg(getUid());
-        vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::FunkyClouds,_texturePath+"/"+res, SSGX::dn(999999))));
+        auto ptr = NoiseImageRunner::UseTextureBuilder("FunkyCloud.OK.texjson", _texturePath+"/"+res);
+        vTextures.append(ptr);
         return res;
     }
 
@@ -293,15 +295,20 @@ QString CelestiaExporter::runPreGarden(QString res, Planet& p)
 QString CelestiaExporter::runHotHouse(QString res)
 {
     res = QString("hot_house_%1.png").arg(getUid());
-    vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));
+    auto ptr = NoiseImageRunner::UseTextureBuilder("Hothouse.OK.texjson", _texturePath+"/"+res);
+    //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));
+    vTextures.append(ptr);
     return res;
 }
 
 QString CelestiaExporter::runGasGiant(QString res)
 {
     res = QString("gasgiant_%1.png").arg(getUid());
-    vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::GG,_texturePath+"/"+res, SSGX::dn(999999))));
+    auto ptr = NoiseImageRunner::UseTextureBuilder("GasGiantOK.texjson", _texturePath+"/"+res);
+    vTextures.append(ptr);
     return res;
+    //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::GG,_texturePath+"/"+res, SSGX::dn(999999))));
+    //return res;
 }
 
 QString CelestiaExporter::runDesert(QString res)
@@ -331,7 +338,8 @@ QString CelestiaExporter::runFailedCore(QString res)
 QString CelestiaExporter::runRockball(QString res)
 {
     res = QString("rockball_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder("alienpeaksvoronoi.texjson", _texturePath+"/"+res);
+    auto ptr = NoiseImageRunner::UseTextureBuilder("Chunk.OK.texjson", _texturePath+"/"+res);
+    //auto ptr = NoiseImageRunner::UseTextureBuilder("alienpeaksvoronoi.texjson", _texturePath+"/"+res);
     //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
     //ptr.data()->setSeaRatio(p.waterPercentage());
     vTextures.append(ptr);
@@ -341,15 +349,21 @@ QString CelestiaExporter::runRockball(QString res)
 
 QString CelestiaExporter::runIceball(QString res)
 {
-    res = QString("iceball_%1.png").arg(getUid());
-    vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));
+    res = QString("rockball_%1.png").arg(getUid());
+    auto ptr = NoiseImageRunner::UseTextureBuilder("Iceball.OK.texjson", _texturePath+"/"+res);
+    //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));
+    vTextures.append(ptr);
     return res;
 }
 
 QString CelestiaExporter::runChunk(QString res)
 {
     res = QString("chunk_%1.png").arg(getUid());
-    vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
+    auto ptr = NoiseImageRunner::UseTextureBuilder("Chunk.OK.texjson", _texturePath+"/"+res);
+    //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
+    //ptr.data()->setSeaRatio(p.waterPercentage());
+    vTextures.append(ptr);
+    //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
     return res;
 }
 
