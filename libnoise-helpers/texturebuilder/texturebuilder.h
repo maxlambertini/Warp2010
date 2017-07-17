@@ -241,7 +241,8 @@ public:
     void createTextureWorkflow(QString prefix = "Texture1",
                                bool bCreateImage = false,
                                QString backgroundImage = "",
-                               QString destImage = "");
+                               QString destImage = "",
+                               bool last = false);
 
 signals:
     void textureGenerationStarting();

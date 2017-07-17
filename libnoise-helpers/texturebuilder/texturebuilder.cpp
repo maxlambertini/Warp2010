@@ -41,11 +41,11 @@ TextureBuilder::TextureBuilder() :
     createTextureWorkflow("Starting",true,"","BaseImage");
     createTextureWorkflow("Layer1",false,"BaseImage","BaseImage");
     createTextureWorkflow("Layer2",false,"BaseImage","BaseImage");
-    createTextureWorkflow("EndLayer",false,"BaseImage","BaseImage");
+    createTextureWorkflow("EndLayer",false,"BaseImage","BaseImage",true);
 
 }
 
-void TextureBuilder::createTextureWorkflow(QString prefix, bool bCreateImage , QString backgroundImage , QString destImage)
+void TextureBuilder::createTextureWorkflow(QString prefix, bool bCreateImage , QString backgroundImage , QString destImage, bool last)
 {
     QStringList data; data << "Perlin" << "Billow" << "RidgedMulti" << "Voronoi";
     QSharedPointer<ModuleDescriptor> p(new ModuleDescriptor());
@@ -53,6 +53,17 @@ void TextureBuilder::createTextureWorkflow(QString prefix, bool bCreateImage , Q
     p.data()->setModuleType(data[SSGX::d1000() % 4]);
     p.data()->setupPropertiesToExport(p.data()->moduleType());
     p.data()->setEnableRandom(true);
+
+    if (last) {
+        p.data()->setFreq(1.2*SSGX::floatRand()+1.2);
+        p.data()->setLac(1.2*SSGX::floatRand()+1.2);
+        p.data()->setPers(0.2*SSGX::floatRand()+0.22);
+    } else {
+        p.data()->setFreq(3.2*SSGX::floatRand()+1.2);
+        p.data()->setLac(3.2*SSGX::floatRand()+1.2);
+        p.data()->setPers(0.2*SSGX::floatRand()+0.22);
+    }
+
     _modDesc.insert(p.data()->name(),p);
     QSharedPointer<HeightMapDescriptor> hmp(new HeightMapDescriptor());
     hmp.data()->setName(prefix+"_heightMap");
@@ -100,6 +111,38 @@ void TextureBuilder::createTextureWorkflow(QString prefix, bool bCreateImage , Q
         }
         auto c = ColorOps::randomHSLColor();
         rdp.data()->gradientInfo().append(GradientInfo(1.0,c.red(),c.green(),c.blue(),c.alpha()));
+    }
+    if (last) {
+        rdp.data()->setEnabledlight(true);
+        rdp.data()->setLightbrightness(2.0);
+        rdp.data()->setLightcontrast(1.4);
+        auto c =  rdp.data()->gradientInfo().count() / 3;
+        auto d = c+ SSGX::dn(c);
+        qDebug() << "last enabled. " << c << ", " << d;
+        for (auto h = 0; h < rdp.data()->gradientInfo().count(); ++h) {
+            if (h < d) {
+                auto t = rdp.data()->gradientInfo()[h];
+                auto newT = std::tuple<double,int,int,int,int>(
+                            std::get<0>(t),
+                            std::get<1>(t),
+                            std::get<2>(t),
+                            std::get<3>(t),
+                            255
+                            );
+                rdp.data()->gradientInfo()[h] = newT;
+            } else {
+                auto t = rdp.data()->gradientInfo()[h];
+                auto newT = std::tuple<double,int,int,int,int>(
+                            std::get<0>(t),
+                            std::get<1>(t),
+                            std::get<2>(t),
+                            std::get<3>(t),
+                            0
+                            );
+                rdp.data()->gradientInfo()[h] = newT;
+
+            }
+        }
     }
     rdp.data()->setBackgroundImage(backgroundImage);
     rdp.data()->setDestImage(destImage);
