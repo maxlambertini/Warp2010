@@ -66,7 +66,9 @@ namespace ColorOps {
     inline QMap<double, QColor> lightningGradient (int nSteps = 7,int nColorStep = 14,
                                                    const QColor& startColor = randomColor(),
                                                    int randomFactor = -1,
-                                                   bool randomAlpha = false)
+                                                   bool randomAlpha = false,
+                                                   int baseAlpha = 0,
+                                                   int devAlpha = 64)
     {
         QMap<double,QColor> colorMap;
         double dStart = -1.0;
@@ -88,7 +90,7 @@ namespace ColorOps {
                 theColor.setHsl(theColor.hslHue(),theColor.hslSaturation(), newLt);
             }
             if (randomAlpha)
-                theColor.setAlpha(32+SSGX::dn(192));
+                theColor.setAlpha(baseAlpha+SSGX::dn(devAlpha));
             dStart += dStep;
         }
         colorMap.insert(dStart,theColor);
@@ -98,7 +100,9 @@ namespace ColorOps {
     inline QMap<double, QColor> darkeningGradient (int nSteps = 7,int nColorStep = 14,
                                                    const QColor& startColor = randomColor(),
                                                    int randomFactor = -1,
-                                                   bool randomAlpha = false)
+                                                   bool randomAlpha = false,
+                                                   int baseAlpha = 0,
+                                                   int devAlpha = 64)
     {
         QMap<double,QColor> colorMap;
         double dStart = -1.0;
@@ -120,7 +124,7 @@ namespace ColorOps {
                 theColor.setHsl(theColor.hslHue(),theColor.hslSaturation(), newLt);
             }
             if (randomAlpha)
-                theColor.setAlpha(32+SSGX::dn(192));
+                theColor.setAlpha(baseAlpha+SSGX::dn(devAlpha));
             dStart += dStep;;
         }
         colorMap.insert(dStart,theColor);
@@ -128,13 +132,18 @@ namespace ColorOps {
     }
 
     inline QMap<double, QColor> randomGradient (int nSteps = 7, int nColorStep=14,
-                                                const QColor& startColor = randomColor())
+                                                const QColor& startColor = randomColor(),
+                                                bool randomAlpha = false,
+                                                int baseAlpha = 32,
+                                                int devAlpha = 96)
     {
         if (SSGX::d100() %2 == 0)
-            return darkeningGradient(nSteps, nColorStep, startColor);
+            return darkeningGradient(nSteps, nColorStep, startColor,-1, randomAlpha, baseAlpha, devAlpha);
         else
-            return lightningGradient(nSteps, nColorStep, startColor);
+            return lightningGradient(nSteps, nColorStep, startColor, -1,randomAlpha, baseAlpha, devAlpha);
     }
+
+
 
 }
 

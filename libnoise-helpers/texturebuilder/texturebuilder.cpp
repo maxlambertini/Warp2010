@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QString>
 #include <qcolorops.h>
 #include <QColor>
+#include "ssg_structures.h"
 
 TextureBuilder::TextureBuilder() :
     _outputFolder("."),
@@ -37,43 +38,74 @@ TextureBuilder::TextureBuilder() :
     _colorMap("image1")
 {
     _randomFactors.append(0.0);
+    createTextureWorkflow("Starting",true,"","BaseImage");
+    createTextureWorkflow("Layer1",false,"BaseImage","BaseImage");
+    createTextureWorkflow("Layer2",false,"BaseImage","BaseImage");
+    createTextureWorkflow("EndLayer",false,"BaseImage","BaseImage");
+
+}
+
+void TextureBuilder::createTextureWorkflow(QString prefix, bool bCreateImage , QString backgroundImage , QString destImage)
+{
+    QStringList data; data << "Perlin" << "Billow" << "RidgedMulti" << "Voronoi";
     QSharedPointer<ModuleDescriptor> p(new ModuleDescriptor());
-    p.data()->setName("Module1");
-    p.data()->setModuleType("Perlin");
+    p.data()->setName(prefix+"_Module");
+    p.data()->setModuleType(data[SSGX::d1000() % 4]);
     p.data()->setupPropertiesToExport(p.data()->moduleType());
+    p.data()->setEnableRandom(true);
     _modDesc.insert(p.data()->name(),p);
     QSharedPointer<HeightMapDescriptor> hmp(new HeightMapDescriptor());
-    hmp.data()->setName("heightMap");
+    hmp.data()->setName(prefix+"_heightMap");
     _hmDesc.insert(hmp.data()->name(), hmp);
-    QSharedPointer<ImageDescriptor> imp(new ImageDescriptor());
-    imp.data()->setName("image1");
-    __imDesc.insert(imp.data()->name(),imp);
+
+    if (bCreateImage) {
+        QSharedPointer<ImageDescriptor> imp(new ImageDescriptor());
+        imp.data()->setName(destImage);
+        __imDesc.insert(imp.data()->name(),imp);
+    }
+
     QSharedPointer<NoiseMapBuilderDescriptor> nmbd(new NoiseMapBuilderDescriptor());
-    nmbd.data()->setName("noiseMapBuilder1");
+    nmbd.data()->setName(prefix+"_noiseMapBuilder1");
     nmbd.data()->setSourceModule(p.data()->name());
     nmbd.data()->setSize(1024,512);
     nmbd.data()->setDest(hmp.data()->name());
     _nmbDesc.insert(nmbd.data()->name(),nmbd);
     QSharedPointer<RendererDescriptor> rdp(new RendererDescriptor());
-    rdp.data()->setName("renderer0001");
-    rdp.data()->setDestImage(imp.data()->name());
+    rdp.data()->setName(prefix+"_renderer");
     rdp.data()->setHeightmap(hmp.data()->name());
     rdp.data()->gradientInfo().clear();
-    auto rndGradient = ColorOps::randomGradient(7,20, ColorOps::randomHSLColor());
-    for (auto i = rndGradient.begin(); i != rndGradient.end(); ++i) {
-        rdp.data()->gradientInfo().append(GradientInfo(
-                    i.key(),
-                    i.value().red(),
-                    i.value().green(),
-                    i.value().blue(),
-                    i.value().alpha())
-                    );
+    if (backgroundImage == "") {
+        auto rndGradient = ColorOps::randomGradient(12,20, ColorOps::randomHSLColor());
+        for (auto i = rndGradient.begin(); i != rndGradient.end(); ++i) {
+            rdp.data()->gradientInfo().append(GradientInfo(
+                        i.key(),
+                        i.value().red(),
+                        i.value().green(),
+                        i.value().blue(),
+                        i.value().alpha())
+                        );
+        }
+        auto c = ColorOps::randomHSLColor();
+        rdp.data()->gradientInfo().append(GradientInfo(1.0,c.red(),c.green(),c.blue(),c.alpha()));
+    } else {
+        auto rndGradient = ColorOps::randomGradient(12,20, ColorOps::randomHSLColor(),true,0,128);
+        for (auto i = rndGradient.begin(); i != rndGradient.end(); ++i) {
+            rdp.data()->gradientInfo().append(GradientInfo(
+                        i.key(),
+                        i.value().red(),
+                        i.value().green(),
+                        i.value().blue(),
+                        i.value().alpha())
+                        );
+        }
+        auto c = ColorOps::randomHSLColor();
+        rdp.data()->gradientInfo().append(GradientInfo(1.0,c.red(),c.green(),c.blue(),c.alpha()));
     }
-    auto c = ColorOps::randomHSLColor();
-    rdp.data()->gradientInfo().append(GradientInfo(1.0,c.red(),c.green(),c.blue(),c.alpha()));
-    _rndDesc.insert(rdp.data()->name(),rdp);
-
+    rdp.data()->setBackgroundImage(backgroundImage);
+    rdp.data()->setDestImage(destImage);
+    this->addRendererDescriptor(rdp.data()->name(),rdp);
 }
+
 
 void TextureBuilder::fromJson(const QJsonObject &json) {
 

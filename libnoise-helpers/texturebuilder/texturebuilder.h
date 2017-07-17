@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <texturebuilder/rendererdescriptor.h>
 #include <QVector>
 #include <QStringList>
+#include <QString>
 #include "ssg_structures.h"
 
 typedef QMap<QString, QSharedPointer<HeightMapDescriptor>> MapHeightMapDescriptors;
@@ -236,6 +237,11 @@ public:
     const QString& destinationImagePath() { return _destinationImagePath; }
     void setDestinationImagePath(const QString& img) { _destinationImagePath = img; }
 
+
+    void createTextureWorkflow(QString prefix = "Texture1",
+                               bool bCreateImage = false,
+                               QString backgroundImage = "",
+                               QString destImage = "");
 
 signals:
     void textureGenerationStarting();
