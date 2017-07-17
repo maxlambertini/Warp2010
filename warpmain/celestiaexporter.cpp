@@ -171,7 +171,13 @@ QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QSt
     // qDebug() << "step 4";
 
 
-    if ( (int)planet.atmosphere() <= 3) {
+    if ( (int)planet.atmosphere() <= 3 && (
+             planet.planetType() == ptDesert ||
+             planet.planetType() == ptGarden ||
+             planet.planetType() == ptPreGarden ||
+             planet.planetType() == ptPostGarden ||
+             planet.planetType() == ptGlacier ||
+             planet.planetType() == ptFailedCore )) {
 
         int type = (int)planet.atmosphere();
         if (type < 1) type = 1;
@@ -304,7 +310,7 @@ QString CelestiaExporter::runHotHouse(QString res)
 QString CelestiaExporter::runGasGiant(QString res)
 {
     res = QString("gasgiant_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder("GasGiantOK.texjson", _texturePath+"/"+res);
+    auto ptr = NoiseImageRunner::UseTextureBuilder("GasGiantOriginalOK.texjson", _texturePath+"/"+res);
     vTextures.append(ptr);
     return res;
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::GG,_texturePath+"/"+res, SSGX::dn(999999))));

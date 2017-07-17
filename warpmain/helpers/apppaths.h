@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QtCore/QString>
 #include <QtCore/QDir>
 #include <QtCore>
+#include <QStringList>
 
 const int FILE_ITEMS = 7;
 const int DIR_ITEMS = 2;
@@ -75,6 +76,15 @@ public:
         return pluginPath;
     }
 
+    inline static void checkOrCreate(QString path) {
+        QDir dir(path);
+        if (!dir.exists(path))
+            dir.mkpath(path);
+    }
+
+
+    static QString provideTexture(QString texturePath);
+
     inline static QString preferencesFile() {
         return appDir()+"/warp.preferences";
     }
@@ -83,7 +93,52 @@ public:
         return appDir()+"/aspectlist.aspect";
     }
 
+    inline static QString textureDir() {
+        return appDir()+"/jstexture";
+    }
 
+    inline static QString rockballTexDir() {
+        return appDir()+"/jstexture/rockball";
+    }
+
+    inline static QString hotHouseTexDir() {
+        return appDir()+"/jstexture/hothouse";
+    }
+
+    inline static QString gardenTexDir() {
+        return appDir()+"/jstexture/garden";
+    }
+
+    inline static QString pregardenTexDir() {
+        return appDir()+"/jstexture/pregarden";
+    }
+
+    inline static QString postgardenTexDir() {
+        return appDir()+"/jstexture/postgarden";
+    }
+
+    inline static QString glacierTexDir() {
+        return appDir()+"/jstexture/glacier";
+    }
+
+    inline static QString gasgiantTexDir() {
+        return appDir()+"/jstexture/gasgiant";
+    }
+
+    inline static QString iceballTexDir() {
+        return appDir()+"/jstexture/iceball";
+    }
+
+    inline static QString failedCoreTexDir() {
+        return appDir()+"/jstexture/failedcore";
+    }
+    inline static QString chunkTexDir() {
+        return appDir()+"/jstexture/chunk";
+    }
+
+    inline static QString desertTexDir() {
+        return appDir()+"/jstexture/desert";
+    }
 };
 
 #endif // APPPATHS_H

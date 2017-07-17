@@ -57,7 +57,20 @@ void AppPaths::checkForDirectoriesAndFiles() {
         if (!dir.exists()) {
             dir.mkpath(sPath);
         }
+        checkOrCreate(rockballTexDir());
+        checkOrCreate(hotHouseTexDir());
+        checkOrCreate(gardenTexDir());
+        checkOrCreate(glacierTexDir());
+        checkOrCreate(postgardenTexDir());
+        checkOrCreate(pregardenTexDir());
+        checkOrCreate(iceballTexDir());
+        checkOrCreate(gasgiantTexDir());
+        checkOrCreate(failedCoreTexDir());
+        checkOrCreate(iceballTexDir());
+        checkOrCreate(chunkTexDir());
+        checkOrCreate(desertTexDir());
     }
+
     //poi,  creiamo i files
     for (int h = 0; h < FILE_ITEMS; h++) {
         QFile inFile(":/"+itemsToCheck[h]);
@@ -81,4 +94,17 @@ void AppPaths::checkForDirectoriesAndFiles() {
             }
         }
     }
+}
+
+QString AppPaths::provideTexture(QString texturePath) {
+    QDir myPath(texturePath);
+    QStringList filters; filters << "*.texjson";
+    myPath.setNameFilters(filters);
+    QStringList entries = myPath.entryList();
+    QString res;
+    if (entries.count() > 0) {
+        auto h = rand() % entries.count();
+        res = entries[h];
+    }
+    return res;
 }
