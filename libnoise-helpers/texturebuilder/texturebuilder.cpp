@@ -38,9 +38,9 @@ TextureBuilder::TextureBuilder() :
     _colorMap("image1")
 {
     _randomFactors.append(0.0);
-    createTextureWorkflow("Starting",true,"","BaseImage");
-    createTextureWorkflow("Layer1",false,"BaseImage","BaseImage");
-    createTextureWorkflow("Layer2",false,"BaseImage","BaseImage");
+    createTextureWorkflow("BeginLayer",true,"","BaseImage");
+    //createTextureWorkflow("Layer1",false,"BaseImage","BaseImage");
+    //createTextureWorkflow("Layer2",false,"BaseImage","BaseImage");
     createTextureWorkflow("EndLayer",false,"BaseImage","BaseImage",true);
 
 }
@@ -53,13 +53,18 @@ void TextureBuilder::createTextureWorkflow(QString prefix, bool bCreateImage , Q
     p.data()->setModuleType(data[SSGX::d1000() % 4]);
     p.data()->setupPropertiesToExport(p.data()->moduleType());
     p.data()->setEnableRandom(true);
+    p.data()->setEnabledist(true);
 
     if (last) {
-        p.data()->setFreq(1.2*SSGX::floatRand()+1.2);
-        p.data()->setLac(1.2*SSGX::floatRand()+1.2);
-        p.data()->setPers(0.2*SSGX::floatRand()+0.22);
+        p.data()->moduleType() != "Voronoi" ?
+                    p.data()->setFreq(1.9*SSGX::floatRand()+1.2) :
+                    p.data()->setFreq(5*SSGX::floatRand()+3.2) ;
+        p.data()->setLac(1.9*SSGX::floatRand()+1.2);
+        p.data()->setPers(0.25*SSGX::floatRand()+0.22);
     } else {
-        p.data()->setFreq(3.2*SSGX::floatRand()+1.2);
+        p.data()->moduleType() != "Voronoi" ?
+            p.data()->setFreq(3.2*SSGX::floatRand()+1.2) :
+            p.data()->setFreq(10.2*SSGX::floatRand()+5.2);
         p.data()->setLac(3.2*SSGX::floatRand()+1.2);
         p.data()->setPers(0.2*SSGX::floatRand()+0.22);
     }
