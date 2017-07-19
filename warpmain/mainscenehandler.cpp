@@ -242,7 +242,8 @@ void SceneMediator::drawToGraphViz(QString &fileName)
         int h = 0;
         foreach (p1, _starList->stars()) {
             if (p1->neighbors().count() > 0 && p1->path().count() > 0)
-                output << h <<  "[label=\"" << p1->starName.replace(" ","\\n")  << "\" pos=\"" << p1->x() << "," << p1->y() << "\"];\n";
+                output << h <<  "[label=\"" << p1->starName.replace(" ","\\n")  << "\" fontsize=\"" <<
+                         7+p1->neighbors().count() <<"\"  pos=\"" << p1->x() << "," << p1->y() << "\"];\n";
             h++;
         }
 
