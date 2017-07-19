@@ -230,31 +230,47 @@ void SceneMediator::drawToGraphViz(QString &fileName)
     QSharedPointer<Star> star;
     QSharedPointer<Star> p1,p2;
 
+
     QFile file(fileName);
     if (file.open(QFile::WriteOnly | QFile::Truncate)) {
         QTextStream output(&file);
 
-        output << "graph map { \noverlap=false;\nsplines=true;\nranksep=1.5;\n";
+        output << "graph { \noverlap=false;\nsplines=true;\nranksep=1.5;\n";
+        output << "graph [charset=latin1, overlap_scaling=3, pack=90, label=\"StarMap\"]\n";
+        output << "node [label=\"\\N\", width=\"0.001\", height=\"0.001\", margin=\"0.001\"];\n";
+
+        int h = 0;
+        foreach (p1, _starList->stars()) {
+            if (p1->neighbors().count() > 0 && p1->path().count() > 0)
+                output << h <<  "[label=\"" << p1->starName.replace(" ","\\n")  << "\" pos=\"" << p1->x() << "," << p1->y() << "\"];\n";
+            h++;
+        }
 
         foreach (star, _starList->stars())
             star->setVisited(false);
 
+        int nCount = 0;
+        QStringList links;
         foreach (star, _starList->stars())
         {
-            int pathCount = star->path().count();
-            if (pathCount > 1) {
-                for (int w = 1; w < pathCount; w++)
-                {
-                    p1 = _starList->stars().at(star->path().at(w-1));
-                    p2 = _starList->stars().at(star->path().at(w));
-                    if (!p1->visited() || !p2->visited())
-                    {
-                        p1->visit();
-                        p2->visit();
-                        output << "\"" << p1->starName << "\" -- \"" << p2->starName << "\";\n";
+            int iNeighbor,i1,i2;
+            if (star->path().count() > 0 ) {
+                foreach (iNeighbor, star->neighbors()) {
+                    if (iNeighbor > nCount) {
+                        i1 = nCount;
+                        i2 = iNeighbor;
+                    } else {
+                        i1 = iNeighbor;
+                        i2 = nCount;
+                    }
+                    QString key = QString("%1_%2").arg(i1,i2);
+                    if (!links.contains(key)) {
+                        links.append(key);
+                        output << i1 << " -- " << i2 << ";\n";
                     }
                 }
             }
+            nCount++;
         }
         output << "\n}\n";
     }
