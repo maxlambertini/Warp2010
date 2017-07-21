@@ -34,7 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "starwidgetitem.h"
 #include "stargraphicsitem.h"
 #include "dialogs/createtraderoutedialog.h"
-#include "mainscenehandler.h"
+#include "scenemediator.h"
 #include "solarsystemcreator.h"
 #include "dialogs/traderoutedialog.h"
 #include "traderoutewidgetitem.h"

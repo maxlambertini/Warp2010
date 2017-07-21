@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 ############################################################################
 */
 
-#include "mainscenehandler.h"
+#include "scenemediator.h"
 #include "stargraphicsitem.h"
 #include "starhexgraphicsitem.h"
 #include <QtSvg>
@@ -34,6 +34,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "starlist.h"
 #include "gfx_items/arcgraphicsitem.h"
 #include "helpers/parsecstarlisthelper.h"
+#include "math.h"
+#include <QString>
 
 QBrush starBrushes[8] =
 {
@@ -75,27 +77,11 @@ void SceneMediator::drawTradeRoutes()
 
         QSharedPointer<TradeRoute> tr;
         int i = 0;
-        int dx, dy;
-        int nx, ny;
 
         QFont fontDistance = Preferences::prefsPtr()->fontBody();
         if (_tradeRoutes.count() > 0) {
             foreach (tr, _tradeRoutes)
             {
-                nx = 4; ny = 4;
-                nx = (i / 4)+1;
-                ny = i % 4;
-
-                switch (ny) {
-                    case 0:
-                        dx = 4*nx; dy = 4*nx; break;
-                    case 1:
-                        dx = -4*nx; dy = 4*nx; break;
-                    case 2:
-                        dx = 4*nx; dy = -4*nx;break;
-                    case 3:
-                        dx = -4*nx; dy = -4*nx; break;
-                }
 
                 QPen penLine(tr->routeColor());
                 penLine.setWidthF(9);
@@ -241,8 +227,16 @@ void SceneMediator::drawToGraphViz(QString &fileName)
 
         int h = 0;
         foreach (p1, _starList->stars()) {
-            if (p1->neighbors().count() > 0 && p1->path().count() > 0)
-                output << h <<  "[label=\"" << p1->starName.replace(" ","\\n")  << "\" pos=\"" << p1->x() << "," << p1->y() << "\"];\n";
+            QString name = p1.data()->starName;
+            name.replace("   ","\n");
+            name.replace("  ","\n");
+            name.replace(" ","\n");
+            if (p1->neighbors().count() > 0 && p1->path().count() > 0) {
+                output << h <<  "[label=\"" << name //<< p1->starName().replace(" ","\n")
+                       << "\" group=\"" <<  1+(p1->path().count() % 3)
+                       << "\" fontsize=\"" << 8+ (int)( pow( (double)p1->neighbors().count(),1.3))
+                       << "\" pos=\"" << p1->x()*100.0 << "," << p1->y()*100.0 << "\"];\n";
+            }
             h++;
         }
 
@@ -353,7 +347,6 @@ void SceneMediator::drawToGML(QString &fileName)
 
                 //QStringList nameList = star->starName.split(" ");
                 int nWidth = 16 * 10;  // * findMaxLen(nameList);
-                int nHeight = nameList.count()*25;
                 if (star->isReference()) {
                     nFontSize = 48;
                     nWidth = nWidth*3;
@@ -920,28 +913,13 @@ void SceneMediator::drawTradeRoutesOnHexMap()
             _parsecStarList[h].leave();
         QSharedPointer<TradeRoute> tr;
         int i = 0;
-        int dx, dy;
-        int nx, ny;
-
         QFont fontDistance = Preferences::prefsPtr()->fontBody();
+
         if (_tradeRoutes.count() > 0) {
             foreach (tr, _tradeRoutes)
             {
                 // qDebug() << "Exploring " << tr->routeName();
-                nx = 4; ny = 4;
-                nx = (i / 4)+1;
-                ny = i % 4;
 
-                switch (ny) {
-                    case 0:
-                        dx = 4*nx; dy = 4*nx; break;
-                    case 1:
-                        dx = -4*nx; dy = 4*nx; break;
-                    case 2:
-                        dx = 4*nx; dy = -4*nx;break;
-                    case 3:
-                        dx = -4*nx; dy = -4*nx; break;
-                }
 
                 QPen penLine(tr->routeColor());
                 penLine.setWidthF(9);
@@ -1028,8 +1006,6 @@ void SceneMediator::drawHexMap()
 
     _travellerSectors.clear();
 
-    double l_rect,t_rect,r_rect,b_rect;
-
     qDebug() << "outputting dx" << d_x << ", dy" << d_y << ", hexSize" << _hexSize;
     for (int dy =d_y-1; dy >=0;  dy-- ) {
         for (int dx = 0; dx < d_x; dx++) {
@@ -1054,8 +1030,6 @@ void SceneMediator::drawHexMap()
                         rectOuter2 =  rectTotal.adjusted(0,0,
                                          -rect99.width()/4, -rect99.height()/2);
                         _travellerSectors.append(SectorRectHolder(rectOuter, rectTotal,dx,dy,true));
-                        QGraphicsRectItem *item_rect = new QGraphicsRectItem(rectOuter2);
-                        //_scene->addItem(item_rect);
                     }
 
                     if (_bDrawHexOnHexmap)

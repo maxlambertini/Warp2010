@@ -30,7 +30,6 @@ SOURCES += main.cpp \
     starwidgetitem.cpp \
     stargraphicsitem.cpp \
     traderoute.cpp \
-    mainscenehandler.cpp \
     solarsystemcreator.cpp \
     traderoutemediator.cpp \
     qtcolorpicker.cpp \
@@ -89,7 +88,8 @@ SOURCES += main.cpp \
     dialogs/noisemapplaygrounddialog.cpp \
     helpers/noiseimagerunner.cpp \
     exporters/starsectorjsonexporter.cpp \
-    widgets/actionbutton.cpp
+    widgets/actionbutton.cpp \
+    scenemediator.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -100,7 +100,6 @@ HEADERS += coordinates.h \
     starwidgetitem.h \
     stargraphicsitem.h \
     traderoute.h \
-    mainscenehandler.h \
     ssg_structures.h \
     solarsystemcreator.h \
     traderoutemediator.h \
@@ -159,7 +158,8 @@ HEADERS += coordinates.h \
     dialogs/noisemapplaygrounddialog.h \
     helpers/noiseimagerunner.h \
     exporters/starsectorjsonexporter.h \
-    widgets/actionbutton.h
+    widgets/actionbutton.h \
+    scenemediator.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
