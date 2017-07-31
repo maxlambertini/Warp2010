@@ -98,6 +98,10 @@ private:
 
     SceneMediatorDrawMode::DrawMode _drawMode;
 
+    bool _exportDirectPathOnly = false;
+    bool _exportGardenPathOnly = false;
+
+
 public:
 
     void drawToGraphViz(QString& fileName);
@@ -272,6 +276,11 @@ public:
 
         };
     }
+
+    void setExportDirectPathOnly (bool b = false) { _exportDirectPathOnly = b; }
+    void setExportGardenPathOnly (bool b = false) { _exportGardenPathOnly = b; }
+
+
 
 };
 

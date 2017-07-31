@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "graphmlexporter.h"
 #include "star.h"
 #include "starlist.h"
+#include <QFont>
+#include <QFontMetrics>
 
 GraphMLExporter::GraphMLExporter()
 {
@@ -89,9 +91,27 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
     int nFontSize = 15;
     QVector<int> lstInMap;
     QSharedPointer<Star>  star;
-    foreach (star, _starList->stars()) {
-        if (star->isReference() || star->path().count() > 1) {
+    for (int w = 0; w < _starList->stars().count(); ++w) {
+        star = _starList->stars().at(w);
+        //foreach (star, _starList->stars()) {
+        if (star->isReference() || star->path().count() > 1 && (_starsInTradeRoutes.contains(w) || !_exportGardenPathOnly)) {
 
+            QString name = star.data()->starName;
+            QString n, nRes("");
+            QStringList lstRes;
+            QStringList nameList = name.split(QChar(' '),QString::SkipEmptyParts);
+            foreach (n, nameList) {
+                if (n.length() < 10)
+                    lstRes << n;
+                else {
+                    auto x = n.length() / 2;
+                    lstRes << n.mid(0,x);
+                    lstRes << n.mid(x);
+                }
+            }
+            name = lstRes.join("\n");
+
+            /*
             QStringList nameList;
             int l = star->starName.length();
             int rw = l / 10;
@@ -100,16 +120,32 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
                 nameList.append(star->starName.mid(hx*10,10));
             }
             nameList.append(star->starName.mid(rw*10,rm));
+            */
+
+            int baseFontSize = 12+star->neighbors().count()*2;
+            if (star->isReference())
+                baseFontSize = 48;
+
+            QFont font("Arial",baseFontSize);
+            font.setStyleHint(QFont::SansSerif);
+            QFontMetrics fm(font);
+            int textWidth =  fm.width(name);
+            int textHeight =  fm.width(name);
+
+            int baseSize = textHeight > textWidth ? textHeight : textWidth;
+            baseSize = (int)((double)baseSize / 1.3 );
 
             //QStringList nameList = star->starName.split(" ");
-            int nWidth = 16 * 10;  // * findMaxLen(nameList);
-            int nHeight = nameList.count()*25;
-            if (star->isReference()) {
-                nFontSize = 48;
-                nWidth = nWidth*3;
-            }
-            else
-                nFontSize = 18;
+            //int nWidth = 16 * 10;  // * findMaxLen(nameList);
+            //int nHeight = nameList.count()*25;
+            //if (star->isReference()) {
+            //    nFontSize = 48;
+            //    nWidth = nWidth*3;
+            //}
+            //else
+            //    nFontSize = 18;
+
+
 
             QString sColor = "#EEEEEE";
             QString sFontColor = "#000000";
@@ -145,6 +181,7 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
             int hab = star->habitabilityIndex();
             if (hab >0) {
                 QString sBorderColor = "#C07000"; // 1;
+                /*
                 if (star->habitabilityIndex()> 0)
                     sBorderColor = "#30FF30"; // 1;
                 if (star->habitabilityIndex()> 1)
@@ -153,9 +190,15 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
                     sBorderColor = "#00FFFF"; // 1;
                 if (star->habitabilityIndex()> 4)
                     sBorderColor = "#0000FF"; // 1;
+                */
+            }
+            int nWidth = 4;
+            if (star->hasGarden()) {
+                sBorderColor= "#4040FF";
+                nWidth = 12;
             }
             lstInMap.append(nCount);
-            this->fillNode(nCount,nWidth,nWidth,sBorderColor,4,18,"#000000",sColor);
+            this->fillNode(nCount,baseSize,baseSize,sBorderColor,nWidth,baseFontSize,"#000000",sColor,name);
             star->setVisited(false);
         }
         nCount++;
@@ -173,11 +216,14 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
 
     qDebug("Calc edges");
     int myWidth = 0;
-    foreach (star, _starList->stars())
-    {
+
+    //foreach (star, _starList->stars())
+    for (int w = 0; w < _starList->stars().count(); ++w) {
+        star = _starList->stars().at(w);
+        //foreach (star, _starList->stars()) {
         int pathCount = star->path().count();
         int sPath = 15;
-        if (pathCount > 1) {
+        if (pathCount > 1 && (_starsInTradeRoutes.contains(w) || !_exportGardenPathOnly) ) {
             for (int w = 1; w < pathCount; w++)
             {
                 int myPath = sPath + 1 - w;
@@ -208,27 +254,33 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
         }
     }
 
-    foreach (star, _starList->stars()) {
-        int iNeighbor;
-        foreach (iNeighbor, star->neighbors()) {
-            if (iNeighbor > nCount) {
-                i1 = nCount;
-                i2 = iNeighbor;
-            } else {
-                i1 = iNeighbor;
-                i2 = nCount;
+    //if (true) {
+    if (!_exportDirectPathOnly) {
+        for (int w = 0; w < _starList->stars().count(); ++w) {
+            star = _starList->stars().at(w);
+            //foreach (star, _starList->stars()) {
+            int iNeighbor;
+            if (_starsInTradeRoutes.contains(w) || !_exportGardenPathOnly)  {
+                foreach (iNeighbor, star->neighbors()) {
+                    if (iNeighbor > nCount) {
+                        i1 = nCount;
+                        i2 = iNeighbor;
+                    } else {
+                        i1 = iNeighbor;
+                        i2 = nCount;
+                    }
+                    QString key = QString("%1_%2").arg(i1,i2);
+                    if (!links.contains(key)) {
+                        links.append(key);
+                        p1 = _starList->stars().at(i1);
+                        p2 = _starList->stars().at(i2);
+                        if (lstInMap.contains(i1) && lstInMap.contains(i2))
+                            this->fillEdge2(++nEdge, i1,i2,"#808080",4,12);
+                    }
+                }
             }
-            QString key = QString("%1_%2").arg(i1,i2);
-            if (!links.contains(key)) {
-                links.append(key);
-                p1 = _starList->stars().at(i1);
-                p2 = _starList->stars().at(i2);
-                if (lstInMap.contains(i1) && lstInMap.contains(i2))
-                    this->fillEdge2(++nEdge, i1,i2,"#808080",4,12);
-            }
+            nCount++;
         }
-
-        nCount++;
     }
 
     QString allEdges = this->_edges.join("\n");
@@ -281,9 +333,9 @@ void GraphMLExporter::fillEdge2(int eID, int i1, int i2, const QString& lineColo
     _edges2.append(res);
 }
 
-void GraphMLExporter::fillNode(int i1,int width, int height, const QString& borderColor,
+void GraphMLExporter::fillNode(int i1, int width, int height, const QString& borderColor,
                                int borderWidth, int fontSize, const QString& textColor,
-                               const QString& fillColor) {
+                               const QString& fillColor, const QString &nodeName) {
     Star *s1 = this->_starList->stars().at(i1).data();
     QString res = QString(_nodeTemplate);
     res
@@ -297,6 +349,6 @@ void GraphMLExporter::fillNode(int i1,int width, int height, const QString& bord
             .replace("[FONT_SIZE]", QString::number(fontSize))
             .replace("[TEXT_COLOR]", textColor)
             .replace("[FILL_COLOR]", fillColor)
-            .replace("[LABEL]", s1->starName);
+            .replace("[LABEL]", nodeName);
     this->_nodes.append(res);
 }

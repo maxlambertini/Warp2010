@@ -64,6 +64,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <noise/noise.h>
 #include <noiseutils.h>
 #include <exporters/starsectorjsonexporter.h>
+#include <dialogs/sectorexportoptionsdialog.h>
 
 void WarpMainWindowForm::on_actionLoad_Sector_triggered()
 {
@@ -483,10 +484,25 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
     if (!fileName.isEmpty() && !fileName.isNull()){
         if (fileName.endsWith(".gml"))
             _sceneMediator->drawToGML(fileName);
-        if (fileName.endsWith(".graphml"))
+        if (fileName.endsWith(".graphml")) {
+            SectorExportOptionsDialog dlg(this);
+            if (dlg.exec() == QDialog::Accepted) {
+                bool b,b1;
+                b = dlg.directRoutesOnly();
+                b1 = dlg.gardenRoutesOnly();
+                _sceneMediator->setExportGardenPathOnly(b1);
+                _sceneMediator->setExportDirectPathOnly(b);
+            }
             _sceneMediator->drawToGraphML(fileName);
-        if (fileName.endsWith(".dot"))
+        }
+        if (fileName.endsWith(".dot")) {
+            SectorExportOptionsDialog dlg(this);
+            if (dlg.exec() == QDialog::Accepted) {
+                _sceneMediator->setExportDirectPathOnly(dlg.directRoutesOnly());
+                _sceneMediator->setExportGardenPathOnly(dlg.gardenRoutesOnly());
+            }
             _sceneMediator->drawToGraphViz(fileName);
+        }
         if (fileName.endsWith(".stc")) {
             if (this->pCexp.data() != nullptr)
                 this->pCexp.clear();

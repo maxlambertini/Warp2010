@@ -89,7 +89,8 @@ SOURCES += main.cpp \
     helpers/noiseimagerunner.cpp \
     exporters/starsectorjsonexporter.cpp \
     widgets/actionbutton.cpp \
-    scenemediator.cpp
+    scenemediator.cpp \
+    dialogs/sectorexportoptionsdialog.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -159,7 +160,8 @@ HEADERS += coordinates.h \
     helpers/noiseimagerunner.h \
     exporters/starsectorjsonexporter.h \
     widgets/actionbutton.h \
-    scenemediator.h
+    scenemediator.h \
+    dialogs/sectorexportoptionsdialog.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
