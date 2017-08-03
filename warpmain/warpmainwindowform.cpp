@@ -212,6 +212,10 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
      btnGrp->addButton(ui->btn_Solar_System_View);
      //btnGrp->addButton(ui->btn_Diaspora_Cluster_View);
      this->on_btn_Star_Sector_View_clicked();
+
+     new QShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab  ),this, SLOT(on_control_tab_switch()));
+
+
  }
 
 WarpMainWindowForm::~WarpMainWindowForm()
@@ -1119,4 +1123,15 @@ void WarpMainWindowForm::on_btn_actionCreate_a_Solar_System_for_all_stars_clicke
 void WarpMainWindowForm::on_actionCreate_a_Solar_System_for_all_stars_triggered()
 {
     on_action_SolarSystemForAllStars_triggered();
+}
+
+
+void WarpMainWindowForm::on_control_tab_switch() {
+    if (!ui->menuSolar_System_Operations->isEnabled()) {
+        this->on_btn_Solar_System_View_clicked();
+        ui->btn_Solar_System_View->setChecked(true);
+    } else {
+        this->on_btn_Star_Sector_View_clicked();
+        ui->btn_Star_Sector_View->setChecked(true);
+    }
 }

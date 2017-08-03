@@ -256,6 +256,9 @@ private slots:
     void on_btn_action_Clear_Star_Sector_Data_clicked();
     void on_btn_actionCreate_a_Solar_System_for_all_stars_clicked();
     void on_actionCreate_a_Solar_System_for_all_stars_triggered();
+
+    //keycodes
+    void on_control_tab_switch();
 };
 
 #endif // WARPMAINWINDOWFORM_H

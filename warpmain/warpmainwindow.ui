@@ -1353,7 +1353,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <string>&amp;Load Sector</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+L</string>
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionSave_Sector">
