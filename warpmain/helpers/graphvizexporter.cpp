@@ -32,7 +32,9 @@ void GraphVizExporter::createGraphVizDoc(QString& filename) {
         }
         iMaxNeighbor += 2;
         int sz;
-        foreach (ps, this->_sceneMediator->parsecStarList() ) {
+        for (int w = 0; w < _sceneMediator->parsecStarList().count(); ++w) {
+            ps = _sceneMediator->parsecStarList().at(w);
+        //foreach (ps, this->_sceneMediator->parsecStarList() ) {
         //foreach (p1, _starList->stars()) {
             p1 = ps.star();
             auto pt = this->_sceneMediator->pointFromParsecStar(ps);
@@ -51,12 +53,12 @@ void GraphVizExporter::createGraphVizDoc(QString& filename) {
             }
             name = lstRes.join("\\n");
 
-            if (p1->neighbors().count() > 0 && p1->path().count() > 0) {
+            if (p1->neighbors().count() > 0 && p1->path().count() > 0 && (_starsInTradeRoutes.contains(w) || !_exportGardenPathOnly)) {
                 if (h != 0)
                     sz = 8+ (int)( pow( (double)p1->neighbors().count(),1.3));
                 else
                     sz = 8+ (int)( pow( (double)iMaxNeighbor,1.3));
-                output << h <<  "[label=\"" << name //<< p1->starName().replace(" ","\n")
+                output << h <<  " [label=\"" << name //<< p1->starName().replace(" ","\n")
                        << "\" group=\"" <<  1+(p1->path().count() % 3)
                        << "\" fontsize=\"" << sz
                        << "\" pos=\"" << pt.x() << "," << pt.y() << "\"];\n";
@@ -69,10 +71,12 @@ void GraphVizExporter::createGraphVizDoc(QString& filename) {
         int nCount = 0;
         QStringList links;
 
-        foreach (star, _starList->stars())
-        {
+        //foreach (star, _starList->stars())
+        //{
+        for (int w = 0; w < _starList->stars().count(); ++w) {
+            star = _starList->stars().at(w);
             int iNeighbor,i1,i2, ia,ib;
-            if (star->path().count() > 1 ) {
+            if (star->path().count() > 1 && (_starsInTradeRoutes.contains(w) || !_exportGardenPathOnly)) {
                 if (!_exportDirectPathOnly) {
                     foreach (iNeighbor, star->neighbors()) {
                         if (iNeighbor > nCount) {

@@ -163,7 +163,9 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
 
      agViews = new QActionGroup(this);
      agViews->addAction(ui->action_Star_Sector_View);
+     //ui->action_Star_Sector_View->setShortcut(tr("Ctrl+1"));
      agViews->addAction(ui->action_Solar_System_View);
+     //ui->action_Solar_System_View->setShortcut(tr("Ctrl+2"));
      agViews->addAction(ui->action_Diaspora_Cluster_View);
      ui->action_Star_Sector_View->setChecked(true);
 

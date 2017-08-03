@@ -1267,7 +1267,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFileSector">
@@ -1337,6 +1337,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>&amp;New Sector</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
    <property name="visible">
     <bool>true</bool>
    </property>
@@ -1349,6 +1352,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>&amp;Load Sector</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
   </action>
   <action name="actionSave_Sector">
    <property name="icon">
@@ -1357,6 +1363,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>&amp;Save Sector</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionPrint_Sector_Map">
@@ -1394,6 +1403,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>&amp;Export Map to image</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
   </action>
   <action name="action_ExportSolarSystemToImage">
    <property name="text">
@@ -1408,6 +1420,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>E&amp;xit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
   </action>
   <action name="actionZoomIn">
    <property name="icon">
@@ -1421,6 +1436,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="toolTip">
     <string>Zoom In</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+3</string>
+   </property>
   </action>
   <action name="actionZoomOut">
    <property name="icon">
@@ -1429,6 +1447,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>Zoom Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+4</string>
    </property>
   </action>
   <action name="actionRotateLeft">
@@ -1439,6 +1460,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>Rotate Left</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+5</string>
+   </property>
   </action>
   <action name="actionRotateRight">
    <property name="icon">
@@ -1447,6 +1471,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>Rotate Right</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+6</string>
    </property>
   </action>
   <action name="action_ViewStarList">
@@ -1498,6 +1525,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>&amp;New Solar System</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
   </action>
   <action name="action_CreateTradeRoute">
    <property name="icon">
@@ -1515,6 +1545,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>Create a Solar System for all stars</string>
+   </property>
+   <property name="shortcut">
+    <string/>
    </property>
   </action>
   <action name="actionCreate_trade_routes_for_interesting_stars">
@@ -1604,6 +1637,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="toolTip">
     <string>Create a Solar System For Everyl Star In List</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
   </action>
   <action name="action_CopySolarSystem">
    <property name="icon">
@@ -1645,6 +1681,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>Export Sector</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
   </action>
   <action name="action_ViewOnlyTradeRoutes">
    <property name="checkable">
@@ -1670,6 +1709,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>&amp;Export Cluster To Graphviz</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
    </property>
   </action>
   <action name="action_Export_Diaspora_Cluster_To_HTML">
@@ -1742,6 +1784,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>Export to Celestia</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
    </property>
   </action>
   <action name="action_Save_Solar_System_to_HTML">
@@ -1885,6 +1930,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>&amp;Star Sector View</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
   </action>
   <action name="action_Solar_System_View">
    <property name="checkable">
@@ -1896,6 +1944,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>Solar System &amp;View</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+2</string>
    </property>
   </action>
   <action name="action_Diaspora_Cluster_View">
@@ -1948,6 +1999,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="toolTip">
     <string>Add a new star to current sector</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
   </action>
   <action name="actionAdd_Stars_Between_Two_Stars">
    <property name="icon">
@@ -1957,6 +2011,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>Add Stars &amp;Between Two Stars</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
   </action>
   <action name="action_Clear_Star_Sector_Data">
    <property name="icon">
@@ -1965,6 +2022,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>&amp;Clear Star Sector Data</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
   <action name="action_Set_XY_Mode">
