@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QtCore>
 #include <QStringList>
 
-const int FILE_ITEMS = 7;
+const int FILE_ITEMS = 6;
 const int DIR_ITEMS = 2;
 
 

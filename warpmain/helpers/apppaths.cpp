@@ -28,12 +28,12 @@ AppPaths::AppPaths()
 {
 }
 
-QString itemsToCheck[7] =
+QString itemsToCheck[6] =
 {
     QString("pics/about_box.jpg"),
     QString("pics/rex_orbiting_horza.jpg"),
     QString("aspectlist.aspect"),
-    QString("warp.preferences"),
+    //QString("warp.preferences"),
     QString("50ly.str"),
     QString("100LY.STR"),
     QString("2300AD.STR")

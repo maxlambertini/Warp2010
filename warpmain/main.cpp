@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 #include <QApplication>
 #include <QtCore>
-#include "mainscenehandler.h"
+#include "scenemediator.h"
 #include "warpmainwindowform.h"
 #include "starmapwidget.h"
 #include <QPushButton>

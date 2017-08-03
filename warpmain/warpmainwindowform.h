@@ -39,7 +39,7 @@ const int TAB_CLUSTER_MAP = 2;
 #include "starlist.h"
 #include "dialogs/createtraderoutedialog.h"
 #include "traderoute.h"
-#include "mainscenehandler.h"
+#include "scenemediator.h"
 #include "traderoutemediator.h"
 #include "dialogs/traderoutedialog.h"
 #include "traderoutewidgetitem.h"
