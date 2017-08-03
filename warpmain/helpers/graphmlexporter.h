@@ -35,13 +35,12 @@ public:
     void fillEdge2 (int eID, int i1, int i2, const QString& lineColor = "#808080", int nWidth = 5, int fontSize=15);
 public:
     GraphMLExporter();
-    inline void setStarList(StarList *sl) { _starList = sl; }
     QString& createGraphicsMLDocs(QString &filename);
 
-    void setExportDirectPathOnly (bool b = false) { _exportDirectPathOnly = b; }
-    void setExportGardenPathOnly (bool b = false) { _exportGardenPathOnly = b; }
-
-    void setStarsInTradeRoutes (const QList<int>& s) { _starsInTradeRoutes = s; }
+    inline void setStarList(StarList *sl) { _starList = sl; }
+    inline void setExportDirectPathOnly (bool b = false) { _exportDirectPathOnly = b; }
+    inline void setExportGardenPathOnly (bool b = false) { _exportGardenPathOnly = b; }
+    inline void setStarsInTradeRoutes (const QList<int>& s) { _starsInTradeRoutes = s; }
 
 };
 

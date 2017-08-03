@@ -90,7 +90,8 @@ SOURCES += main.cpp \
     exporters/starsectorjsonexporter.cpp \
     widgets/actionbutton.cpp \
     scenemediator.cpp \
-    dialogs/sectorexportoptionsdialog.cpp
+    dialogs/sectorexportoptionsdialog.cpp \
+    helpers/graphvizexporter.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -161,7 +162,8 @@ HEADERS += coordinates.h \
     exporters/starsectorjsonexporter.h \
     widgets/actionbutton.h \
     scenemediator.h \
-    dialogs/sectorexportoptionsdialog.h
+    dialogs/sectorexportoptionsdialog.h \
+    helpers/graphvizexporter.h
 FORMS += warpmainwindow.ui \
     diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \

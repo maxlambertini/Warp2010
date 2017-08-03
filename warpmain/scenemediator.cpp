@@ -211,6 +211,17 @@ void SceneMediator::drawNeighborsRoute()
     }
 }
 
+void SceneMediator::drawToGraphViz(QString &fileName) {
+    GraphVizExporter ex;
+    ex.setExportDirectPathOnly(this->_exportDirectPathOnly);
+    ex.setExportGardenPathOnly(this->_exportGardenPathOnly);
+    ex.setStarList(this->_starList);
+    ex.setStarsInTradeRoutes(_starsInTradeRoutes);
+    ex.setSceneMediator(this);
+    ex.createGraphVizDoc(fileName);
+}
+
+/*
 void SceneMediator::drawToGraphViz(QString &fileName)
 {
     QSharedPointer<Star> star;
@@ -323,6 +334,7 @@ void SceneMediator::drawToGraphViz(QString &fileName)
     }
     //file.close();
 }
+*/
 
 int findMaxLen (QStringList& l) {
     int len = 0;

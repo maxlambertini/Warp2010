@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "helpers/splashscreen.h"
 #include "helpers/sectorrectholder.h"
 #include "helpers/parsecstarlisthelper.h"
+#include "helpers/graphvizexporter.h"
 
 namespace ParsecStarMode {
     const int DrawEverything = 0;
@@ -87,8 +88,6 @@ private:
     void drawStarGraphicsItems();
     void drawTradeRoutes();
 
-
-    void prepareParsecStarList();
     void setParsecStarOnHexMap(int &maxX, int &maxY, int &minX, int &minY);
     void drawTradeRoutesOnHexMap();
     void drawReachableStarsOnHexMap();
@@ -104,6 +103,8 @@ private:
 
 public:
 
+    const QVector<ParsecStar>& parsecStarList() { return _parsecStarList; }
+
     void drawToGraphViz(QString& fileName);
     void drawToGML(QString& fileName);
     void drawToGraphML(QString& fileName);
@@ -116,6 +117,7 @@ public:
     inline const QList<SectorRectHolder>& travellerSectors() { return _travellerSectors; }
 
     inline double hexHeight() { return _hexSize * .866025; }
+    void prepareParsecStarList();
 
     inline void minMaxLimitsFromParsecStar (ParsecStar& ps, int *minX, int*minY, int *maxX, int *maxY)
     {
