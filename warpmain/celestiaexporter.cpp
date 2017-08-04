@@ -303,7 +303,7 @@ QString CelestiaExporter::runPreGarden(QString res, Planet& p)
 QString CelestiaExporter::runHotHouse(QString res)
 {
     res = QString("hot_house_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder("Hothouse.OK.texjson", _texturePath+"/"+res);
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideHotHouse(true), _texturePath+"/"+res);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));
     vTextures.append(ptr);
     return res;
@@ -312,7 +312,7 @@ QString CelestiaExporter::runHotHouse(QString res)
 QString CelestiaExporter::runGasGiant(QString res)
 {
     res = QString("gasgiant_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideHotHouse(true), _texturePath+"/"+res);
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGasgiant(true), _texturePath+"/"+res);
     vTextures.append(ptr);
     return res;
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::GG,_texturePath+"/"+res, SSGX::dn(999999))));
