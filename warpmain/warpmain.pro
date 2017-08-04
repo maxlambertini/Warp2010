@@ -183,7 +183,37 @@ RESOURCES += Resources.qrc
 #win32:CONFIG += console
 DISTFILES += test.tpl \
     aspects.aspect \
-    LICENSE.LGPL
+    LICENSE.LGPL \
+    textures/failedcore/MegaLasagna.texjson.BaseImage.png \
+    textures/chunk/Chunk.OK.texjson \
+    textures/clouds/Cloud.OK.texjson \
+    textures/clouds-alien/FunkyCloud.OK.texjson \
+    textures/desert/alienpeaksvoronoi.texjson \
+    textures/desert/Desert.OK.texjson \
+    textures/desert/Desert2.OK.texjson \
+    textures/desert/Outre.OK.texjson \
+    textures/desert/Outre2.OK.texjson \
+    textures/failedcore/Outre.OK.texjson \
+    textures/failedcore/Outre2.OK.texjson \
+    textures/garden/Earthlike-01-OK.texjson \
+    textures/garden/Earthlike-02.OK.texjson \
+    textures/garden/Earthlike-03.OK.texjson \
+    textures/garden/Earthlike-04.OK.texjson \
+    textures/garden/Earthlike.Island.OK.texjson \
+    textures/gasgiant/GasGiantOK.texjson \
+    textures/gasgiant/GasGiantOriginalOK.texjson \
+    textures/hothouse/Hothouse.OK.texjson \
+    textures/iceball/Iceball.OK.texjson \
+    textures/postgarden/alienpeaksvoronoi.texjson \
+    textures/postgarden/Multilayered-EarthlikeRND.texjson \
+    textures/pregarden/alienpeaksvoronoi.texjson \
+    textures/pregarden/Multilayered-EarthlikeRND.texjson \
+    textures/rockball/Rockball.OK.texjson
+
+texjson.path=$${UtilsOUT_PWD}/textures
+texjson.files=textures/*
+
+#INSTALLS += texjson
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/release/ -llibnoise-warp
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/debug/ -llibnoise-warp

@@ -54,7 +54,15 @@ public:
     }
 
     static void checkForDirectoriesAndFiles() ;
+    static bool copyDir(const QString source, const QString destination, const bool override);
 
+    static void initializeTextureDir() {
+        QDir dir(textureDir());
+
+        if (!dir.exists(textureDir())) {
+            copyDir(QCoreApplication::applicationDirPath()+"/textures",textureDir(), true);
+        }
+    }
 
     inline static QString pluginsDir() {
         QString pluginPath = appDir()+"/plugins";
@@ -83,7 +91,7 @@ public:
     }
 
 
-    static QString provideTexture(QString texturePath);
+    static QString provideTexture(QString texturePath, bool returnFullPath = false);
 
     inline static QString preferencesFile() {
         return appDir()+"/warp.preferences";
@@ -94,51 +102,77 @@ public:
     }
 
     inline static QString textureDir() {
-        return appDir()+"/jstexture";
+        return appDir()+"/textures";
     }
 
     inline static QString rockballTexDir() {
-        return appDir()+"/jstexture/rockball";
+        return textureDir()+"/rockball";
     }
+    inline static QString provideRockball(bool returnFullPath=false) { return provideTexture(rockballTexDir() ,returnFullPath); }
 
     inline static QString hotHouseTexDir() {
-        return appDir()+"/jstexture/hothouse";
+        return textureDir()+"/hothouse";
     }
+    inline static QString provideHotHouse(bool returnFullPath=false) { return provideTexture(hotHouseTexDir() ,returnFullPath); }
 
     inline static QString gardenTexDir() {
-        return appDir()+"/jstexture/garden";
+        return textureDir()+"/garden";
     }
+
+    inline static QString provideGarden(bool returnFullPath=false) { return provideTexture(gardenTexDir(),returnFullPath); }
 
     inline static QString pregardenTexDir() {
-        return appDir()+"/jstexture/pregarden";
+        return textureDir()+"/pregarden";
     }
+    inline static QString providePregarden(bool returnFullPath=false) { return provideTexture(pregardenTexDir() ,returnFullPath); }
 
     inline static QString postgardenTexDir() {
-        return appDir()+"/jstexture/postgarden";
+        return textureDir()+"/postgarden";
     }
+    inline static QString providePostgarden(bool returnFullPath=false) { return provideTexture(postgardenTexDir() ,returnFullPath); }
 
     inline static QString glacierTexDir() {
-        return appDir()+"/jstexture/glacier";
+        return textureDir()+"/glacier";
     }
+    inline static QString provideGlacier(bool returnFullPath=false) { return provideTexture(glacierTexDir() ,returnFullPath); }
 
     inline static QString gasgiantTexDir() {
-        return appDir()+"/jstexture/gasgiant";
+        return textureDir()+"/gasgiant";
     }
+    inline static QString provideGasgiant(bool returnFullPath=false) { return provideTexture(gasgiantTexDir() ,returnFullPath); }
 
     inline static QString iceballTexDir() {
-        return appDir()+"/jstexture/iceball";
+        return textureDir()+"/iceball";
     }
+    inline static QString provideIceball(bool returnFullPath=false) { return provideTexture(iceballTexDir() ,returnFullPath); }
 
     inline static QString failedCoreTexDir() {
-        return appDir()+"/jstexture/failedcore";
-    }
-    inline static QString chunkTexDir() {
-        return appDir()+"/jstexture/chunk";
+        return textureDir()+"/failedcore";
     }
 
-    inline static QString desertTexDir() {
-        return appDir()+"/jstexture/desert";
+    inline static QString provideFailedCore(bool returnFullPath=false) { return provideTexture(failedCoreTexDir() ,returnFullPath); }
+
+
+    inline static QString chunkTexDir() {
+        return textureDir()+"/chunk";
     }
+    inline static QString provideChunk(bool returnFullPath=false) { return provideTexture(chunkTexDir() ,returnFullPath); }
+
+    inline static QString desertTexDir() {
+        return textureDir()+"/desert";
+    }
+    inline static QString provideDesert(bool returnFullPath=false) { return provideTexture(desertTexDir() ,returnFullPath); }
+
+
+    inline static QString cloudsTexDir() {
+        return textureDir()+"/clouds";
+    }
+    inline static QString provideClouds(bool returnFullPath=false) { return provideTexture(cloudsTexDir() ,returnFullPath); }
+
+    inline static QString alienCloudsTexDir() {
+        return textureDir()+"/clouds-alien";
+    }
+    inline static QString provideAlienClouds(bool returnFullPath=false) { return provideTexture(alienCloudsTexDir() ,returnFullPath); }
 };
 
 #endif // APPPATHS_H

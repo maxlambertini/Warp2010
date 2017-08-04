@@ -45,6 +45,59 @@ QString dirToCheck[2] =
     QString("themes")
 };
 
+bool AppPaths::copyDir(const QString source, const QString destination, const bool override) {
+    QDir directory(source);
+    bool error = false;
+
+    if (!directory.exists()) {
+        return false;
+    }
+
+    QStringList dirs = directory.entryList(QDir::AllDirs | QDir::Hidden);
+    QStringList files = directory.entryList(QDir::Files | QDir::Hidden);
+
+    QList<QString>::iterator d,f;
+
+    for (d = dirs.begin(); d != dirs.end(); ++d) {
+        if ((*d) == "." || (*d) == "..") {
+            continue;
+        }
+
+        if (!QFileInfo(directory.path() + "/" + (*d)).isDir()) {
+            continue;
+        }
+
+        QDir temp(destination + "/" + (*d));
+        temp.mkpath(temp.path());
+
+        if (!copyDir(directory.path() + "/" + (*d), destination + "/" + (*d), override)) {
+            error = true;
+        }
+    }
+
+    for (f = files.begin(); f != files.end(); ++f) {
+        QFile tempFile(directory.path() + "/" + (*f));
+
+
+        if (QFileInfo(directory.path() + "/" + (*f)).isDir()) {
+            continue;
+        }
+
+        QFile destFile(destination + "/" + directory.relativeFilePath(tempFile.fileName()));
+
+        if (destFile.exists() && override) {
+            destFile.remove();
+        }
+
+        if (!tempFile.copy(destination + "/" + directory.relativeFilePath(tempFile.fileName()))) {
+            error = true;
+
+        }
+    }
+
+
+    return !error;
+}
 
 void AppPaths::checkForDirectoriesAndFiles() {
 
@@ -96,15 +149,18 @@ void AppPaths::checkForDirectoriesAndFiles() {
     }
 }
 
-QString AppPaths::provideTexture(QString texturePath) {
+QString AppPaths::provideTexture(QString texturePath, bool returnFullPath) {
     QDir myPath(texturePath);
     QStringList filters; filters << "*.texjson";
     myPath.setNameFilters(filters);
     QStringList entries = myPath.entryList();
-    QString res;
+    QString res("");
     if (entries.count() > 0) {
         auto h = rand() % entries.count();
         res = entries[h];
     }
-    return res;
+    if (!returnFullPath)
+        return res;
+    else
+        return texturePath+"/"+res;
 }

@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "ssg_structures.h"
 #include <QObject>
 #include <QtConcurrent/QtConcurrent>
+#include <helpers/apppaths.h>
 
 void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
     QString sOutput;
@@ -266,7 +267,7 @@ QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
 QString CelestiaExporter::runGarden(Planet& p, QString res)
 {
     res = QString("earthlike_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder("multilayered-earthlikeNT.texjson", _texturePath+"/"+res);
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGarden(true), _texturePath+"/"+res);
     //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
     ptr.data()->setSeaRatio(p.waterPercentage());
     vTextures.append(ptr);
@@ -282,7 +283,7 @@ QString CelestiaExporter::runGlacier(QString res)
 
 QString CelestiaExporter::runPostGarden(Planet& p, QString res)
 {
-    res = QString("earthlike_%1.png").arg(getUid());
+    res = QString("postgarden_%1.png").arg(getUid());
     QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Postgarden,_texturePath+"/"+res, SSGX::dn(999999)));
     ptr.data()->setSeaRatio(p.waterPercentage());
     vTextures.append(ptr);
@@ -291,7 +292,7 @@ QString CelestiaExporter::runPostGarden(Planet& p, QString res)
 
 QString CelestiaExporter::runPreGarden(QString res, Planet& p)
 {
-    res = QString("earthlike_%1.png").arg(getUid());
+    res = QString("pregarden_%1.png").arg(getUid());
     QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Pregarden,_texturePath+"/"+res, SSGX::dn(999999)));
     ptr.data()->setSeaRatio(p.waterPercentage());
     vTextures.append(ptr);
@@ -337,7 +338,9 @@ QString CelestiaExporter::runDesert(QString res)
 QString CelestiaExporter::runFailedCore(QString res)
 {
     res = QString("failedcore_%1.png").arg(getUid());
-    vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideFailedCore(true), _texturePath+"/"+res);
+    //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));
+    vTextures.append(ptr);
     return res;
 }
 
