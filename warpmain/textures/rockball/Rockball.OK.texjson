@@ -1,0 +1,121 @@
+{
+    "modules" : 
+        [
+            {
+                "name" : "ModulePerlin", 
+                "type" : "Perlin", 
+                "freq" : 1.65, 
+                "lac"  : 2.3,
+                "pers" : 0.45,
+                "oct"  : 6,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },    
+            {
+                "name" : "Module2", 
+                "type" : "Turbulence",
+                "pow"  : 0.15,
+	        "rough" : 1.3,
+                "freq" : 1.2,
+                "src1" : "ModulePerlin",
+                "enableDist" : true
+            },    
+            {
+                "name" : "CtlPerlin", 
+                "type" : "Billow", 
+                "freq" : 3.1, 
+                "lac"  : 2.7,
+                "pers" : 0.45,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },    
+            {
+                "name" : "ScAbs", 
+                "type" : "ScaleBias",
+                "src1" : "CtlPerlin",
+                "scale" : 2.0,
+                "bias" : -1.0
+            },    
+            {
+                "name" : "Abs", 
+                "type" : "Abs",
+                "src1" : "CtlPerlin",
+                "scale" : 1.0,
+                "bias" : -0.0
+            },    
+            {
+                "name" : "CtlPerlin2", 
+                "type" : "Perlin", 
+                "freq" : 0.1, 
+                "lac"  : 3.7,
+                "pers" : 0.25,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },  
+            {
+                "name" : "CtlSphere", 
+                "type" : "Spheres", 
+                "freq" : 0.3, 
+                "lac"  : 3.7,
+                "pers" : 0.25,
+                "oct"  : 5,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },              {
+                "name" : "const", 
+                "type" : "Const",
+                "value" : 0.0,
+                "enableDist" : true
+            },    
+            {
+                "name" : "sel", 
+                "type" : "Blend",
+	        "src1" : "CtlSphere",
+                "src2" : "ModulePerlin",
+                "ctl"  : "CtlSphere",
+                "ubound" : 0.700,
+                "lbound" : 0.1200,
+                "value" : 1.0,
+                "enableDist" : true
+            }
+        ],
+    "heightMaps" : ["destMap","destMap2","destMap3","destMap4"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder",
+                "source" : "ScAbs",
+                "dest"   : "destMap",
+                "size"   : [1024,512],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer1",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 1.2,
+                "lightBrightness" : 2.1,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "randomGradient"  : true,
+                "gradientInfo"    : 
+                    [
+                        [ -1.000,  16, 22,  72, 255  ],
+                        [ -0.600,  39, 45, 123, 255  ],
+                        [  0.110,  67, 80, 148, 255  ],
+                        [  0.120,  79, 99,  35, 255  ],
+                        [  0.550,  89,109,  45, 255  ],
+                        [  0.950,  89,129,  55, 255  ],
+                        [  1.000,  79, 99,  36, 255  ]
+                    ]
+            }
+        ],
+    "images" : ["image1"]
+} 

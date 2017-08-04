@@ -1,0 +1,105 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "heightMap",
+    "cloudMap": "",
+    "colorMap": "image1",
+    "heightMapBuilders": [
+        {
+            "dest": "destMap",
+            "name": "builder",
+            "seamless": true,
+            "source": "Abs"
+        }
+    ],
+    "heightMaps": [
+        "destMap"
+    ],
+    "images": [
+        "image1"
+    ],
+    "modules": [
+        {
+            "enableRandom": false,
+            "name": "Abs",
+            "src1": "Module2",
+            "type": "Abs"
+        },
+        {
+            "enableRandom": false,
+            "name": "Module2",
+            "src1": "ModulePerlin",
+            "type": "ScalePoint",
+            "x": 1.5,
+            "y": 11,
+            "z": 1
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.65,
+            "lac": 1.3,
+            "name": "ModulePerlin",
+            "oct": 6,
+            "pers": 0.15,
+            "seed": 0,
+            "type": "Billow"
+        },
+        {
+            "name": "ModulePerlin2",
+            "type": "Billow2"
+        }
+    ],
+    "randomFactors": [
+        0
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "image1",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    0,
+                    181,
+                    195,
+                    153,
+                    255
+                ],
+                [
+                    0.5,
+                    219,
+                    196,
+                    144,
+                    255
+                ],
+                [
+                    1,
+                    78,
+                    185,
+                    94,
+                    255
+                ]
+            ],
+            "heightMap": "destMap",
+            "lightBrightness": 2.1,
+            "lightContrast": 0.1,
+            "name": "renderer1",
+            "randomFactor": [
+                53,
+                10,
+                30
+            ],
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1280,
+        640
+    ]
+}

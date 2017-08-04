@@ -1,0 +1,190 @@
+{
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "image1",
+    "heightMapBuilders": [
+        {
+            "bounds": [
+                -90,
+                90,
+                -180,
+                180
+            ],
+            "dest": "destMap",
+            "name": "builder",
+            "seamless": true,
+            "size": [
+                1600,
+                800
+            ],
+            "source": "Module2",
+            "type": "sphere"
+        },
+        {
+            "bounds": [
+                -90,
+                90,
+                -180,
+                180
+            ],
+            "dest": "destMap2",
+            "name": "builder2",
+            "seamless": true,
+            "size": [
+                1600,
+                800
+            ],
+            "source": "displacer",
+            "type": "sphere"
+        }
+    ],
+    "heightMaps": [
+        "destMap",
+        "destMap2"
+    ],
+    "images": [
+        "image1"
+    ],
+    "modules": [
+        {
+            "enableRandom": false,
+            "freq": 1.35,
+            "lac": 3.7,
+            "name": "Module2",
+            "oct": 5,
+            "pers": 0.35,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "ctl": "m3",
+            "enableRandom": false,
+            "name": "displacer",
+            "src1": "Module2",
+            "src2": "m3",
+            "src3": "m1",
+            "src4": "m2",
+            "type": "Displace"
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.35,
+            "lac": 3.7,
+            "name": "m1",
+            "oct": 5,
+            "pers": 0.35,
+            "seed": 0,
+            "type": "Billow"
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.35,
+            "lac": 3.7,
+            "name": "m2",
+            "oct": 5,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableDist": true,
+            "enableRandom": false,
+            "freq": 1.35,
+            "name": "m3",
+            "seed": 0,
+            "type": "Voronoi"
+        }
+    ],
+    "randomFactors": [
+        0
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "image1",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    24,
+                    61,
+                    93,
+                    255
+                ],
+                [
+                    -0.867175,
+                    17,
+                    58,
+                    75,
+                    255
+                ],
+                [
+                    -0.614075,
+                    21,
+                    60,
+                    73,
+                    255
+                ],
+                [
+                    -0.274525,
+                    31,
+                    76,
+                    101,
+                    255
+                ],
+                [
+                    0.045825000000000005,
+                    32,
+                    95,
+                    106,
+                    255
+                ],
+                [
+                    0.281675,
+                    28,
+                    113,
+                    123,
+                    255
+                ],
+                [
+                    0.48275,
+                    25,
+                    128,
+                    152,
+                    255
+                ],
+                [
+                    0.609925,
+                    28,
+                    141,
+                    142,
+                    255
+                ],
+                [
+                    0.8918250000000001,
+                    24,
+                    114,
+                    97,
+                    255
+                ],
+                [
+                    1,
+                    20,
+                    103,
+                    69,
+                    255
+                ]
+            ],
+            "lightBrightness": 2,
+            "lightContrast": 0.1,
+            "name": "renderer11",
+            "noiseMap": "destMap2",
+            "randomFactor": [
+                1,
+                1,
+                1
+            ],
+            "randomGradient": true
+        }
+    ]
+}

@@ -1,0 +1,158 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "image1",
+    "heightMapBuilders": [
+        {
+            "dest": "heightMap",
+            "name": "noiseMapBuilder1",
+            "seamless": true,
+            "source": "blendModule"
+        }
+    ],
+    "heightMaps": [
+        "heightMap"
+    ],
+    "images": [
+        "image1"
+    ],
+    "modules": [
+        {
+            "enableRandom": false,
+            "freq": 2.5,
+            "lac": 3.2,
+            "name": "basePerlin",
+            "oct": 6,
+            "pers": 0.3,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "ctl": "scaleBase",
+            "enableRandom": false,
+            "name": "blendModule",
+            "src1": "turbVoronoi",
+            "src2": "rot",
+            "type": "Blend"
+        },
+        {
+            "enableRandom": false,
+            "exp": 4,
+            "name": "expBase",
+            "src1": "rot",
+            "type": "Exponent"
+        },
+        {
+            "enableRandom": true,
+            "name": "rot",
+            "src1": "basePerlin",
+            "type": "RotatePoint",
+            "x": 45,
+            "y": 45,
+            "z": 45
+        },
+        {
+            "bias": 0,
+            "enableRandom": false,
+            "name": "scaleBase",
+            "scale": 0.7,
+            "src1": "rot",
+            "type": "ScaleBias"
+        },
+        {
+            "enableRandom": false,
+            "freq": 2.5,
+            "name": "turbVoronoi",
+            "pow": 0.18,
+            "rough": 5,
+            "seed": 0,
+            "src1": "voronoi",
+            "type": "Turbulence"
+        },
+        {
+            "enableDist": true,
+            "enableRandom": false,
+            "freq": 5,
+            "name": "voronoi",
+            "seed": 0,
+            "type": "Voronoi"
+        }
+    ],
+    "randomFactors": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.2,
+        0.2,
+        0.3
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "image1",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    139,
+                    146,
+                    145,
+                    255
+                ],
+                [
+                    -0.487525,
+                    215,
+                    221,
+                    151,
+                    255
+                ],
+                [
+                    0.027225000000000055,
+                    181,
+                    144,
+                    227,
+                    255
+                ],
+                [
+                    0.6468750000000001,
+                    227,
+                    232,
+                    224,
+                    255
+                ],
+                [
+                    1,
+                    85,
+                    241,
+                    194,
+                    255
+                ]
+            ],
+            "heightMap": "heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.2,
+            "name": "renderer0001",
+            "randomFactor": [
+                70,
+                30,
+                30
+            ],
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1280,
+        640
+    ]
+}

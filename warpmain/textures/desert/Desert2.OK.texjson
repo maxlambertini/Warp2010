@@ -1,0 +1,178 @@
+{
+    "randomFactors" : [0.3,0.4,0.2,0.2,0.2,0.5],
+    "modules" : 
+        [
+            {
+                "name" : "ModulePerlin", 
+                "type" : "Billow", 
+                "freq" : 0.65, 
+                "lac"  : 2.3,
+                "pers" : 0.15,
+                "oct"  : 6,
+                "disp" : 0.1, 
+                "enableDist" : true,
+                "enableRandom" : true
+            },    
+            {
+                "name" : "ModulePerlin2", 
+                "type" : "Perlin", 
+                "freq" : 1.65, 
+                "lac"  : 3.3,
+                "pers" : 0.35,
+                "oct"  : 6,
+                "disp" : 0.3, 
+                "enableRandom" : true,
+                "enableDist" : true
+            },             {
+                "name" : "ModuleVoronoi", 
+                "type" : "Voronoi", 
+                "freq" : 0.65, 
+                "lac"  : 1.3,
+                "pers" : 0.15,
+                "oct"  : 6,
+                "disp" : 0.1, 
+                "enableRandom" : true,
+                "enableDist" : true
+            },    
+            {
+                "name" : "ModuleRMF", 
+                "type" : "RidgedMulti", 
+                "freq" : 1.65, 
+                "lac"  : 0.3,
+                "pers" : 0.15,
+                "oct"  : 6,
+                "disp" : 0.1, 
+                "enableDist" : true
+            },    
+            {"enableDist":true,"freq":2.5,"name":"VoroTurbo","pow":0.4,"rough":1.3,"seed":179442,"src1":"ModuleVoronoi","type":"Turbulence"}, 
+            {
+                "name" : "Blender", 
+                "type" : "Blend",
+                "src1" : "VoroTurbo",
+	        "ctl" : "ModulePerlin",
+                "src2"  : "ModuleRMF",
+                "enableDist" : true
+            },              
+	    {
+                "name" : "Scaled", 
+                "type" : "ScalePoint",
+                "src1" : "Blender",
+                "x" : 14.0, "y" : 14.0, "z" : 14.0
+            },              
+	    {
+                "name" : "Invert", 
+                "type" : "Invert",
+                "src1" : "Scaled"
+            },
+	    {
+                "name" : "ScaleBias", 
+                "type" : "ScaleBias",
+                "src1" : "Scaled",
+                "enableRandom" : true,
+                "scale" : -0.65
+            },
+	    {
+                "name" : "Max", 
+                "type" : "Max",
+                "src1" : "ModulePerlin2",
+                "src2" : "ScaleBias"
+            }
+        ],
+    "heightMaps" : ["destMap","destMap2","destMapH"],
+    "heightMapBuilders" : 
+        [
+            {
+                "name"   : "builder",
+                "source" : "ScaleBias",
+                "dest"   : "destMap",
+                "size"   : [1024,512],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            },
+            {
+                "name"   : "builderv",
+                "source" : "Max",
+                "dest"   : "destMap2",
+                "size"   : [1024,512],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            },
+            {
+                "name"   : "builderh",
+                "source" : "Scaled",
+                "dest"   : "destMapH",
+                "size"   : [1024,512],
+                "bounds" : [-90.0,90.0,-180.0,180.0],
+                "type"   : "sphere",
+                "seamless" : true 
+            }
+
+        ],
+    "renderers" : 
+        [
+            {
+                "name"            : "renderer10",
+                "noiseMap"        : "destMap",
+                "enabledLight"    : true,
+                "lightContrast"   : 0.005,
+                "lightBrightness" : 2.1,
+                "backgroundImage" : "",
+                "destImage"       : "image1",
+                "randomFactor"    : [10,100,10],
+                "randomGradient"  : false,
+                "gradientInfo"    : 
+                    [
+                        [ -0.400, 192,160, 144, 255  ],
+                        [ -0.300, 192,192, 144, 255  ],
+                        [ -0.200, 192,160, 192, 255  ],
+                        [ -0.100, 192,192, 144, 255  ],
+                        [  0.000, 192,160, 192, 255  ],
+                        [  0.100, 144,192, 192, 255  ],
+                        [  0.300, 192,255, 144, 255  ],
+                        [  0.400, 192,160, 255, 255  ]
+                    ]
+            },
+            {
+                "name"            : "renderer11",
+                "noiseMap"        : "destMap2",
+                "enabledLight"    : true,
+                "lightContrast"   : 0.005,
+                "lightBrightness" : 2.1,
+                "backgroundImage" : "image1",
+                "destImage"       : "image1",
+                "randomFactor"    : [30,100,0],
+                "randomGradient"  : false,
+                "randomFactor"    : [20,140,10],
+                "gradientInfo"    : 
+                    [
+                        [ -0.400, 192,160, 144,   0  ],
+                        [ -0.300, 192,192, 144,   0  ],
+                        [ -0.200, 192,160, 192,  16  ],
+                        [ -0.100, 192,192, 144,  24  ],
+                        [  0.000, 192,160, 192,  32  ],
+                        [  0.100, 144,192, 192,  48  ],
+                        [  0.300, 192,255, 144,  56 ],
+                        [  0.400, 192,160, 255,  64  ]
+                    ]
+            },
+            {
+                "name"            : "renderer12",
+                "noiseMap"        : "destMapH",
+                "enabledLight"    : false,
+                "lightContrast"   : 0.005,
+                "lightBrightness" : 2.1,
+                "backgroundImage" : "",
+                "destImage"       : "imageH",
+                "gradientInfo"    : 
+                    [
+                        [ -1, 0,  0,  0,    255  ],
+                        [ -0.9, 255,255,255,255],
+                        [  1, 255,255,255,255]
+                   
+                    ]
+	   }
+        ],
+    "images" : ["image1","imageH"]
+} 

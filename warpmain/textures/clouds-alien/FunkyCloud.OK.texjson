@@ -1,0 +1,254 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "img02CloudMap",
+    "cloudMap": "",
+    "colorMap": "img02CloudMap",
+    "heightMapBuilders": [
+        {
+            "dest": "destMap",
+            "name": "builder",
+            "seamless": true,
+            "source": "ModuleScale"
+        },
+        {
+            "dest": "destMap2",
+            "name": "builder2",
+            "seamless": true,
+            "source": "displacer"
+        }
+    ],
+    "heightMaps": [
+        "destMap",
+        "destMap2"
+    ],
+    "images": [
+        "img01ColorMap",
+        "img02CloudMap"
+    ],
+    "modules": [
+        {
+            "enableRandom": false,
+            "freq": 1.35,
+            "lac": 3.7,
+            "name": "Module2",
+            "oct": 5,
+            "pers": 0.25,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "enableRandom": false,
+            "name": "ModuleScale",
+            "src1": "Module2",
+            "type": "ScalePoint",
+            "x": 0.9,
+            "y": 1,
+            "z": 1.1
+        },
+        {
+            "name": "c3",
+            "type": "Cylinder"
+        },
+        {
+            "ctl": "c3",
+            "enableRandom": false,
+            "name": "displacer",
+            "src1": "Module2",
+            "src2": "m1",
+            "src3": "m3",
+            "src4": "m2",
+            "type": "Displace"
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.35,
+            "lac": 3.7,
+            "name": "m1",
+            "oct": 5,
+            "pers": 0.35,
+            "seed": 0,
+            "type": "Billow"
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.35,
+            "lac": 3.7,
+            "name": "m2",
+            "oct": 5,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableDist": true,
+            "enableRandom": false,
+            "freq": 1.35,
+            "name": "m3",
+            "seed": 0,
+            "type": "Voronoi"
+        }
+    ],
+    "randomFactors": [
+        0
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "img01ColorMap",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    96,
+                    255
+                ],
+                [
+                    -0.6,
+                    0,
+                    64,
+                    192,
+                    255
+                ],
+                [
+                    0.16,
+                    0,
+                    128,
+                    255,
+                    255
+                ],
+                [
+                    0.17,
+                    255,
+                    160,
+                    0,
+                    255
+                ],
+                [
+                    0.28,
+                    0,
+                    128,
+                    0,
+                    255
+                ],
+                [
+                    0.95,
+                    96,
+                    46,
+                    0,
+                    255
+                ],
+                [
+                    1,
+                    224,
+                    248,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "destMap",
+            "lightBrightness": 2,
+            "lightContrast": 3.5,
+            "name": "renderer10",
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "",
+            "destImage": "img02CloudMap",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    120,
+                    250,
+                    9,
+                    0
+                ],
+                [
+                    -0.95,
+                    0,
+                    6,
+                    3,
+                    0
+                ],
+                [
+                    -0.75,
+                    1,
+                    1,
+                    2,
+                    192
+                ],
+                [
+                    -0.55,
+                    9,
+                    6,
+                    8,
+                    128
+                ],
+                [
+                    -0.25,
+                    173,
+                    2,
+                    194,
+                    0
+                ],
+                [
+                    -0.10999999999999999,
+                    3,
+                    77,
+                    252,
+                    0
+                ],
+                [
+                    0.41999999999999993,
+                    209,
+                    215,
+                    206,
+                    0
+                ],
+                [
+                    0.6499999999999999,
+                    123,
+                    234,
+                    201,
+                    224
+                ],
+                [
+                    0.8500000000000001,
+                    126,
+                    160,
+                    252,
+                    224
+                ],
+                [
+                    1,
+                    133,
+                    225,
+                    251,
+                    223
+                ]
+            ],
+            "heightMap": "destMap2",
+            "lightBrightness": 2,
+            "lightContrast": 0.01,
+            "name": "renderer11",
+            "randomFactor": [
+                100,
+                10,
+                10
+            ],
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1024,
+        512
+    ]
+}

@@ -1,0 +1,269 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "image1",
+    "heightMapBuilders": [
+        {
+            "dest": "cloudMap",
+            "name": "cloudMapBuilder",
+            "seamless": false,
+            "source": "pert3"
+        },
+        {
+            "dest": "heightMap",
+            "name": "noiseMapBuilder1",
+            "seamless": true,
+            "source": "pert2"
+        }
+    ],
+    "heightMaps": [
+        "cloudMap",
+        "heightMap"
+    ],
+    "images": [
+        "image1"
+    ],
+    "modules": [
+        {
+            "enableRandom": false,
+            "freq": 2.5,
+            "name": "baseGG",
+            "type": "Cylinders"
+        },
+        {
+            "enableRandom": true,
+            "freq": 1.5,
+            "name": "baseGG2",
+            "type": "Cylinders"
+        },
+        {
+            "enableRandom": true,
+            "freq": 0.9,
+            "name": "pert2",
+            "pow": 0.15,
+            "rough": 7,
+            "seed": 0,
+            "src1": "rot2",
+            "type": "Turbulence"
+        },
+        {
+            "enableRandom": true,
+            "freq": 0.82,
+            "name": "pert3",
+            "pow": 0.03,
+            "rough": 4,
+            "seed": 0,
+            "src1": "rot",
+            "type": "Turbulence"
+        },
+        {
+            "enableRandom": false,
+            "name": "rot",
+            "src1": "baseGG2",
+            "type": "RotatePoint",
+            "x": 1,
+            "y": 1,
+            "z": 1.1
+        },
+        {
+            "enableRandom": false,
+            "name": "rot2",
+            "src1": "baseGG",
+            "type": "RotatePoint",
+            "x": -1,
+            "y": -1,
+            "z": -1
+        }
+    ],
+    "randomFactors": [
+        0.4,
+        0.5,
+        0.6,
+        0.5,
+        0.4,
+        0.3,
+        0.2,
+        0.1
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "image1",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    148,
+                    151,
+                    137,
+                    255
+                ],
+                [
+                    -0.69962,
+                    129,
+                    159,
+                    148,
+                    255
+                ],
+                [
+                    -0.26532,
+                    177,
+                    141,
+                    116,
+                    255
+                ],
+                [
+                    0.04913999999999996,
+                    154,
+                    159,
+                    128,
+                    255
+                ],
+                [
+                    0.41815999999999987,
+                    94,
+                    130,
+                    177,
+                    255
+                ],
+                [
+                    1,
+                    137,
+                    184,
+                    130,
+                    255
+                ]
+            ],
+            "heightMap": "heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0001",
+            "randomFactor": [
+                5,
+                50,
+                50
+            ],
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "image1",
+            "destImage": "image1",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    187,
+                    188,
+                    186,
+                    0
+                ],
+                [
+                    -0.6990825688073394,
+                    69,
+                    154,
+                    19,
+                    0
+                ],
+                [
+                    -0.5239199999999999,
+                    42,
+                    93,
+                    73,
+                    255
+                ],
+                [
+                    -0.36513761467889905,
+                    74,
+                    106,
+                    105,
+                    0
+                ],
+                [
+                    -0.2770642201834862,
+                    113,
+                    162,
+                    80,
+                    0
+                ],
+                [
+                    -0.06735999999999986,
+                    217,
+                    234,
+                    218,
+                    255
+                ],
+                [
+                    0.18165137614678906,
+                    151,
+                    47,
+                    161,
+                    0
+                ],
+                [
+                    0.2697247706422019,
+                    218,
+                    105,
+                    191,
+                    0
+                ],
+                [
+                    0.3440000000000003,
+                    101,
+                    111,
+                    109,
+                    255
+                ],
+                [
+                    0.4862385321100917,
+                    4,
+                    152,
+                    146,
+                    0
+                ],
+                [
+                    0.7202000000000002,
+                    130,
+                    161,
+                    121,
+                    255
+                ],
+                [
+                    0.8825688073394495,
+                    128,
+                    157,
+                    220,
+                    0
+                ],
+                [
+                    1,
+                    64,
+                    106,
+                    125,
+                    0
+                ]
+            ],
+            "heightMap": "cloudMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0002",
+            "randomFactor": [
+                100,
+                100,
+                100
+            ],
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1024,
+        512
+    ]
+}
