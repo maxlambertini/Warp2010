@@ -32,7 +32,7 @@ public:
     AppPaths();
     inline static QString appDir() {
     #if defined(Q_WS_WIN)
-        QString appDirPath = QCoreApplication::applicationDirPath()+"/Warp2010_Data/jstexture";
+        QString appDirPath = QCoreApplication::applicationDirPath()+"/Warp2010_Data/textures";
         //qDebug() << appDirPath;
         QDir dir(appDirPath);
         if (!dir.exists(appDirPath)) {
@@ -41,7 +41,7 @@ public:
         }
         return appDirPath;
     #else
-        QString warpPath =  QDir::homePath()+"/.local/share/Warp2010_Data/jstexture";
+        QString warpPath =  QDir::homePath()+"/.local/share/Warp2010_Data/textures";
         QDir dir(warpPath);
         if (!dir.exists(warpPath)) {
             dir.mkpath(warpPath);

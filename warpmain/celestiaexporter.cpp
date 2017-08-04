@@ -251,13 +251,14 @@ QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
     auto pt = p.planetType();
     if (pt == ptGarden || pt == ptGlacier ) {
         res = QString("clouds_%1.png").arg(getUid());
-        auto ptr = NoiseImageRunner::UseTextureBuilder("Cloud.OK.texjson", _texturePath+"/"+res);
+        //auto ptr = NoiseImageRunner::UseTextureBuilder("Cloud.OK.texjson", _texturePath+"/"+res);
+        auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideClouds(true), _texturePath+"/"+res);
         vTextures.append(ptr);
         return res;
     }
     else {
         res = QString("f_clouds_%1.png").arg(getUid());
-        auto ptr = NoiseImageRunner::UseTextureBuilder("FunkyCloud.OK.texjson", _texturePath+"/"+res);
+        auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideAlienClouds(true), _texturePath+"/"+res);
         vTextures.append(ptr);
         return res;
     }
@@ -277,15 +278,16 @@ QString CelestiaExporter::runGarden(Planet& p, QString res)
 QString CelestiaExporter::runGlacier(QString res)
 {
     res = QString("glacier_%1.png").arg(getUid());
-    vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Glacier,_texturePath+"/"+res, SSGX::dn(999999))));
+    //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Glacier,_texturePath+"/"+res, SSGX::dn(999999))));
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGlacier(true), _texturePath+"/"+res);
+    vTextures.append(ptr);
     return res;
 }
 
 QString CelestiaExporter::runPostGarden(Planet& p, QString res)
 {
     res = QString("postgarden_%1.png").arg(getUid());
-    QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Postgarden,_texturePath+"/"+res, SSGX::dn(999999)));
-    ptr.data()->setSeaRatio(p.waterPercentage());
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::providePostgarden(true), _texturePath+"/"+res);
     vTextures.append(ptr);
     return res;
 }
@@ -293,8 +295,7 @@ QString CelestiaExporter::runPostGarden(Planet& p, QString res)
 QString CelestiaExporter::runPreGarden(QString res, Planet& p)
 {
     res = QString("pregarden_%1.png").arg(getUid());
-    QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Pregarden,_texturePath+"/"+res, SSGX::dn(999999)));
-    ptr.data()->setSeaRatio(p.waterPercentage());
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::providePregarden(true), _texturePath+"/"+res);
     vTextures.append(ptr);
     return res;
 }
@@ -311,7 +312,7 @@ QString CelestiaExporter::runHotHouse(QString res)
 QString CelestiaExporter::runGasGiant(QString res)
 {
     res = QString("gasgiant_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder("GasGiantOriginalOK.texjson", _texturePath+"/"+res);
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideHotHouse(true), _texturePath+"/"+res);
     vTextures.append(ptr);
     return res;
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::GG,_texturePath+"/"+res, SSGX::dn(999999))));
@@ -321,6 +322,7 @@ QString CelestiaExporter::runGasGiant(QString res)
 QString CelestiaExporter::runDesert(QString res)
 {
     res = QString("desert_%1.png").arg(getUid());
+    /*
     zz = SSGX::d10();
     if (zz > 8)
         vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::DesertG,_texturePath+"/"+res,
@@ -333,6 +335,12 @@ QString CelestiaExporter::runDesert(QString res)
     else
         vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::ComplexDesert,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
     return res;
+    */
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideDesert(true), _texturePath+"/"+res);
+    //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
+    vTextures.append(ptr);
+    return res;
+
 }
 
 QString CelestiaExporter::runFailedCore(QString res)
@@ -347,10 +355,7 @@ QString CelestiaExporter::runFailedCore(QString res)
 QString CelestiaExporter::runRockball(QString res)
 {
     res = QString("rockball_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder("Chunk.OK.texjson", _texturePath+"/"+res);
-    //auto ptr = NoiseImageRunner::UseTextureBuilder("alienpeaksvoronoi.texjson", _texturePath+"/"+res);
-    //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
-    //ptr.data()->setSeaRatio(p.waterPercentage());
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideRockball(true), _texturePath+"/"+res);
     vTextures.append(ptr);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
     return res;
@@ -359,8 +364,7 @@ QString CelestiaExporter::runRockball(QString res)
 QString CelestiaExporter::runIceball(QString res)
 {
     res = QString("rockball_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder("Iceball.OK.texjson", _texturePath+"/"+res);
-    //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideIceball(true), _texturePath+"/"+res);
     vTextures.append(ptr);
     return res;
 }
@@ -368,9 +372,7 @@ QString CelestiaExporter::runIceball(QString res)
 QString CelestiaExporter::runChunk(QString res)
 {
     res = QString("chunk_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder("Chunk.OK.texjson", _texturePath+"/"+res);
-    //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
-    //ptr.data()->setSeaRatio(p.waterPercentage());
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideChunk(  true), _texturePath+"/"+res);
     vTextures.append(ptr);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
     return res;
