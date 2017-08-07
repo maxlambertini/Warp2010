@@ -8,7 +8,7 @@
     "builderType": "sphere",
     "bumpMap": "",
     "cloudMap": "",
-    "colorMap": "image1",
+    "colorMap": "BaseImage",
     "heightMapBuilders": [
         {
             "dest": "BeginLayer_heightMap",
@@ -20,7 +20,7 @@
             "dest": "EndLayer_heightMap",
             "name": "EndLayer_noiseMapBuilder1",
             "seamless": false,
-            "source": "EndLayer_Module"
+            "source": "Module_20"
         }
     ],
     "heightMaps": [
@@ -32,21 +32,31 @@
     ],
     "modules": [
         {
-            "enableDist": true,
             "enableRandom": true,
             "freq": 10.4632,
+            "lac": 3.2,
             "name": "BeginLayer_Module",
+            "oct": 6,
+            "pers": 0.3,
             "seed": 0,
-            "type": "Voronoi"
+            "type": "Perlin"
         },
         {
             "enableRandom": true,
             "freq": 1.343,
-            "lac": 2.66756,
+            "lac": 3.2,
             "name": "EndLayer_Module",
             "oct": 6,
+            "pers": 0.3,
             "seed": 0,
-            "type": "RidgedMulti"
+            "type": "Billow"
+        },
+        {
+            "enableRandom": false,
+            "name": "Module_20",
+            "src1": "BeginLayer_Module",
+            "src2": "EndLayer_Module",
+            "type": "Min"
         }
     ],
     "randomFactors": [
@@ -70,79 +80,72 @@
             "gradientInfo": [
                 [
                     -1,
-                    252,
-                    209,
-                    103,
+                    42,
+                    38,
+                    157,
                     255
                 ],
                 [
-                    -0.8342499999999999,
-                    236,
-                    183,
-                    107,
+                    -0.719875,
+                    44,
+                    73,
+                    169,
                     255
                 ],
                 [
-                    -0.66475,
-                    208,
-                    183,
-                    87,
+                    -0.5229250000000001,
+                    40,
+                    52,
+                    154,
                     255
                 ],
                 [
-                    -0.54445,
-                    197,
-                    188,
-                    96,
+                    -0.29370000000000007,
+                    47,
+                    74,
+                    146,
                     255
                 ],
                 [
-                    -0.343225,
-                    209,
-                    191,
-                    91,
+                    -0.013025000000000064,
+                    53,
+                    89,
+                    166,
                     255
                 ],
                 [
-                    -0.10444999999999999,
-                    193,
-                    201,
-                    97,
+                    0.12497499999999995,
+                    37,
+                    84,
+                    139,
                     255
                 ],
                 [
-                    0.08250000000000002,
-                    201,
-                    188,
-                    82,
+                    0.45549999999999996,
+                    39,
+                    61,
+                    129,
                     255
                 ],
                 [
-                    0.32795,
-                    203,
-                    188,
-                    67,
+                    0.752575,
+                    41,
+                    80,
+                    142,
                     255
                 ],
                 [
-                    0.47140000000000004,
-                    204,
-                    192,
-                    59,
-                    255
-                ],
-                [
-                    0.79495,
-                    178,
-                    176,
-                    59,
+                    0.90925,
+                    32,
+                    68,
+                    143,
                     255
                 ],
                 [
                     1,
-                    167,
-                    154,
-                    54,
+                    22,
+                    63,
+                    116,
                     255
                 ]
             ],

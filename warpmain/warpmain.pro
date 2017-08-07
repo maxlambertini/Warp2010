@@ -193,20 +193,22 @@ DISTFILES += test.tpl \
     textures/desert/Desert2.OK.texjson \
     textures/desert/Outre.OK.texjson \
     textures/desert/Outre2.OK.texjson \
+    textures/desert/Outre4.OK.texjson \
     textures/failedcore/Outre.OK.texjson \
     textures/failedcore/Outre2.OK.texjson \
-    textures/garden/Earthlike-01-OK.texjson \
     textures/garden/Earthlike-02.OK.texjson \
     textures/garden/Earthlike-03.OK.texjson \
-    textures/garden/Earthlike-04.OK.texjson \
     textures/garden/Earthlike.Island.OK.texjson \
+    textures/garden/Earthlike.Realistic.OK.texjson \
     textures/gasgiant/GasGiantOK.texjson \
     textures/gasgiant/GasGiantOriginalOK.texjson \
+    textures/glacier/glacier.texjson \
     textures/hothouse/Hothouse.OK.texjson \
     textures/iceball/Iceball.OK.texjson \
-    textures/postgarden/alienpeaksvoronoi.texjson \
+    textures/postgarden/postgarden.texjson \
     textures/postgarden/Multilayered-EarthlikeRND.texjson \
-    textures/pregarden/alienpeaksvoronoi.texjson \
+    textures/pregarden/pregarden.texjson \
+    textures/pregarden/pregarden2.texjson \
     textures/pregarden/Multilayered-EarthlikeRND.texjson \
     textures/rockball/Rockball.OK.texjson
 
@@ -214,6 +216,12 @@ texjson.path=$${UtilsOUT_PWD}/textures
 texjson.files=textures/*
 
 #INSTALLS += texjson
+
+copydata.commands = $(COPY_DIR) $$PWD/textures $$OUT_PWD/textures
+first.depends = $(first) copydata
+export(first.depends)
+export(copydata.commands)
+QMAKE_EXTRA_TARGETS += first copydata
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/release/ -llibnoise-warp
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/debug/ -llibnoise-warp
@@ -230,4 +238,3 @@ else:unix: LIBS += -L$$OUT_PWD/../libnoise-helpers/ -llibnoise-helpers
 INCLUDEPATH += $$PWD/../libnoise-helpers
 DEPENDPATH += $$PWD/../libnoise-helpers
 
-CONFIG+=console

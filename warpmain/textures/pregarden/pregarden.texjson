@@ -1,0 +1,390 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "image1",
+    "cloudMap": "imageBump",
+    "colorMap": "ImageSea",
+    "heightMapBuilders": [
+        {
+            "dest": "heightMapPole",
+            "name": "heightMapBuilderPole",
+            "seamless": true,
+            "source": "turboPoles"
+        },
+        {
+            "dest": "heightMapDesert",
+            "name": "noiseMapBDesert",
+            "seamless": false,
+            "source": "ModuleDesert"
+        },
+        {
+            "dest": "heightMap",
+            "name": "noiseMapBuilder1",
+            "seamless": false,
+            "source": "Module1"
+        },
+        {
+            "dest": "HeightMapSea",
+            "name": "noiseMapSea",
+            "seamless": false,
+            "source": "ModuleSea"
+        }
+    ],
+    "heightMaps": [
+        "HeightMapSea",
+        "heightMap",
+        "heightMapDesert",
+        "heightMapPole"
+    ],
+    "images": [
+        "ImageSea",
+        "image1",
+        "imageBump"
+    ],
+    "modules": [
+        {
+            "enableRandom": true,
+            "freq": 4.2,
+            "lac": 2.2,
+            "name": "Module1",
+            "oct": 6,
+            "pers": 0.24,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "enableRandom": true,
+            "freq": 4.5,
+            "lac": 4.3,
+            "name": "ModuleDesert",
+            "oct": 6,
+            "pers": 0.35,
+            "seed": 0,
+            "type": "Billow"
+        },
+        {
+            "enableRandom": true,
+            "freq": 1.8,
+            "lac": 5.3,
+            "name": "ModuleSea",
+            "oct": 6,
+            "pers": 0.23,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "enableRandom": true,
+            "freq": 2.5,
+            "name": "TurboDesert",
+            "pow": 0.55,
+            "rough": 1.2,
+            "seed": 0,
+            "src1": "ModuleDesert",
+            "type": "Turbulence"
+        },
+        {
+            "enableRandom": false,
+            "freq": 0.5,
+            "name": "cylinderPole",
+            "type": "Cylinders"
+        },
+        {
+            "enableRandom": true,
+            "freq": 4.5,
+            "name": "turboPoles",
+            "pow": 0.2,
+            "rough": 3.2,
+            "seed": 0,
+            "src1": "cylinderPole",
+            "type": "Turbulence"
+        }
+    ],
+    "randomFactors": [
+        0
+    ],
+    "reflectionMap": "imageMountains",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "image1",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    14,
+                    77,
+                    42,
+                    255
+                ],
+                [
+                    -0.05604719764011801,
+                    150,
+                    117,
+                    7,
+                    255
+                ],
+                [
+                    0.9156626506024097,
+                    76,
+                    145,
+                    23,
+                    255
+                ],
+                [
+                    1,
+                    231,
+                    223,
+                    212,
+                    255
+                ]
+            ],
+            "heightMap": "heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.5,
+            "name": "renderer1",
+            "randomFactor": [
+                25,
+                50,
+                50
+            ],
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "image1",
+            "destImage": "image1",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    251,
+                    247,
+                    244,
+                    0
+                ],
+                [
+                    -0.7991967871485943,
+                    7,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    -0.028112449799196804,
+                    208,
+                    209,
+                    95,
+                    65
+                ],
+                [
+                    1,
+                    232,
+                    212,
+                    117,
+                    135
+                ]
+            ],
+            "heightMap": "heightMapDesert",
+            "lightBrightness": 2,
+            "lightContrast": 1.4,
+            "name": "renderer2",
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "image1",
+            "destImage": "ImageSea",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    3,
+                    33,
+                    151,
+                    255
+                ],
+                [
+                    -0.5903614457831325,
+                    99,
+                    20,
+                    218,
+                    255
+                ],
+                [
+                    -0.2660550458715596,
+                    22,
+                    119,
+                    232,
+                    255
+                ],
+                [
+                    -0.22201834862385317,
+                    80,
+                    215,
+                    203,
+                    255
+                ],
+                [
+                    -0.17064220183486234,
+                    95,
+                    184,
+                    145,
+                    255
+                ],
+                [
+                    -0.1119266055045871,
+                    126,
+                    152,
+                    52,
+                    255
+                ],
+                [
+                    0.3373493975903614,
+                    196,
+                    192,
+                    134,
+                    0
+                ],
+                [
+                    0.5060240963855422,
+                    112,
+                    153,
+                    252,
+                    0
+                ],
+                [
+                    0.9036144578313252,
+                    113,
+                    172,
+                    47,
+                    255
+                ],
+                [
+                    0.9397590361445782,
+                    116,
+                    239,
+                    202,
+                    255
+                ],
+                [
+                    1,
+                    10,
+                    199,
+                    178,
+                    255
+                ]
+            ],
+            "heightMap": "HeightMapSea",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer3",
+            "randomFactor": [
+                25,
+                25,
+                25
+            ],
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "ImageSea",
+            "destImage": "ImageSea",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0.7394495412844038,
+                    254,
+                    251,
+                    248,
+                    0
+                ],
+                [
+                    0.7908256880733946,
+                    255,
+                    253,
+                    251,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    254,
+                    252,
+                    255
+                ]
+            ],
+            "heightMap": "heightMapPole",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer4",
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "",
+            "destImage": "imageBump",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    0.167,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    0.168,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.91,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.911,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "HeightMapSea",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer5",
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1600,
+        800
+    ]
+}
