@@ -151,6 +151,7 @@ void AppPaths::checkForDirectoriesAndFiles() {
 
 QString AppPaths::provideTexture(QString texturePath, bool returnFullPath) {
     QDir myPath(texturePath);
+    qDebug() << "Providing path for " << texturePath << ", " << returnFullPath;
     QStringList filters; filters << "*.texjson";
     myPath.setNameFilters(filters);
     QStringList entries = myPath.entryList();
@@ -159,8 +160,12 @@ QString AppPaths::provideTexture(QString texturePath, bool returnFullPath) {
         auto h = rand() % entries.count();
         res = entries[h];
     }
-    if (!returnFullPath)
+    if (!returnFullPath) {
+        qDebug() << "returning " << res;
         return res;
-    else
+    }
+    else {
+        qDebug() << "returning " << texturePath << "/" << res;
         return texturePath+"/"+res;
+    }
 }

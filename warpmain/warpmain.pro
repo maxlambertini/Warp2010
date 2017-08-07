@@ -229,3 +229,5 @@ else:unix: LIBS += -L$$OUT_PWD/../libnoise-helpers/ -llibnoise-helpers
 
 INCLUDEPATH += $$PWD/../libnoise-helpers
 DEPENDPATH += $$PWD/../libnoise-helpers
+
+CONFIG+=console

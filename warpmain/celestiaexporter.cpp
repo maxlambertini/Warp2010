@@ -338,6 +338,7 @@ QString CelestiaExporter::runDesert(QString res)
     */
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideDesert(true), _texturePath+"/"+res);
     //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
+    qDebug() << "runDesert: " << res;
     vTextures.append(ptr);
     return res;
 
@@ -355,7 +356,8 @@ QString CelestiaExporter::runFailedCore(QString res)
 QString CelestiaExporter::runRockball(QString res)
 {
     res = QString("rockball_%1.png").arg(getUid());
-    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideRockball(true), _texturePath+"/"+res);
+    //auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideRockball(true), _texturePath+"/"+res);
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideDesert(true), _texturePath+"/"+res);
     vTextures.append(ptr);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
     return res;
@@ -407,8 +409,7 @@ QString CelestiaExporter::getPlanetTexture(Planet& p, int i) {
         return runGasGiant(res);
         break;
     case ptDesert:
-        runDesert(res);
-        return res;
+        return runDesert(res);
         break;
     case ptFailedCore:
         return runFailedCore(res);
