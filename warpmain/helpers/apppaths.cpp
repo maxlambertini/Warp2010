@@ -110,6 +110,7 @@ void AppPaths::checkForDirectoriesAndFiles() {
         if (!dir.exists()) {
             dir.mkpath(sPath);
         }
+        /*
         checkOrCreate(rockballTexDir());
         checkOrCreate(hotHouseTexDir());
         checkOrCreate(gardenTexDir());
@@ -122,7 +123,10 @@ void AppPaths::checkForDirectoriesAndFiles() {
         checkOrCreate(iceballTexDir());
         checkOrCreate(chunkTexDir());
         checkOrCreate(desertTexDir());
+        */
     }
+
+    copyDir(QCoreApplication::applicationDirPath()+"/textures",AppPaths::appDir(),true);
 
     //poi,  creiamo i files
     for (int h = 0; h < FILE_ITEMS; h++) {
