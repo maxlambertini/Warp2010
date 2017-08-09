@@ -110,20 +110,6 @@ void AppPaths::checkForDirectoriesAndFiles() {
         if (!dir.exists()) {
             dir.mkpath(sPath);
         }
-        /*
-        checkOrCreate(rockballTexDir());
-        checkOrCreate(hotHouseTexDir());
-        checkOrCreate(gardenTexDir());
-        checkOrCreate(glacierTexDir());
-        checkOrCreate(postgardenTexDir());
-        checkOrCreate(pregardenTexDir());
-        checkOrCreate(iceballTexDir());
-        checkOrCreate(gasgiantTexDir());
-        checkOrCreate(failedCoreTexDir());
-        checkOrCreate(iceballTexDir());
-        checkOrCreate(chunkTexDir());
-        checkOrCreate(desertTexDir());
-        */
     }
 
     copyDir(QCoreApplication::applicationDirPath()+"/textures",AppPaths::appDir(),true);

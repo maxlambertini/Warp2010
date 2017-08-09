@@ -217,7 +217,7 @@ texjson.files=textures/*
 
 #INSTALLS += texjson
 
-copydata.commands = $(COPY_DIR) $$PWD/textures $$OUT_PWD/textures
+copydata.commands = $(COPY_DIR) $$PWD/textures/* $$OUT_PWD/textures
 first.depends = $(first) copydata
 export(first.depends)
 export(copydata.commands)
