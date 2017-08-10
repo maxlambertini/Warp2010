@@ -1,0 +1,454 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "01heightMap",
+    "cloudMap": "imageBump",
+    "colorMap": "image1",
+    "heightMapBuilders": [
+        {
+            "dest": "destMap",
+            "name": "builder",
+            "seamless": true,
+            "source": "ModuleSelect"
+        },
+        {
+            "dest": "destMap2",
+            "name": "builder2",
+            "seamless": true,
+            "source": "displacer"
+        },
+        {
+            "dest": "destMap3",
+            "name": "builderDesert",
+            "seamless": true,
+            "source": "SelectDesert"
+        }
+    ],
+    "heightMaps": [
+        "destMap",
+        "destMap2",
+        "destMap3"
+    ],
+    "images": [
+        "01heightMap",
+        "02cloudMap",
+        "03bumpmap"
+    ],
+    "modules": [
+        {
+            "enableRandom": true,
+            "freq": 1.35,
+            "lac": 2.7,
+            "name": "Module2",
+            "oct": 5,
+            "pers": 0.25,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "enableRandom": true,
+            "name": "ModuleScale",
+            "src1": "Module2",
+            "type": "ScalePoint",
+            "x": 0.9,
+            "y": 1,
+            "z": 1.1
+        },
+        {
+            "ctl": "m1",
+            "enableRandom": false,
+            "lbound": -0.3,
+            "name": "ModuleSelect",
+            "src1": "ModuleScale",
+            "src2": "m2",
+            "type": "Select",
+            "ubound": 0.5,
+            "value": 0.7
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.4,
+            "lac": 2.2,
+            "name": "PerlinDesert",
+            "oct": 4,
+            "pers": 0.3,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "ctl": "ModuleSelect",
+            "enableRandom": false,
+            "lbound": 0.1,
+            "name": "SelectDesert",
+            "src1": "ModuleSelect",
+            "src2": "PerlinDesert",
+            "type": "Select",
+            "ubound": 0.5,
+            "value": 0.7
+        },
+        {
+            "name": "c3",
+            "type": "Cylinder"
+        },
+        {
+            "ctl": "m2",
+            "enableRandom": false,
+            "name": "displacer",
+            "src1": "Module2",
+            "src2": "m1",
+            "src3": "m3",
+            "src4": "turbo1",
+            "type": "Displace"
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.35,
+            "lac": 3.7,
+            "name": "m1",
+            "oct": 5,
+            "pers": 0.35,
+            "seed": 0,
+            "type": "Billow"
+        },
+        {
+            "enableRandom": true,
+            "freq": 1.35,
+            "lac": 3.7,
+            "name": "m2",
+            "oct": 5,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableDist": true,
+            "enableRandom": false,
+            "freq": 1.35,
+            "name": "m3",
+            "seed": 0,
+            "type": "Voronoi"
+        },
+        {
+            "enableRandom": false,
+            "freq": 2.5,
+            "name": "turbo1",
+            "pow": 0.02,
+            "rough": 1.5,
+            "seed": 0,
+            "src1": "m3",
+            "type": "Turbulence"
+        }
+    ],
+    "randomFactors": [
+        0.1,
+        0.1,
+        0.2,
+        0.13,
+        0.154,
+        0.131,
+        0.1231
+    ],
+    "reflectionMap": "imageMountains",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "01heightMap",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    97,
+                    97,
+                    101,
+                    255
+                ],
+                [
+                    -0.6,
+                    186,
+                    181,
+                    180,
+                    255
+                ],
+                [
+                    -0.18,
+                    122,
+                    176,
+                    166,
+                    255
+                ],
+                [
+                    -0.17,
+                    221,
+                    217,
+                    182,
+                    255
+                ],
+                [
+                    0.28,
+                    40,
+                    138,
+                    16,
+                    255
+                ],
+                [
+                    0.95,
+                    167,
+                    149,
+                    135,
+                    255
+                ],
+                [
+                    1,
+                    147,
+                    160,
+                    174,
+                    255
+                ]
+            ],
+            "heightMap": "destMap",
+            "lightBrightness": 2,
+            "lightContrast": 0.5,
+            "name": "renderer10",
+            "randomFactor": [
+                5,
+                20,
+                40
+            ],
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "",
+            "destImage": "02cloudMap",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    17,
+                    175,
+                    225,
+                    0
+                ],
+                [
+                    -0.95,
+                    15,
+                    42,
+                    216,
+                    0
+                ],
+                [
+                    -0.75,
+                    232,
+                    232,
+                    232,
+                    192
+                ],
+                [
+                    -0.55,
+                    140,
+                    166,
+                    129,
+                    128
+                ],
+                [
+                    -0.25,
+                    138,
+                    137,
+                    202,
+                    0
+                ],
+                [
+                    -0.10999999999999999,
+                    45,
+                    229,
+                    115,
+                    0
+                ],
+                [
+                    0.41999999999999993,
+                    189,
+                    246,
+                    231,
+                    0
+                ],
+                [
+                    0.6499999999999999,
+                    195,
+                    198,
+                    196,
+                    224
+                ],
+                [
+                    0.8500000000000001,
+                    199,
+                    211,
+                    206,
+                    224
+                ],
+                [
+                    1,
+                    241,
+                    241,
+                    241,
+                    223
+                ]
+            ],
+            "heightMap": "destMap2",
+            "lightBrightness": 2,
+            "lightContrast": 0.01,
+            "name": "renderer11",
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "",
+            "destImage": "03bumpmap",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "destMap",
+            "lightBrightness": 2,
+            "lightContrast": 0.5,
+            "name": "renderer12",
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "01heightMap",
+            "destImage": "01heightMap",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    208,
+                    199,
+                    198,
+                    0
+                ],
+                [
+                    0.1,
+                    115,
+                    108,
+                    90,
+                    0
+                ],
+                [
+                    0.2,
+                    125,
+                    62,
+                    39,
+                    92
+                ],
+                [
+                    0.41,
+                    119,
+                    99,
+                    96,
+                    64
+                ],
+                [
+                    0.46,
+                    225,
+                    215,
+                    174,
+                    0
+                ],
+                [
+                    1,
+                    77,
+                    71,
+                    92,
+                    0
+                ]
+            ],
+            "heightMap": "destMap3",
+            "lightBrightness": 2,
+            "lightContrast": 0.5,
+            "name": "renderer13",
+            "randomFactor": [
+                4,
+                20,
+                10
+            ],
+            "randomGradient": false
+        },
+        {
+            "backgroundImage": "01heightMap",
+            "destImage": "01heightMap",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    187,
+                    209,
+                    211,
+                    0
+                ],
+                [
+                    0.1,
+                    24,
+                    193,
+                    123,
+                    0
+                ],
+                [
+                    0.201,
+                    140,
+                    205,
+                    192,
+                    48
+                ],
+                [
+                    0.31,
+                    198,
+                    118,
+                    163,
+                    64
+                ],
+                [
+                    1,
+                    84,
+                    88,
+                    80,
+                    0
+                ]
+            ],
+            "heightMap": "destMap3",
+            "lightBrightness": 2,
+            "lightContrast": 0.5,
+            "name": "renderer14",
+            "randomFactor": [
+                30,
+                20,
+                10
+            ],
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1600,
+        800
+    ]
+}
