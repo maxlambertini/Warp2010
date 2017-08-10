@@ -48,7 +48,7 @@ void NoiseImageRunner::run() {
                     using std::unique_ptr;
                     unique_ptr<TextureBuilder> tb(new TextureBuilder());
                     TextureBuilder *p = tb.get();
-                    if (_textureFile.startsWith("/"))
+                    if (_textureFile.startsWith("/") || _textureFile.contains(":/") || _textureFile.contains(":\\"))
                         p->prepareObjectFromJsonFile( _textureFile);
                     else
                         p->prepareObjectFromJsonFile( AppPaths::appDir()+"/jstexture/"+ _textureFile);

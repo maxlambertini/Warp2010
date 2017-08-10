@@ -217,11 +217,20 @@ texjson.files=textures/*
 
 #INSTALLS += texjson
 
+win32 {
+copydata.commands = $$shell_path($(COPY_DIR) $$PWD/textures) $$shell_path($$OUT_PWD/textures)
+first.depends = $(first) copydata
+export(first.depends)
+export(copydata.commands)
+QMAKE_EXTRA_TARGETS += first copydata
+}
+else {
 copydata.commands = $(COPY_DIR) $$PWD/textures/* $$OUT_PWD/textures
 first.depends = $(first) copydata
 export(first.depends)
 export(copydata.commands)
 QMAKE_EXTRA_TARGETS += first copydata
+}
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/release/ -llibnoise-warp
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/debug/ -llibnoise-warp
