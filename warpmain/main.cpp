@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
 
     //check if texture paths are present
-    Planet::checkForTexturePath();
+    //Planet::checkForTexturePath();
 
     //initialize files
     AppPaths::checkForDirectoriesAndFiles();

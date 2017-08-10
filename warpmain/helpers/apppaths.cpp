@@ -112,7 +112,7 @@ void AppPaths::checkForDirectoriesAndFiles() {
         }
     }
 
-    copyDir(QCoreApplication::applicationDirPath()+"/textures",AppPaths::appDir(),true);
+    //copyDir(QCoreApplication::applicationDirPath()+"/textures",AppPaths::appDir(),true);
 
     //poi,  creiamo i files
     for (int h = 0; h < FILE_ITEMS; h++) {
