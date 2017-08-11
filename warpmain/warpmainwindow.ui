@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Warp 2010 -- Leonov Edition</string>
+   <string>WarpNow!</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resources.qrc">
@@ -1291,16 +1291,13 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="action_ExportMapToImage"/>
     <addaction name="separator"/>
     <addaction name="actionPrint_Sector_Map"/>
-    <addaction name="actionPrint_Trade_Route"/>
     <addaction name="separator"/>
     <addaction name="action_Add_New_Star"/>
     <addaction name="actionAdd_Stars_Between_Two_Stars"/>
-    <addaction name="action_TradeRoute_to_all_GardenPlanets"/>
     <addaction name="action_map_Sector_Map_Options"/>
     <addaction name="action_Planar_Projection_Modes"/>
     <addaction name="action_Clear_Star_Sector_Data"/>
     <addaction name="separator"/>
-    <addaction name="actionCreate_map_2"/>
     <addaction name="action_Preferences"/>
     <addaction name="separator"/>
     <addaction name="action_AboutWarp2010"/>
@@ -1314,9 +1311,8 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <addaction name="action_CreateSolarSystem"/>
     <addaction name="action_SolarSystemForAllStars"/>
     <addaction name="separator"/>
+    <addaction name="action_TradeRoute_to_all_GardenPlanets"/>
     <addaction name="action_Save_Solar_System_to_HTML"/>
-    <addaction name="action_Save_Solar_System_to_Celestia_file"/>
-    <addaction name="actionPrint_Solar_System"/>
     <addaction name="separator"/>
     <addaction name="action_Preferences"/>
     <addaction name="separator"/>
@@ -1526,7 +1522,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <string>&amp;New Solar System</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+W</string>
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="action_CreateTradeRoute">
@@ -1625,6 +1621,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>&amp;Trade Route to all Garden Planets</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
   </action>
   <action name="action_SolarSystemForAllStars">
    <property name="icon">
@@ -1657,6 +1656,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    <property name="text">
     <string>&amp;Preferences</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
   </action>
   <action name="action_ShowAsHexMap">
    <property name="checkable">
@@ -1682,7 +1684,7 @@ Double click on a star below to recalculate a new jumpweb centered on the select
     <string>Export Sector</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+V</string>
+    <string>Ctrl+E</string>
    </property>
   </action>
   <action name="action_ViewOnlyTradeRoutes">
@@ -1796,6 +1798,9 @@ Double click on a star below to recalculate a new jumpweb centered on the select
    </property>
    <property name="text">
     <string>Save Solar System to &amp;HTML</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
   <action name="action_Save_Solar_System_to_Celestia_file">
