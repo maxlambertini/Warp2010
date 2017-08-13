@@ -47,6 +47,7 @@ void NoiseImageRunner::run() {
                {
                     using std::unique_ptr;
                     unique_ptr<TextureBuilder> tb(new TextureBuilder());
+                    qDebug() << "Creating texture for planet " << _planetName << ", type(" << _planetType << ") using file " << _textureFile << " to filename " << _filename;
                     TextureBuilder *p = tb.get();
                     if (_textureFile.startsWith("/") || _textureFile.contains(":/") || _textureFile.contains(":\\"))
                         p->prepareObjectFromJsonFile( _textureFile);

@@ -71,7 +71,7 @@ public:
     int zz = 1;
 
     QString getUid() {
-        QString uid = QUuid::createUuid().toString().split('-')[1];
+        QString uid = QUuid::createUuid().toString().left(12);
         return uid;
     }
 
@@ -81,16 +81,16 @@ public:
 
     QString runGardenEarthlike(Planet& p, QString res);
     QString runGarden(Planet& p, QString res);
-    QString runGlacier(QString res);
+    QString runGlacier(Planet &p, QString res);
     QString runPostGarden(Planet& p, QString res);
-    QString runPreGarden(QString res, Planet& p);
-    QString runHotHouse(QString res);
-    QString runGasGiant(QString res);
-    QString runDesert(QString res);
-    QString runFailedCore(QString res);
-    QString runRockball(QString res);
-    QString runIceball(QString res);
-    QString runChunk(QString res);
+    QString runPreGarden(Planet& p, QString res);
+    QString runHotHouse(Planet& p, QString res);
+    QString runGasGiant(Planet& p, QString res);
+    QString runDesert(Planet& p, QString res);
+    QString runFailedCore(Planet& p, QString res);
+    QString runRockball(Planet& p, QString res);
+    QString runIceball(Planet& p, QString res);
+    QString runChunk(Planet& p, QString res);
 
 signals:
     void exported(int idx);

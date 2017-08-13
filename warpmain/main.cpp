@@ -34,6 +34,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <time.h>
 #include "helpers/splashscreen.h"
 #include "helpers/graphmlexporter.h"
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
 
 #ifdef WIN32
 //Q_IMPORT_PLUGIN(qjpeg)
@@ -41,12 +44,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 //Q_IMPORT_PLUGIN(qmng)
 #endif
 
+void myMessageHandler(QtMsgType type, const QMessageLogContext &, const QString & msg);
+
 int main(int argc, char *argv[])
 {
     srand(time(0)); //randomize everything!
     Q_INIT_RESOURCE(Resources);
 
     QApplication a(argc, argv);
+    qInstallMessageHandler(myMessageHandler);
+    qDebug() << "Starting warpmain.";
 
     a.addLibraryPath(QCoreApplication::applicationDirPath()+"/plugins");
 
@@ -84,4 +91,27 @@ int main(int argc, char *argv[])
 
     return a.exec();
 
+}
+
+void myMessageHandler(QtMsgType type, const QMessageLogContext &, const QString & msg)
+{
+    QString txt;
+    switch (type) {
+    case QtDebugMsg:
+        txt = QString("Debug: %1").arg(msg);
+        break;
+    case QtWarningMsg:
+        txt = QString("Warning: %1").arg(msg);
+    break;
+    case QtCriticalMsg:
+        txt = QString("Critical: %1").arg(msg);
+    break;
+    case QtFatalMsg:
+        txt = QString("Fatal: %1").arg(msg);
+    break;
+    }
+    QFile outFile(AppPaths::appDir()+"/warpmain.log");
+    outFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    QTextStream ts(&outFile);
+    ts << txt << endl;
 }

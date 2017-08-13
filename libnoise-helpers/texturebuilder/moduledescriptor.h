@@ -119,6 +119,8 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     int _seed = 0;
     Q_PROPERTY(int seed READ seed WRITE setSeed )
 
+    int _actualSeed = 0;
+
     int _oct = 6;
     Q_PROPERTY(int oct READ oct WRITE setOct )
 
@@ -189,6 +191,7 @@ public:
     QString& moduleType() { return _moduleType; }
     QString& name() { return _name; }
     int seed() { return _seed; }
+    int actualSeed() { return _actualSeed; }
     double freq() { return _freq; }
     double lac() { return _lac; }
     double pers() { return _pers; }
@@ -215,6 +218,16 @@ public:
     double value() { return _value; }
     bool enableRandom() { return _enableRandom; }
 
+    inline void dumpModule() {
+        qDebug() << "ModuleType:" << _moduleType << " Name:" << _name << " Seed:" << _seed << " ActualSeed:" << _actualSeed
+                 << " Freq:" << _freq << " Lac:" << _lac << " Pers:" << _pers << " Oct:" << _oct
+                 << " Displ:" << _disp << " EnableDist:" << _enableDist << " Src1:" << _src1 << " Src2:" << _src2
+                 << " Src3:" << _src3 << " Src4:" << _src4 << " Ctl:" << _ctl << " Ubound:" << _uBound
+                 << " Lbound:" << _lBound << " Exp:" << _exp << " Bias:" << _bias << " Scale:" << _scale << " Invert:" << _invert
+                 << " x:" << _x << " y:" << _y << " z:" << _z << " Pow:" << _pow << " Rough:" << _rough << " value:" << _value
+                 << " EnableRandom" << _enableRandom; // << " CPoints:" << _cPoints;
+    }
+
     const QMap<QString, QSharedPointer<Module>>& modules() { return _modules; }
     QVector<QString>& propertiesToExport() { return _propertiesToExport; }
 
@@ -222,6 +235,7 @@ public:
     void setModuleType (QString v) { _moduleType = v; this->setupPropertiesToExport(v); }
     void setName(QString v) { _name = v ; }
     void setSeed(int v) { _seed = v ; }
+    void setActualSeed(int v) { _actualSeed = v ; }
     void setFreq(double v) { _freq = v ; }
     void setLac(double v) { _lac = v ; }
     void setPers(double v) { _pers = v ; }

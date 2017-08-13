@@ -77,6 +77,8 @@ class NoiseImageRunner : public QObject
     QString _filename = "";
     QString _textureFile = "";
     NoiseImageUtils imgUtils;
+    QString _planetName = "";
+    QString _planetType = "";
 public:    
     void setSeed (int v) {_seed = v; }
     int  seed() { return _seed; }
@@ -101,6 +103,7 @@ public:
     void setSeaRatio (double v) { _seaRatio = v; }
 
 
+
     NoiseImageRunner();
 
     NoiseImageRunner(RType runType, const QString& filename, int seed) : _runType(runType), _filename(filename), _seed(seed) {}
@@ -121,6 +124,7 @@ public:
     static QSharedPointer<NoiseImageRunner> UseTextureBuilder(const QString& textureFile, const QString& imageFile);
 
     void run()  ;
+    void setPlanetNameAndType (const QString& planetName, const QString& planetType) { _planetName = planetName; _planetType = planetType; }
 
 signals:
     void imageSaved(QString f);
