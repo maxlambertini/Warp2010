@@ -371,8 +371,6 @@ void TextureBuilder::createModules() {
     QSharedPointer<ModuleDescriptor> mod;
     foreach (mod,_modDesc) {
         auto modPtr = mod.data();
-        qDebug() << "Module " << modPtr->name() << " Before random:";
-        modPtr->dumpModule();
         if (this->useRandomFactors() &&  modPtr->enableRandom() ) {
             modPtr->setBias(this->applyRandomFactor(modPtr->bias()) );
             modPtr->setDispl(this->applyRandomFactor(modPtr->displ()) );

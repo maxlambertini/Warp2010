@@ -74,6 +74,7 @@ void SolarSystemCreator::createWorlds()
         bool advanceNextPlanet = true;
         do {
             Planet px;
+            px.setStar(_star.data());
             if (h == 0) {
                 double dModifier = 0.1;
                 if (_star->starType() == NSStar::stM)
@@ -97,6 +98,7 @@ void SolarSystemCreator::createWorlds()
             if (chance < 8) {
 
                 Planet planet = this->createPlanet(currentDistance, false,px);
+                planet.setStar(_star.data());
                 this->setPlanetType(planet, currentDistance);
 
                 int numSat = 0;
@@ -113,6 +115,7 @@ void SolarSystemCreator::createWorlds()
                     for (int idxSat = 0; idxSat < numSat; idxSat++)
                     {
                         Planet sat = this->createPlanet( currentDistance, true, planet, &dSatDistance);
+                        sat.setStar(_star.data());
                         this->setPlanetType(sat, currentDistance);
                         if (sat.massEarth() < 0.6)
                             sat.setTidalForce(1.1);
@@ -415,6 +418,8 @@ Planet SolarSystemCreator::createPlanet(
         double *prevDistance)
 {
     Planet planet;
+    if (isSatellite)
+        planet.setParent(&planetTop);
 
     Orbit orbit;
     int d = SSGX::d6();

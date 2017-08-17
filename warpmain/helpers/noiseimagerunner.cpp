@@ -55,6 +55,7 @@ void NoiseImageRunner::run() {
                         p->prepareObjectFromJsonFile( AppPaths::appDir()+"/jstexture/"+ _textureFile);
                     p->buildImages();
                     p->saveRenderedImageToFile(p->colorMap(),_filename);
+
                }
            break;
            case GG2:

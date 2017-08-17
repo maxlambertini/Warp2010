@@ -254,14 +254,14 @@ QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
         //auto ptr = NoiseImageRunner::UseTextureBuilder("Cloud.OK.texjson", _texturePath+"/"+res);
         auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideClouds(true), _texturePath+"/"+res);
 
-        ptr->setPlanetNameAndType(p.name(),"Clouds");
+        ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Clouds");
         vTextures.append(ptr);
         return res;
     }
     else {
         res = QString("f_clouds_%1.png").arg(getUid());
         auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideAlienClouds(true), _texturePath+"/"+res);
-        ptr->setPlanetNameAndType(p.name(),"Alien Clouds");
+        ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Alien Clouds");
         vTextures.append(ptr);
         return res;
     }
@@ -274,7 +274,7 @@ QString CelestiaExporter::runGarden(Planet& p, QString res)
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGarden(true), _texturePath+"/"+res);
     //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
     ptr.data()->setSeaRatio(p.waterPercentage());
-    ptr->setPlanetNameAndType(p.name(),"Garden");
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Garden");
     vTextures.append(ptr);
     return res;
 }
@@ -284,7 +284,7 @@ QString CelestiaExporter::runGlacier(Planet& p, QString res)
     res = QString("glacier_%1.png").arg(getUid());
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Glacier,_texturePath+"/"+res, SSGX::dn(999999))));
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGlacier(true), _texturePath+"/"+res);
-    ptr->setPlanetNameAndType(p.name(),"Glacier");
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Glacier");
     vTextures.append(ptr);
     return res;
 }
@@ -293,7 +293,7 @@ QString CelestiaExporter::runPostGarden(Planet& p, QString res)
 {
     res = QString("postgarden_%1.png").arg(getUid());
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::providePostgarden(true), _texturePath+"/"+res);
-    ptr->setPlanetNameAndType(p.name(),"PostGarden");
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"PostGarden");
     vTextures.append(ptr);
     return res;
 }
@@ -302,7 +302,7 @@ QString CelestiaExporter::runPreGarden(Planet& p, QString res )
 {
     res = QString("pregarden_%1.png").arg(getUid());
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::providePregarden(true), _texturePath+"/"+res);
-    ptr->setPlanetNameAndType(p.name(),"PreGarden");
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"PreGarden");
     vTextures.append(ptr);
     return res;
 }
@@ -312,7 +312,7 @@ QString CelestiaExporter::runHotHouse(Planet& p, QString res)
     res = QString("hot_house_%1.png").arg(getUid());
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideHotHouse(true), _texturePath+"/"+res);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));
-    ptr->setPlanetNameAndType(p.name(),"Hothouse");
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Hothouse");
     vTextures.append(ptr);
     return res;
 }
@@ -321,7 +321,7 @@ QString CelestiaExporter::runGasGiant(Planet& p, QString res)
 {
     res = QString("gasgiant_%1.png").arg(getUid());
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGasgiant(true), _texturePath+"/"+res);
-    ptr->setPlanetNameAndType(p.name(),"GasGiant");
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"GasGiant");
     vTextures.append(ptr);
     return res;
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::GG,_texturePath+"/"+res, SSGX::dn(999999))));
@@ -348,7 +348,7 @@ QString CelestiaExporter::runDesert(Planet& p, QString res)
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideDesert(true), _texturePath+"/"+res);
     //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
     qDebug() << "runDesert: " << res;
-    ptr->setPlanetNameAndType(p.name(),"Desert");
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Desert");
     vTextures.append(ptr);
     return res;
 
@@ -359,7 +359,7 @@ QString CelestiaExporter::runFailedCore(Planet& p, QString res)
     res = QString("failedcore_%1.png").arg(getUid());
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideFailedCore(true), _texturePath+"/"+res);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Jade2,_texturePath+"/"+res, SSGX::dn(999999))));
-    ptr->setPlanetNameAndType(p.name(),"Failed Core");
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Failed Core");
     vTextures.append(ptr);
     return res;
 }
@@ -369,6 +369,7 @@ QString CelestiaExporter::runRockball(Planet& p, QString res)
     res = QString("rockball_%1.png").arg(getUid());
     //auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideRockball(true), _texturePath+"/"+res);
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideDesert(true), _texturePath+"/"+res);
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Rockball");
     vTextures.append(ptr);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
     return res;
@@ -378,6 +379,7 @@ QString CelestiaExporter::runIceball(Planet& p, QString res)
 {
     res = QString("rockball_%1.png").arg(getUid());
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideIceball(true), _texturePath+"/"+res);
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Iceball");
     vTextures.append(ptr);
     return res;
 }
@@ -386,6 +388,7 @@ QString CelestiaExporter::runChunk(Planet& p, QString res)
 {
     res = QString("chunk_%1.png").arg(getUid());
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideChunk(  true), _texturePath+"/"+res);
+    ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Chunk");
     vTextures.append(ptr);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
     return res;

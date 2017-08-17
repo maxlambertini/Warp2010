@@ -28,6 +28,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "ssg_structures.h"
 #include "helpers/apppaths.h"
 #include "helpers/planetrenderer.h"
+#include <star.h>
+
 
 QString hydrosphereDesc[] = {
     "None",
@@ -104,7 +106,8 @@ Planet::Planet( const Planet& other ) : QObject ()
     this->_numMarginals = other._numMarginals;
     this->_satellites = other._satellites;
     this->_tidalForce = other._tidalForce;
-    qDebug() << "Planet copied";
+    this->_parent = other._parent;
+    this->_star = other._star;
 }
 
 Planet& Planet::operator=( const Planet& other )
@@ -397,4 +400,13 @@ void Planet::setNumMarginals() {
 
 }
 
-
+QString Planet::planetFullName() {
+    QString out = "";
+    if (_star != nullptr)
+        out = out + "["+_star->starName +"] ";
+    if (_parent != nullptr)
+        out = out + _parent->name()+ " ";
+    out = out + this->name();
+    qDebug() << "out is: " << out;
+    return out;
+}

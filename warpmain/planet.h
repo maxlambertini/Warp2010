@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QObject>
 #include <QtCore>
 #include <math.h>
-#include "orbit.h"
 #include <QDir>
+#include "orbit.h"
 
 namespace NSPlanet {
     enum CoreType {
@@ -75,8 +75,7 @@ namespace NSPlanet {
 
 using namespace NSPlanet;
 
-class Planet;
-
+class Star;
 class Planet : public QObject
 {
     Q_OBJECT
@@ -105,6 +104,8 @@ private:
     QVector<Planet> _satellites;
 
     QDir _dir;
+    Planet *_parent = nullptr;
+    Star *_star = nullptr;
 
 
 public:
@@ -119,6 +120,13 @@ public:
     bool operator!=( const Planet & other ) const;
 
     //getter & setter
+
+    Planet* parent() { return _parent; }
+    void setParent(Planet* p) { _parent = p; }
+    Star*   star() { return _star; }
+    void setStar(Star* s) { _star = s; }
+
+    QString planetFullName();
 
     Orbit& orbit () { return _orbit; }
     Orbit* orbitPtr () { return &_orbit; }
