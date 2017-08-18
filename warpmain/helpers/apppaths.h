@@ -56,12 +56,12 @@ public:
     static void checkForDirectoriesAndFiles() ;
     static bool copyDir(const QString source, const QString destination, const bool override);
 
-    static void initializeTextureDir() {
+    static void initializeTextureDir(bool override = false) {
         QDir dir(textureDir());
 
-        if (!dir.exists(textureDir())) {
-            copyDir(QCoreApplication::applicationDirPath()+"/textures",textureDir(), true);
-        }
+        //if (!dir.exists(textureDir())) {
+            copyDir(QCoreApplication::applicationDirPath()+"/textures/",textureDir(), override);
+        //}
     }
 
     inline static QString pluginsDir() {

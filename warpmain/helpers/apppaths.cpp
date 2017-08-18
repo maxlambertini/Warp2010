@@ -46,6 +46,7 @@ QString dirToCheck[2] =
 };
 
 bool AppPaths::copyDir(const QString source, const QString destination, const bool override) {
+    qDebug() << "copyDir... " << source << " to " << destination << ", " << override;
     QDir directory(source);
     bool error = false;
 
@@ -56,9 +57,13 @@ bool AppPaths::copyDir(const QString source, const QString destination, const bo
     QStringList dirs = directory.entryList(QDir::AllDirs | QDir::Hidden);
     QStringList files = directory.entryList(QDir::Files | QDir::Hidden);
 
+    qDebug() << "Dirs: " << dirs;
+    qDebug() << "Files: " << files;
+
     QList<QString>::iterator d,f;
 
     for (d = dirs.begin(); d != dirs.end(); ++d) {
+        qDebug() << "inspecting ... " << (*d);
         if ((*d) == "." || (*d) == "..") {
             continue;
         }
@@ -77,6 +82,7 @@ bool AppPaths::copyDir(const QString source, const QString destination, const bo
 
     for (f = files.begin(); f != files.end(); ++f) {
         QFile tempFile(directory.path() + "/" + (*f));
+        qDebug() << "Analyzing: " << directory.path() << "," << tempFile.fileName();
 
 
         if (QFileInfo(directory.path() + "/" + (*f)).isDir()) {
@@ -89,6 +95,7 @@ bool AppPaths::copyDir(const QString source, const QString destination, const bo
             destFile.remove();
         }
 
+        qDebug() << "copying " << tempFile.fileName() << " to " << destination;
         if (!tempFile.copy(destination + "/" + directory.relativeFilePath(tempFile.fileName()))) {
             error = true;
 
