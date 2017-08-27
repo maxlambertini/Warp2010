@@ -92,6 +92,10 @@ public:
     QString runIceball(Planet& p, QString res);
     QString runChunk(Planet& p, QString res);
 
+    void makeAtmosphere(int i, Planet& planet, QTextStream &stream);
+    void makeMainCelestiaStats(int i, Planet& planet, QTextStream& stream );
+    void makeRings(int i, Planet& planet, QTextStream& stream );
+
 signals:
     void exported(int idx);
     void startExporting();
@@ -108,7 +112,7 @@ private:
     StarList * _starList;
     NoiseImageUtils niu;
 
-    QString planetToCelestia(Planet& planet, QString starName, QString planetFatherName, int i);
+    QString planetToCelestia(Planet& planet, QString planetFatherName, int i);
     int _numTextures;
     int _curTexture;
 

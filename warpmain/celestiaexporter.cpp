@@ -69,11 +69,11 @@ void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
         foreach (planet, _star->planets()) {
             i += 10;
             QString starName = _star->starName;
-            stream << this->planetToCelestia(planet,starName,"",i);
+            stream << this->planetToCelestia(planet,"",i);
             // qDebug() << "celestia exporting " << planet.name();
             foreach (sat, planet.satellites()) {
                 i += 10;
-                stream << this->planetToCelestia(sat,_star->starName,planet.name(),i);
+                stream << this->planetToCelestia(sat,planet.name(),i);
                 // qDebug() << "celestia exporting sat " << sat.name();
             }
         }
@@ -133,45 +133,8 @@ void CelestiaExporter::doneRendering(QString filename) {
 
 }
 
-QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QString planetFatherName = "", int i = 1)
+void CelestiaExporter::makeAtmosphere(int i, Planet& planet, QTextStream& stream)
 {
-    QString sOutput;
-    QTextStream stream(&sOutput);
-
-    if (planetFatherName != "")
-        stream << "\"" << planet.name() << "\" \"" << _star->starName << "/" << planetFatherName << "\" {\n";
-    else
-        stream << "\"" << planet.name() << "\" \"" << _star->starName << "\" {\n";
-
-    // qDebug() << "step 1";
-
-    stream << "\tTexture \"" << this->getPlanetTexture(planet,i) << "\"\n";
-    stream << "\tMass " << planet.massEarth() << "\n";
-    stream << "\tRadius " << planet.radius() << "\n";
-    stream << "\tRotationPeriod " << planet.orbit().day() << "\n";
-    stream << "\tEllipticalOrbit { \n";
-    stream << "\t\tPeriod " << planet.orbit().year() << "\n";
-    stream << "\t\tEccentricity " << planet.orbit().eccentricity() << "\n";
-
-    // qDebug() << "step 2";
-
-
-    if (!planet.isSatellite())
-        stream << "\t\tSemiMajorAxis " << planet.orbit().distance() << "\n";
-    else
-        stream << "\t\tSemiMajorAxis " << (planet.orbit().distance() ) << "\n";
-
-    // qDebug() << "step 3";
-
-
-    stream << "\t\tInclination " << planet.orbit().inclination() << "\n";
-    stream << "\t\tObliquity " << planet.orbit().obliquity() << "\n";
-    stream << "\t\tEpoch " << SSGX::dn(1000000) << "." << SSGX::dn(1000000) << "\n";
-    stream << "\t}\n";
-
-    // qDebug() << "step 4";
-
-
     if ( (int)planet.atmosphere() <= 3 && (
              planet.planetType() == ptDesert ||
              planet.planetType() == ptGarden ||
@@ -194,14 +157,54 @@ QString CelestiaExporter::planetToCelestia(Planet& planet, QString starName, QSt
         // qDebug() << "step 4.2";
 
     }
+}
 
-    // qDebug() << "step 5";
+void CelestiaExporter::makeMainCelestiaStats(int i, Planet& planet, QTextStream &stream)
+{
+    stream << "\tTexture \"" << this->getPlanetTexture(planet,i) << "\"\n";
+    stream << "\tMass " << planet.massEarth() << "\n";
+    stream << "\tRadius " << planet.radius() << "\n";
+    stream << "\tRotationPeriod " << planet.orbit().day() << "\n";
+    stream << "\tEllipticalOrbit { \n";
+    stream << "\t\tPeriod " << planet.orbit().year() << "\n";
+    stream << "\t\tEccentricity " << planet.orbit().eccentricity() << "\n";
+
+    if (!planet.isSatellite())
+        stream << "\t\tSemiMajorAxis " << planet.orbit().distance() << "\n";
+    else
+        stream << "\t\tSemiMajorAxis " << (planet.orbit().distance() ) << "\n";
+
+    stream << "\t\tInclination " << planet.orbit().inclination() << "\n";
+    stream << "\t\tObliquity " << planet.orbit().obliquity() << "\n";
+    stream << "\t\tEpoch " << SSGX::dn(1000000) << "." << SSGX::dn(1000000) << "\n";
+    stream << "\t}\n";
+}
+
+void CelestiaExporter::makeRings(int i, Planet& planet, QTextStream &stream)
+{
+    //TODO: build ring code. Planet has rings if:
+    // 1. It's a gas giant. Usually it is a smallish ring, from 2* radius and 0.05 radius width.
+    // 2. If it's a Saturn, it's 0.25-0.4 radius width
+    // 3. Other planet types might have or not a ring, but it's extremely unlikely. Say 1 in 20 of earthlike planets or bigger
+    return;
+}
+
+QString CelestiaExporter::planetToCelestia(Planet& planet, QString planetFatherName = "", int i = 1)
+{
+    QString sOutput;
+    QTextStream stream(&sOutput);
+
+    if (planetFatherName != "")
+        stream << "\"" << planet.name() << "\" \"" << _star->starName << "/" << planetFatherName << "\" {\n";
+    else
+        stream << "\"" << planet.name() << "\" \"" << _star->starName << "\" {\n";
+
+    makeMainCelestiaStats(i, planet, stream );
+    makeAtmosphere(i, planet, stream);
+    makeRings(i, planet, stream);
 
     stream << "}\n\n";
     stream.flush();
-
-    // qDebug() << "step 6";
-
 
     return sOutput;
 
@@ -220,11 +223,11 @@ void CelestiaExporter::saveCelestiaDataToFile(QString &filename)
     int nCount = 0;
     foreach (planet, _star->planets()) {
         i += 10;
-        stream << this->planetToCelestia(planet,_star->starName,"",i);
+        stream << this->planetToCelestia(planet,"",i);
         // qDebug() << "celestia exporting " << planet.name();
         foreach (sat, planet.satellites()) {
             i += 1;
-            stream << this->planetToCelestia(sat,_star->starName,planet.name(),i);
+            stream << this->planetToCelestia(sat,planet.name(),i);
             // qDebug() << "celestia exporting sat " << sat.name();
         }
         emit this->exported(nCount++);
