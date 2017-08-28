@@ -40,7 +40,8 @@ HEADERS += libnoisehelpers.h\
         libnoise-helpers_global.h \
         qcolorops.h \
         noiseimageutils.h \
-        ssg_structures.h
+        ssg_structures.h \
+    ringtexturebuilder.h
 
 
 
@@ -74,7 +75,8 @@ SOURCES += \
     texturebuilder/rendererdescriptor.cpp \
     texturebuilder/texturebuilder.cpp \
     libnoisehelpers.cpp \
-    noiseimageutils.cpp
+    noiseimageutils.cpp \
+    ringtexturebuilder.cpp
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-warp/release/ -llibnoise-warp

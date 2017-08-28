@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QSharedPointer>
 #include <memory>
 #include <texturebuilder/texturebuilder.h>
+#include <ringtexturebuilder.h>
 
 namespace RT {
 enum RType {
@@ -54,7 +55,8 @@ enum RType {
     Jade2,
     Granite,
     Ice,
-    UseBuilder
+    UseBuilder,
+    Ring
 };
 }
 
@@ -122,6 +124,7 @@ public:
         _persistence(pers),_lacunarity(lac), _frequency(freq){}
 
     static QSharedPointer<NoiseImageRunner> UseTextureBuilder(const QString& textureFile, const QString& imageFile);
+    static QSharedPointer<NoiseImageRunner> UseRingBuilder(const QString& imageFile);
 
     void run()  ;
     void setPlanetNameAndType (const QString& planetName, const QString& planetType) { _planetName = planetName; _planetType = planetType; }

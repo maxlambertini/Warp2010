@@ -115,6 +115,7 @@ void RendererDescDialog::setRendererDescriptor(RendererDescriptor *v) {
 }
 
 void RendererDescDialog::on_create_random_gradient() {
+    /*
     auto c1 = ColorOps::randomHSLColor();
     auto c2 = ColorOps::randomHSLColor();
     auto step = 2 + SSGX::dx(6);
@@ -127,6 +128,32 @@ void RendererDescDialog::on_create_random_gradient() {
         ds += (dStep + (dStep/2.0)*SSGX::floatRand() - dStep/4.0 );
         grad.setColorAt(ds, ColorOps::randomHSLColor());
     }
+    */
+    QLinearGradient grad;
+    grad.stops().clear();
+    double d = 0.0;
+    int r1,r2,r3;
+    r1 = SSGX::dn(32)+223;
+    r2 = SSGX::dn(64)+191;
+    r3 = SSGX::dn(92)+163;
+    grad.setColorAt(0, QColor(r1,r2,r3));
+    while ( d < 0.95) {
+        r1 = SSGX::dn(32)+223;
+        r2 = SSGX::dn(64)+191;
+        r3 = SSGX::dn(92)+163;
+        if ( d > 0.0) {
+            d+= 0.05;
+            grad.setColorAt(d, QColor(r1,r2,r3));
+        }
+        d += (0.015 + 0.2*SSGX::floatRand());
+        if (d < 1.0)
+            grad.setColorAt(d, QColor(r1,r2,r3));
+    }
+    r1 = SSGX::dn(32)+223;
+    r2 = SSGX::dn(64)+191;
+    r3 = SSGX::dn(92)+163;
+    grad.setColorAt(1, QColor(r1,r2,r3));
+
     this->gradientEditor->setGradient(grad);
 
 }

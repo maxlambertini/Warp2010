@@ -1,0 +1,164 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "image1",
+    "heightMapBuilders": [
+        {
+            "dest": "BeginLayer_heightMap",
+            "name": "BeginLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "Turboz"
+        },
+        {
+            "dest": "EndLayer_heightMap",
+            "name": "EndLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "EndLayer_Module"
+        }
+    ],
+    "heightMaps": [
+        "BeginLayer_heightMap",
+        "EndLayer_heightMap"
+    ],
+    "images": [
+        "image1"
+    ],
+    "modules": [
+        {
+            "enableRandom": true,
+            "freq": 0.98,
+            "name": "BeginLayer_Module",
+            "type": "Cylinders"
+        },
+        {
+            "enableDist": true,
+            "enableRandom": true,
+            "freq": 5.2844999999999995,
+            "name": "EndLayer_Module",
+            "seed": 0,
+            "type": "Voronoi"
+        },
+        {
+            "enableRandom": true,
+            "freq": 1.4,
+            "name": "Turboz",
+            "pow": 0.09,
+            "rough": 1.13,
+            "seed": 0,
+            "src1": "BeginLayer_Module",
+            "type": "Turbulence"
+        }
+    ],
+    "randomFactors": [
+        0,
+        0.1,
+        0.2,
+        0.3,
+        0.2,
+        0.1,
+        0.09,
+        0.1,
+        0.8
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    55,
+                    97,
+                    74,
+                    255
+                ],
+                [
+                    -0.8573999999999999,
+                    60,
+                    95,
+                    67,
+                    255
+                ],
+                [
+                    -0.6830999999999999,
+                    51,
+                    81,
+                    58,
+                    255
+                ],
+                [
+                    -0.34284999999999993,
+                    64,
+                    110,
+                    75,
+                    255
+                ],
+                [
+                    -0.23649999999999993,
+                    61,
+                    111,
+                    82,
+                    255
+                ],
+                [
+                    -0.04322499999999993,
+                    62,
+                    101,
+                    84,
+                    255
+                ],
+                [
+                    0.22117500000000004,
+                    71,
+                    126,
+                    91,
+                    255
+                ],
+                [
+                    0.52025,s
+                    65,
+                    111,
+                    71,
+                    255
+                ],
+                [
+                    0.853475,
+                    58,
+                    112,
+                    66,
+                    255
+                ],
+                [
+                    1,
+                    63,
+                    113,
+                    79,
+                    255
+                ]
+            ],
+            "heightMap": "BeginLayer_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "BeginLayer_renderer",
+            "randomFactor": [
+                3,
+                2,
+                2
+            ],
+            "randomGradient": true
+        }
+    ],
+    "size": [
+        1280,
+        640
+    ]
+}

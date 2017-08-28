@@ -186,6 +186,22 @@ void CelestiaExporter::makeRings(int i, Planet& planet, QTextStream &stream)
     // 1. It's a gas giant. Usually it is a smallish ring, from 2* radius and 0.05 radius width.
     // 2. If it's a Saturn, it's 0.25-0.4 radius width
     // 3. Other planet types might have or not a ring, but it's extremely unlikely. Say 1 in 20 of earthlike planets or bigger
+    QString res = QString("rings_%1.png").arg(getUid());
+    auto ptr = NoiseImageRunner::UseRingBuilder( _texturePath+"/"+res);
+    vTextures.append(ptr);
+
+    double min_ring = planet.radius() * (1.35+1.85*SSGX::floatRand());
+    double max_ring = min_ring * 1.02;
+    if (SSGX::d100() > 90)
+        max_ring = min_ring * (1.1+0.26*SSGX::floatRand());
+   else
+        max_ring = min_ring * (1.02+0.08*SSGX::floatRand());
+
+    stream << "\t\t Rings { \n";
+    stream << "\t\t\tInner " << (int)min_ring << " \n";
+    stream << "\t\t\tOuter " << (int)max_ring << " \n";
+    stream << "\t\t\Texture \"" << res << "\" \n\t\t}\n";
+
     return;
 }
 
@@ -201,7 +217,17 @@ QString CelestiaExporter::planetToCelestia(Planet& planet, QString planetFatherN
 
     makeMainCelestiaStats(i, planet, stream );
     makeAtmosphere(i, planet, stream);
-    makeRings(i, planet, stream);
+    if (planet.planetType() == ptGasGiant ) {
+        if (SSGX::d100() < 80) {
+            makeRings(i, planet, stream);
+        }
+    }
+
+    if (planet.planetType() == ptFailedCore ) {
+        if (SSGX::d100() < 40) {
+            makeRings(i, planet, stream);
+        }
+    }
 
     stream << "}\n\n";
     stream.flush();

@@ -84,6 +84,7 @@ class LIBNOISEHELPERSSHARED_EXPORT TextureBuilder : public QObject
 
     QString _outputFolder;
     QString _destinationImagePath = "";
+    QString _textureFile;
 
 public:
     TextureBuilder();

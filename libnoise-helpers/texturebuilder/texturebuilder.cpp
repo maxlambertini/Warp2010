@@ -397,9 +397,12 @@ void TextureBuilder::createModules() {
 
 void TextureBuilder::createImages() {
     QSharedPointer<ImageDescriptor> img;
+    qDebug() << "Creating images object for " << _textureFile;
     foreach (img,__imDesc) {
+        qDebug() << "Creating image " << img.data()->name();
         auto ptr = img.data()->makeImage();
         _images.insert(img.data()->name(),ptr);
+        qDebug() << "Added to image map";
     }
 }
 
@@ -498,6 +501,9 @@ void TextureBuilder::renderRenderers()
 
 void TextureBuilder::prepareObjectFromJsonFile(const QString &filename) {
     try {
+        _textureFile = filename;
+        qDebug() << "prepareObjectFromJsonFile " << filename;
+        __imDesc.clear();
         QFile data (filename);
         if (data.open(QFile::ReadOnly | QFile::Text)) {
             QByteArray json = data.readAll();
@@ -521,6 +527,10 @@ void TextureBuilder::prepareObjectFromJsonFile(const QString &filename) {
                 this->textureSanityCheck();
 
                 emit this->builderReady();
+            }
+            else {
+                qDebug() << "Json doc is null, texture file " << filename;
+                throw "Json doc is null, " + filename;
             }
         }
         data.close();

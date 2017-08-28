@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <utility>
 #include "helpers/apppaths.h"
 
+
 NoiseImageRunner::NoiseImageRunner()
 {
 }
@@ -40,11 +41,30 @@ QSharedPointer<NoiseImageRunner> NoiseImageRunner::UseTextureBuilder(const QStri
     return sp;
 }
 
+QSharedPointer<NoiseImageRunner> NoiseImageRunner::UseRingBuilder(const QString &imageFile) {
+    QSharedPointer<NoiseImageRunner> sp(new NoiseImageRunner());
+    sp.data()->setFilename(imageFile);
+    sp.data()->setRunType(Ring);
+    return sp;
+}
+
+
 void NoiseImageRunner::run() {
     {
        switch (_runType) {
+           case Ring:
+               {
+                    qDebug() << "Ring " << _filename;
+                    using std::unique_ptr;
+                    unique_ptr<RingTextureBuilder> tb(new RingTextureBuilder());
+                    RingTextureBuilder* tx = tb.get();
+                    tx->saveTexture(_filename);
+                    qDebug() << "Ring -- done";
+               }
+           break;
            case UseBuilder:
                {
+                    qDebug() << "UseBuilder " << _textureFile << ", " << _filename;
                     using std::unique_ptr;
                     unique_ptr<TextureBuilder> tb(new TextureBuilder());
                     qDebug() << "Creating texture for planet " << _planetName << ", type(" << _planetType << ") using file " << _textureFile << " to filename " << _filename;
@@ -55,7 +75,7 @@ void NoiseImageRunner::run() {
                         p->prepareObjectFromJsonFile( AppPaths::appDir()+"/jstexture/"+ _textureFile);
                     p->buildImages();
                     p->saveRenderedImageToFile(p->colorMap(),_filename);
-
+                    qDebug() << "UseBuilder -- done";
                }
            break;
            case GG2:
