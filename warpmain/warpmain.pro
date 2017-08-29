@@ -212,7 +212,9 @@ DISTFILES += test.tpl \
     textures/pregarden/Multilayered-EarthlikeRND.texjson \
     textures/rockball/Rockball.OK.texjson \
     textures/gasgiant/GasGiant2OK.texjson \
-    textures/gasgiant/GasGiant3.OK.texjson
+    textures/gasgiant/GasGiant3.OK.texjson \
+    textures/rockball/Rockball.02.OK.texjson \
+    textures/desert/Canyon.01.OK.texjson
 
 texjson.path=$${UtilsOUT_PWD}/textures
 texjson.files=textures/*

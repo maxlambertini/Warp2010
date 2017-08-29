@@ -164,6 +164,15 @@ void CelestiaExporter::makeMainCelestiaStats(int i, Planet& planet, QTextStream 
     stream << "\tTexture \"" << this->getPlanetTexture(planet,i) << "\"\n";
     stream << "\tMass " << planet.massEarth() << "\n";
     stream << "\tRadius " << planet.radius() << "\n";
+
+    if (planet.planetType() == ptGasGiant) {
+        auto ob = 0.12 * SSGX::floatRand();
+        stream << "\tOblateness " << ob << "\n";
+    } else {
+        auto ob = 0.01 * SSGX::floatRand() * (planet.radius() / 12000.0);
+        stream << "\tOblateness " << ob << "\n";
+    }
+
     stream << "\tRotationPeriod " << planet.orbit().day() << "\n";
     stream << "\tEllipticalOrbit { \n";
     stream << "\t\tPeriod " << planet.orbit().year() << "\n";

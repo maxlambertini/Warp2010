@@ -61,6 +61,7 @@ namespace NoiseModules {
         "RotatePoint",
         "ScalePoint",
         "TranslatePoint",
+        "Avg"
     };
 }
 
@@ -77,6 +78,7 @@ namespace NoiseModules {
 { "Module":"Add" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
 { "Module":"Max" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
 { "Module":"Min" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
+{ "Module":"Avg" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
 { "Module":"Multiply" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
 { "Module":"Power" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
 { "Module":"Blend" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" , "Src3": "mod_name" },
@@ -320,6 +322,9 @@ public:
 
     //{ "Module":"Min" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
     QSharedPointer<Module> makeMin ();
+
+    //{ "Module":"Avg" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
+    QSharedPointer<Module> makeAvg ();
 
     //{ "Module":"Multiply" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
     //{ "Module":"Power" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },

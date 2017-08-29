@@ -35,6 +35,7 @@ SOURCES += \
     ../libnoise/src/noise/module/exponent.cpp \
     ../libnoise/src/noise/module/invert.cpp \
     ../libnoise/src/noise/module/max.cpp \
+    ../libnoise/src/noise/module/avg.cpp \
     ../libnoise/src/noise/module/min.cpp \
     ../libnoise/src/noise/module/modulebase.cpp \
     ../libnoise/src/noise/module/multiply.cpp \

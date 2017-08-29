@@ -1,0 +1,188 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "BaseImage",
+    "heightMapBuilders": [
+        {
+            "dest": "BeginLayer_heightMap",
+            "name": "BeginLayer_noiseMapBuilder1",
+            "seamless": false,
+            "source": "demoInvert"
+        },
+        {
+            "dest": "EndLayer_heightMap",
+            "name": "EndLayer_noiseMapBuilder1",
+            "seamless": false,
+            "source": "EndLayer_Module"
+        }
+    ],
+    "heightMaps": [
+        "BeginLayer_heightMap",
+        "EndLayer_heightMap"
+    ],
+    "images": [
+        "BaseImage"
+    ],
+    "modules": [
+        {
+            "enableRandom": true,
+            "freq": 3.4,
+            "lac": 3.2,
+            "name": "BeginLayer_Module",
+            "oct": 6,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableRandom": false,
+            "name": "DemoAvg",
+            "src1": "BeginLayer_Module",
+            "src2": "EndLayer_Module",
+            "type": "Avg"
+        },
+        {
+            "enableRandom": true,
+            "freq": 2.5,
+            "lac": 3.2,
+            "name": "EndLayer_Module",
+            "oct": 6,
+            "pers": 0.3,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "cpoints": [
+                [
+                    -1,
+                    -1
+                ],
+                [
+                    -0.5,
+                    0.5
+                ],
+                [
+                    -0.2,
+                    -0.5
+                ],
+                [
+                    0.2,
+                    -0.5
+                ],
+                [
+                    0.5,
+                    0.7
+                ],
+                [
+                    1,
+                    -1
+                ]
+            ],
+            "enableRandom": false,
+            "name": "demoCurve",
+            "src1": "DemoAvg",
+            "type": "Curve"
+        },
+        {
+            "cpoints": [
+                [
+                    -1,
+                    1
+                ],
+                [
+                    -0.5,
+                    -1
+                ],
+                [
+                    0.5,
+                    -1
+                ],
+                [
+                    1,
+                    1
+                ]
+            ],
+            "enableRandom": false,
+            "name": "demoInvert",
+            "src1": "demoCurve",
+            "type": "Curve"
+        }
+    ],
+    "randomFactors": [
+        0.1,
+        0.2,
+        0.4,
+        0.8,
+        0.4,
+        0.8,
+        0.4,
+        0.3,
+        0.1,
+        0.05
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "BaseImage",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    164,
+                    69,
+                    22,
+                    255
+                ],
+                [
+                    -0.6,
+                    189,
+                    10,
+                    70,
+                    255
+                ],
+                [
+                    0,
+                    169,
+                    125,
+                    22,
+                    255
+                ],
+                [
+                    0.6000000000000001,
+                    198,
+                    105,
+                    12,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    94,
+                    13,
+                    255
+                ]
+            ],
+            "heightMap": "BeginLayer_heightMap",
+            "lightBrightness": 2.2,
+            "lightContrast": 0.4,
+            "name": "BeginLayer_renderer",
+            "randomFactor": [
+                12,
+                1,
+                1
+            ],
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1280,
+        640
+    ]
+}

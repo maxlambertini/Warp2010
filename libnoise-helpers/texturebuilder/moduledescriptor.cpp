@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 
 #include "moduledescriptor.h"
+#include <noise/module/avg.h>
 
 
 
@@ -252,6 +253,7 @@ void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     if (_m_moduleType=="Turbulence")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
     if (_m_moduleType=="Add") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
     if (_m_moduleType=="Max") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
+    if (_m_moduleType=="Avg") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
     if (_m_moduleType=="Min") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
     if (_m_moduleType=="Multiply") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
     if (_m_moduleType=="Power") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
@@ -286,6 +288,7 @@ QSharedPointer<Module> ModuleDescriptor::makeModule() {
         if (_moduleType=="Turbulence") return makeTurbulence();
         if (_moduleType=="Add") return makeAdd();
         if (_moduleType=="Max") return makeMax();
+        if (_moduleType=="Avg") return makeAvg();
         if (_moduleType=="Min") return makeMin();
         if (_moduleType=="Multiply") return makeMultiply();
         if (_moduleType=="Power") return makePower();
@@ -490,6 +493,13 @@ QSharedPointer<Module> ModuleDescriptor::makeMin() {
     QSharedPointer<Module> p; p.reset(m);
     return p;
 }
+
+QSharedPointer<Module> ModuleDescriptor::makeAvg() {
+    Avg* m = new Avg();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
 
 QSharedPointer<Module> ModuleDescriptor::makeMultiply (){
     Multiply* m = new Multiply();

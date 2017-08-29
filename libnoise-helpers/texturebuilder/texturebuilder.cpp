@@ -42,7 +42,7 @@ TextureBuilder::TextureBuilder() :
     //createTextureWorkflow("Layer1",false,"BaseImage","BaseImage");
     //createTextureWorkflow("Layer2",false,"BaseImage","BaseImage");
     createTextureWorkflow("EndLayer",false,"BaseImage","BaseImage",true);
-
+    this->_colorMap = "BaseImage";
 }
 
 void TextureBuilder::createTextureWorkflow(QString prefix, bool bCreateImage , QString backgroundImage , QString destImage, bool last)
