@@ -60,6 +60,7 @@ void NoiseImageRunner::run() {
                     RingTextureBuilder* tx = tb.get();
                     tx->saveTexture(_filename);
                     qDebug() << "Ring -- done";
+                    emit imageSaved(_filename);
                }
            break;
            case UseBuilder:
@@ -76,71 +77,72 @@ void NoiseImageRunner::run() {
                     p->buildImages();
                     p->saveRenderedImageToFile(p->colorMap(),_filename);
                     qDebug() << "UseBuilder -- done";
+                    emit imageSaved(_filename);
                }
            break;
            case GG2:
                {
-                   maps::GasGiant ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::GasGiant ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Cloudy:
                {
-                   maps::Cloudy ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::Cloudy ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Earthlike:
                {
-                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setIceRatio(0.30);  ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setIceRatio(0.30);  ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Earthlike2:
                {
-                   maps::Earthlike2 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::Earthlike2 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Earthlike3:
                {
-                   maps::Earthlike3 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::Earthlike3 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Pregarden:
                {
-                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setIceRatio(0.30); ep.setSeed(_seed); ep.setupPreGarden();  ep.generateAndSave(_filename);
+                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setIceRatio(0.30); ep.setSeed(_seed); ep.setupPreGarden();  ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Glacier:
                {
-                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setSeed(_seed); ep.setupGlacier(); ep.setSeaRatio(_seaRatio); ep.generateAndSave(_filename);
+                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setSeed(_seed); ep.setupGlacier(); ep.setSeaRatio(_seaRatio); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Postgarden:
                {
-                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setSeed(_seed); ep.setIceRatio(0.30); ep.setupPostGarden(); ep.generateAndSave(_filename);
+                   maps::EarthlikePeaks ep; ep.setSeaRatio(- (this->seaRatio() / 100.0 - 0.5)); ep.setSeed(_seed); ep.setIceRatio(0.30); ep.setupPostGarden(); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Clouds:
                {
-                   maps::EarthClouds ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::EarthClouds ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case FunkyClouds:
                {
-                   maps::FunkyClouds ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::FunkyClouds ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Desert:
                {
-                   maps::Desert ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::Desert ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case DesertG:
                {
-                   maps::DesertG ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::DesertG ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case ComplexDesert:
                 {
-                   maps::AlienPeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::AlienPeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                 }
                 /*
                imgUtils.CreateComplexDesert(_seed,
@@ -152,40 +154,40 @@ void NoiseImageRunner::run() {
            break;
            case ComplexDesert2:
             {
-               maps::AlienPeaksVoronoi ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+               maps::AlienPeaksVoronoi ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
             }
            break;
            case GG:
                {
-                   maps::GasGiant ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::GasGiant ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Jade:
                {
-                   maps::Jade ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::Jade ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Jade2:
                {
-                   maps::Jade2 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::Jade2 ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Granite:
                {
-                   maps::Granite ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::Granite ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            case Ice:
                {
-                   maps::Ice ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::Ice ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
            default:
                {
-                   maps::EarthlikePeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);
+                   maps::EarthlikePeaks ep; ep.setSeed(_seed); ep.generateAndSave(_filename);emit imageSaved(_filename);
                }
            break;
        }
-       emit imageSaved(_filename);
+
    }
 }

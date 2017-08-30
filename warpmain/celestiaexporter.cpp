@@ -95,7 +95,7 @@ void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
     _futures.clear();
 
     _numTextures = vTextures.count();
-    _curTexture = _numTextures;
+    _curTexture = _numTextures-1;
 
     QVectorIterator<QSharedPointer<NoiseImageRunner>>  vi(vTextures);
     while(vi.hasNext()) {
@@ -126,10 +126,13 @@ void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
 }
 
 void CelestiaExporter::doneRendering(QString filename) {
+    qDebug() << "DONE RENDERING: " << filename << ": " << _curTexture  << "/" << _numTextures;
     emit this->textureChunkExported(1);
-    _curTexture--;
-    if (_curTexture == 0)
+    _curTexture = _curTexture -1;
+    if (_curTexture == 0) {
+        qDebug() << "DONE EXPORTED: " << filename << ": " << _curTexture  << "/" << _numTextures;
         emit this->textureDoneExported();
+    }
 
 }
 

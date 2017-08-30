@@ -494,6 +494,7 @@ void TextureBuilder::renderRenderers()
 {
     QSharedPointer<utils::RendererImage> r;
     foreach (r,_lstRenderers) {
+        qDebug() << "Rendering renderer...";
         r.data()->Render();
     }
 }
