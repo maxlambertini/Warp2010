@@ -8,7 +8,7 @@
     "builderType": "sphere",
     "bumpMap": "",
     "cloudMap": "",
-    "colorMap": "image1",
+    "colorMap": "BaseImage",
     "heightMapBuilders": [
         {
             "dest": "BeginLayer_heightMap",
@@ -28,7 +28,7 @@
         "EndLayer_heightMap"
     ],
     "images": [
-        "image1"
+        "BaseImage"
     ],
     "modules": [
         {
