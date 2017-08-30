@@ -8,7 +8,7 @@
     "builderType": "sphere",
     "bumpMap": "image1",
     "cloudMap": "imageBump",
-    "colorMap": "image1",
+    "colorMap": "ImageSea",
     "heightMapBuilders": [
         {
             "dest": "heightMapPole",
@@ -147,7 +147,7 @@
             "lightBrightness": 2,
             "lightContrast": 1.5,
             "name": "renderer1",
-            "randomGradient": false
+            "randomGradient": true
         },
         {
             "backgroundImage": "image1",
@@ -374,7 +374,7 @@
         }
     ],
     "size": [
-        3200,
-        1600
+        1280,
+        640
     ]
 }
