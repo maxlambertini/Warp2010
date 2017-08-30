@@ -795,6 +795,7 @@ void WarpMainWindowForm::on_action_Add_New_Star_triggered()
     layout->addWidget(widget);
 
     dlg.setLayout(layout);
+    int startingStars = StarList::StarListPtr()->stars().count();
     QObject::connect(widget, SIGNAL(accept()), &dlg, SLOT(accept()));
     QObject::connect(widget, SIGNAL(reject()), &dlg, SLOT(reject()));
     if (dlg.exec() == QDialog::Accepted) {
@@ -810,6 +811,12 @@ void WarpMainWindowForm::on_action_Add_New_Star_triggered()
 
         }
     }
+    if (startingStars == 0) {
+        auto name = widget->starsToCreate().first()->starName;
+        StarList::StarListPtr()->setListName(name);
+        ui->txtSectorName->setText(name);
+    }
+
 
 }
 
