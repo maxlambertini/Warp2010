@@ -8,7 +8,7 @@
     "builderType": "sphere",
     "bumpMap": "img02CloudMap",
     "cloudMap": "",
-    "colorMap": "image1",
+    "colorMap": "img01ColorMap",
     "heightMapBuilders": [
         {
             "dest": "destMap",
@@ -118,14 +118,14 @@
                     255
                 ],
                 [
-                    0.16,
+                    0.15999999999999992,
                     0,
                     128,
                     255,
                     255
                 ],
                 [
-                    0.17,
+                    0.16999999999999993,
                     255,
                     160,
                     0,
@@ -155,7 +155,7 @@
             ],
             "heightMap": "destMap",
             "lightBrightness": 2,
-            "lightContrast": 3.5,
+            "lightContrast": 0.5,
             "name": "renderer10",
             "randomGradient": false
         },
@@ -200,28 +200,28 @@
                     0
                 ],
                 [
-                    -0.11,
+                    -0.10999999999999999,
                     0,
                     128,
                     255,
                     0
                 ],
                 [
-                    0.42,
+                    0.41999999999999993,
                     220,
                     224,
                     224,
                     0
                 ],
                 [
-                    0.65,
+                    0.6499999999999999,
                     220,
                     220,
                     240,
                     224
                 ],
                 [
-                    0.85,
+                    0.8500000000000001,
                     224,
                     248,
                     255,
