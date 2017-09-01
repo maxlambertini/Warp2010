@@ -105,6 +105,8 @@ public:
     void fromJson(const QJsonObject& json);
 
     QVector<GradientInfo>& gradientInfo() { return _gradientInfo; }
+    void readGradientInfo(const QJsonObject& json);
+    void randomizeGradientInfo();
 };
 
 #endif // RENDERERDESCRIPTOR_H
