@@ -215,7 +215,10 @@ DISTFILES += test.tpl \
     textures/gasgiant/GasGiant3.OK.texjson \
     textures/rockball/Rockball.02.OK.texjson \
     textures/desert/Canyon.01.OK.texjson \
-    textures/garden/Earthlike-01.OK.texjson
+    textures/garden/Earthlike-01.OK.texjson \
+    textures/desert/desert.cream.OK.texjson \
+    textures/desert/desert.reddish.OK.texjson \
+    textures/gasgiant/GasGiant4.OK.texjson
 
 texjson.path=$${UtilsOUT_PWD}/textures
 texjson.files=textures/*

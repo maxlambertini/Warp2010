@@ -322,7 +322,6 @@ QString CelestiaExporter::runGarden(Planet& p, QString res)
     res.replace(" ","");
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGarden(true), _texturePath+"/"+res);
     //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
-    ptr.data()->setSeaRatio(p.waterPercentage());
     ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Garden");
     vTextures.append(ptr);
     return res;

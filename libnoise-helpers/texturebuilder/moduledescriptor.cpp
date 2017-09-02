@@ -379,8 +379,12 @@ QSharedPointer<Module> ModuleDescriptor::makeRidgedMulti() {
 
 //{ "Module":"Spheres" , "Name": "mod_name" , "Freq": 0.0 },
 QSharedPointer<Module> ModuleDescriptor::makeSpheres() {
+    qDebug() << " -- Making sphere module.... ";
     Spheres* m = new Spheres();
+    qDebug() << " made sphere module ";
     m->SetFrequency(_freq);
+    auto freq = m->GetFrequency();
+    qDebug() << " newly created sphere has freq " << freq;
     QSharedPointer<Module> p; p.reset(m);
     return p;
 }

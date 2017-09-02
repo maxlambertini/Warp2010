@@ -35,6 +35,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <ringtexturebuilder.h>
 
 namespace RT {
+
+///
+/// \brief The RType enum
+///
+/// Enumerates the type of planetary textures to create. A lot of these methods are going to be deprecated
+/// because nowadays NoiseImageRunner will either use <b>UseBuilder</b> that creates a TextureBuilder object,
+/// loads a <tt>.texjson</tt> file and generates a complex planetary texture or <b>Ring</b> to construct
+/// Ring textures.
 enum RType {
     GG2,
     GG ,
@@ -107,21 +115,6 @@ public:
 
 
     NoiseImageRunner();
-
-    NoiseImageRunner(RType runType, const QString& filename, int seed) : _runType(runType), _filename(filename), _seed(seed) {}
-    NoiseImageRunner(RType runType, const QString& filename, int seed, int octave) : _runType(runType),_filename(filename),_seed(seed), _octave(octave) {}
-    NoiseImageRunner(RType runType, const QString& filename, int seed, int octave, double pers) :
-        _runType(runType),_filename(filename),
-        _seed(seed), _octave(octave),
-        _persistence(pers){}
-    NoiseImageRunner(RType runType, const QString& filename, int seed, int octave, double pers, double lac) :
-        _runType(runType),_filename(filename),
-        _seed(seed), _octave(octave),
-        _persistence(pers),_lacunarity(lac){}
-    NoiseImageRunner(RType runType, const QString& filename, int seed, int octave, double pers, double lac, double freq) :
-        _runType(runType),_filename(filename),
-        _seed(seed), _octave(octave),
-        _persistence(pers),_lacunarity(lac), _frequency(freq){}
 
     static QSharedPointer<NoiseImageRunner> UseTextureBuilder(const QString& textureFile, const QString& imageFile);
     static QSharedPointer<NoiseImageRunner> UseRingBuilder(const QString& imageFile);

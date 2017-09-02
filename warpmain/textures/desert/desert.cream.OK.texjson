@@ -1,0 +1,168 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "BaseImage",
+    "heightMapBuilders": [
+        {
+            "dest": "BeginLayer_heightMap",
+            "name": "BeginLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "BeginLayer_Module"
+        },
+        {
+            "dest": "EndLayer_heightMap",
+            "name": "EndLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "Module_40"
+        }
+    ],
+    "heightMaps": [
+        "BeginLayer_heightMap",
+        "EndLayer_heightMap"
+    ],
+    "images": [
+        "BaseImage"
+    ],
+    "modules": [
+        {
+            "enableDist": true,
+            "enableRandom": true,
+            "freq": 4.3,
+            "name": "BeginLayer_Module",
+            "seed": 0,
+            "type": "Voronoi"
+        },
+        {
+            "cpoints": [
+                [
+                    -1,
+                    -1
+                ],
+                [
+                    -0.55,
+                    0.5
+                ],
+                [
+                    -0.25,
+                    0.5
+                ],
+                [
+                    1,
+                    -1
+                ]
+            ],
+            "enableRandom": true,
+            "name": "EndLayer_Module",
+            "src1": "BeginLayer_Module",
+            "type": "Curve"
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.4,
+            "name": "Module_20",
+            "pow": 0.21,
+            "rough": 4.2,
+            "seed": 0,
+            "src1": "EndLayer_Module",
+            "type": "Turbulence"
+        },
+        {
+            "enableRandom": false,
+            "freq": 1.8,
+            "lac": 2.3,
+            "name": "Module_30",
+            "oct": 6,
+            "pers": 0.4,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "enableRandom": false,
+            "name": "Module_40",
+            "src1": "Module_30",
+            "src2": "Module_50",
+            "type": "Avg"
+        },
+        {
+            "bias": 0.5,
+            "enableRandom": false,
+            "name": "Module_50",
+            "scale": 0.5,
+            "src1": "Module_20",
+            "type": "ScaleBias"
+        }
+    ],
+    "randomFactors": [
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "BaseImage",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    237,
+                    201,
+                    118,
+                    255
+                ],
+                [
+                    -0.6,
+                    211,
+                    201,
+                    183,
+                    255
+                ],
+                [
+                    0,
+                    227,
+                    208,
+                    195,
+                    255
+                ],
+                [
+                    0.6000000000000001,
+                    193,
+                    219,
+                    207,
+                    255
+                ],
+                [
+                    1,
+                    187,
+                    219,
+                    191,
+                    255
+                ]
+            ],
+            "heightMap": "EndLayer_heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.5,
+            "name": "BeginLayer_renderer",
+            "randomFactor": [
+                75,
+                25,
+                25
+            ],
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1024,
+        512
+    ]
+}

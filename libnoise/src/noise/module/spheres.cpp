@@ -41,5 +41,6 @@ double Spheres::GetValue (double x, double y, double z) const
   double distFromSmallerSphere = distFromCenter - floor (distFromCenter);
   double distFromLargerSphere = 1.0 - distFromSmallerSphere;
   double nearestDist = GetMin (distFromSmallerSphere, distFromLargerSphere);
-  return 1.0 - (nearestDist * 4.0); // Puts it in the -1.0 to +1.0 range.
+  double res = 1.0 - (nearestDist * 4.0);
+  return res+0.000001; // Puts it in the -1.0 to +1.0 range.
 }
