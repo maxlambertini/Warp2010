@@ -500,6 +500,8 @@ template<typename T> void QModuleDescWidget::enableControlsInGrid(const QString 
 
 void QModuleDescWidget::on_module_type_changed(QString type) {
     //this->moduleDesc()->setupPropertiesToExport(type);
+    if (createNewModule)
+        this->c_name->setText(type + "_"+baseName);
     this->moduleDesc()->setModuleType(type);
     this->enableControlsInGrid<QLabel*>("l_");
     this->enableControlsInGrid<QLineEdit*>("c_");

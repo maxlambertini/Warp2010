@@ -388,13 +388,16 @@ void MainWindow::on_listFiles_clicked(QListWidgetItem *idx) {
 void MainWindow::on_action_CreateModuleDescJson()
 {
     QModuleDescDialog dlg(this);
+    dlg.moduleDescWidget()->createNewModule = true;
     QSharedPointer<ModuleDescriptor> mod(new ModuleDescriptor());
     mod.data()->setName(QString("Module_%1").arg(_tb.modDesc().count()*10));
     dlg.moduleDescWidget()->setModuleDesc(mod.data());
+    dlg.moduleDescWidget()->baseName = QString("Module_%1").arg(_tb.modDesc().count()*10);
+    dlg.moduleDescWidget()->changeModuleType("Perlin");
     auto moduleList = buildModuleList();
     dlg.moduleDescWidget()->setModuleList(moduleList);
     if (dlg.exec() == QDialog::Accepted) {
-        dlg.moduleDescWidget()->updateDescriptorFromControls();
+        dlg.moduleDescWidget()->updateDescriptorFromControls();        
         _tb.modDesc().insert(mod->name(),mod);
         //auto newPtr = dlg.moduleDescWidget()->moduleDesc();
         //modDescSPtr.reset(newPtr);

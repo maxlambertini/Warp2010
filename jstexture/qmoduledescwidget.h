@@ -115,6 +115,7 @@ class QModuleDescWidget : public QWidget
     ModuleDescriptor* _moduleDesc;
     QVector<QString> _moduleList;
 
+
 public:
     //setters
     void setModuleType( const QString& v ) { _moduleType  = v; }
@@ -197,6 +198,11 @@ public:
 
     template<typename T> void enableControlsInGrid(const QString& prefix);
 
+    //helpers
+    bool createNewModule = false;
+    QString baseName = "";
+
+    inline void changeModuleType(QString type) { on_module_type_changed(type); }
 
 signals:
 
