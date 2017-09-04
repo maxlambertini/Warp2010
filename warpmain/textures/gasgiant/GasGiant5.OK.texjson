@@ -1,0 +1,207 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "BaseImage",
+    "heightMapBuilders": [
+        {
+            "dest": "BeginLayer_heightMap",
+            "name": "BeginLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "Curve_Module_30"
+        },
+        {
+            "dest": "EndLayer_heightMap",
+            "name": "EndLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "EndLayer_Module"
+        }
+    ],
+    "heightMaps": [
+        "BeginLayer_heightMap",
+        "EndLayer_heightMap"
+    ],
+    "images": [
+        "BaseImage"
+    ],
+    "modules": [
+        {
+            "enableRandom": true,
+            "freq": 1.25,
+            "name": "BeginLayer_Module",
+            "type": "Cylinders"
+        },
+        {
+            "cpoints": [
+                [
+                    -1,
+                    0.8
+                ],
+                [
+                    -0.5,
+                    0.2
+                ],
+                [
+                    0,
+                    0.5
+                ],
+                [
+                    0.5,
+                    -0.2
+                ],
+                [
+                    1,
+                    -0.8
+                ]
+            ],
+            "enableRandom": false,
+            "name": "Curve_Module_30",
+            "src1": "Turboz",
+            "type": "Curve"
+        },
+        {
+            "disp": 0,
+            "enableDist": true,
+            "enableRandom": true,
+            "freq": 5.2844999999999995,
+            "name": "EndLayer_Module",
+            "seed": 0,
+            "type": "Voronoi"
+        },
+        {
+            "enableRandom": true,
+            "freq": 1.9,
+            "name": "Turboz",
+            "pow": 0.12,
+            "rough": 1.25,
+            "seed": 0,
+            "src1": "BeginLayer_Module",
+            "type": "Turbulence"
+        }
+    ],
+    "randomFactors": [
+        0,
+        0.1,
+        0.2,
+        0.3,
+        0.2,
+        0.1,
+        0.09,
+        0.1,
+        0.8
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "backgroundImage": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    169,
+                    108,
+                    190,
+                    255
+                ],
+                [
+                    -0.8825,
+                    134,
+                    95,
+                    179,
+                    255
+                ],
+                [
+                    -0.655175,
+                    103,
+                    90,
+                    152,
+                    255
+                ],
+                [
+                    -0.50945,
+                    136,
+                    112,
+                    176,
+                    255
+                ],
+                [
+                    -0.27877499999999994,
+                    127,
+                    102,
+                    164,
+                    255
+                ],
+                [
+                    -0.023174999999999935,
+                    127,
+                    108,
+                    180,
+                    255
+                ],
+                [
+                    0.13367500000000007,
+                    107,
+                    99,
+                    161,
+                    255
+                ],
+                [
+                    0.30580000000000007,
+                    101,
+                    112,
+                    177,
+                    255
+                ],
+                [
+                    0.46005000000000007,
+                    117,
+                    129,
+                    192,
+                    255
+                ],
+                [
+                    0.6257750000000001,
+                    129,
+                    158,
+                    204,
+                    255
+                ],
+                [
+                    0.7735000000000001,
+                    119,
+                    138,
+                    189,
+                    255
+                ],
+                [
+                    1,
+                    125,
+                    149,
+                    181,
+                    255
+                ]
+            ],
+            "heightMap": "BeginLayer_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "BeginLayer_renderer",
+            "randomFactor": [
+                3,
+                2,
+                2
+            ],
+            "randomGradient": true
+        }
+    ],
+    "size": [
+        1280,
+        640
+    ]
+}

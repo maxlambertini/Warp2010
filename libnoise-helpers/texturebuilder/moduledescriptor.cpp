@@ -109,7 +109,7 @@ void ModuleDescriptor::toJson(QJsonObject& json) {
     if (_propertiesToExport.contains("lac")) json["lac"] = _lac;
     if (_propertiesToExport.contains("pers")) json["pers"] = _pers;
     if (_propertiesToExport.contains("oct")) json["oct"] = _oct;
-    if (_propertiesToExport.contains("displ")) json["disp"] = _disp;
+    if (_propertiesToExport.contains("displ") || _propertiesToExport.contains("disp")) json["disp"] = _disp;
     if (_propertiesToExport.contains("enableDist")) json["enableDist"] = _enableDist;
     if (_propertiesToExport.contains("src1")) json["src1"] = _src1;
     if (_propertiesToExport.contains("src2")) json["src2"] = _src2;
@@ -242,7 +242,7 @@ void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     if (_m_moduleType=="Perlin")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "pers" << "oct" << "enableRandom";
     if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "oct" << "enableRandom";
     if (_m_moduleType=="Spheres") _propertiesToExport <<"name" << "freq" << "enableRandom";
-    if (_m_moduleType=="Voronoi") _propertiesToExport <<"name" << "freq" << "disp" << "seed" << "enableDist" << "enableRandom";
+    if (_m_moduleType=="Voronoi") _propertiesToExport <<"name" << "freq" << "displ" << "seed" << "enableDist" << "enableRandom";
     if (_m_moduleType=="Clamp") _propertiesToExport <<"name" << "lBound" << "uBound" << "src1" << "enableRandom";
     if (_m_moduleType=="Curve") _propertiesToExport <<"name" << "controlPoints" << "src1" << "enableRandom";
     if (_m_moduleType=="Invert") _propertiesToExport <<"name" <<  "src1" << "enableRandom";
