@@ -70,6 +70,7 @@ double Voronoi::GetValue (double x, double y, double z) const
         double dist = xDist * xDist + yDist * yDist + zDist * zDist;
 
         if (dist < minDist) {
+        //if (dist < 5) {
           // This seed point is closer to any others found so far, so record
           // this seed point.
           minDist = dist;

@@ -48,10 +48,10 @@ const int SEED_NOISE_GEN = 1013;
 const int SHIFT_NOISE_GEN = 13;
 #else
 // Constants used by the current version of libnoise.
-const int X_NOISE_GEN = 1619;
-const int Y_NOISE_GEN = 31337;
-const int Z_NOISE_GEN = 6971;
-const int SEED_NOISE_GEN = 1013;
+const int X_NOISE_GEN = 2789   ;
+const int Y_NOISE_GEN = 102953 ;
+const int Z_NOISE_GEN = 77351 ;
+const int SEED_NOISE_GEN = 6703;
 const int SHIFT_NOISE_GEN = 8;
 #endif
 
@@ -155,7 +155,7 @@ int noise::IntValueNoise3D (int x, int y, int z, int seed)
     + SEED_NOISE_GEN * seed)
     & 0x7fffffff;
   n = (n >> 13) ^ n;
-  return (n * (n * n * 60493 + 19990303) + 1376312589) & 0x7fffffff;
+  return (n * (n * n * 81281   + 19990303) + 1376312589) & 0x7fffffff;
 }
 
 double noise::ValueCoherentNoise3D (double x, double y, double z, int seed,
