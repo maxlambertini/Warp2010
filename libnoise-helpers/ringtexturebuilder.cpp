@@ -35,7 +35,7 @@ void RingTextureBuilder::initializeGradient() {
     double d = 0.0;
     int r1,r2,r3;
     int alpha = 0.0;
-    alpha = SSGX::d100() < 75 ? 255 : 0;
+    alpha = SSGX::d100() < 75 ? 30+SSGX::d160() : 0;
     r1 = SSGX::dn(32)+223;
     r2 = SSGX::dn(64)+191;
     r3 = SSGX::dn(92)+163;
@@ -45,7 +45,7 @@ void RingTextureBuilder::initializeGradient() {
             d+= 0.001;
             _gradient.setColorAt(d, QColor(r1,r2,r3,alpha));
         }
-        alpha = SSGX::d100() < 75 ? 255 : 0;
+        alpha = SSGX::d100() < 75 ? 30+SSGX::d160() : 0;
         r1 = SSGX::dn(32)+223;
         r2 = SSGX::dn(64)+191;
         r3 = SSGX::dn(92)+163;
@@ -53,7 +53,7 @@ void RingTextureBuilder::initializeGradient() {
         if (d < 1.0)
             _gradient.setColorAt(d, QColor(r1,r2,r3,alpha));
     }
-    alpha = SSGX::d100() < 75 ? 255 : 0;
+    alpha = SSGX::d100() < 75 ? 30+SSGX::d160() : 0;
     r1 = SSGX::dn(32)+223;
     r2 = SSGX::dn(64)+191;
     r3 = SSGX::dn(92)+163;
