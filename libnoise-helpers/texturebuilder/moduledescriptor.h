@@ -35,33 +35,35 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 namespace NoiseModules {
     static QVector<QString> moduleList = {
-        "Billow",
-        "Const",
-        "Cylinders",
-        "Perlin",
-        "RidgedMulti",
-        "Spheres",
-        "Voronoi",
-        "Clamp",
-        "Curve",
-        "Invert",
-        "Exponent",
-        "ScaleBias",
-        "Terrace",
-        "Turbulence",
+        "Abs",
         "Add",
+        "Avg",
+        "Billow",
+        "Blend",
+        "Clamp",
+        "Const",
+        "Curve",
+        "Cylinders",
+        "Displace",
+        "Exponent",
+        "Invert",
         "Max",
         "Min",
         "Multiply",
+        "Perlin",
         "Power",
-        "Blend",
-        "Abs",
-        "Select",
-        "Displace",
+        "RidgedMulti",
         "RotatePoint",
+        "ScaleBias",
         "ScalePoint",
+        "Select",
+        "Spheres",
+        "Terrace",
         "TranslatePoint",
-        "Avg"
+        "Turbulence",
+        "TurbulenceBillow",
+        "TurbulenceRidged",
+        "Voronoi"
     };
 }
 
@@ -313,6 +315,8 @@ public:
 
     //{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
     QSharedPointer<Module> makeTurbulence();
+    QSharedPointer<Module> makeTurbulenceBillow();
+    QSharedPointer<Module> makeTurbulenceRidged();
 
     //{ "Module":"Add" , "Name": "mod_name" , "Src1": "mod_name" , "Src2": "mod_name" },
     QSharedPointer<Module> makeAdd ();

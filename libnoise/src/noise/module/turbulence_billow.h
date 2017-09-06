@@ -20,11 +20,10 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_MODULE_TURBULENCE_H
-#define NOISE_MODULE_TURBULENCE_H
+#ifndef NOISE_MODULE_TURBULENCE_BILLOW_H
+#define NOISE_MODULE_TURBULENCE_BILLOW_H
 
-#include "perlin.h"
-#include "ridgedmulti.h"
+#include "billow.h"
 
 namespace noise
 {
@@ -42,16 +41,16 @@ namespace noise
     /// @{
 
     /// Default frequency for the noise::module::Turbulence noise module.
-    const double DEFAULT_TURBULENCE_FREQUENCY = DEFAULT_PERLIN_FREQUENCY;
+    const double DEFAULT_TURBULENCE_B_FREQUENCY = DEFAULT_BILLOW_FREQUENCY;
 
     /// Default power for the noise::module::Turbulence noise module.
-    const double DEFAULT_TURBULENCE_POWER = 1.0;
+    const double DEFAULT_TURBULENCE_B_POWER = 1.0;
 
     /// Default roughness for the noise::module::Turbulence noise module.
-    const int DEFAULT_TURBULENCE_ROUGHNESS = 3;
+    const int DEFAULT_TURBULENCE_B_ROUGHNESS = 3;
 
     /// Default noise seed for the noise::module::Turbulence noise module.
-    const int DEFAULT_TURBULENCE_SEED = DEFAULT_PERLIN_SEED;
+    const int DEFAULT_TURBULENCE_B_SEED = DEFAULT_BILLOW_SEED;
 
     /// Noise module that randomly displaces the input value before
     /// returning the output value from a source module.
@@ -111,7 +110,7 @@ namespace noise
     /// and one for the @a z coordinate.
     ///
     /// This noise module requires one source module.
-    class NOISE_SHARED_EXPORT Turbulence: public Module
+    class NOISE_SHARED_EXPORT TurbulenceBillow: public Module
     {
 
       public:
@@ -129,7 +128,7 @@ namespace noise
         ///
         /// The default seed value is set to
         /// noise::module::DEFAULT_TURBULENCE_SEED.
-        Turbulence ();
+        TurbulenceBillow ();
 
         /// Returns the frequency of the turbulence.
         ///
@@ -247,13 +246,13 @@ namespace noise
         double m_power;
 
         /// Noise module that displaces the @a x coordinate.
-        Perlin m_xDistortModule;
+        Billow m_xDistortModule;
 
         /// Noise module that displaces the @a y coordinate.
-        Perlin m_yDistortModule;
+        Billow m_yDistortModule;
 
         /// Noise module that displaces the @a z coordinate.
-        Perlin m_zDistortModule;
+        Billow m_zDistortModule;
 
     };
 

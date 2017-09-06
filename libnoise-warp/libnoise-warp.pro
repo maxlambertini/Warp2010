@@ -50,6 +50,8 @@ SOURCES += \
     ../libnoise/src/noise/module/terrace.cpp \
     ../libnoise/src/noise/module/translatepoint.cpp \
     ../libnoise/src/noise/module/turbulence.cpp \
+    ../libnoise/src/noise/module/turbulence_ridged.cpp \
+    ../libnoise/src/noise/module/turbulence_billow.cpp \
     ../libnoise/src/noise/module/voronoi.cpp \
     ../libnoise/src/noise/latlon.cpp \
     ../libnoise/src/noise/noisegen.cpp \

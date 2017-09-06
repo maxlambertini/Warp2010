@@ -20,8 +20,8 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_MODULE_TURBULENCE_H
-#define NOISE_MODULE_TURBULENCE_H
+#ifndef NOISE_MODULE_TURBULENCE_RIDGED_H
+#define NOISE_MODULE_TURBULENCE_RIDGED_H
 
 #include "perlin.h"
 #include "ridgedmulti.h"
@@ -42,16 +42,16 @@ namespace noise
     /// @{
 
     /// Default frequency for the noise::module::Turbulence noise module.
-    const double DEFAULT_TURBULENCE_FREQUENCY = DEFAULT_PERLIN_FREQUENCY;
+    const double DEFAULT_TURBULENCE_R_FREQUENCY = DEFAULT_RIDGED_FREQUENCY;
 
     /// Default power for the noise::module::Turbulence noise module.
-    const double DEFAULT_TURBULENCE_POWER = 1.0;
+    const double DEFAULT_TURBULENCE_R_POWER = 1.0;
 
     /// Default roughness for the noise::module::Turbulence noise module.
-    const int DEFAULT_TURBULENCE_ROUGHNESS = 3;
+    const int DEFAULT_TURBULENCE_R_ROUGHNESS = 3;
 
     /// Default noise seed for the noise::module::Turbulence noise module.
-    const int DEFAULT_TURBULENCE_SEED = DEFAULT_PERLIN_SEED;
+    const int DEFAULT_TURBULENCE_R_SEED = DEFAULT_RIDGED_SEED;
 
     /// Noise module that randomly displaces the input value before
     /// returning the output value from a source module.
@@ -111,7 +111,7 @@ namespace noise
     /// and one for the @a z coordinate.
     ///
     /// This noise module requires one source module.
-    class NOISE_SHARED_EXPORT Turbulence: public Module
+    class NOISE_SHARED_EXPORT TurbulenceRidged : public Module
     {
 
       public:
@@ -129,7 +129,7 @@ namespace noise
         ///
         /// The default seed value is set to
         /// noise::module::DEFAULT_TURBULENCE_SEED.
-        Turbulence ();
+        TurbulenceRidged ();
 
         /// Returns the frequency of the turbulence.
         ///
@@ -247,13 +247,13 @@ namespace noise
         double m_power;
 
         /// Noise module that displaces the @a x coordinate.
-        Perlin m_xDistortModule;
+        RidgedMulti m_xDistortModule;
 
         /// Noise module that displaces the @a y coordinate.
-        Perlin m_yDistortModule;
+        RidgedMulti m_yDistortModule;
 
         /// Noise module that displaces the @a z coordinate.
-        Perlin m_zDistortModule;
+        RidgedMulti m_zDistortModule;
 
     };
 

@@ -24,6 +24,7 @@
 #define NOISE_MODULE_H
 
 #include "add.h"
+#include "avg.h"
 #include "abs.h"
 #include "billow.h"
 #include "blend.h"
@@ -50,6 +51,8 @@
 #include "terrace.h"
 #include "translatepoint.h"
 #include "turbulence.h"
+#include "turbulence_ridged.h"
+#include "turbulence_billow.h"
 #include "voronoi.h"
 
 #endif
