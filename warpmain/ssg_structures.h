@@ -85,7 +85,7 @@ namespace SSGX {
     }
 
     inline double rockyDiameter() {
-        int n = d6();
+        int n = d10();
         switch (n) {
             case 1:
                 return (double)(d5()*1000 + d1000());
@@ -94,16 +94,28 @@ namespace SSGX {
                 return (double)(d5()*1000 + d1000());
                 break;
             case 3:
-                return (double)(nd6(2)*1000 + d1000());
+                return (double)(nd6(1)*1000 + d1000());
                 break;
             case 4:
-                return (double)(nd6(3)*1000 + d1000());
+                return (double)(nd6(1)*1000 + d1000());
                 break;
             case 5:
-                return (double)(nd6(4)*1000 + d1000());
+                return (double)(nd6(2)*1000 + d1000());
                 break;
             case 6:
+                return (double)(nd6(3)*1000 + d1000());
+                break;
+            case 7:
+                return (double)(nd6(4)*1000 + d1000());
+                break;
+            case 8:
                 return (double)(nd6(5)*1000 + d1000());
+                break;
+            case 9:
+                return (double)(nd6(7)*1000 + d1000());
+                break;
+            case 10:
+                return (double)(nd6(10)*1000 + d1000());
                 break;
         }
         return 12756;
@@ -136,7 +148,7 @@ namespace SSGX {
     }
 
     inline double satDiameter() {
-        int n = dn(12) - 4;
+        int n = dn(12) - 3;
         if (n < 0)
             return (double)( d1000()/2);
         else

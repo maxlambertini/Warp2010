@@ -70,7 +70,7 @@ void SolarSystemCreator::makeSatellite(Planet& planet, double dSatDistance, doub
     planet.appendSatellite(sat);
 }
 
-void SolarSystemCreator::makePlanet(bool advanceNextPlanet, const double MIN_PLANET_DISTANCE_GG, double currentDistance, double prevSatDistance, Planet px)
+void SolarSystemCreator::makePlanet(bool advanceNextPlanet, const double MIN_PLANET_DISTANCE_GG, double currentDistance, double prevSatDistance, Planet& px)
 {
     Planet planet = this->createPlanet(currentDistance, false,px);
     planet.setStar(_star.data());

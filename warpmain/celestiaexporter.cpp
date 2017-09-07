@@ -204,10 +204,10 @@ void CelestiaExporter::makeRings(int i, Planet& planet, QTextStream &stream)
     auto ptr = NoiseImageRunner::UseRingBuilder( _texturePath+"/"+res);
     vTextures.append(ptr);
 
-    double min_ring = planet.radius() * (1.35+1.85*SSGX::floatRand());
+    double min_ring = planet.radius() * (1.15+1.05*SSGX::floatRand());
     double max_ring = min_ring * 1.02;
     if (SSGX::d100() > 90)
-        max_ring = min_ring * (1.1+0.26*SSGX::floatRand());
+        max_ring = min_ring * (1.2+1.26*SSGX::floatRand());
    else
         max_ring = min_ring * (1.02+0.08*SSGX::floatRand());
 
@@ -237,7 +237,7 @@ QString CelestiaExporter::planetToCelestia(Planet& planet, QString planetFatherN
         }
     }
 
-    if (planet.planetType() == ptFailedCore ) {
+    if (planet.planetType() == ptFailedCore && !planet.isSatellite() ) {
         if (SSGX::d100() < 40) {
             makeRings(i, planet, stream);
         }

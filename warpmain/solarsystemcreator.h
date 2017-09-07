@@ -73,7 +73,6 @@ public:
     {
         if (canCreateWorlds()) {
             _star->deleteSolarSystem();
-
             _star->calcStarValue();
             createOrbits();
             createWorlds();
@@ -82,7 +81,7 @@ public:
         }
     }
     void makeSatellite(Planet &planet, double dSatDistance, double currentDistance);
-    void makePlanet(bool advanceNextPlanet, const double MIN_PLANET_DISTANCE_GG, double currentDistance, double prevSatDistance, Planet px);
+    void makePlanet(bool advanceNextPlanet, const double MIN_PLANET_DISTANCE_GG, double currentDistance, double prevSatDistance, Planet& px);
     void setPlanetTypeInner(Planet& planet);
     void setPlanetTypeOuter(Planet& planet);
     void setPlanetTypeLifeZone(Planet& planet);
