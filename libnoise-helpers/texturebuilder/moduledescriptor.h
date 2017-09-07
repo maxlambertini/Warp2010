@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "libnoise-helpers_global.h"
 
 
+
 namespace NoiseModules {
     static QVector<QString> moduleList = {
         "Abs",
@@ -61,6 +62,7 @@ namespace NoiseModules {
         "Terrace",
         "TranslatePoint",
         "Turbulence",
+        "Turbulence2",
         "TurbulenceBillow",
         "TurbulenceRidged",
         "Voronoi"
@@ -315,6 +317,7 @@ public:
 
     //{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
     QSharedPointer<Module> makeTurbulence();
+    QSharedPointer<Module> makeTurbulence2();
     QSharedPointer<Module> makeTurbulenceBillow();
     QSharedPointer<Module> makeTurbulenceRidged();
 

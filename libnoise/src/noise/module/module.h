@@ -51,6 +51,7 @@
 #include "terrace.h"
 #include "translatepoint.h"
 #include "turbulence.h"
+#include "turbulence2.h"
 #include "turbulence_ridged.h"
 #include "turbulence_billow.h"
 #include "voronoi.h"

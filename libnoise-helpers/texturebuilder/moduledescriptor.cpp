@@ -252,6 +252,7 @@ void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     if (_m_moduleType=="ScaleBias") _propertiesToExport <<"name" << "bias" << "scale" << "src1" << "enableRandom";
     if (_m_moduleType=="Terrace") _propertiesToExport <<"name" << "controlPoints" << "invert" << "src1" << "enableRandom";
     if (_m_moduleType=="Turbulence")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
+    if (_m_moduleType=="Turbulence2")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
     if (_m_moduleType=="TurbulenceBillow")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
     if (_m_moduleType=="TurbulenceRidged")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
     if (_m_moduleType=="Add") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
@@ -289,6 +290,7 @@ QSharedPointer<Module> ModuleDescriptor::makeModule() {
         if (_moduleType=="ScaleBias") return makeScaleBias();
         if (_moduleType=="Terrace") return makeTerrace();
         if (_moduleType=="Turbulence") return makeTurbulence();
+        if (_moduleType=="Turbulence2") return makeTurbulence2();
         if (_moduleType=="TurbulenceBillow") return makeTurbulenceBillow();
         if (_moduleType=="TurbulenceRidged") return makeTurbulenceRidged();
         if (_moduleType=="Add") return makeAdd();
@@ -476,6 +478,18 @@ QSharedPointer<Module> ModuleDescriptor::makeTerrace() {
 //{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
 QSharedPointer<Module> ModuleDescriptor::makeTurbulence() {
     Turbulence* m = new Turbulence();
+    m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
+    _actualSeed = m->GetSeed();
+    m->SetFrequency(_freq);
+    m->SetPower(_pow);
+    m->SetRoughness(_rough);
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+//{ "Module":"Turbulence" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Src1": "mod_name" , "Pow": 0.0 , "Rough": 0.0 }]
+QSharedPointer<Module> ModuleDescriptor::makeTurbulence2() {
+    Turbulence2* m = new Turbulence2();
     m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
     _actualSeed = m->GetSeed();
     m->SetFrequency(_freq);

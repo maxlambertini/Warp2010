@@ -50,6 +50,7 @@ SOURCES += \
     ../libnoise/src/noise/module/terrace.cpp \
     ../libnoise/src/noise/module/translatepoint.cpp \
     ../libnoise/src/noise/module/turbulence.cpp \
+    ../libnoise/src/noise/module/turbulence2.cpp \
     ../libnoise/src/noise/module/turbulence_ridged.cpp \
     ../libnoise/src/noise/module/turbulence_billow.cpp \
     ../libnoise/src/noise/module/voronoi.cpp \
@@ -57,7 +58,48 @@ SOURCES += \
     ../libnoise/src/noise/noisegen.cpp \
     ../libnoise/src/noiseutils.cpp
 
-HEADERS +=
+HEADERS += \
+    ../libnoise/src/noise/model/cylinder.h \
+    ../libnoise/src/noise/model/line.h \
+    ../libnoise/src/noise/model/plane.h \
+    ../libnoise/src/noise/model/sphere.h \
+    ../libnoise/src/noise/module/abs.h \
+    ../libnoise/src/noise/module/add.h \
+    ../libnoise/src/noise/module/billow.h \
+    ../libnoise/src/noise/module/blend.h \
+    ../libnoise/src/noise/module/cache.h \
+    ../libnoise/src/noise/module/checkerboard.h \
+    ../libnoise/src/noise/module/clamp.h \
+    ../libnoise/src/noise/module/const.h \
+    ../libnoise/src/noise/module/curve.h \
+    ../libnoise/src/noise/module/cylinders.h \
+    ../libnoise/src/noise/module/displace.h \
+    ../libnoise/src/noise/module/exponent.h \
+    ../libnoise/src/noise/module/invert.h \
+    ../libnoise/src/noise/module/max.h \
+    ../libnoise/src/noise/module/avg.h \
+    ../libnoise/src/noise/module/min.h \
+    ../libnoise/src/noise/module/modulebase.h \
+    ../libnoise/src/noise/module/multiply.h \
+    ../libnoise/src/noise/module/perlin.h \
+    ../libnoise/src/noise/module/power.h \
+    ../libnoise/src/noise/module/ridgedmulti.h \
+    ../libnoise/src/noise/module/rotatepoint.h \
+    ../libnoise/src/noise/module/scalebias.h \
+    ../libnoise/src/noise/module/scalepoint.h \
+    ../libnoise/src/noise/module/select.h \
+    ../libnoise/src/noise/module/spheres.h \
+    ../libnoise/src/noise/module/terrace.h \
+    ../libnoise/src/noise/module/translatepoint.h \
+    ../libnoise/src/noise/module/turbulence.h \
+    ../libnoise/src/noise/module/turbulence2.h \
+    ../libnoise/src/noise/module/turbulence_ridged.h \
+    ../libnoise/src/noise/module/turbulence_billow.h \
+    ../libnoise/src/noise/module/voronoi.h \
+    ../libnoise/src/noise/latlon.h \
+    ../libnoise/src/noise/noisegen.h \
+    ../libnoise/src/noiseutils.h
+
 
 
 unix {

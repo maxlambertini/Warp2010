@@ -358,6 +358,17 @@ namespace noise
 
     };
 
+    class NOISE_SHARED_EXPORT INoiseModule {
+    public:
+        virtual double GetFrequency() const  = 0;
+        virtual int GetOctaveCount() const = 0;
+        virtual int GetSeed() const = 0;
+        virtual double GetValue (double x, double y, double z)  const = 0;
+        virtual void SetSeed(int iSeed) = 0;
+        virtual void SetFrequency (double frequency) = 0;
+        virtual void SetOctaveCount (int octaveCount) = 0;
+    };
+
     /// @}
 
     /// @}

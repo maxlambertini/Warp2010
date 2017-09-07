@@ -157,7 +157,7 @@ namespace noise
     /// better coherent-noise function called <i>gradient noise</i>.  This
     /// version of noise::module::Perlin uses gradient coherent noise to
     /// generate Perlin noise.
-    class NOISE_SHARED_EXPORT Perlin: public Module
+    class NOISE_SHARED_EXPORT Perlin: public Module, public INoiseModule
     {
 
       public:
@@ -323,6 +323,7 @@ namespace noise
         {
           m_seed = seed;
         }
+
 
       protected:
 
