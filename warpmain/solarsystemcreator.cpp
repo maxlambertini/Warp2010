@@ -58,6 +58,55 @@ void SolarSystemCreator::createOrbits()
 }
 
 
+void SolarSystemCreator::makeSatellite(Planet& planet, double dSatDistance, double currentDistance)
+{
+    Planet sat = this->createPlanet( currentDistance, true, planet, &dSatDistance);
+    sat.setStar(_star.data());
+    this->setPlanetType(sat, currentDistance);
+    if (sat.massEarth() < 0.6)
+        sat.setTidalForce(1.1);
+    else
+        sat.setTidalForce(0.2);
+    planet.appendSatellite(sat);
+}
+
+void SolarSystemCreator::makePlanet(bool advanceNextPlanet, const double MIN_PLANET_DISTANCE_GG, double currentDistance, double prevSatDistance, Planet px)
+{
+    Planet planet = this->createPlanet(currentDistance, false,px);
+    planet.setStar(_star.data());
+    this->setPlanetType(planet, currentDistance);
+
+    int numSat = 0;
+    if (planet.planetType() == ptGasGiant)
+        numSat = SSGX::d6()+SSGX::d6()+SSGX::d6();
+    else if (planet.planetType() != ptChunk)
+        numSat = SSGX::d6()-3;
+
+
+    if (numSat > 0)
+    {
+        prevSatDistance = 0;
+        double dSatDistance = 0;
+        for (int idxSat = 0; idxSat < numSat; idxSat++)
+        {
+            makeSatellite(planet, dSatDistance, currentDistance);
+        }
+        prevSatDistance = dSatDistance > MIN_PLANET_DISTANCE_GG ? MIN_PLANET_DISTANCE_GG : dSatDistance;
+    }
+    double T = (_star->mass()*266400.0 / pow((planet.orbitPtr()->distance() *400),3));
+    double tf = (double)((0.83 + (double) SSGX::d10() *.03) *T * _star->solarAge() / 6.6);
+    planet.setTidalForce(tf);
+    //qDebug() << "Set Tidal Force. " << tf << planet.tidalForce();
+
+    if (planet.planetType() == ptGasGiant && planet.tidalForce() > 1.0) {
+        advanceNextPlanet = false;
+    }
+    else  {
+        advanceNextPlanet = true;
+        _star->appendToPlanets(planet);
+    }
+}
+
 void SolarSystemCreator::createWorlds()
 {
     double currentDistance;
@@ -68,6 +117,7 @@ void SolarSystemCreator::createWorlds()
     double prevDistance = 0.0;
 
     const double MIN_PLANET_DISTANCE_GG = 4000000.0;
+    const double MAX_OUTER_PLANET = 100.0;
 
     _star->calcStarValue();
     for (int h = 0; h < _orbits; h++) {
@@ -88,55 +138,15 @@ void SolarSystemCreator::createWorlds()
             else {
                 prevDistance = currentDistance;
                 auto minDistance = currentDistance + (prevSatDistance * 50.0 / 150000000.0);
-                auto newDistance = (currentDistance * (1.2+ (double)(rand() % 900)/1000.0)) - currentDistance;
+                auto newDistance = (currentDistance * (1.05+ (double)(rand() % 900)/1000.0)) - currentDistance;
                 if (minDistance > newDistance)
                     currentDistance += minDistance;
                 else
                     currentDistance += newDistance;
             }
             int chance = SSGX::d10();
-            if (chance < 8) {
-
-                Planet planet = this->createPlanet(currentDistance, false,px);
-                planet.setStar(_star.data());
-                this->setPlanetType(planet, currentDistance);
-
-                int numSat = 0;
-                if (planet.planetType() == ptGasGiant)
-                    numSat = SSGX::d6()+SSGX::d6()+SSGX::d6();
-                else if (planet.planetType() != ptChunk)
-                    numSat = SSGX::d6()-3;
-
-
-                if (numSat > 0)
-                {
-                    prevSatDistance = 0;
-                    double dSatDistance = 0;
-                    for (int idxSat = 0; idxSat < numSat; idxSat++)
-                    {
-                        Planet sat = this->createPlanet( currentDistance, true, planet, &dSatDistance);
-                        sat.setStar(_star.data());
-                        this->setPlanetType(sat, currentDistance);
-                        if (sat.massEarth() < 0.6)
-                            sat.setTidalForce(1.1);
-                        else
-                            sat.setTidalForce(0.2);
-                        planet.appendSatellite(sat);
-                    }
-                    prevSatDistance = dSatDistance > MIN_PLANET_DISTANCE_GG ? MIN_PLANET_DISTANCE_GG : dSatDistance;
-                }
-                double T = (_star->mass()*266400.0 / pow((planet.orbitPtr()->distance() *400),3));
-                double tf = (double)((0.83 + (double) SSGX::d10() *.03) *T * _star->solarAge() / 6.6);
-                planet.setTidalForce(tf);
-                //qDebug() << "Set Tidal Force. " << tf << planet.tidalForce();
-
-                if (planet.planetType() == ptGasGiant && planet.tidalForce() > 1.0) {
-                    advanceNextPlanet = false;
-                }
-                else  {
-                    advanceNextPlanet = true;
-                    _star->appendToPlanets(planet);
-                }
+            if (chance < 8 && currentDistance < MAX_OUTER_PLANET) {
+                makePlanet(advanceNextPlanet, MIN_PLANET_DISTANCE_GG, currentDistance, prevSatDistance, px);
             }
         } while (!advanceNextPlanet);
 
@@ -174,240 +184,281 @@ void SolarSystemCreator::setPlanetModifiers(Planet& planet)
     }
 }
 
+void SolarSystemCreator::setPtRockball(Planet& planet)
+{
+    planet.setPlanetType(ptRockball);
+    planet.setWaterPercentage(0);
+}
+
+void SolarSystemCreator::setPtDesert(Planet& planet)
+{
+    planet.setPlanetType(ptDesert);
+    planet.setHydrosphereType(NSPlanet::htVapor);
+    planet.setWaterPercentage(SSGX::floatRand());
+}
+
+void SolarSystemCreator::setPtHotHouse(Planet& planet)
+{
+    planet.setPlanetType(ptHotHouse);
+    planet.setHydrosphereType(NSPlanet::htVapor);
+    planet.setWaterPercentage(SSGX::floatRand());
+}
+
+void SolarSystemCreator::setPtPreGarden(Planet& planet)
+{
+    planet.setPlanetType(ptPreGarden);
+    planet.setHydrosphereType(NSPlanet::htLiquid);
+    planet.setWaterPercentage(SSGX::d100()/4);
+}
+
+void SolarSystemCreator::setPtGasGiant(Planet& planet)
+{
+    planet.setPlanetType(ptGasGiant);
+    planet.setHydrosphereType(NSPlanet::htShards);
+    planet.setWaterPercentage(SSGX::floatRand());
+    planet.orbit().setShortDay();
+}
+
+void SolarSystemCreator::setPlanetTypeInner(Planet& planet)
+{
+    int die = SSGX::d10()+SSGX::d10();
+    int die1 = SSGX::d10()+SSGX::d10();
+    switch (planet.atmosphere())
+    {
+        case atVacuum:
+            planet.orbit().setLongDay();
+            setPtRockball(planet);
+            break;
+        case atVeryThin:
+            setPtRockball(planet);
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            break;
+        case atThin:
+            setPtDesert(planet);
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            break;
+        case atStandard:
+            if (SSGX::d10() < 7) setPtHotHouse(planet); else setPtRockball(planet);
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            break;
+        case atDense:
+        if (SSGX::d10() < 7) setPtHotHouse(planet); else setPtRockball(planet);
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            if (die1 == 7 && planet.temperature() < 333) {
+                setPtPreGarden(planet);
+            }
+            break;
+        case atMassive:
+            setPtGasGiant(planet);
+            break;
+
+    }
+}
+
+void SolarSystemCreator::setPtIceball(Planet& planet)
+{
+    planet.setPlanetType(ptIceball);
+    planet.setWaterPercentage(SSGX::d100());
+}
+
+void SolarSystemCreator::setPtFailedCore(Planet& planet)
+{
+    planet.setPlanetType(ptFailedCore);
+    planet.setHydrosphereType(NSPlanet::htIce);
+    planet.setWaterPercentage(SSGX::d10());
+}
+
+void SolarSystemCreator::setPlanetTypeOuter(Planet& planet)
+{
+    double die = SSGX::d10()+SSGX::d10();
+    switch (planet.atmosphere())
+    {
+        case atVacuum:
+            if (SSGX::d10() < 7) setPtIceball(planet); else setPtRockball(planet);
+            planet.setHydrosphereType(NSPlanet::htIce);
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            break;
+        case atVeryThin:
+            if (SSGX::d10() < 7) setPtIceball(planet); else setPtRockball(planet);
+            planet.setHydrosphereType(NSPlanet::htIce);
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            break;
+        case atThin:
+            if (SSGX::d10() < 7) setPtRockball(planet); else setPtDesert(planet);
+            planet.setHydrosphereType(NSPlanet::htIce);
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            break;
+        case atStandard:
+            if (SSGX::d10() < 7) setPtRockball(planet); else setPtDesert(planet);
+            planet.setHydrosphereType(NSPlanet::htIce);
+            if (die == 2)
+                planet.orbit().setShortDay();
+            else if (die == 20)
+                planet.orbit().setLongDay();
+            else
+                planet.orbit().setNormalDay();
+            break;
+        case atDense:
+        if (SSGX::d10() < 7) setPtDesert(planet); else setPtFailedCore(planet);
+            if (die == 2)
+                planet.orbit().setShortDay();
+            else if (die == 20)
+                planet.orbit().setLongDay();
+            else
+                planet.orbit().setNormalDay();
+            break;
+        case atMassive:
+            setPtGasGiant(planet);
+            break;
+    }
+}
+
+void SolarSystemCreator::setPlanetTypeLifeZone(Planet& planet)
+{
+    double die = SSGX::d10()+SSGX::d10();
+    double die1 = SSGX::d10()+SSGX::d10();
+    switch (planet.atmosphere())
+    {
+        case atVacuum:
+            planet.setPlanetType(ptRockball);
+            planet.setHydrosphereType(NSPlanet::htIce);
+            planet.setWaterPercentage(SSGX::floatRand());
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            break;
+        case atVeryThin:
+            planet.setPlanetType(ptRockball);
+            planet.setHydrosphereType(NSPlanet::htIce);
+            planet.setWaterPercentage(SSGX::floatRand());
+            if (die == 2)
+                planet.orbit().setNormalDay();
+            else if (die == 20)
+                planet.orbit().setVeryLongDay();
+            else
+                planet.orbit().setLongDay();
+            break;
+        case atThin:
+            planet.setPlanetType(ptDesert);
+            planet.setHydrosphereType(NSPlanet::htIce);
+            planet.setWaterPercentage(SSGX::floatRand());
+            if (die == 2)
+                planet.orbit().setShortDay();
+            else if (die == 20)
+                planet.orbit().setLongDay();
+            else
+                planet.orbit().setNormalDay();
+            break;
+        case atStandard:
+            planet.setPlanetType(ptDesert);
+            planet.setHydrosphereType(NSPlanet::htIce);
+            planet.setWaterPercentage(SSGX::floatRand());
+            if (die == 2)
+                planet.orbit().setShortDay();
+            else if (die == 20)
+                planet.orbit().setLongDay();
+            else
+                planet.orbit().setNormalDay();
+            if (die1 == 7)
+                planet.setPlanetType(ptPreGarden);
+            break;
+        case atDense:
+            planet.setPlanetType(ptGarden);
+
+            planet.setHydrosphereType(NSPlanet::htLiquid);
+            planet.setWaterPercentage(SSGX::dn(90));
+            if (die == 2)
+                planet.orbit().setShortDay();
+            else if (die == 20)
+                planet.orbit().setLongDay();
+            else
+                planet.orbit().setNormalDay();
+            if  ( planet.temperature() < 230)
+                planet.setPlanetType(ptGlacier);
+
+            switch (_star->starType()) {
+            case NSStar::stF:
+                die1--;
+                break;
+            case NSStar::stK:
+                die1++;
+                break;
+            case NSStar::stM:
+                die1+=2;
+                break;
+            default:
+                break;
+            }
+
+            if (die1 < 3) {
+                planet.setPlanetType(ptPreGarden);
+                planet.setWaterPercentage(SSGX::dn(20));
+            }
+            if (die1 > 17) {
+                planet.setPlanetType(ptPostGarden);
+                planet.setWaterPercentage(SSGX::dn(20));
+            }
+            break;
+        case atMassive:
+            planet.setPlanetType(ptGasGiant);
+            planet.setHydrosphereType(NSPlanet::htShards);
+            planet.setWaterPercentage(SSGX::floatRand());
+            planet.orbit().setShortDay();
+            break;
+    }
+}
+
 void SolarSystemCreator::setPlanetType(Planet& planet, double currentDistance)
 {
     if (currentDistance < _star->innerLifeZone())
     {
-        int die = SSGX::d10()+SSGX::d10();
-        int die1 = SSGX::d10()+SSGX::d10();
-        switch (planet.atmosphere())
-        {
-            case atVacuum:
-                planet.setPlanetType(ptRockball);
-                planet.setWaterPercentage(0);
-                planet.orbit().setLongDay();
-                break;
-            case atVeryThin:
-                planet.setPlanetType(ptRockball);
-                planet.setWaterPercentage(0);
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                break;
-            case atThin:
-                planet.setPlanetType(ptDesert);
-                planet.setHydrosphereType(NSPlanet::htVapor);
-                planet.setWaterPercentage(SSGX::floatRand());
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                break;
-            case atStandard:
-                planet.setPlanetType(ptHotHouse);
-                planet.setHydrosphereType(NSPlanet::htVapor);
-                planet.setWaterPercentage(SSGX::floatRand());
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                break;
-            case atDense:
-                planet.setHydrosphereType(NSPlanet::htVapor);
-                planet.setWaterPercentage(SSGX::floatRand());
-                planet.setPlanetType(ptHotHouse);
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                if (die1 == 7 && planet.temperature() < 333) {
-                    planet.setPlanetType(ptPreGarden);
-                    planet.setHydrosphereType(NSPlanet::htLiquid);
-                    planet.setWaterPercentage(SSGX::d100()/4);
-                }
-                break;
-            case atMassive:
-                planet.setPlanetType(ptGasGiant);
-                planet.setHydrosphereType(NSPlanet::htShards);
-                planet.setWaterPercentage(SSGX::floatRand());
-                planet.orbit().setShortDay();
-                break;
-
-        }
+        setPlanetTypeInner(planet);
     }
     else if (currentDistance > _star->outerLifeZone())
     {
-        double die = SSGX::d10()+SSGX::d10();
-        switch (planet.atmosphere())
-        {
-            case atVacuum:
-                planet.setPlanetType(ptIceball);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::d100());
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                break;
-            case atVeryThin:
-                planet.setPlanetType(ptIceball);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::d100());
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                break;
-            case atThin:
-                planet.setPlanetType(ptFailedCore);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::d10());
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                break;
-            case atStandard:
-                planet.setPlanetType(ptFailedCore);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::d10());
-                if (die == 2)
-                    planet.orbit().setShortDay();
-                else if (die == 20)
-                    planet.orbit().setLongDay();
-                else
-                    planet.orbit().setNormalDay();
-                break;
-            case atDense:
-                planet.setPlanetType(ptFailedCore);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::d10());
-                if (die == 2)
-                    planet.orbit().setShortDay();
-                else if (die == 20)
-                    planet.orbit().setLongDay();
-                else
-                    planet.orbit().setNormalDay();
-                break;
-            case atMassive:
-                planet.setPlanetType(ptGasGiant);
-                planet.setHydrosphereType(NSPlanet::htShards);
-                planet.setWaterPercentage(SSGX::floatRand());
-                planet.orbit().setShortDay();
-                break;
-        }
+        setPlanetTypeOuter(planet);
     }
     else
     {
-        double die = SSGX::d10()+SSGX::d10();
-        double die1 = SSGX::d10()+SSGX::d10();
-        switch (planet.atmosphere())
-        {
-            case atVacuum:
-                planet.setPlanetType(ptRockball);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::floatRand());
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                break;
-            case atVeryThin:
-                planet.setPlanetType(ptRockball);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::floatRand());
-                if (die == 2)
-                    planet.orbit().setNormalDay();
-                else if (die == 20)
-                    planet.orbit().setVeryLongDay();
-                else
-                    planet.orbit().setLongDay();
-                break;
-            case atThin:
-                planet.setPlanetType(ptDesert);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::floatRand());
-                if (die == 2)
-                    planet.orbit().setShortDay();
-                else if (die == 20)
-                    planet.orbit().setLongDay();
-                else
-                    planet.orbit().setNormalDay();
-                break;
-            case atStandard:
-                planet.setPlanetType(ptDesert);
-                planet.setHydrosphereType(NSPlanet::htIce);
-                planet.setWaterPercentage(SSGX::floatRand());
-                if (die == 2)
-                    planet.orbit().setShortDay();
-                else if (die == 20)
-                    planet.orbit().setLongDay();
-                else
-                    planet.orbit().setNormalDay();
-                if (die1 == 7)
-                    planet.setPlanetType(ptPreGarden);
-                break;
-            case atDense:
-                planet.setPlanetType(ptGarden);
-
-                planet.setHydrosphereType(NSPlanet::htLiquid);
-                planet.setWaterPercentage(SSGX::dn(90));
-                if (die == 2)
-                    planet.orbit().setShortDay();
-                else if (die == 20)
-                    planet.orbit().setLongDay();
-                else
-                    planet.orbit().setNormalDay();
-                if  ( planet.temperature() < 230)
-                    planet.setPlanetType(ptGlacier);
-
-                switch (_star->starType()) {
-                case NSStar::stF:
-                    die1--;
-                    break;
-                case NSStar::stK:
-                    die1++;
-                    break;
-                case NSStar::stM:
-                    die1+=2;
-                    break;
-                default:
-                    break;
-                }
-
-                if (die1 < 3) {
-                    planet.setPlanetType(ptPreGarden);
-                    planet.setWaterPercentage(SSGX::dn(20));
-                }
-                if (die1 > 17) {
-                    planet.setPlanetType(ptPostGarden);
-                    planet.setWaterPercentage(SSGX::dn(20));
-                }
-                break;
-            case atMassive:
-                planet.setPlanetType(ptGasGiant);
-                planet.setHydrosphereType(NSPlanet::htShards);
-                planet.setWaterPercentage(SSGX::floatRand());
-                planet.orbit().setShortDay();
-                break;
-        }
+        setPlanetTypeLifeZone(planet);
     }
 }
 

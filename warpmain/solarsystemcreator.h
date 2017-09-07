@@ -81,6 +81,18 @@ public:
             _star->calcStarValue();
         }
     }
+    void makeSatellite(Planet &planet, double dSatDistance, double currentDistance);
+    void makePlanet(bool advanceNextPlanet, const double MIN_PLANET_DISTANCE_GG, double currentDistance, double prevSatDistance, Planet px);
+    void setPlanetTypeInner(Planet& planet);
+    void setPlanetTypeOuter(Planet& planet);
+    void setPlanetTypeLifeZone(Planet& planet);
+    void setPtRockball(Planet& planet);
+    void setPtDesert(Planet& planet);
+    void setPtHotHouse(Planet& planet);
+    void setPtPreGarden(Planet& planet);
+    void setPtGasGiant(Planet& planet);
+    void setPtIceball(Planet& planet);
+    void setPtFailedCore(Planet& planet);
 };
 
 #endif // SOLARSYSTEMCREATOR_H
