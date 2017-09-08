@@ -316,6 +316,9 @@ QSharedPointer<Module> ModuleDescriptor::makeModule() {
     catch (noise::ExceptionUnknown &exc) {
         throw exc;
     }
+    catch (QString& exc) {
+        throw exc;
+    }
     catch (...) {
         std::string err = "Undefined error";
         throw err;
@@ -572,6 +575,11 @@ QSharedPointer<Module> ModuleDescriptor::makeBlend (){
 
 QSharedPointer<Module> ModuleDescriptor::makeSelect (){
     Select* m = new Select();
+    if ( _lBound > _uBound)
+    {
+        QString a("Module " + this->_name+ " cannot have its lower bound higher than upper bound");
+        throw a;
+    }
     m->SetBounds(_lBound,_uBound);
     m->SetEdgeFalloff(_value);
     QSharedPointer<Module> p; p.reset(m);

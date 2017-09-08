@@ -208,7 +208,7 @@ public:
     QString& src2() { return _src2; }
     QString& src3() { return _src3; }
     QString& src4() { return _src4; }
-    QString& ctl() { return _src4; }
+    QString& ctl() { return _ctl; }
     double lBound() { return _lBound; }
     double uBound() { return _uBound; }
     QVector<std::tuple<double,double>>& cPoints() { return _cPoints; }

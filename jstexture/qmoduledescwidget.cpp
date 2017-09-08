@@ -33,7 +33,7 @@ QModuleDescWidget::QModuleDescWidget(QWidget *parent) : QWidget(parent)
 
 void QModuleDescWidget::createWidgets() {
     auto iVal = new QIntValidator(this);
-    auto iValFreq = new QIntValidator(1,6,this);
+    auto iValFreq = new QIntValidator(1,10,this);
     QDoubleValidator* dValPow = new QDoubleValidator(0.0001,0.9999,6,this);
     QDoubleValidator* dValFreq = new QDoubleValidator(0.00001,999.9,6,this);
     QDoubleValidator* dValRough = new QDoubleValidator(1.0000,9999.9,6,this);
@@ -168,12 +168,12 @@ void QModuleDescWidget::layoutWidgets() {
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_displ,nRow,3);
 
-    lbl = new QLabel("Upper bound",this); lbl->setObjectName("l_lBound");
+    lbl = new QLabel("Lower bound",this); lbl->setObjectName("l_lBound");
     lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,++nRow,0);
     gr2->addWidget(c_lBound,nRow,1);
 
-    lbl = new QLabel("Lower Bound",this); lbl->setObjectName("l_uBound");
+    lbl = new QLabel("Upper Bound",this); lbl->setObjectName("l_uBound");
     lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     gr2->addWidget(lbl,nRow,2);
     gr2->addWidget(c_uBound,nRow,3);
@@ -368,12 +368,16 @@ void QModuleDescWidget::updateControlsFromDescriptor()
 {
     if (_moduleDesc != nullptr) {
         c_bias->setText(QString("%1").arg(_moduleDesc->bias()));
-        c_ctl->setCurrentText(_moduleDesc->ctl());
+
+        QString __ctl = _moduleDesc->ctl();
+        auto __disp = _moduleDesc->displ();
+
+        c_ctl->setCurrentText(__ctl);
         c_src1->setCurrentText(_moduleDesc->src1());
         c_src2->setCurrentText(_moduleDesc->src2());
         c_src3->setCurrentText(_moduleDesc->src3());
         c_src4->setCurrentText(_moduleDesc->src4());
-        c_displ->setText(QString("%1").arg(_moduleDesc->displ()));
+        c_displ->setText(QString("%1").arg(__disp));
         c_exp->setText(QString("%1").arg(_moduleDesc->exp()));
         c_freq->setText(QString("%1").arg(_moduleDesc->freq()));
         c_lac->setText(QString("%1").arg(_moduleDesc->lac()));
@@ -412,7 +416,7 @@ void QModuleDescWidget::updateDescriptorFromControls() {
         _moduleDesc->setModuleType(c_moduleType->currentText());
         _moduleDesc->setBias(c_bias->text().toDouble());
         _moduleDesc->setCtl(c_ctl->currentText());
-        _moduleDesc->setDispl(c_ctl->currentText().toDouble());
+        _moduleDesc->setDispl(c_displ->text().toDouble());
         _moduleDesc->setEnabledist(c_enableDist->isChecked());
         _moduleDesc->setEnableRandom(c_enableRandom->isChecked());
         _moduleDesc->setExp(c_exp->text().toDouble());
