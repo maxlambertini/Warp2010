@@ -44,6 +44,12 @@ void QRendererDescWidget::createWidgets() {
     gridLayout->addWidget(c_heightMap,nRow,1);
 
     nRow += 1;
+    c_bumpMap = new QComboBox(this);
+    c_bumpMap->setObjectName("Bump Map");
+    gridLayout->addWidget(new QLabel("bumpMap",this),nRow,0);
+    gridLayout->addWidget(c_bumpMap,nRow,1);
+
+    nRow += 1;
     c_backgroundImage = new QComboBox(this);
     c_backgroundImage->setObjectName("Background Image");
     gridLayout->addWidget(new QLabel("backgroundImage",this),nRow,0);
@@ -131,6 +137,7 @@ void QRendererDescWidget::fillRendererDescriptor() {
     _rendererDescriptor->setLightcontrast(this->c_lightContrast->text().toDouble());
     _rendererDescriptor->setName(this->c_name->text());
     _rendererDescriptor->setHeightmap(this->c_heightMap->currentText());
+    _rendererDescriptor->setBumpMap(this->c_bumpMap->currentText());
     _rendererDescriptor->setRandomFactor(
                 c_randomFactorHue->value(),
                 c_randomFactorSaturation->value(),
@@ -151,6 +158,7 @@ void QRendererDescWidget::readFromRendererDescriptor() {
     this->c_lightContrast->setText(QString("%1").arg(_rendererDescriptor->lightContrast()));
     this->c_name->setText(_rendererDescriptor->name());
     this->c_heightMap->setCurrentText(_rendererDescriptor->heightMap());
+    this->c_bumpMap->setCurrentText(_rendererDescriptor->bumpMap());
     c_randomFactorHue->setValue(_rendererDescriptor->rndHue());
     c_randomFactorSaturation->setValue(_rendererDescriptor->rndSaturation());
     c_randomFactorValue->setValue(_rendererDescriptor->rndValue());
@@ -175,4 +183,7 @@ void QRendererDescWidget::setNoiseMapList(QStringList &i)
     this->c_heightMap->clear();
     this->c_heightMap->addItem("");
     this->c_heightMap->addItems(_noiseMapBuilders);
+    this->c_bumpMap->clear();
+    this->c_bumpMap->addItem("");
+    this->c_bumpMap->addItems(_noiseMapBuilders);
 }

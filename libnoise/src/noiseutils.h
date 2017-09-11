@@ -2364,6 +2364,17 @@ namespace noise
           m_pSourceNoiseMap = &sourceNoiseMap;
         }
 
+        /// Sets the source noise map.
+        ///
+        /// @param sourceNoiseMap The source noise map.
+        ///
+        /// The destination image must exist throughout the lifetime of this
+        /// object unless another image replaces that image.
+        void SetBumpNoiseMap (const NoiseMap& sourceBumpMap)
+        {
+          m_pBumpNoiseMap = &sourceBumpMap;
+        }
+
         Color GetBackgroundColor() { return m_backgroundColor; }
         void SetBackgroundColor (Color c) { m_backgroundColor = c; }
 
@@ -2440,6 +2451,9 @@ namespace noise
 
         /// A pointer to the source noise map.
         const NoiseMap* m_pSourceNoiseMap;
+
+        /// A pointer to an optional noise map for 3d lighting.
+        const NoiseMap* m_pBumpNoiseMap;
 
         /// Used by the CalcLightIntensity() method to recalculate the light
         /// values only if the light parameters change.
@@ -2599,6 +2613,7 @@ namespace noise
         {
           m_pSourceNoiseMap = &sourceNoiseMap;
         }
+
 
       private:
 

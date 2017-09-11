@@ -45,6 +45,7 @@ class LIBNOISEHELPERSSHARED_EXPORT RendererDescriptor : public QObject
 
     QString _name = "renderer0001";
     QString _heightMap = "heightmap1";
+    QString _bumpMap = "";
     QString _backgroundImage = "";
     QString _alphaImage = "";
     QString _destImage = "";
@@ -72,6 +73,7 @@ public:
     QString& backgroundImage() { return _backgroundImage; }
     QString& alphaImage() { return _alphaImage; }
     QString& heightMap() { return _heightMap; }
+    QString& bumpMap() { return _bumpMap; }
     bool enabledLight() { return _enabledLight; }
     double lightContrast() { return _lightContrast; }
     double lightBrightness() { return _lightBrightness; }
@@ -91,6 +93,7 @@ public:
     void setBackgroundImage(const QString& v) { _backgroundImage = v ; }
     void setAlphaImage(const QString& v) { _alphaImage = v ; }
     void setHeightmap(const QString& v) { _heightMap = v ; }
+    void setBumpMap(const QString& v) { _bumpMap = v ; }
     void setEnabledlight(bool v) { _enabledLight = v ; }
     void setLightcontrast(double v) { _lightContrast = v ; }
     void setLightbrightness(double v) { _lightBrightness = v ; }

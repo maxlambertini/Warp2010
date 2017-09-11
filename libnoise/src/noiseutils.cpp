@@ -1198,6 +1198,7 @@ RendererImage::RendererImage ():
   m_pAlphaImage       (NULL),
   m_pDestImage        (NULL),
   m_pSourceNoiseMap   (NULL),
+  m_pBumpNoiseMap     (NULL),
   m_recalcLightValues (true),
   m_backgroundColor   (255,255,255,255),
   m_alphaColor        (255,255,255,255)
@@ -1332,6 +1333,7 @@ void RendererImage::Render ()
     throw noise::ExceptionInvalidParam ();
   }
 
+
   int width  = m_pSourceNoiseMap->GetWidth  ();
   int height = m_pSourceNoiseMap->GetHeight ();
 
@@ -1359,6 +1361,8 @@ void RendererImage::Render ()
     m_pDestImage->SetSize (width, height);
   }
 
+  const NoiseMap* p_noiseMapToUse =
+          m_pBumpNoiseMap != 0 ? m_pBumpNoiseMap : m_pSourceNoiseMap;
   for (int y = 0; y < height; y++) {
     const Color* pBackground = NULL;
     const Color* pAlpha = NULL;
@@ -1371,13 +1375,14 @@ void RendererImage::Render ()
       pAlpha= m_pAlphaImage->GetConstSlabPtr (y);
     }
 
-    const float* pSource = m_pSourceNoiseMap->GetConstSlabPtr (y);
+    const float* pSource = p_noiseMapToUse->GetConstSlabPtr (y);
+    const float* pColorSource = m_pSourceNoiseMap->GetConstSlabPtr (y);
     Color* pDest = m_pDestImage->GetSlabPtr (y);
     for (int x = 0; x < width; x++) {
 
       // Get the color based on the value at the current point in the noise
       // map.
-      Color destColor = m_gradient.GetColor (*pSource);
+      Color destColor = m_gradient.GetColor (*pColorSource);
 
       // If lighting is enabled, calculate the light intensity based on the
       // rate of change at the current point in the noise map.
@@ -1430,8 +1435,12 @@ void RendererImage::Render ()
             yUpOffset   = 1;
           }
         }
-        yDownOffset *= m_pSourceNoiseMap->GetStride ();
-        yUpOffset   *= m_pSourceNoiseMap->GetStride ();
+        yDownOffset *= p_noiseMapToUse->GetStride ();
+        yUpOffset   *= p_noiseMapToUse->GetStride ();
+
+        //yDownOffset *= m_pBumpNoiseMap->GetStride ();
+        //yUpOffset   *= m_pBumpNoiseMap->GetStride ();
+
 
         // Get the noise value of the current point in the source noise map
         // and the noise values of its four-neighbors.
@@ -1469,6 +1478,7 @@ void RendererImage::Render ()
 
       // Go to the next point.
       ++pSource;
+      ++pColorSource;
       ++pDest;
       if (m_pBackgroundImage != NULL) {
         ++pBackground;
