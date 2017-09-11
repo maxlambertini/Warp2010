@@ -116,6 +116,10 @@ class QModuleDescWidget : public QWidget
     QVector<QString> _moduleList;
 
 
+    void updateFormControls();
+    void updateFormFromControlPoints();
+
+    
 public:
     //setters
     void setModuleType( const QString& v ) { _moduleType  = v; }
@@ -204,6 +208,8 @@ public:
 
     inline void changeModuleType(QString type) { on_module_type_changed(type); }
 
+    
+    
 signals:
 
 private slots:

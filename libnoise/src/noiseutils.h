@@ -2219,6 +2219,20 @@ namespace noise
           m_pBackgroundImage = &backgroundImage;
         }
 
+        /// Sets the alpha channel image.
+        ///
+        /// \brief SetAlphaImage
+        /// \param alphaImage the alpha channel image
+        ///
+        /// If an alpha channel image has been specified, the Render() method uses it
+        /// to set alpha channel of single pixels, overriding normal blending procedure.
+        /// Image can be 32bpp, alpha will be calculated by using red channel as grey value.
+        ///
+        void SetAlphaImage (const Image& alphaImage)
+        {
+          m_pAlphaImage = &alphaImage;
+        }
+
         /// Sets the destination image.
         ///
         /// @param destImage The destination image.
@@ -2365,7 +2379,7 @@ namespace noise
         ///
         /// @returns The destination color.
         Color CalcDestColor (const Color& sourceColor,
-          const Color& backgroundColor, double lightValue) const;
+          const Color& backgroundColor, double lightValue, const Color* alphaColor = NULL) const;
 
         /// Calculates the intensity of the light given some elevation values.
         ///
@@ -2417,6 +2431,9 @@ namespace noise
 
         /// A pointer to the background image.
         const Image* m_pBackgroundImage;
+
+        /// A pointer to the alpha channel image
+        const Image* m_pAlphaImage;
 
         /// A pointer to the destination image.
         Image* m_pDestImage;

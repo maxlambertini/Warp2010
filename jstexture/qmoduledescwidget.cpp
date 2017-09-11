@@ -411,56 +411,66 @@ void QModuleDescWidget::updateControlsFromDescriptor()
     }
 }
 
-void QModuleDescWidget::updateDescriptorFromControls() {
-    if (_moduleDesc != nullptr) {
-        _moduleDesc->setModuleType(c_moduleType->currentText());
-        _moduleDesc->setBias(c_bias->text().toDouble());
-        _moduleDesc->setCtl(c_ctl->currentText());
-        _moduleDesc->setDispl(c_displ->text().toDouble());
-        _moduleDesc->setEnabledist(c_enableDist->isChecked());
-        _moduleDesc->setEnableRandom(c_enableRandom->isChecked());
-        _moduleDesc->setExp(c_exp->text().toDouble());
-        _moduleDesc->setFreq(c_freq->text().toDouble());
-        _moduleDesc->setInvert(c_invert->isChecked());
-        _moduleDesc->setLac(c_lac->text().toDouble());
-        _moduleDesc->setLbound(c_lBound->text().toDouble());
-        _moduleDesc->setName(c_name->text());
-        _moduleDesc->setOct(c_oct->text().toInt());
-        _moduleDesc->setPers(c_pers->text().toDouble());
-        _moduleDesc->setPow(c_pow->text().toDouble());
-        _moduleDesc->setRough(c_rough->text().toDouble());
-        _moduleDesc->setScale(c_scale->text().toDouble());
-        _moduleDesc->setSeed(c_seed->text().toInt());
-        _moduleDesc->setSrc1(c_src1->currentText());
-        _moduleDesc->setSrc2(c_src2->currentText());
-        _moduleDesc->setSrc3(c_src3->currentText());
-        _moduleDesc->setSrc4(c_src4->currentText());
-        _moduleDesc->setUbound(c_uBound->text().toDouble());
-        _moduleDesc->setValue(c_value->text().toDouble());
-        _moduleDesc->setX(c_x->text().toDouble());
-        _moduleDesc->setY(c_y->text().toDouble());
-        _moduleDesc->setZ(c_z->text().toDouble());
+void QModuleDescWidget::updateFormControls()
+{
+    _moduleDesc->setModuleType(c_moduleType->currentText());
+    _moduleDesc->setBias(c_bias->text().toDouble());
+    _moduleDesc->setCtl(c_ctl->currentText());
+    _moduleDesc->setDispl(c_displ->text().toDouble());
+    _moduleDesc->setEnabledist(c_enableDist->isChecked());
+    _moduleDesc->setEnableRandom(c_enableRandom->isChecked());
+    _moduleDesc->setExp(c_exp->text().toDouble());
+    _moduleDesc->setFreq(c_freq->text().toDouble());
+    _moduleDesc->setInvert(c_invert->isChecked());
+    _moduleDesc->setLac(c_lac->text().toDouble());
+    _moduleDesc->setLbound(c_lBound->text().toDouble());
+    _moduleDesc->setName(c_name->text());
+    _moduleDesc->setOct(c_oct->text().toInt());
+    _moduleDesc->setPers(c_pers->text().toDouble());
+    _moduleDesc->setPow(c_pow->text().toDouble());
+    _moduleDesc->setRough(c_rough->text().toDouble());
+    _moduleDesc->setScale(c_scale->text().toDouble());
+    _moduleDesc->setSeed(c_seed->text().toInt());
+    _moduleDesc->setSrc1(c_src1->currentText());
+    _moduleDesc->setSrc2(c_src2->currentText());
+    _moduleDesc->setSrc3(c_src3->currentText());
+    _moduleDesc->setSrc4(c_src4->currentText());
+    _moduleDesc->setUbound(c_uBound->text().toDouble());
+    _moduleDesc->setValue(c_value->text().toDouble());
+    _moduleDesc->setX(c_x->text().toDouble());
+    _moduleDesc->setY(c_y->text().toDouble());
+    _moduleDesc->setZ(c_z->text().toDouble());
+}
 
-        //control points
-        bool bNum;
-        _moduleDesc->cPoints().clear();
-        auto cnt = this->c_cPoints->rowCount();
-        for(auto h = 0; h < cnt; h++) {
-            auto item_x = c_cPoints->item(h,0);
-            auto item_y = c_cPoints->item(h,1);
-            if (item_x != nullptr && item_y != nullptr && !item_x->text().isNull() && !item_x->text().isEmpty() ) {
-                double d_x = item_x->text().toDouble(&bNum) ;
-                if (bNum) {
-                    double d_y = 0.0;
-                    if (!item_y->text().isNull() && !item_y->text().isEmpty()) {
-                        d_y = item_y->text().toDouble(&bNum);
-                        if (!bNum)
-                            d_y = 0.0;
-                    }
-                    _moduleDesc->cPoints().append(std::tuple<double,double>(d_x, d_y));
+void QModuleDescWidget::updateFormFromControlPoints()
+{
+    bool bNum;
+    _moduleDesc->cPoints().clear();
+    auto cnt = this->c_cPoints->rowCount();
+    for(auto h = 0; h < cnt; h++) {
+        auto item_x = c_cPoints->item(h,0);
+        auto item_y = c_cPoints->item(h,1);
+        if (item_x != nullptr && item_y != nullptr && !item_x->text().isNull() && !item_x->text().isEmpty() ) {
+            double d_x = item_x->text().toDouble(&bNum) ;
+            if (bNum) {
+                double d_y = 0.0;
+                if (!item_y->text().isNull() && !item_y->text().isEmpty()) {
+                    d_y = item_y->text().toDouble(&bNum);
+                    if (!bNum)
+                        d_y = 0.0;
                 }
+                _moduleDesc->cPoints().append(std::tuple<double,double>(d_x, d_y));
             }
         }
+    }
+}
+
+void QModuleDescWidget::updateDescriptorFromControls() {
+    if (_moduleDesc != nullptr) {
+        updateFormControls();
+
+        //control points
+        updateFormFromControlPoints();
     }
 }
 

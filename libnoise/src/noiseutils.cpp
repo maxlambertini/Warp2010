@@ -1231,7 +1231,7 @@ void RendererImage::BuildTerrainGradient ()
 }
 
 Color RendererImage::CalcDestColor (const Color& sourceColor,
-  const Color& backgroundColor, double lightValue) const
+  const Color& backgroundColor, double lightValue, const Color *alphaColor) const
 {
   double sourceRed   = (double)sourceColor.red   / 255.0;
   double sourceGreen = (double)sourceColor.green / 255.0;
@@ -1274,7 +1274,7 @@ Color RendererImage::CalcDestColor (const Color& sourceColor,
     (noise::uint8)((noise::uint)(red   * 255.0) & 0xff),
     (noise::uint8)((noise::uint)(green * 255.0) & 0xff),
     (noise::uint8)((noise::uint)(blue  * 255.0) & 0xff),
-    GetMax (sourceColor.alpha, backgroundColor.alpha)
+    alphaColor == NULL ?  GetMax (sourceColor.alpha, backgroundColor.alpha) : alphaColor->red
     );
   return newColor;
 }
@@ -1334,6 +1334,15 @@ void RendererImage::Render ()
     }
   }
 
+  // If an alpha image was provided, make sure it is the same size the
+  // source noise map.
+  if (m_pAlphaImage != NULL) {
+    if ( m_pAlphaImage->GetWidth  () != width
+      || m_pAlphaImage->GetHeight () != height) {
+      throw noise::ExceptionInvalidParam ();
+    }
+  }
+
   // Create the destination image.  It is safe to reuse it if this is also the
   // background image.
   if (m_pDestImage != m_pBackgroundImage) {
@@ -1342,9 +1351,16 @@ void RendererImage::Render ()
 
   for (int y = 0; y < height; y++) {
     const Color* pBackground = NULL;
+    const Color* pAlpha = NULL;
+
     if (m_pBackgroundImage != NULL) {
       pBackground = m_pBackgroundImage->GetConstSlabPtr (y);
     }
+
+    if (m_pAlphaImage != NULL) {
+      pAlpha= m_pAlphaImage->GetConstSlabPtr (y);
+    }
+
     const float* pSource = m_pSourceNoiseMap->GetConstSlabPtr (y);
     Color* pDest = m_pDestImage->GetSlabPtr (y);
     for (int x = 0; x < width; x++) {
