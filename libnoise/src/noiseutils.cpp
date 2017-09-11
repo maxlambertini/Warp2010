@@ -1199,7 +1199,8 @@ RendererImage::RendererImage ():
   m_pDestImage        (NULL),
   m_pSourceNoiseMap   (NULL),
   m_recalcLightValues (true),
-  m_backgroundColor   (255,255,255,255)
+  m_backgroundColor   (255,255,255,255),
+  m_alphaColor        (255,255,255,255)
 {
   BuildGrayscaleGradient ();
 };
@@ -1232,7 +1233,7 @@ void RendererImage::BuildTerrainGradient ()
 }
 
 Color RendererImage::CalcDestColor (const Color& sourceColor,
-  const Color& backgroundColor, double lightValue, const Color *alphaColor) const
+  const Color& backgroundColor, const Color& alphaColor, double lightValue) const
 {
   double sourceRed   = (double)sourceColor.red   / 255.0;
   double sourceGreen = (double)sourceColor.green / 255.0;
@@ -1241,6 +1242,12 @@ Color RendererImage::CalcDestColor (const Color& sourceColor,
   double backgroundRed   = (double)backgroundColor.red   / 255.0;
   double backgroundGreen = (double)backgroundColor.green / 255.0;
   double backgroundBlue  = (double)backgroundColor.blue  / 255.0;
+  double alphaRed   = (double)alphaColor.red   / 255.0;
+  double alphaGreen = (double)alphaColor.green / 255.0;
+  double alphaBlue  = (double)alphaColor.blue  / 255.0;
+  double alphaGray  = 0.21 *alphaRed + 0.72 * alphaGreen + 0.07 *alphaBlue;
+  if (m_pAlphaImage != NULL)
+      sourceAlpha = alphaGray;
 
   // First, blend the source color to the background color using the alpha
   // of the source color.
@@ -1269,13 +1276,15 @@ Color RendererImage::CalcDestColor (const Color& sourceColor,
   blue  = (blue  < 0.0)? 0.0: blue ;
   blue  = (blue  > 1.0)? 1.0: blue ;
 
+  noise::uint8 uAlpha = (noise::uint8)(sourceAlpha  * 255.0);
+
   // Rescale the color channels to the noise::uint8 (0..255) range and return
   // the new color.
   Color newColor (
     (noise::uint8)((noise::uint)(red   * 255.0) & 0xff),
     (noise::uint8)((noise::uint)(green * 255.0) & 0xff),
     (noise::uint8)((noise::uint)(blue  * 255.0) & 0xff),
-    alphaColor == NULL ?  GetMax (sourceColor.alpha, backgroundColor.alpha) : alphaColor->red
+    GetMax (uAlpha, backgroundColor.alpha)
     );
   return newColor;
 }
@@ -1447,17 +1456,25 @@ void RendererImage::Render ()
       if (m_pBackgroundImage != NULL) {
         backgroundColor = *pBackground;
       }
+      // ...and the current alphaColor
+      Color alphaColor = m_alphaColor;
+      if (m_pAlphaImage != NULL) {
+        alphaColor = *pAlpha;
+      }
 
       // Blend the destination color, background color, and the light
       // intensity together, then update the destination image with that
       // color.
-      *pDest = CalcDestColor (destColor, backgroundColor, lightIntensity);
+      *pDest = CalcDestColor (destColor, backgroundColor, alphaColor, lightIntensity);
 
       // Go to the next point.
       ++pSource;
       ++pDest;
       if (m_pBackgroundImage != NULL) {
         ++pBackground;
+      }
+      if (m_pAlphaImage != NULL) {
+        ++pAlpha;
       }
     }
   }

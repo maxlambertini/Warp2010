@@ -47,6 +47,7 @@ class QRendererDescWidget : public QWidget
     QLineEdit *c_name;
     QComboBox *c_heightMap;
     QComboBox *c_backgroundImage;
+    QComboBox *c_alphaImage;
     QComboBox *c_destImage;
     QCheckBox *c_enabledLight;
     QCheckBox *c_enableRandomGradient;

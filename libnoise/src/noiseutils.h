@@ -2379,7 +2379,7 @@ namespace noise
         ///
         /// @returns The destination color.
         Color CalcDestColor (const Color& sourceColor,
-          const Color& backgroundColor, double lightValue, const Color* alphaColor = NULL) const;
+          const Color& backgroundColor, const Color &alphaColor, double lightValue) const;
 
         /// Calculates the intensity of the light given some elevation values.
         ///
@@ -2457,6 +2457,7 @@ namespace noise
 
         mutable Color m_backgroundColor;
 
+        mutable Color m_alphaColor;
     };
 
     /// Renders a normal map from a noise map.

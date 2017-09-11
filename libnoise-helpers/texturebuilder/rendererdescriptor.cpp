@@ -55,6 +55,13 @@ RendererDescriptor& RendererDescriptor::connectImagesAndMap() {
         auto pImg = _images[_backgroundImage].data(); //pointer to utils::Image
         p->SetBackgroundImage(*pImg);                 //reference to stored data
     }
+    if (_alphaImage != "") {
+        if (!_images.contains(_alphaImage))
+            throw "Renderer " + _name + " is referencing alpha image " +
+                _alphaImage + ", which is not defined in images sections";
+        auto pImg = _images[_alphaImage].data(); //pointer to utils::Image
+        p->SetAlphaImage(*pImg);                 //reference to stored data
+    }
     if (_destImage != "") {
         if (!_images.contains(_destImage))
             throw "Renderer " + _name + " is referencing destination image " +
@@ -78,6 +85,7 @@ void RendererDescriptor::toJson(QJsonObject& json) {
     json["lightContrast"] = _lightContrast;
     json["lightBrightness"] = _lightBrightness;
     json["backgroundImage"] = _backgroundImage;
+    json["alphaImage"] = _alphaImage;
     json["destImage"] = _destImage;
     json["randomGradient"] = _randomGradient;
     if (_rndHue != 0 && _rndSaturation != 0 && _rndValue != 0) {
@@ -170,6 +178,8 @@ void RendererDescriptor::fromJson(const QJsonObject& json) {
         _destImage = json["destImage"].toString();
     if (!json["backgroundImage"].isNull() && !json["backgroundImage"].isUndefined())
         _backgroundImage = json["backgroundImage"].toString();
+    if (!json["alphaImage"].isNull() && !json["alphaImage"].isUndefined())
+        _alphaImage = json["alphaImage"].toString();
     if (!json["name"].isNull() && !json["name"].isUndefined())
         _name = json["name"].toString();
     if (!json["noiseMap"].isNull() && !json["noiseMap"].isUndefined())

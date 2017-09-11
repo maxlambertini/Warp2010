@@ -56,6 +56,12 @@ void QRendererDescWidget::createWidgets() {
     gridLayout->addWidget(c_destImage,nRow,1);
 
     nRow += 1;
+    c_alphaImage = new QComboBox(this);
+    c_alphaImage->setObjectName("Alpha Image");
+    gridLayout->addWidget(new QLabel("alphaImage",this),nRow,0);
+    gridLayout->addWidget(c_alphaImage,nRow,1);
+
+    nRow += 1;
     c_enableRandomGradient = new QCheckBox(this);
     c_enableRandomGradient->setObjectName("Random Gradient?");
     gridLayout->addWidget(new QLabel("Random Gradient",this),nRow,0);
@@ -119,6 +125,7 @@ void QRendererDescWidget::createWidgets() {
 void QRendererDescWidget::fillRendererDescriptor() {
     _rendererDescriptor->setBackgroundImage(this->c_backgroundImage->currentText());
     _rendererDescriptor->setDestImage(this->c_destImage->currentText());
+    _rendererDescriptor->setAlphaImage(this->c_alphaImage->currentText());
     _rendererDescriptor->setEnabledlight(this->c_enabledLight->isChecked());
     _rendererDescriptor->setLightbrightness(this->c_lightBrightess->text().toDouble());
     _rendererDescriptor->setLightcontrast(this->c_lightContrast->text().toDouble());
@@ -136,6 +143,8 @@ void QRendererDescWidget::fillRendererDescriptor() {
 void QRendererDescWidget::readFromRendererDescriptor() {
     this->c_backgroundImage->setCurrentText(_rendererDescriptor->backgroundImage());
     this->c_destImage->setCurrentText(_rendererDescriptor->destImage());
+    this->c_alphaImage->setCurrentText(_rendererDescriptor->alphaImage());
+
     this->c_enabledLight->setChecked(_rendererDescriptor->enabledLight());
     this->c_enableRandomGradient->setChecked(_rendererDescriptor->randomGradient());
     this->c_lightBrightess->setText(QString("%1").arg(_rendererDescriptor->lightBrightness()));
@@ -155,6 +164,9 @@ void QRendererDescWidget::setImageList(QStringList &i) {
     this->c_destImage->clear();
     this->c_destImage->addItem("");
     this->c_destImage->addItems(_images);
+    this->c_alphaImage->clear();
+    this->c_alphaImage->addItem("");
+    this->c_alphaImage->addItems(_images);
 }
 
 void QRendererDescWidget::setNoiseMapList(QStringList &i)
