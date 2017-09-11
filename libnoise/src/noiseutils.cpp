@@ -1195,6 +1195,7 @@ RendererImage::RendererImage ():
   m_lightElev         (45.0),
   m_lightIntensity    (1.0),
   m_pBackgroundImage  (NULL),
+  m_pAlphaImage       (NULL),
   m_pDestImage        (NULL),
   m_pSourceNoiseMap   (NULL),
   m_recalcLightValues (true),
