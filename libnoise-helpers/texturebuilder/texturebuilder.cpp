@@ -795,4 +795,28 @@ void TextureBuilder::buildTextureFromJson(const QString &filename, QString path)
     catch (...) {
         throw "Undefined error building texture " + filename;
     }
+
+}
+
+void TextureBuilder::raiseRenderer(const QString& rendererName) {
+    if (_rndNames.contains(rendererName)) {
+        auto i = _rndNames.indexOf(rendererName);
+        if (i > 0) {
+            auto iTmp = _rndNames.at(i);
+            _rndNames.replace(i,_rndNames.at(i-1));
+            _rndNames.replace(i-1,iTmp);
+        }
+    }
+}
+
+void TextureBuilder::lowerRenderer(const QString& rendererName) {
+    if (_rndNames.contains(rendererName)) {
+        auto i = _rndNames.indexOf(rendererName);
+        auto i1 = _rndNames.count();
+        if (i < i1-1) {
+            auto iTmp = _rndNames.at(i);
+            _rndNames.replace(i,_rndNames.at(i+1));
+            _rndNames.replace(i+1,iTmp);
+        }
+    }
 }

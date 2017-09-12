@@ -38,6 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <texturebuilder/noisemapbuilderdescriptor.h>
 #include <QInputDialog>
 #include <typeinfo>
+#include "addtextureworkflowdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -56,7 +57,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::createActions() {
-    action_newTexture = new QAction(QIcon(":/icons/new2.png"),"Create new texture",this),
+    action_newTexture = new QAction(QIcon(":/icons/new2.png"),"Create new texture",this);
+    action_newTextureFlow = new QAction(QIcon(":/icons/add.png"),"Add new texture flow",this);
     action_Load_Texture = new QAction(QIcon(":/icons/open.png"),"Load Texture",this);
     action_Save_Texture = new QAction(QIcon(":/icons/save.png"),"Save Texture", this);
     actionSave_As = new QAction(QIcon(":/icons/save.png"),"Save as",this);
@@ -64,6 +66,7 @@ void MainWindow::createActions() {
 
 
     connect(action_newTexture,SIGNAL(triggered(bool)),this, SLOT(on_action_new_texture_triggered()));
+    connect(action_newTextureFlow,SIGNAL(triggered(bool)),this, SLOT(on_action_new_textureflow_triggered()));
     connect(action_Load_Texture,SIGNAL(triggered(bool)),this, SLOT(on_action_Load_Texture_triggered()));
     connect(action_Save_Texture,SIGNAL(triggered(bool)),this, SLOT(on_action_Save_Texture_triggered()));
     connect(actionSave_As,SIGNAL(triggered(bool)),this, SLOT(on_actionSave_As_triggered()));
@@ -76,12 +79,18 @@ void MainWindow::createActions() {
     action_CreateHeightMapDesc = new QAction(QIcon(":/icons/new-heightmap.svg"),"Create Heightmap Descriptor",this);
     action_CreateRendererDesc = new QAction(QIcon(":/icons/new-renderer.svg"),"Create renderer descriptor",this);
 
+    action_LowerRenderer = new QAction(QIcon(":/icons/new-renderer.svg"),"Lower Renderer",this);
+    action_RaiseRenderer = new QAction(QIcon(":/icons/new-renderer.svg"),"Raise Renderer",this);
+
     connect(action_Generate_Texture,SIGNAL(triggered(bool)),this, SLOT(on_action_Generate_Texture_triggered()));
     connect(action_CreateModuleDescJson,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateModuleDescJson()));
     connect(action_CreateHeightmapBuilder,SIGNAL(triggered(bool)),this, SLOT(on_action_CreateHeightmapBuilder()));
     connect(action_CreateRendererDesc,SIGNAL(triggered(bool)),this,SLOT(on_action_create_rend_desc()));
     connect(action_CreateImageDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateImageDesc()));
     connect(action_CreateHeightMapDesc,SIGNAL(triggered(bool)),SLOT(on_action_CreateHeightMapDesc()));
+
+    connect(action_LowerRenderer, SIGNAL(triggered(bool)),SLOT(on_actionLowerRenderer()));
+    connect(action_RaiseRenderer,SIGNAL(triggered(bool)),SLOT(on_actionRaiseRenderer()));
 
     action_edit_texture_item = new QAction(QIcon(":/icons/edit.png"),"Edit texture item", this);
     action_delete_texture_item = new QAction(QIcon(":/icons/delete.png"),"Delete texture item", this);
@@ -95,6 +104,7 @@ void MainWindow::createMenus() {
     mainToolBar->setIconSize(QSize(32,32));
     statusBar = new QStatusBar(this);
     mainToolBar->addAction(action_newTexture);
+    mainToolBar->addAction(action_newTextureFlow);
     mainToolBar->addAction(action_Load_Texture);
     mainToolBar->addAction(action_Save_Texture);
     mainToolBar->addAction(actionSave_As);
@@ -117,10 +127,15 @@ void MainWindow::createMenus() {
                   << action_CreateRendererDesc;
     treeMenu->addActions(actionsCreate);
     treeMenu->addSeparator();
+    QList<QAction *> actions2;
+    actions2.append(action_RaiseRenderer);
+    actions2.append(action_LowerRenderer);
     QList<QAction *> actions;
     actions.append(action_edit_texture_item);
     actions.append(action_delete_texture_item);
     treeMenu->addActions(actions);
+    treeMenu->addSeparator();
+    treeMenu->addActions(actions2);
 
 }
 
@@ -767,4 +782,47 @@ void MainWindow::on_action_delete_texture_item() {
 
 void MainWindow::on_prepare_menu(const QPoint &pos) {
     treeMenu->exec( _tex->tree()->mapToGlobal(pos) );
+}
+
+
+void MainWindow::on_actionLowerRenderer() {
+    QTreeWidgetItem *item = _tex->tree()->currentItem();
+    if (item != nullptr && item->columnCount() > 1) {
+        QString txt = item->text(0);
+        QString mode = item->columnCount() > 1 ? item->text(1) : "";
+        if (mode == "Renderer"  ) {
+            _tb.lowerRenderer(txt);
+            updateEditorsWithTBInfo();
+            this->_tex->setTextureBuilder(&this->_tb);
+        }
+    }
+}
+
+void MainWindow::on_actionRaiseRenderer() {
+    QTreeWidgetItem *item = _tex->tree()->currentItem();
+    if (item != nullptr && item->columnCount() > 1) {
+        QString txt = item->text(0);
+        QString mode = item->columnCount() > 1 ? item->text(1) : "";
+        if (mode == "Renderer"  ) {
+            _tb.raiseRenderer(txt);
+            updateEditorsWithTBInfo();
+            this->_tex->setTextureBuilder(&this->_tb);
+        }
+    }
+
+}
+
+void MainWindow::on_action_new_textureflow_triggered() {
+    AddTextureWorkflowDialog dlg(this);
+    if (dlg.exec() == QDialog::Accepted) {
+        this->_tb.createTextureWorkflow(
+                    dlg.prefix(),
+                    dlg.createImage(),
+                    dlg.backgroundImage(),
+                    dlg.destImage(),
+                    dlg.last()
+                    );
+        updateEditorsWithTBInfo();
+        this->_tex->setTextureBuilder(&this->_tb);
+    }
 }

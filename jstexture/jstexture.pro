@@ -34,7 +34,9 @@ SOURCES += main.cpp\
     qmoduledescdialog.cpp \
     gradienthelper.cpp \
     texturebuilderwidget.cpp \
-    texturebuilderdialog.cpp
+    texturebuilderdialog.cpp \
+    addtextureworkflowwidget.cpp \
+    addtextureworkflowdialog.cpp
 
 HEADERS  += mainwindow.h \
     apppaths.h \
@@ -49,7 +51,9 @@ HEADERS  += mainwindow.h \
     qmoduledescdialog.h \
     gradienthelper.h \
     texturebuilderwidget.h \
-    texturebuilderdialog.h
+    texturebuilderdialog.h \
+    addtextureworkflowwidget.h \
+    addtextureworkflowdialog.h
 
 FORMS    += mainwindow.ui \
     viewingdialog.ui \

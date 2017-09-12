@@ -245,6 +245,9 @@ public:
                                QString destImage = "",
                                bool last = false);
 
+    void raiseRenderer(const QString& rendererName);
+    void lowerRenderer(const QString& rendererName);
+
 signals:
     void textureGenerationStarting();
     void textureGenerated(QString texture);

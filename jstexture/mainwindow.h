@@ -54,6 +54,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     QAction *action_newTexture;
+    QAction *action_newTextureFlow;
     QAction *action_Load_Texture;
     QAction *action_Save_Texture;
     QAction *actionSave_As;
@@ -65,6 +66,9 @@ class MainWindow : public QMainWindow
     QAction *action_CreateRendererDesc;
     QAction *action_CreateImageDesc;
     QAction *action_CreateHeightMapDesc;
+
+    QAction *action_LowerRenderer;
+    QAction *action_RaiseRenderer;
 
     QMenu *treeMenu;
     QAction *action_edit_texture_item;
@@ -120,6 +124,7 @@ public:
     
 private slots:
     void on_action_new_texture_triggered();
+    void on_action_new_textureflow_triggered();
     void on_action_Load_Texture_triggered();
     void on_action_Generate_Texture_triggered();
     void on_action_Save_Texture_triggered();
@@ -136,6 +141,8 @@ private slots:
 
     void on_listFiles_clicked(QListWidgetItem* idx);
 
+    void on_actionLowerRenderer();
+    void on_actionRaiseRenderer();
 
     void on_plaintext_changed();
 

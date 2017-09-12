@@ -223,7 +223,8 @@ DISTFILES += test.tpl \
     textures/garden/Earthlike-10.OK.texjson \
     textures/garden/Earthlike-11.OK.texjson \
     textures/pregarden/pregarden3.texjson \
-    textures/postgarden/postgarden.3.texjson
+    textures/postgarden/postgarden.3.texjson \
+    textures/rockball/Rockball.03.OK.texjson
 
 texjson.path=$${UtilsOUT_PWD}/textures
 texjson.files=textures/*
