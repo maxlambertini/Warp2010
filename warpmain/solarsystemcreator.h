@@ -80,7 +80,7 @@ public:
             _star->calcStarValue();
         }
     }
-    void makeSatellite(Planet &planet, double dSatDistance, double currentDistance);
+    void makeSatellite(Planet &planet, double &dSatDistance, double currentDistance);
     void makePlanet(bool advanceNextPlanet, const double MIN_PLANET_DISTANCE_GG, double currentDistance, double prevSatDistance, Planet& px);
     void setPlanetTypeInner(Planet& planet);
     void setPlanetTypeOuter(Planet& planet);
@@ -92,6 +92,9 @@ public:
     void setPtGasGiant(Planet& planet);
     void setPtIceball(Planet& planet);
     void setPtFailedCore(Planet& planet);
+    void makeDiameterAndDensity(int d, double currentDistance, Planet planet, bool isSatellite, Planet& planetTop);
+    void makeOrbit(Orbit &orbit);
+    void makeDiameterAndDensity(bool isSatellite, Planet &planet, double currentDistance, Planet& planetTop);
 };
 
 #endif // SOLARSYSTEMCREATOR_H

@@ -148,11 +148,11 @@ namespace SSGX {
     }
 
     inline double satDiameter() {
-        int n = dn(12) - 3;
+        int n = dn(12) - 8;
         if (n < 0)
             return (double)( d1000()/2);
         else
-            return (double)( (n*1000)+d1000());
+            return rockyDiameter();
     }
 
 

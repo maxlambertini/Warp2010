@@ -58,7 +58,7 @@ void SolarSystemCreator::createOrbits()
 }
 
 
-void SolarSystemCreator::makeSatellite(Planet& planet, double dSatDistance, double currentDistance)
+void SolarSystemCreator::makeSatellite(Planet& planet, double &dSatDistance, double currentDistance)
 {
     Planet sat = this->createPlanet( currentDistance, true, planet, &dSatDistance);
     sat.setStar(_star.data());
@@ -462,17 +462,8 @@ void SolarSystemCreator::setPlanetType(Planet& planet, double currentDistance)
     }
 }
 
-Planet SolarSystemCreator::createPlanet(
-        double currentDistance,
-        bool isSatellite,
-        Planet& planetTop,
-        double *prevDistance)
+void SolarSystemCreator::makeOrbit(Orbit& orbit)
 {
-    Planet planet;
-    if (isSatellite)
-        planet.setParent(&planetTop);
-
-    Orbit orbit;
     int d = SSGX::d6();
 
     if (d == 3)
@@ -489,8 +480,11 @@ Planet SolarSystemCreator::createPlanet(
         orbit.setObliquity( (double)(SSGX::d100() -50)/2.5);
     else
         orbit.setObliquity( (double)(SSGX::d100() -50)/10);
+}
 
-    d = SSGX::d6();
+void SolarSystemCreator::makeDiameterAndDensity(bool isSatellite, Planet& planet, double currentDistance, Planet& planetTop)
+{
+    int d = SSGX::d6();
 
     if (currentDistance > _star->outerLifeZone()) {
         if (d < 5) {
@@ -519,10 +513,26 @@ Planet SolarSystemCreator::createPlanet(
         planet.setDensity( ((double)(400+SSGX::dn(900)))/1000*5520.0);
     }
 
+    int divFactor = (planetTop.planetType() == ptGasGiant) ? 6 : 3;
 
+    while (isSatellite && (planet.diameter() > planetTop.diameter() / divFactor || planet.diameter() > 14000))
+        planet.setDiameter(planet.diameter()/1.5);
+}
 
-    while (isSatellite && planet.diameter() > planetTop.diameter() / 3)
-        planet.setDiameter(planet.diameter()/2);
+Planet SolarSystemCreator::createPlanet(
+        double currentDistance,
+        bool isSatellite,
+        Planet& planetTop,
+        double *prevDistance)
+{
+    Planet planet;
+    if (isSatellite)
+        planet.setParent(&planetTop);
+
+    Orbit orbit;
+
+    makeOrbit(orbit);
+    makeDiameterAndDensity(isSatellite, planet, currentDistance, planetTop);
 
 
     double dTemp = 255 / sqrt(( currentDistance / sqrt (_star->luminosity())));
@@ -567,7 +577,7 @@ Planet SolarSystemCreator::createPlanet(
             else
                 sSatDist = 105000+(double)((SSGX::floatRand()*1.8+2.0) * planetTop.diameter());
         else
-            sSatDist += 80000.0+(double)((SSGX::dn(20)+15) * planet.diameter());
+            sSatDist += 80000.0+(double)((SSGX::dn(50)+25) * planet.diameter());
         *prevDistance = sSatDist;
 
         orbit.setDistance(sSatDist);  //in km
