@@ -1,0 +1,138 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "BaseImage",
+    "heightMapBuilders": [
+        {
+            "dest": "BeginLayer_heightMap",
+            "name": "BeginLayer_noiseMapBuilder1",
+            "seamless": false,
+            "source": "BeginLayer_Turbo"
+        }
+    ],
+    "heightMaps": [
+        "BeginLayer_heightMap"
+    ],
+    "images": [
+        "BaseImage"
+    ],
+    "modules": [
+        {
+            "enableRandom": true,
+            "freq": 0.7,
+            "name": "BeginLayer_Module",
+            "type": "Cylinders"
+        },
+        {
+            "enableRandom": false,
+            "freq": 6.5,
+            "name": "BeginLayer_Turbo",
+            "pow": 0.03125,
+            "rough": 2,
+            "seed": 0,
+            "src1": "BeginLayer_Module",
+            "type": "Turbulence2"
+        }
+    ],
+    "randomFactors": [
+        0
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    21,
+                    25,
+                    135,
+                    255
+                ],
+                [
+                    -0.8524499999999999,
+                    19,
+                    42,
+                    122,
+                    255
+                ],
+                [
+                    -0.5648749999999999,
+                    23,
+                    45,
+                    104,
+                    255
+                ],
+                [
+                    -0.4119999999999999,
+                    18,
+                    28,
+                    124,
+                    255
+                ],
+                [
+                    -0.24107499999999993,
+                    13,
+                    31,
+                    112,
+                    255
+                ],
+                [
+                    0.0333500000000001,
+                    4,
+                    27,
+                    87,
+                    255
+                ],
+                [
+                    0.16425000000000012,
+                    10,
+                    34,
+                    106,
+                    255
+                ],
+                [
+                    0.3855750000000001,
+                    9,
+                    52,
+                    108,
+                    255
+                ],
+                [
+                    0.7092250000000001,
+                    7,
+                    49,
+                    98,
+                    255
+                ],
+                [
+                    1,
+                    3,
+                    57,
+                    90,
+                    255
+                ]
+            ],
+            "heightMap": "BeginLayer_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "BeginLayer_renderer",
+            "randomGradient": true
+        }
+    ],
+    "size": [
+        1280,
+        640
+    ]
+}

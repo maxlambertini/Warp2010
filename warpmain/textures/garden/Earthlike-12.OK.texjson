@@ -1,0 +1,695 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "ZZAlpha",
+    "cloudMap": "ZZAlpha",
+    "colorMap": "BaseImage",
+    "heightMapBuilders": [
+        {
+            "dest": "AlphaEquatorialCyl_heightMap",
+            "name": "AlphaEquatorialCyl_noiseMapBuilder1",
+            "seamless": true,
+            "source": "AlphaEquatorialCylTurbo"
+        },
+        {
+            "dest": "BeginLayer_heightMap",
+            "name": "BeginLayer_noiseMapBuilder1",
+            "seamless": false,
+            "source": "BeginLayer_Module"
+        },
+        {
+            "dest": "BumpMap_heightMap",
+            "name": "BumpMap_noiseMapBuilder1",
+            "seamless": true,
+            "source": "BumpTurbo"
+        },
+        {
+            "dest": "EndLayer_heightMap",
+            "name": "EndLayer_noiseMapBuilder1",
+            "seamless": false,
+            "source": "EndLayer_Module"
+        },
+        {
+            "dest": "Poles_heightMap",
+            "name": "Poles_noiseMapBuilder1",
+            "seamless": false,
+            "source": "PolesTurbolence2"
+        },
+        {
+            "dest": "SeaWorkflow_heightMap",
+            "name": "SeaWorkflow_noiseMapBuilder1",
+            "seamless": false,
+            "source": "SeaworkflowTurbo"
+        },
+        {
+            "dest": "ZZAlpha_heightMap",
+            "name": "ZZAlpha_noiseMapBuilder1",
+            "seamless": true,
+            "source": "ZZAlpha_Module"
+        }
+    ],
+    "heightMaps": [
+        "AlphaEquatorialCyl_heightMap",
+        "BeginLayer_heightMap",
+        "BumpMap_heightMap",
+        "EndLayer_heightMap",
+        "Poles_heightMap",
+        "SeaWorkflow_heightMap",
+        "ZZAlpha_heightMap"
+    ],
+    "images": [
+        "AlphaEquatorialCyl",
+        "BaseImage",
+        "ImageSpecular",
+        "ZZAlpha"
+    ],
+    "modules": [
+        {
+            "enableRandom": false,
+            "name": "AlphaEquatorialCylRot",
+            "src1": "AlphaEquatorialCyl_Module",
+            "type": "RotatePoint",
+            "x": 12.5,
+            "y": -3.2,
+            "z": 1
+        },
+        {
+            "enableRandom": false,
+            "freq": 5.4,
+            "name": "AlphaEquatorialCylTurbo",
+            "pow": 0.0625,
+            "rough": 1.125,
+            "seed": 0,
+            "src1": "AlphaEquatorialCylRot",
+            "type": "Turbulence2"
+        },
+        {
+            "enableRandom": true,
+            "freq": 0.85,
+            "name": "AlphaEquatorialCyl_Module",
+            "type": "Cylinders"
+        },
+        {
+            "enableRandom": true,
+            "freq": 2.416,
+            "lac": 4.42688,
+            "name": "BeginLayer_Module",
+            "oct": 6,
+            "pers": 0.3,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "enableRandom": false,
+            "name": "BumpCurve",
+            "src1": "BumpMap_Module",
+            "type": "Invert"
+        },
+        {
+            "enableRandom": true,
+            "freq": 2.9,
+            "lac": 4.9,
+            "name": "BumpMap_Module",
+            "oct": 8,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableRandom": false,
+            "freq": 5.3,
+            "name": "BumpTurbo",
+            "pow": 0.04,
+            "rough": 1.1,
+            "seed": 0,
+            "src1": "BumpCurve",
+            "type": "Turbulence2"
+        },
+        {
+            "enableRandom": true,
+            "freq": 1.82225,
+            "lac": 4.22733,
+            "name": "EndLayer_Module",
+            "oct": 6,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableRandom": false,
+            "freq": 3.2,
+            "name": "PolesTurbolence2",
+            "pow": 0.25,
+            "rough": 1.5,
+            "seed": 0,
+            "src1": "Poles_Module",
+            "type": "Turbulence"
+        },
+        {
+            "enableRandom": true,
+            "freq": 0.5,
+            "name": "Poles_Module",
+            "type": "Cylinders"
+        },
+        {
+            "enableRandom": true,
+            "freq": 1.8,
+            "lac": 5.4,
+            "name": "SeaWorkflow_Module",
+            "oct": 8,
+            "pers": 0.21,
+            "seed": 0,
+            "type": "Perlin"
+        },
+        {
+            "enableRandom": false,
+            "freq": 5.3,
+            "name": "SeaworkflowTurbo",
+            "pow": 0.06,
+            "rough": 1.1,
+            "seed": 0,
+            "src1": "SeaWorkflow_Module",
+            "type": "Turbulence"
+        },
+        {
+            "enableRandom": true,
+            "freq": 2.3936,
+            "lac": 2.76096,
+            "name": "ZZAlpha_Module",
+            "oct": 6,
+            "pers": 0.3,
+            "seed": 0,
+            "type": "Perlin"
+        }
+    ],
+    "randomFactors": [
+        0
+    ],
+    "reflectionMap": "ZZAlpha",
+    "renderers": [
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    115,
+                    207,
+                    146,
+                    255
+                ],
+                [
+                    -0.6,
+                    52,
+                    189,
+                    10,
+                    255
+                ],
+                [
+                    0,
+                    97,
+                    169,
+                    98,
+                    255
+                ],
+                [
+                    0.6000000000000001,
+                    144,
+                    198,
+                    12,
+                    255
+                ],
+                [
+                    1,
+                    97,
+                    207,
+                    112,
+                    255
+                ]
+            ],
+            "heightMap": "BeginLayer_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "BeginLayer_renderer",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "ZZAlpha",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.15229357798165144,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.581651376146789,
+                    212,
+                    210,
+                    202,
+                    255
+                ],
+                [
+                    0.8055045871559634,
+                    239,
+                    239,
+                    239,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "ZZAlpha_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "ZZAlpha_renderer",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "ZZAlpha",
+            "backgroundImage": "BaseImage",
+            "bumpMap": "BumpMap_heightMap",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    211,
+                    195,
+                    138,
+                    255
+                ],
+                [
+                    -0.6,
+                    206,
+                    201,
+                    145,
+                    255
+                ],
+                [
+                    0,
+                    206,
+                    175,
+                    102,
+                    255
+                ],
+                [
+                    0.6000000000000001,
+                    198,
+                    187,
+                    87,
+                    255
+                ],
+                [
+                    0.8201834862385322,
+                    175,
+                    147,
+                    42,
+                    255
+                ],
+                [
+                    1,
+                    175,
+                    153,
+                    41,
+                    255
+                ]
+            ],
+            "heightMap": "EndLayer_heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.3,
+            "name": "EndLayer_renderer",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "BaseImage",
+            "bumpMap": "BumpMap_heightMap",
+            "destImage": "BaseImage",
+            "enabledLight": true,
+            "gradientInfo": [
+                [
+                    -1,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    -0.07889908256880729,
+                    255,
+                    255,
+                    255,
+                    0
+                ],
+                [
+                    -2.220446049250313e-16,
+                    189,
+                    240,
+                    215,
+                    0
+                ],
+                [
+                    0.16666666666666652,
+                    210,
+                    245,
+                    227,
+                    0
+                ],
+                [
+                    0.2844036697247707,
+                    159,
+                    232,
+                    189,
+                    0
+                ],
+                [
+                    0.33333333333333304,
+                    226,
+                    249,
+                    237,
+                    0
+                ],
+                [
+                    0.4999999999999998,
+                    228,
+                    249,
+                    240,
+                    0
+                ],
+                [
+                    0.6666666666666665,
+                    246,
+                    253,
+                    250,
+                    0
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    0
+                ]
+            ],
+            "heightMap": "BumpMap_heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.2,
+            "name": "BumpMap_renderer",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "AlphaEquatorialCyl",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    -0.6146788990825688,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.6587155963302753,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "AlphaEquatorialCyl_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "AlphaEquatorialCyl_renderer",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "BaseImage",
+            "bumpMap": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    60,
+                    138,
+                    203,
+                    255
+                ],
+                [
+                    -0.06788990825688068,
+                    60,
+                    173,
+                    227,
+                    255
+                ],
+                [
+                    0.17064220183486234,
+                    96,
+                    185,
+                    216,
+                    255
+                ],
+                [
+                    0.19999999999999996,
+                    235,
+                    228,
+                    171,
+                    255
+                ],
+                [
+                    0.28,
+                    235,
+                    228,
+                    171,
+                    211
+                ],
+                [
+                    0.4422018348623853,
+                    235,
+                    228,
+                    171,
+                    0
+                ],
+                [
+                    0.8599999999999999,
+                    92,
+                    181,
+                    59,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    64,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "SeaWorkflow_heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.4,
+            "name": "SeaWorkflow_renderer",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "AlphaEquatorialCyl",
+            "backgroundImage": "BaseImage",
+            "bumpMap": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    46,
+                    146,
+                    165,
+                    255
+                ],
+                [
+                    -0.06788990825688068,
+                    60,
+                    173,
+                    227,
+                    255
+                ],
+                [
+                    0.17064220183486234,
+                    96,
+                    185,
+                    216,
+                    255
+                ],
+                [
+                    0.19999999999999996,
+                    69,
+                    174,
+                    72,
+                    255
+                ],
+                [
+                    0.28,
+                    30,
+                    148,
+                    34,
+                    211
+                ],
+                [
+                    0.4422018348623853,
+                    235,
+                    228,
+                    171,
+                    0
+                ],
+                [
+                    0.8599999999999999,
+                    92,
+                    181,
+                    59,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    64,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "SeaWorkflow_heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.4,
+            "name": "SeaWorkflow_renderer2",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "BaseImage",
+            "bumpMap": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    169,
+                    169,
+                    169,
+                    0
+                ],
+                [
+                    0.36146788990825685,
+                    235,
+                    235,
+                    235,
+                    0
+                ],
+                [
+                    0.38348623853211006,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "Poles_heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.4,
+            "name": "Poles_renderer",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "ImageSpecular",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    0.12660550458715591,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    0.15596330275229353,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    1,
+                    0,
+                    0,
+                    0,
+                    255
+                ]
+            ],
+            "heightMap": "SeaWorkflow_heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.4,
+            "name": "Specular_renderer",
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1600,
+        800
+    ]
+}
