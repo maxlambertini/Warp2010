@@ -61,9 +61,32 @@ void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
      data.close();
      QString filenamessc = filename+".ssc";
 
-    this->generateTestSolarSystem(filenamessc);
-     //this->saveSolarSystemsToCelestiaFile(filenamessc);
+    //this->generateTestSolarSystem(filenamessc);
+    this->saveSolarSystemsToCelestiaFile(filenamessc);
 }
+
+void CelestiaExporter::saveTestCelestiaFile( QString &filename) {
+    QString sOutput;
+    QTextStream stream(&sOutput);
+
+    QSharedPointer<Star> star;
+    int iHip = 500002 + SSGX::dx(699999);
+   foreach (star, _starList->stars()) {
+        stream << star.data()->getCelestiaStcEntry(iHip++);
+    }
+
+    QFile data (filename);
+     if (data.open(QFile::WriteOnly | QFile::Truncate)) {
+         QTextStream out(&data);
+         out << sOutput;
+         out.flush();
+     }
+     data.close();
+     QString filenamessc = filename+".ssc";
+
+    this->generateTestSolarSystem(filenamessc);
+}
+
 
 void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
     emit this->startExporting();
@@ -548,9 +571,10 @@ QString CelestiaExporter::generateSolSysForTextures(QString &starName) {
                 .replace("[PLANET_NAME]",textureName)
                 .replace("[STAR_NAME]",starName)
                 .replace("[TEXTURE_PATH]",textureName)
-                .replace("[DISTANCE]",QString::number(distUA));
+                .replace("[DISTANCE]",QString::number(distUA))
+            .replace("[EPOCH]", "Epoch " + QString::number(10000+SSGX::dn(80000))+"."+QString::number(1000+SSGX::dn(8000)));
         res += x;
-        distUA += 0.05;
+        distUA += 0.01+SSGX::floatRand()*0.01;
     }
     qDebug() << res;
     return res;

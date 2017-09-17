@@ -9,5 +9,6 @@
                 Eccentricity 0.000001
                 SemiMajorAxis [DISTANCE]
                 Inclination 0.000001
+                [EPOCH]
         }
 }

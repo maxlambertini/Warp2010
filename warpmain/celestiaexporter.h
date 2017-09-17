@@ -68,6 +68,7 @@ public:
 
     void saveCelestiaDataToFile(QString &filename);
     void saveStarListToCelestiaFile (QString &filename);
+    void saveTestCelestiaFile (QString &filename);
     void saveSolarSystemsToCelestiaFile (QString &filename);
 
     int zz = 1;

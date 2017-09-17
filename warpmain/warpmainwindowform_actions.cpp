@@ -522,8 +522,10 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
             QFileInfo fileInfo(fileName);
             QString path = fileInfo.absolutePath();
             pCexp.data()->setFilePath(path);
-
-            pCexp.data()->saveStarListToCelestiaFile(fileName);
+            if (fileName.endsWith("test.stc"))
+                pCexp->saveTestCelestiaFile(fileName);
+            else
+                pCexp.data()->saveStarListToCelestiaFile(fileName);
         }
     }
 }
