@@ -30,6 +30,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QtConcurrent/QtConcurrent>
 #include <helpers/apppaths.h>
 
+CelestiaExporter::CelestiaExporter() {
+}
+
+void CelestiaExporter::loadTemplates() {
+    QResource celestiaTpl(":/celestia/testplanet.tpl");
+    QFile docFile(celestiaTpl.absoluteFilePath());
+    if (!docFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        qDebug() << "Unable to open file: " << docFile.fileName() << " besause of error " << docFile.errorString() << endl;
+    QTextStream inDoc(&docFile);
+    this->_planetTemplate = inDoc.readAll();
+}
+
 void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
     QString sOutput;
     QTextStream stream(&sOutput);
@@ -49,8 +61,8 @@ void CelestiaExporter::saveStarListToCelestiaFile (QString &filename) {
      data.close();
      QString filenamessc = filename+".ssc";
 
-
-     this->saveSolarSystemsToCelestiaFile(filenamessc);
+    this->generateTestSolarSystem(filenamessc);
+     //this->saveSolarSystemsToCelestiaFile(filenamessc);
 }
 
 void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
@@ -315,9 +327,22 @@ QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
 
 }
 
+QString CelestiaExporter::runTexture(const QString &texturePath) {
+    QFileInfo fi(texturePath);
+    QString res = QString("%2_%1.png").arg(getUid(),fi.fileName());
+    res.replace("{","");
+    res.replace("}","");
+    res.replace(" ","");
+    auto ptr = NoiseImageRunner::UseTextureBuilder(texturePath, _texturePath+"/"+res);
+    ptr->setPlanetNameAndType(fi.fileName(),"Test");
+    vTextures.append(ptr);
+    return res;
+}
+
 QString CelestiaExporter::runGarden(Planet& p, QString res)
 {
     res = QString("%2_earthlike_%1.png").arg(getUid(),p.name());
+    res.replace("{","");
     res.replace("}","");
     res.replace(" ","");
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGarden(true), _texturePath+"/"+res);
@@ -509,6 +534,78 @@ QString CelestiaExporter::getPlanetTexture(Planet& p, int i) {
         return runChunk(p,res);
         break;
     }
+}
+
+QString CelestiaExporter::generateSolSysForTextures(QString &starName) {
+    QString res = "";
+    QStringList textures = AppPaths::provideAllTextures(true);
+    double distUA = 0.0;
+    for (QString texture: textures) {
+        QFileInfo fi(texture);
+        QString textureName = this->runTexture(texture);
+        QString x = _planetTemplate;
+        x
+                .replace("[PLANET_NAME]",textureName)
+                .replace("[STAR_NAME]",starName)
+                .replace("[TEXTURE_PATH]",textureName)
+                .replace("[DISTANCE]",QString::number(distUA));
+        res += x;
+        distUA += 0.05;
+    }
+    qDebug() << res;
+    return res;
+}
+
+void CelestiaExporter::generateTestSolarSystem(QString &filename) {
+    emit this->startExporting();
+    QString sOutput;
+    QTextStream stream(&sOutput);
+
+
+    QSharedPointer<Star> star;
+    foreach (star, _starList->stars()) {
+        QString starName = star->starName;
+        stream << this->generateSolSysForTextures(starName);
+        emit this->exported(AppPaths::provideAllTextures().count());
+    }
+
+    QFile data (filename);
+     if (data.open(QFile::WriteOnly | QFile::Truncate)) {
+         QTextStream out(&data);
+         out << sOutput;
+         out.flush();
+     }
+     data.close();
+     emit this->doneExporting();
+
+    emit this->textureExportStarting(vTextures.count());
+
+    QFuture<void> pt;
+    _futures.clear();
+
+    _numTextures = vTextures.count();
+    _curTexture = _numTextures-1;
+
+    QVectorIterator<QSharedPointer<NoiseImageRunner>>  vi(vTextures);
+    while(vi.hasNext()) {
+        NoiseImageRunner* nir = vi.next().data();
+        connect (nir,SIGNAL(imageSaved(QString)),this,SLOT(doneRendering(QString)));
+    }
+    vi.toFront();
+    while (vi.hasNext()) {
+        auto nir = vi.next();
+        auto res = QtConcurrent::run (nir.data(), &NoiseImageRunner::run);
+
+        _futures.append(res);
+        if (_futures.count()== 8) {
+            //for (auto x = 0; x < 8; x++)
+            //    _futures[x].waitForFinished();
+            //_futures.clear();
+            emit this->textureChunkExported(8);
+        }
+    }
+    //_futures.clear();
+
 }
 
 

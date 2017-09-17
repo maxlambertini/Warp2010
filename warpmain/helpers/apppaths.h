@@ -93,6 +93,10 @@ public:
 
     static QString provideTexture(QString texturePath, bool returnFullPath = false);
 
+    static QStringList provideTextures(QString texturePath, bool returnFullPath = false);
+
+    static QStringList provideAllTextures (bool returnFullPath = false);
+
     inline static QString preferencesFile() {
         return appDir()+"/warp.preferences";
     }

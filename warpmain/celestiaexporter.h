@@ -44,8 +44,10 @@ class CelestiaExporter : public QObject
     QVector<QSharedPointer<NoiseImageRunner>> vTextures;
     QVector<QFuture<void>> _futures;
 
+    QString _planetTemplate;
+
 public:
-    CelestiaExporter() {}
+    CelestiaExporter();
 
     QVector<QFuture<void>>& getFutures() { return _futures; }
 
@@ -91,10 +93,16 @@ public:
     QString runRockball(Planet& p, QString res);
     QString runIceball(Planet& p, QString res);
     QString runChunk(Planet& p, QString res);
+    QString runTexture(const QString &texturePath);
 
     void makeAtmosphere(int i, Planet& planet, QTextStream &stream);
     void makeMainCelestiaStats(int i, Planet& planet, QTextStream& stream );
     void makeRings(int i, Planet& planet, QTextStream& stream );
+
+    QString generateSolSysForTextures(QString& starName) ;
+    void generateTestSolarSystem(QString& filename);
+
+    void loadTemplates();
 
 signals:
     void exported(int idx);

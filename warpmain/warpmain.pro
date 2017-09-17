@@ -226,7 +226,9 @@ DISTFILES += test.tpl \
     textures/postgarden/postgarden.3.texjson \
     textures/rockball/Rockball.03.OK.texjson \
     textures/garden/Earthlike-12.OK.texjson \
-    textures/gasgiant/GasGiant21.OK.texjson
+    textures/gasgiant/GasGiant21.OK.texjson \
+    celestia/testplanet.tpl \
+    yed/*
 
 texjson.path=$${UtilsOUT_PWD}/textures
 texjson.files=textures/*

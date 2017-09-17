@@ -81,6 +81,7 @@
         <file>yed/node.tpl</file>
         <file>yed/edge.tpl</file>
         <file>yed/edge2.tpl</file>
+        <file>celestia/testplanet.tpl</file>
     </qresource>
     <qresource prefix="/Solsys">
         <file>pics/Planets/Terrestrial.png</file>

@@ -507,6 +507,7 @@ void WarpMainWindowForm::on_action_ExportMapToGraphVizFile_triggered()
             if (this->pCexp.data() != nullptr)
                 this->pCexp.clear();
             this->pCexp = QSharedPointer<CelestiaExporter>(new CelestiaExporter (this->_currentStar.data()));
+            this->pCexp->loadTemplates();
 
             connect(pCexp.data(),SIGNAL(startExporting()),this,SLOT(on_celestia_export_started()) );
             connect(pCexp.data(),SIGNAL(doneExporting()),this,SLOT(on_celestia_export_done()) );

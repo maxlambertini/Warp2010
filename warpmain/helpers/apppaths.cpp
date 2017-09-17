@@ -166,3 +166,37 @@ QString AppPaths::provideTexture(QString texturePath, bool returnFullPath) {
         return texturePath+"/"+res;
     }
 }
+
+QStringList AppPaths::provideTextures(QString texturePath, bool returnFullPath) {
+    QDir myPath(texturePath);
+    qDebug() << "Providing path for " << texturePath << ", " << returnFullPath;
+    QStringList filters; filters << "*.texjson";
+    myPath.setNameFilters(filters);
+    QStringList entries = myPath.entryList();
+    QStringList res;
+    for ( QString entry : entries) {
+        if (!returnFullPath) {
+            res << entry;
+        }
+        else {
+            res << texturePath+"/"+entry;
+        }
+    }
+    return res;
+}
+
+QStringList AppPaths::provideAllTextures(bool returnFullPath) {
+    QStringList res;
+    res << provideTextures(rockballTexDir(),returnFullPath);
+    res << provideTextures(chunkTexDir(),returnFullPath);
+    res << provideTextures(desertTexDir(),returnFullPath);
+    res << provideTextures(hotHouseTexDir(),returnFullPath);
+    res << provideTextures(gardenTexDir(),returnFullPath);
+    res << provideTextures(pregardenTexDir(),returnFullPath);
+    res << provideTextures(postgardenTexDir(),returnFullPath);
+    res << provideTextures(glacierTexDir(),returnFullPath);
+    res << provideTextures(gasgiantTexDir(),returnFullPath);
+    res << provideTextures(iceballTexDir(),returnFullPath);
+    res << provideTextures(failedCoreTexDir(),returnFullPath);
+    return res;
+}
