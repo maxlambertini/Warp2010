@@ -1,0 +1,179 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "",
+    "cloudMap": "",
+    "colorMap": "BaseImage",
+    "heightMapBuilders": [
+        {
+            "dest": "BeginLayer_heightMap",
+            "name": "BeginLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "Turbulence2_Module_40"
+        },
+        {
+            "dest": "EndLayer_heightMap",
+            "name": "EndLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "EndLayer_Module"
+        }
+    ],
+    "heightMaps": [
+        "BeginLayer_heightMap",
+        "EndLayer_heightMap"
+    ],
+    "images": [
+        "BaseImage"
+    ],
+    "modules": [
+        {
+            "enableRandom": true,
+            "freq": 0.98,
+            "name": "BeginLayer_Module",
+            "type": "Cylinders"
+        },
+        {
+            "disp": 0,
+            "enableDist": true,
+            "enableRandom": true,
+            "freq": 5.2844999999999995,
+            "name": "EndLayer_Module",
+            "seed": 0,
+            "type": "Voronoi"
+        },
+        {
+            "enableRandom": false,
+            "name": "ScalePoint_Module_30",
+            "src1": "Turboz",
+            "type": "ScalePoint",
+            "x": 1,
+            "y": 10,
+            "z": 1
+        },
+        {
+            "enableRandom": true,
+            "freq": 1.4,
+            "name": "Turboz",
+            "pow": 0.09,
+            "rough": 1.13,
+            "seed": 0,
+            "src1": "BeginLayer_Module",
+            "type": "Turbulence"
+        },
+        {
+            "enableRandom": false,
+            "freq": 9.2,
+            "name": "Turbulence2_Module_40",
+            "pow": 0.016,
+            "rough": 1.05,
+            "seed": 0,
+            "src1": "ScalePoint_Module_30",
+            "type": "Turbulence2"
+        }
+    ],
+    "randomFactors": [
+        0,
+        0.1,
+        0.2,
+        0.3,
+        0.2,
+        0.1,
+        0.09,
+        0.1,
+        0.8
+    ],
+    "reflectionMap": "",
+    "renderers": [
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    186,
+                    219,
+                    250,
+                    255
+                ],
+                [
+                    -0.68545,
+                    153,
+                    174,
+                    225,
+                    255
+                ],
+                [
+                    -0.4934,
+                    175,
+                    204,
+                    231,
+                    255
+                ],
+                [
+                    -0.18085,
+                    177,
+                    195,
+                    221,
+                    255
+                ],
+                [
+                    -0.052775000000000016,
+                    160,
+                    167,
+                    191,
+                    255
+                ],
+                [
+                    0.21697500000000003,
+                    179,
+                    181,
+                    203,
+                    255
+                ],
+                [
+                    0.49785,
+                    159,
+                    164,
+                    195,
+                    255
+                ],
+                [
+                    0.7215,
+                    153,
+                    168,
+                    204,
+                    255
+                ],
+                [
+                    1,
+                    135,
+                    154,
+                    181,
+                    255
+                ]
+            ],
+            "heightMap": "BeginLayer_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "BeginLayer_renderer",
+            "randomFactor": [
+                3,
+                2,
+                2
+            ],
+            "randomGradient": true
+        }
+    ],
+    "size": [
+        1280,
+        640
+    ]
+}

@@ -562,13 +562,15 @@ QString CelestiaExporter::getPlanetTexture(Planet& p, int i) {
 QString CelestiaExporter::generateSolSysForTextures(QString &starName) {
     QString res = "";
     QStringList textures = AppPaths::provideAllTextures(true);
-    double distUA = 0.0;
+    double distUA = 0.5;
     for (QString texture: textures) {
         QFileInfo fi(texture);
         QString textureName = this->runTexture(texture);
+        QString textureClean(textureName);
+        textureClean.replace(".texjson","").replace(".png","");
         QString x = _planetTemplate;
         x
-                .replace("[PLANET_NAME]",textureName)
+                .replace("[PLANET_NAME]",textureClean)
                 .replace("[STAR_NAME]",starName)
                 .replace("[TEXTURE_PATH]",textureName)
                 .replace("[DISTANCE]",QString::number(distUA))
