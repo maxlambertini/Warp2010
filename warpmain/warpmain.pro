@@ -184,49 +184,19 @@ RESOURCES += Resources.qrc
 DISTFILES += test.tpl \
     aspects.aspect \
     LICENSE.LGPL \
-    textures/failedcore/MegaLasagna.texjson.BaseImage.png \
-    textures/chunk/Chunk.OK.texjson \
-    textures/clouds/Cloud.OK.texjson \
-    textures/clouds-alien/FunkyCloud.OK.texjson \
-    textures/desert/alienpeaksvoronoi.texjson \
-    textures/desert/Desert.OK.texjson \
-    textures/desert/Desert2.OK.texjson \
-    textures/desert/Outre.OK.texjson \
-    textures/desert/Outre2.OK.texjson \
-    textures/desert/Outre4.OK.texjson \
-    textures/failedcore/Outre.OK.texjson \
-    textures/failedcore/Outre2.OK.texjson \
-    textures/garden/Earthlike-02.OK.texjson \
-    textures/garden/Earthlike-03.OK.texjson \
-    textures/garden/Earthlike.Island.OK.texjson \
-    textures/garden/Earthlike.Realistic.OK.texjson \
-    textures/gasgiant/GasGiantOK.texjson \
-    textures/gasgiant/GasGiantOriginalOK.texjson \
-    textures/glacier/glacier.texjson \
-    textures/hothouse/Hothouse.OK.texjson \
-    textures/iceball/Iceball.OK.texjson \
-    textures/postgarden/postgarden.texjson \
-    textures/postgarden/Multilayered-EarthlikeRND.texjson \
-    textures/pregarden/pregarden.texjson \
-    textures/pregarden/pregarden2.texjson \
-    textures/pregarden/Multilayered-EarthlikeRND.texjson \
-    textures/rockball/Rockball.OK.texjson \
-    textures/gasgiant/GasGiant2OK.texjson \
-    textures/gasgiant/GasGiant3.OK.texjson \
-    textures/rockball/Rockball.02.OK.texjson \
-    textures/desert/Canyon.01.OK.texjson \
-    textures/garden/Earthlike-01.OK.texjson \
-    textures/desert/desert.cream.OK.texjson \
-    textures/desert/desert.reddish.OK.texjson \
-    textures/gasgiant/GasGiant4.OK.texjson \
-    textures/gasgiant/GasGiant5.OK.texjson \
-    textures/garden/Earthlike-10.OK.texjson \
-    textures/garden/Earthlike-11.OK.texjson \
-    textures/pregarden/pregarden3.texjson \
-    textures/postgarden/postgarden.3.texjson \
-    textures/rockball/Rockball.03.OK.texjson \
-    textures/garden/Earthlike-12.OK.texjson \
-    textures/gasgiant/GasGiant21.OK.texjson \
+    textures/chunk/*.texjson \
+    textures/clouds/*.texjson \
+    textures/clouds-alien/*.texjson \
+    textures/desert/*.texjson \
+    textures/rockball/*.texjson \
+    textures/hothouse/*.texjson \
+    textures/earthlike/*.texjson \
+    textures/pregarden/*.texjson \
+    textures/postgarden/*.texjson \
+    textures/glacier/*.texjson \
+    textures/rockball/*.texjson \
+    textures/failedcore/*.texjson \
+    textures/gasgiant/*.texjson \
     celestia/testplanet.tpl \
     yed/*
 

@@ -33,9 +33,12 @@ NoiseImageRunner::NoiseImageRunner()
 {
 }
 
-QSharedPointer<NoiseImageRunner> NoiseImageRunner::UseTextureBuilder(const QString &textureFile, const QString &imageFile) {
+QSharedPointer<NoiseImageRunner> NoiseImageRunner::UseTextureBuilder(const QString &textureFile, const QString &imageFile,
+                                                                     bool generateSpecular, bool generateNormal) {
     QSharedPointer<NoiseImageRunner> sp(new NoiseImageRunner());
     sp.data()->setFilename(imageFile);
+    sp.data()->_generateNormal = generateNormal;
+    sp.data()->_generateSpecular = generateSpecular;
     sp.data()->setTextureFile(textureFile);
     sp.data()->setRunType(UseBuilder);
     return sp;
