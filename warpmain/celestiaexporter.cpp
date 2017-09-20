@@ -200,10 +200,13 @@ void CelestiaExporter::makeAtmosphere(int i, Planet& planet, QTextStream& stream
 void CelestiaExporter::makeMainCelestiaStats(int i, Planet& planet, QTextStream &stream)
 {
     stream << "\tTexture \"" << this->getPlanetTexture(planet,i) << "\"\n";
+    if (planet.planetType() == ptRockball || planet.planetType() == ptDesert || planet.planetType() == ptIceball) {
+        stream << "\tNormalMap \""  << this->getPlanetTexture(planet,i) << "\"\n";
+    }
     stream << "\tMass " << planet.massEarth() << "\n";
     stream << "\tRadius " << planet.radius() << "\n";
 
-    if (planet.planetType() == ptGasGiant) {
+    if (planet.planetType() == ptGasGiant  ) {
         auto ob = 0.12 * SSGX::floatRand();
         stream << "\tOblateness " << ob << "\n";
     } else {
