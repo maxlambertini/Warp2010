@@ -439,20 +439,6 @@ QString CelestiaExporter::runDesert(Planet& p, QString res)
     res = QString("%2_desert_%1.png").arg(getUid(),p.name());
     res.replace("}","");
     res.replace(" ","");
-    /*
-    zz = SSGX::d10();
-    if (zz > 8)
-        vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::DesertG,_texturePath+"/"+res,
-                                                                               SSGX::dn(999999),
-                                                                               6,2.5,0.2,1.5)));
-    else if (zz  > 6)
-        vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Desert,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
-    else if (zz  > 4)
-        vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::ComplexDesert2,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
-    else
-        vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::ComplexDesert,_texturePath+"/"+res, SSGX::dn(999999),6,2.5,0.2,1.5)));
-    return res;
-    */
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideDesert(true), _texturePath+"/"+res);
     //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
     qDebug() << "runDesert: " << res;

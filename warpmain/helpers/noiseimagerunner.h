@@ -70,6 +70,8 @@ enum RType {
 
 using namespace RT;
 
+
+
 class NoiseImageRunner : public QObject
 {
     Q_OBJECT
@@ -81,6 +83,9 @@ class NoiseImageRunner : public QObject
 
     double _seaRatio = 0.0;
     double _iceRatio = 0.125;
+
+    bool _generateSpecular = false;
+    bool _generateNormal = false;
 
 
     RType _runType = Earthlike;
@@ -116,7 +121,11 @@ public:
 
     NoiseImageRunner();
 
-    static QSharedPointer<NoiseImageRunner> UseTextureBuilder(const QString& textureFile, const QString& imageFile);
+    static QSharedPointer<NoiseImageRunner> UseTextureBuilder(const QString& textureFile,
+                                                              const QString& imageFile,
+                                                              bool generateSpecular = false,
+                                                              bool generateNormal = false);
+
     static QSharedPointer<NoiseImageRunner> UseRingBuilder(const QString& imageFile);
 
     void run()  ;
