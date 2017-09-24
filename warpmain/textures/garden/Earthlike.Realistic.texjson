@@ -11,6 +11,12 @@
     "colorMap": "ImageSea",
     "heightMapBuilders": [
         {
+            "dest": "TextureFlow_heightMap",
+            "name": "TextureFlow_noiseMapBuilder1",
+            "seamless": false,
+            "source": "TextureFlow_Module"
+        },
+        {
             "dest": "heightMapPole",
             "name": "heightMapBuilderPole",
             "seamless": true,
@@ -37,6 +43,7 @@
     ],
     "heightMaps": [
         "HeightMapSea",
+        "TextureFlow_heightMap",
         "heightMap",
         "heightMapDesert",
         "heightMapPole"
@@ -77,6 +84,15 @@
             "pers": 0.23,
             "seed": 0,
             "type": "Perlin"
+        },
+        {
+            "enableRandom": true,
+            "freq": 6.6,
+            "lac": 1.66912,
+            "name": "TextureFlow_Module",
+            "oct": 6,
+            "seed": 0,
+            "type": "RidgedMulti"
         },
         {
             "enableRandom": true,
@@ -391,7 +407,7 @@
             "enabledLight": false,
             "gradientInfo": [
                 [
-                    -1,
+                    0.012844036697247763,
                     0,
                     0,
                     0,
@@ -412,7 +428,7 @@
                     255
                 ]
             ],
-            "heightMap": "heightMap",
+            "heightMap": "TextureFlow_heightMap",
             "lightBrightness": 1,
             "lightContrast": 1,
             "name": "renderer0006",
@@ -433,7 +449,7 @@
                     255
                 ],
                 [
-                    0.09357798165137621,
+                    0.2550458715596331,
                     0,
                     0,
                     0,

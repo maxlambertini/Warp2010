@@ -247,6 +247,8 @@ void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     if (_m_moduleType=="Clamp") _propertiesToExport <<"name" << "lBound" << "uBound" << "src1" << "enableRandom";
     if (_m_moduleType=="Curve") _propertiesToExport <<"name" << "controlPoints" << "src1" << "enableRandom";
     if (_m_moduleType=="Invert") _propertiesToExport <<"name" <<  "src1" << "enableRandom";
+    if (_m_moduleType=="Cos") _propertiesToExport <<"name" <<  "freq" << "exp" << "value" << "src1" << "enableRandom";
+    if (_m_moduleType=="Sin") _propertiesToExport <<"name" <<  "freq" << "exp" << "value" <<  "src1" << "enableRandom";
     if (_m_moduleType=="Abs") _propertiesToExport <<"name" <<  "src1" << "enableRandom";
     if (_m_moduleType=="Exponent") _propertiesToExport <<"name" << "exp" << "src1" << "enableRandom";
     if (_m_moduleType=="ScaleBias") _propertiesToExport <<"name" << "bias" << "scale" << "src1" << "enableRandom";
@@ -296,6 +298,8 @@ QSharedPointer<Module> ModuleDescriptor::makeModule() {
         if (_moduleType=="Add") return makeAdd();
         if (_moduleType=="Max") return makeMax();
         if (_moduleType=="Avg") return makeAvg();
+        if (_moduleType=="Cos") return makeCos();
+        if (_moduleType=="Sin") return makeSin();
         if (_moduleType=="Min") return makeMin();
         if (_moduleType=="Multiply") return makeMultiply();
         if (_moduleType=="Power") return makePower();
@@ -453,6 +457,29 @@ QSharedPointer<Module> ModuleDescriptor::makeInvert() {
     QSharedPointer<Module> p; p.reset(m);
     return p;
 }
+
+
+//{ "Module":"Invert" , "Name": "mod_name" , "Src1": "mod_name" },
+QSharedPointer<Module> ModuleDescriptor::makeCos() {
+    Cos* m = new Cos();
+    m->SetDelta(_value);
+    m->SetFrequency(_freq);
+    m->SetExponent(_exp);
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+//{ "Module":"Invert" , "Name": "mod_name" , "Src1": "mod_name" },
+QSharedPointer<Module> ModuleDescriptor::makeSin() {
+    Sin* m = new Sin();
+    m->SetDelta(_value);
+    m->SetFrequency(_freq);
+    m->SetExponent(_exp);
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+
 
 
 //{ "Module":"ScaleBias" , "Name": "mod_name" , "Src1": "mod_name" , "Bias": 0.0 , "Scale": 0.0 },

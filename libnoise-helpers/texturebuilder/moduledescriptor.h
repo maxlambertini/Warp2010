@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <noiseutils.h>
 #include <ssg_structures.h>
 #include "libnoise-helpers_global.h"
+#include "noise/module/cos.h"
 
 
 
@@ -43,6 +44,7 @@ namespace NoiseModules {
         "Blend",
         "Clamp",
         "Const",
+        "Cos",
         "Curve",
         "Cylinders",
         "Displace",
@@ -58,6 +60,7 @@ namespace NoiseModules {
         "ScaleBias",
         "ScalePoint",
         "Select",
+        "Sin",
         "Spheres",
         "Terrace",
         "TranslatePoint",
@@ -310,6 +313,10 @@ public:
     QSharedPointer<Module> makeExponent();
     //{ "Module":"Invert" , "Name": "mod_name" , "Src1": "mod_name" },
     QSharedPointer<Module> makeInvert();
+    //{ "Module":"Invert" , "Name": "mod_name" , "Src1": "mod_name" },
+    QSharedPointer<Module> makeCos();
+    //{ "Module":"Invert" , "Name": "mod_name" , "Src1": "mod_name" },
+    QSharedPointer<Module> makeSin();
     //{ "Module":"ScaleBias" , "Name": "mod_name" , "Src1": "mod_name" , "Bias": 0.0 , "Scale": 0.0 },
     QSharedPointer<Module> makeScaleBias();
     //{ "Module":"Terrace" , "Name": "mod_name" , "Src1": "mod_name" , "Cpoints": [[0.0,1.0],[1.0,1.1]] , "Invert": true },
