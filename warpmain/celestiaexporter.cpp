@@ -182,14 +182,25 @@ void CelestiaExporter::makeAtmosphere(int i, Planet& planet, QTextStream& stream
              planet.planetType() == ptFailedCore )) {
 
         int type = (int)planet.atmosphere();
+        int divisor = atmosphereDivider[type];
+        int atmoHeight = ( (SSGX::dn(60)+ SSGX::dn(60)+60) / divisor) ;
+        if (planet.atmosphere() == atStandard || planet.atmosphere() == atThin) {
+            if (SSGX::dn(20) == 20)
+                atmoHeight = atmoHeight * SSGX::dn(3); //huge titanian atmosphere
+        }
         if (type < 1) type = 1;
         stream << "\tAtmosphere { \n";
-        stream << "\t\tHeight " << (SSGX::dn(40)+ SSGX::dn(40)+60)  << "\n";
+        stream << "\t\tHeight " << atmoHeight << "\n";
         stream << "\t\tLower [" << SSGX::floatRand() / 6 << " " << SSGX::floatRand() / 6 << " " << SSGX::floatRand() << "]\n ";
         stream << "\t\tUpper [" << SSGX::floatRand() / 6 << " " << SSGX::floatRand() / 6 << " " << SSGX::floatRand() / 2 << "]\n ";
         stream << "\t\tSky [" << SSGX::floatRand() / 3 << " " << SSGX::floatRand() / 3 << " " << SSGX::floatRand() / 2 << "]\n ";
-        stream << "\t\tCloudHeight " << (SSGX::d10()+ SSGX::d10()+30) / type << "\n";
-        stream << "\t\tCloudSpeed " << (SSGX::d10()+ SSGX::d10()+30) / type << "\n";
+        stream << "\t\tMie  " << SSGX::floatRand()*0.001 << "\n";
+        stream << "\t\tMieAsymmetry  " << 0.5 - SSGX::floatRand() << "\n";
+        stream << "\t\tRayleigh   [ " << SSGX::floatRand()*0.0005 << " "  << SSGX::floatRand()*0.0005 << " " << SSGX::floatRand()*0.0005 << " ]\n";
+        stream << "\t\Absorption   [ " << SSGX::floatRand()*0.0001 << " "  << SSGX::floatRand()*0.0001 << " " << SSGX::floatRand()*0.0001 << " ]\n";
+        stream << "\t\tMieScaleHeight " << 4 + SSGX::dn(30) + SSGX::dn(50) << " \n";
+        stream << "\t\tCloudHeight " << atmoHeight / 2 + SSGX::dn(5) << "\n";
+        stream << "\t\tCloudSpeed " << (SSGX::d10()+ SSGX::d10()+40)  << "\n";
         stream << "\t\tCloudMap \"" << this->getCloudTexture(planet,i) << "\"\n";
         stream << "}\n";
         // qDebug() << "step 4.2";
@@ -199,9 +210,20 @@ void CelestiaExporter::makeAtmosphere(int i, Planet& planet, QTextStream& stream
 
 void CelestiaExporter::makeMainCelestiaStats(int i, Planet& planet, QTextStream &stream)
 {
-    stream << "\tTexture \"" << this->getPlanetTexture(planet,i) << "\"\n";
+    QString planetTexture(this->getPlanetTexture(planet,i));
+    stream << "\tTexture \"" << planetTexture << "\"\n";
     stream << "\tMass " << planet.massEarth() << "\n";
     stream << "\tRadius " << planet.radius() << "\n";
+
+    if (planet.planetType() == ptGarden) {
+        QString normalFile(planetTexture); normalFile.replace(".png",".norm.png");
+        QString specFile(planetTexture); specFile.replace(".png",".spec.png");
+        stream << "\tBumpMap \"" << normalFile << "\"\n";
+        stream << "\tBumpHeight " <<  QString::number(1.2 + SSGX::floatRand()*10.0) <<  "\n";
+        stream << "\tSpecularTexture \"" << specFile << "\"\n";
+        stream << "\tSpecularColor [1.0 1.0 0.9]\n";
+        stream << "\tSpecularPower " << QString::number(10+SSGX::dn(30)) << "\n";
+    }
 
     if (planet.planetType() == ptGasGiant) {
         auto ob = 0.12 * SSGX::floatRand();
@@ -329,7 +351,6 @@ QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
     auto pt = p.planetType();
     if (pt == ptGarden || pt == ptGlacier ) {
         res = QString("%2_clouds_%1.png").arg(getUid(),p.name());
-        res.replace("}","");
         res.replace(" ","");
         //auto ptr = NoiseImageRunner::UseTextureBuilder("Cloud.OK.texjson", _texturePath+"/"+res);
         auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideClouds(true), _texturePath+"/"+res);
@@ -340,7 +361,6 @@ QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
     }
     else {
         res = QString("%2_f_clouds_%1.png").arg(getUid(),p.name());
-        res.replace("}","");
         res.replace(" ","");
         auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideAlienClouds(true), _texturePath+"/"+res);
         ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Alien Clouds");
@@ -353,8 +373,6 @@ QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
 QString CelestiaExporter::runTexture(const QString &texturePath) {
     QFileInfo fi(texturePath);
     QString res = QString("%2_%1.png").arg(getUid(),fi.fileName());
-    res.replace("{","");
-    res.replace("}","");
     res.replace(" ","");
     auto ptr = NoiseImageRunner::UseTextureBuilder(texturePath, _texturePath+"/"+res);
     ptr->setPlanetNameAndType(fi.fileName(),"Test");
@@ -364,11 +382,18 @@ QString CelestiaExporter::runTexture(const QString &texturePath) {
 
 QString CelestiaExporter::runGarden(Planet& p, QString res)
 {
-    res = QString("%2_earthlike_%1.png").arg(getUid(),p.name());
-    res.replace("{","");
-    res.replace("}","");
+    res = QString("earthlike_%2_%1.png").arg(getUid(),p.name());
     res.replace(" ","");
-    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGarden(true), _texturePath+"/"+res);
+
+    QString imageFileName(_texturePath+"/"+res);
+    QString specFileName(imageFileName); specFileName.replace(".png",".spec.png");
+    QString normalFileName(imageFileName); normalFileName.replace(".png",".norm.png");
+
+    qDebug() << "RunGarden: " << imageFileName << ", " << specFileName << ", " << normalFileName;
+
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGarden(true), imageFileName);
+    ptr->setFilenameNormal(normalFileName);
+    ptr->setFilenameSpecular(specFileName);
     //QSharedPointer<NoiseImageRunner> ptr(new NoiseImageRunner(RT::Earthlike,_texturePath+"/"+res, SSGX::dn(999999)));
     ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Garden");
     vTextures.append(ptr);
@@ -378,7 +403,6 @@ QString CelestiaExporter::runGarden(Planet& p, QString res)
 QString CelestiaExporter::runGlacier(Planet& p, QString res)
 {
     res = QString("%2_glacier_%1.png").arg(getUid(),p.name());
-    res.replace("}","");
     res.replace(" ","");
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Glacier,_texturePath+"/"+res, SSGX::dn(999999))));
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideGlacier(true), _texturePath+"/"+res);
@@ -390,7 +414,6 @@ QString CelestiaExporter::runGlacier(Planet& p, QString res)
 QString CelestiaExporter::runPostGarden(Planet& p, QString res)
 {
     res = QString("%2_postgarden_%1.png").arg(getUid(),p.name());
-    res.replace("}","");
     res.replace(" ","");
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::providePostgarden(true), _texturePath+"/"+res);
     ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"PostGarden");
@@ -401,7 +424,6 @@ QString CelestiaExporter::runPostGarden(Planet& p, QString res)
 QString CelestiaExporter::runPreGarden(Planet& p, QString res )
 {
     res = QString("%2_pregarden_%1.png").arg(getUid(),p.name());
-    res.replace("}","");
     res.replace(" ","");
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::providePregarden(true), _texturePath+"/"+res);
     ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"PreGarden");
@@ -412,7 +434,6 @@ QString CelestiaExporter::runPreGarden(Planet& p, QString res )
 QString CelestiaExporter::runHotHouse(Planet& p, QString res)
 {
     res = QString("%2_hothouse_%1.png").arg(getUid(),p.name());
-    res.replace("}","");
     res.replace(" ","");
     auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideHotHouse(true), _texturePath+"/"+res);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Ice,_texturePath+"/"+res, SSGX::dn(999999))));

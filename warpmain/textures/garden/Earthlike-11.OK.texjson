@@ -6,8 +6,8 @@
         180
     ],
     "builderType": "sphere",
-    "bumpMap": "",
-    "cloudMap": "",
+    "bumpMap": "normal",
+    "cloudMap": "specular",
     "colorMap": "BaseImage",
     "heightMapBuilders": [
         {
@@ -35,7 +35,9 @@
         "heightMap_Pole"
     ],
     "images": [
-        "BaseImage"
+        "BaseImage",
+        "normal",
+        "specular"
     ],
     "modules": [
         {
@@ -126,7 +128,7 @@
         },
         {
             "enableRandom": false,
-            "freq": 1.85,
+            "freq": 9.84,
             "name": "Turbulence_Module_100",
             "pow": 0.23,
             "rough": 2.5,
@@ -161,9 +163,11 @@
     "reflectionMap": "",
     "renderers": [
         {
+            "alphaImage": "",
             "backgroundImage": "",
+            "bumpMap": "",
             "destImage": "BaseImage",
-            "enabledLight": true,
+            "enabledLight": false,
             "gradientInfo": [
                 [
                     -1,
@@ -271,7 +275,9 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "BaseImage",
+            "bumpMap": "",
             "destImage": "BaseImage",
             "enabledLight": false,
             "gradientInfo": [
@@ -353,7 +359,9 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "BaseImage",
+            "bumpMap": "",
             "destImage": "BaseImage",
             "enabledLight": false,
             "gradientInfo": [
@@ -390,6 +398,90 @@
             "lightBrightness": 1,
             "lightContrast": 1,
             "name": "renderer0003",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "normal",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.248,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.952,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    1,
+                    0,
+                    0,
+                    0,
+                    128
+                ]
+            ],
+            "heightMap": "EndLayer_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0004",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "specular",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    0.244,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    0.248,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    1,
+                    0,
+                    0,
+                    0,
+                    255
+                ]
+            ],
+            "heightMap": "EndLayer_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0005",
             "randomGradient": false
         }
     ],

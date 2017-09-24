@@ -190,7 +190,7 @@ DISTFILES += test.tpl \
     textures/desert/*.texjson \
     textures/rockball/*.texjson \
     textures/hothouse/*.texjson \
-    textures/earthlike/*.texjson \
+    textures/garden/*.texjson \
     textures/pregarden/*.texjson \
     textures/postgarden/*.texjson \
     textures/glacier/*.texjson \

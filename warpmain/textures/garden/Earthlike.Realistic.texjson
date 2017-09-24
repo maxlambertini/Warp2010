@@ -6,7 +6,7 @@
         180
     ],
     "builderType": "sphere",
-    "bumpMap": "image1",
+    "bumpMap": "imageNormal",
     "cloudMap": "imageBump",
     "colorMap": "ImageSea",
     "heightMapBuilders": [
@@ -44,7 +44,8 @@
     "images": [
         "ImageSea",
         "image1",
-        "imageBump"
+        "imageBump",
+        "imageNormal"
     ],
     "modules": [
         {
@@ -107,12 +108,14 @@
     "randomFactors": [
         0
     ],
-    "reflectionMap": "imageMountains",
+    "reflectionMap": "imageBump",
     "renderers": [
         {
+            "alphaImage": "",
             "backgroundImage": "",
+            "bumpMap": "",
             "destImage": "image1",
-            "enabledLight": true,
+            "enabledLight": false,
             "gradientInfo": [
                 [
                     -1,
@@ -150,9 +153,11 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "image1",
+            "bumpMap": "",
             "destImage": "image1",
-            "enabledLight": true,
+            "enabledLight": false,
             "gradientInfo": [
                 [
                     -1,
@@ -190,7 +195,9 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "image1",
+            "bumpMap": "",
             "destImage": "ImageSea",
             "enabledLight": false,
             "gradientInfo": [
@@ -279,7 +286,9 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "ImageSea",
+            "bumpMap": "",
             "destImage": "ImageSea",
             "enabledLight": false,
             "gradientInfo": [
@@ -319,7 +328,9 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "",
+            "bumpMap": "",
             "destImage": "imageBump",
             "enabledLight": false,
             "gradientInfo": [
@@ -370,6 +381,97 @@
             "lightBrightness": 1,
             "lightContrast": 1,
             "name": "renderer5",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "imageNormal",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.8560000000000001,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0006",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "imageNormal",
+            "bumpMap": "",
+            "destImage": "imageNormal",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.09357798165137621,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.5743119266055046,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0.8445595854922279,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0.9039999999999999,
+                    255,
+                    255,
+                    255,
+                    0
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "HeightMapSea",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0007",
             "randomGradient": false
         }
     ],

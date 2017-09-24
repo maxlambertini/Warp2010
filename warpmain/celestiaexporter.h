@@ -46,6 +46,8 @@ class CelestiaExporter : public QObject
 
     QString _planetTemplate;
 
+    int atmosphereDivider[5] = {1,1,2,4,8};
+
 public:
     CelestiaExporter();
 
@@ -75,6 +77,9 @@ public:
 
     QString getUid() {
         QString uid = QUuid::createUuid().toString().left(12);
+        uid.replace("{","");
+        uid.replace("}","");
+
         return uid;
     }
 
