@@ -37,6 +37,14 @@ QSharedPointer<NoiseImageRunner> NoiseImageRunner::UseTextureBuilder(const QStri
                                                                      bool generateSpecular, bool generateNormal) {
     QSharedPointer<NoiseImageRunner> sp(new NoiseImageRunner());
     sp.data()->setFilename(imageFile);
+
+    /*
+    QString normalFile(textureFile); normalFile = normalFile.replace(".png",".norm.png");
+    QString specFile(textureFile); specFile = specFile.replace(".png",".spec.png");
+    sp.data()->setFilenameNormal(normalFile);
+    sp.data()->setFilenameSpecular(specFile);
+    */
+
     sp.data()->_generateNormal = generateNormal;
     sp.data()->_generateSpecular = generateSpecular;
     sp.data()->setTextureFile(textureFile);
@@ -79,6 +87,14 @@ void NoiseImageRunner::run() {
                         p->prepareObjectFromJsonFile( AppPaths::appDir()+"/jstexture/"+ _textureFile);
                     p->buildImages();
                     p->saveRenderedImageToFile(p->colorMap(),_filename);
+                    if (!_filenameSpecular.isEmpty() && !p->reflectionMap().isEmpty()) {
+                        qDebug() << "Saving Specular map to " << _filenameSpecular;
+                        p->saveRenderedImageToFile(p->reflectionMap(),_filenameSpecular);
+                    }
+                    if (!_filenameNormal.isEmpty() && !p->bumpMap().isEmpty()) {
+                        qDebug() << "Saving Normal map to " << _filenameNormal;
+                        p->saveRenderedImageToFile(p->bumpMap(),_filenameNormal);
+                    }
                     qDebug() << "UseBuilder -- done";
                     emit imageSaved(_filename);
                }

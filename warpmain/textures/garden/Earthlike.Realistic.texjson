@@ -6,10 +6,16 @@
         180
     ],
     "builderType": "sphere",
-    "bumpMap": "image1",
+    "bumpMap": "imageNormal",
     "cloudMap": "imageBump",
     "colorMap": "ImageSea",
     "heightMapBuilders": [
+        {
+            "dest": "TextureFlow_heightMap",
+            "name": "TextureFlow_noiseMapBuilder1",
+            "seamless": false,
+            "source": "TextureFlow_Module"
+        },
         {
             "dest": "heightMapPole",
             "name": "heightMapBuilderPole",
@@ -37,6 +43,7 @@
     ],
     "heightMaps": [
         "HeightMapSea",
+        "TextureFlow_heightMap",
         "heightMap",
         "heightMapDesert",
         "heightMapPole"
@@ -44,7 +51,8 @@
     "images": [
         "ImageSea",
         "image1",
-        "imageBump"
+        "imageBump",
+        "imageNormal"
     ],
     "modules": [
         {
@@ -79,6 +87,15 @@
         },
         {
             "enableRandom": true,
+            "freq": 6.6,
+            "lac": 1.66912,
+            "name": "TextureFlow_Module",
+            "oct": 6,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableRandom": true,
             "freq": 2.5,
             "name": "TurboDesert",
             "pow": 0.55,
@@ -107,12 +124,14 @@
     "randomFactors": [
         0
     ],
-    "reflectionMap": "imageMountains",
+    "reflectionMap": "imageBump",
     "renderers": [
         {
+            "alphaImage": "",
             "backgroundImage": "",
+            "bumpMap": "",
             "destImage": "image1",
-            "enabledLight": true,
+            "enabledLight": false,
             "gradientInfo": [
                 [
                     -1,
@@ -150,9 +169,11 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "image1",
+            "bumpMap": "",
             "destImage": "image1",
-            "enabledLight": true,
+            "enabledLight": false,
             "gradientInfo": [
                 [
                     -1,
@@ -190,7 +211,9 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "image1",
+            "bumpMap": "",
             "destImage": "ImageSea",
             "enabledLight": false,
             "gradientInfo": [
@@ -279,7 +302,9 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "ImageSea",
+            "bumpMap": "",
             "destImage": "ImageSea",
             "enabledLight": false,
             "gradientInfo": [
@@ -319,7 +344,9 @@
             "randomGradient": false
         },
         {
+            "alphaImage": "",
             "backgroundImage": "",
+            "bumpMap": "",
             "destImage": "imageBump",
             "enabledLight": false,
             "gradientInfo": [
@@ -370,6 +397,97 @@
             "lightBrightness": 1,
             "lightContrast": 1,
             "name": "renderer5",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "imageNormal",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    0.012844036697247763,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.8560000000000001,
+                    255,
+                    255,
+                    255,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "TextureFlow_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0006",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "imageNormal",
+            "bumpMap": "",
+            "destImage": "imageNormal",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.2550458715596331,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.5743119266055046,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0.8445595854922279,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0.9039999999999999,
+                    255,
+                    255,
+                    255,
+                    0
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "HeightMapSea",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0007",
             "randomGradient": false
         }
     ],

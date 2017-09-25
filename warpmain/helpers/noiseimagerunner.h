@@ -89,7 +89,11 @@ class NoiseImageRunner : public QObject
 
 
     RType _runType = Earthlike;
+
     QString _filename = "";
+    QString _filenameNormal = "";
+    QString _filenameSpecular = "";
+
     QString _textureFile = "";
     NoiseImageUtils imgUtils;
     QString _planetName = "";
@@ -105,7 +109,11 @@ public:
     double lacunarity() { return _lacunarity; }
     void setFrequency(double v) {_frequency = v; }
     double frequency() { return _frequency; }
+
     void setFilename(const QString& str) { _filename = str; }
+    void setFilenameNormal(const QString& str) { _filenameNormal = str; }
+    void setFilenameSpecular(const QString& str) { _filenameSpecular = str; }
+
     const QString& filename() { return _filename; }
     void setTextureFile(const QString& str) { _textureFile = str; }
     const QString& textureFile() { return _textureFile; }

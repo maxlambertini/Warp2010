@@ -54,6 +54,7 @@ SOURCES += \
     ../libnoise/src/noise/module/turbulence_ridged.cpp \
     ../libnoise/src/noise/module/turbulence_billow.cpp \
     ../libnoise/src/noise/module/voronoi.cpp \
+    ../libnoise/src/noise/module/cos.cpp \
     ../libnoise/src/noise/latlon.cpp \
     ../libnoise/src/noise/noisegen.cpp \
     ../libnoise/src/noiseutils.cpp
@@ -95,6 +96,7 @@ HEADERS += \
     ../libnoise/src/noise/module/turbulence2.h \
     ../libnoise/src/noise/module/turbulence_ridged.h \
     ../libnoise/src/noise/module/turbulence_billow.h \
+    ../libnoise/src/noise/module/cos.h \
     ../libnoise/src/noise/module/voronoi.h \
     ../libnoise/src/noise/latlon.h \
     ../libnoise/src/noise/noisegen.h \

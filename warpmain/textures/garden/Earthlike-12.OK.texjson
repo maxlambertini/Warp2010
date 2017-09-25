@@ -6,7 +6,7 @@
         180
     ],
     "builderType": "sphere",
-    "bumpMap": "ZZAlpha",
+    "bumpMap": "imageNormal",
     "cloudMap": "ZZAlpha",
     "colorMap": "BaseImage",
     "heightMapBuilders": [
@@ -66,7 +66,8 @@
         "AlphaEquatorialCyl",
         "BaseImage",
         "ImageSpecular",
-        "ZZAlpha"
+        "ZZAlpha",
+        "imageNormal"
     ],
     "modules": [
         {
@@ -140,10 +141,10 @@
         },
         {
             "enableRandom": false,
-            "freq": 3.2,
+            "freq": 9.3,
             "name": "PolesTurbolence2",
             "pow": 0.25,
-            "rough": 1.5,
+            "rough": 2.5,
             "seed": 0,
             "src1": "Poles_Module",
             "type": "Turbulence"
@@ -188,7 +189,7 @@
     "randomFactors": [
         0
     ],
-    "reflectionMap": "ZZAlpha",
+    "reflectionMap": "imageSpecular",
     "renderers": [
         {
             "alphaImage": "",
@@ -349,7 +350,7 @@
             "backgroundImage": "BaseImage",
             "bumpMap": "BumpMap_heightMap",
             "destImage": "BaseImage",
-            "enabledLight": true,
+            "enabledLight": false,
             "gradientInfo": [
                 [
                     -1,
@@ -685,6 +686,83 @@
             "lightBrightness": 2,
             "lightContrast": 1.4,
             "name": "Specular_renderer",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "imageNormal",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "BumpMap_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0010",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "imageNormal",
+            "bumpMap": "",
+            "destImage": "imageNormal",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.16799999999999993,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.16999999999999993,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    0.5743119266055046,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    0
+                ]
+            ],
+            "heightMap": "SeaWorkflow_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0011",
             "randomGradient": false
         }
     ],
