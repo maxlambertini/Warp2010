@@ -1,0 +1,272 @@
+{
+    "bounds": [
+        -90,
+        90,
+        -180,
+        180
+    ],
+    "builderType": "sphere",
+    "bumpMap": "BaseImage",
+    "cloudMap": "reflec",
+    "colorMap": "Image2",
+    "heightMapBuilders": [
+        {
+            "dest": "BeginLayer_heightMap",
+            "name": "BeginLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "Invert_Module_40"
+        },
+        {
+            "dest": "EndLayer_heightMap",
+            "name": "EndLayer_noiseMapBuilder1",
+            "seamless": true,
+            "source": "EndLayer_Module"
+        },
+        {
+            "dest": "TextureFlow_heightMap",
+            "name": "TextureFlow_noiseMapBuilder1",
+            "seamless": true,
+            "source": "TextureFlow_Module"
+        },
+        {
+            "dest": "reflec",
+            "name": "reflecBuilder",
+            "seamless": false,
+            "source": "Exponent_Module_50"
+        }
+    ],
+    "heightMaps": [
+        "BeginLayer_heightMap",
+        "EndLayer_heightMap",
+        "TextureFlow_heightMap",
+        "reflec"
+    ],
+    "images": [
+        "BaseImage",
+        "Image2",
+        "reflec"
+    ],
+    "modules": [
+        {
+            "enableRandom": true,
+            "freq": 3.7984,
+            "lac": 1.4816,
+            "name": "BeginLayer_Module",
+            "oct": 6,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableRandom": true,
+            "freq": 5.24,
+            "lac": 3.2,
+            "name": "EndLayer_Module",
+            "oct": 6,
+            "seed": 0,
+            "type": "RidgedMulti"
+        },
+        {
+            "enableRandom": true,
+            "exp": 3.3,
+            "name": "Exponent_Module_50",
+            "src1": "Invert_Module_40",
+            "type": "Exponent"
+        },
+        {
+            "enableRandom": false,
+            "name": "Invert_Module_40",
+            "src1": "Sin_Module_20",
+            "type": "Invert"
+        },
+        {
+            "enableRandom": true,
+            "exp": 1,
+            "freq": 2.5,
+            "name": "Sin_Module_20",
+            "src1": "BeginLayer_Module",
+            "type": "Sin",
+            "value": 1
+        },
+        {
+            "enableRandom": true,
+            "freq": 2.62101,
+            "lac": 2.48497,
+            "name": "TextureFlow_Module",
+            "oct": 6,
+            "pers": 0.395475,
+            "seed": 0,
+            "type": "Perlin"
+        }
+    ],
+    "randomFactors": [
+        0,
+        0,
+        0.2,
+        0.1,
+        0.3,
+        0.4,
+        0.6,
+        0.1,
+        0.3,
+        0.4,
+        0.6,
+        0.1,
+        0.3,
+        0.4,
+        0.6
+    ],
+    "reflectionMap": "reflec",
+    "renderers": [
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "BaseImage",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "BeginLayer_heightMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0001",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "BeginLayer_heightMap",
+            "destImage": "Image2",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    143,
+                    186,
+                    255,
+                    255
+                ],
+                [
+                    -0.8224750000000001,
+                    129,
+                    152,
+                    229,
+                    255
+                ],
+                [
+                    -0.6177250000000001,
+                    130,
+                    155,
+                    210,
+                    255
+                ],
+                [
+                    -0.3092000000000001,
+                    141,
+                    169,
+                    214,
+                    255
+                ],
+                [
+                    -0.013500000000000068,
+                    162,
+                    185,
+                    225,
+                    255
+                ],
+                [
+                    0.19152499999999995,
+                    139,
+                    159,
+                    198,
+                    255
+                ],
+                [
+                    0.36372499999999997,
+                    148,
+                    168,
+                    196,
+                    255
+                ],
+                [
+                    0.683975,
+                    160,
+                    179,
+                    223,
+                    255
+                ],
+                [
+                    0.859525,
+                    159,
+                    171,
+                    235,
+                    255
+                ],
+                [
+                    0.9879249999999999,
+                    143,
+                    152,
+                    220,
+                    255
+                ],
+                [
+                    1,
+                    129,
+                    142,
+                    204,
+                    255
+                ]
+            ],
+            "heightMap": "TextureFlow_heightMap",
+            "lightBrightness": 2,
+            "lightContrast": 1.4,
+            "name": "TextureFlow_renderer",
+            "randomGradient": true
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "reflec",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    31,
+                    31,
+                    31,
+                    255
+                ],
+                [
+                    1,
+                    162,
+                    162,
+                    162,
+                    255
+                ]
+            ],
+            "heightMap": "reflec",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderer0003",
+            "randomGradient": false
+        }
+    ],
+    "size": [
+        1024,
+        512
+    ]
+}
