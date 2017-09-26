@@ -212,6 +212,9 @@ void CelestiaExporter::makeMainCelestiaStats(int i, Planet& planet, QTextStream 
 {
     QString planetTexture(this->getPlanetTexture(planet,i));
     stream << "\tTexture \"" << planetTexture << "\"\n";
+    if (planet.planetType() == ptRockball || planet.planetType() == ptDesert || planet.planetType() == ptIceball) {
+        stream << "\tNormalMap \""  << this->getPlanetTexture(planet,i) << "\"\n";
+    }
     stream << "\tMass " << planet.massEarth() << "\n";
     stream << "\tRadius " << planet.radius() << "\n";
 
