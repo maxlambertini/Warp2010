@@ -6,8 +6,8 @@
         180
     ],
     "builderType": "sphere",
-    "bumpMap": "",
-    "cloudMap": "",
+    "bumpMap": "height",
+    "cloudMap": "reflec",
     "colorMap": "image1",
     "heightMapBuilders": [
         {
@@ -24,7 +24,9 @@
         "destMap4"
     ],
     "images": [
-        "image1"
+        "height",
+        "image1",
+        "reflec"
     ],
     "modules": [
         {
@@ -105,83 +107,83 @@
     "randomFactors": [
         0
     ],
-    "reflectionMap": "",
+    "reflectionMap": "reflec",
     "renderers": [
         {
             "alphaImage": "",
             "backgroundImage": "",
             "bumpMap": "",
             "destImage": "image1",
-            "enabledLight": true,
+            "enabledLight": false,
             "gradientInfo": [
                 [
                     -1,
-                    138,
-                    186,
+                    140,
+                    179,
+                    194,
+                    255
+                ],
+                [
+                    -0.661625,
                     141,
-                    255
-                ],
-                [
-                    -0.69325,
-                    118,
-                    166,
-                    123,
-                    255
-                ],
-                [
-                    -0.35055000000000003,
-                    118,
-                    167,
-                    114,
-                    255
-                ],
-                [
-                    -0.09205000000000002,
-                    133,
-                    190,
-                    136,
-                    255
-                ],
-                [
-                    0.20284999999999997,
-                    116,
-                    174,
-                    112,
-                    255
-                ],
-                [
-                    0.36829999999999996,
-                    134,
                     177,
-                    118,
+                    182,
                     255
                 ],
                 [
-                    0.53945,
-                    136,
-                    199,
-                    120,
+                    -0.4981,
+                    161,
+                    210,
+                    211,
                     255
                 ],
                 [
-                    0.712475,
-                    150,
-                    212,
-                    127,
+                    -0.26635,
+                    173,
+                    221,
+                    226,
                     255
                 ],
                 [
-                    0.87195,
-                    169,
-                    217,
-                    136,
+                    0.08257500000000007,
+                    178,
+                    214,
+                    216,
+                    255
+                ],
+                [
+                    0.21735000000000015,
+                    181,
+                    202,
+                    200,
+                    255
+                ],
+                [
+                    0.34604999999999997,
+                    205,
+                    219,
+                    220,
+                    255
+                ],
+                [
+                    0.6529250000000002,
+                    210,
+                    222,
+                    227,
+                    255
+                ],
+                [
+                    0.98865,
+                    221,
+                    222,
+                    223,
                     255
                 ],
                 [
                     1,
-                    143,
-                    220,
-                    126,
+                    189,
+                    194,
+                    206,
                     255
                 ]
             ],
@@ -189,7 +191,63 @@
             "lightBrightness": 2.1,
             "lightContrast": 1.2,
             "name": "renderer1",
-            "randomGradient": true
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "height",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    0,
+                    0,
+                    0,
+                    255
+                ],
+                [
+                    1,
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            ],
+            "heightMap": "destMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "rendererHeight",
+            "randomGradient": false
+        },
+        {
+            "alphaImage": "",
+            "backgroundImage": "",
+            "bumpMap": "",
+            "destImage": "reflec",
+            "enabledLight": false,
+            "gradientInfo": [
+                [
+                    -1,
+                    23,
+                    23,
+                    23,
+                    255
+                ],
+                [
+                    1,
+                    134,
+                    134,
+                    134,
+                    255
+                ]
+            ],
+            "heightMap": "destMap",
+            "lightBrightness": 1,
+            "lightContrast": 1,
+            "name": "renderReflec",
+            "randomGradient": false
         }
     ],
     "size": [

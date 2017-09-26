@@ -215,11 +215,11 @@ void CelestiaExporter::makeMainCelestiaStats(int i, Planet& planet, QTextStream 
     stream << "\tMass " << planet.massEarth() << "\n";
     stream << "\tRadius " << planet.radius() << "\n";
 
-    if (planet.planetType() == ptGarden) {
+    if (planet.planetType() == ptGarden || planet.planetType() == ptRockball) {
         QString normalFile(planetTexture); normalFile.replace(".png",".norm.png");
         QString specFile(planetTexture); specFile.replace(".png",".spec.png");
         stream << "\tBumpMap \"" << normalFile << "\"\n";
-        stream << "\tBumpHeight " <<  QString::number(1.2 + SSGX::floatRand()*10.0) <<  "\n";
+        stream << "\tBumpHeight " <<  QString::number(0.6 + SSGX::floatRand()*5.0) <<  "\n";
         stream << "\tSpecularTexture \"" << specFile << "\"\n";
         stream << "\tSpecularColor [1.0 1.0 0.9]\n";
         stream << "\tSpecularPower " << QString::number(10+SSGX::dn(30)) << "\n";
