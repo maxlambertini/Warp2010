@@ -241,7 +241,7 @@ void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     if (_m_moduleType=="Const") _propertiesToExport <<"name" << "value" << "enableRandom";
     if (_m_moduleType=="Cylinders")  _propertiesToExport <<"name" << "freq" << "enableRandom";
     if (_m_moduleType=="Perlin")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "pers" << "oct" << "enableRandom";
-    if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" << "exp" << "pow" << "seed" << "freq" << "lac" << "oct" << "enableRandom";
+    if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" << "x" << "exp" << "bias" << "pow" << "seed" << "freq" << "lac" << "oct" << "enableRandom";
     if (_m_moduleType=="Spheres") _propertiesToExport <<"name" << "freq" << "enableRandom";
     if (_m_moduleType=="Voronoi") _propertiesToExport <<"name" << "freq" << "displ" << "seed" << "enableDist" << "enableRandom";
     if (_m_moduleType=="Clamp") _propertiesToExport <<"name" << "lBound" << "uBound" << "src1" << "enableRandom";
@@ -387,6 +387,8 @@ QSharedPointer<Module> ModuleDescriptor::makeRidgedMulti() {
     m->SetOctaveCount(_oct);
     m->SetExponent(_exp);
     m->SetGain(_pow);
+    m->SetOffset(_bias);
+    m->SetWeight(_x);
     m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
     _actualSeed = m->GetSeed();
     QSharedPointer<Module> p; p.reset(m);
