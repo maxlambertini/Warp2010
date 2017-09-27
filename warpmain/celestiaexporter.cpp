@@ -212,17 +212,26 @@ void CelestiaExporter::makeMainCelestiaStats(int i, Planet& planet, QTextStream 
 {
     QString planetTexture(this->getPlanetTexture(planet,i));
     stream << "\tTexture \"" << planetTexture << "\"\n";
+    double minHeight = planet.diameter() / 12000.0;
+    double maxHeight = planet.diameter() / 1000.0;
+    double deltaHeight = maxHeight - minHeight;
+
+    /*
     if (planet.planetType() == ptRockball || planet.planetType() == ptDesert || planet.planetType() == ptIceball) {
         stream << "\tNormalMap \""  << this->getPlanetTexture(planet,i) << "\"\n";
     }
+    */
     stream << "\tMass " << planet.massEarth() << "\n";
     stream << "\tRadius " << planet.radius() << "\n";
 
     if (planet.planetType() == ptGarden || planet.planetType() == ptRockball) {
+
+        double height = minHeight + SSGX::floatRand()*deltaHeight;
+
         QString normalFile(planetTexture); normalFile.replace(".png",".norm.png");
         QString specFile(planetTexture); specFile.replace(".png",".spec.png");
         stream << "\tBumpMap \"" << normalFile << "\"\n";
-        stream << "\tBumpHeight " <<  QString::number(0.6 + SSGX::floatRand()*5.0) <<  "\n";
+        stream << "\tBumpHeight " <<  height <<  "\n";
         stream << "\tSpecularTexture \"" << specFile << "\"\n";
         stream << "\tSpecularColor [1.0 1.0 0.9]\n";
         stream << "\tSpecularPower " << QString::number(10+SSGX::dn(30)) << "\n";
@@ -487,10 +496,19 @@ QString CelestiaExporter::runFailedCore(Planet& p, QString res)
 QString CelestiaExporter::runRockball(Planet& p, QString res)
 {
     res = QString("%2_rockball_%1.png").arg(getUid(),p.name());
-    res.replace("}","");
-    res.replace(" ","");
+
+    QString imageFileName(_texturePath+"/"+res);
+    QString specFileName(imageFileName); specFileName.replace(".png",".spec.png");
+    QString normalFileName(imageFileName); normalFileName.replace(".png",".norm.png");
+
     //auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideRockball(true), _texturePath+"/"+res);
-    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideDesert(true), _texturePath+"/"+res);
+    //auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideDesert(true), _texturePath+"/"+res);
+    qDebug() << "runRockball: " << imageFileName << ", " << specFileName << ", " << normalFileName;
+
+    auto ptr = NoiseImageRunner::UseTextureBuilder(AppPaths::provideRockball(true), imageFileName);
+    ptr->setFilenameNormal(normalFileName);
+    ptr->setFilenameSpecular(specFileName);
+
     ptr->setPlanetNameAndType(_star->starName+"-"+p.name(),"Rockball");
     vTextures.append(ptr);
     //vTextures.append(QSharedPointer<NoiseImageRunner>(new NoiseImageRunner(RT::Granite,_texturePath+"/"+res, SSGX::dn(999999))));
