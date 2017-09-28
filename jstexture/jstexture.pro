@@ -24,7 +24,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     apppaths.cpp \
     viewingdialog.cpp \
-    createmoduledescriptorjson.cpp \
     heightmapbuilderwidget.cpp \
     heightmapbuilderdialog.cpp \
     qrendererdescwidget.cpp \
@@ -41,7 +40,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     apppaths.h \
     viewingdialog.h \
-    createmoduledescriptorjson.h \
     heightmapbuilderwidget.h \
     heightmapbuilderdialog.h \
     qrendererdescwidget.h \

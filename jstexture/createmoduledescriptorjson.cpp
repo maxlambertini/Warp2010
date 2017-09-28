@@ -37,6 +37,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <texturebuilder/moduledescriptor.h>
 #include <QSpacerItem>
 
+QDoubleSpinBox * CreateModuleDescriptorJson::createDoubleSpinBoxItem(QMetaProperty& prop, const QString name)
+{
+    QDoubleSpinBox *spn = new QDoubleSpinBox(this);
+    bool bOk;
+    auto varVal = modDesc->property(prop.name());
+    double propVal = varVal.toDouble(&bOk);
+    spn->setValue(propVal);
+    spn->setObjectName("c_"+name);
+    spn->setMaximum(100.0);
+    spn->setMinimum(-100.0);
+    spn->setSingleStep(0.01);
+    connect(spn,SIGNAL(valueChanged(double)),SLOT(on_double_value_changed(double)));
+
+    return spn;
+}
+
+QSpinBox * CreateModuleDescriptorJson::createSpinBoxItem(QMetaProperty& prop, const QString name)
+{
+    QSpinBox *spn = new QSpinBox(this);
+    bool bOk;
+    auto varVal = modDesc->property(prop.name());
+    int propVal = varVal.toInt(&bOk);
+    spn->setObjectName("c_"+name);
+    spn->setValue(propVal);
+    spn->setMaximum(100);
+    spn->setMinimum(-100);
+    spn->setSingleStep(1);
+    connect(spn,SIGNAL(valueChanged(int)),SLOT(on_int_value_changed(int)));
+
+    return spn;
+}
+
+QCheckBox * CreateModuleDescriptorJson::createCheckBoxItem(QMetaProperty& prop, const QString name)
+{
+    QCheckBox *spn = new QCheckBox(this);
+    spn->setObjectName("c_"+name);
+    auto varVal = modDesc->property(prop.name());
+    bool propVal = varVal.toBool();
+    spn->setChecked(propVal);
+    connect(spn,SIGNAL(stateChanged(int)),SLOT(on_checkbox_state_changed(int)));
+
+    return spn;
+}
+
 CreateModuleDescriptorJson::CreateModuleDescriptorJson(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CreateModuleDescriptorJson)
@@ -62,36 +106,13 @@ CreateModuleDescriptorJson::CreateModuleDescriptorJson(QWidget *parent) :
         label->setMargin(3);
         layout->addWidget(label,row,dx);
         if (typeName == "double") {
-            QDoubleSpinBox *spn = new QDoubleSpinBox(this);
-            bool bOk;
-            auto varVal = modDesc->property(prop.name());
-            double propVal = varVal.toDouble(&bOk);
-            spn->setValue(propVal);
-            spn->setObjectName("c_"+name);
-            spn->setMaximum(100.0);
-            spn->setMinimum(-100.0);
-            spn->setSingleStep(0.01);
-            connect(spn,SIGNAL(valueChanged(double)),SLOT(on_double_value_changed(double)));
+            QDoubleSpinBox *spn = createDoubleSpinBoxItem(name, prop);
             layout->addWidget(spn,row,dx+1);
         } else if (typeName == "int") {
-            QSpinBox *spn = new QSpinBox(this);
-            bool bOk;
-            auto varVal = modDesc->property(prop.name());
-            int propVal = varVal.toInt(&bOk);
-            spn->setObjectName("c_"+name);
-            spn->setValue(propVal);
-            spn->setMaximum(100);
-            spn->setMinimum(-100);
-            spn->setSingleStep(1);
-            connect(spn,SIGNAL(valueChanged(int)),SLOT(on_int_value_changed(int)));
+            QSpinBox *spn = createSpinBoxItem(prop, name);
             layout->addWidget(spn,row,dx+1);
         } else if (typeName == "bool") {
-            QCheckBox *spn = new QCheckBox(this);
-            spn->setObjectName("c_"+name);
-            auto varVal = modDesc->property(prop.name());
-            bool propVal = varVal.toBool();
-            spn->setChecked(propVal);
-            connect(spn,SIGNAL(stateChanged(int)),SLOT(on_checkbox_state_changed(int)));
+            QCheckBox *spn = createCheckBoxItem(prop, name);
             layout->addWidget(spn,row,dx+1);
         } else {
             if (name == "moduleType") {

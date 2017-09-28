@@ -27,6 +27,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <texturebuilder/moduledescriptor.h>
 #include <memory>
 #include <QDialogButtonBox>
+#include <QDoubleSpinBox>
+#include <QSpinBox>
+#include <QCheckBox>
 
 namespace Ui {
 class CreateModuleDescriptorJson;
@@ -47,6 +50,12 @@ public:
     template<typename T> void enableControlsInGrid(const QString& prefix);
     ~CreateModuleDescriptorJson();
     void fillModuleDescriptor();
+
+    QDoubleSpinBox * createDoubleSpinBoxItem(QMetaProperty &prop, const QString name);
+
+    QSpinBox * createSpinBoxItem(QMetaProperty &prop, const QString name);
+
+    QCheckBox * createCheckBoxItem(QMetaProperty &prop, const QString name);
 
 private:
     Ui::CreateModuleDescriptorJson *ui;
