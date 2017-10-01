@@ -48,6 +48,13 @@ void ModuleDescriptor::fromJson(const QJsonObject& json) {
         _lac = json["lac"].toDouble();
     if (!json["pers"].isNull() && !json["pers"].isUndefined())
         _pers = json["pers"].toDouble();
+
+    if (!json["offset"].isNull() && !json["offset"].isUndefined())
+        _offset = json["offset"].toDouble();
+    if (!json["gain"].isNull() && !json["gain"].isUndefined())
+        _gain = json["gain"].toDouble();
+
+
     if (!json["oct"].isNull() && !json["oct"].isUndefined())
         _oct = json["oct"].toInt();
     if (!json["disp"].isNull() && !json["disp"].isUndefined())
@@ -107,6 +114,8 @@ void ModuleDescriptor::toJson(QJsonObject& json) {
     json["name"] = _name;
     if (_propertiesToExport.contains("seed")) json["seed"] = _seed;
     if (_propertiesToExport.contains("freq")) json["freq"] = _freq;
+    if (_propertiesToExport.contains("offset")) json["offset"] = _offset;
+    if (_propertiesToExport.contains("gain")) json["gain"] = _gain;
     if (_propertiesToExport.contains("lac")) json["lac"] = _lac;
     if (_propertiesToExport.contains("pers")) json["pers"] = _pers;
     if (_propertiesToExport.contains("oct")) json["oct"] = _oct;
@@ -241,7 +250,7 @@ void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     if (_m_moduleType=="Const") _propertiesToExport <<"name" << "value" << "enableRandom";
     if (_m_moduleType=="Cylinders")  _propertiesToExport <<"name" << "freq" << "enableRandom";
     if (_m_moduleType=="Perlin")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "pers" << "oct" << "enableRandom";
-    if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" << "x" << "exp" << "bias" << "pow" << "seed" << "freq" << "lac" << "oct" << "enableRandom";
+    if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" << "offset" << "gain" << "exp" << "seed" << "freq" << "lac" << "oct" << "enableRandom";
     if (_m_moduleType=="Spheres") _propertiesToExport <<"name" << "freq" << "enableRandom";
     if (_m_moduleType=="Voronoi") _propertiesToExport <<"name" << "freq" << "displ" << "seed" << "enableDist" << "enableRandom";
     if (_m_moduleType=="Clamp") _propertiesToExport <<"name" << "lBound" << "uBound" << "src1" << "enableRandom";
@@ -386,9 +395,9 @@ QSharedPointer<Module> ModuleDescriptor::makeRidgedMulti() {
     m->SetFrequency(_freq);
     m->SetOctaveCount(_oct);
     m->SetExponent(_exp);
-    m->SetGain(_pow);
-    m->SetOffset(_bias);
-    m->SetWeight(_x);
+    m->SetGain(_gain);
+    m->SetOffset(_offset);
+    //m->SetWeight(_x);
     m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
     _actualSeed = m->GetSeed();
     QSharedPointer<Module> p; p.reset(m);

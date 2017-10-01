@@ -142,6 +142,12 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     double _pers = 0.30 ;
     Q_PROPERTY(double pers READ pers WRITE setPers )
 
+    double _offset = 0.0;
+    Q_PROPERTY(double displ READ offset WRITE setOffset )
+
+    double _gain = 2.0 ;
+    Q_PROPERTY(double pers READ gain WRITE setGain )
+
     double _disp = 0.0;
     Q_PROPERTY(double displ READ displ WRITE setDispl )
 
@@ -151,7 +157,7 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     double _uBound = 0.0;
     Q_PROPERTY(double uBound READ uBound WRITE setUbound )
 
-    double _exp = 1.0;
+    double _exp = 2.0;
     Q_PROPERTY(double exp READ exp WRITE setExp )
 
     double _bias = 1.0;
@@ -204,6 +210,8 @@ public:
     double freq() { return _freq; }
     double lac() { return _lac; }
     double pers() { return _pers; }
+    double offset() { return _offset; }
+    double gain() { return _gain; }
     int oct() { return _oct; }
     double displ() { return _disp; }
     bool enableDist() { return _enableDist; }
@@ -248,6 +256,8 @@ public:
     void setFreq(double v) { _freq = v ; }
     void setLac(double v) { _lac = v ; }
     void setPers(double v) { _pers = v ; }
+    void setOffset(double v) { _offset = v ; }
+    void setGain(double v) { _gain = v ; }
     void setOct(int v) { _oct = v ; }
     void setDispl(double v) { _disp = v ; }
     void setEnabledist(bool v) { _enableDist = v ; }

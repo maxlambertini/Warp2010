@@ -84,6 +84,8 @@ class QModuleDescWidget : public QWidget
     QLineEdit *c_freq;
     QLineEdit *c_lac;
     QLineEdit *c_pers;
+    QLineEdit *c_gain;
+    QLineEdit *c_offset;
     QComboBox *c_src1;
     QComboBox *c_src2;
     QComboBox *c_src3;

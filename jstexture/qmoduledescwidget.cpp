@@ -39,6 +39,7 @@ void QModuleDescWidget::createWidgets() {
     QDoubleValidator* dValRough = new QDoubleValidator(1.0000,9999.9,6,this);
     QDoubleValidator* dVal = new QDoubleValidator(this);
     QDoubleValidator* dBounds = new QDoubleValidator(-1.0,1.0,6,this);
+    QDoubleValidator* dBounds2 = new QDoubleValidator(-9999.99999,9999.99999,6,this);
 
     c_moduleType = new QComboBox(this); c_moduleType->setObjectName("c_type");
     for (auto s : NoiseModules::moduleList) {
@@ -57,6 +58,10 @@ void QModuleDescWidget::createWidgets() {
     c_lac->setValidator(dValFreq);
     c_pers = new QLineEdit(this); c_pers->setObjectName("c_pers");
     c_pers->setValidator(dValFreq);
+    c_offset = new QLineEdit(this); c_offset->setObjectName("c_offset");
+    c_offset->setValidator(dBounds);
+    c_gain = new QLineEdit(this); c_gain->setObjectName("c_gain");
+    c_gain->setValidator(dValRough);
     c_src1 = new QComboBox(this); c_src1->setObjectName("c_src1");
     c_src2 = new QComboBox(this); c_src2->setObjectName("c_src2");
     c_src3 = new QComboBox(this); c_src3->setObjectName("c_src3");
@@ -69,7 +74,7 @@ void QModuleDescWidget::createWidgets() {
     c_uBound = new QLineEdit(this); c_uBound->setObjectName("c_uBound");
     c_uBound->setValidator(dBounds);
     c_exp = new QLineEdit(this); c_exp->setObjectName("c_exp");
-    c_exp->setValidator(dValFreq);
+    c_exp->setValidator(dBounds2);
     c_bias = new QLineEdit(this); c_bias->setObjectName("c_bias");
     c_bias->setValidator(dValFreq);
     c_scale = new QLineEdit(this); c_scale->setObjectName("c_scale");
@@ -162,6 +167,15 @@ void QModuleDescWidget::layoutWidgets() {
     gr2->addWidget(lbl,++nRow,0);
     gr2->addWidget(c_pers,nRow,1);
 
+    lbl = new QLabel("Offset",this); lbl->setObjectName("l_lac");
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    gr2->addWidget(lbl,nRow,2);
+    gr2->addWidget(c_offset,nRow,3);
+
+    lbl = new QLabel("Gain",this); lbl->setObjectName("l_pers");
+    lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    gr2->addWidget(lbl,++nRow,0);
+    gr2->addWidget(c_gain,nRow,1);
 
     lbl = new QLabel("Displace",this); lbl->setObjectName("l_displ");
     lbl->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -382,6 +396,8 @@ void QModuleDescWidget::updateControlsFromDescriptor()
         c_freq->setText(QString("%1").arg(_moduleDesc->freq()));
         c_lac->setText(QString("%1").arg(_moduleDesc->lac()));
         c_oct->setText(QString("%1").arg(_moduleDesc->oct()));
+        c_offset->setText(QString("%1").arg(_moduleDesc->offset()));
+        c_gain->setText(QString("%1").arg(_moduleDesc->gain()));
         c_pers->setText(QString("%1").arg(_moduleDesc->pers()));
         c_pow->setText(QString("%1").arg(_moduleDesc->pow()));
         c_scale->setText(QString("%1").arg(_moduleDesc->scale()));
@@ -423,6 +439,8 @@ void QModuleDescWidget::updateFormControls()
     _moduleDesc->setFreq(c_freq->text().toDouble());
     _moduleDesc->setInvert(c_invert->isChecked());
     _moduleDesc->setLac(c_lac->text().toDouble());
+    _moduleDesc->setOffset(c_offset->text().toDouble());
+    _moduleDesc->setGain(c_gain->text().toDouble());
     _moduleDesc->setLbound(c_lBound->text().toDouble());
     _moduleDesc->setName(c_name->text());
     _moduleDesc->setOct(c_oct->text().toInt());
