@@ -43,6 +43,7 @@
 #include "perlin.h"
 #include "power.h"
 #include "ridgedmulti.h"
+#include "ridgedmulti2.h"
 #include "rotatepoint.h"
 #include "scalebias.h"
 #include "scalepoint.h"

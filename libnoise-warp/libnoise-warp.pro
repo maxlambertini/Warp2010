@@ -42,6 +42,7 @@ SOURCES += \
     ../libnoise/src/noise/module/perlin.cpp \
     ../libnoise/src/noise/module/power.cpp \
     ../libnoise/src/noise/module/ridgedmulti.cpp \
+    ../libnoise/src/noise/module/ridgedmulti2.cpp \
     ../libnoise/src/noise/module/rotatepoint.cpp \
     ../libnoise/src/noise/module/scalebias.cpp \
     ../libnoise/src/noise/module/scalepoint.cpp \
@@ -64,6 +65,7 @@ HEADERS += \
     ../libnoise/src/noise/model/line.h \
     ../libnoise/src/noise/model/plane.h \
     ../libnoise/src/noise/model/sphere.h \
+    ../libnoise/src/noise/module/module.h \
     ../libnoise/src/noise/module/abs.h \
     ../libnoise/src/noise/module/add.h \
     ../libnoise/src/noise/module/billow.h \
@@ -85,6 +87,7 @@ HEADERS += \
     ../libnoise/src/noise/module/perlin.h \
     ../libnoise/src/noise/module/power.h \
     ../libnoise/src/noise/module/ridgedmulti.h \
+    ../libnoise/src/noise/module/ridgedmulti2.h \
     ../libnoise/src/noise/module/rotatepoint.h \
     ../libnoise/src/noise/module/scalebias.h \
     ../libnoise/src/noise/module/scalepoint.h \
@@ -100,6 +103,7 @@ HEADERS += \
     ../libnoise/src/noise/module/voronoi.h \
     ../libnoise/src/noise/latlon.h \
     ../libnoise/src/noise/noisegen.h \
+    ../libnoise/src/noise/noise.h \
     ../libnoise/src/noiseutils.h
 
 

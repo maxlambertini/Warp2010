@@ -250,7 +250,8 @@ void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     if (_m_moduleType=="Const") _propertiesToExport <<"name" << "value" << "enableRandom";
     if (_m_moduleType=="Cylinders")  _propertiesToExport <<"name" << "freq" << "enableRandom";
     if (_m_moduleType=="Perlin")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "pers" << "oct" << "enableRandom";
-    if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" << "offset" << "gain" << "exp" << "seed" << "freq" << "lac" << "oct" << "enableRandom";
+    if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" "seed" << "freq" << "lac" << "oct" << "enableRandom";
+    if (_m_moduleType=="RidgedMulti2")  _propertiesToExport <<"name" << "offset" << "gain" << "exp" << "seed" << "freq" << "lac" << "oct" << "enableRandom";
     if (_m_moduleType=="Spheres") _propertiesToExport <<"name" << "freq" << "enableRandom";
     if (_m_moduleType=="Voronoi") _propertiesToExport <<"name" << "freq" << "displ" << "seed" << "enableDist" << "enableRandom";
     if (_m_moduleType=="Clamp") _propertiesToExport <<"name" << "lBound" << "uBound" << "src1" << "enableRandom";
@@ -291,6 +292,7 @@ QSharedPointer<Module> ModuleDescriptor::makeModule() {
         if (_moduleType=="Cylinders") return makeCylinders();
         if (_moduleType=="Perlin") return makePerlin();
         if (_moduleType=="RidgedMulti") return makeRidgedMulti();
+        if (_moduleType=="RidgedMulti2") return makeRidgedMulti2();
         if (_moduleType=="Spheres") return makeSpheres();
         if (_moduleType=="Voronoi") return makeVoronoi();
         if (_moduleType=="Abs") return makeAbs();
@@ -391,6 +393,22 @@ QSharedPointer<Module> ModuleDescriptor::makePerlin() {
 //{ "Module":"RidgedMulti" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Lac": 0.0 , "Oct": 0.0 },
 QSharedPointer<Module> ModuleDescriptor::makeRidgedMulti() {
     RidgedMulti* m = new RidgedMulti();
+    m->SetLacunarity(_lac);
+    m->SetFrequency(_freq);
+    m->SetOctaveCount(_oct);
+    //m->SetExponent(_exp);
+    //m->SetGain(_gain);
+    //m->SetOffset(_offset);
+    //m->SetWeight(_x);
+    m->SetSeed(_seed != 0 ? _seed : SSGX::dx(999999));
+    _actualSeed = m->GetSeed();
+    QSharedPointer<Module> p; p.reset(m);
+    return p;
+}
+
+//{ "Module":"RidgedMulti2" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Lac": 0.0 , "Oct": 0.0 },
+QSharedPointer<Module> ModuleDescriptor::makeRidgedMulti2() {
+    RidgedMulti2* m = new RidgedMulti2();
     m->SetLacunarity(_lac);
     m->SetFrequency(_freq);
     m->SetOctaveCount(_oct);

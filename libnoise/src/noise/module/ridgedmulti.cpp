@@ -30,11 +30,7 @@ RidgedMulti::RidgedMulti ():
   m_lacunarity   (DEFAULT_RIDGED_LACUNARITY  ),
   m_noiseQuality (DEFAULT_RIDGED_QUALITY     ),
   m_octaveCount  (DEFAULT_RIDGED_OCTAVE_COUNT),
-  m_seed         (DEFAULT_RIDGED_SEED),
-  m_offset       (DEFAULT_RIDGED_OFFSET),
-  m_gain         (DEFAULT_RIDGED_GAIN),
-  m_exponent     (DEFAULT_RIDGED_EXPONENT),
-  m_weight       (DEFAULT_RIDGED_WEIGHT)
+  m_seed         (DEFAULT_RIDGED_SEED)
 {
   CalcSpectralWeights ();
 }
@@ -45,9 +41,11 @@ void RidgedMulti::CalcSpectralWeights ()
   // This exponent parameter should be user-defined; it may be exposed in a
   // future version of libnoise.
   double frequency = 1.0;
+  double h =  1.0;
+
   for (int i = 0; i < RIDGED_MAX_OCTAVE; i++) {
     // Compute weight for each frequency.
-    m_pSpectralWeights[i] = pow (frequency, -m_exponent);
+    m_pSpectralWeights[i] = pow (frequency,-h);
     frequency *= m_lacunarity;
   }
 }
@@ -62,12 +60,12 @@ double RidgedMulti::GetValue (double x, double y, double z) const
 
   double signal = 0.0;
   double value  = 0.0;
-  double weight = m_weight;
+  double weight = 1.0;
 
   // These parameters should be user-defined; they may be exposed in a
   // future version of libnoise.
-  double offset = m_offset;
-  double gain = m_gain;
+  double offset = 1.0;
+  double gain = 2.0;
 
   for (int curOctave = 0; curOctave < m_octaveCount; curOctave++) {
 

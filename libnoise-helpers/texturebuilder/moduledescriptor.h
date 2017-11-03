@@ -56,6 +56,7 @@ namespace NoiseModules {
         "Perlin",
         "Power",
         "RidgedMulti",
+        "RidgedMulti2",
         "RotatePoint",
         "ScaleBias",
         "ScalePoint",
@@ -309,6 +310,8 @@ public:
     QSharedPointer<Module> makePerlin();
     //{ "Module":"RidgedMulti" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Lac": 0.0 , "Oct": 0.0 },
     QSharedPointer<Module> makeRidgedMulti();
+    //{ "Module":"RidgedMulti" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Lac": 0.0 , "Oct": 0.0 },
+    QSharedPointer<Module> makeRidgedMulti2();
     //{ "Module":"Spheres" , "Name": "mod_name" , "Freq": 0.0 },
     QSharedPointer<Module> makeSpheres();
     //{ "Module":"Voronoi" , "Name": "mod_name" , "Seed": 0.0 , "Freq": 0.0 , "Displ": 0.0 , "EnableDist": true },

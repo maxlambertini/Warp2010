@@ -40,11 +40,6 @@ namespace noise
     /// @addtogroup generatormodules
     /// @{
 
-    const double DEFAULT_RIDGED_EXPONENT = 1.0;
-    const double DEFAULT_RIDGED_GAIN = 2.0;
-    const double DEFAULT_RIDGED_OFFSET = 1.0;
-    const double DEFAULT_RIDGED_WEIGHT = 1.0;
-
     /// Default frequency for the noise::module::RidgedMulti noise module.
     const double DEFAULT_RIDGED_FREQUENCY = 1.0;
 
@@ -304,24 +299,6 @@ namespace noise
         /// Seed value used by the ridged-multfractal-noise function.
         int m_seed;
 
-    private:
-        double m_exponent;
-        double m_offset;
-        double m_gain;
-        double m_weight;
-    public:
-        void SetExponent(double v) { m_exponent = v; }
-        double GetExponent() const { return m_exponent; }
-
-        void SetOffset(double v) { m_offset = v; }
-        double GetOffset() const { return m_offset; }
-
-        void SetGain(double v) { m_gain = v; }
-        double GetGain() const { return m_gain; }
-
-        void SetWeight(double v) { m_weight = v; }
-        double GetWeight() const { return m_weight; }
-
     };
 
     /// @}
@@ -329,6 +306,7 @@ namespace noise
     /// @}
 
     /// @}
+
 
   }
 
