@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += widgets svg gui core printsupport
+CONFIG += c++14
 
 TARGET = diaspora-widgets
 TEMPLATE = lib

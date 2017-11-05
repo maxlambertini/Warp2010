@@ -8,6 +8,7 @@ QT += core gui widgets
 
 TARGET = libnoise-helpers
 TEMPLATE = lib
+CONFIG += c++14
 
 
 DEFINES += LIBNOISEHELPERS_LIBRARY

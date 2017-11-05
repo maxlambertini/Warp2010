@@ -8,6 +8,7 @@ QT       += core gui
 
 TARGET = libnoise-warp
 TEMPLATE = lib
+CONFIG += c++14
 
 DEFINES += LIBNOISEWARP_LIBRARY
 

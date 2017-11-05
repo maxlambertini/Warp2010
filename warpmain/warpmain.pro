@@ -181,6 +181,7 @@ FORMS += warpmainwindow.ui \
 RESOURCES += Resources.qrc
 #win32:RC_FILE = warpmain.rc
 #win32:CONFIG += console
+CONFIG += c++14
 DISTFILES += test.tpl \
     aspects.aspect \
     LICENSE.LGPL \
