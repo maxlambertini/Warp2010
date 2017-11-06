@@ -9,9 +9,10 @@
 
 class LIBNOISELUASHARED_EXPORT Libnoiselua
 {
-    sol::state lua;
+    sol::state _lua;
 public:
     Libnoiselua();
+    sol::state& lua() { return _lua; }
 };
 
 #endif // LIBNOISELUA_H

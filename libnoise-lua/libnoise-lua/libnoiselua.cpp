@@ -6,15 +6,15 @@ using namespace utils;
 
 Libnoiselua::Libnoiselua()
 {
-    lua.open_libraries();
+    _lua.open_libraries();
 
-    lua.new_usertype<utils::NoiseMap>("NoiseMap",
+    _lua.new_usertype<utils::NoiseMap>("NoiseMap",
                                       sol::constructors<utils::NoiseMap()>());
 
-    lua.new_usertype<utils::Image>("Image",
+    _lua.new_usertype<utils::Image>("Image",
                                    sol::constructors<utils::Image()>());
 
-    lua.new_usertype<Perlin>("Perlin",
+    _lua.new_usertype<Perlin>("Perlin",
                              sol::constructors<Perlin()>(),
                              "freq", sol::property(&Perlin::GetFrequency, &Perlin::SetFrequency),
                              "lac", sol::property(&Perlin::GetLacunarity, &Perlin::SetLacunarity),
@@ -23,14 +23,22 @@ Libnoiselua::Libnoiselua()
                              "seed", sol::property(&Perlin::GetSeed, &Perlin::SetSeed)
                              );
 
-    lua.new_usertype<Color>("Color",
+    _lua.new_usertype<Turbulence>("Turbulence",
+                                  sol::constructors<Turbulence()>(),
+                                  "freq", sol::property(&Turbulence::GetFrequency,&Turbulence::SetFrequency),
+                                  "pow" , sol::property(&Turbulence::GetPower,&Turbulence::SetPower),
+                                  "seed" , sol::property(&Turbulence::GetSeed,&Turbulence::SetSeed),
+                                  "SetRoughness", &Turbulence::SetRoughness,
+                                  "SetSourceModule", &Turbulence::SetSourceModule);
+
+    _lua.new_usertype<Color>("Color",
                             sol::constructors<Color(), Color(std::string), Color(uint8,uint8,uint8,uint8)>(),
                             "red", &Color::red, "green", &Color::green, "blue", &Color::blue, "alpha", &Color::alpha,
                             "darken", &Color::darken, "lighten", &Color::lighten,
                             "randomizeColor", &Color::randomizeColor
                             );
 
-    lua.new_usertype<utils::NoiseMapBuilderSphere>("NoiseMapBuilderSphere",
+    _lua.new_usertype<utils::NoiseMapBuilderSphere>("NoiseMapBuilderSphere",
                              sol::constructors<NoiseMapBuilderSphere()>(),
                              "SetSourceModule", &NoiseMapBuilderSphere::SetSourceModule,
                              "Build",&NoiseMapBuilderSphere::Build,
@@ -39,13 +47,13 @@ Libnoiselua::Libnoiselua()
                              "SetDestNoiseMap",&NoiseMapBuilderSphere::SetDestNoiseMap
                              );
 
-    lua.new_usertype<WriterBMP>("WriterBMP",
+    _lua.new_usertype<WriterBMP>("WriterBMP",
                                 sol::constructors<WriterBMP()>(),
                                 "DestFilename", sol::property(&WriterBMP::GetDestFilename,&WriterBMP::SetDestFilename),
                                 "SourceImage", sol::property(&WriterBMP::GetSourceImage,&WriterBMP::SetSourceImage),
                                 "WriteDestFile",&WriterBMP::WriteDestFile);
 
-    lua.new_usertype<RendererImage>("RendererImage",
+    _lua.new_usertype<RendererImage>("RendererImage",
                                     sol::constructors<RendererImage()>(),
                                     "SetSourceNoiseMap",&RendererImage::SetSourceNoiseMap,
                                     "SetDestImage",&RendererImage::SetDestImage,
