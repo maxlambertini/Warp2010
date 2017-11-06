@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
 
 TARGET = libnoise-warp
 TEMPLATE = lib
