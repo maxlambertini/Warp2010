@@ -16,7 +16,7 @@ Libnoiselua::Libnoiselua()
 
     _lua.new_usertype<Abs>("Abs",
                              sol::constructors<Abs()>(),
-                             "src1", sol::property(&Perlin::GetSrc1, &Perlin::SetSrc1)
+                             "src1", sol::property(&Abs::GetSrc1, &Abs::SetSrc1)
                              );
 
     _lua.new_usertype<Add>("Add",
@@ -53,6 +53,22 @@ Libnoiselua::Libnoiselua()
                              "ubound", sol::property(&Clamp::GetUpperBound, &Clamp::SetUpperBound),
                              "lbound", sol::property(&Clamp::GetLowerBound, &Clamp::SetLowerBound)
                              );
+
+    _lua.new_usertype<Const>("Const",
+                             sol::constructors<Const()>(),
+                             "value", sol::property(&Const::GetConstValue &Const::SetConstValue)
+                             );
+
+    _lua.new_usertype<Cos>("Cos",
+                             sol::constructors<Cos()>(),
+                             "src1", sol::property(&Cos::GetSrc1, &Cos::SetSrc1)
+                             );
+
+    _lua.new_usertype<Cylinders>("Cylinders",
+                             sol::constructors<Cylinders>(),
+                             "freq", sol::property(&Cylinders::GetFrequency, &Cylinders::SetFrequency),
+                             );
+
 
     _lua.new_usertype<Perlin>("Perlin",
                              sol::constructors<Perlin()>(),
