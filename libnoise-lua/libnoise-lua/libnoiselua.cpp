@@ -23,13 +23,29 @@ Libnoiselua::Libnoiselua()
                              "seed", sol::property(&Perlin::GetSeed, &Perlin::SetSeed)
                              );
 
+    _lua.new_usertype<RidgedMulti>("RidgedMulti",
+                             sol::constructors<RidgedMulti()>(),
+                             "freq", sol::property(&RidgedMulti::GetFrequency, &RidgedMulti::SetFrequency),
+                             "lac", sol::property(&RidgedMulti::GetLacunarity, &RidgedMulti::SetLacunarity),
+                             "octave", sol::property(&RidgedMulti::GetOctaveCount, &RidgedMulti::SetOctaveCount),
+                             "seed", sol::property(&RidgedMulti::GetSeed, &RidgedMulti::SetSeed)
+                             );
+
     _lua.new_usertype<Turbulence>("Turbulence",
                                   sol::constructors<Turbulence()>(),
                                   "freq", sol::property(&Turbulence::GetFrequency,&Turbulence::SetFrequency),
                                   "pow" , sol::property(&Turbulence::GetPower,&Turbulence::SetPower),
                                   "seed" , sol::property(&Turbulence::GetSeed,&Turbulence::SetSeed),
-                                  "SetRoughness", &Turbulence::SetRoughness,
-                                  "SetSourceModule", &Turbulence::SetSourceModule);
+                                  "rough", sol::property(&Turbulence::SetRoughness),
+                                  "src1",  sol::property(&Turbulence::GetSrc1,&Turbulence::SetSrc1));
+
+    _lua.new_usertype<Turbulence2>("Turbulence2",
+                                  sol::constructors<Turbulence2()>(),
+                                  "freq", sol::property(&Turbulence2::GetFrequency,&Turbulence2::SetFrequency),
+                                  "pow" , sol::property(&Turbulence2::GetPower,&Turbulence2::SetPower),
+                                  "seed" , sol::property(&Turbulence2::GetSeed,&Turbulence2::SetSeed),
+                                  "rough", sol::property(&Turbulence2::SetRoughness),
+                                  "src1",  sol::property(&Turbulence2::GetSrc1,&Turbulence2::SetSrc1));
 
     _lua.new_usertype<Color>("Color",
                             sol::constructors<Color(), Color(std::string), Color(uint8,uint8,uint8,uint8)>(),

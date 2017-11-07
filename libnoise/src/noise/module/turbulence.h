@@ -219,6 +219,7 @@ namespace noise
         /// and one for the @a z coordinate.  The roughness value is equal to
         /// the number of octaves used by the noise::module::Perlin noise
         /// modules.
+
         void SetRoughness (int roughness)
         {
           // Set the octave count for each Perlin-noise module.
