@@ -6,23 +6,23 @@ hm     = NoiseMap.new()
 print ("Perlin....")
 perlin = Perlin.new()
 
-perlin.freq = 0.98
+perlin.freq = 1.0 + math.random()*1.5
 perlin.octave = 8
-perlin.lac = 4.3
-perlin.pers = 0.43
-perlin.seed = 998
+perlin.lac = 1.5+ 4.5*math.random()
+perlin.pers = 0.2 + 0.35*math.random()
+perlin.seed = math.random(0,99999)
 
 print ("Turbo")
 
 turbo = Turbulence.new()
 print ("Turbo")
-turbo.freq = 3.3
+turbo.freq = 1.5 * 5.0*math.random()
 print ("Turbo")
-turbo.pow = 0.25
+turbo.pow = 0.05 + 0.3*math.random()
 print ("Turbo")
-turbo.seed = 666
+turbo.seed = math.random(0,99999)
 print ("Turbo")
-turbo:SetRoughness(2.5)
+turbo:SetRoughness(1.0 + math.random()*2.0)
 print ("Turbo")
 turbo:SetSourceModule(0,perlin)
 print ("Turbo")

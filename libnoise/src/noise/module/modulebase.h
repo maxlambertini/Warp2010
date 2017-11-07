@@ -337,7 +337,17 @@ namespace noise
           m_pSourceModule[index] = &sourceModule;
         }
 
-      protected:
+        virtual void SetSrc1 (const Module& sourceModule) { SetSourceModule(0, sourceModule); }
+        virtual void SetSrc2 (const Module& sourceModule) { SetSourceModule(1, sourceModule); }
+        virtual void SetSrc3 (const Module& sourceModule) { SetSourceModule(2, sourceModule); }
+        virtual void SetSrc4 (const Module& sourceModule) { SetSourceModule(3, sourceModule); }
+
+        virtual const Module& GetSrc1() const {  return GetSourceModule(0);}
+        virtual const Module& GetSrc2() const {  return GetSourceModule(1);}
+        virtual const Module& GetSrc3() const {  return GetSourceModule(2);}
+        virtual const Module& GetSrc4() const {  return GetSourceModule(3);}
+
+    protected:
 
         /// An array containing the pointers to each source module required by
         /// this noise module.
