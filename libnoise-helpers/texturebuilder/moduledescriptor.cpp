@@ -246,39 +246,39 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
 
 void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     _propertiesToExport.clear();
+    if (_m_moduleType=="Abs") _propertiesToExport <<"name" <<  "src1" << "enableRandom";
+    if (_m_moduleType=="Add") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
+    if (_m_moduleType=="Avg") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
     if (_m_moduleType=="Billow")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "pers" << "oct"  << "enableRandom";
+    if (_m_moduleType=="Blend") _propertiesToExport <<"name" <<  "src1" << "src2" << "ctl" << "enableRandom";
+    if (_m_moduleType=="Clamp") _propertiesToExport <<"name" << "lBound" << "uBound" << "src1" << "enableRandom";
     if (_m_moduleType=="Const") _propertiesToExport <<"name" << "value" << "enableRandom";
+    if (_m_moduleType=="Cos") _propertiesToExport <<"name" <<  "freq" << "exp" << "value" << "src1" << "enableRandom";
+    if (_m_moduleType=="Curve") _propertiesToExport <<"name" << "controlPoints" << "src1" << "enableRandom";
     if (_m_moduleType=="Cylinders")  _propertiesToExport <<"name" << "freq" << "enableRandom";
+    if (_m_moduleType=="Displace") _propertiesToExport <<"name" <<    "src1" << "src2" << "src3" << "src4" << "ctl" << "enableRandom";
+    if (_m_moduleType=="Exponent") _propertiesToExport <<"name" << "exp" << "src1" << "enableRandom";
+    if (_m_moduleType=="Invert") _propertiesToExport <<"name" <<  "src1" << "enableRandom";
+    if (_m_moduleType=="Max") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
+    if (_m_moduleType=="Min") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
+    if (_m_moduleType=="Multiply") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
     if (_m_moduleType=="Perlin")  _propertiesToExport <<"name" << "seed" << "freq" << "lac" << "pers" << "oct" << "enableRandom";
+    if (_m_moduleType=="Power") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
     if (_m_moduleType=="RidgedMulti")  _propertiesToExport <<"name" "seed" << "freq" << "lac" << "oct" << "enableRandom";
     if (_m_moduleType=="RidgedMulti2")  _propertiesToExport <<"name" << "offset" << "gain" << "exp" << "seed" << "freq" << "lac" << "oct" << "enableRandom";
-    if (_m_moduleType=="Spheres") _propertiesToExport <<"name" << "freq" << "enableRandom";
-    if (_m_moduleType=="Voronoi") _propertiesToExport <<"name" << "freq" << "displ" << "seed" << "enableDist" << "enableRandom";
-    if (_m_moduleType=="Clamp") _propertiesToExport <<"name" << "lBound" << "uBound" << "src1" << "enableRandom";
-    if (_m_moduleType=="Curve") _propertiesToExport <<"name" << "controlPoints" << "src1" << "enableRandom";
-    if (_m_moduleType=="Invert") _propertiesToExport <<"name" <<  "src1" << "enableRandom";
-    if (_m_moduleType=="Cos") _propertiesToExport <<"name" <<  "freq" << "exp" << "value" << "src1" << "enableRandom";
-    if (_m_moduleType=="Sin") _propertiesToExport <<"name" <<  "freq" << "exp" << "value" <<  "src1" << "enableRandom";
-    if (_m_moduleType=="Abs") _propertiesToExport <<"name" <<  "src1" << "enableRandom";
-    if (_m_moduleType=="Exponent") _propertiesToExport <<"name" << "exp" << "src1" << "enableRandom";
+    if (_m_moduleType=="RotatePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z" << "enableRandom";
     if (_m_moduleType=="ScaleBias") _propertiesToExport <<"name" << "bias" << "scale" << "src1" << "enableRandom";
+    if (_m_moduleType=="ScalePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z" << "enableRandom";
+    if (_m_moduleType=="Select") _propertiesToExport <<"name" <<  "src1" << "src2" << "ctl" << "uBound" << "lBound" << "value" << "enableRandom";
+    if (_m_moduleType=="Sin") _propertiesToExport <<"name" <<  "freq" << "exp" << "value" <<  "src1" << "enableRandom";
+    if (_m_moduleType=="Spheres") _propertiesToExport <<"name" << "freq" << "enableRandom";
     if (_m_moduleType=="Terrace") _propertiesToExport <<"name" << "controlPoints" << "invert" << "src1" << "enableRandom";
+    if (_m_moduleType=="TranslatePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z" << "enableRandom";
     if (_m_moduleType=="Turbulence")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
     if (_m_moduleType=="Turbulence2")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
     if (_m_moduleType=="TurbulenceBillow")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
     if (_m_moduleType=="TurbulenceRidged")  _propertiesToExport <<"name" << "seed" << "freq" << "pow" << "rough" << "src1" << "enableRandom";
-    if (_m_moduleType=="Add") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
-    if (_m_moduleType=="Max") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
-    if (_m_moduleType=="Avg") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
-    if (_m_moduleType=="Min") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
-    if (_m_moduleType=="Multiply") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
-    if (_m_moduleType=="Power") _propertiesToExport <<"name" <<  "src1" << "src2" << "enableRandom";
-    if (_m_moduleType=="Blend") _propertiesToExport <<"name" <<  "src1" << "src2" << "ctl" << "enableRandom";
-    if (_m_moduleType=="Select") _propertiesToExport <<"name" <<  "src1" << "src2" << "ctl" << "uBound" << "lBound" << "value" << "enableRandom";
-    if (_m_moduleType=="Displace") _propertiesToExport <<"name" <<    "src1" << "src2" << "src3" << "src4" << "ctl" << "enableRandom";
-    if (_m_moduleType=="RotatePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z" << "enableRandom";
-    if (_m_moduleType=="ScalePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z" << "enableRandom";
-    if (_m_moduleType=="TranslatePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z" << "enableRandom";
+    if (_m_moduleType=="Voronoi") _propertiesToExport <<"name" << "freq" << "displ" << "seed" << "enableDist" << "enableRandom";
 
 }
 

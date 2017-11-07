@@ -121,6 +121,8 @@ namespace noise
           m_enableDistance = enable;
         }
 
+        bool GetEnableDistance() { return m_enableDistance; }
+
         /// Returns the displacement value of the Voronoi cells.
         ///
         /// @returns The displacement value of the Voronoi cells.

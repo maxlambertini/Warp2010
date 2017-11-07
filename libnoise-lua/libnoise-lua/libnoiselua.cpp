@@ -14,6 +14,46 @@ Libnoiselua::Libnoiselua()
     _lua.new_usertype<utils::Image>("Image",
                                    sol::constructors<utils::Image()>());
 
+    _lua.new_usertype<Abs>("Abs",
+                             sol::constructors<Abs()>(),
+                             "src1", sol::property(&Perlin::GetSrc1, &Perlin::SetSrc1)
+                             );
+
+    _lua.new_usertype<Add>("Add",
+                             sol::constructors<Add()>(),
+                             "src1", sol::property(&Add::GetSrc1, &Add::SetSrc1),
+                             "src2", sol::property(&Add::GetSrc2, &Add::SetSrc2)
+                             );
+
+    _lua.new_usertype<Avg>("Avg",
+                             sol::constructors<Avg()>(),
+                             "src1", sol::property(&Avg::GetSrc1, &Avg::SetSrc1),
+                             "src2", sol::property(&Avg::GetSrc2, &Avg::SetSrc2)
+                             );
+
+    _lua.new_usertype<Billow>("Billow",
+                             sol::constructors<Billow()>(),
+                             "freq", sol::property(&Billow::GetFrequency, &Billow::SetFrequency),
+                             "lac", sol::property(&Billow::GetLacunarity, &Billow::SetLacunarity),
+                             "octave", sol::property(&Billow::GetOctaveCount, &Billow::SetOctaveCount),
+                             "pers", sol::property(&Billow::GetPersistence, &Billow::SetPersistence),
+                             "seed", sol::property(&Billow::GetSeed, &Billow::SetSeed)
+                             );
+
+    _lua.new_usertype<Blend>("Blend",
+                             sol::constructors<Blend()>(),
+                             "src1", sol::property(&Blend::GetSrc1, &Blend::SetSrc1),
+                             "src2", sol::property(&Blend::GetSrc2, &Blend::SetSrc2),
+                             "ctl", sol::property(&Blend::GetCtl, &Blend::SetCtl)
+                             );
+
+    _lua.new_usertype<Clamp>("Clamp",
+                             sol::constructors<Clamp()>(),
+                             "src1", sol::property(&Clamp::GetSrc1, &Clamp::SetSrc1),
+                             "ubound", sol::property(&Clamp::GetUpperBound, &Clamp::SetUpperBound),
+                             "lbound", sol::property(&Clamp::GetLowerBound, &Clamp::SetLowerBound)
+                             );
+
     _lua.new_usertype<Perlin>("Perlin",
                              sol::constructors<Perlin()>(),
                              "freq", sol::property(&Perlin::GetFrequency, &Perlin::SetFrequency),
@@ -46,6 +86,29 @@ Libnoiselua::Libnoiselua()
                                   "seed" , sol::property(&Turbulence2::GetSeed,&Turbulence2::SetSeed),
                                   "rough", sol::property(&Turbulence2::SetRoughness),
                                   "src1",  sol::property(&Turbulence2::GetSrc1,&Turbulence2::SetSrc1));
+
+    _lua.new_usertype<TurbulenceBillow>("TurbulenceBillow",
+                                  sol::constructors<TurbulenceBillow()>(),
+                                  "freq", sol::property(&TurbulenceBillow::GetFrequency,&TurbulenceBillow::SetFrequency),
+                                  "pow" , sol::property(&TurbulenceBillow::GetPower,&TurbulenceBillow::SetPower),
+                                  "seed" , sol::property(&TurbulenceBillow::GetSeed,&TurbulenceBillow::SetSeed),
+                                  "rough", sol::property(&TurbulenceBillow::SetRoughness),
+                                  "src1",  sol::property(&TurbulenceBillow::GetSrc1,&TurbulenceBillow::SetSrc1));
+
+    _lua.new_usertype<TurbulenceRidged>("TurbulenceRidged",
+                                  sol::constructors<TurbulenceRidged()>(),
+                                  "freq", sol::property(&TurbulenceRidged::GetFrequency,&TurbulenceRidged::SetFrequency),
+                                  "pow" , sol::property(&TurbulenceRidged::GetPower,&TurbulenceRidged::SetPower),
+                                  "seed" , sol::property(&TurbulenceRidged::GetSeed,&TurbulenceRidged::SetSeed),
+                                  "rough", sol::property(&TurbulenceRidged::SetRoughness),
+                                  "src1",  sol::property(&TurbulenceRidged::GetSrc1,&TurbulenceRidged::SetSrc1));
+
+    _lua.new_usertype<Voronoi>("Voronoi",
+                                  sol::constructors<Voronoi()>(),
+                                  "freq",  sol::property(&Voronoi::GetFrequency,&Voronoi::SetFrequency),
+                                  "seed" , sol::property(&Voronoi::GetSeed,&Voronoi::SetSeed),
+                                  "displ", sol::property(&Voronoi::GetDisplacement, &Voronoi::SetDisplacement),
+                                  "enableDist", sol::property(&Voronoi::GetEnableDistance, &Voronoi::EnableDistance));
 
     _lua.new_usertype<Color>("Color",
                             sol::constructors<Color(), Color(std::string), Color(uint8,uint8,uint8,uint8)>(),
