@@ -1,5 +1,6 @@
 #include "libnoiselua.h"
 #include <noise/module/module.h>
+#include <noise/module/cos.h>
 
 using namespace noise::module;
 using namespace utils;
@@ -56,7 +57,7 @@ Libnoiselua::Libnoiselua()
 
     _lua.new_usertype<Const>("Const",
                              sol::constructors<Const()>(),
-                             "value", sol::property(&Const::GetConstValue &Const::SetConstValue)
+                             "value", sol::property(&Const::GetConstValue, &Const::SetConstValue)
                              );
 
     _lua.new_usertype<Cos>("Cos",
@@ -66,7 +67,45 @@ Libnoiselua::Libnoiselua()
 
     _lua.new_usertype<Cylinders>("Cylinders",
                              sol::constructors<Cylinders>(),
-                             "freq", sol::property(&Cylinders::GetFrequency, &Cylinders::SetFrequency),
+                             "freq", sol::property(&Cylinders::GetFrequency, &Cylinders::SetFrequency)
+                             );
+
+    _lua.new_usertype<Displace>("Displace",
+                             sol::constructors<Displace>(),
+                             "src1", sol::property(&Displace::GetSrc1, &Displace::SetSrc1),
+                             "src2", sol::property(&Displace::GetSrc2, &Displace::SetSrc2),
+                             "src3", sol::property(&Displace::GetSrc3, &Displace::SetSrc3),
+                             "src4", sol::property(&Displace::GetSrc4, &Displace::SetSrc4),
+                             "ctl", sol::property(&Displace::GetCtl, &Displace::GetCtl)
+                             );
+
+    _lua.new_usertype<Exponent>("Exponent",
+                             sol::constructors<Exponent()>(),
+                             "src1", sol::property(&Exponent::GetSrc1, &Exponent::SetSrc1),
+                             "exp",  sol::property(&Exponent::GetExponent, &Exponent::SetExponent)
+                             );
+
+    _lua.new_usertype<Invert>("Invert",
+                             sol::constructors<Invert()>(),
+                             "src1", sol::property(&Invert::GetSrc1, &Invert::SetSrc1)
+                             );
+
+    _lua.new_usertype<Max>("Add",
+                             sol::constructors<Max()>(),
+                             "src1", sol::property(&Max::GetSrc1, &Max::SetSrc1),
+                             "src2", sol::property(&Max::GetSrc2, &Max::SetSrc2)
+                             );
+
+    _lua.new_usertype<Min>("Min",
+                             sol::constructors<Min()>(),
+                             "src1", sol::property(&Min::GetSrc1, &Min::SetSrc1),
+                             "src2", sol::property(&Min::GetSrc2, &Min::SetSrc2)
+                             );
+
+    _lua.new_usertype<Multiply>("Multiply",
+                             sol::constructors<Multiply()>(),
+                             "src1", sol::property(&Multiply::GetSrc1, &Multiply::SetSrc1),
+                             "src2", sol::property(&Multiply::GetSrc2, &Multiply::SetSrc2)
                              );
 
 
@@ -79,12 +118,30 @@ Libnoiselua::Libnoiselua()
                              "seed", sol::property(&Perlin::GetSeed, &Perlin::SetSeed)
                              );
 
+    _lua.new_usertype<Power>("Power",
+                             sol::constructors<Multiply()>(),
+                             "src1", sol::property(&Power::GetSrc1, &Power::SetSrc1),
+                             "src2", sol::property(&Power::GetSrc2, &Power::SetSrc2)
+                             );
+
     _lua.new_usertype<RidgedMulti>("RidgedMulti",
                              sol::constructors<RidgedMulti()>(),
                              "freq", sol::property(&RidgedMulti::GetFrequency, &RidgedMulti::SetFrequency),
                              "lac", sol::property(&RidgedMulti::GetLacunarity, &RidgedMulti::SetLacunarity),
                              "octave", sol::property(&RidgedMulti::GetOctaveCount, &RidgedMulti::SetOctaveCount),
                              "seed", sol::property(&RidgedMulti::GetSeed, &RidgedMulti::SetSeed)
+                             );
+
+    _lua.new_usertype<RidgedMulti2>("RidgedMulti2",
+                             sol::constructors<RidgedMulti()>(),
+                             "freq", sol::property(&RidgedMulti2::GetFrequency, &RidgedMulti2::SetFrequency),
+                             "lac", sol::property(&RidgedMulti2::GetLacunarity, &RidgedMulti2::SetLacunarity),
+                             "gain", sol::property(&RidgedMulti2::GetGain, &RidgedMulti2::SetGain),
+                             "offset", sol::property(&RidgedMulti2::GetOffset, &RidgedMulti2::SetOffset),
+                             "weight", sol::property(&RidgedMulti2::GetWeight, &RidgedMulti2::SetWeight),
+                             "exp", sol::property(&RidgedMulti2::GetExponent, &RidgedMulti2::SetExponent),
+                             "octave", sol::property(&RidgedMulti2::GetOctaveCount, &RidgedMulti2::SetOctaveCount),
+                             "seed", sol::property(&RidgedMulti2::GetSeed, &RidgedMulti2::SetSeed)
                              );
 
     _lua.new_usertype<Turbulence>("Turbulence",
