@@ -51,8 +51,8 @@ Libnoiselua::Libnoiselua()
     _lua.new_usertype<Clamp>("Clamp",
                              sol::constructors<Clamp()>(),
                              "src1", sol::property(&Clamp::GetSrc1, &Clamp::SetSrc1),
-                             "ubound", sol::property(&Clamp::GetUpperBound, &Clamp::SetUpperBound),
-                             "lbound", sol::property(&Clamp::GetLowerBound, &Clamp::SetLowerBound)
+                             "uBound", sol::property(&Clamp::GetUpperBound, &Clamp::SetUpperBound),
+                             "lBound", sol::property(&Clamp::GetLowerBound, &Clamp::SetLowerBound)
                              );
 
     _lua.new_usertype<Const>("Const",
@@ -64,6 +64,14 @@ Libnoiselua::Libnoiselua()
                              sol::constructors<Cos()>(),
                              "src1", sol::property(&Cos::GetSrc1, &Cos::SetSrc1)
                              );
+
+    _lua.new_usertype<Curve>("Curve",
+                             sol::constructors<Terrace()>(),
+                             "src1", sol::property(&Curve::GetSrc1, &Curve::SetSrc1),
+                             "addControlPoint", &Curve::AddControlPoint
+                             );
+
+
 
     _lua.new_usertype<Cylinders>("Cylinders",
                              sol::constructors<Cylinders>(),
@@ -119,7 +127,7 @@ Libnoiselua::Libnoiselua()
                              );
 
     _lua.new_usertype<Power>("Power",
-                             sol::constructors<Multiply()>(),
+                             sol::constructors<Power()>(),
                              "src1", sol::property(&Power::GetSrc1, &Power::SetSrc1),
                              "src2", sol::property(&Power::GetSrc2, &Power::SetSrc2)
                              );
@@ -142,6 +150,73 @@ Libnoiselua::Libnoiselua()
                              "exp", sol::property(&RidgedMulti2::GetExponent, &RidgedMulti2::SetExponent),
                              "octave", sol::property(&RidgedMulti2::GetOctaveCount, &RidgedMulti2::SetOctaveCount),
                              "seed", sol::property(&RidgedMulti2::GetSeed, &RidgedMulti2::SetSeed)
+                             );
+
+
+    _lua.new_usertype<RotatePoint>("RotatePoint",
+                             sol::constructors<RotatePoint()>(),
+                             "src1", sol::property(&RotatePoint::GetSrc1, &RotatePoint::SetSrc1),
+                             "x", sol::property(&RotatePoint::GetXAngle, &RotatePoint::SetXAngle),
+                             "y", sol::property(&RotatePoint::GetYAngle, &RotatePoint::SetYAngle),
+                             "z", sol::property(&RotatePoint::GetZAngle, &RotatePoint::SetZAngle)
+                             );
+
+    _lua.new_usertype<ScaleBias>("ScaleBias",
+                             sol::constructors<ScaleBias()>(),
+                             "src1", sol::property(&ScaleBias::GetSrc1, &ScaleBias::SetSrc1),
+                             "bias", sol::property(&ScaleBias::GetBias, &ScaleBias::SetBias),
+                             "scale", sol::property(&ScaleBias::GetScale, &ScaleBias::SetScale)
+                             );
+
+    _lua.new_usertype<ScalePoint>("ScalePoint",
+                             sol::constructors<RotatePoint()>(),
+                             "src1", sol::property(&ScalePoint::GetSrc1, &ScalePoint::SetSrc1),
+                             "x", sol::property(&ScalePoint::GetXScale, &ScalePoint::SetXScale),
+                             "y", sol::property(&ScalePoint::GetYScale, &ScalePoint::SetYScale),
+                             "z", sol::property(&ScalePoint::GetZScale, &ScalePoint::SetZScale)
+                             );
+
+    _lua.new_usertype<Select>("Select",
+                             sol::constructors<Select()>(),
+                             "src1", sol::property(&Select::GetSrc1, &Select::SetSrc1),
+                             "src2", sol::property(&Select::GetSrc2, &Select::SetSrc2),
+                             "ctl", sol::property(&Select::GetCtl, &Select::SetCtl),
+                             "uBound", sol::property(&Select::GetUpperBound, &Select::SetUpperBound),
+                             "lBound", sol::property(&Select::GetLowerBound, &Select::SetLowerBound),
+                             "value", sol::property(&Select::GetEdgeFalloff, &Select::SetEdgeFalloff),
+                             "falloff", sol::property(&Select::GetEdgeFalloff, &Select::SetEdgeFalloff)
+                             );
+
+    /*
+    if (_m_moduleType=="TranslatePoint") _propertiesToExport <<"name" << "src1" << "x" << "y" << "z" << "enableRandom";
+    */
+
+    _lua.new_usertype<Sin>("Sin",
+                             sol::constructors<Sin()>(),
+                             "src1", sol::property(&Sin::GetSrc1, &Sin::SetSrc1),
+                             "freq", sol::property(&Sin::GetExponent, &Sin::SetExponent),
+                             "exp",  sol::property(&Sin::GetFrequency, &Sin::SetFrequency)
+                             );
+
+
+    _lua.new_usertype<Spheres>("Spheres",
+                             sol::constructors<Spheres>(),
+                             "freq", sol::property(&Spheres::GetFrequency, &Spheres::SetFrequency)
+                             );
+
+    _lua.new_usertype<Terrace>("Terrace",
+                             sol::constructors<Terrace()>(),
+                             "src1", sol::property(&Terrace::GetSrc1, &Sin::SetSrc1),
+                             "invert", sol::property(&Terrace::InvertTerraces),
+                             "addControlPoint", &Terrace::AddControlPoint
+                             );
+
+    _lua.new_usertype<TranslatePoint>("TranslatePoint",
+                             sol::constructors<TranslatePoint()>(),
+                             "src1", sol::property(&TranslatePoint::GetSrc1, &TranslatePoint::SetSrc1),
+                             "x", sol::property(&TranslatePoint::GetXTranslation, &TranslatePoint::SetXTranslation),
+                             "y", sol::property(&TranslatePoint::GetYTranslation, &TranslatePoint::SetYTranslation),
+                             "z", sol::property(&TranslatePoint::GetZTranslation, &TranslatePoint::SetZTranslation)
                              );
 
     _lua.new_usertype<Turbulence>("Turbulence",

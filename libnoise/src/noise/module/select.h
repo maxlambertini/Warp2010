@@ -150,6 +150,11 @@ namespace noise
           return m_lowerBound;
         }
 
+        void SetLowerBound (double d)
+        {
+          m_lowerBound = d;
+        }
+
         virtual int GetSourceModuleCount () const
         {
           return 3;
@@ -166,6 +171,11 @@ namespace noise
         double GetUpperBound () const
         {
           return m_upperBound;
+        }
+
+        void SetUpperBound (double d)
+        {
+          m_upperBound = d;
         }
 
         virtual double GetValue (double x, double y, double z) const;
