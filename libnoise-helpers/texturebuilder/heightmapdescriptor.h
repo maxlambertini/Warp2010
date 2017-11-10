@@ -42,6 +42,9 @@ public:
     void setName(const QString& v) { _name = v; }
     HeightMapDescriptor();
 
+    QString luaDeclaration() { return _name + "=NoiseMap.new()"; }
+
+
     //from descriptor to actual object
     QSharedPointer<utils::NoiseMap> makeNoiseMap() {
         auto p = new utils::NoiseMap();

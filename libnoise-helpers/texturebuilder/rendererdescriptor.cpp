@@ -27,6 +27,38 @@ RendererDescriptor::RendererDescriptor()
 
 }
 
+QString RendererDescriptor::luaInitialization() {
+    QString res="";
+    res = res + _name + ":ClearGradient()\n" +
+            _name + ":SetDestImage(" + _destImage + ")\n" +
+            _name + ":SetSourceNoiseMap(" + _heightMap + ")\n";
+    if (_bumpMap != "") {
+        res = res + _name + ":SetBumpNoiseMap(" + _bumpMap + ")\n";
+    }
+    if (_backgroundImage != "") {
+        res = res + _name + ":SetBackgroundImage(" + _backgroundImage + ")\n";
+    }
+    if (_alphaImage != "") {
+        res = res + _name + ":SetAlphaImage(" + _alphaImage + ")\n";
+    }
+    if (_enabledLight) {
+        res = res + _name + ":EnableLight()\n"+
+                _name + ":SetLightContrast(" + QString::number(_lightContrast)+")\n" +
+                _name + ":SetLightBrightness(" + QString::number(_lightBrightness)+")\n";
+    }
+    // control points
+    for (auto i = _gradientInfo.begin(); i != _gradientInfo.end(); ++i) {
+        res = res + _name+ QString(":AddGradientPoint(%1, Color.new(%2,%3,%4,%5))\n")
+                .arg(std::get<0>(*i))
+                .arg(std::get<1>(*i))
+                .arg(std::get<2>(*i))
+                .arg(std::get<3>(*i))
+                .arg(std::get<4>(*i));
+    }
+    res = res + _name + ":Render()\n\n";
+    return res;
+}
+
 QSharedPointer<utils::RendererImage> RendererDescriptor::makeRenderer() {
     utils::RendererImage* p = new utils::RendererImage();
 

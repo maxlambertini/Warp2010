@@ -113,6 +113,8 @@ public:
         return origin + d1;
     }
 
+    QString getLua();
+
 
     std::tuple<int,int>& size() { return _size; }
     void setSize (int x, int y ) { _size = std::tuple<int,int>(x,y); }

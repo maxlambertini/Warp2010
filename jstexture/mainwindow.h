@@ -81,6 +81,7 @@ class MainWindow : public QMainWindow
     QTabWidget *tabWidget;
 
     QPlainTextEdit *plainTextEdit;
+    QPlainTextEdit *_plainTextLua;
     QGraphicsScene *scene;
     QFrame *frame;
     QLabel *imageLabel;

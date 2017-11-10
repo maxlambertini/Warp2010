@@ -81,7 +81,11 @@ class LIBNOISEHELPERSSHARED_EXPORT NoiseMapBuilderDescriptor : public QObject
     QSharedPointer<utils::NoiseMapBuilder> makePlaneBuilder();
     QSharedPointer<utils::NoiseMapBuilder> makeSphereBuilder();
 
+
 public:
+
+    QString luaDeclaration() { return _name + "=NoiseMapBuilderSphere.new()"; }
+    QString luaInitialization();
 
     NoiseMapBuilderDescriptor& connectSrcModule()
     {

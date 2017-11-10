@@ -30,6 +30,24 @@ NoiseMapBuilderDescriptor::NoiseMapBuilderDescriptor(QObject *parent) : QObject(
 
 }
 
+QString NoiseMapBuilderDescriptor::luaInitialization() {
+    QString res = "";
+    /*
+    hmb:SetBounds (-90.0, 90.0, -180.0, 180.0);
+    hmb:SetDestSize (2048, 1024);
+    hmb:SetSourceModule (blend);
+    hmb:SetDestNoiseMap (hm);
+    hmb:Build ();
+    */
+    res = res + _name+":SetBounds(-90.0,90.0,-180.0,180.0)\n"
+            + _name+":SetDestSize("+QString::number(std::get<0>(_size))+","+QString::number(std::get<1>(_size))+")\n"
+            + _name+":SetSourceModule(" + _src1  + ")\n"
+            + _name+":SetDestNoiseMap(" + _dest + ")\n"
+            + _name+":Build()\n\n";
+    return res;
+
+}
+
 //from descriptor to actual object
 QSharedPointer<utils::NoiseMapBuilder> NoiseMapBuilderDescriptor::makeBuilder() {
     QSharedPointer<utils::NoiseMapBuilder> res;

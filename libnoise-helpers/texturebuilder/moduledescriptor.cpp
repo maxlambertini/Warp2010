@@ -244,6 +244,50 @@ ModuleDescriptor& ModuleDescriptor::connectModules()
     return *this;
 }
 
+QString ModuleDescriptor::luaInitialization() {
+    QString data = "";
+    if (_propertiesToExport.contains("src1"))  data = data + _name + ".src1=" + this->_src1 + "\n";
+    if (_propertiesToExport.contains("src2"))  data = data + _name + ".src2=" + this->_src2 + "\n";
+    if (_propertiesToExport.contains("src3"))  data = data + _name + ".src3=" + this->_src3 + "\n";
+    if (_propertiesToExport.contains("src4"))  data = data + _name + ".src4=" + this->_src4 + "\n";
+    if (_propertiesToExport.contains("ctl"))   data = data + _name + ".ctl=" + this->_ctl + "\n";
+
+    if (_propertiesToExport.contains("oct"))    data = data + _name + ".oct=" + QString::number(this->_oct) + "\n";
+    if (_propertiesToExport.contains("seed"))   data = data + _name + ".seed=" + QString::number(this->_seed) + "\n";
+
+    if (_propertiesToExport.contains("freq"))  data = data + _name + ".freq=" + QString::number(this->_freq) + "\n";
+    if (_propertiesToExport.contains("lac"))   data = data + _name + ".lac=" + QString::number(this->_lac) + "\n";
+    if (_propertiesToExport.contains("pers"))  data = data + _name + ".pers=" + QString::number(this->_pers) + "\n";
+    if (_propertiesToExport.contains("exp"))   data = data + _name + ".exp=" + QString::number(this->_exp) + "\n";
+    if (_propertiesToExport.contains("value")) data = data + _name + ".value=" + QString::number(this->_value) + "\n";
+    if (_propertiesToExport.contains("pow"))   data = data + _name + ".pow=" + QString::number(this->_pow) + "\n";
+    if (_propertiesToExport.contains("rough")) data = data + _name + ".rough=" + QString::number(this->_rough) + "\n";
+
+    if (_propertiesToExport.contains("uBound")) data = data + _name + ".uBound=" + QString::number(this->_uBound) + "\n";
+    if (_propertiesToExport.contains("lBound")) data = data + _name + ".lBound=" + QString::number(this->_lBound) + "\n";
+
+    if (_moduleType == "Curve") {
+        //control points
+        for (auto cp = this->cPoints().begin(); cp != this->cPoints().end(); ++cp) {
+            data = data + _name + QString(":addControlPoint(%1,%2)\n")
+                    .arg(std::get<0>(*cp))
+                    .arg(std::get<1>(*cp));
+
+        }
+    }
+
+    if (_moduleType == "Terrace") {
+        //control points
+        for (auto cp = this->cPoints().begin(); cp != this->cPoints().end(); ++cp) {
+            data = data + _name + QString(":addControlPoints(%1)\n")
+                    .arg(std::get<0>(*cp));
+
+        }
+
+    }
+    return data;
+}
+
 void ModuleDescriptor::setupPropertiesToExport(QString& _m_moduleType) {
     _propertiesToExport.clear();
     if (_m_moduleType=="Abs") _propertiesToExport <<"name" <<  "src1" << "enableRandom";

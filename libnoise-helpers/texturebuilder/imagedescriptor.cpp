@@ -21,8 +21,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 */
 
 #include "imagedescriptor.h"
+#include <QString>
+
 
 ImageDescriptor::ImageDescriptor()
 {
 
+}
+
+QString ImageDescriptor::luaInitialization() {
+    /*
+    bmp.DestFilename = "/home/maxl/pippo.bmp"
+    bmp.SourceImage = img
+    bmp:WriteDestFile()
+    */
+    QString res = _name+"Bmp.DestFilename =\"/home/maxl/img" + _name + ".bmp\"\n"
+            + _name + "Bmp.SourceImage=" +  _name + "\n"
+            + _name + "Bmp:WriteDestFile()\n\n";
+    return res;
 }

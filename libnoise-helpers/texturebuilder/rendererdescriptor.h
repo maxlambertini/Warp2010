@@ -68,6 +68,9 @@ class LIBNOISEHELPERSSHARED_EXPORT RendererDescriptor : public QObject
 public:
     RendererDescriptor();
 
+    QString luaDeclaration() { return _name + "=RendererImage.new()"; }
+    QString luaInitialization() ;
+
     QString& name() { return _name; }
     QString& destImage() { return _destImage; }
     QString& backgroundImage() { return _backgroundImage; }

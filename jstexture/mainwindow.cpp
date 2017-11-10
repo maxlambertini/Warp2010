@@ -165,6 +165,8 @@ void MainWindow::createWidgets() {
     this->_tex->tree()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this->plainTextEdit,SIGNAL(textChanged()),SLOT(on_plaintext_changed()));
     connect(_tex->tree(),SIGNAL(customContextMenuRequested(QPoint)),SLOT(on_prepare_menu(QPoint)));
+
+    _plainTextLua = new QPlainTextEdit();
 }
 
 void MainWindow::layoutWidgets() {
@@ -182,6 +184,7 @@ void MainWindow::layoutWidgets() {
 
     tabWidget->addTab(_splitter1,"JSON Editor");
     tabWidget->addTab(_splitter, "Generated images");
+    tabWidget->addTab(_plainTextLua, "Lua Code");
     this->setCentralWidget(tabWidget);
 }
 
@@ -210,10 +213,12 @@ void MainWindow::on_action_Load_Texture_triggered()
 
 void MainWindow::updateEditorsWithTBInfo() {
     QJsonObject o;
-    _tb.toJson(o);
+    this->_tb.fromJson(o);
     QJsonDocument doc(o);
     QString strJson(doc.toJson());
     this->plainTextEdit->setPlainText(strJson);
+    this->_plainTextLua->setPlainText(this->_tb.getLua());
+
     //updateTreeWithJsonFromEditor();
 }
 
@@ -225,6 +230,7 @@ void MainWindow::updateTreeWithJsonFromEditor() {
         QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parserError);
         this->_tb.fromJson(doc.object());
         this->_tex->setTextureBuilder(&_tb);
+        this->_plainTextLua->setPlainText(this->_tb.getLua());
     }
     catch (noise::ExceptionInvalidParam &exc) {
         errorBox("Invalid parameter somewhere. Check zeros and negatives ");

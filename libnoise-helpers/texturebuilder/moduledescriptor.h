@@ -236,6 +236,11 @@ public:
     double value() { return _value; }
     bool enableRandom() { return _enableRandom; }
 
+    QString luaDeclaration() { return _name + "=" + _moduleType + ".new()"; }
+    QString luaInitialization() ;
+
+
+
     inline void dumpModule() {
         qDebug() << "ModuleType:" << _moduleType << " Name:" << _name << " Seed:" << _seed << " ActualSeed:" << _actualSeed
                  << " Freq:" << _freq << " Lac:" << _lac << " Pers:" << _pers << " Oct:" << _oct

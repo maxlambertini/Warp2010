@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <qcolorops.h>
 #include <QColor>
 #include "ssg_structures.h"
+#include <QStringList>
 
 TextureBuilder::TextureBuilder() :
     _outputFolder("."),
@@ -43,6 +44,52 @@ TextureBuilder::TextureBuilder() :
     //createTextureWorkflow("Layer2",false,"BaseImage","BaseImage");
     createTextureWorkflow("EndLayer",false,"BaseImage","BaseImage",true);
     this->_colorMap = "BaseImage";
+}
+
+QString TextureBuilder::getLua() {
+    QStringList lstData;
+    lstData << "-- *** DECLARATION PART *** " << "";
+    // declaration
+    // Modules
+    for (auto m = _modDesc.begin(); m != _modDesc.end(); ++m) {
+        lstData << m->data()->luaDeclaration() << "";
+    }
+    // heightmaps
+    for (auto m = _hmDesc.begin(); m != _hmDesc.end(); ++m) {
+        lstData << m->data()->luaDeclaration() << "";
+    }
+    // noisemapbuilders
+    for (auto m = _nmbDesc.begin(); m != _nmbDesc.end(); ++m) {
+        lstData << m->data()->luaDeclaration() << "";
+    }
+    // renderers
+    for (auto m = _rndNames.begin(); m != _rndNames.end(); ++m) {
+        lstData << _rndDesc[*m]->luaDeclaration();
+    }
+    // images
+    for (auto m = __imDesc.begin(); m != __imDesc.end(); ++m) {
+        lstData << m->data()->luaDeclaration() << "";
+    }
+
+    lstData << "" << "-- *** INITIALIZATION PART *** " << "";
+    // Modules
+    for (auto m = _modDesc.begin(); m != _modDesc.end(); ++m) {
+        lstData << m->data()->luaInitialization() << "";
+    }
+    // noisemapbuilders
+    for (auto m = _nmbDesc.begin(); m != _nmbDesc.end(); ++m) {
+        lstData << m->data()->luaInitialization() << "";
+    }
+    // renderers
+    for (auto m = _rndNames.begin(); m != _rndNames.end(); ++m) {
+        lstData << _rndDesc[*m]->luaInitialization();
+    }
+    // images
+    for (auto m = __imDesc.begin(); m != __imDesc.end(); ++m) {
+        lstData << m->data()->luaInitialization() << "";
+    }
+    QString data = lstData.join('\n');
+    return data;
 }
 
 void TextureBuilder::createTextureWorkflow(QString prefix, bool bCreateImage , QString backgroundImage , QString destImage, bool last)

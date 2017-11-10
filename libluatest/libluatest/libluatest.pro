@@ -23,4 +23,5 @@ INCLUDEPATH += $$PWD/../../libnoise/src
 DEPENDPATH += $$PWD/../../libnoise/src
 
 DISTFILES += \
-    test.lua
+    test.lua \
+    test2.lua

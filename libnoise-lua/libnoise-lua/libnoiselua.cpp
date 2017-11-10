@@ -37,6 +37,7 @@ Libnoiselua::Libnoiselua()
                              "freq", sol::property(&Billow::GetFrequency, &Billow::SetFrequency),
                              "lac", sol::property(&Billow::GetLacunarity, &Billow::SetLacunarity),
                              "octave", sol::property(&Billow::GetOctaveCount, &Billow::SetOctaveCount),
+                             "oct", sol::property(&Billow::GetOctaveCount, &Billow::SetOctaveCount),
                              "pers", sol::property(&Billow::GetPersistence, &Billow::SetPersistence),
                              "seed", sol::property(&Billow::GetSeed, &Billow::SetSeed)
                              );
@@ -62,7 +63,10 @@ Libnoiselua::Libnoiselua()
 
     _lua.new_usertype<Cos>("Cos",
                              sol::constructors<Cos()>(),
-                             "src1", sol::property(&Cos::GetSrc1, &Cos::SetSrc1)
+                             "src1",  sol::property(&Cos::GetSrc1, &Cos::SetSrc1),
+                             "exp",   sol::property(&Cos::GetExponent, &Cos::SetExponent),
+                             "freq",   sol::property(&Cos::GetExponent, &Cos::SetFrequency),
+                             "value", sol::property(&Cos::GetDelta, &Cos::SetDelta)
                              );
 
     _lua.new_usertype<Curve>("Curve",
@@ -122,6 +126,7 @@ Libnoiselua::Libnoiselua()
                              "freq", sol::property(&Perlin::GetFrequency, &Perlin::SetFrequency),
                              "lac", sol::property(&Perlin::GetLacunarity, &Perlin::SetLacunarity),
                              "octave", sol::property(&Perlin::GetOctaveCount, &Perlin::SetOctaveCount),
+                             "oct", sol::property(&Perlin::GetOctaveCount, &Perlin::SetOctaveCount),
                              "pers", sol::property(&Perlin::GetPersistence, &Perlin::SetPersistence),
                              "seed", sol::property(&Perlin::GetSeed, &Perlin::SetSeed)
                              );
@@ -137,6 +142,7 @@ Libnoiselua::Libnoiselua()
                              "freq", sol::property(&RidgedMulti::GetFrequency, &RidgedMulti::SetFrequency),
                              "lac", sol::property(&RidgedMulti::GetLacunarity, &RidgedMulti::SetLacunarity),
                              "octave", sol::property(&RidgedMulti::GetOctaveCount, &RidgedMulti::SetOctaveCount),
+                             "oct", sol::property(&RidgedMulti::GetOctaveCount, &RidgedMulti::SetOctaveCount),
                              "seed", sol::property(&RidgedMulti::GetSeed, &RidgedMulti::SetSeed)
                              );
 
@@ -149,6 +155,7 @@ Libnoiselua::Libnoiselua()
                              "weight", sol::property(&RidgedMulti2::GetWeight, &RidgedMulti2::SetWeight),
                              "exp", sol::property(&RidgedMulti2::GetExponent, &RidgedMulti2::SetExponent),
                              "octave", sol::property(&RidgedMulti2::GetOctaveCount, &RidgedMulti2::SetOctaveCount),
+                             "oct", sol::property(&RidgedMulti2::GetOctaveCount, &RidgedMulti2::SetOctaveCount),
                              "seed", sol::property(&RidgedMulti2::GetSeed, &RidgedMulti2::SetSeed)
                              );
 
@@ -193,9 +200,10 @@ Libnoiselua::Libnoiselua()
 
     _lua.new_usertype<Sin>("Sin",
                              sol::constructors<Sin()>(),
-                             "src1", sol::property(&Sin::GetSrc1, &Sin::SetSrc1),
-                             "freq", sol::property(&Sin::GetExponent, &Sin::SetExponent),
-                             "exp",  sol::property(&Sin::GetFrequency, &Sin::SetFrequency)
+                             "src1",  sol::property(&Sin::GetSrc1, &Sin::SetSrc1),
+                             "exp",   sol::property(&Sin::GetExponent, &Sin::SetExponent),
+                             "freq",  sol::property(&Sin::GetExponent, &Sin::SetFrequency),
+                             "value", sol::property(&Sin::GetDelta, &Sin::SetDelta)
                              );
 
 

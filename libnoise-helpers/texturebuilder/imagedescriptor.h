@@ -42,6 +42,10 @@ public:
     void setName(const QString& v) { _name = v; }
     ImageDescriptor();
 
+    QString luaDeclaration() { return _name + "=Image.new()\n" + _name +"Bmp=WriterBMP.new()"; }
+    QString luaInitialization();
+
+
     //from descriptor to actual object
     QSharedPointer<utils::Image> makeImage() {
         auto p = new utils::Image();
