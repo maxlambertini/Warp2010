@@ -9,9 +9,13 @@ TARGET = libnoise-warp
 TEMPLATE = lib
 CONFIG += c++14
 
-DEFINES += LIBNOISEWARP_LIBRARY
+unix {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += Magick++
+}
 
 INCLUDEPATH += $$PWD/../libnoise/src
+# INCLUDEPATH += /usr/include/ImageMagick-6
 DEPENDPATH += $$PWD/../libnoise/src
 
 QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter  -Wno-reorder

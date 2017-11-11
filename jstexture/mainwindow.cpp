@@ -167,6 +167,7 @@ void MainWindow::createWidgets() {
     connect(_tex->tree(),SIGNAL(customContextMenuRequested(QPoint)),SLOT(on_prepare_menu(QPoint)));
 
     _plainTextLua = new QPlainTextEdit();
+    this->_plainTextLua->setFont(fixedFont);
 }
 
 void MainWindow::layoutWidgets() {
@@ -213,7 +214,7 @@ void MainWindow::on_action_Load_Texture_triggered()
 
 void MainWindow::updateEditorsWithTBInfo() {
     QJsonObject o;
-    this->_tb.fromJson(o);
+    this->_tb.toJson(o);
     QJsonDocument doc(o);
     QString strJson(doc.toJson());
     this->plainTextEdit->setPlainText(strJson);

@@ -27,10 +27,12 @@
 
 #include "noiseutils.h"
 #include <random>
+#include <ImageMagick-6/Magick++.h>
 
 using namespace noise;
 using namespace noise::model;
 using namespace noise::module;
+
 
 // Bitmap header size.
 const int BMP_HEADER_SIZE = 54;
@@ -805,6 +807,85 @@ noise::uint8* WriterBMP::GetBRGABuffer ()
     }
   }
   return pLineBuffer;
+}
+
+noise::uint8* WriterBMP::GetRGBABuffer ()
+{
+  if (m_pSourceImage == NULL) {
+    throw noise::ExceptionInvalidParam ();
+  }
+
+  int width  = m_pSourceImage->GetWidth  ();
+  int height = m_pSourceImage->GetHeight ();
+
+  // The width of one line in the file must be aligned on a 4-byte boundary.
+  int bufferSize = CalcWidthByteCount (width);
+  int destSize   = bufferSize * height;
+
+  // This buffer holds one horizontal line in the destination file.
+  noise::uint8* pLineBuffer = NULL;
+
+  // File object used to write the file.
+  std::ofstream os;
+  os.clear ();
+
+  // Allocate a buffer to hold one horizontal line in the bitmap.
+  try {
+    pLineBuffer = new noise::uint8[destSize];
+  }
+  catch (...) {
+    throw noise::ExceptionOutOfMemory ();
+  }
+
+  // Build and write each horizontal line to the file.
+  noise::uint8 x = 255;
+  memset (pLineBuffer, 0, destSize);
+  for (int y = 0; y < height; y++) {
+    Color* pSource = m_pSourceImage->GetSlabPtr ((height-1)-y);
+    noise::uint8* pDest   = pLineBuffer;
+    for (int x = 0; x < width; x++) {
+        pLineBuffer[y*width*4+x*4+3] = pSource->alpha; // pSource->alpha;
+        pLineBuffer[y*width*4+x*4+2] = pSource->blue;
+        pLineBuffer[y*width*4+x*4+1] = pSource->green;
+        pLineBuffer[y*width*4+x*4+0] = pSource->red;
+      ++pSource;
+    }
+  }
+  return pLineBuffer;
+}
+
+
+void WriterBMP::WritePngFile()
+{
+    if (m_pSourceImage == NULL) {
+      throw noise::ExceptionInvalidParam ();
+    }
+
+    int width  = m_pSourceImage->GetWidth  ();
+    int height = m_pSourceImage->GetHeight ();
+
+    // The width of one line in the file must be aligned on a 4-byte boundary.
+    int bufferSize = CalcWidthByteCount (width);
+    int destSize   = bufferSize * height;
+
+    // This buffer holds one horizontal line in the destination file.
+    std::unique_ptr<noise::uint8[]> buff(this->GetRGBABuffer());
+    void *voidBuf = (void *)buff.get() ;
+
+    Magick::InitializeMagick(".");
+    Magick::Blob blob(voidBuf, destSize);
+
+    std::string sSize = std::to_string(destSize);
+    Magick::Blob *pBlob = &blob;
+    std::string l =  std::to_string(pBlob->length());
+
+    Magick::Image image;
+    image.depth(8);
+    image.size( std::to_string(width) +"x"+std::to_string(height)) ;
+    image.magick( "rgba" );
+    image.read(blob);
+    image.magick( "png" );
+    image.write(m_destFilename);
 }
 
 void  WriterBMP::WriteDestFile ()

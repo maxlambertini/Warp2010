@@ -1,110 +1,262 @@
 -- *** DECLARATION PART ***
 
-BeginLayer_Module=RidgedMulti.new()
+Module1=Perlin.new()
 
-Cos_Module_20=Sin.new()
+ModuleDesert=Billow.new()
 
-EndLayer_Module=Billow.new()
+ModuleSea=Perlin.new()
 
-Invert_Module_40=Invert.new()
+TextureFlow_Module=RidgedMulti.new()
 
-Turbulence2_Module_30=Turbulence2.new()
+TurboDesert=Turbulence.new()
 
-BeginLayer_heightMap=NoiseMap.new()
+cylinderPole=Cylinders.new()
 
-EndLayer_heightMap=NoiseMap.new()
+turboPoles=Turbulence.new()
 
-BeginLayer_noiseMapBuilder1=NoiseMapBuilderSphere.new()
+HeightMapSea=NoiseMap.new()
 
-EndLayer_noiseMapBuilder1=NoiseMapBuilderSphere.new()
+TextureFlow_heightMap=NoiseMap.new()
 
-BeginLayer_renderer=RendererImage.new()
-renderer0002=RendererImage.new()
-BaseBump=Image.new()
-BaseBumpBmp=WriterBMP.new()
+heightMap=NoiseMap.new()
 
-BaseImage=Image.new()
-BaseImageBmp=WriterBMP.new()
+heightMapDesert=NoiseMap.new()
+
+heightMapPole=NoiseMap.new()
+
+TextureFlow_noiseMapBuilder1=NoiseMapBuilderSphere.new()
+
+heightMapBuilderPole=NoiseMapBuilderSphere.new()
+
+noiseMapBDesert=NoiseMapBuilderSphere.new()
+
+noiseMapBuilder1=NoiseMapBuilderSphere.new()
+
+noiseMapSea=NoiseMapBuilderSphere.new()
+
+renderer1=RendererImage.new()
+renderer2=RendererImage.new()
+renderer3=RendererImage.new()
+renderer4=RendererImage.new()
+renderer5=RendererImage.new()
+renderer0006=RendererImage.new()
+renderer0007=RendererImage.new()
+ImageSea=Image.new()
+ImageSeaBmp=WriterBMP.new()
+
+image1=Image.new()
+image1Bmp=WriterBMP.new()
+
+imageBump=Image.new()
+imageBumpBmp=WriterBMP.new()
+
+imageNormal=Image.new()
+imageNormalBmp=WriterBMP.new()
 
 
 -- *** INITIALIZATION PART ***
 
-BeginLayer_Module.oct=9
-BeginLayer_Module.freq=2.193
-BeginLayer_Module.lac=6.34
+Module1.oct=6
+Module1.seed=0
+Module1.freq=4.2
+Module1.lac=2.2
+Module1.pers=0.24
 
 
-Cos_Module_20.src1=BeginLayer_Module
-Cos_Module_20.freq=0.314
-Cos_Module_20.exp=0.4
-Cos_Module_20.value=0.2
+ModuleDesert.oct=6
+ModuleDesert.seed=0
+ModuleDesert.freq=4.5
+ModuleDesert.lac=4.3
+ModuleDesert.pers=0.35
 
 
-EndLayer_Module.oct=6
-EndLayer_Module.seed=0
-EndLayer_Module.freq=1.82225
-EndLayer_Module.lac=2.22733
-EndLayer_Module.pers=0.25685
+ModuleSea.oct=6
+ModuleSea.seed=0
+ModuleSea.freq=1.8
+ModuleSea.lac=5.3
+ModuleSea.pers=0.23
 
 
-Invert_Module_40.src1=Turbulence2_Module_30
+TextureFlow_Module.oct=6
+TextureFlow_Module.freq=6.6
+TextureFlow_Module.lac=1.66912
 
 
-Turbulence2_Module_30.src1=Cos_Module_20
-Turbulence2_Module_30.seed=0
-Turbulence2_Module_30.freq=4.5
-Turbulence2_Module_30.pow=0.125
-Turbulence2_Module_30.rough=2.125
+TurboDesert.src1=ModuleDesert
+TurboDesert.seed=0
+TurboDesert.freq=2.5
+TurboDesert.pow=0.55
+TurboDesert.rough=1.2
 
 
-BeginLayer_noiseMapBuilder1:SetBounds(-90.0,90.0,-180.0,180.0)
-BeginLayer_noiseMapBuilder1:SetDestSize(1024,512)
-BeginLayer_noiseMapBuilder1:SetSourceModule(Invert_Module_40)
-BeginLayer_noiseMapBuilder1:SetDestNoiseMap(BeginLayer_heightMap)
-BeginLayer_noiseMapBuilder1:Build()
+cylinderPole.freq=0.5
 
 
-
-EndLayer_noiseMapBuilder1:SetBounds(-90.0,90.0,-180.0,180.0)
-EndLayer_noiseMapBuilder1:SetDestSize(1024,512)
-EndLayer_noiseMapBuilder1:SetSourceModule(EndLayer_Module)
-EndLayer_noiseMapBuilder1:SetDestNoiseMap(EndLayer_heightMap)
-EndLayer_noiseMapBuilder1:Build()
-
+turboPoles.src1=cylinderPole
+turboPoles.seed=0
+turboPoles.freq=4.5
+turboPoles.pow=0.2
+turboPoles.rough=3.2
 
 
-BeginLayer_renderer:ClearGradient()
-BeginLayer_renderer:SetDestImage(BaseImage)
-BeginLayer_renderer:SetSourceNoiseMap(BeginLayer_heightMap)
-BeginLayer_renderer:AddGradientPoint(-1, Color.new(132,86,68,255))
-BeginLayer_renderer:AddGradientPoint(-0.883125, Color.new(157,115,89,255))
-BeginLayer_renderer:AddGradientPoint(-0.55995, Color.new(145,114,92,255))
-BeginLayer_renderer:AddGradientPoint(-0.26355, Color.new(129,84,74,255))
-BeginLayer_renderer:AddGradientPoint(-0.104725, Color.new(139,106,84,255))
-BeginLayer_renderer:AddGradientPoint(0.1694, Color.new(167,138,112,255))
-BeginLayer_renderer:AddGradientPoint(0.386475, Color.new(193,162,137,255))
-BeginLayer_renderer:AddGradientPoint(0.702075, Color.new(213,180,162,255))
-BeginLayer_renderer:AddGradientPoint(0.87385, Color.new(234,201,186,255))
-BeginLayer_renderer:AddGradientPoint(1, Color.new(229,192,182,255))
-BeginLayer_renderer:Render()
-
-
-renderer0002:ClearGradient()
-renderer0002:SetDestImage(BaseBump)
-renderer0002:SetSourceNoiseMap(BeginLayer_heightMap)
-renderer0002:AddGradientPoint(-1, Color.new(0,0,0,255))
-renderer0002:AddGradientPoint(1, Color.new(255,255,255,255))
-renderer0002:Render()
-
-
-BaseBumpBmp.DestFilename ="/home/maxl/imgBaseBump.bmp"
-BaseBumpBmp.SourceImage=BaseBump
-BaseBumpBmp:WriteDestFile()
+TextureFlow_noiseMapBuilder1:SetBounds(-90.0,90.0,-180.0,180.0)
+TextureFlow_noiseMapBuilder1:SetDestSize(1600,800)
+TextureFlow_noiseMapBuilder1:SetSourceModule(TextureFlow_Module)
+TextureFlow_noiseMapBuilder1:SetDestNoiseMap(TextureFlow_heightMap)
+TextureFlow_noiseMapBuilder1:Build()
 
 
 
-BaseImageBmp.DestFilename ="/home/maxl/imgBaseImage.bmp"
-BaseImageBmp.SourceImage=BaseImage
-BaseImageBmp:WriteDestFile()
+heightMapBuilderPole:SetBounds(-90.0,90.0,-180.0,180.0)
+heightMapBuilderPole:SetDestSize(1600,800)
+heightMapBuilderPole:SetSourceModule(turboPoles)
+heightMapBuilderPole:SetDestNoiseMap(heightMapPole)
+heightMapBuilderPole:Build()
+
+
+
+noiseMapBDesert:SetBounds(-90.0,90.0,-180.0,180.0)
+noiseMapBDesert:SetDestSize(1600,800)
+noiseMapBDesert:SetSourceModule(ModuleDesert)
+noiseMapBDesert:SetDestNoiseMap(heightMapDesert)
+noiseMapBDesert:Build()
+
+
+
+noiseMapBuilder1:SetBounds(-90.0,90.0,-180.0,180.0)
+noiseMapBuilder1:SetDestSize(1600,800)
+noiseMapBuilder1:SetSourceModule(Module1)
+noiseMapBuilder1:SetDestNoiseMap(heightMap)
+noiseMapBuilder1:Build()
+
+
+
+noiseMapSea:SetBounds(-90.0,90.0,-180.0,180.0)
+noiseMapSea:SetDestSize(1600,800)
+noiseMapSea:SetSourceModule(ModuleSea)
+noiseMapSea:SetDestNoiseMap(HeightMapSea)
+noiseMapSea:Build()
+
+
+
+renderer1:ClearGradient()
+renderer1:SetDestImage(image1)
+renderer1:SetSourceNoiseMap(heightMap)
+renderer1:SetBackgroundColor(Color.new(0,0,0,0))
+renderer1:AddGradientPoint(-1, Color.new(12,97,0,255))
+renderer1:AddGradientPoint(-0.0560472, Color.new(115,146,0,255))
+renderer1:AddGradientPoint(0.915663, Color.new(0,195,0,255))
+renderer1:AddGradientPoint(1, Color.new(255,255,255,255))
+renderer1:Render()
+
+
+renderer2:ClearGradient()
+renderer2:SetDestImage(image1)
+renderer2:SetSourceNoiseMap(heightMapDesert)
+renderer2:SetBackgroundColor(Color.new(0,0,0,0))
+renderer2:SetBackgroundImage(image1)
+renderer2:AddGradientPoint(-1, Color.new(251,247,244,0))
+renderer2:AddGradientPoint(-0.799197, Color.new(7,0,0,0))
+renderer2:AddGradientPoint(-0.0281124, Color.new(208,209,95,65))
+renderer2:AddGradientPoint(1, Color.new(232,212,117,135))
+renderer2:Render()
+
+
+renderer3:ClearGradient()
+renderer3:SetDestImage(ImageSea)
+renderer3:SetSourceNoiseMap(HeightMapSea)
+renderer3:SetBackgroundColor(Color.new(0,0,0,0))
+renderer3:SetBackgroundImage(image1)
+renderer3:AddGradientPoint(-1, Color.new(0,31,174,255))
+renderer3:AddGradientPoint(-0.590361, Color.new(0,14,239,255))
+renderer3:AddGradientPoint(0.0240964, Color.new(0,80,235,255))
+renderer3:AddGradientPoint(0.168675, Color.new(85,226,234,255))
+renderer3:AddGradientPoint(0.183381, Color.new(109,185,114,255))
+renderer3:AddGradientPoint(0.253012, Color.new(120,166,59,255))
+renderer3:AddGradientPoint(0.337349, Color.new(214,176,146,0))
+renderer3:AddGradientPoint(0.506024, Color.new(127,207,251,0))
+renderer3:AddGradientPoint(0.903614, Color.new(129,167,59,255))
+renderer3:AddGradientPoint(0.939759, Color.new(117,225,251,255))
+renderer3:AddGradientPoint(1, Color.new(0,203,224,255))
+renderer3:Render()
+
+
+renderer4:ClearGradient()
+renderer4:SetDestImage(ImageSea)
+renderer4:SetSourceNoiseMap(heightMapPole)
+renderer4:SetBackgroundColor(Color.new(0,0,0,0))
+renderer4:SetBackgroundImage(ImageSea)
+renderer4:AddGradientPoint(-1, Color.new(0,0,0,0))
+renderer4:AddGradientPoint(0.329317, Color.new(254,251,248,0))
+renderer4:AddGradientPoint(0.373494, Color.new(255,253,251,255))
+renderer4:AddGradientPoint(1, Color.new(255,254,252,255))
+renderer4:Render()
+
+
+renderer5:ClearGradient()
+renderer5:SetDestImage(imageBump)
+renderer5:SetSourceNoiseMap(HeightMapSea)
+renderer5:SetBackgroundColor(Color.new(0,0,0,0))
+renderer5:AddGradientPoint(-1, Color.new(255,255,255,255))
+renderer5:AddGradientPoint(0.167, Color.new(255,255,255,255))
+renderer5:AddGradientPoint(0.168, Color.new(0,0,0,255))
+renderer5:AddGradientPoint(0.91, Color.new(0,0,0,255))
+renderer5:AddGradientPoint(0.911, Color.new(255,255,255,255))
+renderer5:AddGradientPoint(1, Color.new(255,255,255,255))
+renderer5:Render()
+
+
+renderer0006:ClearGradient()
+renderer0006:SetDestImage(imageNormal)
+renderer0006:SetSourceNoiseMap(TextureFlow_heightMap)
+renderer0006:SetBackgroundColor(Color.new(0,0,0,0))
+renderer0006:AddGradientPoint(0.012844, Color.new(0,0,0,255))
+renderer0006:AddGradientPoint(0.856, Color.new(255,255,255,255))
+renderer0006:AddGradientPoint(1, Color.new(255,255,255,255))
+renderer0006:Render()
+
+
+renderer0007:ClearGradient()
+renderer0007:SetDestImage(imageNormal)
+renderer0007:SetSourceNoiseMap(HeightMapSea)
+renderer0007:SetBackgroundColor(Color.new(0,0,0,0))
+renderer0007:SetBackgroundImage(imageNormal)
+renderer0007:AddGradientPoint(-1, Color.new(0,0,0,255))
+renderer0007:AddGradientPoint(0.255046, Color.new(0,0,0,255))
+renderer0007:AddGradientPoint(0.574312, Color.new(0,0,0,0))
+renderer0007:AddGradientPoint(0.84456, Color.new(0,0,0,0))
+renderer0007:AddGradientPoint(0.904, Color.new(255,255,255,0))
+renderer0007:AddGradientPoint(1, Color.new(255,255,255,255))
+renderer0007:Render()
+
+
+ImageSeaBmp.SourceImage=ImageSea
+imageNormalBmp.SourceImage=imageNormal
+image1Bmp.SourceImage=image1
+imageBumpBmp.SourceImage=imageBump
+
+ImageSeaBmp.DestFilename ="/home/maxl/imgImageSea.bmp"
+ImageSeaBmp:WriteDestFile()
+
+image1Bmp.DestFilename ="/home/maxl/imgimage1.bmp"
+image1Bmp:WriteDestFile()
+
+imageBumpBmp.DestFilename ="/home/maxl/imgimageBump.bmp"
+imageBumpBmp:WriteDestFile()
+
+imageNormalBmp.DestFilename ="/home/maxl/imgimageNormal.bmp"
+imageNormalBmp:WriteDestFile()
+
+ImageSeaBmp.DestFilename ="/home/maxl/imgImageSea.png"
+ImageSeaBmp:WritePngFile()
+
+image1Bmp.DestFilename ="/home/maxl/imgimage1.png"
+image1Bmp:WritePngFile()
+
+imageBumpBmp.DestFilename ="/home/maxl/imgimageBump.png"
+imageBumpBmp:WritePngFile()
+
+imageNormalBmp.DestFilename ="/home/maxl/imgimageNormal.png"
+imageNormalBmp:WritePngFile()
 
 

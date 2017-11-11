@@ -33,7 +33,6 @@
 #include <noise/noise.h>
 
 
-
 using namespace noise;
 
 namespace noise
@@ -1247,7 +1246,9 @@ namespace noise
         /// method to specify the image, then call the SetDestFilename()
         /// method to specify the name of the file to write.
         void WriteDestFile ();
+        void WritePngFile();
         noise::uint8* GetBRGABuffer();
+        noise::uint8* GetRGBABuffer();
 
       protected:
 

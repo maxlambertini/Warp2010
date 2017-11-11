@@ -82,6 +82,11 @@ Libnoiselua::Libnoiselua()
                              "freq", sol::property(&Cylinders::GetFrequency, &Cylinders::SetFrequency)
                              );
 
+    _lua.new_usertype<Cylinders>("Cylinder",
+                             sol::constructors<Cylinders>(),
+                             "freq", sol::property(&Cylinders::GetFrequency, &Cylinders::SetFrequency)
+                             );
+
     _lua.new_usertype<Displace>("Displace",
                              sol::constructors<Displace>(),
                              "src1", sol::property(&Displace::GetSrc1, &Displace::SetSrc1),
@@ -286,7 +291,8 @@ Libnoiselua::Libnoiselua()
                                 sol::constructors<WriterBMP()>(),
                                 "DestFilename", sol::property(&WriterBMP::GetDestFilename,&WriterBMP::SetDestFilename),
                                 "SourceImage", sol::property(&WriterBMP::GetSourceImage,&WriterBMP::SetSourceImage),
-                                "WriteDestFile",&WriterBMP::WriteDestFile);
+                                "WriteDestFile",&WriterBMP::WriteDestFile,
+                                "WritePngFile",&WriterBMP::WritePngFile);
 
     _lua.new_usertype<RendererImage>("RendererImage",
                                     sol::constructors<RendererImage()>(),

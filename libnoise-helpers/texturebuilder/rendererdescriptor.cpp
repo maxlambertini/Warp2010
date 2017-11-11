@@ -31,7 +31,8 @@ QString RendererDescriptor::luaInitialization() {
     QString res="";
     res = res + _name + ":ClearGradient()\n" +
             _name + ":SetDestImage(" + _destImage + ")\n" +
-            _name + ":SetSourceNoiseMap(" + _heightMap + ")\n";
+            _name + ":SetSourceNoiseMap(" + _heightMap + ")\n" +
+            _name + ":SetBackgroundColor(Color.new(0,0,0,0))\n";
     if (_bumpMap != "") {
         res = res + _name + ":SetBumpNoiseMap(" + _bumpMap + ")\n";
     }
