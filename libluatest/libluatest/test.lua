@@ -78,6 +78,8 @@ bmp    = WriterBMP.new()
 bmp.DestFilename = "/home/maxl/pippo.bmp"
 bmp.SourceImage = img
 bmp:WriteDestFile()
+bmp.DestFilename = "/home/maxl/pippo.png"
+bmp:WritePngFile()
 
 
 print ("Objects created...")

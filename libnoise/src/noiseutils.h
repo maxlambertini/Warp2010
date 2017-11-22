@@ -29,6 +29,8 @@
 #include <sstream>
 #include <iomanip>
 #include <random>
+#include <vector>
+#include <map>
 
 #include <noise/noise.h>
 
@@ -132,13 +134,16 @@ namespace noise
     private:
         std::default_random_engine _generator;
         std::uniform_int_distribution<int> _distribution;
+        std::uniform_real_distribution<> _distDouble;
         Rand256() {
             _distribution = std::uniform_int_distribution<int>(0,256 *256 *256 -1);
+            _distDouble = std::uniform_real_distribution<>(0.0,1.0);
         }
     public:
         noise::uint8 value() { return static_cast<noise::uint8>(_distribution(_generator) % 256) ; }
-        int intValue (int n) { return _distribution(_generator) % n; }
 
+        int intValue (int n) { return _distribution(_generator) % n; }
+        double doubleValue (double n = 1.0) { return _distDouble(_generator) * n; }
     };
 
     /// Defines a color.
@@ -185,6 +190,7 @@ namespace noise
         /// @param randomizeAlpha uses a random alpha value when creating random color
         static Color RandomColor(bool randomizeAlpha = false);
 
+
         /// Method returning a randomized color from an existing color
         ///
         /// @param step range of random choice on a 0-255 scale, default 20
@@ -192,8 +198,12 @@ namespace noise
         /// @param randomizes this way even alpha value.
         Color randomizeColor (int step = 20, bool ascending = true, bool randomizeAlpha = false);
 
+        Color randomizeByHSV (int hue, int saturation, int value);
+
         Hsv hsv();
+
         void setColorFromHsv(Hsv in);
+        void setColorFromHsv(noise::uint8 hue, noise::uint8 sat, noise::uint8 value);
 
         /// Constructor.
         ///
@@ -333,6 +343,17 @@ namespace noise
           return m_gradientPointCount;
         }
 
+        /// Returns a std::vector containing GradientPoints
+        ///
+        std::vector<GradientPoint> GetGradientPoints();
+
+        ///
+        /// \brief CreateRandomGradient
+        /// \param nPoints -- number of points to create
+        /// \return Creates a GradientColor instance
+        ///
+        static GradientColor CreateRandomGradient ();
+
       private:
 
         /// Determines the array index in which to insert the gradient point
@@ -379,6 +400,8 @@ namespace noise
         /// A color object that is used by a gradient object to store a
         /// temporary value.
         mutable Color m_workingColor;
+
+
     };
 
     /// Implements a noise map, a 2-dimensional array of floating-point

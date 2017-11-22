@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <qcolorops.h>
 #include <gradienthelper.h>
 #include <QHBoxLayout>
+#include <vector>
 
 RendererDescDialog::RendererDescDialog(QWidget *parent) : QDialog(parent)
 {
@@ -130,30 +131,14 @@ void RendererDescDialog::on_create_random_gradient() {
     }
     */
     QLinearGradient grad;
-    grad.stops().clear();
-    double d = 0.0;
-    int r1,r2,r3;
-    r1 = SSGX::dn(32)+223;
-    r2 = SSGX::dn(64)+191;
-    r3 = SSGX::dn(92)+163;
-    grad.setColorAt(0, QColor(r1,r2,r3));
-    while ( d < 0.95) {
-        r1 = SSGX::dn(32)+223;
-        r2 = SSGX::dn(64)+191;
-        r3 = SSGX::dn(92)+163;
-        if ( d > 0.0) {
-            d+= 0.05;
-            grad.setColorAt(d, QColor(r1,r2,r3));
-        }
-        d += (0.015 + 0.2*SSGX::floatRand());
-        if (d < 1.0)
-            grad.setColorAt(d, QColor(r1,r2,r3));
-    }
-    r1 = SSGX::dn(32)+223;
-    r2 = SSGX::dn(64)+191;
-    r3 = SSGX::dn(92)+163;
-    grad.setColorAt(1, QColor(r1,r2,r3));
+    std::vector<utils::GradientPoint> points = utils::GradientColor::CreateRandomGradient().GetGradientPoints();
 
+    grad.stops().clear();
+    for (utils::GradientPoint p : points ) {
+        double d = (p.pos + 1.0) / 2.0;
+        QColor c(p.color.red, p.color.green, p.color.blue, p.color.alpha);
+        grad.setColorAt(d,c);
+    }
     this->gradientEditor->setGradient(grad);
 
 }

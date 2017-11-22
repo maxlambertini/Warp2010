@@ -27,7 +27,11 @@
 
 #include "noiseutils.h"
 #include <random>
-#include <ImageMagick-6/Magick++.h>
+#include <map>
+#include <vector>
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+
+#include <stb_image_write.h>
 
 using namespace noise;
 using namespace noise::model;
@@ -126,10 +130,15 @@ using namespace noise::utils;
 
 Color Color::RandomColor(bool randomizeAlpha) {
    Color c;
-   c.red = Rand256::instance().value();
-   c.green = Rand256::instance().value();
-   c.blue = Rand256::instance().value();
-   if(randomizeAlpha) c.red = Rand256::instance().value();
+   Hsv h;
+   h.h = Rand256::instance().value();
+   h.s = Rand256::instance().value();
+   h.v = Rand256::instance().value();
+   if (h.v < 128)
+       h.v += 128;
+   c.setColorFromHsv(h);
+
+   if(randomizeAlpha) c.alpha = Rand256::instance().value();
    return c;
 }
 
@@ -228,6 +237,10 @@ Color Color::change(int hue, int saturation,int value) {
 
 }
 
+void Color::setColorFromHsv(noise::uint8 hue, noise::uint8 sat, noise::uint8 value) {
+    Hsv h = { hue, sat, value };
+    return this->setColorFromHsv(h);
+}
 
 void Color::setColorFromHsv(Hsv hsv) {
         Rgb         rgb;
@@ -275,6 +288,24 @@ void Color::setColorFromHsv(Hsv hsv) {
     this->red = rgb.r;
     this->green = rgb.g;
     this->blue = rgb.b;
+}
+
+Color Color::randomizeByHSV(int hue, int saturation, int value) {
+    auto hsv = this->hsv();
+    int dh = hsv.h + (Rand256::instance().intValue(hue*2) - hue) % 256;
+    int ds = hsv.s + (Rand256::instance().intValue(saturation*2) - saturation) % 256;
+    int dv = hsv.v + (Rand256::instance().intValue(value*2) - value) % 256;
+
+    if (dv < 120)
+        dv = 255;
+    Color cRet;
+    Hsv hsv2;
+    hsv2.h = (noise::uint8)dh;
+    hsv2.s = (noise::uint8)ds;
+    hsv2.v = (noise::uint8)dv;
+    cRet.setColorFromHsv(hsv2);
+    return cRet;
+
 }
 
 Color Color::randomizeColor(int step, bool ascending, bool randomizeAlpha) {
@@ -423,6 +454,52 @@ void GradientColor::InsertAtPos (int insertionPos, double gradientPos,
   // the new gradient point.
   m_pGradientPoints[insertionPos].pos = gradientPos ;
   m_pGradientPoints[insertionPos].color = gradientColor;
+}
+
+std::vector<GradientPoint> GradientColor::GetGradientPoints() {
+    std::vector<GradientPoint> pt;
+    if (this->GetGradientPointCount() > 0) {
+        for (int h = 0; h < this->GetGradientPointCount(); h++) {
+            GradientPoint gp1 = this->GetGradientPointArray()[h];
+
+            pt.push_back(gp1);
+        }
+    }
+    return pt;
+}
+
+GradientColor GradientColor::CreateRandomGradient() {
+    int numPoints = 5 + Rand256::instance().intValue(5);
+    double dDelta = 2.0 / (double)(numPoints);
+    double dStep = dDelta * 0.2;
+    GradientColor gCol;
+    gCol.Clear();
+    double nPoint = -1.0;
+    Color col = Color::RandomColor();
+    col.alpha = 255;
+    while (nPoint < 0.96) {
+        col = col.randomizeByHSV(16,64,48);
+        col.alpha = 255;
+        auto hsv = col.hsv();
+        if (hsv.v < 120)
+        {
+            hsv.v = 120;
+            col.setColorFromHsv(hsv);
+        }
+        gCol.AddGradientPoint(nPoint,col);
+        auto step = Rand256::instance().doubleValue(2.0*dStep) -dStep;
+        nPoint += (dDelta + step);
+        if (Rand256::instance().intValue(7) == 5 && nPoint < 0.95) {
+            col = col.randomizeByHSV(64,64,64);
+            col.alpha = 255;
+            gCol.AddGradientPoint(nPoint,col);
+            nPoint += 0.01;
+        }
+    }
+    col = col.randomizeByHSV(64,64,64);
+    col.alpha = 255;
+    gCol.AddGradientPoint(1.0,col);
+    return gCol;
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -872,6 +949,8 @@ void WriterBMP::WritePngFile()
     std::unique_ptr<noise::uint8[]> buff(this->GetRGBABuffer());
     void *voidBuf = (void *)buff.get() ;
 
+    stbi_write_png(m_destFilename.c_str() ,width,height,4,voidBuf,width*4);
+    /*
     Magick::InitializeMagick(".");
     Magick::Blob blob(voidBuf, destSize);
 
@@ -886,6 +965,7 @@ void WriterBMP::WritePngFile()
     image.read(blob);
     image.magick( "png" );
     image.write(m_destFilename);
+    */
 }
 
 void  WriterBMP::WriteDestFile ()

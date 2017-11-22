@@ -178,23 +178,20 @@ void RendererDescriptor::randomizeGradientInfo()
     auto startingColor = utils::Color::RandomColor();
     startingColor.alpha = 255;
     bool direction = SSGX::d10() % 2 == 0;
-    while (dRes < 1.0) {
-        auto grad = GradientInfo(dRes, static_cast<int>(startingColor.red),
-                                 static_cast<int>(startingColor.green),
-                                 static_cast<int>(startingColor.blue),
-                                 static_cast<int>(startingColor.alpha));
-        _gradientInfo.append(grad);
-        qDebug() << std::get<0>(grad) << "," << std::get<1>(grad) << "," << std::get<2>(grad) << "," << std::get<3>(grad);
-        dRes +=  0.1+SSGX::floatRand()*0.25;
-            startingColor = startingColor.change(10,20,30);
-        if (SSGX::d6() == 4)
-            direction = !direction;
+    utils::GradientColor rndGradient = utils::GradientColor::CreateRandomGradient();
+    std::vector<utils::GradientPoint> points = rndGradient.GetGradientPoints();
+
+    for (utils::GradientPoint grad : points ) {
+        auto gInfo = GradientInfo (
+                    grad.pos,
+                    (int)grad.color.red,
+                    (int)grad.color.green,
+                    (int)grad.color.blue,
+                    (int)grad.color.alpha
+                    );
+        _gradientInfo.append(gInfo);
     }
-    auto grad = GradientInfo(1.0, static_cast<int>(startingColor.red),
-                             static_cast<int>(startingColor.green),
-                             static_cast<int>(startingColor.blue),
-                             static_cast<int>(startingColor.alpha));
-    _gradientInfo.append(grad);
+
 }
 
 void RendererDescriptor::fromJson(const QJsonObject& json) {
