@@ -26,6 +26,8 @@
 #include <math.h>
 #include "basictypes.h"
 
+
+
 namespace noise
 {
 

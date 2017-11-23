@@ -9,13 +9,11 @@ TARGET = libnoise-warp
 TEMPLATE = lib
 CONFIG += c++14
 
-unix {
-    CONFIG += link_pkgconfig
-    PKGCONFIG += Magick++
-}
+DEFINES += LIBNOISEWARP_LIBRARY
 
-INCLUDEPATH += $$PWD/../libnoise/src
-INCLUDEPATH += $$PWD/../stb
+
+INCLUDEPATH += $$PWD/../libnoise/src $$PWD/../stb
+# INCLUDEPATH += $$PWD/../stb
 # INCLUDEPATH += /usr/include/ImageMagick-6
 DEPENDPATH += $$PWD/../libnoise/src
 
@@ -109,10 +107,7 @@ HEADERS += \
     ../libnoise/src/noise/latlon.h \
     ../libnoise/src/noise/noisegen.h \
     ../libnoise/src/noise/noise.h \
-    ../libnoise/src/noiseutils.h \
-    ../stb/stb_image.h \
-    ../stb/stb_image_write.h
-
+    ../libnoise/src/noiseutils.h
 
 
 unix {

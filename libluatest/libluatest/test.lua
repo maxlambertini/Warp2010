@@ -75,10 +75,10 @@ rnd:Render()
 
 
 bmp    = WriterBMP.new()
-bmp.DestFilename = "/home/maxl/pippo.bmp"
+bmp.DestFilename = "c:/tmp/pippo.bmp"
 bmp.SourceImage = img
 bmp:WriteDestFile()
-bmp.DestFilename = "/home/maxl/pippo.png"
+bmp.DestFilename = "c:/tmp/pippo.png"
 bmp:WritePngFile()
 
 

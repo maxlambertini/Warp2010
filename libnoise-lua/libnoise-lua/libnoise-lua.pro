@@ -10,7 +10,7 @@ TEMPLATE = lib
 
 CONFIG += c++14
 
-LIBS += -llua
+unix:LIBS += -llua
 
 DEFINES += LIBNOISELUA_LIBRARY
 
@@ -18,11 +18,22 @@ SOURCES += libnoiselua.cpp
 
 HEADERS += libnoiselua.h\
         libnoise-lua_global.h \
-    sol.hpp
+        sol.hpp
+
+QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter  -Wno-reorder
+
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
+
+}
+
+win32 {
+    LIBS += -L$$PWD/../../win_lua -llua53
+    INCLUDEPATH += $$PWD/../../win_lua/include
+    QMAKE_CXXFLAGS += -Wa,-mbig-obj
+    # DEFINES += SOL_USING_CXX_LUA
 }
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../libnoise-warp/release/ -llibnoise-warp

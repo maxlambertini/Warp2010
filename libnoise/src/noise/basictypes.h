@@ -23,14 +23,16 @@
 #ifndef NOISE_BASICTYPES_H
 #define NOISE_BASICTYPES_H
 
-#include <QtCore/qglobal.h>
 
-
-#if defined(LIBNOISEWARP_LIBRARY)
-#  define NOISE_SHARED_EXPORT Q_DECL_EXPORT
-#else
-#  define NOISE_SHARED_EXPORT Q_DECL_IMPORT
+#  ifdef Q_OS_WIN
+#    define Q_DECL_EXPORT     __declspec(dllexport)
+#    define Q_DECL_IMPORT     __declspec(dllimport)
+# else
+#    define Q_DECL_EXPORT
+#    define Q_DECL_IMPORT
 #endif
+
+#define NOISE_SHARED_EXPORT Q_DECL_EXPORT
 
 
 
