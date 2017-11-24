@@ -88,8 +88,8 @@ EndLayer_renderer:AddGradientPoint(0.833333, Color.new(229,233,231,0))
 EndLayer_renderer:AddGradientPoint(1, Color.new(233,234,162,0))
 EndLayer_renderer:Render()
 
-BaseImageBmp.DestFilename ="c:/tmp/imgImageSea777.bmp"
+BaseImageBmp.DestFilename ="./imgImageSea777.bmp"
 BaseImageBmp:WriteDestFile()
-BaseImageBmp.DestFilename ="c:/tmp/imgImageSea777.png"
+BaseImageBmp.DestFilename ="./imgImageSea777.png"
 BaseImageBmp:WritePngFile()
 

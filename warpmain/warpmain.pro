@@ -207,10 +207,8 @@ texjson.files=textures/*
 #INSTALLS += texjson
 
 win32 {
-
 win32:CONFIG(release, debug|release):copydata.commands = $$shell_path($(COPY_DIR) $$PWD/textures) $$shell_path($$OUT_PWD/release/textures)
 win32:CONFIG(debug, debug|release):  copydata.commands = $$shell_path($(COPY_DIR) $$PWD/textures) $$shell_path($$OUT_PWD/debug/textures)
-
 first.depends = $(first) copydata
 export(first.depends)
 export(copydata.commands)
