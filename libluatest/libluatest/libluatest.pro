@@ -5,6 +5,8 @@ CONFIG -= qt
 
 SOURCES += main.cpp
 
+QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter  -Wno-reorder
+
 
 win32 {
 win32:CONFIG(release, debug|release):copydata.commands = $$shell_path($(COPY) $$PWD/*.lua) $$shell_path($$OUT_PWD/release/)
@@ -43,7 +45,9 @@ win32 {
     QMAKE_CXXFLAGS += -Wa,-mbig-obj
     # DEFINES += SOL_USING_CXX_LUA
 }
-
+unix {
+    LIBS += -llua
+}
 
 DISTFILES += \
     test.lua \

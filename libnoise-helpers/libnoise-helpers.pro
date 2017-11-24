@@ -10,6 +10,8 @@ TARGET = libnoise-helpers
 TEMPLATE = lib
 CONFIG += c++14
 
+QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter  -Wno-reorder
+
 
 DEFINES += LIBNOISEHELPERS_LIBRARY
 

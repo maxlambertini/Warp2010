@@ -23,17 +23,19 @@
 #ifndef NOISE_BASICTYPES_H
 #define NOISE_BASICTYPES_H
 
-
-#  ifdef Q_OS_WIN
-#    define Q_DECL_EXPORT     __declspec(dllexport)
-#    define Q_DECL_IMPORT     __declspec(dllimport)
-# else
-#    define Q_DECL_EXPORT
-#    define Q_DECL_IMPORT
+#ifndef Q_DECL_EXPORT
+    #  ifdef Q_OS_WIN
+    #    define Q_DECL_EXPORT     __declspec(dllexport)
+    #    define Q_DECL_IMPORT     __declspec(dllimport)
+    # else
+    #    define Q_DECL_EXPORT
+    #    define Q_DECL_IMPORT
+    #endif
 #endif
 
+#ifndef NOISE_SHARED_EXPORT
 #define NOISE_SHARED_EXPORT Q_DECL_EXPORT
-
+#endif
 
 
 // You may need to modify these constants for your compiler or platform.
