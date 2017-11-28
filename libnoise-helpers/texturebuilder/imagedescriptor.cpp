@@ -35,8 +35,8 @@ QString ImageDescriptor::luaInitialization() {
     bmp.SourceImage = img
     bmp:WriteDestFile()
     */
-    QString res = _name+"Bmp.DestFilename =\"/home/maxl/img" + _name + ".bmp\"\n"
+    QString res = _name+"Bmp.DestFilename =\"/home/maxl/img" + _name + ".png\"\n"
             + _name + "Bmp.SourceImage=" +  _name + "\n"
-            + _name + "Bmp:WriteDestFile()\n\n";
+            + _name + "Bmp:WritePngFile()\n\n";
     return res;
 }

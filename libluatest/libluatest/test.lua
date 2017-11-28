@@ -1,85 +1,56 @@
-print ("Hello, Warp!")
+-- *** DECLARATION PART ***
 
-img    = Image.new()
-hm     = NoiseMap.new()
-hm2    = NoiseMap.new()
+Ridged2=Perlin.new()
 
-print ("Perlin....")
-perlin = Perlin.new()
+RidgedMap=NoiseMap.new()
 
-print ("rmf....")
-rmf = RidgedMulti.new()
+Ridged2Map=NoiseMapBuilderSphere.new()
 
-print ("voro....")
-voro = Voronoi.new()
-
-perlin.freq = 1.0 + math.random()*1.5
-perlin.octave = 8
-perlin.lac = 1.5+ 4.5*math.random()
-perlin.pers = 0.2 + 0.35*math.random()
-perlin.seed = math.random(0,99999)
-
-rmf.freq = 1.0 + math.random()*1.5
-rmf.octave = 8
-rmf.lac = 1.5+ 4.5*math.random()
-rmf.seed = math.random(0,99999)
-
-voro.freq = 1.0 + math.random()*1.5
-voro.enableDist = true
-voro.displ = 0.0
-voro.seed = math.random(0,99999)
-
-print ("Turbo")
-
-turbo = Turbulence2.new()
-turbo.freq = 1.5 * 5.0*math.random()
-turbo.pow = 0.05 + 0.3*math.random()
-turbo.seed = math.random(0,99999)
-turbo.rough = 1.0 + math.random()*2.0
-turbo.src1 = perlin
-
-_abs = Abs.new()
-_abs.src1 = voro
-
-blend = Blend.new()
-blend.src1 = turbo
-blend.src2 = _abs
-blend.ctl = rmf
+BeginLayer_renderer=RendererImage.new()
+BaseImage=Image.new()
+BaseImageBmp=WriterBMP.new()
 
 
-print ("Sphere")
-hmb    = NoiseMapBuilderSphere.new()
-hmb:SetBounds (-90.0, 90.0, -180.0, 180.0);
-hmb:SetDestSize (2048, 1024);
-hmb:SetSourceModule (blend);
-hmb:SetDestNoiseMap (hm);
-hmb:Build ();
+-- *** INITIALIZATION PART ***
+
+w = 100
+for i = -1,1,0.077 do
+    w = w +1;
+
+    print (w)
+
+    Ridged2.oct=12
+    Ridged2.seed=0
+    Ridged2.freq=2.2+i
+    Ridged2.lac=4.0+i*3.0
+    Ridged2.pers=0.20-i/10.0
+
+
+    Ridged2Map:SetBounds(-90.0,90.0,-180.0,180.0)
+    Ridged2Map:SetDestSize(1024,512)
+    Ridged2Map:SetSourceModule(Ridged2)
+    Ridged2Map:SetDestNoiseMap(RidgedMap)
+    Ridged2Map:Build()
 
 
 
-print ("Renderer")
-rnd    = RendererImage.new()
-
-print ("Renderer")
-rnd:ClearGradient ()
-rnd:AddGradientPoint (-1.00, Color.new(  0,  0,128,255))
-rnd:AddGradientPoint ( 0.10, Color.new(  0,  0,255,255))
-rnd:AddGradientPoint ( 0.30, Color.new(  0,  0,255,255))
-rnd:AddGradientPoint ( 0.32, Color.new(  0,128,  0,255))
-rnd:AddGradientPoint ( 0.77, Color.new(255,192,128,255))
-rnd:AddGradientPoint ( 0.97, Color.new(255,255,  0,255))
-rnd:AddGradientPoint ( 1.00, Color.new(255,255,255,255))
-rnd:SetSourceNoiseMap (hm);
-rnd:SetDestImage (img);
-rnd:Render()
+    BeginLayer_renderer:ClearGradient()
+    BeginLayer_renderer:SetDestImage(BaseImage)
+    BeginLayer_renderer:SetSourceNoiseMap(RidgedMap)
+    BeginLayer_renderer:SetBackgroundColor(Color.new(0,0,0,0))
+    BeginLayer_renderer:AddGradientPoint(-1, Color.new(22,66,169,255))
+    BeginLayer_renderer:AddGradientPoint(-0.0526316, Color.new(62,102,196,255))
+    BeginLayer_renderer:AddGradientPoint(0.046252, Color.new(62,102,196,255))
+    BeginLayer_renderer:AddGradientPoint(0.0909091, Color.new(235,228,171,255))
+    BeginLayer_renderer:AddGradientPoint(0.253589, Color.new(235,206,114,255))
+    BeginLayer_renderer:AddGradientPoint(0.496013, Color.new(92,181,59,255))
+    BeginLayer_renderer:AddGradientPoint(0.945774, Color.new(158,131,52,255))
+    BeginLayer_renderer:AddGradientPoint(1, Color.new(255,255,255,255))
+    BeginLayer_renderer:Render()
 
 
-bmp    = WriterBMP.new()
-bmp.DestFilename = "./pippo.bmp"
-bmp.SourceImage = img
-bmp:WriteDestFile()
-bmp.DestFilename = "./pippo.png"
-bmp:WritePngFile()
+    BaseImageBmp.DestFilename ="./imgBaseImage." .. w .. "_" .. i .. ".png"
+    BaseImageBmp.SourceImage=BaseImage
+    BaseImageBmp:WritePngFile()
+end
 
-
-print ("Objects created...")

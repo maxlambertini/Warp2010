@@ -266,6 +266,16 @@ QString ModuleDescriptor::luaInitialization() {
     if (_propertiesToExport.contains("uBound")) data = data + _name + ".uBound=" + QString::number(this->_uBound) + "\n";
     if (_propertiesToExport.contains("lBound")) data = data + _name + ".lBound=" + QString::number(this->_lBound) + "\n";
 
+    if (_propertiesToExport.contains("x")) data = data + _name + ".x=" + QString::number(this->_x) + "\n";
+    if (_propertiesToExport.contains("y"))   data = data + _name + ".y=" + QString::number(this->_y) + "\n";
+    if (_propertiesToExport.contains("z")) data = data + _name + ".z=" + QString::number(this->_z) + "\n";
+
+    if (_propertiesToExport.contains("displ"))   data = data + _name + ".displ=" + QString::number(this->_y) + "\n";
+    if (_propertiesToExport.contains("enableDist")) data = data + _name + ".enableDist=" + (this->_enableDist ? QString("true") : QString("false")) +  "\n";
+
+    if (_propertiesToExport.contains("scale")) data = data + _name + ".bias=" + QString::number(this->_bias) + "\n";
+    if (_propertiesToExport.contains("bias"))   data = data + _name + ".scale=" + QString::number(this->_scale) + "\n";
+
     if (_moduleType == "Curve") {
         //control points
         for (auto cp = this->cPoints().begin(); cp != this->cPoints().end(); ++cp) {

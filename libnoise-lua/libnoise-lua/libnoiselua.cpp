@@ -119,6 +119,12 @@ Libnoiselua::Libnoiselua()
                              "src2", sol::property(&Min::GetSrc2, &Min::SetSrc2)
                              );
 
+    _lua.new_usertype<Max>("Max",
+                             sol::constructors<Max()>(),
+                             "src1", sol::property(&Max::GetSrc1, &Max::SetSrc1),
+                             "src2", sol::property(&Max::GetSrc2, &Max::SetSrc2)
+                             );
+
     _lua.new_usertype<Multiply>("Multiply",
                              sol::constructors<Multiply()>(),
                              "src1", sol::property(&Multiply::GetSrc1, &Multiply::SetSrc1),
