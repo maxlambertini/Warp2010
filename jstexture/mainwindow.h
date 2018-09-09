@@ -70,6 +70,8 @@ class MainWindow : public QMainWindow
     QAction *action_LowerRenderer;
     QAction *action_RaiseRenderer;
 
+    QAction *action_RenderLua;
+
     QMenu *treeMenu;
     QAction *action_edit_texture_item;
     QAction *action_delete_texture_item;
@@ -122,6 +124,11 @@ public:
     void EditHeightmapBuilderDescriptor(QString txt);
     
     void EditModuleDescriptor(QString txt);
+
+    static void doDeleteLater (NoiseMapBuilderDescriptor* obj) {
+        qDebug() << "Deleting..." << obj;
+        obj->deleteLater();
+    }
     
 private slots:
     void on_action_new_texture_triggered();
@@ -139,6 +146,8 @@ private slots:
 
     void on_action_edit_texture_item();
     void on_action_delete_texture_item();
+
+    void on_action_RenderLua();
 
     void on_listFiles_clicked(QListWidgetItem* idx);
 

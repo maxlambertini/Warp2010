@@ -45,6 +45,8 @@
 #include <QtWidgets/QWidget>
 #include <QtCore/QMap>
 #include "ui_qtgradientview.h"
+#include <QAction>
+
 
 QT_BEGIN_NAMESPACE
 

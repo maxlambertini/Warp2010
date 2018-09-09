@@ -73,3 +73,22 @@ else:unix: LIBS += -L$$OUT_PWD/../libnoise-warp/ -llibnoise-warp
 
 INCLUDEPATH += $$PWD/../libnoise/src
 DEPENDPATH += $$PWD/../libnoise/src
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libnoise-lua/libnoise-lua/release/ -llibnoise-lua
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libnoise-lua/libnoise-lua/debug/ -llibnoise-lua
+else:unix: LIBS += -L$$OUT_PWD/../libnoise-lua/libnoise-lua/ -llibnoise-lua
+
+INCLUDEPATH += $$PWD/../libnoise-lua/libnoise-lua/
+DEPENDPATH += $$PWD/../libnoise-lua/libnoise-lua/
+
+win32 {
+    LIBS += -L$$PWD/../../win_lua -llua53
+    INCLUDEPATH += $$PWD/../../win_lua/include
+    QMAKE_CXXFLAGS += -Wa,-mbig-obj
+    # DEFINES += SOL_USING_CXX_LUA
+}
+unix {
+    LIBS += -llua5.3
+    INCLUDEPATH += /usr/include/lua5.3/
+}
+

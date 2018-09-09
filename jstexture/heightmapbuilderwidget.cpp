@@ -137,10 +137,18 @@ void HeightMapBuilderWidget::fillBuilder() {
 //                );
 //    _builder->setBounds(std::get<0>(dBounds),std::get<1>(dBounds),std::get<2>(dBounds),std::get<3>(dBounds));
 //    _builder->setSize(std::get<0>(iSize),std::get<1>(iSize));
+    qDebug() << _builder;
+    qDebug() << _seamless;
+    qDebug() << _seamless->isChecked();
+    qDebug() << "Fill Builder 0";
     _builder->setSeamless(_seamless->isChecked());
+    qDebug() << "Fill Builder 1";
     _builder->setName(_name->text());
+    qDebug() << "Fill Builder 2";
     _builder->setSourceModule(_source->currentText());
+    qDebug() << "Fill Builder 3";
     _builder->setDest(_dest->currentText());
+    qDebug() << "Fill Builder 4";
 }
 
 void HeightMapBuilderWidget::setModuleList(QStringList &i) {

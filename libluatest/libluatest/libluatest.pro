@@ -46,9 +46,11 @@ win32 {
     # DEFINES += SOL_USING_CXX_LUA
 }
 unix {
-    LIBS += -llua
+    LIBS += -llua5.3
+    INCLUDEPATH += /usr/include/lua5.3/
 }
 
 DISTFILES += \
     test.lua \
-    test2.lua
+    test2.lua \
+    alienpeaks.lua

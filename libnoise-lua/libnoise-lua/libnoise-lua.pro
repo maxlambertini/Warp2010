@@ -10,7 +10,7 @@ TEMPLATE = lib
 
 CONFIG += c++14
 
-unix:LIBS += -llua
+unix:LIBS += -llua5.3
 
 DEFINES += LIBNOISELUA_LIBRARY
 
@@ -26,7 +26,7 @@ QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-par
 unix {
     target.path = /usr/lib
     INSTALLS += target
-
+    INCLUDEPATH += /usr/include/lua5.3/
 }
 
 win32 {

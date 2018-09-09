@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 #ifdef WIN32
     lib.lua().script_file("./test.lua");
 #else
-    lib.lua().script_file("./test.lua");
+    lib.lua().script_file("./alienpeaks.lua");
 #endif
     cout << "End...\n\n";
     return 0;

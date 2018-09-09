@@ -167,11 +167,11 @@ Hsv Color::hsv() {
      }
 
      if (rgbMax == rgb.r)
-         hsv.h = 0 + 43 * (rgb.g - rgb.b) / (rgbMax - rgbMin);
+         hsv.h = 0 + 42 * (rgb.g - rgb.b) / (rgbMax - rgbMin);
      else if (rgbMax == rgb.g)
-         hsv.h = 85 + 43 * (rgb.b - rgb.r) / (rgbMax - rgbMin);
+         hsv.h = 85 + 42 * (rgb.b - rgb.r) / (rgbMax - rgbMin);
      else
-         hsv.h = 171 + 43 * (rgb.r - rgb.g) / (rgbMax - rgbMin);
+         hsv.h = 170 + 42 * (rgb.r - rgb.g) / (rgbMax - rgbMin);
 
     return hsv;
 }
@@ -251,12 +251,11 @@ void Color::setColorFromHsv(Hsv hsv) {
         red = hsv.v;
         green = hsv.v;
         blue = hsv.v;
-
         return;
     }
 
-    region = hsv.h / 43;
-    remainder = (hsv.h - (region * 43)) * 6;
+    region = hsv.h / 42;
+    remainder = (hsv.h - (region * 42)) * 6;
 
     p = (hsv.v * (255 - hsv.s)) >> 8;
     q = (hsv.v * (255 - ((hsv.s * remainder) >> 8))) >> 8;
@@ -480,16 +479,26 @@ GradientColor GradientColor::CreateRandomGradient() {
         col = col.randomizeByHSV(16,64,48);
         col.alpha = 255;
         auto hsv = col.hsv();
-        if (hsv.v < 120)
+        while (col.grayLevel() < 96)
         {
-            hsv.v = 120;
-            col.setColorFromHsv(hsv);
+            col.red = (col.red + Rand256::instance().intValue(6)) % 256;
+            col.green = (col.green + Rand256::instance().intValue(12)) % 256;
+            col.blue = (col.blue + Rand256::instance().intValue(3)) % 256 ;
+            //col.setColorFromHsv(hsv);
         }
         gCol.AddGradientPoint(nPoint,col);
         auto step = Rand256::instance().doubleValue(2.0*dStep) -dStep;
         nPoint += (dDelta + step);
         if (Rand256::instance().intValue(7) == 5 && nPoint < 0.95) {
-            col = col.randomizeByHSV(64,64,64);
+            col = Color::RandomColor();
+            while (col.grayLevel() < 96)
+            {
+                col.red = (col.red + Rand256::instance().intValue(6)) % 256;
+                col.green = (col.green + Rand256::instance().intValue(12)) % 256;
+                col.blue = (col.blue + Rand256::instance().intValue(3)) % 256 ;
+                //col.setColorFromHsv(hsv);
+            }
+
             col.alpha = 255;
             gCol.AddGradientPoint(nPoint,col);
             nPoint += 0.01;

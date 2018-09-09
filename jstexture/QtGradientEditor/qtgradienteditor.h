@@ -43,6 +43,7 @@
 #define QTGRADIENTEDITOR_H
 
 #include <QtWidgets/QWidget>
+#include <QButtonGroup>
 
 QT_BEGIN_NAMESPACE
 

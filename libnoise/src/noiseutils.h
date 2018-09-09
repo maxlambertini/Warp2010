@@ -233,6 +233,11 @@ namespace noise
         Color darken(int step = 15);
         Color lighten(int step = 15);
         Color change(int hue = 5, int saturation = 10, int value=15);
+
+        //get grayscale level
+        inline noise::uint8 grayLevel() {
+            return (noise::uint8)( ((float)green)*0.61  + ((float)red)*0.29 + ((float)blue)*0.1 );
+        }
     };
 
     /// Defines a point used to build a color gradient.

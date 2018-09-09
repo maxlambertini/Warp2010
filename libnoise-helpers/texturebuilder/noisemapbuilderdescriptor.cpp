@@ -27,7 +27,9 @@ using namespace noise;
 
 NoiseMapBuilderDescriptor::NoiseMapBuilderDescriptor(QObject *parent) : QObject(parent)
 {
-
+    qDebug() << "NoiseMapBuilderDescriptor initialized " << _seamless;
+    this->_seamless = true;
+    qDebug() << "NoiseMapBuilderDescriptor initialized " << _seamless;
 }
 
 QString NoiseMapBuilderDescriptor::luaInitialization() {

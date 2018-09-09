@@ -152,7 +152,7 @@ public:
     void setSourceModule(const QString& src) { _src1 = src; }
 
     bool seamless() { return _seamless; }
-    bool setSeamless(bool v) { _seamless = v; }
+    void setSeamless(bool v) { _seamless = v; }
 
     void fromJson(const QJsonObject& json) {
         _dest = json["dest"].toString();

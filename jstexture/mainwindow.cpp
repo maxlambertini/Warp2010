@@ -39,6 +39,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QInputDialog>
 #include <typeinfo>
 #include "addtextureworkflowdialog.h"
+#include "libnoiselua.h";
+#include <QFile>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     imageLabel(new QLabel),
@@ -97,6 +100,9 @@ void MainWindow::createActions() {
 
     connect(action_edit_texture_item,SIGNAL(triggered(bool)),SLOT(on_action_edit_texture_item()));
     connect(action_delete_texture_item,SIGNAL(triggered(bool)),SLOT(on_action_delete_texture_item()));
+
+    action_RenderLua = new QAction(QIcon(":/icons/Rockball.png"),"Render Lua file",this);
+    connect (action_RenderLua, SIGNAL(triggered(bool)), SLOT(on_action_RenderLua()));
 }
 
 void MainWindow::createMenus() {
@@ -109,12 +115,14 @@ void MainWindow::createMenus() {
     mainToolBar->addAction(action_Save_Texture);
     mainToolBar->addAction(actionSave_As);
     mainToolBar->addSeparator();
-    mainToolBar->addAction(action_Generate_Texture);
     mainToolBar->addAction(action_CreateModuleDescJson);
     mainToolBar->addAction(action_CreateHeightMapDesc);
     mainToolBar->addAction(action_CreateImageDesc);
     mainToolBar->addAction(action_CreateHeightmapBuilder);
     mainToolBar->addAction(action_CreateRendererDesc);
+    mainToolBar->addSeparator();
+    mainToolBar->addAction(action_Generate_Texture);
+    mainToolBar->addAction(action_RenderLua);
     mainToolBar->addSeparator();
     mainToolBar->addAction(action_Exit);
 
@@ -432,18 +440,27 @@ void MainWindow::on_action_CreateModuleDescJson()
 
 void MainWindow::on_action_CreateHeightmapBuilder() {
     QSharedPointer<NoiseMapBuilderDescriptor> bDesc(new NoiseMapBuilderDescriptor());
-    auto ptr = bDesc.data();
-    _tb.assignSizeInfoToNMBDesc(ptr);
-    HeightMapBuilderDialog dlg(ptr);
-    dlg.builderWidget()->setBuilder(ptr);
+
+    qDebug() << "created Descriptor";
+    qDebug() << "got data" << bDesc;
+    bDesc.data()->setSeamless(true);
+    _tb.assignSizeInfoToNMBDesc(bDesc.data());
+    HeightMapBuilderDialog dlg(bDesc.data());
+    qDebug() << "created dialog " << bDesc ;
+    dlg.builderWidget()->setBuilder(bDesc.data());
+    qDebug() << "Setup builder";
     dlg.builderWidget()->fillBuilder();
+    qDebug() << "Initialized dialog";
     auto ml = this->buildModuleList();
     auto hl = this->buildNoiseMapList();
+    qDebug() << "Created module and map lists";
     QStringList sl;
     for (auto s: ml) sl.append(s);
+    qDebug() << "Filled lists";
     dlg.builderWidget()->setModuleList(sl);
     dlg.builderWidget()->setNoiseMapList(hl);
     dlg.builderWidget()->fillWidgetWithBuilder();
+    qDebug() << "Filled widget with builder ";
     if (dlg.exec() == QDialog::Accepted) {
         dlg.builderWidget()->fillBuilder();
         _tb.nmbDesc().insert(bDesc.data()->name(),bDesc);
@@ -831,5 +848,30 @@ void MainWindow::on_action_new_textureflow_triggered() {
                     );
         updateEditorsWithTBInfo();
         this->_tex->setTextureBuilder(&this->_tb);
+    }
+}
+
+void MainWindow::on_action_RenderLua() {
+    try {
+        auto fileName = QFileDialog::getSaveFileName(this, tr("Save Texture Lua File"),
+                                                AppPaths::appDir() + "/texture1.lua",tr("LUA Texture File (*.lua)"));
+        if (!fileName.endsWith(".lua"))
+            fileName += ".lua";
+        if (!fileName.isEmpty() && ! fileName.isNull()) {
+            QFile f(fileName);
+            f.open((QIODevice::ReadWrite | QIODevice::Truncate));
+            QTextStream s1(&f);
+            auto data = this->_plainTextLua->toPlainText();
+            s1 <<  data;
+            f.flush();
+            f.close();
+            //now render with Lua! :-)
+            Libnoiselua lib;
+            lib.lua().script_file(fileName.toStdString());
+            infoBox(fileName+" "+QString("Processed!"));
+        }
+     } catch(const std::exception& e) {
+            QString error  = "Caught exception \"" + QString(e.what()) + "\"\n";
+            errorBox(error);
     }
 }
