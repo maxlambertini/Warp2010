@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 namespace maps {
 
-static maps::GradientItem preGardenSteps[7] = {
+static maps::GradientItem preGardenSteps[7] __attribute__((unused)) = {
     {-1.0000, 29, 94,128,255},
     {-0.2500, 35, 115, 141, 255},
     { 0.0000,232, 164, 123, 255},
@@ -37,7 +37,7 @@ static maps::GradientItem preGardenSteps[7] = {
     { 0.7500, 69,  65,  26, 255}
 };
 
-static maps::GradientItem postGardenSteps[7] = {
+static maps::GradientItem postGardenSteps[7] __attribute__((unused)) = {
     {-1.0000, 19, 74,98,255},
     {-0.2500, 25, 95, 111, 255},
     { 0.0000,182, 124, 93, 255},

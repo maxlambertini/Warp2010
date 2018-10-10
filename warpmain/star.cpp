@@ -218,6 +218,7 @@ Star& Star::operator =(const Star & that)
     this->_numGasGiant= that._numGasGiant;
     this->_starValue = that._starValue;
     qDebug() << "Assigning....\n";
+    return *this;
 }
 
 void Star::changeStartingPath(QVector<int>& subPath)

@@ -531,7 +531,6 @@ void TextureBuilder::buildNoiseMaps()
     QMapIterator<QString,QSharedPointer<utils::NoiseMapBuilder>> iter(_noiseMapBuilders);
     while(iter.hasNext()) {
         utils::NoiseMapBuilder* ptr = iter.next().value().data();
-        auto p1 = ptr;
         ptr->Build();
     }
 
@@ -583,13 +582,13 @@ void TextureBuilder::prepareObjectFromJsonFile(const QString &filename) {
         }
         data.close();
     }
-    catch (noise::Exception err) {
+    catch (noise::Exception &err) {
         throw "Generic noise::exception";
     }
-    catch (noise::ExceptionInvalidParam err) {
+    catch (noise::ExceptionInvalidParam &err) {
         throw "Invalid param error";
     }
-    catch (noise::ExceptionNoModule err) {
+    catch (noise::ExceptionNoModule &err) {
         throw "No module defined as source or control";
     }
     catch (noise::ExceptionOutOfMemory ) {

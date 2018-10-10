@@ -30,9 +30,9 @@ class AppPaths
 {
 public:
     AppPaths();
-    inline static QString appDir() {
+    inline static QString baseDir(QString basePath) {
     #if defined(Q_WS_WIN)
-        QString appDirPath = QCoreApplication::applicationDirPath()+"/Warp2010_Data/textures";
+        QString appDirPath = QCoreApplication::applicationDirPath()+"/Warp2010_Data/"+basePath;
         //qDebug() << appDirPath;
         QDir dir(appDirPath);
         if (!dir.exists(appDirPath)) {
@@ -41,7 +41,7 @@ public:
         }
         return appDirPath;
     #else
-        QString warpPath =  QDir::homePath()+"/.local/share/Warp2010_Data/textures";
+        QString warpPath =  QDir::homePath()+"/.local/share/Warp2010_Data/"+basePath;
         QDir dir(warpPath);
         if (!dir.exists(warpPath)) {
             dir.mkpath(warpPath);
@@ -50,6 +50,11 @@ public:
         return warpPath;
     }
     #endif
+
+    inline static QString appDir() { return AppPaths::baseDir("textures"); }
+    inline static QString luaDir() { return AppPaths::baseDir("lua"); }
+    inline static QString luaImgDir() { return AppPaths::baseDir("lua/img"); }
+
 };
 
 #endif // APPPATHS_H

@@ -98,7 +98,7 @@ void PrintingSetup::on_cboPaperSizes_activated(QString s)
     }
 }
 
-void PrintingSetup::on_chkLandscape_toggled(bool checked)
+void PrintingSetup::on_chkLandscape_toggled(bool checked __attribute__((unused)))
 {
     double tmp = ui->spnPaperHeight->value();
     ui->spnPaperHeight->setValue(ui->spnPaperWidth->value());

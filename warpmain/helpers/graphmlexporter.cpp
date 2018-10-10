@@ -88,13 +88,13 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
 
 
     int nCount = 0;
-    int nFontSize = 15;
+    int nFontSize __attribute__((unused)) = 15 ;
     QVector<int> lstInMap;
     QSharedPointer<Star>  star;
     for (int w = 0; w < _starList->stars().count(); ++w) {
         star = _starList->stars().at(w);
         //foreach (star, _starList->stars()) {
-        if (star->isReference() || star->path().count() > 1 && (_starsInTradeRoutes.contains(w) || !_exportGardenPathOnly)) {
+        if ( ((star->isReference()) || (star->path().count()) > 1 ) && (_starsInTradeRoutes.contains(w) || !_exportGardenPathOnly)) {
 
             QString name = star.data()->starName;
             QString n, nRes("");

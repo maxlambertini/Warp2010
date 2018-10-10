@@ -62,7 +62,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "helpers/parsecstarlisthelper.h"
 #include <noise/noise.h>
 #include <noiseutils.h>
-#include "dialogs/noisemapplaygrounddialog.h"
 
 using namespace noise;
 
@@ -298,7 +297,7 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
     pslh.setDrawMode(_sceneMediator->drawMode());
 
 
-    QPointF ptFrom =  QPointF(pslh.starX(sRef.data()), pslh.starY(sRef.data()));
+    QPointF ptFrom __attribute__((unused)) =  QPointF(pslh.starX(sRef.data()), pslh.starY(sRef.data()));
 
     // qDebug() << "setting rows...";
 
@@ -515,7 +514,7 @@ void WarpMainWindowForm::performCreateSolSysForAllStars()
 
                 progressBar->setValue(++nStep);
             }
-            catch (WarpException exc) {
+            catch (WarpException &exc) {
                 QString errorText = "Error loading sector";
                 QString errorInfo = QString(exc.what());
                 AppMessage::Error(errorText,errorInfo);
@@ -547,14 +546,14 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
         try {
             SplashScreen::screenPtr()->setMessage("Clearing list...");
             ui->listWidget->clear();
-        } catch (WarpException exc) {
+        } catch (WarpException &exc) {
 
         }
 
         try {
             SplashScreen::screenPtr()->setMessage( "Clearing trade routes...");
             ui->gridTradeRoutes->clear();
-        } catch (WarpException exc) {
+        } catch (WarpException &exc) {
 
         }
 
@@ -562,7 +561,7 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
             progHelp.nextStep(1);
             _tradeRoutes.clear();
             SplashScreen::screenPtr()->setMessage("Trade routes are clear");
-        } catch (WarpException exc) {
+        } catch (WarpException &exc) {
 
         }
 
@@ -570,7 +569,7 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
             progHelp.nextStep(2);
             _tradeRouteMediator->clearTradeRoutes();
             SplashScreen::screenPtr()->setMessage("Trade routes are clearer");
-        } catch (WarpException exc) {
+        } catch (WarpException &exc) {
 
         }
 
@@ -578,14 +577,14 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
             progHelp.nextStep(3);
             _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
             SplashScreen::screenPtr()->setMessage("Universe emptied, recreating...");
-        } catch (WarpException exc) {
+        } catch (WarpException &exc) {
 
         }
 
         try {
             progHelp.nextStep(4);
             _sceneMediator->clearTradeRoute();
-        } catch (WarpException exc) {
+        } catch (WarpException &exc) {
 
         }
 
@@ -593,7 +592,7 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
             progHelp.nextStep(5);
             this->_referenceIdx= 0;
             SplashScreen::screenPtr()->setMessage("Loading Map");
-        } catch (WarpException exc) {
+        } catch (WarpException &exc) {
 
         }
 
@@ -643,12 +642,12 @@ void WarpMainWindowForm::performMapProcessing(bool bCreateNewMap, QString filena
             this->setWindowTitle(_starList->listName());
 
             progHelp.hide();
-        } catch (WarpException exc) {
+        } catch (WarpException &exc) {
 
         }
 
     }
-    catch (WarpException exc) {
+    catch (WarpException &exc) {
         SplashScreen::screenPtr()->hide();
         QString errorText = "Error loading sector";
         QString errorInfo = QString(exc.what());
@@ -680,7 +679,7 @@ void WarpMainWindowForm::on_sliderRotate_valueChanged(int value)
     sliderValueChanged(value);
 }
 
-void WarpMainWindowForm::sliderValueChanged(int value)
+void WarpMainWindowForm::sliderValueChanged(int value __attribute__((unused))  )
 {
     if (!bReloading) {
         qreal scale = 0.7*qPow(qreal(2), (ui->sliderZoom->value() - 250) / qreal(50));
@@ -1028,8 +1027,10 @@ void WarpMainWindowForm::on_actionCreate_map_triggered()
 
 void WarpMainWindowForm::on_actionCreate_map_2_triggered()
 {
+    /*
     NoisemapPlaygroundDialog dialog(this);
     dialog.exec();
+    */
 }
 
 
@@ -1089,7 +1090,7 @@ void WarpMainWindowForm::on_action_Diaspora_Cluster_View_triggered(bool checked)
 }
 */
 
-void WarpMainWindowForm::on_btn_Star_Sector_View_clicked(bool checked)
+void WarpMainWindowForm::on_btn_Star_Sector_View_clicked(bool checked __attribute__((unused)) )
 {
 
 }

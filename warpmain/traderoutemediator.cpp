@@ -70,7 +70,7 @@ void TradeRouteMediator::sortByRoute(bool bReverse)
         qSort(_tradeRoutes.begin(), _tradeRoutes.end(), tradeRouteLessThan);
 }
 
-void TradeRouteMediator::tradeRouteToTableWidget(QListWidget *tw)
+void TradeRouteMediator::tradeRouteToTableWidget(QListWidget *tw __attribute__((unused)) )
 {
 }
 
@@ -129,7 +129,7 @@ void TradeRouteMediator::searchTradeRouteToGardenPlanets()
     if (_progressBar != 0)
         _progressBar->setVisible(false);
 
-    int nTrade;
+    int nTrade  __attribute__((unused)) ;
     // qDebug() << "Stars In Trade Routes has: " << _starsInTradeRoutes.count() << ", first is " << _starsInTradeRoutes[3];
 
     foreach (nTrade, _starsInTradeRoutes.keys())
@@ -206,7 +206,7 @@ void TradeRouteMediator::loadTradeRouteFromFile(QString filename)
 
         //int i = tr->path().at(tr->path().count()-1);
         QString trn = tr->routeName();
-        QColor rc = tr->routeColor();
+        QColor rc  __attribute__((unused))  = tr->routeColor();
         QVector<int> path = tr->path();
 
         // qDebug() << "Creating with " << trn << ", " << path.count();

@@ -110,13 +110,13 @@ namespace noise
     /// canuckleheads.
     const double DEFAULT_METRES_PER_POINT = DEFAULT_METERS_PER_POINT;
 
-    typedef NOISE_SHARED_EXPORT  struct {
+    typedef /*NOISE_SHARED_EXPORT*/  struct {
         noise::uint8 r;       // a fraction between 0 and 1
         noise::uint8 g;       // a fraction between 0 and 1
         noise::uint8 b;       // a fraction between 0 and 1
     } Rgb;
 
-    typedef NOISE_SHARED_EXPORT  struct {
+    typedef /*NOISE_SHARED_EXPORT*/  struct {
         noise::uint8 h;       // angle in degrees
         noise::uint8 s;       // a fraction between 0 and 1
         noise::uint8 v;       // a fraction between 0 and 1
@@ -213,7 +213,7 @@ namespace noise
         /// @param a Value of the alpha (transparency) channel.
         Color (noise::uint8 r, noise::uint8 g, noise::uint8 b,
           noise::uint8 a):
-          red (r), green (g), blue (b), alpha (a)
+          alpha (a), blue (b), red (r), green (g)
         {
         }
 
@@ -223,11 +223,11 @@ namespace noise
         /// Value of the blue channel.
         noise::uint8 blue;
 
-        /// Value of the green channel.
-        noise::uint8 green;
-
         /// Value of the red channel.
         noise::uint8 red;
+
+        /// Value of the green channel.
+        noise::uint8 green;
 
         // Color manipulation methods
         Color darken(int step = 15);
@@ -1325,8 +1325,9 @@ namespace noise
 
         /// Constructor.
         WriterTER ():
-          m_pSourceNoiseMap (NULL),
-          m_metersPerPoint (DEFAULT_METERS_PER_POINT)
+          m_metersPerPoint (DEFAULT_METERS_PER_POINT),
+          m_pSourceNoiseMap (NULL)
+
         {
         }
 

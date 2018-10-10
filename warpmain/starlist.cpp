@@ -57,7 +57,7 @@ StarList::StarList(const QString& filename)
 }
 */
 
-void StarList::createRandomMap(double radius = 50, double density = 750, double dx, double dy, double dz)
+void StarList::createRandomMap(double radius = 50, double density __attribute__((unused)) = 750 , double dx, double dy, double dz)
 {
     double dFactor = radius/50;
     dFactor = pow(dFactor, 3);
@@ -126,7 +126,7 @@ void StarList::saveMap(const QString& filename)
     data.close();
 }
 
-void StarList::loadMap(const QString& filename) throw(std::exception)
+void StarList::loadMap(const QString& filename) /*throw(std::exception)*/
 {
     QFile data(filename);
     //qDebug() << "Loading from " << filename;

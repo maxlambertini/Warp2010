@@ -73,6 +73,6 @@ void RingTextureBuilder::saveTexture(QString texturePath) {
     painter.setPen(Qt::transparent);
     painter.setBrush(gradientBrush);
     painter.drawRect(0,0,1024,10);
-    auto end = painter.end();
+    painter.end();
     img.save(texturePath);
 }

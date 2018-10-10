@@ -123,7 +123,7 @@ void StarInspector::setStarData() {
     //qDebug () << "Setting data for " << _star->starName;
     _starRepr->setStar(_star);
     //qDebug() << "Star representation set";
-    NSStar::STARVALUE sv = _star->starValue();
+    NSStar::STARVALUE sv  __attribute__((unused)) = _star->starValue();
     lblStarName->setText(_star->starName);
     lblStarFullType->setText(_star->starFullType());
     lblMagnitude->setText (QString("%1").arg(_star->luminosity()));
@@ -143,7 +143,7 @@ void StarInspector::setStarData() {
     foreach (iTmp, _star->neighbors()) {
         vectNeighbors.append(iTmp);
         auto s_tmp = StarList::StarListPtr()->stars().at(iTmp);
-        QListWidgetItem *qlw = new QListWidgetItem(s_tmp->starName,lstNeighbors);
+        QListWidgetItem *qlw  __attribute__((unused)) = new QListWidgetItem(s_tmp->starName,lstNeighbors);
     }
 }
 

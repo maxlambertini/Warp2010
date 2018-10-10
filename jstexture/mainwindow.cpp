@@ -39,14 +39,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QInputDialog>
 #include <typeinfo>
 #include "addtextureworkflowdialog.h"
-#include "libnoiselua.h";
+#include "libnoiselua.h"
 #include <QFile>
 #include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
     imageLabel(new QLabel),
     scrollArea(new QScrollArea),
-    QMainWindow(parent),
     _currentTextureFile("")
 {
     this->createActions();
@@ -226,7 +226,7 @@ void MainWindow::updateEditorsWithTBInfo() {
     QJsonDocument doc(o);
     QString strJson(doc.toJson());
     this->plainTextEdit->setPlainText(strJson);
-    this->_plainTextLua->setPlainText(this->_tb.getLua());
+    this->_plainTextLua->setPlainText(this->getLua());
 
     //updateTreeWithJsonFromEditor();
 }
@@ -239,7 +239,7 @@ void MainWindow::updateTreeWithJsonFromEditor() {
         QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parserError);
         this->_tb.fromJson(doc.object());
         this->_tex->setTextureBuilder(&_tb);
-        this->_plainTextLua->setPlainText(this->_tb.getLua());
+        this->_plainTextLua->setPlainText(this->getLua());
     }
     catch (noise::ExceptionInvalidParam &exc) {
         errorBox("Invalid parameter somewhere. Check zeros and negatives ");
@@ -250,7 +250,7 @@ void MainWindow::updateTreeWithJsonFromEditor() {
     catch (noise::ExceptionUnknown &exc) {
         errorBox("Libnoise unknown error ");
     }
-    catch (std::exception exc) {
+    catch (std::exception &exc) {
         QString error = exc.what();
         errorBox(error);
     }
@@ -299,7 +299,7 @@ void MainWindow::on_action_Generate_Texture_triggered()
     catch (noise::ExceptionUnknown &exc) {
         errorBox("Libnoise unknown error ");
     }
-    catch (std::exception exc) {
+    catch (std::exception &exc) {
         QString error = exc.what();
         errorBox(error);
     }
@@ -406,7 +406,7 @@ void MainWindow::on_actionSave_As_triggered()
 
 }
 
-void MainWindow::on_listFiles_clicked(QListWidgetItem *idx) {
+void MainWindow::on_listFiles_clicked(QListWidgetItem *idx __attribute__((unused))  ) {
     //_viewer->loadImage(imgFile);
     QString data = _listFiles->currentItem()->text();
     this->setWindowTitle(data);
@@ -562,7 +562,7 @@ void MainWindow::EditHeightmapDescriptor(QString txt)
 void MainWindow::EditRendererDescriptor(QString txt)
 {
     auto sptr = _tb.rndDesc()[txt];
-    auto ptr = sptr.data();
+    auto ptr __attribute__((unused))  = sptr.data();
     QStringList images = this->buildImageList();
     QStringList nmbs = this->buildNoiseMapList();
     RendererDescDialog dlg(this);
@@ -854,7 +854,7 @@ void MainWindow::on_action_new_textureflow_triggered() {
 void MainWindow::on_action_RenderLua() {
     try {
         auto fileName = QFileDialog::getSaveFileName(this, tr("Save Texture Lua File"),
-                                                AppPaths::appDir() + "/texture1.lua",tr("LUA Texture File (*.lua)"));
+                                                AppPaths::luaDir() + "/texture1.lua",tr("LUA Texture File (*.lua)"));
         if (!fileName.endsWith(".lua"))
             fileName += ".lua";
         if (!fileName.isEmpty() && ! fileName.isNull()) {
@@ -874,4 +874,8 @@ void MainWindow::on_action_RenderLua() {
             QString error  = "Caught exception \"" + QString(e.what()) + "\"\n";
             errorBox(error);
     }
+}
+
+QString MainWindow::getLua() {
+    return "LUA_IMG_PATH = \"" + AppPaths::luaImgDir() + "\"; \n\n" + this->_tb.getLua() ;
 }

@@ -29,7 +29,7 @@ BasicStarInfoWidget::BasicStarInfoWidget(QWidget *parent) :
     _star = 0;
 }
 
-void BasicStarInfoWidget::paintEvent(QPaintEvent *event) {
+void BasicStarInfoWidget::paintEvent(QPaintEvent *event __attribute__((unused))) {
     int width = this->width();
     int height = this->height();
     QPalette::ColorRole role = this->backgroundRole();

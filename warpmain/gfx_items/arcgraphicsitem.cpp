@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "gfx_items/arcgraphicsitem.h"
 #include "helpers/preferences.h"
 
-ArcGraphicsItem::ArcGraphicsItem(double x1, double y1, double x2, double y2, QPen &pen, bool bDrawAsArc)
+ArcGraphicsItem::ArcGraphicsItem(double x1, double y1, double x2, double y2, QPen &pen, bool bDrawAsArc __attribute__((unused)) )
 {
     _p1 = QPointF(x1,y1);
     _p2 = QPointF(x2,y2);
@@ -33,7 +33,7 @@ ArcGraphicsItem::ArcGraphicsItem(double x1, double y1, double x2, double y2, QPe
 }
 
 
-ArcGraphicsItem::ArcGraphicsItem(const QPointF & p1, const QPointF &p2, QPen &pen, bool bDrawAsArc)
+ArcGraphicsItem::ArcGraphicsItem(const QPointF & p1, const QPointF &p2, QPen &pen, bool bDrawAsArc __attribute__((unused)))
 {
     _p1 = p1;
     _p2 = p2;
@@ -47,7 +47,8 @@ QRectF ArcGraphicsItem::boundingRect() const
     return _boundingRect;
 }
 
-void ArcGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ArcGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option __attribute__((unused)),
+                            QWidget *widget __attribute__((unused)))
 {
     painter->setPen(_pen);
     if (_drawAsArc) {
@@ -67,7 +68,6 @@ void ArcGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
 void ArcGraphicsItem::customDrawArc(QPointF p1, QPointF p2, QPen pOrange)
 {
     if (_drawAsArc) {
-        double pi = NSArc::PI;
         double dist = sqrt( (p2.x()-p1.x()) * (p2.x()-p1.x()) + (p2.y()-p1.y()) * (p2.y()-p1.y()));
         double radius = dist;
         QPointF pm( (p2.x()+p1.x()) /2, (p2.y()+p1.y())/2);
@@ -75,7 +75,6 @@ void ArcGraphicsItem::customDrawArc(QPointF p1, QPointF p2, QPen pOrange)
         double dy = p2.y()-p1.y();
         double phi = atan2(dy,dx);
         phi -= NSArc::PI/2.0;
-        double TO_GRAD = NSArc::TO_GRAD;
 
         double ellipseBaseAngle = (NSArc::PI + (2.0*NSArc::PI - phi)) ;
         double ellipseStartAngle = ellipseBaseAngle - NSArc::ANGLE_DELTA;

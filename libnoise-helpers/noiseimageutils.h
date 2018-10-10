@@ -85,17 +85,6 @@ public:
     void setSizeX(int x) { _sizeX = x; }
     void setSizeY(int y) { _sizeY = y; }
 
-    void CreateComplexDesert (int seed = 1, int octave = 6, double lacunarity = 1.30,
-                          double frequency = 3.3, double persistence = 0.32,
-                          utils::Color color1 = utils::Color(128,  0,  0,255),
-                          utils::Color color2 = utils::Color(192,  0,  0,255),
-                          utils::Color color3 = utils::Color(255,128, 64,255));
-
-    void CreateComplexDesert2 (int seed = 1, int octave = 6, double lacunarity = 1.30,
-                          double frequency = 3.3, double persistence = 0.32,
-                          const QColor& color1 = QColor(255,255,193),
-                          const QColor& color2 = QColor(128,64,32));
-
     void SaveImage (const QString& filename, int blurSize = 0);
 
 signals:

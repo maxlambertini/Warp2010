@@ -28,7 +28,7 @@ void SolarSystemCreator::createOrbits()
 {
     _star->numGardens(0);
     _star->numMarginals(0);
-    int nSize = (int)_star->starSize();
+    int nSize  __attribute__((unused)) = (int)_star->starSize();
 
     _orbits = 0;
     _nMod = 0;
@@ -70,7 +70,8 @@ void SolarSystemCreator::makeSatellite(Planet& planet, double &dSatDistance, dou
     planet.appendSatellite(sat);
 }
 
-void SolarSystemCreator::makePlanet(bool advanceNextPlanet, const double MIN_PLANET_DISTANCE_GG, double currentDistance, double prevSatDistance, Planet& px)
+void SolarSystemCreator::makePlanet(bool advanceNextPlanet __attribute__((unused)), const double MIN_PLANET_DISTANCE_GG, double currentDistance,
+                                    double prevSatDistance __attribute__((unused)), Planet& px)
 {
     Planet planet = this->createPlanet(currentDistance, false,px);
     planet.setStar(_star.data());
@@ -114,7 +115,7 @@ void SolarSystemCreator::createWorlds()
     _star->numGasGiant(0);
 
     double prevSatDistance = 0.0;
-    double prevDistance = 0.0;
+    //double prevDistance = 0.0;
 
     const double MIN_PLANET_DISTANCE_GG = 4000000.0;
     const double MAX_OUTER_PLANET = 100.0;
@@ -136,7 +137,7 @@ void SolarSystemCreator::createWorlds()
                 currentDistance = dModifier + SSGX::floatRand() * dModifier;
             }
             else {
-                prevDistance = currentDistance;
+                prevSatDistance = currentDistance;
                 auto minDistance = currentDistance + (prevSatDistance * 50.0 / 150000000.0);
                 auto newDistance = (currentDistance * (1.05+ (double)(rand() % 900)/1000.0)) - currentDistance;
                 if (minDistance > newDistance)

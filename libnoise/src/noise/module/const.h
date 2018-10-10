@@ -78,7 +78,7 @@ namespace noise
           return 0;
         }
 
-        virtual double GetValue (double x, double y, double z) const
+        virtual double GetValue (double x __attribute__((unused)), double y __attribute__((unused)), double z __attribute__((unused))) const
         {
           return m_constValue;
         }

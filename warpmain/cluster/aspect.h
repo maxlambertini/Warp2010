@@ -41,7 +41,7 @@ class Aspect
     void checkAspectString();
 
 public:
-    inline QString& name() { return _name; } const
+    inline const QString& name() { return _name; }
     inline void setName(const QString& name) {
         _name = name;
     }

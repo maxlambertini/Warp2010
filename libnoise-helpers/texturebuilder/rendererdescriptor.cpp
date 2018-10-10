@@ -174,10 +174,10 @@ void RendererDescriptor::readGradientInfo(const QJsonObject& json)
 
 void RendererDescriptor::randomizeGradientInfo()
 {
-    double dRes = -1.0;
-    auto startingColor = utils::Color::RandomColor();
-    startingColor.alpha = 255;
-    bool direction = SSGX::d10() % 2 == 0;
+    //double dRes = -1.0;
+    //auto startingColor = utils::Color::RandomColor();
+    //startingColor.alpha = 255;
+    //bool direction = SSGX::d10() % 2 == 0;
     utils::GradientColor rndGradient = utils::GradientColor::CreateRandomGradient();
     std::vector<utils::GradientPoint> points = rndGradient.GetGradientPoints();
 

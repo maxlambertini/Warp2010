@@ -136,7 +136,7 @@ Planet& Planet::operator=( const Planet& other )
     qDebug() << "Planet assigned";
 }
 
-bool Planet::operator==( const Planet& other ) const
+bool Planet::operator==( const Planet& other  __attribute__((unused))) const
 {
     // Comparaison of datas here
 

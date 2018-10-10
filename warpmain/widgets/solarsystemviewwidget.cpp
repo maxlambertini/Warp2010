@@ -157,7 +157,7 @@ void SolarSystemViewWidget::zoomOut() {
 
 }
 
-void SolarSystemViewWidget::sliderValueChanged(int val)
+void SolarSystemViewWidget::sliderValueChanged(int val __attribute__((unused)))
 {
     qreal scale = 0.7*qPow(qreal(2), (ui->zoomSlider->value() - 250) / qreal(50));
 

@@ -478,7 +478,6 @@ GradientColor GradientColor::CreateRandomGradient() {
     while (nPoint < 0.96) {
         col = col.randomizeByHSV(16,64,48);
         col.alpha = 255;
-        auto hsv = col.hsv();
         while (col.grayLevel() < 96)
         {
             col.red = (col.red + Rand256::instance().intValue(6)) % 256;
@@ -878,11 +877,9 @@ noise::uint8* WriterBMP::GetBRGABuffer ()
   }
 
   // Build and write each horizontal line to the file.
-  noise::uint8 x = 255;
   memset (pLineBuffer, 0, destSize);
   for (int y = 0; y < height; y++) {
     Color* pSource = m_pSourceImage->GetSlabPtr (y);
-    noise::uint8* pDest   = pLineBuffer;
     for (int x = 0; x < width; x++) {
         pLineBuffer[y*width*4+x*4+3] = pSource->alpha; // pSource->alpha;
         pLineBuffer[y*width*4+x*4+2] = pSource->red;
@@ -922,12 +919,10 @@ noise::uint8* WriterBMP::GetRGBABuffer ()
     throw noise::ExceptionOutOfMemory ();
   }
 
-  // Build and write each horizontal line to the file.
-  noise::uint8 x = 255;
+  // Build and write each horizontal line to the file.  noise::uint8 x = 255;
   memset (pLineBuffer, 0, destSize);
   for (int y = 0; y < height; y++) {
     Color* pSource = m_pSourceImage->GetSlabPtr ((height-1)-y);
-    noise::uint8* pDest   = pLineBuffer;
     for (int x = 0; x < width; x++) {
         pLineBuffer[y*width*4+x*4+3] = pSource->alpha; // pSource->alpha;
         pLineBuffer[y*width*4+x*4+2] = pSource->blue;
@@ -950,8 +945,7 @@ void WriterBMP::WritePngFile()
     int height = m_pSourceImage->GetHeight ();
 
     // The width of one line in the file must be aligned on a 4-byte boundary.
-    int bufferSize = CalcWidthByteCount (width);
-    int destSize   = bufferSize * height;
+    int bufferSize __attribute__((unused)) = CalcWidthByteCount (width) ;
 
     // This buffer holds one horizontal line in the destination file.
     std::unique_ptr<noise::uint8[]> buff(this->GetRGBABuffer());
@@ -1082,7 +1076,6 @@ void WriterTER::WriteDestFile ()
   int height = m_pSourceNoiseMap->GetHeight ();
 
   int bufferSize = CalcWidthByteCount (width);
-  int destSize   = bufferSize * height;
 
   // This buffer holds one horizontal line in the destination file.
   noise::uint8* pLineBuffer = NULL;

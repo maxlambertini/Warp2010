@@ -102,13 +102,19 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext &, const QString 
         break;
     case QtWarningMsg:
         txt = QString("Warning: %1").arg(msg);
-    break;
+        break;
     case QtCriticalMsg:
         txt = QString("Critical: %1").arg(msg);
-    break;
+        break;
     case QtFatalMsg:
         txt = QString("Fatal: %1").arg(msg);
+        break;
+    case QtInfoMsg:
+        txt = QString("Info: %1").arg(msg);
     break;
+    default:
+        txt = QString("Info: %1").arg(msg);
+        break;
     }
     QFile outFile(AppPaths::appDir()+"/warpmain.log");
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);

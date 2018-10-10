@@ -16,24 +16,6 @@ QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-par
 DEFINES += LIBNOISEHELPERS_LIBRARY
 
 HEADERS += libnoisehelpers.h\
-        planetmaps/earthlike.h \
-        planetmaps/abstractmap.h \
-        planetmaps/earthlike2.h \
-        planetmaps/earthlike3.h \
-        planetmaps/maps.h \
-        planetmaps/earthlikepeaks.h \
-        planetmaps/alienpeaks.h \
-        planetmaps/desert.h \
-        planetmaps/desertg.h \
-        planetmaps/gg2.h \
-        planetmaps/cloudy.h \
-        planetmaps/gasgiant.h \
-        planetmaps/Clouds/earthclouds.h \
-        planetmaps/Clouds/funkyclouds.h \
-        planetmaps/jade.h \
-        planetmaps/jade2.h \
-        planetmaps/ice.h \
-        planetmaps/granite.h \
         texturebuilder/moduledescriptor.h \
         texturebuilder/noisemapbuilderdescriptor.h \
         texturebuilder/imagedescriptor.h \
@@ -54,23 +36,6 @@ unix {
 }
 
 SOURCES += \
-    planetmaps/Clouds/earthclouds.cpp \
-    planetmaps/Clouds/funkyclouds.cpp \
-    planetmaps/abstractmap.cpp \
-    planetmaps/alienpeaks.cpp \
-    planetmaps/cloudy.cpp \
-    planetmaps/desert.cpp \
-    planetmaps/desertg.cpp \
-    planetmaps/earthlike.cpp \
-    planetmaps/earthlike2.cpp \
-    planetmaps/earthlike3.cpp \
-    planetmaps/earthlikepeaks.cpp \
-    planetmaps/gasgiant.cpp \
-    planetmaps/gg2.cpp \
-    planetmaps/granite.cpp \
-    planetmaps/ice.cpp \
-    planetmaps/jade.cpp \
-    planetmaps/jade2.cpp \
     texturebuilder/heightmapdescriptor.cpp \
     texturebuilder/imagedescriptor.cpp \
     texturebuilder/moduledescriptor.cpp \

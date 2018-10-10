@@ -226,9 +226,11 @@ void SceneImageExporter::printScene(QGraphicsScene *scene, QPrinter& printer,
     painter.end();
 }
 
-void SceneImageExporter::PageGraphicsSceneToPrinter(QGraphicsScene *scene, QPrinter &printer, QList<SectorRectHolder>& pageRegions, QString fileName, QString documentName)
+void SceneImageExporter::PageGraphicsSceneToPrinter(QGraphicsScene *scene, QPrinter &printer,
+                                                    QList<SectorRectHolder>& pageRegions, QString fileName,
+                                                    QString documentName __attribute__((unused)))
 {
-    PrintingPreferences &pref = PrintingPreferences::prefs();
+    PrintingPreferences &pref  __attribute__ ((unused))  = PrintingPreferences::prefs();
     //qDebug()  << pref.yDivisions();
     //qDebug()  << pref.selectedMeasure();
     //qDebug() << pref.measures();
@@ -317,14 +319,9 @@ void SceneImageExporter::PageGraphicsSceneToPrinter(QGraphicsScene *scene, QPrin
 
 void SceneImageExporter::GraphicsSceneToPrinter(
         QGraphicsScene *scene, QPrinter& printer,
-        QString fileName, QString documentName,
+        QString fileName, QString documentName __attribute__((unused)),
         bool bSizeToOneSheet)
 {
-    PrintingPreferences &pref = PrintingPreferences::prefs();
-    //qDebug()  << pref.yDivisions();
-    //qDebug()  << pref.selectedMeasure();
-    //qDebug() << pref.measures();
-
     if (!fileName.isEmpty() && fileName != "" && fileName.endsWith(".pdf",Qt::CaseInsensitive))
     {
         printer.setOutputFormat(QPrinter::PdfFormat);

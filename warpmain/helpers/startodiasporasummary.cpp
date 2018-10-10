@@ -97,7 +97,7 @@ Star*  StarToDiasporaSummary::randomEnvironmentStar(int diasporaVal) {
         return StarList::StarListPtr()->stars().at(dx).data();
     }
     else {
-        0;
+        return 0;
     }
 }
 

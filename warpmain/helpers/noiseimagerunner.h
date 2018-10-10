@@ -119,7 +119,7 @@ public:
     const QString& textureFile() { return _textureFile; }
 
     void setRunType(RType str) { _runType = str; }
-    const RType runType() { return _runType; }
+    RType runType() { return _runType; }
     double iceRatio() { return _iceRatio; }
     void setIceRatio (double v) { _iceRatio = v; }
     double seaRatio() { return _seaRatio; }

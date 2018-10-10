@@ -49,7 +49,7 @@ QRectF StarHexGraphicsItem::boundingRect() const
     return _polygon.boundingRect();
 }
 
-void StarHexGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget)
+void StarHexGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget  __attribute__ ((unused)) )
 {
     if  (_nx == 0 && _ny == 0) {
         // qDebug() << "this hex has a level of detail of " << item->levelOfDetail;

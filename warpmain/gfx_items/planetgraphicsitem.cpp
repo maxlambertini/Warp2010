@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "helpers/preferences.h"
 #include "helpers/planetrenderer.h"
 
-PlanetGraphicsItem::PlanetGraphicsItem(double x, double y, Planet *planet, double scaleFactor)
+PlanetGraphicsItem::PlanetGraphicsItem(double x, double y, Planet *planet, double scaleFactor __attribute__((unused)))
 {
     _planet = 0;
     _selector = new PlanetSelector();
@@ -113,7 +113,7 @@ QRectF PlanetGraphicsItem::textRect() const {
     return _textRect;
 }
 
-void PlanetGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+void PlanetGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option __attribute__((unused)), QWidget *widget __attribute__((unused)) ) {
     if (!_planet.isNull()) {
 
 
@@ -147,9 +147,9 @@ void PlanetGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
         else
             Preferences::prefsPtr()->fontBody();
         QFontMetrics fm(font);
-        QRectF txtRect = fm.boundingRect(planetDesc);
+        QRectF txtRect __attribute__((unused)) = fm.boundingRect(planetDesc);
 
-        int planetType = (int)_planet->planetType();
+        int planetType __attribute__((unused)) = (int)_planet->planetType();
         painter->setRenderHint(QPainter::Antialiasing);
 
         int nType = (int)(_planet->planetType());
@@ -178,7 +178,7 @@ void PlanetGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem
     }
 }
 
-void PlanetGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+void PlanetGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event __attribute__((unused))) {
     this->setSelected(true);
     _selector->emitPlanetSelected(_planet);
 }

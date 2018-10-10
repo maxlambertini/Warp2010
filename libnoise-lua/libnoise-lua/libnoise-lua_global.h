@@ -5,8 +5,12 @@
 #    define Q_DECL_EXPORT     __declspec(dllexport)
 #    define Q_DECL_IMPORT     __declspec(dllimport)
 # else
+#ifndef Q_DECL_EXPORT
 #    define Q_DECL_EXPORT
+#endif
+#ifndef Q_DECL_IMPORT
 #    define Q_DECL_IMPORT
+#endif
 #endif
 
 

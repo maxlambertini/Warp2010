@@ -363,7 +363,7 @@ namespace noise
         /// This restriction is necessary because if this object was copied,
         /// all source modules assigned to this noise module would need to be
         /// copied as well.
-        const Module& operator= (const Module& m)
+        const Module& operator= (const Module& m __attribute__((unused)) )
         {
           return *this;
         }

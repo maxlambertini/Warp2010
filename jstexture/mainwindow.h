@@ -129,6 +129,8 @@ public:
         qDebug() << "Deleting..." << obj;
         obj->deleteLater();
     }
+
+    QString getLua();
     
 private slots:
     void on_action_new_texture_triggered();

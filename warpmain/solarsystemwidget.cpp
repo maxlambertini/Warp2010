@@ -48,7 +48,7 @@ SolarSystemWidget::SolarSystemWidget(QWidget *parent = 0) : QWidget(parent)
     _star = 0;
 }
 
-void SolarSystemWidget::paintEvent(QPaintEvent *event)       
+void SolarSystemWidget::paintEvent(QPaintEvent *event __attribute__((unused)) )
 {
     _customWidth = this->width();
     _customHeight = this->height();

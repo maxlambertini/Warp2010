@@ -144,10 +144,10 @@ class LIBNOISEHELPERSSHARED_EXPORT ModuleDescriptor : public QObject
     Q_PROPERTY(double pers READ pers WRITE setPers )
 
     double _offset = 0.0;
-    Q_PROPERTY(double displ READ offset WRITE setOffset )
+    Q_PROPERTY(double offset READ offset WRITE setOffset )
 
     double _gain = 2.0 ;
-    Q_PROPERTY(double pers READ gain WRITE setGain )
+    Q_PROPERTY(double gain READ gain WRITE setGain )
 
     double _disp = 0.0;
     Q_PROPERTY(double displ READ displ WRITE setDispl )

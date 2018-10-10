@@ -197,7 +197,7 @@ void CelestiaExporter::makeAtmosphere(int i, Planet& planet, QTextStream& stream
         stream << "\t\tMie  " << SSGX::floatRand()*0.001 << "\n";
         stream << "\t\tMieAsymmetry  " << 0.5 - SSGX::floatRand() << "\n";
         stream << "\t\tRayleigh   [ " << SSGX::floatRand()*0.0005 << " "  << SSGX::floatRand()*0.0005 << " " << SSGX::floatRand()*0.0005 << " ]\n";
-        stream << "\t\Absorption   [ " << SSGX::floatRand()*0.0001 << " "  << SSGX::floatRand()*0.0001 << " " << SSGX::floatRand()*0.0001 << " ]\n";
+        stream << "\t\tAbsorption   [ " << SSGX::floatRand()*0.0001 << " "  << SSGX::floatRand()*0.0001 << " " << SSGX::floatRand()*0.0001 << " ]\n";
         stream << "\t\tMieScaleHeight " << 4 + SSGX::dn(30) + SSGX::dn(50) << " \n";
         stream << "\t\tCloudHeight " << atmoHeight / 2 + SSGX::dn(5) << "\n";
         stream << "\t\tCloudSpeed " << (SSGX::d10()+ SSGX::d10()+40)  << "\n";
@@ -261,7 +261,7 @@ void CelestiaExporter::makeMainCelestiaStats(int i, Planet& planet, QTextStream 
     stream << "\t}\n";
 }
 
-void CelestiaExporter::makeRings(int i, Planet& planet, QTextStream &stream)
+void CelestiaExporter::makeRings(int i __attribute__((unused)) , Planet& planet, QTextStream &stream)
 {
     //TODO: build ring code. Planet has rings if:
     // 1. It's a gas giant. Usually it is a smallish ring, from 2* radius and 0.05 radius width.
@@ -283,7 +283,7 @@ void CelestiaExporter::makeRings(int i, Planet& planet, QTextStream &stream)
     stream << "\t\t Rings { \n";
     stream << "\t\t\tInner " << (int)min_ring << " \n";
     stream << "\t\t\tOuter " << (int)max_ring << " \n";
-    stream << "\t\t\Texture \"" << res << "\" \n\t\t}\n";
+    stream << "\t\t\tTexture \"" << res << "\" \n\t\t}\n";
 
     return;
 }
@@ -358,7 +358,7 @@ void CelestiaExporter::saveCelestiaDataToFile(QString &filename)
     // qDebug() << "ended celestia export ";
 }
 
-QString CelestiaExporter::getCloudTexture(Planet& p, int i) {
+QString CelestiaExporter::getCloudTexture(Planet& p, int i __attribute__((unused)) ) {
     QString res = "";
     auto pt = p.planetType();
     if (pt == ptGarden || pt == ptGlacier ) {
@@ -538,7 +538,7 @@ QString CelestiaExporter::runChunk(Planet& p, QString res)
     return res;
 }
 
-QString CelestiaExporter::getPlanetTexture(Planet& p, int i) {
+QString CelestiaExporter::getPlanetTexture(Planet& p, int i __attribute__((unused)) ) {
     QString res = "";
     switch (p.planetType()) {
     case ptGarden:

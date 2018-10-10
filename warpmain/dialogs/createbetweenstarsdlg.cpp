@@ -44,12 +44,12 @@ CreateBetweenStarsDlg::~CreateBetweenStarsDlg()
 void CreateBetweenStarsDlg::addWidgetItemToStarFrom(QListWidgetItem *item) {
 
     StarWidgetItem *swx = (StarWidgetItem *)item;
-    StarWidgetItem* swi = new StarWidgetItem(swx->star(), swx->indexOnList(), ui->lstFrom);
+    StarWidgetItem* swi __attribute__((unused)) = new StarWidgetItem(swx->star(), swx->indexOnList(), ui->lstFrom);
 }
 
 void CreateBetweenStarsDlg::addWidgetItemToStarTo(QListWidgetItem *item) {
     StarWidgetItem *swx = (StarWidgetItem *)item;
-    StarWidgetItem* swi = new StarWidgetItem(swx->star(), swx->indexOnList(), ui->lstTo);
+    StarWidgetItem* swi __attribute__((unused)) = new StarWidgetItem(swx->star(), swx->indexOnList(), ui->lstTo);
 }
 
 void CreateBetweenStarsDlg::clearTo() { ui->lstTo->clear(); }

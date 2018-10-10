@@ -51,7 +51,7 @@ QRectF StarGraphicsItem::boundingRect() const
     try {
         QFont font = Preferences::prefs().fontBody();
         QFontMetricsF mf(font);
-        double mfHeight = mf.height();
+        double mfHeight  __attribute__((unused)) = mf.height();
         double mfWidth = mf.width( _star->starName);
 
         QRectF rect1 = mf.boundingRect(rect,Qt::AlignLeft | Qt::AlignTop,_star->starName);
@@ -99,12 +99,12 @@ QRectF StarGraphicsItem::boundingRect() const
         rect.setBottom(_y+_starWidth/2);
 
         return rect;
-    } catch (WarpException exc) {
+    } catch (WarpException &exc) {
         return rect;
     }
 }
 
-void StarGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget)
+void StarGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget  __attribute__((unused)))
 {
     //QFont font("Arial",11,100,false);
     //font.setFamily(_fontName);

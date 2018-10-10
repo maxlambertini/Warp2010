@@ -16,7 +16,7 @@
 QT += printsupport widgets svg concurrent
 TARGET = WarpNow
 TEMPLATE = app
-QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter
+QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter -pedantic
 
 
 SOURCES += main.cpp \
@@ -40,16 +40,7 @@ SOURCES += main.cpp \
     starhexgraphicsitem.cpp \
     celestiaexporter.cpp \
     ssg_structures.cpp \
-    cluster/clusteritem.cpp \
-    cluster/cluster.cpp \
-    cluster/diasporaclusterscene.cpp \
-    diasporaclusterdialog.cpp \
-    cluster/diasporaclustergraphicsitem.cpp \
     sceneimageexporter.cpp \
-    cluster/aspect.cpp \
-    cluster/aspectlist.cpp \
-    cluster/aspectgraphicsitem.cpp \
-    clusteritemeditor.cpp \
     appmessage.cpp \
     exporters/clusterhtmlexporter.cpp \
     helpers/progressbarhelper.cpp \
@@ -85,7 +76,6 @@ SOURCES += main.cpp \
     helpers/planetrenderer.cpp \
     helpers/parsecstarlisthelper.cpp \
     helpers/graphmlexporter.cpp \
-    dialogs/noisemapplaygrounddialog.cpp \
     helpers/noiseimagerunner.cpp \
     exporters/starsectorjsonexporter.cpp \
     widgets/actionbutton.cpp \
@@ -112,18 +102,8 @@ HEADERS += coordinates.h \
     onomastikon.h \
     traderoutereportwriter.h \
     starhexgraphicsitem.h \
-    cluster/clusteritem.h \
-    cluster/cluster.h \
-    cluster/diasporaclusterscene.h \
-    diasporaclusterdialog.h \
-    cluster/diasporaclustergraphicsitem.h \
     sceneimageexporter.h \
-    cluster/aspect.h \
-    cluster/aspectlist.h \
-    cluster/aspectgraphicsitem.h \
-    clusteritemeditor.h \
     appmessage.h \
-    exporters/clusterhtmlexporter.h \
     celestiaexporter.h \
     helpers/progressbarhelper.h \
     helpers/preferences.h \
@@ -135,8 +115,6 @@ HEADERS += coordinates.h \
     dialogs/newsectordialog.h \
     dialogs/createtraderoutedialog.h \
     helpers/sectorrectholder.h \
-    models/clusteritemreachdata.h \
-    models/clusteritemreachmodel.h \
     widgets/fontpreviewwidget.h \
     gfx_items/arcgraphicsitem.h \
     helpers/apppaths.h \
@@ -157,7 +135,6 @@ HEADERS += coordinates.h \
     helpers/planetrenderer.h \
     helpers/parsecstarlisthelper.h \
     helpers/graphmlexporter.h \
-    dialogs/noisemapplaygrounddialog.h \
     helpers/noiseimagerunner.h \
     exporters/starsectorjsonexporter.h \
     widgets/actionbutton.h \
@@ -165,9 +142,7 @@ HEADERS += coordinates.h \
     dialogs/sectorexportoptionsdialog.h \
     helpers/graphvizexporter.h
 FORMS += warpmainwindow.ui \
-    diasporaclusterdialog.ui \
     dialogs/printingsetup.ui \
-    clusteritemeditor.ui \
     dialogs/traderoutedialog.ui \
     dialogs/preferencesdialog.ui \
     dialogs/createtraderoutedialog.ui \
@@ -176,8 +151,7 @@ FORMS += warpmainwindow.ui \
     widgets/solsysinspector.ui \
     widgets/solarsystemviewwidget.ui \
     dialogs/createnewstardlg.ui \
-    dialogs/createbetweenstarsdlg.ui \
-    dialogs/noisemapplaygrounddialog.ui
+    dialogs/createbetweenstarsdlg.ui
 RESOURCES += Resources.qrc
 #win32:RC_FILE = warpmain.rc
 #win32:CONFIG += console

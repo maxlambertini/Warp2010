@@ -363,7 +363,7 @@ void SceneMediator::drawToGML(QString &fileName)
     QSharedPointer<Star>star;
     QSharedPointer<Star> p1, p2;
 
-    bool showGardenOnly = _exportGardenPathOnly;
+    bool showGardenOnly __attribute__((unused)) = _exportGardenPathOnly;
 
     QFile file(fileName);
     QStringList links;

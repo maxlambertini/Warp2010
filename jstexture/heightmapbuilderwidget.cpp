@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 
 
-HeightMapBuilderWidget::HeightMapBuilderWidget(NoiseMapBuilderDescriptor *ptr,
+HeightMapBuilderWidget::HeightMapBuilderWidget(NoiseMapBuilderDescriptor *ptr __attribute__((unused)) ,
                                                QWidget *parent ) :
     QWidget(parent)
 {

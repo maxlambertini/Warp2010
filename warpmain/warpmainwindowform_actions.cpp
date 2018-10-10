@@ -198,7 +198,7 @@ void WarpMainWindowForm::on_action_CreateTradeRoute_triggered()
 
             if (dialog->exec() == QDialog::Accepted)
             {
-                QColor color = dialog->selectedColor();
+                QColor color  __attribute__((unused)) = dialog->selectedColor();
                 QString tradeRouteName = dialog->tradeRouteName();
                 QColor bgColor = dialog->selectedColor();
                 QVector<int> path = swi->star()->path();
@@ -365,7 +365,7 @@ void WarpMainWindowForm::on_action_NewSector_triggered()
                 //qApp->processEvents();
                 SplashScreen::screenPtr()->hide();
             }
-            catch (WarpException exc) {
+            catch (WarpException &exc) {
                 SplashScreen::screenPtr()->hide();
                 QString errorText = "Error loading sector";
                 QString errorInfo = QString(exc.what());
@@ -754,7 +754,7 @@ void WarpMainWindowForm::on_action_map_Show_Metro_Map_With_Trade_Routes_triggere
 
 }
 
-void WarpMainWindowForm::on_action_Star_Sector_View_triggered(bool checked)
+void WarpMainWindowForm::on_action_Star_Sector_View_triggered(bool checked __attribute__((unused)) )
 {
     this->on_tabSubprograms_currentChanged(TAB_STAR_SECTOR);
     this->ui->menuStar_Sector_Operations->setEnabled(true);
@@ -762,7 +762,7 @@ void WarpMainWindowForm::on_action_Star_Sector_View_triggered(bool checked)
     this->ui->menuSolar_System_Operations->setEnabled(false);
 }
 
-void WarpMainWindowForm::on_action_Solar_System_View_triggered(bool checked)
+void WarpMainWindowForm::on_action_Solar_System_View_triggered(bool checked __attribute__((unused)) )
 {
     this->on_tabSubprograms_currentChanged(TAB_SOLAR_SYSTEM);
     this->ui->menuStar_Sector_Operations->setEnabled(false);
