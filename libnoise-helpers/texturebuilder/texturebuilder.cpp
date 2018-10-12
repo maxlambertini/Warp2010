@@ -582,9 +582,6 @@ void TextureBuilder::prepareObjectFromJsonFile(const QString &filename) {
         }
         data.close();
     }
-    catch (noise::Exception &err) {
-        throw "Generic noise::exception";
-    }
     catch (noise::ExceptionInvalidParam &err) {
         throw "Invalid param error";
     }
@@ -593,6 +590,9 @@ void TextureBuilder::prepareObjectFromJsonFile(const QString &filename) {
     }
     catch (noise::ExceptionOutOfMemory ) {
         throw "Out of memory!";
+    }
+    catch (noise::Exception &err) {
+        throw "Generic noise::exception";
     }
     catch (QString err) {
         throw err;
@@ -709,9 +709,6 @@ void TextureBuilder::prepareObjectFromJsonString(const QString &jsonData) {
             emit this->builderReady();
         }
     }
-    catch (noise::Exception err) {
-        throw "Generic noise::exception";
-    }
     catch (noise::ExceptionInvalidParam err) {
         throw "Invalid param error";
     }
@@ -720,6 +717,9 @@ void TextureBuilder::prepareObjectFromJsonString(const QString &jsonData) {
     }
     catch (noise::ExceptionOutOfMemory ) {
         throw "Out of memory!";
+    }
+    catch (noise::Exception err) {
+        throw "Generic noise::exception";
     }
     catch (QString err) {
         throw err;
@@ -820,17 +820,17 @@ void TextureBuilder::buildTextureFromJson(const QString &filename, QString path)
          }
          data.close();
     }
-    catch (noise::Exception err) {
-        throw "Generic noise::exception";
-    }
-    catch (noise::ExceptionInvalidParam err) {
+    catch (noise::ExceptionInvalidParam &err) {
         throw "Invalid param error";
     }
-    catch (noise::ExceptionNoModule err) {
+    catch (noise::ExceptionNoModule &err) {
         throw "No module defined as source or control";
     }
     catch (noise::ExceptionOutOfMemory ) {
         throw "Out of memory!";
+    }
+    catch (noise::Exception &err) {
+        throw "Generic noise::exception";
     }
     catch (QString err) {
         throw err;

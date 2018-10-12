@@ -6,6 +6,8 @@
 
 QT       += core gui
 CONFIG += c++14
+QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter -pedantic
+
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

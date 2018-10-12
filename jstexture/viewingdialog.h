@@ -37,6 +37,7 @@ class ViewingDialog : public QDialog
     Q_OBJECT
 
     QFrame *frame;
+    Ui::ViewingDialog *ui;
     QLabel *imageLabel;
     QScrollArea *scrollArea;
 public:
@@ -44,8 +45,6 @@ public:
     ~ViewingDialog();
 
     void loadImage(QString& filename);
-private:
-    Ui::ViewingDialog *ui;
 };
 
 #endif // VIEWINGDIALOG_H
