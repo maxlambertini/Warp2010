@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{656FD0A9-4482-3E99-8098-DA961CDD1F1C}</ProjectGuid>
+    <RootNamespace>libnoise-warp</RootNamespace>
+    <Keyword>Qt4VSv1.0</Keyword>
+    <MinimumVisualStudioVersion>14.00</MinimumVisualStudioVersion>
+    <DefaultLanguage>en</DefaultLanguage>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformVersion></WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion></WindowsTargetPlatformMinVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" Label="Configuration">
+    <PlatformToolSet>v140</PlatformToolSet>
+    <OutputDirectory>release\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>libnoise-warp</PrimaryOutput>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" Label="Configuration">
+    <PlatformToolSet>v140</PlatformToolSet>
+    <OutputDirectory>debug\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>libnoise-warp</PrimaryOutput>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)" />
+  </ImportGroup>
+  <ImportGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\</OutDir>
+    <IntDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\</IntDir>
+    <TargetName Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">libnoise-warp</TargetName>
+    <IgnoreImportLibrary Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">false</LinkIncremental>
+    <GenerateManifest Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">false</GenerateManifest>
+    <OutDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\</OutDir>
+    <IntDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\</IntDir>
+    <TargetName Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">libnoise-warp</TargetName>
+    <IgnoreImportLibrary Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</IgnoreImportLibrary>
+    <GenerateManifest Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;..\libnoise\src;$(QTDIR)\include;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;release;$(QTDIR)\mkspecs\winrt-x64-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter -Wno-reorder -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>release\</ObjectFileName>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;Q_BYTE_ORDER=Q_LITTLE_ENDIAN;QT_NO_PRINTER;QT_NO_PRINTDIALOG;WINAPI_FAMILY=WINAPI_FAMILY_PC_APP;WINAPI_PARTITION_PHONE_APP=1;X64;__X64__;__x64__;LIBNOISEWARP_LIBRARY;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName></ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ucrt.lib;windowscodecs.lib;WindowsApp.lib;runtimeobject.lib;OneCore.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;$(QTDIR)\lib\libEGL.lib;$(QTDIR)\lib\libGLESv2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/APPCONTAINER %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateManifest>false</GenerateManifest>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <IgnoreSpecificDefaultLibraries>ole32.lib;kernel32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <LinkDLL>true</LinkDLL>
+      <LinkIncremental>false</LinkIncremental>
+      <OutputFile>$(OutDir)\libnoise-warp.dll</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;Q_BYTE_ORDER=Q_LITTLE_ENDIAN;QT_NO_PRINTER;QT_NO_PRINTDIALOG;WINAPI_FAMILY=WINAPI_FAMILY_PC_APP;WINAPI_PARTITION_PHONE_APP=1;X64;__X64__;__x64__;LIBNOISEWARP_LIBRARY;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <Target Name="WinDeployQt_Release|x64" Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" Inputs="$(OutDir)\$(TargetName).exe" Outputs="$(TargetName).windeployqt.$(Platform).$(Configuration)">
+    <Message Text="$(QTDIR)\bin\windeployqt.exe -qmldir C:\codice\qt\Warp2010\libnoise-warp -list relative -dir &quot;$(MSBuildProjectDirectory)&quot; &quot;$(OutDir)\$(TargetName).exe&quot; > &quot;$(TargetName).windeployqt.$(Platform).$(Configuration)&quot;" />
+    <Exec Command="$(QTDIR)\bin\windeployqt.exe -qmldir C:\codice\qt\Warp2010\libnoise-warp -list relative -dir &quot;$(MSBuildProjectDirectory)&quot; &quot;$(OutDir)\$(TargetName).exe&quot; > &quot;$(TargetName).windeployqt.$(Platform).$(Configuration)&quot;" />
+  </Target>
+  <Target Name="PopulateWinDeployQtItems_Release|x64" Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" AfterTargets="Link" DependsOnTargets="WinDeployQt_Release|x64">
+    <ReadLinesFromFile File="$(TargetName).windeployqt.$(Platform).$(Configuration)">
+      <Output TaskParameter="Lines" ItemName="DeploymentItems" />
+    </ReadLinesFromFile>
+    <ItemGroup>
+      <None Include="@(DeploymentItems)">
+        <DeploymentContent>true</DeploymentContent>
+      </None>
+    </ItemGroup>
+  </Target>
+  <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;..\libnoise\src;$(QTDIR)\include;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;debug;$(QTDIR)\mkspecs\winrt-x64-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -Wextra -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter -Wno-reorder -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>debug\</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;Q_BYTE_ORDER=Q_LITTLE_ENDIAN;QT_NO_PRINTER;QT_NO_PRINTDIALOG;WINAPI_FAMILY=WINAPI_FAMILY_PC_APP;WINAPI_PARTITION_PHONE_APP=1;X64;__X64__;__x64__;LIBNOISEWARP_LIBRARY;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ucrtd.lib;windowscodecs.lib;WindowsApp.lib;runtimeobject.lib;OneCore.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;$(QTDIR)\lib\libEGLd.lib;$(QTDIR)\lib\libGLESv2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/APPCONTAINER %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateManifest>false</GenerateManifest>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <IgnoreSpecificDefaultLibraries>ole32.lib;kernel32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <LinkDLL>true</LinkDLL>
+      <OutputFile>$(OutDir)\libnoise-warp.dll</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;Q_BYTE_ORDER=Q_LITTLE_ENDIAN;QT_NO_PRINTER;QT_NO_PRINTDIALOG;WINAPI_FAMILY=WINAPI_FAMILY_PC_APP;WINAPI_PARTITION_PHONE_APP=1;X64;__X64__;__x64__;LIBNOISEWARP_LIBRARY;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <Target Name="WinDeployQt_Debug|x64" Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" Inputs="$(OutDir)\$(TargetName).exe" Outputs="$(TargetName).windeployqt.$(Platform).$(Configuration)">
+    <Message Text="$(QTDIR)\bin\windeployqt.exe -qmldir C:\codice\qt\Warp2010\libnoise-warp -list relative -dir &quot;$(MSBuildProjectDirectory)&quot; &quot;$(OutDir)\$(TargetName).exe&quot; > &quot;$(TargetName).windeployqt.$(Platform).$(Configuration)&quot;" />
+    <Exec Command="$(QTDIR)\bin\windeployqt.exe -qmldir C:\codice\qt\Warp2010\libnoise-warp -list relative -dir &quot;$(MSBuildProjectDirectory)&quot; &quot;$(OutDir)\$(TargetName).exe&quot; > &quot;$(TargetName).windeployqt.$(Platform).$(Configuration)&quot;" />
+  </Target>
+  <Target Name="PopulateWinDeployQtItems_Debug|x64" Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" AfterTargets="Link" DependsOnTargets="WinDeployQt_Debug|x64">
+    <ReadLinesFromFile File="$(TargetName).windeployqt.$(Platform).$(Configuration)">
+      <Output TaskParameter="Lines" ItemName="DeploymentItems" />
+    </ReadLinesFromFile>
+    <ItemGroup>
+      <None Include="@(DeploymentItems)">
+        <DeploymentContent>true</DeploymentContent>
+      </None>
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <ClCompile Include="..\libnoise\src\noise\module\abs.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\add.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\billow.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\blend.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\cache.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\checkerboard.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\clamp.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\const.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\curve.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\model\cylinder.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\cylinders.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\displace.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\exponent.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\invert.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\latlon.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\model\line.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\max.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\min.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\modulebase.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\multiply.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\noisegen.cpp" />
+    <ClCompile Include="..\libnoise\src\noiseutils.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\perlin.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\model\plane.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\power.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\ridgedmulti.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\rotatepoint.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\scalebias.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\scalepoint.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\select.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\model\sphere.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\spheres.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\terrace.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\translatepoint.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\turbulence.cpp" />
+    <ClCompile Include="..\libnoise\src\noise\module\voronoi.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

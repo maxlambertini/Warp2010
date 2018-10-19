@@ -1,0 +1,59 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libnoise-warp", "libnoise-warp\libnoise-warp.vcxproj", "{656FD0A9-4482-3E99-8098-DA961CDD1F1C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libnoise-helpers", "libnoise-helpers\libnoise-helpers.vcxproj", "{7D6425C3-4FB6-3426-A257-268AB7D828AA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{656FD0A9-4482-3E99-8098-DA961CDD1F1C} = {656FD0A9-4482-3E99-8098-DA961CDD1F1C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WarpNow", "warpmain\WarpNow.vcxproj", "{28202C83-7214-3333-BC84-1430D56F61AF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{656FD0A9-4482-3E99-8098-DA961CDD1F1C} = {656FD0A9-4482-3E99-8098-DA961CDD1F1C}
+		{7D6425C3-4FB6-3426-A257-268AB7D828AA} = {7D6425C3-4FB6-3426-A257-268AB7D828AA}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "diaspora-widgets", "diaspora-widgets\diaspora-widgets.vcxproj", "{C2E3C29F-E1F8-3080-B2D5-662C5A753817}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jstexture", "jstexture\jstexture.vcxproj", "{E9B7CD1A-4568-3307-B601-F520CF998495}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7D6425C3-4FB6-3426-A257-268AB7D828AA} = {7D6425C3-4FB6-3426-A257-268AB7D828AA}
+		{656FD0A9-4482-3E99-8098-DA961CDD1F1C} = {656FD0A9-4482-3E99-8098-DA961CDD1F1C}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{656FD0A9-4482-3E99-8098-DA961CDD1F1C}.Debug|x64.ActiveCfg = Debug|x64
+		{656FD0A9-4482-3E99-8098-DA961CDD1F1C}.Debug|x64.Build.0 = Debug|x64
+		{656FD0A9-4482-3E99-8098-DA961CDD1F1C}.Release|x64.ActiveCfg = Release|x64
+		{656FD0A9-4482-3E99-8098-DA961CDD1F1C}.Release|x64.Build.0 = Release|x64
+		{7D6425C3-4FB6-3426-A257-268AB7D828AA}.Debug|x64.ActiveCfg = Debug|x64
+		{7D6425C3-4FB6-3426-A257-268AB7D828AA}.Debug|x64.Build.0 = Debug|x64
+		{7D6425C3-4FB6-3426-A257-268AB7D828AA}.Release|x64.ActiveCfg = Release|x64
+		{7D6425C3-4FB6-3426-A257-268AB7D828AA}.Release|x64.Build.0 = Release|x64
+		{28202C83-7214-3333-BC84-1430D56F61AF}.Debug|x64.ActiveCfg = Debug|x64
+		{28202C83-7214-3333-BC84-1430D56F61AF}.Debug|x64.Build.0 = Debug|x64
+		{28202C83-7214-3333-BC84-1430D56F61AF}.Release|x64.ActiveCfg = Release|x64
+		{28202C83-7214-3333-BC84-1430D56F61AF}.Release|x64.Build.0 = Release|x64
+		{C2E3C29F-E1F8-3080-B2D5-662C5A753817}.Debug|x64.ActiveCfg = Debug|x64
+		{C2E3C29F-E1F8-3080-B2D5-662C5A753817}.Debug|x64.Build.0 = Debug|x64
+		{C2E3C29F-E1F8-3080-B2D5-662C5A753817}.Release|x64.ActiveCfg = Release|x64
+		{C2E3C29F-E1F8-3080-B2D5-662C5A753817}.Release|x64.Build.0 = Release|x64
+		{E9B7CD1A-4568-3307-B601-F520CF998495}.Debug|x64.ActiveCfg = Debug|x64
+		{E9B7CD1A-4568-3307-B601-F520CF998495}.Debug|x64.Build.0 = Debug|x64
+		{E9B7CD1A-4568-3307-B601-F520CF998495}.Release|x64.ActiveCfg = Release|x64
+		{E9B7CD1A-4568-3307-B601-F520CF998495}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = 5.7 vc
+	EndGlobalSection
+EndGlobal

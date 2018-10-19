@@ -84,8 +84,8 @@ INCLUDEPATH += $$PWD/../libnoise-lua/libnoise-lua/
 DEPENDPATH += $$PWD/../libnoise-lua/libnoise-lua/
 
 win32 {
-    LIBS += -L$$PWD/../../win_lua -llua53
-    INCLUDEPATH += $$PWD/../../win_lua/include
+    LIBS += -L$$PWD/../win_lua -llua53
+    INCLUDEPATH += $$PWD/../win_lua/include
     QMAKE_CXXFLAGS += -Wa,-mbig-obj
     # DEFINES += SOL_USING_CXX_LUA
 }

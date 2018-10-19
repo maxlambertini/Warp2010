@@ -1,0 +1,1103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{28202C83-7214-3333-BC84-1430D56F61AF}</ProjectGuid>
+    <RootNamespace>WarpNow</RootNamespace>
+    <Keyword>Qt4VSv1.0</Keyword>
+    <MinimumVisualStudioVersion>14.00</MinimumVisualStudioVersion>
+    <DefaultLanguage>en</DefaultLanguage>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformVersion></WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion></WindowsTargetPlatformMinVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" Label="Configuration">
+    <PlatformToolSet>v140</PlatformToolSet>
+    <OutputDirectory>release\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>WarpNow</PrimaryOutput>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" Label="Configuration">
+    <PlatformToolSet>v140</PlatformToolSet>
+    <OutputDirectory>debug\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>WarpNow</PrimaryOutput>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)" />
+  </ImportGroup>
+  <ImportGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists(&apos;$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props&apos;)" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\</OutDir>
+    <IntDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\</IntDir>
+    <TargetName Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">WarpNow</TargetName>
+    <IgnoreImportLibrary Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">false</LinkIncremental>
+    <GenerateManifest Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">false</GenerateManifest>
+    <OutDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\</OutDir>
+    <IntDir Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\</IntDir>
+    <TargetName Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">WarpNow</TargetName>
+    <IgnoreImportLibrary Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</IgnoreImportLibrary>
+    <GenerateManifest Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;..\libnoise\src;..\libnoise-helpers;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtSvg;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtWidgets;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtGui;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtANGLE;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtConcurrent;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtCore;release;.;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\mkspecs\winrt-x64-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -Wextra -O3 -Wunused-parameter -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>release\</ObjectFileName>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;Q_BYTE_ORDER=Q_LITTLE_ENDIAN;QT_NO_PRINTER;QT_NO_PRINTDIALOG;WINAPI_FAMILY=WINAPI_FAMILY_PC_APP;WINAPI_PARTITION_PHONE_APP=1;X64;__X64__;__x64__;QT_NO_DEBUG;QT_SVG_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CONCURRENT_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName></ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\qtmain.lib;ucrt.lib;windowscodecs.lib;WindowsApp.lib;runtimeobject.lib;OneCore.lib;libnoise-warp.lib;libnoise-helpers.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Svg.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Widgets.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Gui.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Concurrent.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Core.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\libEGL.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\libGLESv2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib;$(QTDIR)\lib;C:\codice\qt\Warp2010\libnoise-warp\release;C:\codice\qt\Warp2010\libnoise-helpers\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/APPCONTAINER %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateManifest>false</GenerateManifest>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <IgnoreSpecificDefaultLibraries>ole32.lib;kernel32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <LinkIncremental>false</LinkIncremental>
+      <OutputFile>$(OutDir)\WarpNow.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;Q_BYTE_ORDER=Q_LITTLE_ENDIAN;QT_NO_PRINTER;QT_NO_PRINTDIALOG;WINAPI_FAMILY=WINAPI_FAMILY_PC_APP;WINAPI_PARTITION_PHONE_APP=1;X64;__X64__;__x64__;QT_NO_DEBUG;QT_SVG_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CONCURRENT_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <Target Name="WinDeployQt_Release|x64" Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" Inputs="$(OutDir)\$(TargetName).exe" Outputs="$(TargetName).windeployqt.$(Platform).$(Configuration)">
+    <Message Text="C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\windeployqt.exe -qmldir C:\codice\qt\Warp2010\warpmain -list relative -dir &quot;$(MSBuildProjectDirectory)&quot; &quot;$(OutDir)\$(TargetName).exe&quot; > &quot;$(TargetName).windeployqt.$(Platform).$(Configuration)&quot;" />
+    <Exec Command="C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\windeployqt.exe -qmldir C:\codice\qt\Warp2010\warpmain -list relative -dir &quot;$(MSBuildProjectDirectory)&quot; &quot;$(OutDir)\$(TargetName).exe&quot; > &quot;$(TargetName).windeployqt.$(Platform).$(Configuration)&quot;" />
+  </Target>
+  <Target Name="PopulateWinDeployQtItems_Release|x64" Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;" AfterTargets="Link" DependsOnTargets="WinDeployQt_Release|x64">
+    <ReadLinesFromFile File="$(TargetName).windeployqt.$(Platform).$(Configuration)">
+      <Output TaskParameter="Lines" ItemName="DeploymentItems" />
+    </ReadLinesFromFile>
+    <ItemGroup>
+      <None Include="@(DeploymentItems)">
+        <DeploymentContent>true</DeploymentContent>
+      </None>
+    </ItemGroup>
+  </Target>
+  <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;..\libnoise\src;..\libnoise-helpers;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtSvg;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtWidgets;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtGui;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtANGLE;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtConcurrent;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\include\QtCore;debug;.;..\..\..\..\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\mkspecs\winrt-x64-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -Wextra -O3 -Wunused-parameter -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4577;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>debug\</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;Q_BYTE_ORDER=Q_LITTLE_ENDIAN;QT_NO_PRINTER;QT_NO_PRINTDIALOG;WINAPI_FAMILY=WINAPI_FAMILY_PC_APP;WINAPI_PARTITION_PHONE_APP=1;X64;__X64__;__x64__;QT_SVG_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CONCURRENT_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\qtmaind.lib;ucrtd.lib;windowscodecs.lib;WindowsApp.lib;runtimeobject.lib;OneCore.lib;libnoise-warp.lib;libnoise-helpers.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Svgd.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Widgetsd.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Guid.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Concurrentd.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\Qt5Cored.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\libEGLd.lib;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib\libGLESv2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\lib;$(QTDIR)\lib;C:\codice\qt\Warp2010\libnoise-warp\debug;C:\codice\qt\Warp2010\libnoise-helpers\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/APPCONTAINER %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateManifest>false</GenerateManifest>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <IgnoreSpecificDefaultLibraries>ole32.lib;kernel32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>$(OutDir)\WarpNow.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;Q_BYTE_ORDER=Q_LITTLE_ENDIAN;QT_NO_PRINTER;QT_NO_PRINTDIALOG;WINAPI_FAMILY=WINAPI_FAMILY_PC_APP;WINAPI_PARTITION_PHONE_APP=1;X64;__X64__;__x64__;QT_SVG_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CONCURRENT_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <Target Name="WinDeployQt_Debug|x64" Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" Inputs="$(OutDir)\$(TargetName).exe" Outputs="$(TargetName).windeployqt.$(Platform).$(Configuration)">
+    <Message Text="C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\windeployqt.exe -qmldir C:\codice\qt\Warp2010\warpmain -list relative -dir &quot;$(MSBuildProjectDirectory)&quot; &quot;$(OutDir)\$(TargetName).exe&quot; > &quot;$(TargetName).windeployqt.$(Platform).$(Configuration)&quot;" />
+    <Exec Command="C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\windeployqt.exe -qmldir C:\codice\qt\Warp2010\warpmain -list relative -dir &quot;$(MSBuildProjectDirectory)&quot; &quot;$(OutDir)\$(TargetName).exe&quot; > &quot;$(TargetName).windeployqt.$(Platform).$(Configuration)&quot;" />
+  </Target>
+  <Target Name="PopulateWinDeployQtItems_Debug|x64" Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;" AfterTargets="Link" DependsOnTargets="WinDeployQt_Debug|x64">
+    <ReadLinesFromFile File="$(TargetName).windeployqt.$(Platform).$(Configuration)">
+      <Output TaskParameter="Lines" ItemName="DeploymentItems" />
+    </ReadLinesFromFile>
+    <ItemGroup>
+      <None Include="@(DeploymentItems)">
+        <DeploymentContent>true</DeploymentContent>
+      </None>
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <ClCompile Include="widgets\actionbutton.cpp" />
+    <ClCompile Include="appmessage.cpp" />
+    <ClCompile Include="helpers\apppaths.cpp" />
+    <ClCompile Include="gfx_items\arcgraphicsitem.cpp" />
+    <ClCompile Include="cluster\aspect.cpp" />
+    <ClCompile Include="cluster\aspectgraphicsitem.cpp" />
+    <ClCompile Include="cluster\aspectlist.cpp" />
+    <ClCompile Include="widgets\basicstarinfowidget.cpp" />
+    <ClCompile Include="celestiaexporter.cpp" />
+    <ClCompile Include="cluster\cluster.cpp" />
+    <ClCompile Include="exporters\clusterhtmlexporter.cpp" />
+    <ClCompile Include="cluster\clusteritem.cpp" />
+    <ClCompile Include="clusteritemeditor.cpp" />
+    <ClCompile Include="models\clusteritemreachdata.cpp" />
+    <ClCompile Include="models\clusteritemreachmodel.cpp" />
+    <ClCompile Include="coordinates.cpp" />
+    <ClCompile Include="dialogs\createbetweenstarsdlg.cpp" />
+    <ClCompile Include="dialogs\createnewstardlg.cpp" />
+    <ClCompile Include="dialogs\createtraderoutedialog.cpp" />
+    <ClCompile Include="diasporaclusterdialog.cpp" />
+    <ClCompile Include="cluster\diasporaclustergraphicsitem.cpp" />
+    <ClCompile Include="cluster\diasporaclusterscene.cpp" />
+    <ClCompile Include="helpers\diasporaitemtostar.cpp" />
+    <ClCompile Include="widgets\fontpreviewwidget.cpp" />
+    <ClCompile Include="helpers\graphmlexporter.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainscenehandler.cpp" />
+    <ClCompile Include="dialogs\newsectordialog.cpp" />
+    <ClCompile Include="helpers\noiseimagerunner.cpp" />
+    <ClCompile Include="dialogs\noisemapplaygrounddialog.cpp" />
+    <ClCompile Include="onomastikon.cpp" />
+    <ClCompile Include="orbit.cpp" />
+    <ClCompile Include="helpers\parsecstarlisthelper.cpp" />
+    <ClCompile Include="helpers\pixmaphelper.cpp" />
+    <ClCompile Include="planet.cpp" />
+    <ClCompile Include="widgets\planetaryinspector.cpp" />
+    <ClCompile Include="gfx_items\planetgraphicsitem.cpp" />
+    <ClCompile Include="helpers\planetrenderer.cpp" />
+    <ClCompile Include="helpers\planetselector.cpp" />
+    <ClCompile Include="helpers\preferences.cpp" />
+    <ClCompile Include="dialogs\preferencesdialog.cpp" />
+    <ClCompile Include="helpers\printingpreferences.cpp" />
+    <ClCompile Include="dialogs\printingsetup.cpp" />
+    <ClCompile Include="helpers\progressbarhelper.cpp" />
+    <ClCompile Include="qtcolorpicker.cpp" />
+    <ClCompile Include="sceneimageexporter.cpp" />
+    <ClCompile Include="helpers\sectorrectholder.cpp" />
+    <ClCompile Include="solarsystemcreator.cpp" />
+    <ClCompile Include="helpers\solarsystemtoscene.cpp" />
+    <ClCompile Include="widgets\solarsystemviewwidget.cpp" />
+    <ClCompile Include="solarsystemwidget.cpp" />
+    <ClCompile Include="widgets\solsysinspector.cpp" />
+    <ClCompile Include="helpers\splashscreen.cpp" />
+    <ClCompile Include="ssg_structures.cpp" />
+    <ClCompile Include="star.cpp" />
+    <ClCompile Include="helpers\starcodehelper.cpp" />
+    <ClCompile Include="stargraphicsitem.cpp" />
+    <ClCompile Include="starhexgraphicsitem.cpp" />
+    <ClCompile Include="widgets\starinspector.cpp" />
+    <ClCompile Include="starlist.cpp" />
+    <ClCompile Include="starmapwidget.cpp" />
+    <ClCompile Include="exporters\starsectorjsonexporter.cpp" />
+    <ClCompile Include="helpers\startodiasporasummary.cpp" />
+    <ClCompile Include="starwidgetitem.cpp" />
+    <ClCompile Include="traderoute.cpp" />
+    <ClCompile Include="dialogs\traderoutedialog.cpp" />
+    <ClCompile Include="traderoutemediator.cpp" />
+    <ClCompile Include="traderoutereportwriter.cpp" />
+    <ClCompile Include="traderoutewidgetitem.cpp" />
+    <ClCompile Include="warpmainwindowform.cpp" />
+    <ClCompile Include="warpmainwindowform_actions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="widgets\actionbutton.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\actionbutton.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\actionbutton.h -o release\moc_actionbutton.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC widgets/actionbutton.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_actionbutton.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\actionbutton.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\actionbutton.h -o debug\moc_actionbutton.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC widgets/actionbutton.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_actionbutton.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="appmessage.h" />
+    <ClInclude Include="helpers\apppaths.h" />
+    <ClInclude Include="gfx_items\arcgraphicsitem.h" />
+    <ClInclude Include="cluster\aspect.h" />
+    <ClInclude Include="cluster\aspectgraphicsitem.h" />
+    <ClInclude Include="cluster\aspectlist.h" />
+    <CustomBuild Include="widgets\basicstarinfowidget.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\basicstarinfowidget.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\basicstarinfowidget.h -o release\moc_basicstarinfowidget.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC widgets/basicstarinfowidget.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_basicstarinfowidget.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\basicstarinfowidget.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\basicstarinfowidget.h -o debug\moc_basicstarinfowidget.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC widgets/basicstarinfowidget.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_basicstarinfowidget.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="celestiaexporter.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">celestiaexporter.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore celestiaexporter.h -o release\moc_celestiaexporter.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC celestiaexporter.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_celestiaexporter.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">celestiaexporter.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore celestiaexporter.h -o debug\moc_celestiaexporter.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC celestiaexporter.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_celestiaexporter.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="cluster\cluster.h" />
+    <ClInclude Include="exporters\clusterhtmlexporter.h" />
+    <ClInclude Include="cluster\clusteritem.h" />
+    <CustomBuild Include="clusteritemeditor.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">clusteritemeditor.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore clusteritemeditor.h -o release\moc_clusteritemeditor.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC clusteritemeditor.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_clusteritemeditor.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">clusteritemeditor.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore clusteritemeditor.h -o debug\moc_clusteritemeditor.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC clusteritemeditor.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_clusteritemeditor.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="models\clusteritemreachdata.h" />
+    <CustomBuild Include="models\clusteritemreachmodel.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">models\clusteritemreachmodel.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore models\clusteritemreachmodel.h -o release\moc_clusteritemreachmodel.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC models/clusteritemreachmodel.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_clusteritemreachmodel.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">models\clusteritemreachmodel.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore models\clusteritemreachmodel.h -o debug\moc_clusteritemreachmodel.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC models/clusteritemreachmodel.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_clusteritemreachmodel.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="coordinates.h" />
+    <CustomBuild Include="dialogs\createbetweenstarsdlg.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\createbetweenstarsdlg.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\createbetweenstarsdlg.h -o release\moc_createbetweenstarsdlg.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC dialogs/createbetweenstarsdlg.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_createbetweenstarsdlg.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\createbetweenstarsdlg.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\createbetweenstarsdlg.h -o debug\moc_createbetweenstarsdlg.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC dialogs/createbetweenstarsdlg.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_createbetweenstarsdlg.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createnewstardlg.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\createnewstardlg.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\createnewstardlg.h -o release\moc_createnewstardlg.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC dialogs/createnewstardlg.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_createnewstardlg.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\createnewstardlg.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\createnewstardlg.h -o debug\moc_createnewstardlg.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC dialogs/createnewstardlg.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_createnewstardlg.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createtraderoutedialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\createtraderoutedialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\createtraderoutedialog.h -o release\moc_createtraderoutedialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC dialogs/createtraderoutedialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_createtraderoutedialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\createtraderoutedialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\createtraderoutedialog.h -o debug\moc_createtraderoutedialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC dialogs/createtraderoutedialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_createtraderoutedialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="diasporaclusterdialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">diasporaclusterdialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore diasporaclusterdialog.h -o release\moc_diasporaclusterdialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC diasporaclusterdialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_diasporaclusterdialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">diasporaclusterdialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore diasporaclusterdialog.h -o debug\moc_diasporaclusterdialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC diasporaclusterdialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_diasporaclusterdialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="cluster\diasporaclustergraphicsitem.h" />
+    <CustomBuild Include="cluster\diasporaclusterscene.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">cluster\diasporaclusterscene.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore cluster\diasporaclusterscene.h -o release\moc_diasporaclusterscene.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC cluster/diasporaclusterscene.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_diasporaclusterscene.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">cluster\diasporaclusterscene.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore cluster\diasporaclusterscene.h -o debug\moc_diasporaclusterscene.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC cluster/diasporaclusterscene.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_diasporaclusterscene.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="helpers\diasporaitemtostar.h" />
+    <CustomBuild Include="widgets\fontpreviewwidget.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\fontpreviewwidget.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\fontpreviewwidget.h -o release\moc_fontpreviewwidget.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC widgets/fontpreviewwidget.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_fontpreviewwidget.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\fontpreviewwidget.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\fontpreviewwidget.h -o debug\moc_fontpreviewwidget.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC widgets/fontpreviewwidget.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_fontpreviewwidget.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="helpers\graphmlexporter.h" />
+    <ClInclude Include="mainscenehandler.h" />
+    <CustomBuild Include="dialogs\newsectordialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\newsectordialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\newsectordialog.h -o release\moc_newsectordialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC dialogs/newsectordialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_newsectordialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\newsectordialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\newsectordialog.h -o debug\moc_newsectordialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC dialogs/newsectordialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_newsectordialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="helpers\noiseimagerunner.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">helpers\noiseimagerunner.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore helpers\noiseimagerunner.h -o release\moc_noiseimagerunner.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC helpers/noiseimagerunner.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_noiseimagerunner.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">helpers\noiseimagerunner.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore helpers\noiseimagerunner.h -o debug\moc_noiseimagerunner.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC helpers/noiseimagerunner.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_noiseimagerunner.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\noisemapplaygrounddialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\noisemapplaygrounddialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\noisemapplaygrounddialog.h -o release\moc_noisemapplaygrounddialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC dialogs/noisemapplaygrounddialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_noisemapplaygrounddialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\noisemapplaygrounddialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\noisemapplaygrounddialog.h -o debug\moc_noisemapplaygrounddialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC dialogs/noisemapplaygrounddialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_noisemapplaygrounddialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="onomastikon.h" />
+    <ClInclude Include="orbit.h" />
+    <ClInclude Include="helpers\parsecstarlisthelper.h" />
+    <ClInclude Include="helpers\pixmaphelper.h" />
+    <CustomBuild Include="planet.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">planet.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore planet.h -o release\moc_planet.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC planet.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_planet.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">planet.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore planet.h -o debug\moc_planet.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC planet.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_planet.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="widgets\planetaryinspector.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\planetaryinspector.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\planetaryinspector.h -o release\moc_planetaryinspector.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC widgets/planetaryinspector.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_planetaryinspector.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\planetaryinspector.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\planetaryinspector.h -o debug\moc_planetaryinspector.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC widgets/planetaryinspector.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_planetaryinspector.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="gfx_items\planetgraphicsitem.h" />
+    <ClInclude Include="helpers\planetrenderer.h" />
+    <CustomBuild Include="helpers\planetselector.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">helpers\planetselector.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore helpers\planetselector.h -o release\moc_planetselector.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC helpers/planetselector.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_planetselector.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">helpers\planetselector.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore helpers\planetselector.h -o debug\moc_planetselector.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC helpers/planetselector.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_planetselector.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="helpers\preferences.h" />
+    <CustomBuild Include="dialogs\preferencesdialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\preferencesdialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\preferencesdialog.h -o release\moc_preferencesdialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC dialogs/preferencesdialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_preferencesdialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\preferencesdialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\preferencesdialog.h -o debug\moc_preferencesdialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC dialogs/preferencesdialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_preferencesdialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="helpers\printingpreferences.h" />
+    <CustomBuild Include="dialogs\printingsetup.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\printingsetup.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\printingsetup.h -o release\moc_printingsetup.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC dialogs/printingsetup.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_printingsetup.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\printingsetup.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\printingsetup.h -o debug\moc_printingsetup.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC dialogs/printingsetup.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_printingsetup.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="helpers\progressbarhelper.h" />
+    <CustomBuild Include="qtcolorpicker.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">qtcolorpicker.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore qtcolorpicker.h -o release\moc_qtcolorpicker.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC qtcolorpicker.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_qtcolorpicker.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">qtcolorpicker.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore qtcolorpicker.h -o debug\moc_qtcolorpicker.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC qtcolorpicker.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_qtcolorpicker.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="sceneimageexporter.h" />
+    <ClInclude Include="helpers\sectorrectholder.h" />
+    <ClInclude Include="solarsystemcreator.h" />
+    <CustomBuild Include="helpers\solarsystemtoscene.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">helpers\solarsystemtoscene.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore helpers\solarsystemtoscene.h -o release\moc_solarsystemtoscene.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC helpers/solarsystemtoscene.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_solarsystemtoscene.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">helpers\solarsystemtoscene.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore helpers\solarsystemtoscene.h -o debug\moc_solarsystemtoscene.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC helpers/solarsystemtoscene.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_solarsystemtoscene.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="widgets\solarsystemviewwidget.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\solarsystemviewwidget.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\solarsystemviewwidget.h -o release\moc_solarsystemviewwidget.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC widgets/solarsystemviewwidget.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_solarsystemviewwidget.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\solarsystemviewwidget.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\solarsystemviewwidget.h -o debug\moc_solarsystemviewwidget.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC widgets/solarsystemviewwidget.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_solarsystemviewwidget.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="solarsystemwidget.h" />
+    <CustomBuild Include="widgets\solsysinspector.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\solsysinspector.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\solsysinspector.h -o release\moc_solsysinspector.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC widgets/solsysinspector.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_solsysinspector.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\solsysinspector.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\solsysinspector.h -o debug\moc_solsysinspector.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC widgets/solsysinspector.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_solsysinspector.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="helpers\splashscreen.h" />
+    <ClInclude Include="ssg_structures.h" />
+    <CustomBuild Include="star.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">star.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore star.h -o release\moc_star.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC star.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_star.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">star.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore star.h -o debug\moc_star.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC star.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_star.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="helpers\starcodehelper.h" />
+    <ClInclude Include="stargraphicsitem.h" />
+    <ClInclude Include="starhexgraphicsitem.h" />
+    <CustomBuild Include="widgets\starinspector.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\starinspector.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\starinspector.h -o release\moc_starinspector.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC widgets/starinspector.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_starinspector.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\starinspector.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore widgets\starinspector.h -o debug\moc_starinspector.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC widgets/starinspector.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_starinspector.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="starlist.h" />
+    <CustomBuild Include="starmapwidget.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">starmapwidget.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore starmapwidget.h -o release\moc_starmapwidget.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC starmapwidget.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_starmapwidget.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">starmapwidget.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore starmapwidget.h -o debug\moc_starmapwidget.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC starmapwidget.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_starmapwidget.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="exporters\starsectorjsonexporter.h" />
+    <ClInclude Include="helpers\startodiasporasummary.h" />
+    <ClInclude Include="starwidgetitem.h" />
+    <CustomBuild Include="traderoute.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">traderoute.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore traderoute.h -o release\moc_traderoute.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC traderoute.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_traderoute.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">traderoute.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore traderoute.h -o debug\moc_traderoute.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC traderoute.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_traderoute.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\traderoutedialog.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\traderoutedialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\traderoutedialog.h -o release\moc_traderoutedialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC dialogs/traderoutedialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_traderoutedialog.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\traderoutedialog.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore dialogs\traderoutedialog.h -o debug\moc_traderoutedialog.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC dialogs/traderoutedialog.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_traderoutedialog.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="traderoutemediator.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">traderoutemediator.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore traderoutemediator.h -o release\moc_traderoutemediator.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC traderoutemediator.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_traderoutemediator.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">traderoutemediator.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore traderoutemediator.h -o debug\moc_traderoutemediator.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC traderoutemediator.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_traderoutemediator.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="traderoutereportwriter.h" />
+    <ClInclude Include="traderoutewidgetitem.h" />
+    <ClInclude Include="warpexception.h" />
+    <CustomBuild Include="warpmainwindowform.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">warpmainwindowform.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore warpmainwindowform.h -o release\moc_warpmainwindowform.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC warpmainwindowform.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\moc_warpmainwindowform.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">warpmainwindowform.h;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore warpmainwindowform.h -o debug\moc_warpmainwindowform.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC warpmainwindowform.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\moc_warpmainwindowform.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="debug\moc_actionbutton.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_actionbutton.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_basicstarinfowidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_basicstarinfowidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_celestiaexporter.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_celestiaexporter.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_clusteritemeditor.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_clusteritemeditor.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_clusteritemreachmodel.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_clusteritemreachmodel.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_createbetweenstarsdlg.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_createbetweenstarsdlg.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_createnewstardlg.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_createnewstardlg.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_createtraderoutedialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_createtraderoutedialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_diasporaclusterdialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_diasporaclusterdialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_diasporaclusterscene.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_diasporaclusterscene.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_fontpreviewwidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_fontpreviewwidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_newsectordialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_newsectordialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_noiseimagerunner.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_noiseimagerunner.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_noisemapplaygrounddialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_noisemapplaygrounddialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_planet.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_planet.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_planetaryinspector.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_planetaryinspector.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_planetselector.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_planetselector.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_preferencesdialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_preferencesdialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_printingsetup.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_printingsetup.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_qtcolorpicker.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_qtcolorpicker.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_solarsystemtoscene.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_solarsystemtoscene.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_solarsystemviewwidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_solarsystemviewwidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_solsysinspector.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_solsysinspector.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_star.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_star.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_starinspector.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_starinspector.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_starmapwidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_starmapwidget.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_traderoute.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_traderoute.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_traderoutedialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_traderoutedialog.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_traderoutemediator.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_traderoutemediator.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_warpmainwindowform.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_warpmainwindowform.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\qrc_Resources.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\qrc_Resources.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <CustomBuild Include="debug\qtcolorpicker.moc">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">true</ExcludedFromBuild>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">qtcolorpicker.cpp;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore qtcolorpicker.cpp -o debug\qtcolorpicker.moc</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">MOC qtcolorpicker.cpp</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\qtcolorpicker.moc;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="release\qtcolorpicker.moc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">qtcolorpicker.cpp;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\moc.exe  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQ_BYTE_ORDER=Q_LITTLE_ENDIAN -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -DWINAPI_PARTITION_PHONE_APP=1 -DX64 -D__X64__ -D__x64__ -DQT_NO_DEBUG -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/mkspecs/winrt-x64-msvc2015 -IC:/codice/qt/Warp2010/warpmain -IC:/codice/qt/Warp2010/libnoise/src -IC:/codice/qt/Warp2010/libnoise-helpers -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtSvg -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtWidgets -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtGui -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtANGLE -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtConcurrent -IC:/QT/QT5.7.0/5.7/WINRT_X64_MSVC2015/include/QtCore qtcolorpicker.cpp -o release\qtcolorpicker.moc</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">MOC qtcolorpicker.cpp</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\qtcolorpicker.moc;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">true</ExcludedFromBuild>
+    </CustomBuild>
+    <ClInclude Include="ui_clusteritemeditor.h" />
+    <ClInclude Include="ui_createbetweenstarsdlg.h" />
+    <ClInclude Include="ui_createnewstardlg.h" />
+    <ClInclude Include="ui_createtraderoutedialog.h" />
+    <ClInclude Include="ui_diasporaclusterdialog.h" />
+    <ClInclude Include="ui_fontpreviewwidget.h" />
+    <ClInclude Include="ui_newsectordialog.h" />
+    <ClInclude Include="ui_noisemapplaygrounddialog.h" />
+    <ClInclude Include="ui_preferencesdialog.h" />
+    <ClInclude Include="ui_printingsetup.h" />
+    <ClInclude Include="ui_solarsystemviewwidget.h" />
+    <ClInclude Include="ui_solsysinspector.h" />
+    <ClInclude Include="ui_traderoutedialog.h" />
+    <ClInclude Include="ui_warpmainwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="clusteritemeditor.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">clusteritemeditor.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe clusteritemeditor.ui -o ui_clusteritemeditor.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC clusteritemeditor.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_clusteritemeditor.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">clusteritemeditor.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe clusteritemeditor.ui -o ui_clusteritemeditor.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC clusteritemeditor.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_clusteritemeditor.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createbetweenstarsdlg.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\createbetweenstarsdlg.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\createbetweenstarsdlg.ui -o ui_createbetweenstarsdlg.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC dialogs/createbetweenstarsdlg.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_createbetweenstarsdlg.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\createbetweenstarsdlg.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\createbetweenstarsdlg.ui -o ui_createbetweenstarsdlg.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC dialogs/createbetweenstarsdlg.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_createbetweenstarsdlg.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createnewstardlg.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\createnewstardlg.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\createnewstardlg.ui -o ui_createnewstardlg.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC dialogs/createnewstardlg.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_createnewstardlg.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\createnewstardlg.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\createnewstardlg.ui -o ui_createnewstardlg.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC dialogs/createnewstardlg.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_createnewstardlg.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createtraderoutedialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\createtraderoutedialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\createtraderoutedialog.ui -o ui_createtraderoutedialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC dialogs/createtraderoutedialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_createtraderoutedialog.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\createtraderoutedialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\createtraderoutedialog.ui -o ui_createtraderoutedialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC dialogs/createtraderoutedialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_createtraderoutedialog.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="diasporaclusterdialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">diasporaclusterdialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;clusteritemeditor.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe diasporaclusterdialog.ui -o ui_diasporaclusterdialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC diasporaclusterdialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_diasporaclusterdialog.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">diasporaclusterdialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;clusteritemeditor.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe diasporaclusterdialog.ui -o ui_diasporaclusterdialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC diasporaclusterdialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_diasporaclusterdialog.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="widgets\fontpreviewwidget.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\fontpreviewwidget.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe widgets\fontpreviewwidget.ui -o ui_fontpreviewwidget.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC widgets/fontpreviewwidget.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_fontpreviewwidget.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\fontpreviewwidget.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe widgets\fontpreviewwidget.ui -o ui_fontpreviewwidget.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC widgets/fontpreviewwidget.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_fontpreviewwidget.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\newsectordialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\newsectordialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\newsectordialog.ui -o ui_newsectordialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC dialogs/newsectordialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_newsectordialog.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\newsectordialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\newsectordialog.ui -o ui_newsectordialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC dialogs/newsectordialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_newsectordialog.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\noisemapplaygrounddialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\noisemapplaygrounddialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\noisemapplaygrounddialog.ui -o ui_noisemapplaygrounddialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC dialogs/noisemapplaygrounddialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_noisemapplaygrounddialog.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\noisemapplaygrounddialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\noisemapplaygrounddialog.ui -o ui_noisemapplaygrounddialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC dialogs/noisemapplaygrounddialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_noisemapplaygrounddialog.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\preferencesdialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\preferencesdialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;qtcolorpicker.h;widgets\fontpreviewwidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\preferencesdialog.ui -o ui_preferencesdialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC dialogs/preferencesdialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_preferencesdialog.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\preferencesdialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;qtcolorpicker.h;widgets\fontpreviewwidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\preferencesdialog.ui -o ui_preferencesdialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC dialogs/preferencesdialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_preferencesdialog.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\printingsetup.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\printingsetup.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\printingsetup.ui -o ui_printingsetup.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC dialogs/printingsetup.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_printingsetup.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\printingsetup.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\printingsetup.ui -o ui_printingsetup.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC dialogs/printingsetup.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_printingsetup.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="widgets\solarsystemviewwidget.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\solarsystemviewwidget.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;solarsystemwidget.h;widgets\starinspector.h;widgets\planetaryinspector.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe widgets\solarsystemviewwidget.ui -o ui_solarsystemviewwidget.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC widgets/solarsystemviewwidget.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_solarsystemviewwidget.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\solarsystemviewwidget.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;solarsystemwidget.h;widgets\starinspector.h;widgets\planetaryinspector.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe widgets\solarsystemviewwidget.ui -o ui_solarsystemviewwidget.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC widgets/solarsystemviewwidget.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_solarsystemviewwidget.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="widgets\solsysinspector.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">widgets\solsysinspector.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe widgets\solsysinspector.ui -o ui_solsysinspector.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC widgets/solsysinspector.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_solsysinspector.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">widgets\solsysinspector.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe widgets\solsysinspector.ui -o ui_solsysinspector.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC widgets/solsysinspector.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_solsysinspector.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\traderoutedialog.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">dialogs\traderoutedialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;qtcolorpicker.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\traderoutedialog.ui -o ui_traderoutedialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC dialogs/traderoutedialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_traderoutedialog.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">dialogs\traderoutedialog.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;qtcolorpicker.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe dialogs\traderoutedialog.ui -o ui_traderoutedialog.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC dialogs/traderoutedialog.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_traderoutedialog.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="warpmainwindow.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">warpmainwindow.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;qtcolorpicker.h;widgets\solarsystemviewwidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe warpmainwindow.ui -o ui_warpmainwindow.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">UIC warpmainwindow.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">ui_warpmainwindow.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">warpmainwindow.ui;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe;qtcolorpicker.h;widgets\solarsystemviewwidget.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\uic.exe warpmainwindow.ui -o ui_warpmainwindow.h</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">UIC warpmainwindow.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">ui_warpmainwindow.h;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="100LY.STR" />
+    <None Include="pics\1leftarrow.png" />
+    <None Include="pics\1rightarrow.png" />
+    <None Include="2300AD.STR" />
+    <None Include="pics\map_icons\32_hex_reachable.png" />
+    <None Include="50ly.str" />
+    <None Include="pics\newicons\64.png" />
+    <None Include="pics\AllTradeRoutes32.png" />
+    <None Include="pics\Planets\BigRockball.png" />
+    <None Include="pics\Planets\BigTerrestrial.png" />
+    <None Include="pics\Planets\Chunk.png" />
+    <None Include="pics\Planets\Desert.png" />
+    <None Include="pics\GasGiant.png" />
+    <None Include="pics\Planets\GasGiant.png" />
+    <None Include="pics\Planets\Glacier.png" />
+    <None Include="pics\Planets\HotHouse.png" />
+    <None Include="pics\Planets\Iceball.png" />
+    <None Include="pics\Marginal.png" />
+    <None Include="pics\Planets\Marginal.png" />
+    <CustomBuild Include="Resources.qrc">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">Resources.qrc;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\rcc.exe;50ly.str;warp.preferences;aspectlist.aspect;2300AD.STR;100LY.STR;pics\newicons\mappa_tot_64.png;pics\newicons\64.png;pics\newicons\diaspora64.png;templates\planet.tpl;templates\star.tpl;templates\test.tpl;textfiles\places2.txt;pics\zoomin.png;pics\xz.png;pics\system-log-out.png;pics\shjp02_64.png;pics\edit-clear.png;pics\gtk-paste.png;pics\list-remove.png;pics\apacheconf.png;pics\xy.png;pics\gtk-copy.png;pics\gtk-cut.png;pics\gtk-add.png;pics\document-open.png;pics\1leftarrow.png;pics\html.png;pics\optimalpath32.png;pics\AllTradeRoutes32.png;pics\mozilla_doc.png;pics\traderoute32.png;pics\delete_all.png;pics\GasGiant.png;pics\rotateleft.png;pics\printer.png;pics\applications-development.png;pics\document-print.png;pics\inkscape.png;pics\main_icon.png;pics\filesave.png;pics\ship03_64.png;pics\window_background.png;pics\rex_orbiting_horza.jpg;pics\gnome-mime-application-msword.png;pics\document-new.png;pics\rotateright.png;pics\hex_icon.png;pics\browser.png;pics\gnome-control-center.png;pics\1rightarrow.png;pics\yz.png;pics\accessories-calculator.png;pics\about_box.jpg;pics\Marginal.png;pics\document-save.png;pics\gnome-mime-application-pdf.png;pics\zoomout.png;pics\fileopen.png;pics\nopath32.png;pics\map_icons\metro_traderoute_32.png;pics\map_icons\hex_traderoute_32.png;pics\map_icons\hex_reachable_32.png;pics\map_icons\32_hex_reachable.png;pics\map_icons\normal_traderoute_32.png;pics\map_icons\hex_all_32.png;pics\map_icons\normal_all_32.png;pics\map_icons\metro_reachable_32.png;pics\map_icons\metro_all_32.png;pics\map_icons\normal_reachable_32.png;pics\Elementary\document-properties.svg;pics\Elementary\text-x-install.svg;pics\Elementary\document-new.svg;pics\Elementary\internet-web-browser.svg;pics\Elementary\edit-clear.svg;pics\Elementary\folder-drag-accept.svg;pics\starbg.jpg;pics\grip_bar.png;pics\Planets\BigTerrestrial.png;pics\Planets\Chunk.png;pics\Planets\HotHouse.png;pics\Planets\Iceball.png;pics\Planets\SmallPlanet.png;pics\Planets\Terrestrial.png;pics\Planets\Glacier.png;pics\Planets\Desert.png;pics\Planets\Marginal.png;pics\Planets\Rockball.png;pics\Planets\GasGiant.png;pics\Planets\SuperJovian.png;pics\Planets\BigRockball.png;yed\document.tpl;yed\edge.tpl;yed\node.tpl;yed\edge2.tpl;pics\ledred.png;pics\reachable_earth.png;pics\cancel.png;pics\unreachable_earth.png;pics\reference.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\rcc.exe -name Resources Resources.qrc -o release\qrc_Resources.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">RCC Resources.qrc</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">release\qrc_Resources.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">Resources.qrc;C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\rcc.exe;50ly.str;warp.preferences;aspectlist.aspect;2300AD.STR;100LY.STR;pics\newicons\mappa_tot_64.png;pics\newicons\64.png;pics\newicons\diaspora64.png;templates\planet.tpl;templates\star.tpl;templates\test.tpl;textfiles\places2.txt;pics\zoomin.png;pics\xz.png;pics\system-log-out.png;pics\shjp02_64.png;pics\edit-clear.png;pics\gtk-paste.png;pics\list-remove.png;pics\apacheconf.png;pics\xy.png;pics\gtk-copy.png;pics\gtk-cut.png;pics\gtk-add.png;pics\document-open.png;pics\1leftarrow.png;pics\html.png;pics\optimalpath32.png;pics\AllTradeRoutes32.png;pics\mozilla_doc.png;pics\traderoute32.png;pics\delete_all.png;pics\GasGiant.png;pics\rotateleft.png;pics\printer.png;pics\applications-development.png;pics\document-print.png;pics\inkscape.png;pics\main_icon.png;pics\filesave.png;pics\ship03_64.png;pics\window_background.png;pics\rex_orbiting_horza.jpg;pics\gnome-mime-application-msword.png;pics\document-new.png;pics\rotateright.png;pics\hex_icon.png;pics\browser.png;pics\gnome-control-center.png;pics\1rightarrow.png;pics\yz.png;pics\accessories-calculator.png;pics\about_box.jpg;pics\Marginal.png;pics\document-save.png;pics\gnome-mime-application-pdf.png;pics\zoomout.png;pics\fileopen.png;pics\nopath32.png;pics\map_icons\metro_traderoute_32.png;pics\map_icons\hex_traderoute_32.png;pics\map_icons\hex_reachable_32.png;pics\map_icons\32_hex_reachable.png;pics\map_icons\normal_traderoute_32.png;pics\map_icons\hex_all_32.png;pics\map_icons\normal_all_32.png;pics\map_icons\metro_reachable_32.png;pics\map_icons\metro_all_32.png;pics\map_icons\normal_reachable_32.png;pics\Elementary\document-properties.svg;pics\Elementary\text-x-install.svg;pics\Elementary\document-new.svg;pics\Elementary\internet-web-browser.svg;pics\Elementary\edit-clear.svg;pics\Elementary\folder-drag-accept.svg;pics\starbg.jpg;pics\grip_bar.png;pics\Planets\BigTerrestrial.png;pics\Planets\Chunk.png;pics\Planets\HotHouse.png;pics\Planets\Iceball.png;pics\Planets\SmallPlanet.png;pics\Planets\Terrestrial.png;pics\Planets\Glacier.png;pics\Planets\Desert.png;pics\Planets\Marginal.png;pics\Planets\Rockball.png;pics\Planets\GasGiant.png;pics\Planets\SuperJovian.png;pics\Planets\BigRockball.png;yed\document.tpl;yed\edge.tpl;yed\node.tpl;yed\edge2.tpl;pics\ledred.png;pics\reachable_earth.png;pics\cancel.png;pics\unreachable_earth.png;pics\reference.png;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">C:\QT\QT5.7.0\5.7\WINRT_X64_MSVC2015\bin\rcc.exe -name Resources Resources.qrc -o debug\qrc_Resources.cpp</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">RCC Resources.qrc</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">debug\qrc_Resources.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <None Include="pics\Planets\Rockball.png" />
+    <None Include="pics\Planets\SmallPlanet.png" />
+    <None Include="pics\Planets\SuperJovian.png" />
+    <None Include="pics\Planets\Terrestrial.png" />
+    <None Include="pics\about_box.jpg" />
+    <None Include="pics\accessories-calculator.png" />
+    <None Include="pics\apacheconf.png" />
+    <None Include="pics\applications-development.png" />
+    <None Include="aspectlist.aspect" />
+    <None Include="pics\browser.png" />
+    <None Include="pics\cancel.png" />
+    <None Include="pics\delete_all.png" />
+    <None Include="pics\newicons\diaspora64.png" />
+    <None Include="pics\document-new.png" />
+    <None Include="pics\Elementary\document-new.svg" />
+    <None Include="pics\document-open.png" />
+    <None Include="pics\document-print.png" />
+    <None Include="pics\Elementary\document-properties.svg" />
+    <None Include="pics\document-save.png" />
+    <None Include="yed\document.tpl" />
+    <None Include="yed\edge.tpl" />
+    <None Include="yed\edge2.tpl" />
+    <None Include="pics\edit-clear.png" />
+    <None Include="pics\Elementary\edit-clear.svg" />
+    <None Include="pics\fileopen.png" />
+    <None Include="pics\filesave.png" />
+    <None Include="pics\Elementary\folder-drag-accept.svg" />
+    <None Include="pics\gnome-control-center.png" />
+    <None Include="pics\gnome-mime-application-msword.png" />
+    <None Include="pics\gnome-mime-application-pdf.png" />
+    <None Include="pics\grip_bar.png" />
+    <None Include="pics\gtk-add.png" />
+    <None Include="pics\gtk-copy.png" />
+    <None Include="pics\gtk-cut.png" />
+    <None Include="pics\gtk-paste.png" />
+    <None Include="pics\map_icons\hex_all_32.png" />
+    <None Include="pics\hex_icon.png" />
+    <None Include="pics\map_icons\hex_reachable_32.png" />
+    <None Include="pics\map_icons\hex_traderoute_32.png" />
+    <None Include="pics\html.png" />
+    <None Include="pics\inkscape.png" />
+    <None Include="pics\Elementary\internet-web-browser.svg" />
+    <None Include="pics\ledred.png" />
+    <None Include="pics\list-remove.png" />
+    <None Include="pics\main_icon.png" />
+    <None Include="pics\newicons\mappa_tot_64.png" />
+    <None Include="pics\map_icons\metro_all_32.png" />
+    <None Include="pics\map_icons\metro_reachable_32.png" />
+    <None Include="pics\map_icons\metro_traderoute_32.png" />
+    <None Include="pics\mozilla_doc.png" />
+    <None Include="yed\node.tpl" />
+    <None Include="pics\nopath32.png" />
+    <None Include="pics\map_icons\normal_all_32.png" />
+    <None Include="pics\map_icons\normal_reachable_32.png" />
+    <None Include="pics\map_icons\normal_traderoute_32.png" />
+    <None Include="pics\optimalpath32.png" />
+    <None Include="textfiles\places2.txt" />
+    <None Include="templates\planet.tpl" />
+    <None Include="pics\printer.png" />
+    <None Include="pics\reachable_earth.png" />
+    <None Include="pics\reference.png" />
+    <None Include="pics\rex_orbiting_horza.jpg" />
+    <None Include="pics\rotateleft.png" />
+    <None Include="pics\rotateright.png" />
+    <None Include="pics\ship03_64.png" />
+    <None Include="pics\shjp02_64.png" />
+    <None Include="templates\star.tpl" />
+    <None Include="pics\starbg.jpg" />
+    <None Include="pics\system-log-out.png" />
+    <None Include="templates\test.tpl" />
+    <None Include="pics\Elementary\text-x-install.svg" />
+    <None Include="pics\traderoute32.png" />
+    <None Include="pics\unreachable_earth.png" />
+    <None Include="warp.preferences" />
+    <None Include="pics\window_background.png" />
+    <None Include="pics\xy.png" />
+    <None Include="pics\xz.png" />
+    <None Include="pics\yz.png" />
+    <None Include="pics\zoomin.png" />
+    <None Include="pics\zoomout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.LGPL" />
+    <None Include="aspects.aspect" />
+    <None Include="test.tpl" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+    <Image Include="assets/logo_150x150.png" />
+    <Image Include="assets/logo_44x44.png" />
+    <Image Include="assets/logo_store.png" />
+    <Image Include="assets/logo_620x300.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
