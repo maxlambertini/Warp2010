@@ -821,7 +821,7 @@ void WarpMainWindowForm::on_action_Add_New_Star_triggered()
 
         }
     }
-    if (startingStars == 0) {
+    if ((startingStars == 0) && (widget->starsToCreate().count() > 0)) {
         auto name = widget->starsToCreate().first()->starName;
         StarList::StarListPtr()->setListName(name);
         ui->txtSectorName->setText(name);
