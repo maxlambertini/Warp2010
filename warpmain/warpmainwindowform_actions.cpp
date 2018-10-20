@@ -181,7 +181,7 @@ void WarpMainWindowForm::on_action_CreateTradeRoute_triggered()
 {
     CreateTradeRouteDialog *dialog = _createTradeRouteDlg;
     QListWidget     *list = ui->listWidget;
-    if (list->currentItem() != 0)
+    if (list->currentItem() != nullptr)
     {
         StarWidgetItem *swi = (StarWidgetItem *)list->currentItem();
         if (swi->star()->path().count() > 1) {
@@ -258,7 +258,7 @@ void WarpMainWindowForm::on_action_ExportMapToImage_triggered()
 
 void WarpMainWindowForm::on_action_CreateSolarSystem_triggered()
 {
-    if (_currentStar != 0)
+    if (_currentStar != nullptr)
     {
         _currentStar->clearPlanets();
         _currentStar->calcStarValue();
@@ -276,7 +276,7 @@ void WarpMainWindowForm::on_action_CreateSolarSystem_triggered()
 
     QSharedPointer<Star> star = _currentStar;
     StarWidgetItem *swi = (StarWidgetItem *)ui->listWidget->currentItem();
-    if (swi != 0) {
+    if (swi != nullptr) {
         if (star->path().count() > 0) {
             QPixmap pixmap (":/pics/ledred.png");
             QIcon icon(pixmap);
@@ -821,13 +821,11 @@ void WarpMainWindowForm::on_action_Add_New_Star_triggered()
 
         }
     }
-    if (startingStars == 0) {
+    if ( (startingStars) == 0 && (StarList::StarListPtr()->stars().count() > 0)) {
         auto name = widget->starsToCreate().first()->starName;
         StarList::StarListPtr()->setListName(name);
         ui->txtSectorName->setText(name);
     }
-
-
 }
 
 void WarpMainWindowForm::on_actionAdd_Stars_Between_Two_Stars_triggered()
