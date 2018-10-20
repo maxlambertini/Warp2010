@@ -462,6 +462,10 @@ void TextureBuilder::createRenderers() {
         hmd =  _rndDesc[name]; //it.next().value();
         hmd.data()->setImages(_images);
         hmd.data()->setNoiseMaps(_heightMaps);
+        if (this->useRandomFactors() ) {
+            double rf = this->pickRandomFactor();
+            hmd.data()->randomPositionFactor(rf);
+        }
         QSharedPointer<utils::RendererImage> ptr
                 = hmd.data()->makeRenderer();
         _renderers.insert(hmd.data()->name(), ptr);

@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Distribution Files">
+      <UniqueIdentifier>{B83CAF91-C7BF-462F-B76C-EA11631F866C}</UniqueIdentifier>
+      <Extensions>*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="widgets\actionbutton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="appmessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\apppaths.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gfx_items\arcgraphicsitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cluster\aspect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cluster\aspectgraphicsitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cluster\aspectlist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\basicstarinfowidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="celestiaexporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cluster\cluster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exporters\clusterhtmlexporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cluster\clusteritem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clusteritemeditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="models\clusteritemreachdata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="models\clusteritemreachmodel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="coordinates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\createbetweenstarsdlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\createnewstardlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\createtraderoutedialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="diasporaclusterdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cluster\diasporaclustergraphicsitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cluster\diasporaclusterscene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\diasporaitemtostar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\fontpreviewwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\graphmlexporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mainscenehandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\newsectordialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\noiseimagerunner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\noisemapplaygrounddialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="onomastikon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="orbit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\parsecstarlisthelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\pixmaphelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="planet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\planetaryinspector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gfx_items\planetgraphicsitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\planetrenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\planetselector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\preferences.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\preferencesdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\printingpreferences.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\printingsetup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\progressbarhelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qtcolorpicker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sceneimageexporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\sectorrectholder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="solarsystemcreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\solarsystemtoscene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\solarsystemviewwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="solarsystemwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\solsysinspector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\splashscreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ssg_structures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="star.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\starcodehelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stargraphicsitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="starhexgraphicsitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\starinspector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="starlist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="starmapwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exporters\starsectorjsonexporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\startodiasporasummary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="starwidgetitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="traderoute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogs\traderoutedialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="traderoutemediator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="traderoutereportwriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="traderoutewidgetitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="warpmainwindowform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="warpmainwindowform_actions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="widgets\actionbutton.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="appmessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\apppaths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gfx_items\arcgraphicsitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cluster\aspect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cluster\aspectgraphicsitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cluster\aspectlist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="widgets\basicstarinfowidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="celestiaexporter.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="cluster\cluster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exporters\clusterhtmlexporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cluster\clusteritem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="clusteritemeditor.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="models\clusteritemreachdata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="models\clusteritemreachmodel.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="coordinates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="dialogs\createbetweenstarsdlg.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createnewstardlg.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createtraderoutedialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="diasporaclusterdialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="cluster\diasporaclustergraphicsitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="cluster\diasporaclusterscene.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="helpers\diasporaitemtostar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="widgets\fontpreviewwidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="helpers\graphmlexporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mainscenehandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="dialogs\newsectordialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="helpers\noiseimagerunner.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\noisemapplaygrounddialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="onomastikon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="orbit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\parsecstarlisthelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\pixmaphelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="planet.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="widgets\planetaryinspector.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="gfx_items\planetgraphicsitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\planetrenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="helpers\planetselector.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="helpers\preferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="dialogs\preferencesdialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="helpers\printingpreferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="dialogs\printingsetup.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="helpers\progressbarhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="qtcolorpicker.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="sceneimageexporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\sectorrectholder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="solarsystemcreator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="helpers\solarsystemtoscene.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="widgets\solarsystemviewwidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="solarsystemwidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="widgets\solsysinspector.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="helpers\splashscreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ssg_structures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="star.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="helpers\starcodehelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stargraphicsitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="starhexgraphicsitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="widgets\starinspector.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="starlist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="starmapwidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="exporters\starsectorjsonexporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\startodiasporasummary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="starwidgetitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="traderoute.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\traderoutedialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="traderoutemediator.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="traderoutereportwriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="traderoutewidgetitem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="warpexception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="warpmainwindowform.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="debug\moc_actionbutton.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_actionbutton.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_basicstarinfowidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_basicstarinfowidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_celestiaexporter.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_celestiaexporter.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_clusteritemeditor.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_clusteritemeditor.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_clusteritemreachmodel.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_clusteritemreachmodel.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_createbetweenstarsdlg.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_createbetweenstarsdlg.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_createnewstardlg.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_createnewstardlg.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_createtraderoutedialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_createtraderoutedialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_diasporaclusterdialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_diasporaclusterdialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_diasporaclusterscene.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_diasporaclusterscene.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_fontpreviewwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_fontpreviewwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_newsectordialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_newsectordialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_noiseimagerunner.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_noiseimagerunner.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_noisemapplaygrounddialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_noisemapplaygrounddialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_planet.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_planet.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_planetaryinspector.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_planetaryinspector.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_planetselector.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_planetselector.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_preferencesdialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_preferencesdialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_printingsetup.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_printingsetup.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_qtcolorpicker.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_qtcolorpicker.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_solarsystemtoscene.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_solarsystemtoscene.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_solarsystemviewwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_solarsystemviewwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_solsysinspector.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_solsysinspector.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_star.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_star.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_starinspector.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_starinspector.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_starmapwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_starmapwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_traderoute.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_traderoute.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_traderoutedialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_traderoutedialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_traderoutemediator.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_traderoutemediator.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_warpmainwindowform.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_warpmainwindowform.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\qrc_Resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\qrc_Resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <CustomBuild Include="debug\qtcolorpicker.moc">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="release\qtcolorpicker.moc">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="ui_clusteritemeditor.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_createbetweenstarsdlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_createnewstardlg.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_createtraderoutedialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_diasporaclusterdialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_fontpreviewwidget.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_newsectordialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_noisemapplaygrounddialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_preferencesdialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_printingsetup.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_solarsystemviewwidget.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_solsysinspector.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_traderoutedialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_warpmainwindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="clusteritemeditor.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createbetweenstarsdlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createnewstardlg.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\createtraderoutedialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="diasporaclusterdialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="widgets\fontpreviewwidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\newsectordialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\noisemapplaygrounddialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\preferencesdialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\printingsetup.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="widgets\solarsystemviewwidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="widgets\solsysinspector.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="dialogs\traderoutedialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="warpmainwindow.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="100LY.STR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\1leftarrow.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\1rightarrow.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="2300AD.STR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\32_hex_reachable.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="50ly.str">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\newicons\64.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\AllTradeRoutes32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\BigRockball.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\BigTerrestrial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\Chunk.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\Desert.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\GasGiant.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\GasGiant.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\Glacier.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\HotHouse.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\Iceball.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Marginal.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\Marginal.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <CustomBuild Include="Resources.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="pics\Planets\Rockball.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\SmallPlanet.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\SuperJovian.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Planets\Terrestrial.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\about_box.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\accessories-calculator.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\apacheconf.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\applications-development.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="aspectlist.aspect">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\browser.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\cancel.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\delete_all.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\newicons\diaspora64.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\document-new.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Elementary\document-new.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\document-open.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\document-print.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Elementary\document-properties.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\document-save.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="yed\document.tpl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="yed\edge.tpl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="yed\edge2.tpl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\edit-clear.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Elementary\edit-clear.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\fileopen.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\filesave.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Elementary\folder-drag-accept.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\gnome-control-center.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\gnome-mime-application-msword.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\gnome-mime-application-pdf.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\grip_bar.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\gtk-add.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\gtk-copy.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\gtk-cut.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\gtk-paste.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\hex_all_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\hex_icon.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\hex_reachable_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\hex_traderoute_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\html.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\inkscape.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Elementary\internet-web-browser.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\ledred.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\list-remove.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\main_icon.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\newicons\mappa_tot_64.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\metro_all_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\metro_reachable_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\metro_traderoute_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\mozilla_doc.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="yed\node.tpl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\nopath32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\normal_all_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\normal_reachable_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\map_icons\normal_traderoute_32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\optimalpath32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textfiles\places2.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="templates\planet.tpl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\printer.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\reachable_earth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\reference.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\rex_orbiting_horza.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\rotateleft.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\rotateright.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\ship03_64.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\shjp02_64.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="templates\star.tpl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\starbg.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\system-log-out.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="templates\test.tpl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\Elementary\text-x-install.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\traderoute32.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\unreachable_earth.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="warp.preferences">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\window_background.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\xy.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\xz.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\yz.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\zoomin.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pics\zoomout.png">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.LGPL">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="aspects.aspect">
+      <Filter>Distribution Files</Filter>
+    </None>
+    <None Include="test.tpl">
+      <Filter>Distribution Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -194,6 +194,24 @@ void RendererDescriptor::randomizeGradientInfo()
 
 }
 
+void RendererDescriptor::randomPositionFactor(double rndPos) {
+
+    if (rndPos != 0.0) {
+        double rndFactor = rndPos;
+        if (rndPos < 0.0) rndFactor = 0.01;
+        if (rndPos > 1.0) rndFactor = 0.9;
+        for (GradientInfo& grad : _gradientInfo) {
+            double pos = 1.0+std::get<0>(grad);
+            double d = rndFactor * pos;
+            double dVal = Rand256::instance().doubleValue(d*2.0) - d;
+            double pos2 = pos +dVal;
+            if (pos2 < 0.0) pos2 = 0.0;
+            if (pos2 > 2.0) pos2 = 2.0 - Rand256::instance().doubleValue(0.1);
+            std::get<0>(grad) = (pos2 - 1.0);
+        }
+    }
+}
+
 void RendererDescriptor::fromJson(const QJsonObject& json) {
     if (!json["randomGradient"].isNull() && !json["randomGradient"].isUndefined())
         _randomGradient = json["randomGradient"].toBool();
