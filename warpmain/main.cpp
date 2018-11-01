@@ -55,8 +55,9 @@ int main(int argc, char *argv[])
     qInstallMessageHandler(myMessageHandler);
     qDebug() << "Starting warpmain.";
 
+    #ifndef WIN32
     a.addLibraryPath(QCoreApplication::applicationDirPath()+"/plugins");
-
+    #endif
 
     //check if texture paths are present
     //Planet::checkForTexturePath();

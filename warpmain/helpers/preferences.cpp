@@ -84,7 +84,10 @@ QDataStream & operator >> (QDataStream &in, Preferences& frm) {
             >> frm._fontSmall
             >> frm._fontTitle
             >> frm._drawRoutesAsArcs
-            >> frm._drawSecondaryRoutes;
+            >> frm._drawSecondaryRoutes
+            >> frm._secondaryRouteWidth
+            >> frm._hexPerSector
+            >> frm._parsecStarFactor;
 
     //qDebug() << "Loaded Preferences: " << frm._fontAspectTitle.family()
     //        << frm._fontBody.family()
@@ -112,7 +115,10 @@ QDataStream& operator << (QDataStream &out, const Preferences& frm)
             << frm._fontSmall
             << frm._fontTitle
             << frm._drawRoutesAsArcs
-            << frm._drawSecondaryRoutes;
+            << frm._drawSecondaryRoutes
+            << frm._secondaryRouteWidth
+            << frm._hexPerSector
+            << frm._parsecStarFactor;
 
     return out;
 }

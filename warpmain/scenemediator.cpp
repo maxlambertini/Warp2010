@@ -1064,8 +1064,8 @@ void SceneMediator::drawHexMap()
     int hexPerSector = PrintingPreferences::prefsPtr()->hexPerSector();
     //qDebug() << "Hex per sector is: " << PrintingPreferences::prefsPtr()->hexPerSector();
 
-    int d_x = 1+ ((maxX - minX)+2) / hexPerSector;
-    int d_y = 1+((maxY - minY)+2) / hexPerSector;
+    int d_x = 1+ ((maxX - minX)) / hexPerSector;
+    int d_y = 1+((maxY - minY)) / hexPerSector;
 
     int xCoord, yCoord;
     QRectF rect00;

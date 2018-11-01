@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "warpexception.h"
 #include "ssg_structures.h"
 #include "onomastikon.h"
+#include "helpers/preferences.h"
 
 StarList StarList::_starList;
 
@@ -414,7 +415,7 @@ QVector<ParsecStar>& StarList::prepareParsecStarList(SceneMediatorDrawMode::Draw
     int cx, cy;
     QStringList psCoord;
     foreach (star, this->stars()) {
-        ParsecStar pstar = ParsecStar(star);
+        ParsecStar pstar = ParsecStar(star, Preferences::prefsPtr()->parsecStarFactor());
         pstar.setMode(mode);
         cx = pstar.pr_x();
         cy = pstar.pr_y();

@@ -57,6 +57,10 @@ private:
     bool _drawRoutesAsArcs = true;
     bool _drawSecondaryRoutes = true;
 
+    double _secondaryRouteWidth = 2.0;
+    int    _hexPerSector = 10.0;
+    double _parsecStarFactor = 1.67;
+
     static Preferences _prefs;
 
     Preferences();
@@ -66,6 +70,14 @@ private:
 
 
 public:
+
+    int hexPerSector() { return _hexPerSector; }
+    double secondaryRouteWidth() { return _secondaryRouteWidth; }
+    double parsecStarFactor() { return _parsecStarFactor; }
+
+    void setHexPerSector( int v ) {_hexPerSector = v; }
+    void setSecondaryRouteWidth( double v) { _secondaryRouteWidth = v; }
+    void setParsecStarFactor( double v) { _parsecStarFactor = v; }
 
     static Preferences &prefs();
     static Preferences *prefsPtr();
@@ -97,6 +109,7 @@ public:
     void setColorDiasporaAspectBackground(const QColor& c) { _colorDiasporaAspectBackground = c; }
     void setColorStarShortestLink(const QColor& c) { _colorStarShortestLink = c; }
     void setColorStarOtherLink(const QColor& c) { _colorStarOtherLink = c; }
+
 
 
     friend QDataStream & operator >> (QDataStream &in, Preferences& frm);

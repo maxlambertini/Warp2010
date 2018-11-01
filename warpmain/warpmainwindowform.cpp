@@ -342,7 +342,7 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
                 pslh.starY( star.data())*_sceneMediator->sizeFactor());
     }
     else {
-        ParsecStar ps= ParsecStar(_currentStar);
+        ParsecStar ps= ParsecStar(_currentStar, Preferences::prefsPtr()->parsecStarFactor());
         QPointF pf = _sceneMediator->pointFromParsecStar(ps);
         ui->graphicsView->centerOn(pf.x(), pf.y());
     }

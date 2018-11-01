@@ -46,11 +46,11 @@ private:
     SceneMediatorDrawMode::DrawMode _mode;
 public:
     ParsecStar () {}  //empty constructor;
-    ParsecStar (QSharedPointer<Star> star) {
+    ParsecStar (QSharedPointer<Star> star, double _parsecStarFactor = 1.67) {
         _star = star;
-        this->_x = (int)(_star->x() / 1);
-        this->_y = (int)(_star->y() / 1);
-        this->_z = (int)(_star->z() / 1);
+        this->_x = (int)(_star->x() / _parsecStarFactor); // Ly per hex
+        this->_y = (int)(_star->y() / _parsecStarFactor); // Ly per hex
+        this->_z = (int)(_star->z() / _parsecStarFactor); // Ly per hex
         _visited = false;
         _mode = SceneMediatorDrawMode::XY;
     }
@@ -67,32 +67,24 @@ public:
         {
         case SceneMediatorDrawMode::XY:
             return _x;
-            break;
         case SceneMediatorDrawMode::XZ:
             return _x;
-            break;
         case SceneMediatorDrawMode::YZ:
             return _y;
-            break;
-        default:
-            return _x;
         }
+        return _x;
     }
     inline int pr_y() {
         switch (_mode)
         {
         case SceneMediatorDrawMode::XY:
             return _y;
-            break;
         case SceneMediatorDrawMode::XZ:
             return _z;
-            break;
         case SceneMediatorDrawMode::YZ:
             return _z;
-            break;
-        default:
-            return _y;
         }
+        return _y;
     }
 
     inline int pr_z() {
@@ -100,16 +92,12 @@ public:
         {
         case SceneMediatorDrawMode::XY:
             return _z;
-            break;
         case SceneMediatorDrawMode::XZ:
             return _y;
-            break;
         case SceneMediatorDrawMode::YZ:
             return _x;
-            break;
-        default:
-            return _z;
         }
+        return _z;
     }
 
 
@@ -193,9 +181,6 @@ public:
     void saveMatrix (QString filename);
     void serializeStarList (QDataStream& out);
     void deserializeStarList (QDataStream& in);
-
-private:
-
 };
 
 

@@ -34,7 +34,7 @@ PrintingPreferences::PrintingPreferences() :
         _rightMargin(20),
         _bottomMargin(20),
         _yDivisions(3),
-        _hexPerSector(20),
+        _hexPerSector(10),
         _selectedMeasure(QSizeF(353,500)),
         _landscape(false)
 {

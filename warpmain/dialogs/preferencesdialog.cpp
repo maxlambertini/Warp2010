@@ -69,7 +69,9 @@ void PreferencesDialog::readPreferences() {
     m_ui->colorDiasporaLinks->setCurrentColor(pref.colorDiasporaLink());
     m_ui->colorMainRoute->setCurrentColor(pref.colorStarShortestLink());
     m_ui->colorSecondary->setCurrentColor(pref.colorStarOtherLink());
-
+    m_ui->spnHexPerSector->setValue(pref.hexPerSector());
+    m_ui->spnLightYearsHex->setValue(pref.parsecStarFactor());
+    m_ui->spnSecondaryRouteWidth->setValue(pref.secondaryRouteWidth());
 
     _fontAspectTitle = pref.fontAspectTitle();
     _fontBody = pref.fontBody();
@@ -96,6 +98,10 @@ void PreferencesDialog::writePreferences() {
     Preferences::prefs().setFontBody(_fontBody);
     Preferences::prefs().setFontSmall(_fontSmall);
     Preferences::prefs().setFontTitle(_fontTitle);
+
+    Preferences::prefs().setHexPerSector(m_ui->spnHexPerSector->value());
+    Preferences::prefs().setSecondaryRouteWidth (m_ui->spnSecondaryRouteWidth->value());
+    Preferences::prefs().setParsecStarFactor(m_ui->spnLightYearsHex->value());
 
     //qDebug() << "About to serialize preferences: "
     //        << Preferences::prefs().fontAspectTitle().family()

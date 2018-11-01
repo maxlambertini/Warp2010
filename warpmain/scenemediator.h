@@ -19,7 +19,6 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 ############################################################################
 */
-
 #ifndef MAINSCENEHANDLER_H
 #define MAINSCENEHANDLER_H
 
@@ -29,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QtCore>
 #include <QGraphicsScene>
 #include <QPrinter>
+#include <QVector>
 #include "star.h"
 #include "starlist.h"
 #include "traderoute.h"
@@ -145,35 +145,32 @@ public:
     }
 
     inline QPointF pointFromParsecStar(ParsecStar& ps) {
-        double dy,x,y;
+        double dy,x=0.0,y=0.0;
         switch (_drawMode) {
             /*
         case SceneMediatorDrawMode::XY:
             dy =  (ps.x() % 2 == 0) ? 0 : this->hexHeight();
             x = _hexSize*1.5*(double)(ps.x());
             y = -  (dy + (_hexSize*1.73205*(double)(ps.y())));
-            return QPointF(x,y);
             break;
         case SceneMediatorDrawMode::XZ:
             dy =  (ps.x() % 2 == 0) ? 0 : this->hexHeight();
             x = _hexSize*1.5*(double)(ps.x());
             y = -  (dy + (_hexSize*1.73205*(double)(ps.z())));
-            return QPointF(x,y);
             break;
         case SceneMediatorDrawMode::YZ:
             dy =  (ps.y() % 2 == 0) ? 0 : this->hexHeight();
             x = _hexSize*1.5*(double)(ps.y());
             y = -  (dy + (_hexSize*1.73205*(double)(ps.z())));
-            return QPointF(x,y);
             break;
             */
         default:
             dy =  (ps.x() % 2 == 0) ? 0 : this->hexHeight();
             x = _hexSize*1.5*(double)(ps.x());
             y = -  (dy + (_hexSize*1.73205*(double)(ps.y())));
-            return QPointF(x,y);
             break;
         }
+        return QPointF(x,y);
 
 
 
