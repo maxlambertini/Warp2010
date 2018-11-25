@@ -1,10 +1,10 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-           libnoise-warp \   # sub-project names
-           libnoise-helpers  \
-           warpmain \
-           diaspora-widgets \
+    libnoise-warp \   # sub-project names
+    libnoise-helpers  \
+    warpmain \
+    diaspora-widgets \
     jstexture \
     libnoise-lua/libnoise-lua \
     libluatest/libluatest

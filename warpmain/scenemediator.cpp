@@ -686,9 +686,12 @@ void SceneMediator::populateScene()
     font.setPointSizeF(10);
 
     QSharedPointer<TradeRoute> route;
-    int iPath;
+    int iPath = -1;
     _starsInTradeRoutes.clear();
     _starsWithinReach.clear();
+
+    qDebug() << _tradeRoutes.count() << ", " << route.isNull();
+
     foreach (route, _tradeRoutes) {
         foreach (iPath, route->path())
             if (!_starsInTradeRoutes.contains(iPath))

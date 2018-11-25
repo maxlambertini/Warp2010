@@ -723,7 +723,7 @@ void WarpMainWindowForm::AddToTradeRoute (QString & tradeRouteName, QColor & bgC
                 bgColor,
                 path);
         //_tradeRouteMediator->addTradeRoute(tr);
-        _tradeRouteMediator->performAddToTradeRoute(tr.data(),indexOnList);
+        _tradeRouteMediator->performAddToTradeRoute(tr,indexOnList);
         _sceneMediator->setTradeRoute(_tradeRouteMediator->tradeRoutes());
         _sceneMediator->redrawScene();
         return;
@@ -738,9 +738,9 @@ void WarpMainWindowForm::on_gridTradeRoutes_itemClicked(QListWidgetItem* item)
 {
     if (_bUpdateTradeRoute) {
         TradeRouteWidgetItem *twi = (TradeRouteWidgetItem *)item;
-        ui->webTradeRouteView->setHtml(_tradeRouteMediator->tradeRouteToHTML(twi->tradeRoute()));
+        ui->webTradeRouteView->setHtml(_tradeRouteMediator->tradeRouteToHTML(twi->tradeRoute().data()));
 
-        double dDistance = _tradeRouteMediator->tradeRouteDistance(twi->tradeRoute());
+        double dDistance = _tradeRouteMediator->tradeRouteDistance(twi->tradeRoute().data());
         QString sDistance; sDistance.sprintf("<b><big>%4.2f</big></b> ly", dDistance);
         ui->lblRouteDistance->setText(sDistance);
 
@@ -814,14 +814,18 @@ void WarpMainWindowForm::on_btnDeleteRoute_clicked()
                 for (int x = 0; x <  ui->gridTradeRoutes->count(); x++)
                 {
                     twi = (TradeRouteWidgetItem *)ui->gridTradeRoutes->item(x);
-                    TradeRoute *tpr = twi->tradeRoute();
-                    _tradeRouteMediator->tradeRoutes().append(QSharedPointer<TradeRoute>(tpr));
+                    auto tpr = twi->tradeRoute();
+                    if (!tpr.isNull()) {
+                        _tradeRouteMediator->tradeRoutes().append(tpr);
+                    }
                 }
                 delete twi2;
                 _tradeRoutes.clear();
                 QSharedPointer<TradeRoute> ptr;
-                foreach (ptr, _tradeRouteMediator->tradeRoutes())
-                    _tradeRoutes.append(QSharedPointer<TradeRoute>(ptr));
+                foreach (ptr, _tradeRouteMediator->tradeRoutes()) {
+                    if (!ptr.isNull())
+                       _tradeRoutes.append(ptr);
+                }
                 _sceneMediator->setTradeRoute(_tradeRoutes);
             }
             else {

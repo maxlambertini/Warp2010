@@ -25,16 +25,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 #include <QListWidgetItem>
 #include "traderoute.h"
+#include <QSharedPointer>
 
 class TradeRouteWidgetItem : public QListWidgetItem
 {
-    TradeRoute *_route;
+    QSharedPointer<TradeRoute> _route;
     int _idx;
     double _distance;
 public:
-    TradeRouteWidgetItem(TradeRoute *route, int idx, QListWidget *view);
+    TradeRouteWidgetItem(QSharedPointer<TradeRoute> route, int idx, QListWidget *view);
     virtual ~TradeRouteWidgetItem() { }
-    TradeRoute* tradeRoute() { return _route;}
+    QSharedPointer<TradeRoute> tradeRoute() { return _route;}
     int indexOnList() { return _idx;}
 
     inline double distance() { return _distance;}

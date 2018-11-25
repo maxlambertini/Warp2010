@@ -81,7 +81,8 @@ SOURCES += main.cpp \
     widgets/actionbutton.cpp \
     scenemediator.cpp \
     dialogs/sectorexportoptionsdialog.cpp \
-    helpers/graphvizexporter.cpp
+    helpers/graphvizexporter.cpp \
+    parsecstar.cpp
 HEADERS += coordinates.h \
     star.h \
     planet.h \
@@ -140,7 +141,8 @@ HEADERS += coordinates.h \
     widgets/actionbutton.h \
     scenemediator.h \
     dialogs/sectorexportoptionsdialog.h \
-    helpers/graphvizexporter.h
+    helpers/graphvizexporter.h \
+    parsecstar.h
 FORMS += warpmainwindow.ui \
     dialogs/printingsetup.ui \
     dialogs/traderoutedialog.ui \

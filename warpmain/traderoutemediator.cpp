@@ -123,7 +123,7 @@ void TradeRouteMediator::searchTradeRouteToGardenPlanets()
     for (n = 0; n < _tradeRoutes.count(); n++) {
         if (_progressBar != 0) _progressBar->setValue(n);
 
-        this->performAddToTradeRoute(_tradeRoutes.at(n).data(),n);
+        this->performAddToTradeRoute(_tradeRoutes.at(n),n);
     }
 
     if (_progressBar != 0)
@@ -147,7 +147,7 @@ void TradeRouteMediator::updateTradeRouteList() {
     for (auto n = 0; n < _tradeRoutes.count(); n++) {
         if (_progressBar != 0) _progressBar->setValue(n);
 
-        this->performAddToTradeRoute(_tradeRoutes.at(n).data(),n);
+        this->performAddToTradeRoute(_tradeRoutes.at(n),n);
     }
 
     if (_progressBar != 0)
@@ -155,7 +155,7 @@ void TradeRouteMediator::updateTradeRouteList() {
 
 }
 
-void TradeRouteMediator::performAddToTradeRoute (TradeRoute *tr, int indexOnList)
+void TradeRouteMediator::performAddToTradeRoute (QSharedPointer<TradeRoute> tr, int indexOnList)
 {
     //create the trade route object
 
@@ -221,7 +221,7 @@ void TradeRouteMediator::loadTradeRouteFromFile(QString filename)
 
     int n = 0;
     for (n = 0; n < _tradeRoutes.count(); n++)
-        this->performAddToTradeRoute(_tradeRoutes.at(n).data(),n);
+        this->performAddToTradeRoute(_tradeRoutes.at(n),n);
 
 }
 

@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QProgressBar>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QSharedPointer>
 #include "star.h"
 #include "starlist.h"
 #include "traderoute.h"
@@ -135,11 +136,11 @@ public:
         }
         return tr;
     }
-    void performAddToTradeRoute (TradeRoute *tr, int indexOnList) ;
+    void performAddToTradeRoute (QSharedPointer<TradeRoute> tr, int indexOnList) ;
 
     void loadTradeRouteFromFile(QString filename);
 
-    QString tradeRouteToHTML(TradeRoute *tr);
+    QString tradeRouteToHTML(TradeRoute  *tr);
     double  tradeRouteDistance(TradeRoute *tr);
 };
 

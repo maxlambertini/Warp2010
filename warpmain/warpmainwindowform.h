@@ -77,7 +77,7 @@ private:
     QSharedPointer<Star>  _currentStar;
     TradeRouteMediator *  _tradeRouteMediator;
     TradeRouteDialog *    _tradeRouteDialog;
-    TradeRoute*           _currentTradeRoute;
+    QSharedPointer<TradeRoute> _currentTradeRoute;
     int                   _currentStarListIndex;
     QVector<int>          _currentPath;
     TradeRouteWidgetItem  *_currentTwi;

@@ -81,42 +81,32 @@ namespace SSGX {
 
     inline double floatRand() {
         int d = rand() % 10000;
-        return ( (double)d) / 10000.0;
+        return ( static_cast<double>(d)) / 10000.0;
     }
 
     inline double rockyDiameter() {
         int n = d10();
         switch (n) {
             case 1:
-                return (double)(d5()*1000 + d1000());
-                break;
+                return static_cast<double>(d5()*1000 + d1000());
             case 2:
-                return (double)(d5()*1000 + d1000());
-                break;
+                return static_cast<double>(d5()*1000 + d1000());
             case 3:
-                return (double)(nd6(1)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(1)*1000 + d1000());
             case 4:
-                return (double)(nd6(1)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(1)*1000 + d1000());
             case 5:
-                return (double)(nd6(2)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(2)*1000 + d1000());
             case 6:
-                return (double)(nd6(3)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(3)*1000 + d1000());
             case 7:
-                return (double)(nd6(4)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(4)*1000 + d1000());
             case 8:
-                return (double)(nd6(5)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(5)*1000 + d1000());
             case 9:
-                return (double)(nd6(7)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(7)*1000 + d1000());
             case 10:
-                return (double)(nd6(10)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(10)*1000 + d1000());
         }
         return 12756;
 
@@ -126,23 +116,17 @@ namespace SSGX {
         int n = d6();
         switch (n) {
             case 1:
-                return (double)(d5()*1000 + d1000());
-                break;
+                return static_cast<double>(d5()*1000 + d1000());
             case 2:
-                return (double)(nd6(2)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(2)*1000 + d1000());
             case 3:
-                return (double)(nd6(3)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(3)*1000 + d1000());
             case 4:
-                return (double)(nd6(5)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(5)*1000 + d1000());
             case 5:
-                return (double)(nd6(7)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(7)*1000 + d1000());
             case 6:
-                return (double)(nd6(10)*1000 + d1000());
-                break;
+                return static_cast<double>(nd6(10)*1000 + d1000());
         }
         return 12756;
     }
@@ -150,7 +134,7 @@ namespace SSGX {
     inline double satDiameter() {
         int n = dn(12) - 8;
         if (n < 0)
-            return (double)( d1000()/2);
+            return static_cast<double>( d1000()/2);
         else
             return rockyDiameter();
     }

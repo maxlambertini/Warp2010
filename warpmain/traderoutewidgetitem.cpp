@@ -22,9 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 
 #include "traderoutewidgetitem.h"
 #include "traderoute.h"
+#include <QSharedPointer>
 
 
-TradeRouteWidgetItem::TradeRouteWidgetItem(TradeRoute *route, int idx, QListWidget *view):
+TradeRouteWidgetItem::TradeRouteWidgetItem(QSharedPointer<TradeRoute> route, int idx, QListWidget *view):
         QListWidgetItem(route->routeName(), view)
 {
     this->_route = route;

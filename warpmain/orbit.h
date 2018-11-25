@@ -70,10 +70,10 @@ public:
     inline void setYear (double starMass) { _year = sqrt( pow(_distance,3)/starMass);}
     inline void setFixedYear(double dYear) { _year = dYear; }
 
-    inline void setShortDay() { _day = 5+ rand() % 10 + ((double)(rand() % 1000))/1000.0; }
-    inline void setNormalDay() { _day = 10+ rand() % 36 + ((double)(rand() % 1000))/1000.0; }
-    inline void setLongDay() { _day = 30+ rand() % 80 + ((double)(rand() % 1000))/1000.0; }
-    inline void setVeryLongDay() { _day = 100+ rand() % 500 + ((double)(rand() % 1000))/1000.0; }
+    inline void setShortDay() { _day = 5+ rand() % 10 + (static_cast<double>(rand() % 1000))/1000.0; }
+    inline void setNormalDay() { _day = 10+ rand() % 36 + (static_cast<double>(rand() % 1000))/1000.0; }
+    inline void setLongDay() { _day = 30+ rand() % 80 + (static_cast<double>(rand() % 1000))/1000.0; }
+    inline void setVeryLongDay() { _day = 100+ rand() % 500 + (static_cast<double>(rand() % 1000))/1000.0; }
 
 
     Orbit() :

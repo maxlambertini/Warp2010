@@ -49,16 +49,12 @@ public:
         switch (_drawMode) {
         case SceneMediatorDrawMode::XY:
             return p->x();
-            break;
         case SceneMediatorDrawMode::XZ:
             return p->x();
-            break;
         case SceneMediatorDrawMode::YZ:
             return p->y();
-            break;
         default:
             return p->x();
-            break;
 
         };
     }
@@ -67,16 +63,12 @@ public:
         switch (_drawMode) {
         case SceneMediatorDrawMode::XY:
             return -p->y();
-            break;
         case SceneMediatorDrawMode::XZ:
             return -p->z();
-            break;
         case SceneMediatorDrawMode::YZ:
             return -p->z();
-            break;
         default:
             return p->z();
-            break;
 
         };
     }
