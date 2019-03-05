@@ -16,6 +16,9 @@ Major feature of this release:
 
 It's something I'm developing in my spare time, so don't hold your breath. 
 
-### 2017-07-01
+### Docs
 
-Feeling brave enough to move all of this to fore. Release 0.8.0.3
+Some scarce docs can be found here:
+
+* [A brief description of WarpNow!](./warpnow.md)
+* [Create fictional solar systems for Celestia using WarpNow!](./docs/celestia/celestia-tutorial.md)
