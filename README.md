@@ -1,7 +1,7 @@
 Warp2010
 ========
 
-A multiplatform program to create fictional solar systems, Diaspora Custers and starmaps 2300AD-style
+A multiplatform program to create fictional solar systems and starmaps 2300AD-style
 
 It's written in C++ using multiplatform QT Libraries ( http://qt.nokia.com ) 
 
