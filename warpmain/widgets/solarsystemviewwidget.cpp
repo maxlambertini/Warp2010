@@ -161,11 +161,11 @@ void SolarSystemViewWidget::sliderValueChanged(int val __attribute__((unused)))
 {
     qreal scale = 0.7*qPow(qreal(2), (ui->zoomSlider->value() - 250) / qreal(50));
 
-    QMatrix matrix;
+    QTransform matrix;
     matrix.scale(scale, scale);
     matrix.rotate(ui->rotateSlider->value());
 
-    ui->solsysView->setMatrix(matrix);
+    ui->solsysView->setTransform(matrix);
 
 }
 

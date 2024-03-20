@@ -47,13 +47,13 @@ void GraphMLExporter::loadTemplates() {
     QFile edgeFile2(yedEdge2.absoluteFilePath());
 
     if (!docFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        qDebug() << "Unable to open file: " << docFile.fileName() << " besause of error " << docFile.errorString() << endl;
+        qDebug() << "Unable to open file: " << docFile.fileName() << " besause of error " << docFile.errorString() << "\n";
     if (!nodeFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        qDebug() << "Unable to open file: " << nodeFile.fileName() << " besause of error " << nodeFile.errorString() << endl;
+        qDebug() << "Unable to open file: " << nodeFile.fileName() << " besause of error " << nodeFile.errorString() << "\n";
     if (!edgeFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        qDebug() << "Unable to open file: " << edgeFile.fileName() << " besause of error " << edgeFile.errorString() << endl;
+        qDebug() << "Unable to open file: " << edgeFile.fileName() << " besause of error " << edgeFile.errorString() << "\n";
     if (!edgeFile2.open(QIODevice::ReadOnly | QIODevice::Text))
-        qDebug() << "Unable to open file: " << edgeFile2.fileName() << " besause of error " << edgeFile2.errorString() << endl;
+        qDebug() << "Unable to open file: " << edgeFile2.fileName() << " besause of error " << edgeFile2.errorString() << "\n";
 
     QTextStream inDoc(&docFile);
     this->_docTemplate = inDoc.readAll();
@@ -99,7 +99,7 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
             QString name = star.data()->starName;
             QString n, nRes("");
             QStringList lstRes;
-            QStringList nameList = name.split(QChar(' '),QString::SkipEmptyParts);
+            QStringList nameList = name.split(QChar(' '),Qt::SkipEmptyParts);
             foreach (n, nameList) {
                 if (n.length() < 10)
                     lstRes << n;
@@ -129,8 +129,8 @@ QString& GraphMLExporter::createGraphicsMLDocs(QString &filename) {
             QFont font("Arial",baseFontSize);
             font.setStyleHint(QFont::SansSerif);
             QFontMetrics fm(font);
-            int textWidth =  fm.width(name);
-            int textHeight =  fm.width(name);
+            int textWidth =  fm.boundingRect(name).width();
+            int textHeight =  fm.boundingRect(name).height();
 
             int baseSize = textHeight > textWidth ? textHeight : textWidth;
             baseSize = (int)((double)baseSize / 1.3 );

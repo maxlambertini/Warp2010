@@ -30,6 +30,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QtConcurrent/QtConcurrent>
 #include <helpers/apppaths.h>
 
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
 CelestiaExporter::CelestiaExporter() {
 }
 
@@ -37,7 +42,7 @@ void CelestiaExporter::loadTemplates() {
     QResource celestiaTpl(":/celestia/testplanet.tpl");
     QFile docFile(celestiaTpl.absoluteFilePath());
     if (!docFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        qDebug() << "Unable to open file: " << docFile.fileName() << " besause of error " << docFile.errorString() << endl;
+        qDebug() << "Unable to open file: " << docFile.fileName() << " besause of error " << docFile.errorString() << "\n";
     QTextStream inDoc(&docFile);
     this->_planetTemplate = inDoc.readAll();
 }
@@ -140,7 +145,7 @@ void CelestiaExporter::saveSolarSystemsToCelestiaFile (QString &filename) {
     vi.toFront();
     while (vi.hasNext()) {
         auto nir = vi.next();
-        auto res = QtConcurrent::run (nir.data(), &NoiseImageRunner::run);
+        auto res = QtConcurrent::run ( &NoiseImageRunner::run, nir.data());
 
         _futures.append(res);
         if (_futures.count()== 8) {
@@ -648,7 +653,7 @@ void CelestiaExporter::generateTestSolarSystem(QString &filename) {
     vi.toFront();
     while (vi.hasNext()) {
         auto nir = vi.next();
-        auto res = QtConcurrent::run (nir.data(), &NoiseImageRunner::run);
+        auto res = QtConcurrent::run (&NoiseImageRunner::run, nir.data());
 
         _futures.append(res);
         if (_futures.count()== 8) {

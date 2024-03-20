@@ -28,6 +28,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "ssg_structures.h"
 #include "onomastikon.h"
 #include "helpers/preferences.h"
+#include <QVector>
+#include <QList>
 
 StarList StarList::_starList;
 
@@ -110,7 +112,7 @@ void StarList::saveMap(const QString& filename)
         QString sCode;
         out << _listName << "\n";
         foreach (star, _stars) {
-            sCode.sprintf("%04.2f",d++);
+            sCode.asprintf("%04.2f",d++);
             out << sCode << "/"
                 << star->x() << "/"
                 << star->y() << "/"
@@ -364,16 +366,17 @@ void StarList::buildMatrix(int idx,bool isStartingMode)
 
                     if (dist2 < dist)
                     {
-                        QVector<int> lst2;
+                        QVector<int> v_lst3;
                         wn3 = _starList.stars().at(idx);
-                        for (int ix = 0; ix < wn1->path().count(); ix++)
-                            lst2.append(wn3->path().at(ix));
-                        lst2.append(nNeighbor);
+                        for (int ix = 0; ix < wn1->path().count(); ix++) {
+                            v_lst3.push_back(wn3->path().at(ix));
+                        }
+                        v_lst3.push_back(nNeighbor);
                         for (int midx = 0; midx < _stars.count(); midx++)
                         {
                             //// qDebug() << "adding " << midx;
                             QSharedPointer<Star> myStar = _stars.at(midx);
-                            myStar->changeStartingPath(lst2);
+                            myStar->changeStartingPath(v_lst3);
                         }
                     }
                 }
@@ -404,7 +407,7 @@ void StarList::buildReachableStars() {
         if (star->path().count() > 0)
             _reachableStars.append(idx);
     }
-    qSort (_reachableStars.begin(), _reachableStars.end());
+    std::sort (_reachableStars.begin(), _reachableStars.end());
 
 }
 
@@ -421,48 +424,48 @@ QVector<ParsecStar>& StarList::prepareParsecStarList(SceneMediatorDrawMode::Draw
         cy = pstar.pr_y();
         //qDebug() << "Setting mode: " << mode << ", coordinates=" << cx << cy;
 
-        QString sCoord = QString().sprintf("%d-%d",cx,cy);
+        QString sCoord = QString().asprintf("%d-%d",cx,cy);
         //qDebug() << "sCoord " << sCoord;
         if (psCoord.contains(sCoord))
         {
             cx = pstar.pr_x()+1;
             cy = pstar.pr_y();
-            sCoord = QString().sprintf("%d-%d",cx,cy);
+            sCoord = QString().asprintf("%d-%d",cx,cy);
             //qDebug() << "sCoord-1 " << sCoord;
         }
         if (psCoord.contains(sCoord))
         {
             cx = pstar.pr_x()-1;
             cy = pstar.pr_y();
-            sCoord = QString().sprintf("%d-%d",cx,cy);
+            sCoord = QString().asprintf("%d-%d",cx,cy);
             //qDebug() << "sCoord-2 " << sCoord;
         }
         if (psCoord.contains(sCoord))
         {
             cx = pstar.pr_x()+1;
             cy = pstar.pr_y()+1;
-            sCoord = QString().sprintf("%d-%d",cx,cy);
+            sCoord = QString().asprintf("%d-%d",cx,cy);
             //qDebug() << "sCoord-3 " << sCoord;
         }
         if (psCoord.contains(sCoord))
         {
             cx = pstar.pr_x()-1;
             cy = pstar.pr_y()+1;
-            sCoord = QString().sprintf("%d-%d",cx,cy);
+            sCoord = QString().asprintf("%d-%d",cx,cy);
             //qDebug() << "sCoord-4 " << sCoord;
         }
         if (psCoord.contains(sCoord))
         {
             cx = pstar.pr_x();
             cy = pstar.pr_y()+1;
-            sCoord = QString().sprintf("%d-%d",cx,cy);
+            sCoord = QString().asprintf("%d-%d",cx,cy);
             //qDebug() << "sCoord-5 " << sCoord;
         }
         if (psCoord.contains(sCoord))
         {
             cx = pstar.pr_x()+1;
             cy = pstar.pr_y()-1;
-            sCoord = QString().sprintf("%d-%d",cx,cy);
+            sCoord = QString().asprintf("%d-%d",cx,cy);
             //qDebug() << "sCoord-6 " << sCoord;
         }
         psCoord.append(sCoord);
@@ -481,9 +484,9 @@ QStarList& StarList::getQStarList(bool bGreaterThan) {
         _qStarList.append(this->stars()[h]);
     }
     if (bGreaterThan)
-        qSort(_qStarList.begin(), _qStarList.end(),starGreaterThan);
+        std::sort (_qStarList.begin(), _qStarList.end(),starGreaterThan);
     else
-        qSort(_qStarList.begin(), _qStarList.end(),starLessThan);
+        std::sort (_qStarList.begin(), _qStarList.end(),starLessThan);
     return _qStarList;
 }
 

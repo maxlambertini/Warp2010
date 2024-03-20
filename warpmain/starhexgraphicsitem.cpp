@@ -72,7 +72,7 @@ void StarHexGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsIte
 
         QFont f = Preferences::prefs().fontBody();
         painter->setFont(f);
-        QString sgo = QString().sprintf("[%d, %d]",_nx,_ny);
+        QString sgo = QString().asprintf("[%d, %d]",_nx,_ny);
         QPointF pt = QPointF(x- _size/2, y-(_hexHeight-16));
         painter->drawText(pt,sgo);
 

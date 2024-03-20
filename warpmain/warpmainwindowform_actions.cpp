@@ -62,6 +62,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include "dialogs/createnewstardlg.h"
 #include <QEvent>
 #include <noise/noise.h>
+#include <QFileDialog>
 #include <noiseutils.h>
 #include <exporters/starsectorjsonexporter.h>
 #include <dialogs/sectorexportoptionsdialog.h>
@@ -453,7 +454,7 @@ void WarpMainWindowForm::on_action_AboutWarp2010_triggered()
     layout->addWidget(label,0,0);
     layout->addWidget(btnOk,1,0,1,1,Qt::AlignHCenter);
 
-    layout->setMargin(0);
+    layout->setContentsMargins(1,1,1,1);
 
     QObject::connect(btnOk, SIGNAL(clicked()), dlg, SLOT(close()));
 

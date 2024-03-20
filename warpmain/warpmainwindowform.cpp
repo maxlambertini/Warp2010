@@ -26,6 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <math.h>
 #include <QPen>
 #include <QObject>
+#include <QButtonGroup>
+#include <QFileDialog>
 #include <stdlib.h>
 #include <time.h>
 #include "star.h"
@@ -212,7 +214,7 @@ WarpMainWindowForm::WarpMainWindowForm(QWidget *parent) :
      //btnGrp->addButton(ui->btn_Diaspora_Cluster_View);
      this->on_btn_Star_Sector_View_clicked();
 
-     new QShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab  ),this, SLOT(on_control_tab_switch()));
+     new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_Tab  ),this, SLOT(on_control_tab_switch()));
 
 
  }
@@ -321,7 +323,7 @@ void WarpMainWindowForm::on_listWidget_itemClicked(QListWidgetItem* item)
             //Coordinates cTo = star->coordinates();
             distance = _starList->calculatePathDistance(idx);
         }
-        QString sDist = QString().sprintf("%4.2f",distance);
+        QString sDist = QString().asprintf("%4.2f",distance);
         w = new QTableWidgetItem(sDist,0);
         cellSize = w->sizeHint();
         cellSize.setHeight(cellSize.height()-4);
@@ -741,7 +743,7 @@ void WarpMainWindowForm::on_gridTradeRoutes_itemClicked(QListWidgetItem* item)
         ui->webTradeRouteView->setHtml(_tradeRouteMediator->tradeRouteToHTML(twi->tradeRoute().data()));
 
         double dDistance = _tradeRouteMediator->tradeRouteDistance(twi->tradeRoute().data());
-        QString sDistance; sDistance.sprintf("<b><big>%4.2f</big></b> ly", dDistance);
+        QString sDistance; sDistance.asprintf("<b><big>%4.2f</big></b> ly", dDistance);
         ui->lblRouteDistance->setText(sDistance);
 
         ui->colorPicker->setCurrentColor(twi->tradeRoute()->routeColor());

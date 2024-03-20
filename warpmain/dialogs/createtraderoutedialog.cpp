@@ -57,7 +57,8 @@ void CreateTradeRouteDialog::changeEvent(QEvent *e)
 void CreateTradeRouteDialog::on_btnChangeColor_clicked()
 {
     QPalette pal = m_ui->ctlSelectedColor->palette();
-    QColor widgetColor = QColorDialog::getColor(pal.background().color());
+
+    QColor widgetColor = QColorDialog::getColor(pal.color(QPalette::Button));
     pal.setColor(m_ui->ctlSelectedColor->backgroundRole(), widgetColor);
     m_ui->ctlSelectedColor->setPalette(pal);
     m_ui->ctlSelectedColor->repaint();

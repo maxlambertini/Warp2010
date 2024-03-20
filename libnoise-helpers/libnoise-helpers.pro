@@ -8,7 +8,7 @@ QT += core gui widgets
 
 TARGET = libnoise-helpers
 TEMPLATE = lib
-CONFIG += c++14
+CONFIG += c++20
 
 QMAKE_CXXFLAGS += -Wall -Wextra -pedantic -ansi -O3 -Wno-reorder -Wno-attributes -Wno-unused-parameter  -Wno-reorder
 

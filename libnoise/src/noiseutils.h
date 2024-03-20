@@ -1491,6 +1491,10 @@ namespace noise
           return m_destHeight;
         }
 
+        virtual ~NoiseMapBuilder() {
+
+        }
+
         /// Returns the width of the destination noise map.
         ///
         /// @returns The width of the destination noise map, in points.

@@ -17,7 +17,7 @@ QT += printsupport widgets svg concurrent
 TARGET = WarpNow
 TEMPLATE = app
 QMAKE_CXXFLAGS += -Wall -Wextra -O3 -Wunused-parameter -pedantic
-
+CONFIG += c++20
 
 SOURCES += main.cpp \
     coordinates.cpp \
@@ -157,7 +157,7 @@ FORMS += warpmainwindow.ui \
 RESOURCES += Resources.qrc
 #win32:RC_FILE = warpmain.rc
 #win32:CONFIG += console
-CONFIG += c++14
+
 DISTFILES += test.tpl \
     aspects.aspect \
     LICENSE.LGPL \

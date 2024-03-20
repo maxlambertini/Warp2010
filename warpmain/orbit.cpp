@@ -34,6 +34,8 @@ Orbit::Orbit(const Orbit &that) {
     this->_obliquity = that._obliquity;
 }
 
+
+
 Orbit Orbit::NextOrbit()
 {
     double d = ((double)(rand() % 1000) / 1000.0)+0.35;

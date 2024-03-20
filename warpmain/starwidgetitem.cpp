@@ -29,6 +29,6 @@ StarWidgetItem::StarWidgetItem(QSharedPointer<Star> newStar, int idx, QListWidge
     _star = newStar;
     this->_indexOnList = idx;
     if (newStar->path().count() > 0)
-        this->backgroundColor() = QColor(255,255,128,128);
+        this->setBackground( QBrush( QColor(255,255,128,128)));
 }
 

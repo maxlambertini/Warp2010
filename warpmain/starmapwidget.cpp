@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QtCore>
 #include <QtGui>
 #include <QtGlobal>
+#include <QMessageBox>
 #include <stdlib.h>
 #include "star.h"
 #include "starlist.h"

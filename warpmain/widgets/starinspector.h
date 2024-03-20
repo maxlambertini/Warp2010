@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
+#include <QRegularExpressionValidator>
 #include "star.h"
 #include "widgets/basicstarinfowidget.h"
 
@@ -49,7 +50,7 @@ private:
 
     QLineEdit *lblStarName;
     QLineEdit *lblStarFullType;
-    QRegExpValidator *validator;
+    QRegularExpressionValidator *validator;
     QLabel *lblMagnitude;
     QLabel *lblSolarMass;
     QLabel *lblSolarAge;

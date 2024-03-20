@@ -3,7 +3,7 @@
 SectorExportOptionsDialog::SectorExportOptionsDialog(QWidget *parent) : QDialog(parent)
 {
     QGridLayout *layout = new QGridLayout(this);
-    layout->setMargin(12);
+    layout->setContentsMargins(12,12,12,12);
     QLabel *l = new QLabel("Export shortest paths only",this);
     l->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     QLabel *l1 = new QLabel("Consider paths with garden planets only",this);

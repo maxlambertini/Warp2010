@@ -136,8 +136,8 @@ void TradeRoute::ReadTradeRoutesFromFile(QVector<QSharedPointer<TradeRoute> >& r
 
                 QSharedPointer<TradeRoute> tr(new TradeRoute());
                 tr->setRouteName(routeName);
-                QStringList lsColor = routeColors.split("|", QString::SkipEmptyParts);
-                QStringList lsPath = pathItems.split("|",QString::SkipEmptyParts);
+                QStringList lsColor = routeColors.split("|", Qt::SkipEmptyParts);
+                QStringList lsPath = pathItems.split("|",Qt::SkipEmptyParts);
                 QColor color;
                 color.setRed(lsColor.at(0).toInt());
                 color.setGreen(lsColor.at(1).toInt());

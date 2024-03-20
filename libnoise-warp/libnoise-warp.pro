@@ -7,7 +7,7 @@
 
 TARGET = libnoise-warp
 TEMPLATE = lib
-CONFIG += c++14
+CONFIG += c++20
 
 DEFINES += LIBNOISEWARP_LIBRARY
 

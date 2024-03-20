@@ -52,7 +52,7 @@ QRectF StarGraphicsItem::boundingRect() const
         QFont font = Preferences::prefs().fontBody();
         QFontMetricsF mf(font);
         double mfHeight  __attribute__((unused)) = mf.height();
-        double mfWidth = mf.width( _star->starName);
+        double mfWidth =  mf.boundingRect( _star->starName).width();
 
         QRectF rect1 = mf.boundingRect(rect,Qt::AlignLeft | Qt::AlignTop,_star->starName);
 
@@ -140,7 +140,7 @@ void StarGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 
     QFontMetricsF mf(font);
     double mfHeight = mf.height();
-    double mfWidth = mf.width( _star->starName);
+    double mfWidth = mf.boundingRect( _star->starName).width();
     double mfMiddleW = mfWidth / 2;
     double mfMiddleH = mfHeight / 2;
 

@@ -379,7 +379,7 @@ void Planet::setNumGardens() {
     QVector<Planet>::iterator ci;
     for (ci = _satellites.begin(); ci != _satellites.end(); ci++)
     {
-        Planet *p = ci;
+        auto p = ci;
         if (p->planetType() == ptGarden || p->planetType() == ptGlacier)
             res++;
     }
@@ -392,7 +392,7 @@ void Planet::setNumMarginals() {
     QVector<Planet>::iterator  ci;
     for (ci = _satellites.begin(); ci != _satellites.end(); ci++)
     {
-        Planet *p = ci;
+        auto p = ci;
         if (p->planetType() == ptPreGarden || p->planetType() == ptPostGarden)
             res++;
     }

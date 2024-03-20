@@ -134,7 +134,7 @@ void SolarSystemWidget::paintDivisions(QPainter& painter, int iDiv)
             painter.setBrush(brushOdd);
         painter.setPen(myPen);
         painter.drawRect(r);
-        QString dist = QString().sprintf("%4.3f UA",pow(2,x-7));
+        QString dist = QString().asprintf("%4.3f UA",pow(2,x-7));
         painter.setBrush(brushBlack);
         painter.setPen(QColor("black"));
         painter.drawText ((iStepWidth*x)+3,15,dist);

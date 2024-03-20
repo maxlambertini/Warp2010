@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QWidget>
 #include <QtGui>
 #include <QVector>
+#include <QRegularExpressionValidator>
 #include "star.h"
 #include "onomastikon.h"
 
@@ -48,7 +49,7 @@ public:
 
 private:
     QDoubleValidator *validator;
-    QRegExpValidator *rv;
+    QRegularExpressionValidator *rv;
     QVector<QSharedPointer<Star> > _starsToCreate;
     Ui::CreateNewStarDlg *ui;
 

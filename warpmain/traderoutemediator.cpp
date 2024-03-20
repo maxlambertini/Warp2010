@@ -65,9 +65,9 @@ TradeRouteMediator::~TradeRouteMediator()
 void TradeRouteMediator::sortByRoute(bool bReverse)
 {
     if (bReverse)
-        qSort(_tradeRoutes.begin(), _tradeRoutes.end(), tradeRouteGreaterThan);
+        std::sort (_tradeRoutes.begin(), _tradeRoutes.end(), tradeRouteGreaterThan);
     else
-        qSort(_tradeRoutes.begin(), _tradeRoutes.end(), tradeRouteLessThan);
+        std::sort (_tradeRoutes.begin(), _tradeRoutes.end(), tradeRouteLessThan);
 }
 
 void TradeRouteMediator::tradeRouteToTableWidget(QListWidget *tw __attribute__((unused)) )

@@ -79,15 +79,16 @@ QDataStream & operator >> (QDataStream &in, Preferences& frm) {
             >> frm._colorDiasporaLink
             >> frm._colorStarOtherLink
             >> frm._colorStarShortestLink
-            >> frm._fontAspectTitle
-            >> frm._fontBody
-            >> frm._fontSmall
-            >> frm._fontTitle
             >> frm._drawRoutesAsArcs
             >> frm._drawSecondaryRoutes
             >> frm._secondaryRouteWidth
             >> frm._hexPerSector
-            >> frm._parsecStarFactor;
+            >> frm._parsecStarFactor
+            >> frm._fontBody
+            >> frm._fontSmall
+            >> frm._fontTitle;
+
+
 
     //qDebug() << "Loaded Preferences: " << frm._fontAspectTitle.family()
     //        << frm._fontBody.family()
@@ -105,20 +106,20 @@ QDataStream& operator << (QDataStream &out, const Preferences& frm)
     //        << frm._fontBody.family()
     //        << frm._fontSmall.family()
     //        << frm._fontTitle.family();
-    out << frm._colorDiasporaAspectBackground
-            << frm._colorDiasporaAspectBox
-            << frm._colorDiasporaLink
-            << frm._colorStarOtherLink
-            << frm._colorStarShortestLink
-            << frm._fontAspectTitle
-            << frm._fontBody
-            << frm._fontSmall
-            << frm._fontTitle
-            << frm._drawRoutesAsArcs
-            << frm._drawSecondaryRoutes
-            << frm._secondaryRouteWidth
-            << frm._hexPerSector
-            << frm._parsecStarFactor;
+    out << frm._colorDiasporaAspectBackground;
+    out << frm._colorDiasporaAspectBox;
+    out << frm._colorDiasporaLink;
+    out << frm._colorStarOtherLink;
+    out << frm._colorStarShortestLink;
+    out << frm._drawRoutesAsArcs;
+    out << frm._drawSecondaryRoutes;
+    out << frm._secondaryRouteWidth;
+    out << frm._hexPerSector;
+    out << frm._parsecStarFactor;
+    out << frm._fontBody;
+    out << frm._fontSmall;
+    out << frm._fontTitle;
+    //out << frm._fontAspectTitle;
 
     return out;
 }

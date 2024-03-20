@@ -37,6 +37,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA#
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <iostream>
+using std::endl;
 
 #ifdef WIN32
 //Q_IMPORT_PLUGIN(qjpeg)
@@ -120,5 +122,5 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext &, const QString 
     QFile outFile(AppPaths::appDir()+"/warpmain.log");
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream ts(&outFile);
-    ts << txt << endl;
+    ts << txt << "\n";
 }

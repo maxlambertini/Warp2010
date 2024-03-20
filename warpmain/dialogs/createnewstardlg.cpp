@@ -32,8 +32,8 @@ CreateNewStarDlg::CreateNewStarDlg(QWidget *parent) :
 {
     ui->setupUi(this);
     validator = new QDoubleValidator(this);
-    QRegExp val("(o|b|a|f|g|k|m|d)[0-9](I|II|III|IV|V|VI|VII)",Qt::CaseInsensitive);
-    rv = new QRegExpValidator(val,this);
+    QRegularExpression val("(o|b|a|f|g|k|m|d)[0-9](I|II|III|IV|V|VI|VII)");
+    rv = new QRegularExpressionValidator(val,this);
 
     ui->txtStarName->setText(Onomastikon::instancePtr()->pseudoNomen());
     ui->txtStarType->setText("G2V");
@@ -60,7 +60,7 @@ CreateNewStarDlg::CreateNewStarDlg(QWidget *parent) :
 void CreateNewStarDlg::createStars() {
     //qDeleteAll(_starsToCreate);
     _starsToCreate.clear();
-    if (ui->txtStarType->validator()->Acceptable) {
+    if (ui->txtStarType->validator()->Acceptable  == QValidator::Acceptable) {
         double dx = ui->txtX->text().toDouble() ;
         double dy = ui->txtY->text().toDouble() ;
         double dz = ui->txtZ->text().toDouble() ;
@@ -127,10 +127,10 @@ void CreateNewStarDlg::createStars() {
 
 QSharedPointer<Star>  CreateNewStarDlg::createStar() {
     QSharedPointer<Star> res;
-    if (ui->txtStarType->validator()->Acceptable &&
-        ui->txtZ->validator()->Acceptable &&
-        ui->txtY->validator()->Acceptable &&
-        ui->txtX->validator()->Acceptable &&
+    if (ui->txtStarType->validator()->Acceptable == QValidator::Acceptable &&
+        ui->txtZ->validator()->Acceptable  == QValidator::Acceptable&&
+        ui->txtY->validator()->Acceptable  == QValidator::Acceptable&&
+        ui->txtX->validator()->Acceptable  == QValidator::Acceptable&&
         !ui->txtStarName->text().isEmpty())
     {
         res = QSharedPointer<Star>( new Star());

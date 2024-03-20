@@ -65,7 +65,7 @@ void SceneImageExporter::printScene(QGraphicsScene *scene, QPrinter& printer,
     }
     else {
         //set page margins if I have to print on paper.
-        printer.setPageMargins(10,10,10,10,QPrinter::Millimeter);
+        printer.setPageMargins(QMarginsF(10,10,10,10),QPageLayout::Unit::Millimeter);
     }
 
 
@@ -74,12 +74,16 @@ void SceneImageExporter::printScene(QGraphicsScene *scene, QPrinter& printer,
     QRectF sceneRect = scene->sceneRect();
     double sceneRatio = scene->sceneRect().width()/scene->sceneRect().height();
     qreal left,top,right,bottom;
-    printer.getPageMargins(&left,&top,&right,&bottom,QPrinter::DevicePixel);
+    auto margins = printer.pageLayout().margins();
+    left = margins.left();
+    top = margins.top();
+    right = margins.right();
+    bottom = margins.bottom();
     QRect pageRect = QRect(
-            printer.pageRect().top()+top,
-            printer.pageRect().left()+left,
-            printer.pageRect().width()-(left+right),
-            printer.pageRect().height()-(top+bottom));
+        printer.pageRect(QPrinter::DevicePixel).top()+top,
+            printer.pageRect(QPrinter::DevicePixel).left()+left,
+            printer.pageRect(QPrinter::DevicePixel).width()-(left+right),
+            printer.pageRect(QPrinter::DevicePixel).height()-(top+bottom));
 
     int xSize, ySize, dxSize, dySize, xPages, yPages;
     double fWidth, fHeight, fHeightStep, fWidthStep;
@@ -214,7 +218,7 @@ void SceneImageExporter::printScene(QGraphicsScene *scene, QPrinter& printer,
             painter.setFont(fontb);
             QFontMetricsF metricsb(fontb);
             nDelta+= (int)metricsb.height();
-            QString txt = QString().sprintf("Folio [%d,%d] -- page %d of %d",x,y,nCur, nMax);
+            QString txt = QString().asprintf("Folio [%d,%d] -- page %d of %d",x,y,nCur, nMax);
             painter.drawText(
                     targetRect2.left()+fWidthStep+10,
                     targetRect2.top()+nDelta,
@@ -244,22 +248,26 @@ void SceneImageExporter::PageGraphicsSceneToPrinter(QGraphicsScene *scene, QPrin
     // When printing, use full page mode, IE ignore hardware margins. It's up
     // to users to set them as they desire.
     printer.setFullPage(true);
-    printer.setPaperSize(QSizeF(PrintingPreferences::prefs().selectedMeasure().width(),
-                                PrintingPreferences::prefs().selectedMeasure().height()),
-                         QPrinter::Millimeter);
-    printer.setPageMargins(PrintingPreferences::prefs().leftMargin(),
+    // QPrinter::Millimeter
+    printer.setPageSize(QPageSize(QSizeF(PrintingPreferences::prefs().selectedMeasure().width(),
+                                         PrintingPreferences::prefs().selectedMeasure().height()),QPageSize::Millimeter));
+    printer.setPageMargins(QMarginsF(PrintingPreferences::prefs().leftMargin(),
                            PrintingPreferences::prefs().topMargin(),
                            PrintingPreferences::prefs().rightMargin(),
-                           PrintingPreferences::prefs().bottomMargin(),
-                           QPrinter::Millimeter);
+                                     PrintingPreferences::prefs().bottomMargin()),
+                           QPageLayout::Unit::Millimeter);
 
     //here, I print using selected sheets and divisions.
     QPainter painter(&printer);
     qreal left,top,right,bottom;
-    printer.getPageMargins(&left,&top,&right,&bottom,QPrinter::DevicePixel);
+    auto margins = printer.pageLayout().margins();
+    left = margins.left();
+    top = margins.top();
+    right = margins.right();
+    bottom = margins.bottom();
 
     // get the FULL PAGE RECTANGLE and adjust margins.
-    QRectF pageRect = printer.paperRect();
+    QRectF pageRect = printer.paperRect(QPrinter::DevicePixel);
     pageRect.adjust(left,top,-right, -bottom);
 
 
@@ -331,14 +339,13 @@ void SceneImageExporter::GraphicsSceneToPrinter(
     // When printing, use full page mode, IE ignore hardware margins. It's up
     // to users to set them as they desire.
     printer.setFullPage(true);
-    printer.setPaperSize(QSizeF(PrintingPreferences::prefs().selectedMeasure().width(),
-                                PrintingPreferences::prefs().selectedMeasure().height()),
-                         QPrinter::Millimeter);
-    printer.setPageMargins(PrintingPreferences::prefs().leftMargin(),
+    printer.setPageSize(QPageSize(QSizeF(PrintingPreferences::prefs().selectedMeasure().width(),
+                                         PrintingPreferences::prefs().selectedMeasure().height()), QPageSize::Millimeter));
+    printer.setPageMargins(QMarginsF(PrintingPreferences::prefs().leftMargin(),
                            PrintingPreferences::prefs().topMargin(),
                            PrintingPreferences::prefs().rightMargin(),
-                           PrintingPreferences::prefs().bottomMargin(),
-                           QPrinter::Millimeter);
+                                     PrintingPreferences::prefs().bottomMargin()),
+                           QPageLayout::Unit::Millimeter);
 
 
     if (!bSizeToOneSheet) {
@@ -346,10 +353,14 @@ void SceneImageExporter::GraphicsSceneToPrinter(
         //here, I print using selected sheets and divisions.
         QPainter painter(&printer);
         qreal left,top,right,bottom;
-        printer.getPageMargins(&left,&top,&right,&bottom,QPrinter::DevicePixel);
+        auto margins = printer.pageLayout().margins(); //getPageMargins(&left,&top,&right,&bottom,QPrinter::DevicePixel);
+        left = margins.left();
+        right = margins.right();
+        top = margins.top();
+        bottom = margins.bottom();
 
         // get the FULL PAGE RECTANGLE and adjust margins.
-        QRectF pageRect = printer.paperRect();
+        QRectF pageRect = printer.pageLayout().fullRectPixels(printer.resolution()) ;
         pageRect.adjust(left,top,-right, -bottom);
 
 
@@ -425,16 +436,22 @@ void SceneImageExporter::GraphicsSceneToPrinter(
         QRectF sceneRect = scene->sceneRect();
         //qDebug() << "scene Rect:" << sceneRect;
         printer.setResolution(96);
-        printer.setPaperSize(QSizeF (
+        printer.setPageSize(QPageSize(QSizeF(
                 scene->sceneRect().width()+(76*2),
-                scene->sceneRect().height()+(76*2)), QPrinter::DevicePixel);
+                                          scene->sceneRect().height()+(10*2)),QPageSize::Millimeter));
 
         printer.setFullPage(true);
-        printer.setPageMargins( 76.0,76.0,76.0,76.0, QPrinter::DevicePixel);
+        printer.setPageMargins(QMarginsF( 10.0,10.0,10.0,10.0), QPageLayout::Millimeter);
         QPainter painter(&printer);
         qreal left,top,right,bottom;
-        printer.getPageMargins(&left,&top,&right,&bottom,QPrinter::DevicePixel);
-        QRectF pageRect = printer.paperRect();
+
+        auto margins = printer.pageLayout().margins();
+        left = margins.left();
+        right = margins.right();
+        top = margins.top();
+        bottom = margins.bottom();
+        //printer.getPageMargins(&left,&top,&right,&bottom,QPrinter::DevicePixel);
+        QRectF pageRect = printer.pageLayout().fullRectPixels(printer.resolution()) ;
 
         //qDebug() << "pageRect: " << pageRect;
 
@@ -450,7 +467,7 @@ void SceneImageExporter::GraphicsSceneToPrinter(
         //        << printer.paperRect().width() << ","
         //        << printer.paperRect().top() << ","
         //        << printer.paperRect().height();
-        pageRect = printer.pageRect();
+        pageRect = printer.pageLayout().paintRectPixels(printer.resolution()) ;
         //qDebug() << pageRect.left() << ","
         //        << pageRect.width() << ","
         //        << pageRect.top() << ","

@@ -41,7 +41,7 @@ void GraphVizExporter::createGraphVizDoc(QString& filename) {
             QString name = p1.data()->starName;
             QString n, nRes("");
             QStringList lstRes;
-            QStringList nameList = name.split(QChar(' '),QString::SkipEmptyParts);
+            QStringList nameList = name.split(QChar(' '),Qt::SkipEmptyParts);
             foreach (n, nameList) {
                 if (n.length() < 10)
                     lstRes << n;

@@ -73,7 +73,6 @@ void PreferencesDialog::readPreferences() {
     m_ui->spnLightYearsHex->setValue(pref.parsecStarFactor());
     m_ui->spnSecondaryRouteWidth->setValue(pref.secondaryRouteWidth());
 
-    _fontAspectTitle = pref.fontAspectTitle();
     _fontBody = pref.fontBody();
     _fontSmall = pref.fontSmall();
     _fontTitle = pref.fontTitle();

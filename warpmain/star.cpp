@@ -675,10 +675,9 @@ void Star::setNumMarginals() {
     QVector<Planet>::iterator ci;
     for (ci = _planets.begin(); ci != _planets.end(); ci++)
     {
-        Planet *p = ci;
-        if (p->planetType() == ptPreGarden || p->planetType() == ptPostGarden)
+        if (ci->planetType() == ptPreGarden || ci->planetType() == ptPostGarden)
             res++;
-        res += p->numMarginals();
+        res += ci->numMarginals();
     }
     _numMarginals = res;
 
@@ -689,10 +688,9 @@ void Star::setNumGardens() {
     QVector<Planet>::iterator ci;
     for (ci = _planets.begin(); ci != _planets.end(); ci++)
     {
-        Planet *p = ci;
-        if (p->planetType() == ptGarden|| p->planetType() == ptGlacier)
+        if (ci->planetType() == ptGarden|| ci->planetType() == ptGlacier)
             res++;
-        res +=p->numGardens();
+        res +=ci->numGardens();
     }
     _numGardens = res;
 
@@ -703,12 +701,10 @@ void Star::setNumDesert() {
     QVector<Planet>::iterator ci, ciSat;
     for (ci = _planets.begin(); ci != _planets.end(); ci++)
     {
-        Planet *p = ci;
-        if (p->planetType() == ptDesert)
+        if (ci->planetType() == ptDesert)
             res++;
-        for (ciSat = p->satellites().begin();  ciSat != p->satellites().end(); ciSat++) {
-            Planet *s = ciSat;
-            if (s->planetType() == ptDesert)
+        for (ciSat = ci->satellites().begin();  ciSat != ci->satellites().end(); ciSat++) {
+            if (ciSat->planetType() == ptDesert)
                 res++;
         }
     }
@@ -722,11 +718,11 @@ void Star::setNumGasGiant() {
     QVector<Planet>::iterator ci, ciSat;
     for (ci = _planets.begin(); ci != _planets.end(); ci++)
     {
-        Planet *p = ci;
+        auto p = ci;
         if (p->planetType() == ptGasGiant)
             res++;
         for (ciSat = p->satellites().begin();  ciSat != p->satellites().end(); ciSat++) {
-            Planet *s = ciSat;
+            auto s = ciSat;
             if (s->planetType() == ptGasGiant)
                 res++;
         }
@@ -754,7 +750,7 @@ NSStar::STARVALUE Star::calcStarValue() {
     QVector<Planet>::iterator ci, ciSat;
     for (ci = _planets.begin(); ci != _planets.end(); ci++)
     {
-        Planet *p = ci;
+        auto p = ci;
         switch (p->planetType()) {
         case ptGarden:
             sv.numGarden++; break;
@@ -783,7 +779,7 @@ NSStar::STARVALUE Star::calcStarValue() {
         };
 
         for (ciSat = p->satellites().begin();  ciSat != p->satellites().end(); ciSat++) {
-            Planet *s = ciSat;
+            auto s = ciSat;
             switch (s->planetType()) {
             case ptGarden:
                 sv.numGarden++; break;

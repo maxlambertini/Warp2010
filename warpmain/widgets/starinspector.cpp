@@ -65,8 +65,8 @@ void StarInspector::createWidgets() {
 
     lblStarName = new QLineEdit(this);
     lblStarFullType = new QLineEdit(this);
-    QRegExp val("(o|b|a|f|g|k|m|d)[0-9](I|II|III|IV|V|VI|VII)",Qt::CaseInsensitive);
-    validator = new QRegExpValidator(val,this);
+    QRegularExpression val("(o|b|a|f|g|k|m|d)[0-9](I|II|III|IV|V|VI|VII)");
+    validator = new QRegularExpressionValidator(val,this);
     lblStarFullType->setValidator(validator);
     lblMagnitude = new QLabel("",this);
     lblLifeZones = new QLabel("",this);

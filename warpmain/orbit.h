@@ -95,6 +95,19 @@ public:
     {
     }
     Orbit(const Orbit& that);
+
+    Orbit& operator=(const Orbit& orb) {
+        if (this != &orb) {
+            this->_day = orb._day;
+            this->_distance = orb._distance;
+            this->_eccentricity = orb._eccentricity;
+            this->_inclination = orb._inclination;
+            this->_obliquity = orb._obliquity;
+            this->_year = orb._year;
+        }
+        return *this;
+    }
+
     Orbit  NextOrbit();
 
 
